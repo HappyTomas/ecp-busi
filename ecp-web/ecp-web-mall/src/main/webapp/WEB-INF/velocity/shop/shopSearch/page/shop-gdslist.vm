@@ -1,0 +1,43 @@
+    	#parse("/sys/sys_param.vm")
+	    <script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/powerSwitch/jquery-powerSwitch.js"></script>	
+	    <script type="text/javascript" src="$!{BUSIJS_PATH}/shop/shopSearch/shop-gdslist.js"></script>	
+
+		
+   <div class="citem active">
+        <div class="favimg slide jcarousel">
+            <div id="jcarouseln-$!{shopId}" class="slide-trigger">
+				#if($!{hotList.list.size()} > 0)
+                <a href="javascript:" class="slide-prev" data-rel="switch$!{shopId}"></a>
+                <a href="javascript:" class="slide-next" data-rel="switch$!{shopId}"></a>
+				#end
+            </div>
+            <div class="slide-box">
+                 <ul id="jcarouselc-$!{shopId}" class="jcarousel-container">
+                	 #foreach($gdsInfo in $hotList.list)		
+					<a href="javascript:void(0);" onclick="goodDetail('$!{gdsInfo.id}','${gdsInfo.firstSkuId}');">	
+                    <li class="switch$!{shopId} it">
+						##    <a href="$!{CONTEXT_PATH}/gdsdetail/${gdsInfo.id}-${gdsInfo.firstSkuId}" target="_blank" title="$!{gdsInfo.gdsNameSrc}">
+                        <img width="130" height="130" src="$gdsInfo.imageUrl"
+                             alt="Image 1"/>
+                         ##     </a>
+                        <p class="p-name" title="$!{gdsInfo.gdsName}">
+							#set($str=$gdsInfo.gdsName)
+
+                                #if($str.length()>30)
+                                    #set($str=$str.substring(0,30))
+                                    $str ...
+                                #else
+                                    $gdsInfo.gdsName
+                                #end             
+                        </p>
+                    </li>
+					</a>
+                    #end
+                </ul>
+           </div>
+        </div>
+ 
+         <div class="citem">
+
+         </div>
+   </div>

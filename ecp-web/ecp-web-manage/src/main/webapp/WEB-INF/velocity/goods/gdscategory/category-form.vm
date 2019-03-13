@@ -1,0 +1,123 @@
+<form class="form-horizontal required-validate" id="actionForm" style="margin-top:20px;">
+	<!--main content-->
+	<div class="row-fluid">
+        <div class="span8">
+			<div class="control-group" id="catgCode" style="display:none;">
+                <label for="" class="control-label">分类编码：</label>
+                <div class="controls">
+                    <input type="text" readonly="readonly" name="catgCode" value="" readonly />
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="" class="control-label">名称：</label>
+                <div class="controls">
+                    <input  type="text" name="catgName" id="catg-name" class="required htmlcheck" value="" validate="{rangelength:[1,32]}"/>
+                </div>
+            </div>
+            <!-- <div class="control-group">
+                <label for="" class="control-label">提成比例：</label>
+                <div class="controls">
+                    <input  type="text" name="commission" id="commission" class="required htmlcheck checkDisc" value="" placeholder="100以内,最多2位小数" onBlur="replaceSpace(this)"/>
+                </div>
+            </div> -->
+            <div class="control-group">
+                <label for="" class="control-label">上级分类：</label>
+                <div class="controls">
+                    <input type="text" type="text" disabled="disabled" id="parent-name"/>
+					<input type="hidden" name="catgParent" id="catg-parent" value=""/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label for="" class="control-label">排序：</label>
+                <div class="controls">
+                    <input type="text" name="sortNo" id="sort-no" class='digits' min="1" max="99999" value=""/>
+                </div>
+            </div>
+			#if("2" == $!{reqVO.catgType})
+			<div class="control-group">
+                <label for="" class="control-label">店铺：</label>
+                <div class="controls">
+					<select name="shopId" id="shop-id" class="required">
+						<option value="">--请选择--</option>
+						#shopStatuslist($!{reqVO.shopId},'1')
+                    </select>
+                </div>
+            </div>
+			#end
+			
+			#if("1" == $!{reqVO.catgType})
+			<div class="control-group">
+                <label for="" class="control-label">归属目录：</label>
+                <div class="controls">
+					<select name="catlogId" id="catlog-id" class="required">
+						<option value="">--请选择--</option>
+						#catlogList($!{reqVO.catlogId},'1')
+                    </select>
+                </div>
+            </div>
+			#end
+			
+			#if("1" == $!{reqVO.catgType})
+            <div class="control-group">
+                <label for="" class="control-label">URL：</label>
+                <div class="controls">
+                    <input type="text" name="catgUrl" value="" class="url" validate="{maxlength:128}"/>
+                </div>
+            </div>
+            <!--div class="control-group">
+                <label for="" class="control-label">默认单位：</label>
+                <div class="controls">
+                    <select name="catgTypeUnit" id="catg-type-unit">
+                        <option value="1">单位1</option>
+                        <option value="2">单位2</option>
+                        <option value="3">单位3</option>
+                    </select>
+                </div>
+            </div-->
+            <!--div class="control-group">
+                <label for="" class="control-label">实体配置：</label>
+                <div class="controls">
+					#select("GDS_CATEGORY_IF_ENTITY_CODE", 'ifEntityCode' , false, $!{reqVO.ifEntityCode})
+                </div>
+            </div-->
+            <div class="control-group">
+                <label for="" class="control-label">在首页展示：</label>
+                <div class="controls">
+                    <label class="radio inline">
+                        <input type="radio" name="ifShow" value="1" #if(${actionType}!='' || '1' == ${reqVO.ifShow}) checked #end/>
+                        是
+                    </label>
+                    <label class="radio inline">
+                        <input type="radio" name="ifShow" value="0"	#if('0' == ${reqVO.ifShow}) checked #end/>
+                        否
+                    </label>
+                </div>
+            </div>
+			#end
+        </div>
+		
+        <div class="span4">
+            <div class="imgup-show">
+			     <img src="$!{IMAGE_PATH}/goods/image_preview.png" alt="" id="form-imgPreviewHold"/>
+			     <img src="$!{IMAGE_PATH}/goods/image_preview.png" alt="" id="form-imgPreview" style="display:none;"/>
+            </div>
+            <div style="padding: 5px 0px 5px 10px;border-radius: 0;border: 0;color: #f0742b;font-size: 12px;
+    width: 230px;padding-top: 20px;">
+                图片格式必须是：png,jpg,jpeg,gif并且小于100k
+            </div>
+			<div class="img-input">
+
+			<a id="imgUpload" href="javascript:void(0);" class="btn"><i class="icon-white"></i>图片上传</a>
+##页面样式统一
+			<input type="hidden" id="mediaUuid" name="mediaUuid" value=""/>
+            </div>
+        </div>
+    </div>
+	<input type="hidden" name="catgType" id="catg-type" value="$!{reqVO.catgType}"/>
+    <div class="btn-wrap fbtn" style="top:100px;">
+		<a class="btn" id="btnUpdate" style="display:none;"><i class="icon-edit icon-white"></i> 更  新</a>
+		<a class="btn btn-info" id="btnSave" style="display:none;"><i class=" icon-ok-sign icon-white"></i> 保  存</a>
+        <a class="btn" style="margin-left: 10px" id="btnCancel"><i class=" icon-remove-sign icon-white"></i> 取  消</a>
+    </div>
+</form>
+<!-- main content -->

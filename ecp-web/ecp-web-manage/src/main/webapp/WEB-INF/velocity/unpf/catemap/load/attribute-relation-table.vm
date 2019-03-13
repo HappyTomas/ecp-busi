@@ -1,0 +1,12 @@
+<table>
+    <tbody>
+    #foreach($param in $!{attribute-relation})
+    	<tr>
+            <td style="width:120px;">$!{param.propName}</td>
+			<td> < > </td>
+			<td>$!{param.outPromName}</td>
+            <td class="handle"><a href="javascript:void(0);" onclick="ACTION_RELATION.DELETE('$!{param.id}', 'attribute')">删除</a> </td>
+        </tr>
+    #end
+    </tbody>
+</table>

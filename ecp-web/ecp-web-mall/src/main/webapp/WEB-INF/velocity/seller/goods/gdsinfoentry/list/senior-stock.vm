@@ -1,0 +1,53 @@
+#parse("/sys/sys_head.vm")
+#parse("/module/mod-form.vm")
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsinfoentry/senior-stock.js?version=$!{JS_VERSION}" ></script>
+<body style="background-color:#ffffff;">
+<div class="seller-well">
+    <form action="" class="form-horizontal" id="seniorStockForm">
+        <table class="seller-table">
+            <thead>
+                <tr>
+                    <th>仓库</th>
+                    <th style="min-width:50px;width:50px;">适用范围</th>
+                    <th>库存</th>
+                </tr>
+            </thead>
+            <tbody id="seniorStockList">
+				#if(!$stockList || 0 == ${stockList.size()})
+					<tr>
+						<td colspan="3">无符合条件库存数据!</td>
+					</tr>
+			    #else
+					#foreach($stock in $!{stockList})
+                    <tr>
+                        <td>$!{stock.repName}</td>
+                        <td style="min-width:250px;width:250px;">
+                            #set($areaStr = '[')
+                            #foreach($area in $!{stock.stockRepAdaptDTOs})
+                                #set($areaStr = $areaStr + "{country:'"+ $!{area.adaptCountry}+"',provinceCode:'"+ $!{area.adaptProvince}+"',cityCode:'"+ $!{area.adaptCity}+"'},")
+                                #set($a = '，')
+                                #if($velocityCount ==  $!{stock.stockRepAdaptDTOs.size()})
+                                    #set($a = '')
+                                #end
+                                #if($!{area.adaptCity})#areaName($!{area.adaptCity})#else #areaName($!{area.adaptProvince})#end$a
+                            #end 
+                            #set($areaStr = $areaStr +']')</td>
+                            <td>
+                                <input type="text"  class="input-small" id="" repTyep="$!{stock.repType}" repCode="$!{stock.id}" areaStr="$areaStr" name="skuStock" #if($!{editFlag}=='1')disabled#else  #end maxlength="9">
+							</td>
+				    </tr>
+                    #end
+				#end
+            </tbody>
+       </table>
+   </form>
+   <div>
+   <div class="btn-wrap">
+      <span class="sbtn sbtn-blue" id="btnFormSave">确认</span>
+      <span class="sbtn" id="btnFormCancle">关闭</span>
+   </div>
+   </div>   
+</div>
+</body>

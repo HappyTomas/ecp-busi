@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Manage DEMO</title>
+
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<link type="text/css" rel="stylesheet" href="/ecp-web-demo/js/bootstrap/core/2.3.2/css/bootstrap.min.css" media="screen">
+<style type="text/css">
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+</style>
+<script type="text/javascript">
+var $webroot = '/ecp-web-demo/';
+</script>
+
+
+<link href="/ecp-web-demo/js/jquery/zebra_dialog/css/flat/zebra_dialog.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="/ecp-web-demo/js/jquery/zebra_dialog/zebra_dialog_extend.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="/ecp-web-demo/js/jquery/qTip2/jquery.qtip.css" rel="stylesheet" type="text/css" media="screen"/>
+
+<!-- Gebo Admin Style Tip -->
+<link href="/ecp-web-demo/js/bootstrap/theme/gebo_admin/lib/qtip2/jquery.qtip.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="/ecp-web-demo/js/jquery/qTip2/jquery.qtip-extend.css" rel="stylesheet" type="text/css" media="screen"/>
+
+
+
+<script type="text/javascript" src="/ecp-web-demo/js/jquery/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/jquery/jquery.validate.js"></script>
+
+<script type="text/javascript" src="/ecp-web-demo/js/jquery/zebra_dialog/zebra_dialog.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/jquery/qTip2/jquery.qtip.js"></script>
+
+<script type="text/javascript" src="/ecp-web-demo/js/framework/website/core/e.core.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/framework/manage/extend/ebc.form.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/framework/manage/extend/ebc.date.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/framework/manage/extend/ebc.utils.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/framework/website/core/e.dialog.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/framework/website/core/e.tip.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/framework/website/core/e.selector.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/framework/website/core/e.validate.method.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/framework/website/core/e.regional.zh.js"></script>
+
+
+
+
+
+
+
+
+<!-- Bootstrap framework -->
+<link rel="stylesheet" href="/ecp-web-demo/js/bootstrap/core/2.3.2/css/bootstrap.css" />
+<link rel="stylesheet" href="/ecp-web-demo/js/bootstrap/core/2.3.2/css/bootstrap-responsive.css" />
+<link rel="stylesheet" href="/ecp-web-demo/js/bootstrap/extend/css/bootstrap_panel.css" />
+<!-- Font-Awesome -->
+<link rel="stylesheet" href="/ecp-web-demo/js/bootstrap/plugin/font-awesome-3.2.1/css/font-awesome.min.css" />
+<!--[if IE 7]>
+<link rel="stylesheet" href="/ecp-web-demo/js/bootstrap/plugin/font-awesome-3.2.1/css/font-awesome-ie7.min.css">
+<![endif]-->
+
+
+<!-- splashy icons -->
+<link rel="stylesheet" href="/ecp-web-demo/js/bootstrap/theme/gebo_admin/img/splashy/splashy.css" />
+<!-- gebo color theme-->
+<link rel="stylesheet" href="/ecp-web-demo/js/bootstrap/theme/gebo_admin/css/blue.css" id="link_theme" />
+<!-- main styles -->
+<link rel="stylesheet" href="/ecp-web-demo/js/bootstrap/theme/gebo_admin/css/style.css" />
+<link rel="stylesheet" href="/ecp-web-demo/js/bootstrap/theme/gebo_admin/css/style_extend.css" />
+
+<link rel="stylesheet" href="/ecp-web-demo/js/bootstrap/theme/gebo_admin/css/font.css" />
+
+<!-- Favicon -->
+<link rel="shortcut icon" href="favicon.ico" />
+
+<!--[if lte IE 8]>
+<link rel="stylesheet" href="/ecp-web-demo/js/bootstrap/theme/gebo_admin/css/ie.css" />
+<script src="/ecp-web-demo/js/bootstrap/theme/gebo_admin/js/ie/html5.js"></script>
+<script src="/ecp-web-demo/js/bootstrap/theme/gebo_admin/js/ie/respond.min.js"></script>
+<![endif]-->
+
+
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="/ecp-web-demo/js/jsLib/bootstrap/iehack/css/bootstrap-ie6.css">
+<link rel="stylesheet" type="text/css" href="/ecp-web-demo/js/jsLib/bootstrap/iehack/css/ie.css">
+<script type="text/javascript" src="/ecp-web-demo/js/jsLib/bootstrap/iehack/bootstrap-ie.js"></script>
+<![endif]-->
+
+
+<!-- hidden elements width/height -->
+<script type="text/javascript" src="/ecp-web-demo/js/bootstrap/theme/gebo_admin/js/jquery_cookie.min.js"></script>
+
+<script type="text/javascript" src="/ecp-web-demo/js/bootstrap/core/2.3.2/js/bootstrap.min.js"></script>
+<!-- bootstrap plugins -->
+<!-- common functions -->
+<script type="text/javascript" src="/ecp-web-demo/js/bootstrap/theme/gebo_admin/js/gebo_common.js"></script>
+
+
+<script type="text/javascript" src="/ecp-web-demo/js/bootstrap/theme/gebo_admin/lib/antiscroll/antiscroll.js"></script>
+
+<script type="text/javascript" src="/ecp-web-demo/js/bootstrap/extend/js/b.validate.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/bootstrap/extend/js/b.table.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/bootstrap/extend/js/b.form.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/bootstrap/extend/js/b.ui.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/bootstrap/extend/js/b.dialog.js"></script>
+
+<!-- 回到页面顶部插件 -->
+<link rel="stylesheet" media="screen,projection" href="/ecp-web-demo/js/UItoTop/css/ui.totop.css" />
+<script type="text/javascript" src="/ecp-web-demo/js/jquery/UItoTop/easing.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/jquery/UItoTop/jquery.ui.totop.js"></script>
+
+<!-- 日期插件 -->
+<link rel="stylesheet" type="text/css" href="/ecp-web-demo/js/bootstrap/plugin/datetimepicker/css/bootstrap-datetimepicker.min.css" />
+<script type="text/javascript" src="/ecp-web-demo/js/bootstrap/plugin/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="/ecp-web-demo/js/bootstrap/plugin/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+
+
+
+<script type="text/javascript" src="./js/manage_modify.js"></script>
+
+</head>
+
+<body>
+
+
+
+
+
+<div id="maincontainer" class="clearfix">
+
+	<!-- header -->
+	<header>
+	    <div class="navbar navbar-fixed-top" id="headerBar">
+	        <div class="navbar-inner">
+	            <div class="container-fluid">
+	                <a class="brand" href="/ecp-web-demo/html/manage_index.html"><i class="icon-home icon-white"></i> Manage DEMO</a>
+	                <ul class="nav user_menu pull-right">
+	                    <li class="hidden-phone hidden-tablet">
+	                        <div class="nb_boxes clearfix">
+	                            <a data-toggle="modal" data-backdrop="static" href="#myMail" class="label ttip_b" title="New messages">25 <i class="splashy-mail_light"></i></a>
+	                            <a data-toggle="modal" data-backdrop="static" href="#myTasks" class="label ttip_b" title="New tasks">10 <i class="splashy-calendar_week"></i></a>
+	                        </div>
+	                    </li>
+	                    <li class="divider-vertical hidden-phone hidden-tablet"></li>
+	                    <li class="dropdown">
+	                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+	                        	<img src="/ecp-web-demo/js/bootstrap/theme/gebo_admin/img/user_avatar.png" alt="" class="user_avatar" /> 用户名 <b class="caret"></b>
+	                        </a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="${webroot}jsp/manage/system/user/myInfoModify.jsp?userId=${userInfo.id}"><i class="icon-list-alt"></i> 我的资料</a></li>
+	                            <li><a href="javascript:void(0);" id="linkChangePassword"><i class="icon-pencil"></i> 密码修改</a></li>
+	                        </ul>
+	                    </li>
+	                    <li class="divider-vertical hidden-phone hidden-tablet"></li>
+	                    <li class="">
+	                        <a href="${webroot}login/logout" class="" ><i class="icon-off"></i> 退出 </a>
+	                    </li>
+	                </ul>
+	                <ul class="nav" id="mobile-nav">
+	                    <li class="dropdown">
+	                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-list-alt icon-white"></i> Forms <b class="caret"></b></a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="form_elements.html">Form elements</a></li>
+	                            <li><a href="form_extended.html">Extended form elements</a></li>
+	                            <li><a href="form_validation.html">Form Validation</a></li>
+	                        </ul>
+	                    </li>
+	                    <li class="dropdown">
+	                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-th icon-white"></i> Components <b class="caret"></b></a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="alerts_btns.html">Alerts & Buttons</a></li>
+	                            <li><a href="icons.html">Icons</a></li>
+	                            <li><a href="notifications.html">Notifications</a></li>
+	                            <li><a href="tables.html">Tables</a></li>
+	                            <li><a href="tables_more.html">Tables (more examples)</a></li>
+	                            <li><a href="tabs_accordion.html">Tabs & Accordion</a></li>
+	                            <li><a href="tooltips.html">Tooltips, Popovers</a></li>
+	                            <li><a href="typography.html">Typography</a></li>
+	                            <li><a href="widgets.html">Widget boxes</a></li>
+	                            <li class="dropdown">
+	                                <a href="#">Sub menu <b class="caret-right"></b></a>
+	                                <ul class="dropdown-menu">
+	                                    <li><a href="#">Sub menu 1.1</a></li>
+	                                    <li><a href="#">Sub menu 1.2</a></li>
+	                                    <li><a href="#">Sub menu 1.3</a></li>
+	                                    <li>
+	                                        <a href="#">Sub menu 1.4 <b class="caret-right"></b></a>
+	                                        <ul class="dropdown-menu">
+	                                            <li><a href="#">Sub menu 1.4.1</a></li>
+	                                            <li><a href="#">Sub menu 1.4.2</a></li>
+	                                            <li><a href="#">Sub menu 1.4.3</a></li>
+	                                        </ul>
+	                                    </li>
+	                                </ul>
+	                            </li>
+	                        </ul>
+	                    </li>
+	                    <li class="dropdown">
+	                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-wrench icon-white"></i> Plugins <b class="caret"></b></a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="charts.html">Charts</a></li>
+	                            <li><a href="calendar.html">Calendar</a></li>
+	                            <li><a href="datatable.html">Datatable</a></li>
+	                            <li><a href="dynamic_tree.html">Dynamic Tree</a></li>
+	                            <li><a href="editable_elements.html">Editable elements</a></li>
+	                            <li><a href="file_manager.html">File Manager</a></li>
+	                            <li><a href="floating_header.html">Floating List Header</a></li>
+	                            <li><a href="google_maps.html">Google Maps</a></li>
+	                            <li><a href="gallery.html">Gallery Grid</a></li>
+	                            <li><a href="wizard.html">Wizard</a></li>
+	                        </ul>
+	                    </li>
+	                    <li class="dropdown">
+	                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i class="icon-file icon-white"></i> Pages <b class="caret"></b></a>
+	                        <ul class="dropdown-menu">
+	                            <li><a href="blog_page.html">Blog Page</a></li>
+	                            <li><a href="chat.html">Chat</a></li>
+	                            <li><a href="error_404.html">Error 404</a></li>
+	                            <li><a href="invoice.html">Invoice</a></li>
+	                            <li><a href="mailbox.html">Mailbox</a></li>
+	                            <li><a href="search_page.html">Search page</a></li>
+	                            <li><a href="user_profile.html">User profile</a></li>
+	                            <li><a href="user_static.html">User profile (static)</a></li>
+	                        </ul>
+	                    </li>
+	                    <li>
+	                        <a href="documentation.html"><i class="icon-book icon-white"></i> Help</a>
+	                    </li>
+	                </ul>
+	            </div>
+	        </div>
+	    </div>
+	    
+	    
+	    <!-- 邮件弹出窗口 -->
+	    <div class="modal hide fade" id="myMail">
+	        <div class="modal-header">
+	            <button class="close" data-dismiss="modal">×</button>
+	            <h3>New messages</h3>
+	        </div>
+	        <div class="modal-body">
+	            <div class="alert alert-info">In this table jquery plugin turns a table row into a clickable link.</div>
+	            <table class="table table-condensed table-striped" data-provides="rowlink">
+	                <thead>
+	                    <tr>
+	                        <th>Sender</th>
+	                        <th>Subject</th>
+	                        <th>Date</th>
+	                        <th>Size</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr>
+	                        <td>Declan Pamphlett</td>
+	                        <td><a href="javascript:void(0)">Lorem ipsum dolor sit amet</a></td>
+	                        <td>23/05/2012</td>
+	                        <td>25KB</td>
+	                    </tr>
+	                    <tr>
+	                        <td>Erin Church</td>
+	                        <td><a href="javascript:void(0)">Lorem ipsum dolor sit amet</a></td>
+	                        <td>24/05/2012</td>
+	                        <td>15KB</td>
+	                    </tr>
+	                    <tr>
+	                        <td>Koby Auld</td>
+	                        <td><a href="javascript:void(0)">Lorem ipsum dolor sit amet</a></td>
+	                        <td>25/05/2012</td>
+	                        <td>28KB</td>
+	                    </tr>
+	                    <tr>
+	                        <td>Anthony Pound</td>
+	                        <td><a href="javascript:void(0)">Lorem ipsum dolor sit amet</a></td>
+	                        <td>25/05/2012</td>
+	                        <td>33KB</td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </div>
+	        <div class="modal-footer">
+	            <a href="javascript:void(0)" class="btn">Go to mailbox</a>
+	        </div>
+	    </div>
+	    
+	    
+	    
+	    <!-- 待办任务弹出窗口 -->
+	    <div class="modal hide fade" id="myTasks">
+	        <div class="modal-header">
+	            <button class="close" data-dismiss="modal">×</button>
+	            <h3>New Tasks</h3>
+	        </div>
+	        <div class="modal-body">
+	            <div class="alert alert-info">In this table jquery plugin turns a table row into a clickable link.</div>
+	            <table class="table table-condensed table-striped" data-provides="rowlink">
+	                <thead>
+	                    <tr>
+	                        <th>id</th>
+	                        <th>Summary</th>
+	                        <th>Updated</th>
+	                        <th>Priority</th>
+	                        <th>Status</th>
+	                    </tr>
+	                </thead>
+	                <tbody>
+	                    <tr>
+	                        <td>P-23</td>
+	                        <td><a href="javascript:void(0)">Admin should not break if URL&hellip;</a></td>
+	                        <td>23/05/2012</td>
+	                        <td class="tac"><span class="label label-important">High</span></td>
+	                        <td>Open</td>
+	                    </tr>
+	                    <tr>
+	                        <td>P-18</td>
+	                        <td><a href="javascript:void(0)">Displaying submenus in custom&hellip;</a></td>
+	                        <td>22/05/2012</td>
+	                        <td class="tac"><span class="label label-warning">Medium</span></td>
+	                        <td>Reopen</td>
+	                    </tr>
+	                    <tr>
+	                        <td>P-25</td>
+	                        <td><a href="javascript:void(0)">Featured image on post types&hellip;</a></td>
+	                        <td>22/05/2012</td>
+	                        <td class="tac"><span class="label label-success">Low</span></td>
+	                        <td>Updated</td>
+	                    </tr>
+	                    <tr>
+	                        <td>P-10</td>
+	                        <td><a href="javascript:void(0)">Multiple feed fixes and&hellip;</a></td>
+	                        <td>17/05/2012</td>
+	                        <td class="tac"><span class="label label-warning">Medium</span></td>
+	                        <td>Open</td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </div>
+	        <div class="modal-footer">
+	            <a href="javascript:void(0)" class="btn">Go to task manager</a>
+	        </div>
+	    </div>
+	</header>
+	<!-- header -->
+
+
+
+
+
+
+
+	<!-- main content -->
+	<div id="contentwrapper">
+	    <div class="main_content">
+
+
+
+
+			<h3 class="heading">字典内容编辑</h3>
+		
+			<div class="formBox">
+				<form id="detailInfoForm" class="form-horizontal required-validate" style="margin-bottom: 0px;">
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">数据表名</label>
+							<div class="controls">
+								<input type="text" class="input-large required" name="code.table_name" />
+								<span class="help-inline">数据库表名</span>
+								<input type="hidden" id="code_id" name="code.id" value="${param.code_id}" />
+								<input type="hidden" id="operation" value="1" />
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">关联字段名</label>
+							<div class="controls">
+								<input type="text" class="input-large required" name="code.field_name" />
+								<span class="help-inline">数据库表中的字段名</span>
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">字典值</label>
+							<div class="controls">
+								<input type="text" class="input-large required" name="code.code_value" />
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">字典描述内容</label>
+							<div class="controls">
+								<input type="text" class="input-large required" name="code.code_desc" />
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">其他属性1</label>
+							<div class="controls">
+								<input type="text" class="input-large" name="code.prop1" />
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">其他属性2</label>
+							<div class="controls">
+								<input type="text" class="input-large" name="code.prop2" />
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">其他属性3</label>
+							<div class="controls">
+								<input type="text" class="input-large" name="code.prop3" />
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">排列顺序</label>
+							<div class="controls">
+								<input type="text" class="input-large number" name="code.sortno" />
+								<span class="help-inline">倒序排列，数字小的排列在靠前</span>
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">状态</label>
+							<div class="controls">
+								<select>
+									<option>启用</option>
+									<option>禁用</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="">
+						<div class="control-group">
+							<div class="controls">
+								<button type="button" class="btn btn-success" id="btnFormSave"><i class="icon-ok"></i> 保　存</button>
+								<button type="button" class="btn btn-primary" id="btnReturn"><i class="icon-reply"></i> 返　回</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+
+
+	    
+	    </div>
+	</div>
+	<!-- main content -->
+
+
+
+
+	<!-- sidebar -->
+	<a href="javascript:void(0)" class="sidebar_switch on_switch ttip_r" title="隐藏侧边栏">隐藏侧边栏</a>
+	<div class="sidebar">
+
+		<div class="antiScroll">
+			<div class="antiscroll-inner">
+				<div class="antiscroll-content">
+
+					<div class="sidebar_inner">
+						<div id="side_accordion" class="accordion">
+
+							<!-- 遍历第一层菜单 -->
+							<div class="accordion-group">
+								<div class="accordion-heading sdb_h_active">
+									<a href="#collapse1" data-parent="#side_accordion" data-toggle="collapse" class="accordion-toggle"> <i class="icon-th icon-large"></i> 一级菜单 </a>
+								</div>
+
+								<!-- <li class="divider"></li> -->
+
+								<div class="accordion-body collapse in" id="collapse1">
+									<div class="accordion-inner">
+										<ul class="nav nav-list">
+											<!-- 遍历第二层菜单 -->
+											<!-- 没有子节点，自己本身就是可访问模块的情况 -->
+											<li class=""><a href="javascript:void(0);"> <i class='icon-list-alt'></i> 二级菜单无子节点 </a></li>
+
+
+											<!-- 有子节点的模块情况 -->
+											<li class="nav-header"><i class="icon-list-alt icon-2x"></i> 二级菜单有子节点</li>
+
+
+											<!-- 遍历第三层菜单 -->
+											<li class=""><a href="manage_index.html"> <i class="icon-list"></i> 列表主界面 </a></li>
+											<li class="active"><a href="manage_modify.html"> <i class="icon-edit"></i> 编辑界面 </a></li>
+											<li class=""><a href="manage_modify_more.html"> <i class="icon-table"></i> 编辑界面(大表单) </a></li>
+											<li class=""><a href="manage_plugin.html"> <i class="icon-wrench"></i> 其他功能 </a></li>
+											<li class=""><a href="manage_icons.html"> <i class="icon-info-sign"></i> 图标库 </a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+
+
+						</div>
+
+						<div class="push"></div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		</div>
+		<!-- sidebar -->
+
+
+
+</div>
+
+
+
+
+</body>
+</html>

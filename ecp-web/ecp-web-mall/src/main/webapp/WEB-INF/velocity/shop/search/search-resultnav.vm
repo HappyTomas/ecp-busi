@@ -1,0 +1,26 @@
+<!--浏览记录 begin-->
+
+<div id="ct-nav">
+	
+	#parse("/shop/search/search-shop.vm")
+    
+	#parse("/shop/search/search-category.vm")
+
+    #*关键字搜索（非分类）需要增加店铺分类显示*#
+    #if($!{extra.searchCategory}=="")
+        #parse("/shop/search/search-category-shop.vm")
+    #end
+
+   <div class="history-nav">
+                <div class="nav-inner ecp-component ranking-gds-hot" data-status="1" data-gds-size="5" data-tab-size="" data-place-id="6" data-place-width="100" data-place-height="100"  data-module="ecp-component/ranking/ranking-gds-hot">
+                    <h3 class="floor-name">
+                    </h3>
+                    <ul class = "floor-gds-data">
+                        
+                    </ul>
+                </div>
+            </div>
+  
+
+</div>
+<!--浏览记录 end-->

@@ -1,0 +1,21 @@
+				<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/coupinfo/userule/rule-160.js?version=$!{JS_VERSION}" ></script>
+				<form id="useForm160" rule-data="160" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action=""  >
+						<div class="row-fluid">
+						<div class="span10">
+							<div class="control-group">
+							<label class="control-label">使用数量限制：</label>
+								<div class="controls">
+								     <input type="text" class="span2 number" placeholder="每次使用张数"  maxlength="5" id="maxBuyCnt" name="useMap['160-maxBuyCnt']"   />
+								    <span class="help-inline" style="color:red">每个订单每次使用数量</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			 
+			   
+		    
+			 
+				
+				
+				

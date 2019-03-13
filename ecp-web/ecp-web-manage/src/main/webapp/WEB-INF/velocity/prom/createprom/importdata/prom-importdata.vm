@@ -1,0 +1,27 @@
+#parse("/module/mod-upload.vm")
+#parse("/module/mod-grid.vm")
+
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/jquery/highlight/styles/sunburst.css" type="text/css">
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/highlight/highlight.pack.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/importdata/prom-importdata.js?version=$!{JS_VERSION}" ></script>
+<div class="row-fluid" id="importdata_id">
+	#set($sessionId = $session.getId())
+	<div class="uploadifyMainBox" style="margin-top: 5px;">
+		<input type="hidden" id="pageSessionId" value="$!{sessionId}" >
+		<div id="excelFileInput"  name="excelFile" class="btn btn-primary"><i class="icon-upload-alt">上传</i>
+		</div>
+		<div class="hide">
+			<input id="promId"  name="promId" value="${promId}" />
+		</div>
+	</div>
+	<!--
+	<span style="color:red">温馨提示：导入超过1000笔数据时，您需要等待一定时间才可查询全部数据。这个时候您可进行其他工作,请稍后查询结果。预计导入5000笔 需要5分钟左右，10000笔需要10分钟左右。
+	</span>-->
+	<span style="color:red;margin-top:20px;">温馨提示：一次性上传商品数量建议不要超过2000个以上，否则速度偏慢！
+	</span>
+	<div id="divDataGridTableTemp" style="margin-bottom: 0;height:100%">
+		<div class="row-fluid">
+			<table id="dataGridTableTemp"></table>
+		</div>
+	</div>
+</div>

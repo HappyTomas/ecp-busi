@@ -1,0 +1,37 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/staff/score-exchange-list.js"></script>
+
+	<input type='hidden' id="exchangeSumTemp" value="$!{scoreExchangeSum}"/>
+	<table class="">
+    	<thead>
+        <tr>
+            <th>订单编号</th>
+            <th>消费时间</th>
+            <th style="width:80px">消费积分</th>
+            <th>备注</th>
+        </tr>
+        </thead>
+        <tbody>
+        	#if(!$scoreExchangePage.getResult())
+        		<tr><td colspan='6'>没有符合条件的记录</td></tr>
+        	#end
+        	#foreach($attr in $scoreExchangePage.getResult())
+        		<tr>
+        			
+	                <td>#if($!{attr.siteUrl})
+        				<a href="$!{attr.siteUrl}/ord/detail/$!{attr.orderId}" target="_blank">$!{attr.orderId}</a>
+        			#else
+        				<a href="$CONTEXT_PATH/ord/detail/$!{attr.orderId}" target="_blank">$!{attr.orderId}</a>
+        			#end</td>
+	                <td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.createTime})</td>
+	                <td>$!{attr.scoreUsing}</td>
+	                <td>$!{attr.remark}</td>
+	            </tr>
+			#end
+		</tbody>
+	</table>
+    <div class="fav-opt clearfix" style="margin-top: 20px;">
+        <div class="row-fluid">
+			<div id="pageControlbar" class="ecppage" data-total-page="${scoreExchangePage.pageCount}" data-total-row="${scoreExchangePage.count}" data-page-size="${scoreExchangePage.pageSize}" data-page-number="${scoreExchangePage.pageNo}" data-status="begin"></div>
+		</div>
+    </div>

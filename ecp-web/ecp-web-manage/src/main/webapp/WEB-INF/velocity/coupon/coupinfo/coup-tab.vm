@@ -1,0 +1,40 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/coupinfo/coup-tab.js?version=$!{JS_VERSION}" ></script>
+<link href="${CONTEXT_PATH}/css/coupon/coupinfo/coup-tab.css" rel="stylesheet" type="text/css" media="screen"/>
+    <ul class="nav nav-tabs" id="myTab"> 
+      <li class="active"><a href="#coup-info">基础配置</a></li> 
+      <li><a href="#use-rule">使用规则配置</a></li> 
+      #if ("1"==${couponTypeVO.useMap.get("190")})
+      
+	      #if($!{coup_code}=="true")
+	      	
+		  #else
+	      	<li><a href="#receive-rule">领取规则配置</a></li> 
+	      #end
+       #else
+      	<li><a href="#receive-rule">领取规则配置</a></li> 
+      #end
+       	<div class="pull-right">
+       	            #if($!{doAction}=='view')
+						<button type="button" class="btn" id="btnReturnTab" shopId="$!{shopId}"><i class="icon-reply"></i> 返回</button>
+       	            #else
+						<button type="button" class="btn btn-info" id="btnFormSubmit"><i class=" icon-ok-sign"></i> 提交</button>
+						<button type="button" class="btn" id="btnFormSave"  ><i class=" icon-ok-sign"></i> 保存草稿</button>
+						<button type="button" class="btn" id="btnReturnTab" shopId="$!{shopId}"><i class="icon-reply"></i> 返回</button>
+						
+					#end
+					
+				</div>
+    </ul> 
+      
+    <div class="tab-content"> 
+      <div class="tab-pane active" id="coup-info">
+           #parse("/coupon/coupinfo/coup-info.vm") 
+      </div> 
+     <div class="tab-pane" id="use-rule">
+          #parse("/coupon/coupinfo/use-rule-default.vm") 
+      </div> 
+       <div class="tab-pane" id="receive-rule">
+         #parse("/coupon/coupinfo/receive-rule.vm") 
+      </div> 
+    </div> 

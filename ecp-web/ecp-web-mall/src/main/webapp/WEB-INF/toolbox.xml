@@ -1,0 +1,56 @@
+<toolbox>
+
+	<tool>
+		<key>date</key>
+		<scope>application</scope>
+		<class>org.apache.velocity.tools.generic.DateTool</class>
+	</tool>
+	<tool>
+	  <key>paramTools</key>
+	  <scopt>application</scopt>
+	  <class>com.zengshi.ecp.base.velocity.ParamToolUtil</class>
+    </tool>
+    
+    <tool>
+	  <key>aiNumber</key>
+	  <scopt>application</scopt>
+	  <class>com.zengshi.ecp.base.velocity.AiNumberUtil</class>
+	</tool>
+	
+	<tool>
+	  <key>aiTool</key>
+	  <scopt>application</scopt>
+	  <class>com.zengshi.ecp.base.velocity.AiToolUtil</class>
+	</tool>
+	
+	<tool>
+		<key>constant</key>
+		<scope>application</scope>
+		<class>com.zengshi.ecp.system.util.ConstantTool</class>
+	</tool>
+	<!--
+	<tool>
+		<key>constant</key>
+		<scope>application</scope>
+		<class>com.zengshi.izengshi.system.util.ConstantTool</class>
+	</tool>
+	
+	<tool>
+	  <key>paramTools</key>
+	  <scopt>application</scopt>
+	  <class>com.zengshi.izengshi.system.velocity.ParamToolsUtil</class>
+    </tool>
+    
+    <tool>
+	  <key>aiNumber</key>
+	  <scopt>application</scopt>
+	  <class>com.zengshi.izengshi.system.velocity.AINumberUtils</class>
+	</tool>
+	
+	<tool>
+	  <key>aiTool</key>
+	  <scopt>application</scopt>
+	  <class>com.zengshi.izengshi.system.velocity.AIToolsUtil</class>
+	</tool>
+	-->
+</toolbox>

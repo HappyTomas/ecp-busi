@@ -1,0 +1,163 @@
+<head>
+	#parse("/sys/sys_param.vm")
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+</head>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+			积分商品详情
+    </div>
+    <div class="am-header-left am-header-nav">
+         <a href="javascript:" onclick="history.back(); ">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+<!--     <div class="am-header-right">
+          <span class="opt" id="goToCart">
+             <i class="iconfont icon-cart2"></i>
+				购物车
+          </span>
+    </div> -->
+    <div class="am-header-right circle-num">
+        <a ><span class="opt" id="goToCart">
+             <i class="iconfont icon-cart2"></i>
+             购物车
+          </span>
+        </a>
+        <span class="p-circle"></span>
+    </div>
+</header>
+<input type="hidden" value="$!{gdsDetailInfo.gdsDesc}" id="gdsDesc"/>
+<input type="hidden" value="$!{gdsDetailInfo.gdsPartlist}" id="gdsPartlist"/>
+<input type="hidden" value="$!{gdsDetailInfo.id}" id="gdsId"/>
+<input type="hidden" value="$!{gdsDetailInfo.gdsName}" id="gdsName"/>
+<input type="hidden" value="$!{gdsDetailInfo.shopId}" id="shopId"/>
+<input type="hidden" value="$!{gdsDetailInfo.skuInfo.id}" id="skuId"/>
+<input type="hidden" value="$!{gdsDetailInfo.mainCatgs}" id="mainCatgs"/>
+<input type="hidden" value="$!{gdsDetailInfo.gdsTypeId}" id="gdsTypeId"/>
+<input type="hidden" value="$!{gdsDetailInfo.skuInfo.skuProps}" id="skuProps"/>
+<input type="hidden" value="$!{shopName}" id="shopName"/>
+<input type="hidden" value="$!{gdsDetailInfo.gdsTypeId}" id="gdsTypeId"/>
+<input type="hidden" value="$!{STOCK_SCORE_LACK_THRESHOLD}" id="STOCK_LACK_THRESHOLD"/>
+<div class="ui-content-fixBottom">
+	<!--积分商品详情的商品图片 start-->
+	#parse("/goods/gdspointdetail/gdspoint-gdsPictrue.vm")
+	<!--积分商品详情的商品图片 end-->
+	#if($!{gdsDetailInfo.skuInfo.gdsStatus}=="11")
+    <div class="pro-contanier ">
+        <div class="pro-tit point-body">
+            <div class="pro-tit-con ">
+                <div class="tit-head">$!{gdsDetailInfo.gdsName}</div>
+                #if($!{scoreBalance} != "No")
+                	<div class="tit-tips">剩余 <span class="tips-gz">$!{scoreBalance}</span>积分</div>
+                #end
+            </div>
+            <div class="pro-tit-con clearfix">
+                <div class="tit-pri">市场价#money($!{gdsDetailInfo.guidePrice})</div>
+                <div class="tit-tips">库存 
+				#if($!{stockStatus}=='00')
+					<span class="tips-gz">无货</span>
+				#elseif($!{stockStatus}=='01' || $!{stockStatus}=='02')
+					<span class="tips-gz">有货</span>
+				#end</div>
+            </div>
+			
+            <div class="pro-tit-con clearfix">
+                <div class="tit-sel">
+                    <div class="sel-input">
+                        <div class="sel-line mselect">
+							 #set($defaultId = '')
+            				 #set($hasDefualt = '0')
+            				 #foreach($list in $!{gdsDetailInfo.scores})
+            						#if($!{list.ifDefault}=='1')
+            							#set($defaultId = $!{list.id})
+            							 #set($hasDefualt = '1')
+            						#end
+            				 #end
+            				 #if($hasDefualt=='0')
+            					#foreach($list in $!{gdsDetailInfo.scores})
+            						#if($velocityCount==1)
+            							#if($!{list.score} != 0)
+            								#if($!{list.price} == 0 || $!{list.price.length()}==0)
+            									$!{list.score}积分
+            								#else
+            									$!{list.score}积分+#money($!{list.price})元
+            								#end
+            							#else
+            								#money($!{list.price})元
+            							#end 
+            						#end
+            					#end
+							 #end
+                            <div class="sel-text pull-left sv" id="$defaultId">
+								#foreach($list in $!{gdsDetailInfo.scores})
+            						#if($!{list.ifDefault}=='1')
+            							#if($!{list.score} != 0)
+            								#if($!{list.price} == 0 || $!{list.price.length()}==0)
+            									<span class="poi-color">$!{list.score}</span>积分
+            								#else
+            									<span class="poi-color">$!{list.score}</span>积分+<span class="poi-color">#money($!{list.price})</span>元
+            								#end
+            							#else
+            								<span class="poi-color">#money($!{list.price})</span>元
+            							#end 
+            						#end
+            					#end
+							</div>
+                            <span class="point-arrow"></span></div>
+                            <ul class="sel-list">
+    							#foreach($list in $!{gdsDetailInfo.scores})
+                                    <li id="$!{list.id}">
+                                    	#if($!{list.score} != 0)
+            								#if($!{list.price} == 0 || $!{list.price.length()} == 0)
+            									<span class="poi-color">$!{list.score}</span>积分
+            								#else
+            									<span class="poi-color">$!{list.score}</span>积分+<span class="poi-color">#money($!{list.price})</span>元
+            								#end
+            							#else
+            								<span class="poi-color">#money($!{list.price})</span>元
+            							#end 
+                                    </li>
+            					#end
+                            </ul>
+						</div>
+					</div>
+                    <div class="put-box">
+                        <span class="dd-font">兑换&nbsp;&nbsp;</span>
+    					#if($!{gdsDetailInfo.gdsTypeId}=='2')
+            				<span id="purchaseAmount" gdsTypeId="2">1</span>&nbsp;&nbsp;$!{gdsInfoUnit}
+            			#else
+            				<div class="cd-jj">
+    						<a href="javascript:void(0)" class="cd-btn" id="reduceCount">-</a>
+                            <input name="" gdsTypeId="1" class="itxt" id="purchaseAmount" type="text" value="1" max="$!{gdsDetailInfo.skuInfo.realAmount}"/>
+                            <a href="javascript:void(0)" class="cd-btn" id="addCount">+</a></div>
+    						<span><font id="realAmount" style="display:none">$!{gdsDetailInfo.skuInfo.realAmount}</font></span>
+                        <span class="dd-font">&nbsp;&nbsp;$!{gdsInfoUnit}</span>
+            			#end
+                    </div>
+				</div>
+			</div>
+		</div>
+	#else
+		<span class="wbtn wbtn-disable">该物品已下架</span>
+	#end	
+    <div class="pro-tit point-body">
+        <div class="pro-tit-con ">
+            <div class="tit-head">商品描述</div>
+        </div>
+    </div>
+    <div class="pro-contanier point-body point-pro" id="gdsDetailDesc">
+		
+	</div>
+</div>
+<div data-am-widget="navbar" class="am-navbar am-navbar-mall point-bar" id="">
+    <div class="point-body clearfix">
+        <a href="#" #if($!{stockStatus} == '00' || $!{gdsDetailInfo.skuInfo.gdsStatus}!='11')class="btn btn-gray"  #else class="btn btn-bred"  id="addToCart"#end
+        	><i class="iconfont icon-cart2"></i> 加入购物车</a>
+        <a href="#" #if($!{stockStatus} == '00' || $!{gdsDetailInfo.skuInfo.gdsStatus}!='11')class="btn btn-gray pull-right"#else class="btn btn-gw" id="onceExchange"#end 
+        	>立即兑换</a>
+    </div>
+</div>
+<script src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js"></script>
+<script src="$!{RESOURCE_PATH}/util.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/goods/gdspointdetail/gdspointdetail.js?version=$!{JS_VERSION}"></script>

@@ -1,0 +1,66 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/staff/payway/payway-list.js?version=$!{JS_VERSION}" ></script>
+
+                      #if($!{ifadd})
+                    <div class="sbtn-group" style="margin-left: -5px;margin-bottom: 10px;">
+                                <span class="sbtn sbtn-blue" id="add">新增</span>
+                            </div>
+							#end
+                    <table class="seller-table">
+                        <thead>
+                        <tr>
+                            <td>支付通道名称</td>
+                            <td style="width:70px">状态</td>
+                            <td style="width: 250px">店铺商户号</td>
+							<td>收款人账号</td>
+							<td>收款人名称</td>
+						
+							<td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+							#if(!${list})
+				        		<tr><td class="kong" colspan='6'>很遗憾，暂无数据。</td></tr>
+				        	#end
+							#foreach($attr in ${list})
+								  <tr>
+                            <td>$!{attr.payWayName}</td>
+                            <td>
+                          #if($!{attr.useFlag}=='1')
+							启用
+							#else
+								停用
+								#end
+                            </td>
+							     <td>
+                          $!{attr.mercCode}
+                            </td>
+							 <td>
+								$!{attr.payeeAccount}
+                            </td>
+							 <td>
+								$!{attr.payeeName}
+                            </td>
+							
+							<td class="opt">
+								 #if($!{attr.useFlag}=='1')
+                                <a href="javascript:void(0)" class="stop" payway="$!{attr.payWay}">停用</a> |
+								#else
+								 <a href="javascript:void(0)" class="start" payway="$!{attr.payWay}" >启用</a> |	
+								#end
+                                <a href="javascript:void(0)" class="edit" payway="$!{attr.payWay}" >编辑</a>
+                               
+                            </td>
+                        </tr>
+								#end
+                      
+                        </tbody>
+                    </table>
+                       <div class="pagination bPage pagination-right">
+                              <div id="pageControlbar" class="ecppage" data-total-page="${page.pageCount}" data-total-row="${page.count}" data-page-size="${page.pageSize}" data-page-number="${page.pageNo}" data-status="begin"></div>
+                            </div>
+<script>
+	
+</script>
+                   
+    

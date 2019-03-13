@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.common.AuditHostConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.AuditHostConfig" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="AUDIT_ACCTNAME" property="auditAcctname" jdbcType="VARCHAR" />
+    <result column="PAY_WAY" property="payWay" jdbcType="VARCHAR" />
+    <result column="CONN_TYPE" property="connType" jdbcType="VARCHAR" />
+    <result column="SERVER_HOST" property="serverHost" jdbcType="VARCHAR" />
+    <result column="SERVER_PORT" property="serverPort" jdbcType="INTEGER" />
+    <result column="LOGIN_USERNAME" property="loginUsername" jdbcType="VARCHAR" />
+    <result column="LOGIN_PASSWORD" property="loginPassword" jdbcType="VARCHAR" />
+    <result column="REMOTE_PATH" property="remotePath" jdbcType="VARCHAR" />
+    <result column="FILENAME_CODE" property="filenameCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, AUDIT_ACCTNAME, PAY_WAY, CONN_TYPE, SERVER_HOST, SERVER_PORT, LOGIN_USERNAME, 
+    LOGIN_PASSWORD, REMOTE_PATH, FILENAME_CODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.AuditHostConfigCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_audit_host_config
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_audit_host_config
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_audit_host_config
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.AuditHostConfigCriteria" >
+    delete from t_audit_host_config
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.AuditHostConfig" >
+    insert into t_audit_host_config (ID, AUDIT_ACCTNAME, PAY_WAY, 
+      CONN_TYPE, SERVER_HOST, SERVER_PORT, 
+      LOGIN_USERNAME, LOGIN_PASSWORD, REMOTE_PATH, 
+      FILENAME_CODE)
+    values (#{id,jdbcType=VARCHAR}, #{auditAcctname,jdbcType=VARCHAR}, #{payWay,jdbcType=VARCHAR}, 
+      #{connType,jdbcType=VARCHAR}, #{serverHost,jdbcType=VARCHAR}, #{serverPort,jdbcType=INTEGER}, 
+      #{loginUsername,jdbcType=VARCHAR}, #{loginPassword,jdbcType=VARCHAR}, #{remotePath,jdbcType=VARCHAR}, 
+      #{filenameCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.AuditHostConfig" >
+    insert into t_audit_host_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="auditAcctname != null" >
+        AUDIT_ACCTNAME,
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY,
+      </if>
+      <if test="connType != null" >
+        CONN_TYPE,
+      </if>
+      <if test="serverHost != null" >
+        SERVER_HOST,
+      </if>
+      <if test="serverPort != null" >
+        SERVER_PORT,
+      </if>
+      <if test="loginUsername != null" >
+        LOGIN_USERNAME,
+      </if>
+      <if test="loginPassword != null" >
+        LOGIN_PASSWORD,
+      </if>
+      <if test="remotePath != null" >
+        REMOTE_PATH,
+      </if>
+      <if test="filenameCode != null" >
+        FILENAME_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="auditAcctname != null" >
+        #{auditAcctname,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null" >
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="connType != null" >
+        #{connType,jdbcType=VARCHAR},
+      </if>
+      <if test="serverHost != null" >
+        #{serverHost,jdbcType=VARCHAR},
+      </if>
+      <if test="serverPort != null" >
+        #{serverPort,jdbcType=INTEGER},
+      </if>
+      <if test="loginUsername != null" >
+        #{loginUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="remotePath != null" >
+        #{remotePath,jdbcType=VARCHAR},
+      </if>
+      <if test="filenameCode != null" >
+        #{filenameCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.AuditHostConfigCriteria" resultType="java.lang.Long" >
+    select count(*) from t_audit_host_config
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_audit_host_config
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditAcctname != null" >
+        AUDIT_ACCTNAME = #{record.auditAcctname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payWay != null" >
+        PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.connType != null" >
+        CONN_TYPE = #{record.connType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serverHost != null" >
+        SERVER_HOST = #{record.serverHost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serverPort != null" >
+        SERVER_PORT = #{record.serverPort,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginUsername != null" >
+        LOGIN_USERNAME = #{record.loginUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginPassword != null" >
+        LOGIN_PASSWORD = #{record.loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remotePath != null" >
+        REMOTE_PATH = #{record.remotePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.filenameCode != null" >
+        FILENAME_CODE = #{record.filenameCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_audit_host_config
+    set ID = #{record.id,jdbcType=VARCHAR},
+      AUDIT_ACCTNAME = #{record.auditAcctname,jdbcType=VARCHAR},
+      PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      CONN_TYPE = #{record.connType,jdbcType=VARCHAR},
+      SERVER_HOST = #{record.serverHost,jdbcType=VARCHAR},
+      SERVER_PORT = #{record.serverPort,jdbcType=INTEGER},
+      LOGIN_USERNAME = #{record.loginUsername,jdbcType=VARCHAR},
+      LOGIN_PASSWORD = #{record.loginPassword,jdbcType=VARCHAR},
+      REMOTE_PATH = #{record.remotePath,jdbcType=VARCHAR},
+      FILENAME_CODE = #{record.filenameCode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.AuditHostConfig" >
+    update t_audit_host_config
+    <set >
+      <if test="auditAcctname != null" >
+        AUDIT_ACCTNAME = #{auditAcctname,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="connType != null" >
+        CONN_TYPE = #{connType,jdbcType=VARCHAR},
+      </if>
+      <if test="serverHost != null" >
+        SERVER_HOST = #{serverHost,jdbcType=VARCHAR},
+      </if>
+      <if test="serverPort != null" >
+        SERVER_PORT = #{serverPort,jdbcType=INTEGER},
+      </if>
+      <if test="loginUsername != null" >
+        LOGIN_USERNAME = #{loginUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="remotePath != null" >
+        REMOTE_PATH = #{remotePath,jdbcType=VARCHAR},
+      </if>
+      <if test="filenameCode != null" >
+        FILENAME_CODE = #{filenameCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.AuditHostConfig" >
+    update t_audit_host_config
+    set AUDIT_ACCTNAME = #{auditAcctname,jdbcType=VARCHAR},
+      PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      CONN_TYPE = #{connType,jdbcType=VARCHAR},
+      SERVER_HOST = #{serverHost,jdbcType=VARCHAR},
+      SERVER_PORT = #{serverPort,jdbcType=INTEGER},
+      LOGIN_USERNAME = #{loginUsername,jdbcType=VARCHAR},
+      LOGIN_PASSWORD = #{loginPassword,jdbcType=VARCHAR},
+      REMOTE_PATH = #{remotePath,jdbcType=VARCHAR},
+      FILENAME_CODE = #{filenameCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

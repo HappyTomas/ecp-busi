@@ -1,0 +1,31 @@
+#parse("sys/sys_param.vm")
+	#if(!$errorMassage && ${hotShopList} && $hotShopList.size() > 0)  ##没有异常
+	<div class="shopbox clearfix">
+		<div class="sb-l">
+			#if(${hotShopList} && $hotShopList.size() > 0) 
+				#foreach($shopInfo in $hotShopList)
+    				#if($velocityCount <= 5)
+    				<ul class="sp-l5">
+    					<li>
+                            <div class="sbbdr"><a target='_blank' href="#siteInfo('1')shopIndex/$!{shopInfo.id}" alt="$!{shopInfo.shopName}"><img src="#genImageUrl($!{shopInfo.logoPath})"/></a></div>
+                        </li>
+    				</ul>
+    				#elseif($velocityCount > 5)
+    				<ul class="sp-l4">
+    					<li>
+                            <div class="sbbdr"><a target='_blank' href="#siteInfo('1')shopIndex/$!{shopInfo.id}" alt="$!{shopInfo.shopName}"><img src="#genImageUrl($!{shopInfo.logoPath})"/></a></div>
+                        </li>
+    				</ul>
+    				#end
+				#end
+			#end
+		</div>
+		<div class="sb-r">
+            <div class="sbr-p">
+                <h2>热门店铺</h2>
+                <a href="#">更多店铺</a>
+                <span class="hot-arrow-r"></span>
+            </div>
+        </div>
+	</div>
+    #end

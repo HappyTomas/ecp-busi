@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://code.alibabatech.com/schema/dubbo  
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+	">  
+ 
+  	<dubbo:reference id="ordMainRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdMainRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+    <dubbo:reference id="ordEntityAddRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdEntityAddRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+    <dubbo:reference id="ordDeliveryRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdDeliveryRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+    <dubbo:reference id="ordEntityChangeRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdEntityChangeRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+    <dubbo:reference id="ordSubRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdSubRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+    <dubbo:reference id="ordReceiptRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdReceiptRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+    <dubbo:reference id="ordManageRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdManageRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+    <dubbo:reference id="ordDetailsRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdDetailsRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+    <dubbo:reference id="ordCartRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdCartRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+    <dubbo:reference id="ordCartItemRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdCartItemRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+   	<dubbo:reference id="ordEvaluationRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdEvaluationRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+  	<dubbo:reference id="ordOfflineRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdOfflineRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+  	<dubbo:reference id="paymentRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.pay.IPaymentRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+  	<dubbo:reference id="payWayRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.pay.IPayWayRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+  	<dubbo:reference id="payQuartzInfoRSV" interface="com.zengshi.ecp.general.order.interfaces.IPayQuartzInfoRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+  	<dubbo:reference id="reportGoodPayedRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IReportGoodPayedRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+	<dubbo:reference id="payQuartzInfoForOrderRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.pay.IPayQuartzInfoForOrderRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+ 	<dubbo:reference id="auditTradeCheckRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.pay.IAuditTradeCheckRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+ 	<dubbo:reference id="ordBackGdsRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdBackGdsRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+ 	<dubbo:reference id="ordPayRelRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdPayRelRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+	<dubbo:reference id="ordBackMoneyRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdBackMoneyRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+    <dubbo:reference id="orderWorkPlatRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrderWorkPlatRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+	<dubbo:reference id="orderWorkBrancRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrderWorkBrancRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+	<dubbo:reference id="orderBackRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrderBackRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+	<dubbo:reference id="orderExpressRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrderExpressRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+	<dubbo:reference id="ordExpressReqLogRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdExpressReqLogRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+	<dubbo:reference id="ordExportRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdExportRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+	<dubbo:reference id="ordSubShareRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdSubShareRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>
+ 	<dubbo:reference id="ordOfflineBelongRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdOfflineBelongRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/> 
+ 	<dubbo:reference id="ordFileImportRSV" interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdFileImportRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${order.dubbo.group}"/>  
+
+</beans>

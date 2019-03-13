@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.common.GdsCategoryViewMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsCategoryView" >
+    <id column="CATG_CODE" property="catgCode" jdbcType="VARCHAR" />
+    <result column="CATG_NAME" property="catgName" jdbcType="VARCHAR" />
+    <result column="CATG_LEVEL" property="catgLevel" jdbcType="INTEGER" />
+    <result column="IF_LEAF" property="ifLeaf" jdbcType="VARCHAR" />
+    <result column="CATG_TYPE" property="catgType" jdbcType="VARCHAR" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="CATG_PARENT" property="catgParent" jdbcType="VARCHAR" />
+    <result column="CATLOG_ID" property="catlogId" jdbcType="INTEGER" />
+    <result column="IF_ENTITY_CODE" property="ifEntityCode" jdbcType="VARCHAR" />
+    <result column="CATG_URL" property="catgUrl" jdbcType="VARCHAR" />
+    <result column="CATG_TYPE_UNIT" property="catgTypeUnit" jdbcType="INTEGER" />
+    <result column="MIN_PRICE" property="minPrice" jdbcType="INTEGER" />
+    <result column="MAX_PRICE" property="maxPrice" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="MEDIA_UUID" property="mediaUuid" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="IF_SHOW" property="ifShow" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="IF_ABLE_EDIT" property="ifAbleEdit" jdbcType="VARCHAR" />
+    <result column="CATG_PATH" property="catgPath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CATG_CODE, CATG_NAME, CATG_LEVEL, IF_LEAF, CATG_TYPE, SORT_NO, CATG_PARENT, CATLOG_ID, 
+    IF_ENTITY_CODE, CATG_URL, CATG_TYPE_UNIT, MIN_PRICE, MAX_PRICE, SHOP_ID, MEDIA_UUID, 
+    STATUS, IF_SHOW, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, IF_ABLE_EDIT, 
+    CATG_PATH
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsCategoryViewCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from v_gds_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from v_gds_category
+    where CATG_CODE = #{catgCode,jdbcType=VARCHAR}
+  </select>
+  <select id="countByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsCategoryViewCriteria" resultType="java.lang.Long" >
+    select count(*) from v_gds_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+</mapper>

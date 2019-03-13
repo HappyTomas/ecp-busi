@@ -1,0 +1,84 @@
+#parse("/sys/sys_param.vm")
+
+<link rel="stylesheet" href="$!{CSS_PATH}/public.css?v=1"/>
+<link rel="stylesheet" href="$!{CSS_PATH}/chat.css?v=1"/>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/im/strophe.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/im/html.util.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/im/serv/ServChat.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/im/serv/index.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/im/serv/online.js"></script>
+<style >
+	.chat-lan-group .hd {white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block;}
+	.title-overflow p,.title-overflow a{ width:170px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; display:block;}
+</style>
+
+<input type="hidden" id="boshService" value="$!{boshService}"/>
+<input type="hidden" id="ofStaffCode" value="$!{ofStaffCode}"/>
+<input type="hidden" id="openfireServer" value="$!{openfireServer}"/>
+<input type="hidden" id="staffCode" value="$!{staffCode}"/>
+<input type="hidden" id="shopId" value="$!{shopId}"/>
+<input type="hidden" id="servPic" value="#genImageUrl($!{servPic})"/>
+<input type="hidden" id="orderEdit" value="$!{orderEdit}"/>
+<input type="hidden" id="gdsDetailUrl" value="#siteInfo(1)/gdsdetail/"/>
+<input type="hidden" id="ordDetailUrl" value="#siteInfo(8)/order/customer/details/"/>
+<input type="hidden" id="hotlinePerson" value="$!{hotlinePerson}"/>
+<style>
+	.chat-bar font{    
+	line-height: 30px;
+    float: right;
+	margin-right:30px;
+	}
+</style>
+<section class="ui-pannel ser-pannel">
+    <div class="w">
+        <div class="chat-bar"><font><a href="#siteInfo('8')/j_spring_security_check?j_username=$!{staffCode}&j_from=SSO" target="_blank">人卫智城电商管理平台</a></font><font><a href="#siteInfo('1')" target="_blank">人卫智慧服务商城</a></font></div>
+        <div class="chat-serInfo">
+            <div class="hState">
+                <img class="stateImg" src="$IMAGE_PATH/pro/ser-header.png" alt=""/>
+                <i class="cur-state online"></i>
+                <ul class="ui-states">
+                    <li>
+                        <i class="online"></i>
+
+                        <p>在线</p>
+                    </li>
+                    <li>
+                        <i class="business"></i>
+
+                        <p>忙碌</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+
+        <div class="chat-contanier clearfix">
+            <div class="tab-pane">
+                <div class="chat-nav">
+                    <div class="tit">
+                        最近联系人
+                    </div>
+					<div class="chat-uContainer">
+                        <ul class="chat-uList">
+                        </ul>
+                    </div>
+				   <div class="wait-num" style="display:none">当前用户等待接入人数:<em class="num">0</em>人</div>
+                </div>
+                <div class="chat-win">
+                </div>
+            </div>
+        </div>
+        <div class="chat-bottom">
+            <span class="shop-name">$!{shopInfo.shopName}</span>
+            <ul class="info">
+                <li style="color:red;font-weight:bold;font-size:15px">温馨提示：接待过程中请不要刷新当前页面</li>
+                <li>企业名称：中国人民卫生出版社</li>
+				<li>客服ID：$!{hotlinePerson}</li>
+                <li>角色：#if($moduleType==0)综合#else绩效#end客服</li>
+                <li class="exit"><i class="micon"></i>退出</li>
+            </ul>
+        </div>
+    </div>
+</section>
+#parse("/im/template.vm")

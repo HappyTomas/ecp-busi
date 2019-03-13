@@ -1,0 +1,263 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/holder/holder.js" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/staff/company-sign.js?version=$!{JS_VERSION}" ></script>
+
+        <div class="seller-well" style="margin-top:5px">
+            <div class="stepflex clearfix">
+                <dl class="done">
+                    <dt class="s-num">1</dt>
+                    <dd class="s-text">入驻须知</dd>
+                </dl>
+                <dl class="doing">
+                    <dt class="s-num">2</dt>
+                    <dd class="s-text">公司信息认证</dd>
+                </dl>
+                <dl>
+                    <dt class="s-num">3</dt>
+                    <dd class="s-text">店铺信息认证</dd>
+                </dl>
+                <dl>
+                    <dt class="s-num">4</dt>
+                    <dd class="s-text">等待审核</dd>
+                </dl>
+            </div>
+        </div>
+        <form class="form-horizontal required-validate" id="companydetailfrom">
+            <div class="seller-box">
+                <div class="head">
+                    <h3>企业信息</h3>
+                </div>
+                <div class="body body-center">
+                    <div class="control-group">
+                        <label class="control-label">企业名称：</label>
+
+                        <div class="controls">
+                            <input type="text" name="companyName" class="required" placeholder="企业名称" maxlength="64" value="$!{companySignInfo.companyName}">
+							<input type="hidden"  name="id" id="id" value="$!{companySignInfo.id}"/>
+							<input type="hidden"  name="companyId" id="id" value="$!{companySignInfo.companyId}"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业所在地：</label>
+
+                        <div class="controls">
+			                <select class="jquery-area span2 " name="provinceCode" id="p-code"  area-type="admin" area-level="province" area-children="city-code" area-defaultvalue="$!{companySignInfo.provinceCode}" ></select>
+			                <select class="jquery-area span2 "  name="cityCode" id="city-code" area-type="admin" area-level="city" area-children="county-code" area-defaultvalue="$!{companySignInfo.cityCode}" ></select>
+			                <select class="jquery-area span2 "  name="countyCode" id="county-code" area-type="admin" area-level="county" area-children="" area-defaultvalue="$!{companySignInfo.countyCode}"></select>
+			            </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业地址：</label>
+
+                        <div class="controls">
+                            <input type="text" name="companyAdress" class="required" placeholder="详细地址" maxlength="128" class="span5" value="$!{companySignInfo.companyAdress}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业行业：</label>
+
+                        <div class="controls">
+                            #select('COMPANY_INFO_TRADE','trade',false,$!{companySignInfo.trade})
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业类型：</label>
+
+                        <div class="controls">
+                            #select('COMPANY_INFO_TYPE','companyType',false,$!{companySignInfo.companyType})
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业人数：</label>
+
+                        <div class="controls">
+                            #select('COMPANY_INFO_EMPLOYEE','employeeNum',$!{companySignInfo.employeeNum})
+                        </div>
+                    </div>
+                    <!--<div class="control-group">
+                        <label class="control-label">所属父企业：</label>
+
+                        <div class="controls">
+                            <select style="width:220px" name="parentId">
+									<option value="">
+										请选择
+                                    </option>
+									#companylist("$!{companySignInfo.parentId}")
+							</select>
+                        </div>
+					</div>-->
+                    <div class="control-group">
+                        <label class="control-label">
+                            	企业法人姓名：
+                        </label>
+
+                        <div class="controls">
+                            <input type="text" placeholder="您的姓名" maxlength="10" class="required" name="legalPerson" value="$!{companySignInfo.legalPerson}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+					                            企业法人身份证号：
+                        </label>
+
+                        <div class="controls">
+                            <input type="text" placeholder="企业法人身份证号" maxlength="20" class="required txtIdCard" name="legalCard" value="$!{companySignInfo.legalCard}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="seller-box">
+                <div class="head">
+                    <h3>企业资质</h3>
+                </div>
+                <div class="body body-center">
+                    <div class="control-group">
+                        <label class="control-label">
+                            	工商执照号：
+                        </label>
+
+                        <div class="controls">
+                            <input type="text" placeholder="工商执照号" maxlength="15" class="required" name="licenceCode" value="$!{companySignInfo.licenceCode}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            税务登记号：
+                        </label>
+
+                        <div class="controls">
+                           <input type="text" placeholder="税务登记号" maxlength="15" class="required" name="taxCode" value="$!{companySignInfo.taxCode}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            组织机构形式：
+                        </label>
+
+                        <div class="controls">
+                            <input type="text" placeholder="组织机构形式" maxlength="15" class="required" name="organizationForm" value="$!{companySignInfo.organizationForm}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            注册资金（元）：</label>
+
+                        <div class="controls">
+                            <input type="text" placeholder="注册资金" maxlength="10"  name="licenceCapital" class="required digits" value="$!{companySignInfo.licenceCapital}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="seller-box">
+                <div class="head">
+                    <h3>企业联系方式</h3>
+                </div>
+                <div class="body body-center">
+                    <div class="control-group">
+                        <label class="control-label">联系人：</label>
+
+                        <div class="controls">
+                            <input type="text" placeholder="联系人姓名" class="required" maxlength="10" name="linkPersonMsg" value="$!{companySignInfo.linkPersonMsg}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">联系人手机：</label>
+
+                        <div class="controls">
+                             <input type="text" placeholder="联系人手机" class="mobilePhone required" maxlength="11" name="linkPhoneMsg" value="$!{companySignInfo.linkPhoneMsg}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">固定电话：</label>
+
+                        <div class="controls">
+                            <input type="text" name="linkTelephone" maxlength="20" value="$!{companySignInfo.linkTelephone}" placeholder="固定电话" class="phone" maxlength="20">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">联系人身份证号：</label>
+
+                        <div class="controls">
+                            <input type="text" placeholder="联系人身份证号" class="txtIdCard" maxlength="20" name="linkPsnCard" value="$!{companySignInfo.linkPsnCard}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业邮箱：</label>
+
+                        <div class="controls">
+                            <input type="text" placeholder="企业邮箱" class="required email"  maxlength="32" name="companyEmail" value="$!{companySignInfo.companyEmail}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业微信：</label>
+
+                        <div class="controls">
+                             <input type="text" placeholder="企业微信"  maxlength="20" name="companyWeixin" value="$!{companySignInfo.companyWeixin}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业QQ号：</label>
+
+                        <div class="controls">
+                            <input type="text" placeholder="企业QQ号"  maxlength="20" name="companyQq" value="$!{companySignInfo.companyQq}">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">备注：</label>
+
+                        <div class="controls">
+                            <textarea rows="4" name="remark" maxlength="128" style="width:400px" value="">$!{companySignInfo.remark}</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="seller-box">
+                <div class="head">
+                    <h3>上传企业附件</h3>
+                </div>
+                <div class="body body-center">
+                    <div class="control-group">
+                        <ul class="accessory clearfix">
+                            <li>
+                                <div class="imgbox">
+									<img data-src="holder.js/300x200?text=图片预览区" src="$!{companySignInfo.legalPersonImageURL}" id="imgCompanyLegal" alt=""  style="width:150px;height:150px;">
+								</div>
+                                <p><span class="c-red">*</span>上传法人代表证件照</p>
+                                <p><span class="sbtn" id="imageCompanyLegalUpload">上传图片</span></p>
+                            </li>
+                            <li>
+                            	<div class="imgbox">
+                                	<img data-src="holder.js/300x200?text=图片预览区" src="$!{companySignInfo.licencePathURL}" id="imgCompanyLicence" alt=""  style="width:150px;height:150px;">
+                                </div>
+                                <p><span class="c-red">*</span>上传工商执照图片</p>
+                                <p><span class="sbtn" id="imageCompanyLicenceUpload">上传图片</span></p>
+                           		
+                            </li>
+                            <li>
+                                <div class="imgbox" >
+                                	#if(!$!{companySignInfo.taxPath})
+                                		<a id="taxFile" id="taxFile">请上传税务附件</a>
+                                	#else
+                                		<a id="taxFile" id="taxFile" href="$!{companySignInfo.taxPathURL}">查看附件</a>
+                                	#end
+                                </div>
+                                <p><span class="c-red">*</span>上传税务附件</p>
+                                <p><span class="sbtn" id="imageTaxLicenceUpload">上传附件</span></p>
+                            </li>
+                        </ul>
+                        <div class="alert rz-alert">
+                            *图片仅支持JPG、GIF、PNG、JPEG、BMP格式，附件支持PDF、DOC、DOCX格式，图片或附件大小须小于4MB
+                        </div>
+                        <input type="hidden" class="required" name="legalPersonImage" id="legalPersonImageKey" value="$!{companySignInfo.legalPersonImage}"/>
+						<input type="hidden" class="required"  name="licencePath" id="imgCompanyLicenceKey" value="$!{companySignInfo.licencePath}"/>
+						<input type="hidden" class="required" name="taxPath" id="taxPathKey" value="$!{companySignInfo.taxPath}"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="btn-wrap">
+            <span class="sbtn sbtn-blue" id="btnsignCompany">下一步，店铺信息认证</span>
+        </div>

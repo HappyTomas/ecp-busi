@@ -1,0 +1,120 @@
+#parse("/module/mod-form.vm") #parse("/module/mod-editor.vm")
+#parse("/module/mod-tree.vm")
+<link href="${CONTEXT_PATH}/css/goods/product-mgr.css" rel="stylesheet"
+	type="text/css" media="screen" />
+<script type="text/javascript"
+	src="$!{BUSIJS_PATH}/goods/gdsmediacatg/plugins/gds.mcdropdown.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript"
+	src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript"
+	src="$!{BUSIJS_PATH}/goods/gdsMedia/media-edit.js?version=$!{JS_VERSION}"></script>
+<style type="text/css">
+select[disabled] {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	padding: 0px 0px 0px 4px;
+}
+
+select[disabled]::-ms-expand {
+	display: none;
+}
+</style>
+<div class="alert alert-error hide formValidateMessages"></div>
+<div class="rk-editc pull-left">
+
+	<form id="detailInfoForm" class="form-horizontal  required-validate"
+		style="margin-bottom: 0px;" method="post">
+		<div class="row-fluid" style="width: 400px; float: left;">
+			<div class="span4">
+				<br />
+				<div class="controls">
+					<input type="hidden" id="id" name="id" value="$!{mediaInfo.id}" />
+				</div>
+
+				<div class="control-group">
+					<label class="control-label">店铺名称：</label>
+					<div class="controls">
+						<select class="required" id="shopId" name="shopId">
+							##shoplist($!{mediaInfo.shopId})
+							#shopStatuslist($!{mediaInfo.shopId},'1')
+						</select>
+					</div>
+				</div>
+				<br />
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label">图片分类：</label>
+					<div class="controls">
+						<input type="text" class="required" placeholder="点击选择分类"  id="mediaCatgSelector" value ="$!{catgInfo.catgName}"/>
+						<input type="hidden"  id="picCatgCode" value="$!{catgInfo.catgCode}" name="picCatgCode"/>
+					</div>
+				</div>
+				<br />
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label">图片名称：</label>
+					<div class="controls">
+						<input class="required" name="mediaName" type="text"
+							placeholder="不多于64个汉字" value="$!{mediaInfo.mediaName}" />
+					</div>
+				</div>
+				<br />
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label">图片排序：</label>
+					<div class="controls">
+						<input class="required digits" maxlength="5" name="sortNo"
+							type="text" placeholder="请输入整数" value="$!{mediaInfo.sortNo}" />
+					</div>
+				</div>
+				<br />
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label ">图片类型：</label>
+					<div class="controls">
+						<select disabled="true" name="mediaType">
+							#listParam("GDS_MEDIA_TYPE","$!{mediaInfo.mediaType}")
+						</select>
+					</div>
+				</div>
+				<br />
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label ">图片文件： </label>
+					<div class="controls">
+						<input type="hidden" id="mediaUuid" name="mediaUuid"
+							value="$!{mediaInfo.mediaUuid}" /> <input type="hidden"
+							id="fileName" name="fileName" /> <input type="file"
+							class="com_input" id="mediaFile" name="mediaFile" value="" />
+					</div>
+				</div>
+				<br />
+
+			</div>
+		</div>
+		<div id="imgshowdiv"
+			style="width: 160px; float: right; margin-top: 20px; margin-right: 20px;">
+			<div style="width: 150px; height: 150px; border: 1px solid;">
+				<img id="imgShow" alt="" src="$!{mediaInfo.URL}"
+					style="width: 150px; height: 150px;" />
+			</div>
+			<div class="alert rk-alert" style="width: 105px;">
+				图片格式必须是：png,jpg,jpeg,并且小于5M</div>
+			<input value="还原图片" type="button" id="btnRevertImg" class="btn" />
+		</div>
+		<div class="btn-wrap " style="clear: both;">
+			<input value="开始上传" type="hidden" id="btnUpload"
+				class="btn btn-primary" /> 
+				##<input value="保存" data-loading-text="保存"
+				##type="button" id="btnFormSave" class="btn btn-primary" />
+				
+				<a class="btn btn-info" id="btnFormSave" id="" href="#"><i class=" icon-ok-sign icon-white"></i> 保存</a>
+				##<input value="返回" type="button" id="btnReturn" class="btn" style="margin-left: 10px" />
+				<a class="btn" href="javascript:void(0)" id="btnReturn"><i class="icon-reply icon-white"></i> 返回</a>
+
+		</div>
+	</form>
+	<!-- 隐藏域 -->
+	<div>
+		<input type="hidden" id="mediaInfoMediaType" name="mediaInfoMediaType"
+			value="$!{mediaInfo.mediaType}" /> <input type="hidden"
+			id="oldMediaUuid" value="$!{mediaInfo.mediaUuid}" /> <input
+			type="hidden" id="oldImgUrl" value="$!{mediaInfo.URL}" />
+	</div>
+</div>

@@ -1,0 +1,52 @@
+#parse("sys/sys_param.vm")
+#*<script type="text/javascript">
+    <!--
+		 //防抖js
+        function debounce(func, wait, immediate) {
+            var timeout;
+            return function () {
+                var context = this, args = arguments;
+                clearTimeout(timeout);
+                timeout = setTimeout(function () {
+                    timeout = null;
+                    if (!immediate) func.apply(context, args);
+                }, wait);
+                if (immediate && !timeout) func.apply(context, args);
+            };
+        }
+        $(window).on('scroll.header', debounce(function () {
+            var header = $('.am-header');
+            if ($(this).scrollTop() >= 50) {
+                header.removeClass('header-trans');
+            } else {
+                header.addClass('header-trans');
+            }
+        }, 20));
+    //-->
+</script>*#
+<div class="ui-content-fixBottom">
+    #parse("/search/search-box-homepage.vm")
+	#if($!{noRelease}) ##未发布商城首页
+		</br>
+		</br>
+		</br>
+	    <div class="phone-modular tpl-slider">
+			<div class="modular-body">
+				<div class="nodata" style="height:90px;text-align:center;padding-top:30px;">
+					<span style="color:red;">商城首页未配置！</span>
+				</div>
+			</div>
+		</div>
+	#else
+		#parse("/pageConfig/pageConfigWap/publish/page-common-publish-wap.vm")
+		##parse("/main/homepage/homepage-context.vm")
+	#end
+ 
+</div>
+
+<script>##用于底部栏目切换
+$(function(){
+	$.cookie('SUPPORT-WEB-COOKIE-MOUDEL', "homepage", {path : '/'});
+});
+</script>
+#parse("/main/main-bottom-navbar.vm")

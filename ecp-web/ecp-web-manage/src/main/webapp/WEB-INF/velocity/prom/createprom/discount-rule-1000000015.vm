@@ -1,0 +1,57 @@
+			<div class="formBox">
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					  <div class="formSep" >
+					       <div  class=" alert-info" style="margin-left:50px;">
+					                 购买某分类的商品，统一打折并送积分。例如：参考书统一75折 并送积分
+					     </div>
+					  </div>
+			  <div class="formSep">
+								<div class="control-group">
+									<label class="control-label" for="name">折扣比例：</label>
+									<div class="controls">
+										<input type="text" class="input-large required number" id="discountRate" maxlength="12"  name="discountMap['discountRate']" placeholder="请输入折扣比例 " value="$!{promVO.discountMap.discountRate}"   />
+									   <span class="help-inline   alert-info"><span style="color:red">%</span>符合分类的折扣比例（例如50% 填写50）。</span>
+									</div>
+								</div>
+					       </div>
+					        <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name"><span style="text-align:left;color:red">*</span>赠送积分类型：</label>
+							<div class="controls">
+							    #foreach( $info in $sendTypeList) 
+							       <label class="control-label" style="text-align:left;">
+									<input type="radio" class="sendType" name='discountMap["sendType"]' value="$!{info.spCode}" #if (${aiTool.containStr("$!{info.spCode}","$!{promVO.discountMap.sendType}")}) checked #end>$!{info.spValue}
+									</label>
+								 #end
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+							<div class="control-group">
+								<label class="control-label" for="name"></label>
+									<div class="controls">
+									    <span class="help-inline   alert-info">按指定倍数赠送：当赠送积分设置为3倍时，下单之后，支付送积分加上额外赠送的积分，总共为3倍</span>
+									</div>
+							</div>
+						</div>
+						 <div class="row-fluid">
+											<div class="span8" style="margin-left:120px;">
+											   <label style="color:red">请根据会员等级填写不同值</label>
+											</div>
+										</div>
+					       	#foreach( $info in $custLevelList) 
+					       	  #set($key="level"+$!{info.spCode})
+									 <div class="row-fluid">
+											<div class="span4">
+												<div class="control-group">
+												    <label class="control-label" for="name">$!{info.spValue}：</label>
+													<div class="controls">
+														<input type="text" class="input-large required number" maxlength="12" name="discountMap['level$!{info.spCode}']" placeholder="请输入赠送积分值或倍数 "  value="$!{promVO.discountMap.get($key)}"  />
+													</div>
+												</div>
+											</div>
+										</div>
+							#end
+				</form>
+			</div>
+			   

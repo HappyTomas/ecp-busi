@@ -1,0 +1,41 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<link rel="stylesheet" href="$!{CSS_PATH}/default/staff/information/member.css" />
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/buyer-check.js?version=$!{JS_VERSION}" ></script>
+ <!--会员中心-->
+<div id="main">
+    <div class="mbox order-list">
+        <div class="mbox-head">
+            <h3>
+                邮箱绑定
+            </h3>
+        </div>
+        <div class="mbox-body">
+            <!--流程-->
+            <div class="stepflex clearfix" id="sflex03">
+                <dl class="first done">
+                    <dt class="s-num">1</dt>
+                    <dd class="s-text">邮箱录入<s></s><b></b></dd>
+                </dl>
+                <dl class="normal doing">
+                    <dt class="s-num">2</dt>
+                    <dd class="s-text">邮箱验证<s></s><b></b></dd>
+                </dl>
+                <dl class="last ">
+                    <dt class="s-num"></dt>
+                    <dd class="s-text">完成<s></s><b></b></dd>
+                </dl>
+            </div>
+            <!--邮件输入框-->
+            <div class="email-set-con email-bottom">
+                <s class="e-icon"></s>
+                <div class="fore">
+                    <p class="ftx02">您的邮箱绑定申请已经提交！</p>
+
+                    <p>请查收邮件，并进行邮箱验证确认操作。</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,42 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/createprom/query-shop-grid.js?version=$!{JS_VERSION}" ></script>  
+        <div class="seller-mainR">
+            <div class="main">
+              <div class="seller-well">
+                 <form action="" class="form-horizontal required-validate" id="searchForm">
+                        <div class="row-fluid">
+                            <div class="span4">
+                                <div class="control-group control-nobottom">
+                                    <label class="control-label">店铺名称：</label>
+                                    <div class="controls">
+                                        <select name="shopId" id="shopId" class="input-block-level">
+                                                <option value="">--请选择--</option>
+		                                        #sellerList('')
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="span4"></div>
+                         	<div class="span4">
+	                            <div class="control-group control-nobottom">
+	                                <!--查询，重置移动到这里，添加btn-w-right样式，重置按钮添加icon-color-->
+				                    <div class="btn-wrap btn-w-right">
+				                        <span class="sbtn sbtn-blue " id="shopQueryBtn" ><i class="icon-search"></i> 查询</span>
+				                        <span class="sbtn " id="btnFormReset" ><i class="icon-asterisk icon-color"></i> 重置</span> 
+				                    </div>
+	                            </div>
+                        	</div>
+                        </div>
+                    </form>
+                </div>
+            <div class="main-inner ">
+	                 <div class="sbtn-group">
+	                    <!--添加图标-->
+	                    <span class="sbtn sbtn-blue" id="btn_code_add"><i class="icon-plus"></i> 新增促销</span>
+	                </div>
+                   <div id='shopListDiv'>
+                    	 ##parse("/seller/prom/createprom/shop/shop-list.vm")
+                   </div>
+                </div>
+            </div>
+        </div>

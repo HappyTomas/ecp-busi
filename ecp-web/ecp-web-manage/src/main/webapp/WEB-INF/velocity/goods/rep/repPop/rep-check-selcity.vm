@@ -1,0 +1,45 @@
+#parse("/sys/sys_param.vm")
+#parse("/sys/sys_js_header.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/rep/rep-check-select.js?version=$!{JS_VERSION}" ></script>
+
+<style type="text/css">
+
+<!--
+#selAdapt .spanlocal {
+	float: left;
+margin-top:10px;
+margin-bottom:10px;
+	margin-left: 10px;
+	width:auto
+}
+#selAdapt {
+ border-bottom: 1px dashed #dcdcdc;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+}
+-->
+</style>
+
+
+	 <div id="selAdaptForm">
+       <div id = "selAdapt" style="margin-left:40px;margin-right:20px;margin-top:30px;display: table;font-size:16px">
+		#foreach($cityArea in $cityAreas)
+			#if($cityArea.ifCRepHasOver == true)
+		<div class="spanlocal"><div><div><input type="hidden" citys=""/><input type="checkbox" name="$cityArea.cityCode" value="$cityArea.cityCode" checked="checked" disabled="true"/><div style="display: inline;margin-left:5px">$cityArea.areaName</div></div></div></div>
+            #else
+		<div class="spanlocal"><div><div><input type="hidden" citys=""/><input type="checkbox" name="$cityArea.cityCode" value="$cityArea.cityCode" disabled="true"/><div style="display: inline;margin-left:5px" >$cityArea.areaName</div></div></div></div>
+		
+			#end	
+			#end
+	   </div>	
+	   
+	   <div>
+		<div class="control-group">
+				<div class="controls">
+					<div style="margin-left:130px;margin-top:50px">
+						<button type="button" class="btn btn-primary" id="btnReturn"><i class="icon-reply"></i> 返　回</button>					
+		            </div>					
+		         </div>
+		</div>
+	   </div>
+	 </div>

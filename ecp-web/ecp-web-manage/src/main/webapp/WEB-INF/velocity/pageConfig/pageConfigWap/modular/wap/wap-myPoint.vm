@@ -1,0 +1,55 @@
+#parse("sys/sys_param.vm")
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+<input type="hidden" id="propPreStr" value="$!{propPreStr}"/>
+<script>
+</script>
+		
+<form id="paramsSetForm" class="required-validate form-horizontal templateItemForms" data-url="$!{CONTEXT_PATH}/modular-dynamic/commonModularFormSave">
+    <div class="dynamicFormMainBox">
+        	<input type="hidden" id="modularPageId" value="$!{pageId}"/>
+        	<input type="hidden" id="modularModularId" value="$!{modularId}"/>
+        	<input type="hidden" id="modularItemId" value="$!{itemId}"/>	
+        <h3 class="tit" style="color:red">我的积分模块</h3>
+        
+        <div class="edit-tip">
+            <i class="close wap_close_i" id="close_i"></i>
+        
+            <p class="title">模块使用小贴士</p>
+        
+            <div class="content">
+                                                    当用户未登陆时，不会展示我的积分模块。
+            </div>
+        </div>
+        <div class="form-block formItem">
+            <label>$!{attrs.get(1032).propName}</label>
+            <div class="input-append">
+            	<input type="hidden" id="propValue" value="$!{propPre.get('1032_0_0').propValue}">
+            	<input type="hidden" id="propValueId" value="$!{propPre.get('1032_0_0').propValueId}">
+            	<input type="hidden" id="propId" value="$!{attrs.get(1032).id}">
+            	<input type="hidden" id="propItemId" value="$!{propPre.get('1032_0_0').id}"/>
+				<input type="hidden" id="controlPropId" value="0"/>
+				<input type="hidden" id="propGroupId" value="0"/>
+				<select class="input-block-level #if($!{attrs.get(1032).ifHaveto}=='1')required#end" onchange="CommonModular.selectAssignMent(this)">
+					#if($attrs.get(1032).modularPropValRespDTOList && $attrs.get(1032).modularPropValRespDTOList.size() > 0)
+		              	#foreach($prop in $attrs.get(1032).modularPropValRespDTOList)
+							<option value="$!{prop.propValue}" valueId="$!{prop.id}">$!{prop.valueDesc}</option>
+						#end
+		          	#end
+		        </select>
+		        ##数据为空  初始化数据
+		        #if(!$!{propPre.get('1032_0_0').propValue} || $!{propPre.get('1032_0_0').propValue} == '')
+		        <script type="text/javascript">
+				<!--
+				$(function(){
+					$("select.input-block-level").trigger("change");
+				});
+					-->
+		        </script>
+		        #end
+            </div>
+        </div>
+    </div>
+</form>
+

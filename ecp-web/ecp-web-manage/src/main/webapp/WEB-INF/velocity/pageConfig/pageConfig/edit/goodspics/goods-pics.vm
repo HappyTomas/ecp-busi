@@ -1,0 +1,118 @@
+#parse("sys/sys_param.vm")
+#parse("module/mod-upload.vm")
+#parse("module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/public/public-js.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/goodspics/goods-pics.js?v=${JS_VERSION}"></script>	
+<style type="text/css">
+.page-header {margin: 0px;margin-bottom: 10px;}
+.btn-wrap {text-align: right;padding-bottom: 0px;padding-top: 10px;}
+div.page-header h3 {font-size: 18px;font-weight: normal;}
+.formExtendArea{display: none;}
+.goodsRowShowNum li {cursor: pointer;}
+.goodsRowShowNum li p {text-align: center;}
+.goodsRowShowNum li.selected div.item{border: 1px solid #4C6AD4;background-color: #F5F5F5;}
+.goodsRowShowNum li.selected p{color: #4C6AD4;}
+.closeRow{cursor: pointer;}
+</style>
+
+
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+
+
+<div class="">
+	<div class="hide alert error-msg" id="error-msg-goods-pics" style="color:red;">
+		                            
+	</div>
+	<div class="page-header">
+		<h3 style="font-size: 18px;font-weight: normal;">宝贝图片设置</h3>
+	</div>
+	<!-- form必须要设置templateItemForms样式 -->
+	<!-- data-url设置表单Ajax提交数据的URL -->
+	<form id="paramsSetForm" class="required-validate form-horizontal templateItemForms" data-url="$!{CONTEXT_PATH}/modular-dynamic/publicFormSave"></form>
+	<div class="text-center">
+		<span class="btn btn-info" id="btnSave"><i class="icon-ok-sign icon-white"></i>确定</span>
+		<span class="btn" id="btnCancel"><i class="icon-reply icon-white"></i>取消</span>
+	</div>
+	<!-- 表单扩展操作区域，将需要放到手动生成位置的内容放在此处统一处理 -->	    
+	<div class="formExtendArea">
+		<div class="buildItems">
+            <div class="controls buildItem">
+               <ul class="favEdit-showlist clearfix goodsRowShowNum">
+                   <li data-result="1">
+                       <div class="item"><i class="show-mthod1"></i></div>
+                       <p>一行展示1个宝贝</p>
+                   </li>
+                   <li data-result="2">
+                       <div class="item"><i class="show-mthod2"></i></div>
+                       <p>一行展示2个宝贝</p>
+                   </li>
+                   <li data-result="3">
+                       <div class="item"><i class="show-mthod3"></i></div>
+                       <p>一行展示3个宝贝</p>
+                   </li>
+                   <li data-result="4">
+                       <div class="item"><i class="show-mthod4"></i></div>
+                       <p>一行展示4个宝贝</p>
+                   </li>
+                   <li data-result="5">
+                       <div class="item"><i class="show-mthod5"></i></div>
+                       <p>一行展示5个宝贝</p>
+                   </li>
+               </ul>
+            </div>
+            <div class="controls buildItem">
+            	<input type="text" class="input-large required goodsItem" readonly="readonly" />
+            	<span class="btn rowSelectButton"><i class="icon-magic"></i>选择</span>
+            	<i class="iconfont gray closeRow" title="移除"></i>
+            </div>
+		</div>
+		<!-- 添加宝贝数据按钮 -->
+		<div class="row-fluid addGoodsRow">
+		    <div class="control-group">
+		        <div class="controls">
+		            <span class="btn" id="btnAddGoods" style="width: 70px;"><i class="icon-plus icon-white"></i>添加</span>
+		        </div>
+		    </div>
+		</div>
+	</div>
+	
+	<!-- 关联楼层的弹出层 -->
+	<div class="floor-config-box">
+	#foreach($!layout in $!pageConfig)
+		##悬浮层（楼层导航）的布局不加载
+		#if($layout.cmsLayoutTypeRespDTO.layoutShowType && 
+        	$layout.cmsLayoutTypeRespDTO.layoutShowType != "03" && 
+        	$layout.cmsLayoutTypeRespDTO.layoutShowType != "04")
+        	
+        	#set($widthStr="[")
+        	#set($prefix="")
+        	#foreach($!item in $!layout.layoutItemPreRespDTOList)
+        		#set($itemIndex = $velocityCount - 1)
+        		#if($itemIndex > 0)
+        			#set($prefix = ",")
+        		#end
+        		#set($widthStr = $widthStr + $prefix + $!item.itemSize)
+        	#end
+        	#set($widthStr = $widthStr + "]")
+	    <div class="floor-laylout" data-widths="$!{widthStr}">
+	        <div class="config-box">
+	            <div class="config-box-wrap">
+	            #foreach($!item in $!layout.layoutItemPreRespDTOList)
+	                <div class="item">$!{item.modularRespDTO.modularName}</div>
+				#end
+	            </div>
+	        </div>
+	        <div class="checkwrap">
+	            <input type="radio" name="floorConfigSelect" value="$!{layout.id}"/>
+	        </div>
+	    </div>
+	    #end
+	#end
+	    <div class="text-center">
+	        <span class="btn btn-info" id="btnFloorConfigOk"><i class="icon-ok-sign icon-white"></i>确定</span>
+	        <span class="btn" id="btnFloorConfigCancel"><i class="icon-reply icon-white"></i>取消</span>
+	    </div>
+	</div>
+</div>

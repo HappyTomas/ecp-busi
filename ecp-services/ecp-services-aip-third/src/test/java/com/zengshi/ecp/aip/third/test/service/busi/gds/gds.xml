@@ -1,0 +1,187 @@
+<itemParam>
+	<field id="infos" name="信息" type="label" />
+	<field id="title" name="商品标题" type="input">
+		<value>[测试商品3]不发货谢谢</value>
+	</field>
+	<field id="sell_points" name="商品卖点" type="complex">
+		<complex-values />
+	</field>
+	<field id="item_type" name="发布类型" type="singleCheck">
+		<value>b</value>
+	</field>
+	<field id="stuff_status" name="宝贝类型" type="singleCheck">
+		<value>5</value>
+	</field>
+	<field id="sub_stock" name="拍下减库存" type="singleCheck">
+		<value>false</value>
+	</field>
+	<field id="second_kill" name="商品秒杀" type="multiCheck">
+		<values />
+	</field>
+	<field id="auction_point" name="返点比例" type="input">
+		<value>0.5</value>
+	</field>
+	<field id="item_status" name="商品状态" type="singleCheck">
+		<value>0</value>
+	</field>
+	<field id="start_time" name="开始时间" type="input">
+		<value>2016-12-23 18:06:48</value>
+	</field>
+	<field id="lang" name="商品文字的字符集" type="singleCheck">
+		<value />
+	</field>
+	<field id="quantity" name="商品数量" type="input">
+		<value>133333</value>
+	</field>
+	<field id="price" name="商品价格" type="input">
+		<value>0.01</value>
+	</field>
+	<field id="has_discount" name="是否支持会员折扣" type="singleCheck">
+		<value>false</value>
+	</field>
+	<field id="inner_shop" name="页面模板-淘宝店铺" type="singleCheck">
+		<value />
+	</field>
+	<field id="delivery_way" name="提取方式" type="multiCheck">
+		<values>
+			<value>2</value>
+		</values>
+	</field>
+	<field id="locality_life.expirydate" name="有效期" type="singleCheck">
+		<value />
+	</field>
+	<field id="locality_life.expirydate.startend" name="有效期按时间区间"
+		type="complex">
+		<complex-values />
+	</field>
+	<field id="locality_life.expirydate.end" name="有效期按购买日起时间区间"
+		type="input">
+		<value />
+	</field>
+	<field id="locality_life.expirydate.severalDays" name="有效期按购买日起有效天数区间"
+		type="input">
+		<value />
+	</field>
+	<field id="locality_life.network_id" name="网点id" type="input">
+		<value />
+	</field>
+	<field id="locality_life.merchant" name="码商" type="complex">
+		<complex-values />
+	</field>
+	<field id="expired_refund" name="过期退款" type="complex">
+		<complex-values>
+			<field id="expired_refund_rate" type="input">
+				<value>100</value>
+			</field>
+			<field id="support_expired_refund_rate" type="singleCheck">
+				<value>false</value>
+			</field>
+		</complex-values>
+	</field>
+	<field id="locality_life.verification" name="核销打款" type="singleCheck">
+		<value />
+	</field>
+	<field id="auto_refund" name="自动退款" type="complex">
+		<complex-values />
+	</field>
+	<field id="location" name="所在地" type="complex">
+		<complex-values>
+			<field id="prov" type="input">
+				<value>北京</value>
+			</field>
+			<field id="city" type="input">
+				<value>北京</value>
+			</field>
+		</complex-values>
+	</field>
+	<field id="freight_payer" name="运费承担方式" type="singleCheck">
+		<value>1</value>
+	</field>
+	<field id="freight_by_buyer" name="买家承担运费" type="singleCheck">
+		<value>freight_details</value>
+	</field>
+	<field id="freight" name="运费" type="complex">
+		<complex-values>
+			<field id="express_fee" type="input">
+				<value>25</value>
+			</field>
+			<field id="ems_fee" type="input">
+				<value>25</value>
+			</field>
+			<field id="post_fee" type="input">
+				<value>25</value>
+			</field>
+		</complex-values>
+	</field>
+	<field id="postage_id" name="运费模板ID" type="input">
+		<value />
+	</field>
+	<field id="seller_cids" name="商品所属的店铺类目列表" type="multiCheck">
+		<values />
+	</field>
+	<field id="white_bg_image" name="透明素材图" type="input">
+		<value />
+	</field>
+	<field id="after_sale_id" name="售后说明模板ID" type="input">
+		<value />
+	</field>
+	<field id="has_warranty" name="保修" type="singleCheck">
+		<value>false</value>
+	</field>
+	<field id="has_invoice" name="发票" type="singleCheck">
+		<value>true</value>
+	</field>
+	<field id="sell_promise" name="退换货服务" type="singleCheck">
+		<value>true</value>
+	</field>
+	<field id="has_showcase" name="橱窗推荐" type="singleCheck">
+		<value>false</value>
+	</field>
+	<field id="outer_id" name="商家外部编码" type="input">
+		<value>21081</value>
+	</field>
+	<field id="description" name="商品描述" type="input">
+		<value>{"desc_module_60_cat_mod":{"desc_module_60_cat_mod_order":"0","desc_module_60_cat_mod_content":"内容介绍。。。。。。。。。。。。。"},"desc_module_58_cat_mod":{"desc_module_58_cat_mod_order":"0","desc_module_58_cat_mod_content":"目录介绍。。。。。。。。。。。。。。。"},"desc_module_user_mods":[{"desc_module_user_mod_name":"作者介绍","desc_module_user_mod_order":"2","desc_module_user_mod_content":"作者介绍。。。。。。。。。。。"},{"desc_module_user_mod_name":"章节节选","desc_module_user_mod_order":"3","desc_module_user_mod_content":"章节节选。。。。。。。。。。。。。"},{"desc_module_user_mod_name":"专家推荐","desc_module_user_mod_order":"4","desc_module_user_mod_content":"专家推荐。。。。。。。。。。。。。。。。。。"},{"desc_module_user_mod_name":"编辑推荐","desc_module_user_mod_order":"5"}]}
+		</value>
+	</field>
+	<field id="item_images" name="商品图片" type="complex">
+		<complex-values>
+			<field id="item_image_0" type="input">
+				<value>http://img.alicdn.com/imgextra/i1/1125014918/TB2vKeBbstnpuFjSZFKXXalFFXa_!!1125014918.jpg
+				</value>
+			</field>
+			<field id="item_image_1" type="input">
+				<value>http://img.alicdn.com/imgextra/i1/1125014918/TB26vc3a80kpuFjy1XaXXaFkVXa_!!1125014918.jpg
+				</value>
+			</field>
+			<field id="item_image_2" type="input">
+				<value>http://img.alicdn.com/imgextra/i1/1125014918/TB2EUA4a3JlpuFjSspjXXcT.pXa_!!1125014918.jpg
+				</value>
+			</field>
+		</complex-values>
+	</field>
+	<field id="item_wireless_images" name="商品无线图片" type="complex">
+		<complex-values />
+	</field>
+	<field id="item_size_weight" name="商品物流重量体积" type="complex">
+		<complex-values />
+	</field>
+	<field id="valid_thru" name="有效期" type="singleCheck">
+		<value>17</value>
+	</field>
+	<field id="is_taobao" name="是否在淘宝和天猫显示" type="singleCheck">
+		<value />
+	</field>
+	<field id="is_ex" name="是否在外店显示" type="singleCheck">
+		<value />
+	</field>
+	<field id="is_3D" name="是否是3D" type="singleCheck">
+		<value />
+	</field>
+	<field id="service_version" name="天猫系统服务版本" type="input">
+		<value>11100</value>
+	</field>
+	<field id="wireless_desc" name="新商品无线描述" type="complex">
+		<complex-values />
+	</field>
+</itemParam>

@@ -1,0 +1,142 @@
+<div class="seckill-star" id="pro-detail" style="display:none;">
+    <p class="p-price" id="seckill"></p>
+
+    <p class="p-seckill"><span class="buy-btn">限时秒杀</span>
+        <span class="del">#money($!{gdsDetailInfo.skuInfo.commonPrice})</span></p>
+
+    <div class="seckill-time" id="colockbox1">
+        <p class="tit">距结束还剩下：</p>
+
+        <p class="time">
+        	<span class="day">00</span>:
+            <span class="hour">00</span>:
+            <span class="minute">00</span>:
+            <span class="second">00</span>
+        </p>
+    </div>
+</div>
+<div class="pro-detail" >
+    <div class="name">
+         <h >$!{gdsDetailInfo.gdsName}</h>##商品名称
+         #if($!{gdsDetailInfo.gdsSubHead})
+         	<p class="abstract" id="abstract">$!{gdsDetailInfo.gdsSubHead}</p>##商品副标题
+         #end
+    </div>
+    <div class="pro-more" id = "ynKill" style="display:block;">
+        <div class="prices">
+			#if($!{gdsDetailInfo.skuInfo.gdsStatus}=="11")
+				#if(${gdsDetailInfo.skuInfo.appSpecPrice} && $!{gdsDetailInfo.skuInfo.appSpecPrice}!=0)
+					<span class="price" id="realPrice">#money($!{gdsDetailInfo.skuInfo.appSpecPrice})</span>##手机专享价
+				#else
+					<span class="price" id="realPrice">#money($!{gdsDetailInfo.skuInfo.discountPrice})</span>##原价
+					<del class="pro-dis" id="guidePrice">#money($!{gdsDetailInfo.skuInfo.guidePrice})</del>##指导价
+				#end
+				#set($happyPrice=$!{gdsDetailInfo.skuInfo.discountPrice} - $!{gdsDetailInfo.skuInfo.appSpecPrice})
+				#if(${gdsDetailInfo.skuInfo.appSpecPrice} && $!{gdsDetailInfo.skuInfo.appSpecPrice}!=0)
+					<span class="phone-price"><img src="../images/p-price.png" alt=""/></span>
+                	<span class="c-orange fonts">比PC省 #money($happyPrice)元</span>
+                #end
+    			#if($!{gdsDetailInfo.gdsTypeRespDTO.ifNeedstock}=="1")
+    				#if($!{stockStatusDesc}=='充足')
+    					<span class="am-btn" id="stockStatusDesc">$!{stockStatusDesc}</span>##库存'
+    				#else
+    					<span class="am-btn btn-red" id="stockStatusDesc">$!{stockStatusDesc}</span>
+    				#end
+    			#else
+    				<span class="am-btn" id="stockStatusDesc">充足</span>##库存'
+    			#end
+			#else
+				<span class="wbtn wbtn-disable">该物品已下架</span>
+			#end
+           
+        </div>
+        <div class="seckill-buy" id = "seckill-buy" style="display:none;">
+            <span class="buy-btn">限时抢购</span>
+            <span id = "showStartTime"></span>
+        </div>
+		<!--这里的属性具体是根据amazeiui.js 初始化分享的内容来填写的-->
+        <div class="opt" data-am-widget="navbar">
+			<ul class="am-navbar-nav am-cf am-avg-sm-2">
+				 ##<li >
+					##<i class="icon icon-fav" id="addCollect"></i>##关注按钮
+                 ##</li>
+                 ##<li data-am-navbar-share style="margin-top: -5px;">
+					##<i class="iconfont icon-share"></i>##分享按钮
+				 ##</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="pro-act pro-cx" id="slideButtomBtn">
+		<div class="item" id="onePromDetail">
+            <!--促销的信息-->
+			<!--更多促销信息按钮start-->
+			
+			<!--更多促销信息按钮end-->
+        </div>
+    </div>
+    #if($!{exitAuthor}=="1" || $!{exitIsbn}==true || $!{exitDate}==true || $!{gdsDetailInfo.mainCatgs})
+    <div class="pro-act pro-cx">
+    	#if($!{exitAuthor}=="1")
+        <div class="item">
+            <span class="tit" style="width:1.9rem">作者</span>
+            <div class="cont" id="authorPro">
+                $!{propValues}
+            </div>
+            <a href="$CONTEXT_PATH/search?authorName=$!{propValues}">
+            	<div class="more-arrow" id="morePro">更多作品<span class="ui-arrow ui-arrow-right"></span></div>
+            </a>
+        </div>
+        #end
+        #if($!{exitIsbn}==true)
+        <div class="item">
+            <span class="tit"  style="width:1.9rem">ISBN</span>
+            <div class="cont" id="isbn">
+                $!{isbn}
+            </div>
+        </div>
+        #end
+        #if($!{exitDate}==true)
+        <div class="item">
+            <span class="tit" style="width:1.9rem">出版日期</span>
+            <div class="cont" id="date">
+                $!{datetime}
+            </div>
+        </div>
+        #end
+        #if($!{gdsDetailInfo.mainCatgs})
+        <div class="item">
+        	<span class="tit" style="width:2.3rem">分类路径</span>
+        	<div  id="root-nav" style="width: 100%; overflow: auto;white-space: nowrap;">
+		 	##异步获取路径
+        	</div>
+        </div>
+        #end
+    </div>
+    #end
+    #if($!{exitOtherbook}=="1")
+    <div class="pro-act pro-cx">
+        <div class="item">
+            <span class="tit">$!{exit_catName}</span>
+            <div class="cont">
+            	<span class="price" >#money($!{otherBP})</span>
+            </div>
+            <a href="$CONTEXT_PATH/gdsdetail/$!{exit_gdsId}-$!{exit_skuId}">
+            	<div class="more-arrow">点击查看<span class="ui-arrow ui-arrow-right"></span></div>
+            </a>
+        </div>
+    </div>
+    #end
+    <div class="pro-act pro-gg">
+        <div class="item">
+            <div class="cont" id="hasSelectedSku">
+                <span>已选择</span>
+				$hasSelectedSku
+				<span id="selectStock">1</span>件
+            </div>
+            <span class="more">
+                <i class="iconfont icon-more" id="openSkuParam" data-am-offcanvas="{target: '#page-gg'}"></i>
+            </span>
+        </div>
+    </div>
+</div>

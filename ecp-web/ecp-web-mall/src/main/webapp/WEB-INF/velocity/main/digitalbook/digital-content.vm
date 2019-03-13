@@ -1,0 +1,181 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/main/main-cart-coll.js"></script>
+<!--content-->
+<div id="content" class="clearfix">
+    <div class="wrap1200 clearfix">
+        <!--左侧栏-->
+		<div class="sidebar-left">
+            <!--数据教材二级页面导航-->
+            <div class="sidebar-nav2 ecp-component sidebar-catg-shader" data-place-id="908" data-place-height ="289"
+                 data-module="ecp-component/sidebar-catg-shader">
+    		</div>
+    		
+    		<!--  begin  of   左边栏广告小图             -->
+    		<div class="bar-ad mt10 ecp-component homepage-ad-vertical" data-status="1" data-place-size="4" data-place-id="902" data-place-width="190" data-place-height="70" data-border-box="0" data-frist-mt="0" data-module="ecp-component/leaflet/leaflet-vertical">
+            </div>
+			<!--  end  of   左边栏广告小图             -->
+		</div>
+		
+        <!--右推荐-->
+        <div class="hot-recommend clearfix mt10">
+            <!--banner-热推-->
+            <div class="banner-hot">
+                <div class="recommend-left ">
+                <!--       begin   of    广告轮番   div          -->
+                     <div class="bannerimg slider ecp-component homepage-ad" data-status="1" data-place-size="8" data-place-id="901" data-place-width="752" data-place-height="315" data-module="ecp-component/leaflet/leaflet-slider">
+                       <div class="slide-pagination">
+                       		<ul class="homepage-ad-num">
+                       		</ul>
+                       </div>
+                       <ul class="slide-box homepage-ad-img" style="display:block;">
+                       </ul>
+                    </div>
+                    <!--       end   of    广告轮番   div          -->
+
+                </div>
+                <div class="recommend-right">
+                
+                    <!--       begin   of   行业资讯  div          -->
+                    <div class="box ecp-component homepage-info" data-status="1" data-place-size="3" data-place-id="909" data-module="ecp-component/info/homepage-info">
+                        <div class="box-tit">
+                            <span class="font-tit">
+								#parse("/main/child/info-title.vm")
+							</span>
+                            <span class="pull-right">
+                            	<a class = "hide info-more " href="${CONTEXT_PATH}/info/infolist?placeId=909"> 更多</a>
+                            </span>
+                        </div>
+                        <div class="box-con border-box box-pro01" style="height:80px">
+                        	<ul class="homepage-info-slides">
+                                   
+                            </ul>
+                        </div>
+                    </div>
+                    <!--       end   of    行业资讯  div          -->
+                    
+                    <!--       begin   of    客户端下载   div          -->
+                    <div class="box">
+                        <div class="box-tit">
+                            <span class="font-tit">客户端下载</span>
+                        </div>
+                        <div class="box-con  ele-box " style="height: 482px" >
+                            <div class="ele-ewm clearfix">
+                                <img src="$IMAGE_PATH/digital-ewm.jpg">
+                            </div>
+							<ul class="ele-download">
+                                <li class="e-green">
+									<a href='http://textbooks.ipmph.com/books/Appdownload.zaction?type=ANDROID&SiteID=33'>
+										<span class="i-android"></span>Android  下载
+                                    </a>
+								</li>
+                                <li class="e-blue">
+									<a href='https://itunes.apple.com/us/app/ren-wei-jiao-caihd/id892745945?mt=8'>
+										<span class="i-ipad"></span>ipad  下载
+                                    </a>
+								</li>
+                                <li class="e-blue01">
+									<a href='https://itunes.apple.com/us/app/ren-wei-jiao-cai/id892738550?mt=8'>
+										<span class="i-iphone"></span>iphone  下载
+									</a>
+								</li>
+                                <li class="e-gray">
+									<a href='http://textbooks.ipmph.com/books/Appdownload.zaction?type=PC&SiteID=33'>
+										<span class="i-windous"></span>windows  下载
+                                    </a>
+								</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--       end   of    客户端下载   div          -->
+                </div>
+            </div>
+            
+            
+            <!--新书推荐-->
+			<div class="banner-hot clearfix">
+				<div class="recommend-left">
+					<div class="banner-hot clearfix">
+						<div class="recommend-left">
+							<div class="box ecp-component homepage-jcarousel" data-status="1"
+								data-gds-size="8" data-tab-size="" data-place-id="904"
+								data-place-width="150" data-place-height="150"
+								data-module="ecp-component/floor/homepage-jcarousel">
+								<div class="box-tit  homepage-jc-tt">
+									<span class="font-tit floor-name hide"><i class="newbook-icon"></i></span>
+								</div>
+								<div class="box-con box-two homepage-jc-body" style="height: 266px;"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+    <div class="wrap1200 clearfix" >
+
+        <div class="rwbox-left">
+            <!--商品推荐-->
+            <div class="rwbox-left ecp-component homepage-gds-tj" data-status="1" data-gds-size="6" data-tab-size="" data-place-id="905" data-place-width="150" data-place-height="150" data-menu-type='0'  data-module="ecp-component/floor/homepage-gds-tj">
+                <div class="box-tit homepage-gds-tjtt">
+                  
+                </div>
+                <div class="box-con ele-border box-btj homepage-gds-tjcc" style="height:585px">
+                </div>
+                <!--     end of 商品推荐    栏目 数据块         -->
+                
+                
+                <!--    begin of  下边栏       广告 -->
+				<div class="ad-place clearfix mt10 ecp-component homepage-ad-middle" data-status="1" data-place-size="1" data-place-id="903" data-place-width="950" data-place-height="131" data-module="ecp-component/leaflet/leaflet-middle">
+				    <ul class="ad-d clearfix ad-middle-list">
+                	</ul>
+				</div>
+                <!--    end of  下边栏       广告 -->
+                
+            </div>
+
+        </div>
+       
+       
+        <!--     右边栏     排行榜          -->
+        <div class="recommend-right">
+        
+        <!--     begin of 销售排行榜             -->
+            <div class="box box-order ecp-component sidebar-gds-ranking" 
+                data-status="1" data-gds-size="5"  data-tab-size="0" data-place-id="906" data-place-width="80" data-place-height="80"
+                data-module="ecp-component/ranking/sidebar-gds-ranking">
+                <div class="box-tit">
+                    <span class="font-tit floor-name">销售排行榜</span>
+                </div>
+                <div class="box-con">
+                    <div class="box-content border-box clearfix gds-info" style="height:330px">
+                        
+                    </div>
+                </div>
+            </div>
+             <!--     end of 销售排行榜             -->
+            
+            <!--     begin of 关注排行榜            -->
+            <div class="box box-order ecp-component sidebar-gds-ranking" 
+                data-status="1" data-gds-size="5"  data-tab-size="0" data-place-id="907" data-place-width="80" data-place-height="80"
+                data-module="ecp-component/ranking/sidebar-gds-ranking">
+                <div class="box-tit">
+                    <span class="font-tit floor-name"></span>
+                </div>
+                <div class="box-con">
+                    <div class="box-content border-box clearfix gds-info" style="height:330px">
+                        
+                    </div>
+                </div>
+
+            </div>
+       <!--     end of 关注排行榜            -->
+        </div>
+    </div>
+</div>
+
+<!--楼层导航 s
+    <div class="quick-menu ecp-component homepage-elevator" data-status="1" data-place-Type="04" data-template-id="7" data-module="ecp-component/homepage-elevator">
+    </div>
+	-->
+<!--楼层导航 e-->

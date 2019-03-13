@@ -1,0 +1,16 @@
+#parse("/module/mod-form.vm")
+
+ <div style="margin-left:100px;display:table;margin-right:100px">
+ #foreach($areaInfo in $areaInfos)
+   #if($areaInfo.ifHasOver == true)
+    #if($areaInfo.ifCityLevel == true)	
+	<div class="localspan"><div><div ><input type="hidden" citys="" id="$areaInfo.provinceCode"/><input type="checkbox" value="$areaInfo.provinceCode" style="display:none"/><img src="$IMAGE_PATH/goods/check_sep.jpg" style="width:16px;height:16px"/><div style="display: inline">$areaInfo.areaName</div><a class="selCityArea" >设置地市区域</a></div></div></div>
+	#else
+	<div class="localspan"><div><div ><input type="hidden" citys="" id="$areaInfo.provinceCode"/><input type="checkbox" value="$areaInfo.provinceCode" checked="checked" disabled="true"/><img src="$IMAGE_PATH/goods/check_sep.jpg" style="width:16px;height:16px;display:none"/><div style="display: inline">$areaInfo.areaName</div><a class="selCityArea" >设置地市区域</a></div></div></div>
+    #end
+	#else
+	<div class="localspan"><div><div ><input type="hidden" citys="" id="$areaInfo.provinceCode"/><input type="checkbox" value="$areaInfo.provinceCode"/><img src="$IMAGE_PATH/goods/check_sep.jpg" style="width:16px;height:16px;display:none"/><div style="display: inline">$areaInfo.areaName</div><a class="selCityArea" >设置地市区域</a></div></div></div>
+	#end	
+	#end
+                       
+</div>

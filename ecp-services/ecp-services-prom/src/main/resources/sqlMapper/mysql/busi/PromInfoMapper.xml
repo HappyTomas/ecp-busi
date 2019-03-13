@@ -1,0 +1,578 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.prom.dao.mapper.busi.PromInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.prom.dao.model.PromInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="GROUP_ID" property="groupId" jdbcType="INTEGER" />
+    <result column="PROM_TYPE_CODE" property="promTypeCode" jdbcType="VARCHAR" />
+    <result column="IF_SHOW" property="ifShow" jdbcType="VARCHAR" />
+    <result column="PROM_CLASS" property="promClass" jdbcType="VARCHAR" />
+    <result column="PROM_THEME" property="promTheme" jdbcType="VARCHAR" />
+    <result column="PROM_CONTENT" property="promContent" jdbcType="VARCHAR" />
+    <result column="PROM_TYPE_SHOW" property="promTypeShow" jdbcType="VARCHAR" />
+    <result column="PRIORITY" property="priority" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="SHOW_START_TIME" property="showStartTime" jdbcType="TIMESTAMP" />
+    <result column="SHOW_END_TIME" property="showEndTime" jdbcType="TIMESTAMP" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="PROM_URL" property="promUrl" jdbcType="VARCHAR" />
+    <result column="PROM_IMG" property="promImg" jdbcType="VARCHAR" />
+    <result column="JOIN_RANGE" property="joinRange" jdbcType="VARCHAR" />
+    <result column="IF_MATCH" property="ifMatch" jdbcType="VARCHAR" />
+    <result column="IF_BLACKLIST" property="ifBlacklist" jdbcType="VARCHAR" />
+    <result column="IF_COMPOSIT" property="ifComposit" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="KEY_WORD" property="keyWord" jdbcType="VARCHAR" />
+    <result column="IF_FREE_POST" property="ifFreePost" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SITE_ID, GROUP_ID, PROM_TYPE_CODE, IF_SHOW, PROM_CLASS, PROM_THEME, PROM_CONTENT, 
+    PROM_TYPE_SHOW, PRIORITY, STATUS, START_TIME, END_TIME, SHOW_START_TIME, SHOW_END_TIME, 
+    SHOP_ID, PROM_URL, PROM_IMG, JOIN_RANGE, IF_MATCH, IF_BLACKLIST, IF_COMPOSIT, CREATE_TIME, 
+    CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, KEY_WORD, IF_FREE_POST
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.prom.dao.model.PromInfoCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_prom_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_prom_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_prom_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.prom.dao.model.PromInfoCriteria" >
+    delete from t_prom_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.prom.dao.model.PromInfo" >
+    insert into t_prom_info (ID, SITE_ID, GROUP_ID, 
+      PROM_TYPE_CODE, IF_SHOW, PROM_CLASS, 
+      PROM_THEME, PROM_CONTENT, PROM_TYPE_SHOW, 
+      PRIORITY, STATUS, START_TIME, 
+      END_TIME, SHOW_START_TIME, SHOW_END_TIME, 
+      SHOP_ID, PROM_URL, PROM_IMG, 
+      JOIN_RANGE, IF_MATCH, IF_BLACKLIST, 
+      IF_COMPOSIT, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_TIME, UPDATE_STAFF, KEY_WORD, 
+      IF_FREE_POST)
+    values (#{id,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER}, #{groupId,jdbcType=INTEGER}, 
+      #{promTypeCode,jdbcType=VARCHAR}, #{ifShow,jdbcType=VARCHAR}, #{promClass,jdbcType=VARCHAR}, 
+      #{promTheme,jdbcType=VARCHAR}, #{promContent,jdbcType=VARCHAR}, #{promTypeShow,jdbcType=VARCHAR}, 
+      #{priority,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{showStartTime,jdbcType=TIMESTAMP}, #{showEndTime,jdbcType=TIMESTAMP}, 
+      #{shopId,jdbcType=INTEGER}, #{promUrl,jdbcType=VARCHAR}, #{promImg,jdbcType=VARCHAR}, 
+      #{joinRange,jdbcType=VARCHAR}, #{ifMatch,jdbcType=VARCHAR}, #{ifBlacklist,jdbcType=VARCHAR}, 
+      #{ifComposit,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, #{keyWord,jdbcType=VARCHAR}, 
+      #{ifFreePost,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.prom.dao.model.PromInfo" >
+    insert into t_prom_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="groupId != null" >
+        GROUP_ID,
+      </if>
+      <if test="promTypeCode != null" >
+        PROM_TYPE_CODE,
+      </if>
+      <if test="ifShow != null" >
+        IF_SHOW,
+      </if>
+      <if test="promClass != null" >
+        PROM_CLASS,
+      </if>
+      <if test="promTheme != null" >
+        PROM_THEME,
+      </if>
+      <if test="promContent != null" >
+        PROM_CONTENT,
+      </if>
+      <if test="promTypeShow != null" >
+        PROM_TYPE_SHOW,
+      </if>
+      <if test="priority != null" >
+        PRIORITY,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="showStartTime != null" >
+        SHOW_START_TIME,
+      </if>
+      <if test="showEndTime != null" >
+        SHOW_END_TIME,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="promUrl != null" >
+        PROM_URL,
+      </if>
+      <if test="promImg != null" >
+        PROM_IMG,
+      </if>
+      <if test="joinRange != null" >
+        JOIN_RANGE,
+      </if>
+      <if test="ifMatch != null" >
+        IF_MATCH,
+      </if>
+      <if test="ifBlacklist != null" >
+        IF_BLACKLIST,
+      </if>
+      <if test="ifComposit != null" >
+        IF_COMPOSIT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="keyWord != null" >
+        KEY_WORD,
+      </if>
+      <if test="ifFreePost != null" >
+        IF_FREE_POST,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="promTypeCode != null" >
+        #{promTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ifShow != null" >
+        #{ifShow,jdbcType=VARCHAR},
+      </if>
+      <if test="promClass != null" >
+        #{promClass,jdbcType=VARCHAR},
+      </if>
+      <if test="promTheme != null" >
+        #{promTheme,jdbcType=VARCHAR},
+      </if>
+      <if test="promContent != null" >
+        #{promContent,jdbcType=VARCHAR},
+      </if>
+      <if test="promTypeShow != null" >
+        #{promTypeShow,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="showStartTime != null" >
+        #{showStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="showEndTime != null" >
+        #{showEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="promUrl != null" >
+        #{promUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="promImg != null" >
+        #{promImg,jdbcType=VARCHAR},
+      </if>
+      <if test="joinRange != null" >
+        #{joinRange,jdbcType=VARCHAR},
+      </if>
+      <if test="ifMatch != null" >
+        #{ifMatch,jdbcType=VARCHAR},
+      </if>
+      <if test="ifBlacklist != null" >
+        #{ifBlacklist,jdbcType=VARCHAR},
+      </if>
+      <if test="ifComposit != null" >
+        #{ifComposit,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="keyWord != null" >
+        #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="ifFreePost != null" >
+        #{ifFreePost,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.prom.dao.model.PromInfoCriteria" resultType="java.lang.Long" >
+    select count(*) from t_prom_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_prom_info
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupId != null" >
+        GROUP_ID = #{record.groupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.promTypeCode != null" >
+        PROM_TYPE_CODE = #{record.promTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifShow != null" >
+        IF_SHOW = #{record.ifShow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promClass != null" >
+        PROM_CLASS = #{record.promClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promTheme != null" >
+        PROM_THEME = #{record.promTheme,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promContent != null" >
+        PROM_CONTENT = #{record.promContent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promTypeShow != null" >
+        PROM_TYPE_SHOW = #{record.promTypeShow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.priority != null" >
+        PRIORITY = #{record.priority,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        START_TIME = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        END_TIME = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.showStartTime != null" >
+        SHOW_START_TIME = #{record.showStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.showEndTime != null" >
+        SHOW_END_TIME = #{record.showEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.promUrl != null" >
+        PROM_URL = #{record.promUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promImg != null" >
+        PROM_IMG = #{record.promImg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.joinRange != null" >
+        JOIN_RANGE = #{record.joinRange,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifMatch != null" >
+        IF_MATCH = #{record.ifMatch,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifBlacklist != null" >
+        IF_BLACKLIST = #{record.ifBlacklist,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifComposit != null" >
+        IF_COMPOSIT = #{record.ifComposit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.keyWord != null" >
+        KEY_WORD = #{record.keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifFreePost != null" >
+        IF_FREE_POST = #{record.ifFreePost,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_prom_info
+    set ID = #{record.id,jdbcType=INTEGER},
+      SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      GROUP_ID = #{record.groupId,jdbcType=INTEGER},
+      PROM_TYPE_CODE = #{record.promTypeCode,jdbcType=VARCHAR},
+      IF_SHOW = #{record.ifShow,jdbcType=VARCHAR},
+      PROM_CLASS = #{record.promClass,jdbcType=VARCHAR},
+      PROM_THEME = #{record.promTheme,jdbcType=VARCHAR},
+      PROM_CONTENT = #{record.promContent,jdbcType=VARCHAR},
+      PROM_TYPE_SHOW = #{record.promTypeShow,jdbcType=VARCHAR},
+      PRIORITY = #{record.priority,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      START_TIME = #{record.startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{record.endTime,jdbcType=TIMESTAMP},
+      SHOW_START_TIME = #{record.showStartTime,jdbcType=TIMESTAMP},
+      SHOW_END_TIME = #{record.showEndTime,jdbcType=TIMESTAMP},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      PROM_URL = #{record.promUrl,jdbcType=VARCHAR},
+      PROM_IMG = #{record.promImg,jdbcType=VARCHAR},
+      JOIN_RANGE = #{record.joinRange,jdbcType=VARCHAR},
+      IF_MATCH = #{record.ifMatch,jdbcType=VARCHAR},
+      IF_BLACKLIST = #{record.ifBlacklist,jdbcType=VARCHAR},
+      IF_COMPOSIT = #{record.ifComposit,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      KEY_WORD = #{record.keyWord,jdbcType=VARCHAR},
+      IF_FREE_POST = #{record.ifFreePost,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.prom.dao.model.PromInfo" >
+    update t_prom_info
+    <set >
+      <if test="siteId != null" >
+        SITE_ID = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null" >
+        GROUP_ID = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="promTypeCode != null" >
+        PROM_TYPE_CODE = #{promTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ifShow != null" >
+        IF_SHOW = #{ifShow,jdbcType=VARCHAR},
+      </if>
+      <if test="promClass != null" >
+        PROM_CLASS = #{promClass,jdbcType=VARCHAR},
+      </if>
+      <if test="promTheme != null" >
+        PROM_THEME = #{promTheme,jdbcType=VARCHAR},
+      </if>
+      <if test="promContent != null" >
+        PROM_CONTENT = #{promContent,jdbcType=VARCHAR},
+      </if>
+      <if test="promTypeShow != null" >
+        PROM_TYPE_SHOW = #{promTypeShow,jdbcType=VARCHAR},
+      </if>
+      <if test="priority != null" >
+        PRIORITY = #{priority,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="showStartTime != null" >
+        SHOW_START_TIME = #{showStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="showEndTime != null" >
+        SHOW_END_TIME = #{showEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="promUrl != null" >
+        PROM_URL = #{promUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="promImg != null" >
+        PROM_IMG = #{promImg,jdbcType=VARCHAR},
+      </if>
+      <if test="joinRange != null" >
+        JOIN_RANGE = #{joinRange,jdbcType=VARCHAR},
+      </if>
+      <if test="ifMatch != null" >
+        IF_MATCH = #{ifMatch,jdbcType=VARCHAR},
+      </if>
+      <if test="ifBlacklist != null" >
+        IF_BLACKLIST = #{ifBlacklist,jdbcType=VARCHAR},
+      </if>
+      <if test="ifComposit != null" >
+        IF_COMPOSIT = #{ifComposit,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="keyWord != null" >
+        KEY_WORD = #{keyWord,jdbcType=VARCHAR},
+      </if>
+      <if test="ifFreePost != null" >
+        IF_FREE_POST = #{ifFreePost,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.prom.dao.model.PromInfo" >
+    update t_prom_info
+    set SITE_ID = #{siteId,jdbcType=INTEGER},
+      GROUP_ID = #{groupId,jdbcType=INTEGER},
+      PROM_TYPE_CODE = #{promTypeCode,jdbcType=VARCHAR},
+      IF_SHOW = #{ifShow,jdbcType=VARCHAR},
+      PROM_CLASS = #{promClass,jdbcType=VARCHAR},
+      PROM_THEME = #{promTheme,jdbcType=VARCHAR},
+      PROM_CONTENT = #{promContent,jdbcType=VARCHAR},
+      PROM_TYPE_SHOW = #{promTypeShow,jdbcType=VARCHAR},
+      PRIORITY = #{priority,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      SHOW_START_TIME = #{showStartTime,jdbcType=TIMESTAMP},
+      SHOW_END_TIME = #{showEndTime,jdbcType=TIMESTAMP},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      PROM_URL = #{promUrl,jdbcType=VARCHAR},
+      PROM_IMG = #{promImg,jdbcType=VARCHAR},
+      JOIN_RANGE = #{joinRange,jdbcType=VARCHAR},
+      IF_MATCH = #{ifMatch,jdbcType=VARCHAR},
+      IF_BLACKLIST = #{ifBlacklist,jdbcType=VARCHAR},
+      IF_COMPOSIT = #{ifComposit,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      KEY_WORD = #{keyWord,jdbcType=VARCHAR},
+      IF_FREE_POST = #{ifFreePost,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

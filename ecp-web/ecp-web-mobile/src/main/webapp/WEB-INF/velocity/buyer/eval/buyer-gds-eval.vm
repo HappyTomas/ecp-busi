@@ -1,0 +1,138 @@
+#parse("/sys/sys_param.vm")
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    #parse("/sys/sys_head.vm")
+</head>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        评价中心
+    </div>
+     <div class="am-header-left am-header-nav">
+         <a href="$!{CONTEXT_PATH}/member/index">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content">
+    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+        <ul class="am-tabs-nav am-nav am-nav-tabs ">
+            <li class="am-active"><a href="[data-tab-panel-0]">未评价</a></li>
+            <li><a href="[data-tab-panel-1]">已评价</a></li>
+        </ul>
+        <div class="am-tabs-bd">
+			<div data-tab-panel-0 class="am-tab-panel am-active am-list-news scroll-wrap" id="wrapper1" data-am-widget="list_news">
+                <div class=" am-list-news-bd scroll">
+                	<div class="pull-action loading pull-down">
+                       <span class="pull-label"> 下拉刷新</span>
+                        <span class="am-icon-spinner am-icon-spin"></span>
+                    </div>
+                    <ul class="ui-list eva-list scrollCont">
+    	                <div class="loading-lo"></div>
+    	            </ul>
+    	            <div class="pull-action pull-up" style="bottom: 0">
+                         <span class=" pull-label"> 上拉加载更多</span>
+                        <span class="am-icon-spinner am-icon-spin"></span>
+                    </div>
+                </div>
+            </div>
+			<div data-tab-panel-1 class="am-tab-panel am-active am-list-news scroll-wrap" id="wrapper2" data-am-widget="list_news">
+                <div class=" am-list-news-bd scroll">
+                	<div class="pull-action loading pull-down">
+                       <span class="pull-label"> 下拉刷新</span>
+                        <span class="am-icon-spinner am-icon-spin"></span>
+                    </div>
+                    <ul class="ui-list eva-list scrollCont">
+    	                <div class="loading-lo"></div>
+    	            </ul>
+    	            <div class="pull-action pull-up" style="bottom: 0">
+                         <span class=" pull-label"> 上拉加载更多</span>
+                        <span class="am-icon-spinner am-icon-spin"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="gotoeval" name="gotoeval" action="$!{CONTEXT_PATH}/buyereval/toeval" method="post">
+	<input type="hidden" id="orderId" name="orderId" value=""/>
+	<input type="hidden" id="orderSubId" name="orderSubId" value=""/>
+	<input type="hidden" id="gdsId" name="gdsId"value=""/>
+	<input type="hidden" id="gdsName" name="gdsName"value=""/>
+	<input type="hidden" id="skuId" name="skuId"value=""/>
+	<input type="hidden" id="shopId" name="shopId"value=""/>
+	<input type="hidden" id="imgUrl" name="imgUrl"value=""/>
+</form>
+<script type="text/x-handlebars-template" id="wrapper1-tpl">
+	{{if values.datas.length == 0}}
+		<div data-tab-panel-0 class="am-tab-panel am-active">
+            <div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$IMAGE_PATH/shop-nodata.png" alt="">
+                </div>
+                <div class="tip-bold">
+						很遗憾
+                </div>
+                <div class="tip-txt">
+						您没有待评价的数据
+                </div>
+            </div>
+        </div>
+	{{/if}}
+    {{each values.datas as obj i}}
+    	<li>
+            <div class="img-wrap">
+                 <a href="$!{CONTEXT_PATH}/gdsdetail/{{obj.gdsId}}-{{obj.skuId}}"><img src="{{obj.url}}" alt=""/></a>
+            </div>
+            <div class="cont">
+                <p class="tit">{{obj.gdsName}}</p>
+                <div class="txt">
+						##评价送积分
+                    <a href="#" class="btn btn-bred" gdsName="{{obj.gdsName}}" 
+					gdsId={{obj.gdsId}} imgUrl={{obj.url}} skuId={{obj.skuId}} shopId={{obj.shopId}} onclick="toeval(this,'{{obj.orderId}}','{{obj.orderSubId}}')">去评价</a>
+                </div>
+            </div>
+        </li>
+    {{/each}}
+</script>
+<script type="text/x-handlebars-template" id="wrapper2-tpl">
+	{{if values.datas.length == 0}}
+		<div data-tab-panel-0 class="am-tab-panel am-active">
+            <div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$IMAGE_PATH/shop-nodata.png" alt="">
+                </div>
+                <div class="tip-bold">
+						很遗憾
+                </div>
+                <div class="tip-txt">
+						您没有已评价的数据
+                </div>
+            </div>
+        </div>
+	{{/if}}
+    {{each values.datas as obj i}}
+    	<li>
+            <div class="img-wrap">
+                <a href="$!{CONTEXT_PATH}/gdsdetail/{{obj.gdsId}}-{{obj.skuId}}"><img src="{{obj.url}}" alt=""/></a>
+            </div>
+            <div class="cont">
+                <p class="tit">{{obj.gdsName}}</p>
+                <div class="txt">{{obj.detail}}</div>
+        </li>
+    {{/each}}
+</script>
+#*
+<div class="txt-pf">
+	评分：<span class="pfen star{{obj.intScore}}">
+    <a href="javascript:void(0)"></a>
+    <a href="javascript:void(0)"></a>
+    <a href="javascript:void(0)"></a>
+    <a href="javascript:void(0)"></a>
+    <a href="javascript:void(0)"></a>
+	</span>
+</div>*#
+<script src="$!{RESOURCE_PATH}/jquery/artTemplate/template-debug.js"></script>
+<script src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js"></script>
+<script src="$!{RESOURCE_PATH}/util.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/buyer/eval/buyer-gds-eval.js?version=$!{JS_VERSION}" ></script>

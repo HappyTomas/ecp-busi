@@ -1,0 +1,157 @@
+<div class="filter-content">
+    <div id="wrapper2" data-am-widget="list_news" class="am-list-news scroll-wrap">
+        <div class="am-list-news-bd scroll">
+            <div class="pull-action loading pull-down">
+                <span class="pull-label"> 下拉刷新</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <ul class="pro-list clearfix scrollCont pro-list-grid">
+                <div class="loading-lo"></div>
+            </ul>
+			<div class="pull-action pull-up" style="bottom: 0">
+                <span class=" pull-label"> 上拉加载更多</span>
+                <span class="am-icon-supinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+#*
+    <div class="pro-list">
+
+        #if($!{gridResult.list})
+            #foreach($good in ${gridResult.list})
+                <div class="item">
+                    <div class="img-wrap">
+                        <a href="$!{CONTEXT_PATH}/gdsdetail/${good.id}-${good.firstSkuId}" target="_blank" title="$!{good.gdsNameSrc}">
+                            <img src="$good.imageUrl" alt="">
+                        </a>
+                    </div>
+                    <div class="item-cont">
+                        <p class="p-tit">
+                            #if($!{good.promotionType})
+                                <span class="p-color p-color-radius">活动</span>
+                            #end
+
+                            $!{good.gdsName}
+                        </p>
+
+                        <p class="p-tip">包邮</p>
+
+                        <p class="p-ll clearfix">
+                            <span class="p-color">浏览过的书</span></p>
+
+                        <p class="p-line"><span class="c-orange">#money($!{good.discountPrice})</span><span class="pull-right p-font">$!{good.sales}人付款</span>
+                        </p>
+                    </div>
+                </div>
+            #end
+        #end
+
+    </div>*#
+</div>
+
+
+<script type="text/x-handlebars-template" id="wrapper2-tpl">
+    {{if values.datas !=null && values.datas.length > 0 }}
+        {{each values.datas as obj i}}
+        <div class="item resultList">
+    		<input name="pGdsId" value="{{obj.id}}" type="hidden"/>
+            <input name="pSkuId" value="{{obj.firstSkuId}}" type="hidden"/>
+            <input name="pShopId" value="{{obj.shopId}}" type="hidden"/>
+    		<input name="pDiscountPrice" value="{{obj.discountPrice}}" type="hidden"/>
+            <input name="pIfFree" value="{{obj.ifFree}}" type="hidden"/>
+    		<input name="pRealPrice" value="{{obj.defaultPrice}}" type="hidden"/>
+    		<input name="pMainCatgs" value="{{obj.mainCategoryCode}}" type="hidden"/>
+			<input name="adid" value="{{values.adid}}" type="hidden"/>
+            <div class="img-wrap">
+			{{if values.adid==null}}
+                <a href="$!{CONTEXT_PATH}/gdsdetail/{{obj.id}}-{{obj.firstSkuId}}" title="{{obj.gdsNameSrc}}">
+                    <img src="{{obj.imageUrl}}" alt="">
+                </a>
+			{{else if values.adid!=null }}
+				<a href="$!{CONTEXT_PATH}/gdsdetail/{{obj.id}}-{{obj.firstSkuId}}?linktype=1&adid={{values.adid}}" title="{{obj.gdsNameSrc}}">
+                    <img src="{{obj.imageUrl}}" alt="">
+                </a>
+			{{/if}}
+			{{if obj.categories.indexOf("1200")!=-1}}
+				<div class="rw-icon rw-icon-lele"></div>
+			{{else if obj.categories.indexOf("1201")!=-1}}
+				<div class="rw-icon rw-icon-ltea"></div>
+			{{/if}}
+			{{if obj.propertycodesStr.indexOf("1027_308")!=-1}}##1027_308代表有增值服务 人卫需求
+				<div class="pro-zzfw"></div> 
+			{{/if}}
+            </div>
+            <div class="item-cont">
+                <p class="p-tit">
+                    ##{{if obj.promotionType}}
+                    ##<span class="p-color p-color-radius">{{each obj.promotionType as objs j}} {{objs[j]}}{{/each}}</span>
+                    ##{{/if}}
+					<span class="saleInfo"></span>
+					{{if values.adid==null}}
+                    <a href="$!{CONTEXT_PATH}/gdsdetail/{{obj.id}}-{{obj.firstSkuId}}" title="{{obj.gdsNameSrc}}">
+                        {{#obj.gdsName}}
+                    </a>
+					{{else if values.adid!=null }}
+					<a href="$!{CONTEXT_PATH}/gdsdetail/{{obj.id}}-{{obj.firstSkuId}}?linktype=1&adid={{values.adid}}" title="{{obj.gdsNameSrc}}">
+                        {{#obj.gdsName}}
+                    </a>
+					{{/if}}
+                </p>
+                {{if obj.gdsSubHeadSrc!=null && obj.gdsSubHeadSrc!="null"}}
+                	<p class="p-tip">{{obj.gdsSubHeadSrc}}</p>
+				{{/if}}
+                
+                <p class="p-autor">
+                	{{if obj.author!=null && obj.author!=""}}
+                		作者：{{obj.pmphAuthor}}
+                	{{/if}}	
+                </p>
+
+            ##<p class="p-tip">包邮</p>
+
+            ##<p class="p-ll clearfix"><span class="p-color">浏览过的书</span></p>
+
+                ##<p class="p-line"><span class="c-orange">&yen;<b name="discountPrice">{{obj.discountPriceOfYun}}</b></span>
+                <p class="p-line">
+                {{if obj.appSpecPrice!=null && obj.appSpecPrice!=0}}
+	                <span class="c-orange">&yen;<b name="appSpecPrice">{{obj.appSpecPriceOfYun}}</b></span>
+                	<span class="p-zx"></span>
+                {{else}}
+                	<span class="c-orange">&yen;<b name="discountPrice">{{obj.discountPriceOfYun}}</b></span>
+                {{/if}}
+                <span class="p-right">
+                <span class="p-type" ></span>
+                <i class="iconfont" data-sku-id="{{obj.firstSkuId}}"></i></span>
+                ##<span class="pull-right p-font">{{obj.sales}}人付款</span>
+                </p>
+            </div>
+        </div>
+        {{/each}}
+    {{else}}
+
+        ##判断是否是刷新到某一页没数据的情况
+        {{if values.total==0}}
+            {{if values.shopId}}
+            <div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$!{IMAGE_PATH}/nodata01.png" alt="">
+                </div>
+                <div class="tip-bold">
+                    很遗憾
+                </div>
+                <div class="tip-txt">
+                    没有相关商品
+                </div>
+                {{if values.category}}
+                <div class="nodata-btn"><a href="$!{CONTEXT_PATH}/category" class="btn btn-bred">查看商品分类</a></div>
+                {{/if}}
+            </div>
+            {{else}}
+            <div class="pro-empty">
+                暂无搜索记录
+            </div>
+            {{/if}}
+        {{/if}}
+
+    {{/if}}
+</script>

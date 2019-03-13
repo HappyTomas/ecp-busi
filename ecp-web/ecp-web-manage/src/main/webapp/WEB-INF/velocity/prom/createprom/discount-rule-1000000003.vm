@@ -1,0 +1,22 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/discount-rule-1000000003.js?version=$!{JS_VERSION}" ></script>
+			<div class="formBox">
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					  <div class="formSep" >
+					     <div  class=" alert-info" style="margin-left:50px;">
+					                  购买特定商品，固定价格出售。
+					                  当特定商品时，可固定价格购买。
+                                                                      例如:当指定某一商品时，可单价10元购买。
+					     </div>
+					  </div>
+			  <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">固定单价：</label>
+							<div class="controls">
+								<input type="text" class="input-large required number priceNumber" id="fixedPrice" name="discountMap['fixedPrice']" placeholder="请输入单价 " maxlength="12" value="#moneyNum($!{promVO.discountMap.fixedPrice})"   />
+								<span class="help-inline  alert-info">每个符合条件商品的固定价格。</span>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			   

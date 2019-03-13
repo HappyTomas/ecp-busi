@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+#parse("/sys/sys_head.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/requirejs/require.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/requirejs.common.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+
+</head>
+<body>
+	
+	
+	$screen_content
+	
+	#parse("/main/main-bottom-navbar.vm")
+	
+</body>
+</html>

@@ -1,0 +1,80 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/solr/solr-dataobj-grid.js?version=$!{JS_VERSION}"></script>
+
+<div class="well well-searchForm">
+    <form id="searchForm" class="form-horizontal required-validate" style="margin-bottom: 0px;" method="post">
+        <div class="row-fluid">
+            <div class="span5">
+                <div class="control-group">
+                    <label class="control-label">配置名称：</label>
+
+                    <div class="controls">
+                       <input type="hidden" value="${configResp.id}" id="configId" >
+                        <input  value="${configResp.configName}" readonly type="text" name="configName" class="input-block-level"
+                               placeholder="输入配置名称">
+                    </div>
+                </div>
+            </div>
+            <div class="span5">
+                <div class="control-group">
+                    <label class="control-label">索引名称：</label>
+
+                    <div class="controls">
+                        <input readonly type="text" name="configName" class="input-block-level" value="${configResp.configCollectionName}" 
+                               placeholder="输入配置名称">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="control-group">
+                    <label class="control-label">配置描述信息：</label>
+
+                    <div class="controls">
+                        <textarea readonly rows="4" class="input-block-level" name="configDesc" maxlength="200"
+                                  placeholder="配置描述信息">$!{configResp.configDesc}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div style="margin-top:15px">
+    <ul class="nav nav-tabs" id="myTab">
+        <li class="active"><a href="#database" data-toggle="tab">数据库搜索对象</a></li>
+        <li><a href="#self" data-toggle="tab">自定义数据对象</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div class="tab-pane active" id="database">
+            <div style="margin-bottom: 15px">
+                <span class="btn" id="btn_dataadd">
+                  <i class="icon-plus icon-white"></i>创建
+                </span>
+                <input type="hidden" class="objectType" name="objectType" value="1">
+            </div>
+            <div id="dataGridLoading">
+                <div class="row-fluid">
+                    <table id="dataGridTable"></table>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="self">
+            <div style="margin-bottom: 15px">
+             <input type="hidden" class="objectType" name="objectType" value="2">
+                <a class="btn" id="btn_selfadd" href="javascript:void(0)">
+                 <i class=" icon-plus icon-white"></i>创建
+                </a>
+            </div>
+            <div id="selfGridLoading">
+                <div class="row-fluid">
+                    <table id="selfGridTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

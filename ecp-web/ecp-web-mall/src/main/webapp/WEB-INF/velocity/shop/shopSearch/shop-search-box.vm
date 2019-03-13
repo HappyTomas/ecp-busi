@@ -1,0 +1,18 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$RESOURCE_PATH/jquery/autocomplete/autocomplete.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/search/search-box.js?version=$!{JS_VERSION}"></script>
+
+<!--logo-->
+<div class="wrap1200 logoBg clearfix">
+    ##更改logo图片取站点    2016.6.21 zhanbh
+	#parse("/main/main-site-logo.vm")
+    #*<div class="shop-logo">
+      <img src="$!{shopInfoResp.logoPathURL}" alt="">
+    </div>*#
+    <div class="search">
+        <div class="search-shop" id="shopSearchBtn">搜本店</div>
+        <div id="site-search"></div>
+        <ul class="searchConten" id="searchConten">
+        </ul>
+    </div>
+</div>

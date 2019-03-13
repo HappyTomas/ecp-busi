@@ -1,0 +1,82 @@
+#parse("sys/sys_param.vm")
+<title>微信支付 -#siteName('')</title>
+<link href="$!{CSS_PATH}/order.css" type="text/css" rel="stylesheet"/>
+<link href="$!{CSS_PATH}/reset.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/pay-weixin.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/jquery.qrcode.min.js?version=$!{JS_VERSION}" ></script>
+<script>
+    $(function () {
+        $('.o-detail', '.order').click(function () {
+            $(this).parents('.order').toggleClass('order-open');
+        })
+		$('#qrcode').qrcode({width: 298,height: 298,text: $("#code_url").val()});
+    })
+</script> 
+<div id="content" class="wchatbg">
+	<input type="hidden" id="code_url" value="$!{code_url}" />
+	<input type="hidden" id="orderIds" value="$!{orderIds}" />
+	<input type="hidden" id="joinOrderId" value="$!{joinOrderId}" />
+    <div class="wrap1200">
+        <div class="order">
+            <div class="o-left">
+                <h3 class="o-tit">请您及时付款，以便订单尽快处理！ 订单号：$!{orderIds}</h3>
+
+            </div>
+            <div class="o-right">
+                <div class="o-price">
+					 <span class="o-p-tit">应付金额：</span><strong>#money($!realMoney)</strong>
+                </div>
+                <div class="o-detail" #if($!{orderIdCount} > 1) style="display:none;" #end><a class="detail">订单详情 <i></i></a></div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="o-list" #if($!{orderIdCount} > 1) style="display:none;" #end>
+                <div class="o-list-cont">
+    				<div class="o-list-info">
+                        <span class="mr10">收货地址：$!sOrderDetailsMain.chnlAddress</span>
+                        <span class="mr10">收货人：$!sOrderDetailsMain.contactName</span>
+                        <span id="mobile">$!sOrderDetailsMain.contactPhone</span>
+                    </div>
+                    <div class="o-list-info">
+                        <span>
+    						商品名称：
+    						#set($gdsContent = "")
+    						#foreach($!ordersub in $!sOrderDetailsSubs)
+    							#set($gdsSplitStr = "，")
+    							#if($sOrderDetailsSubs.size() == $velocityCount)
+                                     #set($gdsSplitStr = "")
+    							#end
+    							#set($gdsContent = $gdsContent + $!ordersub.gdsName + $gdsSplitStr)
+    						#end 
+    						#addr($!gdsContent,85)
+    					</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wchatPay-box">
+            <!--微信支付-->
+            <div class="wchatPay">
+                <div class="wchat-hd">微信支付</div>
+                <div class="wchat-bd clearfix">
+                  ##  <div class="wchat-tips">距离二维码过期还剩，
+                  ##      <span class="c-red">5</span>
+				##		过期后请刷新页面重新获取二维码。
+               ##     </div>
+                    <div class="wchat-box">
+                        <div class="w-box-hd">
+							<div id="qrcode"></div>
+						</div>
+                        <div class="w-box-ft">
+                            <p>请使用微信扫一扫</p>
+
+                            <p>扫描二维码支付</p>
+                        </div>
+                    </div>
+                    <div class="wchat-sidebar"></div>
+                </div>
+                <div class="other-pay"><a href="javascript:history.back()">选择其他支付方式</a></div>
+            </div>
+            <!--微信支付-->
+        </div>
+    </div>
+</div>

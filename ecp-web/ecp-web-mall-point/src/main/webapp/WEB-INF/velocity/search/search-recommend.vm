@@ -1,0 +1,14 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/search/search-hot.js"></script>
+<div class="p-box">
+    <div class="p-info clearfix">
+        <div class="p-tab p-tab-top clearfix ">
+             <span class="f18">● 热兑推荐</span>
+        </div>
+        <ul class="p-hot" id="hotSale">
+       
+          #parse("/search/page/search-hot.vm")
+
+        </ul>
+    </div>
+</div>

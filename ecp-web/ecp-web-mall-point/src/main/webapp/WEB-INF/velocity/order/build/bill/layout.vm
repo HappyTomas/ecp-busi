@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+#parse("sys/sys_open_head.vm")
+<link href="$CSS_PATH/pay.css" rel="stylesheet" type="text/css" media="screen"/>
+</head>
+<body>
+     $screen_content
+</body>
+</html>

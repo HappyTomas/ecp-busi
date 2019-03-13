@@ -1,0 +1,18 @@
+<div class="ui-content">
+    <div class="kw-head" id="kw-head">
+        <span class="txt">关键词搜索</span>
+          <span class="tip" id="exchange">
+              换一批
+          </span>
+    </div>
+    <input type="hidden" id="kw-pageNo" value="1">
+    <input type="hidden" id="size" value="3">
+    <ul class="clearfix kw-list" id="hot-keyword">
+        #if($!{hotkeywords})
+            #foreach($kw in ${hotkeywords})
+                <li>$kw</li>
+            #end
+        #end
+    </ul>
+
+</div>

@@ -1,0 +1,51 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-tree.vm")
+#parse("module/mod-upload.vm")
+#parse("module/mod-form.vm")
+#parse("module/mod-editor.vm")
+<link href="$!{CSS_PATH}/pageConfig/template-dialog.css" rel="stylesheet" type="text/css" media="screen"/>
+<style type="text/css">
+.page-header {margin: 0px;margin-bottom: 10px;}
+.btn-wrap {text-align: right;padding-bottom: 0px;padding-top: 10px;}
+div.page-header h3 {font-size: 18px;font-weight: normal;}
+.formExtendArea{display: none;}
+.goodsRowShowNum li {cursor: pointer;}
+.goodsRowShowNum li p {text-align: center;}
+.goodsRowShowNum li.selected div.item{border: 1px solid #4C6AD4;background-color: #F5F5F5;}
+.goodsRowShowNum li.selected p{color: #4C6AD4;}
+.closeRow{cursor: pointer;}
+
+.checkbox-wrap{
+    margin-top: 4px;
+}
+.checkbox-wrap input{
+    margin-top: -4px;
+}
+.sbtn-mini{
+    padding: 0 5px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.imagePreviewBox {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    border: 1px solid #CCCCCC;
+    padding: 5px;
+    min-height: 20px;
+    background-color: #FFFFE1;
+}
+.imagePreviewBox img {
+	width: 100px;
+	height: 100px;
+	margin-right: 5px;
+	border: 1px solid white;
+}
+.imagePreviewBox img:hover {
+	border: 1px solid #2694F7;
+}
+</style>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/public/public-js.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/modular/gds-show.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/modular/modular-common.js?v=${JS_VERSION}"></script>

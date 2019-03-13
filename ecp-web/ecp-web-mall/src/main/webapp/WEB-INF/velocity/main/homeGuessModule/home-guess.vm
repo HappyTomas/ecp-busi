@@ -1,0 +1,73 @@
+#parse("sys/sys_param.vm")
+<div class="rw-book">
+	#if(!$errorMassage)  ##没有异常
+	<div class="new-tit">
+		<i class="dicon dicon-tit6"></i><span>猜你喜欢</span>
+	</div>
+	<div class="new-con clearfix " style="height: 280px;">
+		<div class="new-lick">
+			<ul class="new-conlist">
+				## 商品信息 
+				#if(${detailRespDTOs} && $detailRespDTOs.size() > 0) 
+    				#foreach($gdsInfo in ${detailRespDTOs})
+						#if($velocityCount <= 5)
+        				<li>
+        				    ##是否为推荐 
+        				    #if(${gdsInfo.ifRecomm} == "1")
+        					<div class="hot-big-fd">
+        						<div class="hot-big">热销</div>
+        					</div> 
+        					#end 
+        		    	    <a target='_blank' href="${CONTEXT_PATH}$!{gdsInfo.url}" alt="$!{gdsInfo.gdsName}"><img src="$!{gdsInfo.mainPic.URL}" /></a>
+        					<p class="name">
+        						<a target='_blank' href="${CONTEXT_PATH}$!{gdsInfo.url}" title="$!{gdsInfo.gdsName}">$!{gdsInfo.gdsName} </a>
+        					</p>
+        					#set($authorValue = $!{gdsInfo.allPropMaps.get("1001").values[0].propValue})
+                            <p class="author" title="$!{authorValue}">#if($authorValue && $authorValue != '')$!{authorValue} 著 #end</p>
+        					<p class="price">
+        						<span class="rob">#if($!{gdsInfo.skuInfo.discountPrice})#money($!{gdsInfo.skuInfo.discountPrice})#end</span> 
+        						<span class="price_r">#money($!{gdsInfo.guidePrice})</span>
+        					</p>
+        				</li> 
+						#end
+    				#end 
+				#else
+					<div class='pro-empty' style="width: 960px;">亲，还没有数据，去商城逛逛吧！</div>
+				#end
+			</ul>
+		</div>
+		<div class="new-rank">
+			<div class="new-con-bg-none" style="height: 280px">
+				<div class="tit">#parse("/main/homeGuessModule/info-title.vm")</div>
+				<ul class="li-select">
+					#if(${categoryRespDTOs}) 
+					  #foreach($catgInfos in $!{categoryRespDTOs})
+					    #if($velocityCount < 6)
+					      <li>
+					          #foreach($catgInfo in $!{catgInfos})
+					          #if($velocityCount != 1)
+					           - 
+					          #end
+					      	  <a target='_blank' href="${CONTEXT_PATH}/search?category=$!{catgInfo.catgCode}">$!{catgInfo.catgName}</a>
+					          #end
+					      </li>
+					    #end
+					  #end 
+					#end
+				</ul>
+			</div>
+		</div>
+	</div>
+	#else   ##异常处理
+	<div class="new-tit">
+		<i class="dicon dicon-tit6"></i><span>猜你喜欢</span>
+	</div>
+	<div class="rw-book">
+		<div class="new-con clearfix " style="height: 268px;">
+			<div class="">
+				<div class ='pro-empty'>亲，$!{errorMassage}</div>
+			</div>
+		</div>
+	</div>
+	#end
+</div>

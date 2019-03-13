@@ -1,0 +1,227 @@
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/coupinfo/coup-info.js?version=$!{JS_VERSION}" ></script>
+			<div class="alert alert-error hide formValidateMessages" style="color:red;" id="prom-info-valid" >
+				##showSpringAllError("coupVO")
+            </div>
+				
+			<div class="formBox">
+				<form id="coupInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+				    <div class="hide" >
+				       <input type="text" name="coupInfoVO.coupTypeId" id="coupTypeId" value="$!{couponTypeVO.id}" >
+				       <input type="text" name="coupInfoVO.typeLimit" id="typeLimit" value="$!{couponTypeVO.typeLimit}" >
+				       <input type="text" name="coupInfoVO.id" id="id" value="$!{coupVO.coupInfoVO.id}" >
+				       <input type="text" name="doAction" id="doAction" value="$!{doAction}" >
+				       <input type="text" name="coupCodeFlag" id="coupCodeFlag"  #if ("1"==${couponTypeVO.useMap.get("190")}) value="$!{coup_code}" #end>
+                    </div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">站点：</label>
+							<div class="controls">
+								<select id="siteId" name="coupInfoVO.siteId" class="required" value="$!{coupVO.coupInfoVO.siteId}" onchange="coupInfo.onchangeSiteId(this)">>
+									      #siteList("$!{coupVO.coupInfoVO.siteId}")
+								 </select>
+							</div>
+						</div>
+					</div>
+					 #if ("1"==${couponTypeVO.useMap.get("190")})
+					 <div class="formSep">
+						<div class="control-group">
+						#if($!{coup_code}=='true')	
+							<label class="control-label">优惠码：</label>
+								<div class="controls">
+								  <label class="control-label hide"  style="text-align:left;width:35px;"><input type="radio" class="ifCode" name="coupInfoVO.ifCode" checked value="1">是</label>
+								  <input type="text" class="ifCode required" id="coup_code" name="CoupInfoVO.coupCode" onKeyUp="value=value.replace(/[\W]/g,'')"  minlength=10  value="$!{coupVO.coupInfoVO.coupCode}" >
+								  <span id="code_info" class="help-inline">请填写<span  style="color:red">10</span>位优惠码，只能是<span  style="color:red">数字</span>和<span  style="color:red">字母</span>组合</span>
+								</div>
+								<div class="controls #if ($!{doAction} =='view') hide #end">
+								   <label class="control-label"  style="text-align:left;width:135px;"><input type="checkbox" class="ifCode" id="auto_code" name="auto_code">可系统产生</label>
+								</div>
+						#else
+							<label class="control-label">是否优惠码：</label>
+							<div class="controls">
+							   <label class="control-label"  style="text-align:left;width:35px;"><input type="radio" class="ifCode" name="coupInfoVO.ifCode" checked value="1">是</label>
+							   <label class="control-label"  style="text-align:left;width:35px;"><input type="radio" class="ifCode" name="coupInfoVO.ifCode"  value="0">否</label>
+							</div>
+						#end	
+						</div>
+					</div>
+					#else
+					<div class="hide">
+						 <div class="formSep">
+						<div class="control-group">
+							<label class="control-label">是否优惠码：</label>
+							<div class="controls">
+							   <label class="control-label"  style="width:100px;"><input type="radio" class="ifCode" name="coupInfoVO.ifCode"  value="1">是</label>
+							   <label class="control-label"  style="width:100px;"><input type="radio" class="ifCode" name="coupInfoVO.ifCode"  checked value="0">否</label>
+							</div>
+						</div>
+					</div>
+					</div>
+					#end
+					#if($!{couponTypeVO.typeLimit}=="1")
+					<div class="formSep">
+						<div class="control-group">
+								<label class="control-label">店铺：</label>
+									<div class="controls">
+										<select name="coupInfoVO.shopId" id="shopId" class="required" >
+										     <option value="">--请选择--</option>
+												 #shopStatuslist("$!{coupVO.coupInfoVO.shopId}","1")
+											</select>
+										</div>
+						</div>
+					</div>
+					#else
+						<div class="formSep hide">
+						<div class="control-group">
+								<label class="control-label">店铺：</label>
+									<div class="controls">
+										<select name="coupInfoVO.shopId" id="shopId">
+										     <option value="0">
+													平台级店铺
+			                                    </option>
+											</select>
+										</div>
+						</div>
+					</div>
+					#end
+						<div class="formSep">
+						<div class="control-group">
+								<label class="control-label">优惠券名称：</label>
+									<div class="controls">
+										<input type="text" class="input-large required htmlcheck" name="coupInfoVO.coupName" id="coupName" maxlength="80"  placeholder="优惠券名称" value="$!{coupVO.coupInfoVO.coupName}" />
+								       <span class="help-inline">最多可输入80个字符</span>
+								 </div>
+						</div>
+					</div>
+					#if($!{ifShowCoupValue} == "true")
+					 #if ("1"==${couponTypeVO.useMap.get("240")})
+						 <div class="formSep">
+							<div class="control-group">
+								<label class="control-label">优惠券折扣：</label>
+								<div class="controls">
+									<input type="text" class="input-large required htmlcheck checkInteger" maxlength="10" name="coupInfoVO.coupValue" id="coupValue" placeholder="优惠券折扣" value="#moneyShowNum($!{coupVO.coupInfoVO.coupValue})" />
+									<span class="help-inline">折扣值80，表示8折。折扣值不得超过100</span>
+								</div>
+							</div>
+						</div>
+						#else
+						 <div class="formSep">
+							<div class="control-group">
+								<label class="control-label">优惠券面额：</label>
+								<div class="controls">
+							    
+									<input type="text" class="input-large required htmlcheck number" maxlength="10" name="coupInfoVO.coupValue" id="coupValue" placeholder="优惠券面额" value="#moneyNum($!{coupVO.coupInfoVO.coupValue})" />
+									<span class="help-inline" style="color:red">元</span>
+								</div>
+							</div>
+						</div>
+						#end
+					#else
+					#if ("1"==${couponTypeVO.useMap.get("240")})
+						 <div class="formSep hide">
+							<div class="control-group">
+								<label class="control-label">优惠券折扣：</label>
+								<div class="controls">
+							    
+									<input type="text" class="input-large required htmlcheck checkInteger" maxlength="10" name="coupInfoVO.coupValue" id="coupValue" placeholder="优惠券折扣" value="-1"/>
+									<span class="help-inline">折扣值80，表示8折。折扣值不得超过100</span>
+								</div>
+							</div>
+						</div>
+						#else
+						 <div class="formSep hide">
+							<div class="control-group">
+								<label class="control-label">优惠券面额：</label>
+								<div class="controls">
+									<input type="text" class="input-large required htmlcheck number"  maxlength="10" name="coupInfoVO.coupValue" id="coupValue" placeholder="优惠券面额" value="-1" />
+									<span class="help-inline" style="color:red">元</span>
+								</div>
+							</div>
+						</div>
+						#end
+					#end
+					#if ("1"==${couponTypeVO.useMap.get("190")})
+					 <div class="formSep #if ($!{coup_code}=='true') hide #end">
+						<div class="control-group">
+							<label class="control-label">发行总量：</label>
+							<div class="controls">
+								<input type="text" class="input-large required htmlcheck number digits" maxlength="10" name="coupInfoVO.coupNum" id="coupNum" placeholder="发行总量" value="#if ($!{coup_code}=='true') -1 #else$!{coupVO.coupInfoVO.coupNum}#end" />
+								<!--
+								<span class="help-inline" style="color:red"><input type="checkbox"  id="publishNum" name="coupInfoVO.checkPublish" value="-1">无限发行量</span>
+							    -->
+							</div>
+						</div>
+					</div>
+					#else
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">发行总量：</label>
+							<div class="controls">
+								<input type="text" class="input-large required htmlcheck number digits" maxlength="10" name="coupInfoVO.coupNum" id="coupNum" placeholder="发行总量" value="$!{coupVO.coupInfoVO.coupNum}" />
+								<!--
+								<span class="help-inline" style="color:red"><input type="checkbox"  id="publishNum" name="coupInfoVO.checkPublish" value="-1">无限发行量</span>
+							    -->
+							</div>
+						</div>
+					</div>
+					#end
+						<div id="effType" class="formSep #if('1'==${couponTypeVO.useMap.get('190')}&&$!{coup_code}=='true')	hide #end">
+						<div class="control-group">
+							<label class="control-label">有效期类型：</label>
+							<div class="controls ">
+							     #set($list = ${paramTools.getParamDTOList('COUP_EFF_TYPE')})
+							     #foreach( $info in $list) 
+							          <label class="control-label"  style="text-align:left;width:75px;"><input type="radio" class="effType" name="coupInfoVO.effType" #if ($!{coupVO.coupInfoVO.effType}) #if ($!{info.spCode}==$!{coupVO.coupInfoVO.effType}) checked #end #else #if ($!{info.spCode}==1) checked #end #end  #if ($!{doAction}=='view') disabled #end value="$!{info.spCode}">$!{info.spValue}</label>
+							     #end
+							</div>
+						</div>
+					</div>
+					<div class="formSep time #if ($!{coupVO.coupInfoVO.effType} =='0') hide #end">
+						<div class="control-group">
+							<label class="control-label">生效日期：</label>
+							<div class="controls">
+								<input type="text" class="input-large required Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="coupInfoVO.activeTime" id="activeTime" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{coupVO.coupInfoVO.activeTime})"/>
+							</div>
+						</div>
+					</div>
+					<div class="formSep time #if ($!{coupVO.coupInfoVO.effType} =='0') hide #end">
+						<div class="control-group">
+							<label class="control-label">失效日期：</label>
+							<div class="controls">
+								<input type="text" class="input-large required Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="coupInfoVO.inactiveTime" id="inactiveTime" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{coupVO.coupInfoVO.inactiveTime})"/>
+							</div>
+						</div>
+					</div>
+						 <div class="formSep days #if ($!{coupVO.coupInfoVO.effType} =='0') #else hide #end">
+						<div class="control-group">
+							<label class="control-label">浮动天数：</label>
+							<div class="controls">
+								<input type="text" class="input-large required number digits" maxlength="5" name="coupInfoVO.fixedTime" id="fixedTime" placeholder="浮动天数" value="$!{coupVO.coupInfoVO.fixedTime}" />
+								<span class="help-inline" style="color:red">领取后固定天数内使用</span>
+							</div>
+						</div>
+					</div>
+					<!--
+					 <div class="formSep">
+						<div class="control-group">
+							<label class="control-label">是否支持退货：</label>
+							<div class="controls">
+							   <label class="control-label"  style="width:100px;"><input type="radio" class="ifBack" name="coupInfoVO.ifBack" checked value="0">不支持退货</label>
+						       <label class="control-label"  style="width:100px;"><input type="radio" class="ifBack" name="coupInfoVO.ifBack"  value="1">支持退货</label>
+							</div>
+						</div>
+					</div>
+					-->
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">使用说明：</label>
+							<div class="controls">
+						      	<textarea rows="3" class="span6 htmlcheck" name="coupInfoVO.remark" maxlength="100" placeholder="使用说明" >$!{coupVO.coupInfoVO.remark}</textarea>
+							    <span class="help-inline">最多可输入100个字符</span>
+							</div>
+						</div>
+					</div>
+				</form>
+				<input class="hide" id="coup" value="$!{ifShowCoupValue}"/>
+			</div>
+			    

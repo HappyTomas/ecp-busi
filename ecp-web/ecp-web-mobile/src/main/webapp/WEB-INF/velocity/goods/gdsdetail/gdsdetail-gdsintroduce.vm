@@ -1,0 +1,216 @@
+<div class="pro-contanier">
+    <div data-am-widget="tabs" class="am-tabs pro-dtTab">
+        <ul class="am-tabs-nav am-cf">
+            <li class="am-active"><a >商品介绍</a></li>
+            <li class=""><a >基本信息</a></li>
+        </ul>
+        <div class="am-tabs-bd">
+            <div pro-dtTab-1 class="am-tab-panel am-active">
+                <div class="pro-dt-box">
+	                #set($count = 0)
+                	#set($values = '')
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get('1020').values})
+						#set($values = $!{value.propValue})
+	                    #if($values && $values !="")
+							#set($count = $count + 1)
+		    				<div class="proappCon">
+		    					<div class="p-tit"><span class="ibox"></span>内容简介</div>
+		                    	<div class="p-con moreEditorParse" value="$values">
+		                    	</div>
+		                    </div>
+						#end
+					#end
+                	#set($values = '')
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1021").values})
+						#set($values = $!{value.propValue})
+						#if($values && $values !="")
+							#set($count = $count + 1)
+		    				<div class="proappCon">
+		    					<div class="p-tit"><span class="ibox"></span>目录</div>
+		                    	<div class="p-con moreEditorParse" value="$values">
+		                    	</div>
+		                    </div>
+						#end
+					#end
+					#set($values = '')
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1022").values})
+						#set($values = $!{value.propValue})
+	                    #if($values && $values !="")
+							#set($count = $count + 1)
+		    				<div class="proappCon">
+		    					<div class="p-tit"><span class="ibox"></span>作者介绍</div>
+		                    	<div class="p-con moreEditorParse" value="$values">
+		                   	    </div>
+		                    </div>
+						#end
+					#end
+					
+					#set($values = '')
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1023").values})
+						#set($values = $!{value.propValue})
+		                #if($values && $values !="")
+							#set($count = $count + 1)
+		    				<div class="proappCon">
+		    					<div class="p-tit"><span class="ibox"></span>编辑推荐</div>
+		                    	<div class="p-con moreEditorParse" value="$values">
+		                    	</div>
+		                   	</div>
+						#end
+					#end
+					
+					#set($values = '')
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1024").values})
+						#set($values = $!{value.propValue})
+		                #if($values && $values !="")
+							#set($count = $count + 1)
+		    				<div class="proappCon">
+		    					<div class="p-tit"><span class="ibox"></span>专家推荐</div>
+		                    	<div class="p-con moreEditorParse" value="$values">
+		                   		</div>
+		                    </div>
+						#end
+					#end
+					#set($values = '')
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1025").values})
+						#set($values = $!{value.propValue})
+		                #if($values && $values !="")
+							#set($count = $count + 1)
+		    				<div class="proappCon">
+		    					<div class="p-tit"><span class="ibox"></span>章节节选</div>
+		                    	<div class="p-con moreEditorParse" value="$values">
+		                    	</div>
+		                    </div>
+						#end
+					#end
+					#if($count == 0 && $!{gdsDetailInfo.gdsDesc} && $!{gdsDetailInfo.gdsDesc} != '')##没有属性且商品描述有值 显示商品描述
+		                #set($count = $count + 1)
+		                <div class="proappCon" id="gdsDetailDescHead">
+		   					<div class="p-tit"><span class="ibox"></span>产品详情</div>
+		   					<div class="p-con" id="gdsDetailDesc">
+		   						<div class="p-nodata">
+		                        	<img src="$IMAGE_PATH/detail_none.png">
+		                        </div>
+		                    </div>
+		                </div>
+					#end
+					#if($count ==0)
+						<div class="body">
+                            <div class="pro-dec" id="">
+                                <div class="p-nodata">
+                                    <img src="$IMAGE_PATH/detail_none.png">
+                                </div>
+                            </div>
+                        </div>	
+					#end
+                </div>
+            </div>
+            <div pro-dtTab-2 class="am-tab-panel ">
+            	<div class="pro-dt-box">
+<!--             		#if($!{isbn}!="")
+	            		<div class="tit2">
+		                    <span>ISBN</span>
+		                    <span>$!{isbn}</span>
+	                    </div>
+	                #end -->
+	                #set($values = '')
+	                #set($count = 0)
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1002").values})
+						#set($values = $!{value.propValue})
+						#if($values && $values !="")
+						#set($count = $count + 1)
+	                    <div class="tit2">
+		                    <span>ISBN</span>
+		                    <span>$values</span>
+	                    </div>
+	                    #end
+					#end
+                    #set($values = '')
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1007").values})
+						#set($values = $!{value.propValue})
+						#if($values && $values !="")
+						#set($count = $count + 1)
+	                    <div class="tit2">
+		                    <span>读者对象 </span>
+		                    <span>$values</span>
+	                    </div>
+	                    #end
+					#end
+					#set($values = '')
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1001").values})
+						#set($values = $!{value.propValue})
+						#if($values && $values !="")
+						#set($count = $count + 1)
+	                    <div class="tit2">
+		                    <span>作者</span>
+		                    <span>$values</span>
+	                    </div>
+	                    #end
+					#end
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1005").values})
+						#set($values = $!{value.propValue})
+						#if($values && $values !="")
+						#set($count = $count + 1)
+	                    <div class="tit2">
+		                    <span>出版日期</span>
+		                    <span>$values</span>
+	                    </div>
+                    	#end
+					#end
+                    #set($values = '')
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1006").values})
+						#set($values = $!{value.propValue})
+						#if($values && $values !="")
+						#set($count = $count + 1)
+	                    <div class="tit2">
+		                    <span>出版社</span>
+		                    <span>$values</span>
+	                    </div>
+	                    #end
+					#end
+					#set($values = '')
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1011").values})
+						#set($values = $!{value.propValue})
+						#if($values && $values !="")
+						#set($count = $count + 1)
+	                    <div class="tit2">
+		                    <span>规格</span>
+		                    <span>$values</span>
+	                    </div>
+	                    #end
+					#end
+					#set($values = '')
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1019").values})
+						#set($values = $!{value.propValue})
+						#if($values && $values !="")
+						#set($count = $count + 1)
+	                    <div class="tit2">
+		                    <span>原书信息</span>
+		                    <span>$values</span>
+	                    </div>
+	                    #end
+					#end
+					#set($values = '')
+					#foreach($value in $!{gdsDetailInfo.skuInfo.allPropMaps.get("1017").values})
+						#set($values = $!{value.propValue})
+						#if($values && $values !="")
+						#set($count = $count + 1)
+	                    <div class="tit2">
+		                    <span>语言</span>
+		                    <span>$values</span>
+	                    </div>
+	                    #end
+					#end
+					#if($count ==0)
+		                <div class="body">
+                            <div class="pro-dec" id="">
+                                <div class="p-nodata">
+                                    <img src="$IMAGE_PATH/detail_none.png">
+                                </div>
+                            </div>
+                        </div>	
+					#end
+                 </div>
+            </div>
+        </div>
+    </div>
+</div>

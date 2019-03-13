@@ -1,0 +1,23 @@
+<div class="filter-head p-search">
+        <div class="column sealist">
+            <div class="selected"><span>排序</span>
+                <i class="drop drop-down"></i></div>
+            <ul  class="pxlist score-sort" style="display:none">
+            	<li sort="">综合排序</li>
+                <li sort="asc">积分从低到高</li>
+                <li sort="desc">积分从高到低</li>
+            </ul>
+        </div>
+        <div class="column ">
+            <div class="selected"><span>积分范围</span>
+                <i class="drop drop-down"></i></div>
+            <ul class="pxlist score-range">
+           		<li _type="">全部</li>
+                <li _type="1">0-4999积分</li>
+                <li _type="2">5000-9999积分</li>
+                <li _type="3">10000-14999积分</li>
+                <li _type="4">15000以上积分</li>
+            </ul>
+        </div>
+</div>
+<div class="model-zz"></div>

@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.sys.dao.mapper.common.AppVersionMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.sys.dao.model.AppVersion" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="VER_PROGRAM" property="verProgram" jdbcType="VARCHAR" />
+    <result column="VER_PUBLISH_NO" property="verPublishNo" jdbcType="VARCHAR" />
+    <result column="VER_NO" property="verNo" jdbcType="INTEGER" />
+    <result column="IF_FORCE" property="ifForce" jdbcType="VARCHAR" />
+    <result column="VER_DETAIL" property="verDetail" jdbcType="VARCHAR" />
+    <result column="VER_OS" property="verOs" jdbcType="VARCHAR" />
+    <result column="VER_ADAPT_OS" property="verAdaptOs" jdbcType="VARCHAR" />
+    <result column="PUBLISH_TIME" property="publishTime" jdbcType="TIMESTAMP" />
+    <result column="VER_URL" property="verUrl" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="PUBLISH_STAFF" property="publishStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, VER_PROGRAM, VER_PUBLISH_NO, VER_NO, IF_FORCE, VER_DETAIL, VER_OS, VER_ADAPT_OS, 
+    PUBLISH_TIME, VER_URL, STATUS, CREATE_TIME, UPDATE_TIME, CREATE_STAFF, UPDATE_STAFF, 
+    PUBLISH_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.sys.dao.model.AppVersionCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_app_version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_app_version
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_app_version
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.sys.dao.model.AppVersionCriteria" >
+    delete from t_app_version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.sys.dao.model.AppVersion" >
+    insert into t_app_version (ID, VER_PROGRAM, VER_PUBLISH_NO, 
+      VER_NO, IF_FORCE, VER_DETAIL, 
+      VER_OS, VER_ADAPT_OS, PUBLISH_TIME, 
+      VER_URL, STATUS, CREATE_TIME, 
+      UPDATE_TIME, CREATE_STAFF, UPDATE_STAFF, 
+      PUBLISH_STAFF)
+    values (#{id,jdbcType=INTEGER}, #{verProgram,jdbcType=VARCHAR}, #{verPublishNo,jdbcType=VARCHAR}, 
+      #{verNo,jdbcType=INTEGER}, #{ifForce,jdbcType=VARCHAR}, #{verDetail,jdbcType=VARCHAR}, 
+      #{verOs,jdbcType=VARCHAR}, #{verAdaptOs,jdbcType=VARCHAR}, #{publishTime,jdbcType=TIMESTAMP}, 
+      #{verUrl,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, #{updateStaff,jdbcType=INTEGER}, 
+      #{publishStaff,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.sys.dao.model.AppVersion" >
+    insert into t_app_version
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="verProgram != null" >
+        VER_PROGRAM,
+      </if>
+      <if test="verPublishNo != null" >
+        VER_PUBLISH_NO,
+      </if>
+      <if test="verNo != null" >
+        VER_NO,
+      </if>
+      <if test="ifForce != null" >
+        IF_FORCE,
+      </if>
+      <if test="verDetail != null" >
+        VER_DETAIL,
+      </if>
+      <if test="verOs != null" >
+        VER_OS,
+      </if>
+      <if test="verAdaptOs != null" >
+        VER_ADAPT_OS,
+      </if>
+      <if test="publishTime != null" >
+        PUBLISH_TIME,
+      </if>
+      <if test="verUrl != null" >
+        VER_URL,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="publishStaff != null" >
+        PUBLISH_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="verProgram != null" >
+        #{verProgram,jdbcType=VARCHAR},
+      </if>
+      <if test="verPublishNo != null" >
+        #{verPublishNo,jdbcType=VARCHAR},
+      </if>
+      <if test="verNo != null" >
+        #{verNo,jdbcType=INTEGER},
+      </if>
+      <if test="ifForce != null" >
+        #{ifForce,jdbcType=VARCHAR},
+      </if>
+      <if test="verDetail != null" >
+        #{verDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="verOs != null" >
+        #{verOs,jdbcType=VARCHAR},
+      </if>
+      <if test="verAdaptOs != null" >
+        #{verAdaptOs,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verUrl != null" >
+        #{verUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="publishStaff != null" >
+        #{publishStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.sys.dao.model.AppVersionCriteria" resultType="java.lang.Long" >
+    select count(*) from t_app_version
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_app_version
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.verProgram != null" >
+        VER_PROGRAM = #{record.verProgram,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verPublishNo != null" >
+        VER_PUBLISH_NO = #{record.verPublishNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verNo != null" >
+        VER_NO = #{record.verNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.ifForce != null" >
+        IF_FORCE = #{record.ifForce,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verDetail != null" >
+        VER_DETAIL = #{record.verDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verOs != null" >
+        VER_OS = #{record.verOs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.verAdaptOs != null" >
+        VER_ADAPT_OS = #{record.verAdaptOs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishTime != null" >
+        PUBLISH_TIME = #{record.publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.verUrl != null" >
+        VER_URL = #{record.verUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishStaff != null" >
+        PUBLISH_STAFF = #{record.publishStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_app_version
+    set ID = #{record.id,jdbcType=INTEGER},
+      VER_PROGRAM = #{record.verProgram,jdbcType=VARCHAR},
+      VER_PUBLISH_NO = #{record.verPublishNo,jdbcType=VARCHAR},
+      VER_NO = #{record.verNo,jdbcType=INTEGER},
+      IF_FORCE = #{record.ifForce,jdbcType=VARCHAR},
+      VER_DETAIL = #{record.verDetail,jdbcType=VARCHAR},
+      VER_OS = #{record.verOs,jdbcType=VARCHAR},
+      VER_ADAPT_OS = #{record.verAdaptOs,jdbcType=VARCHAR},
+      PUBLISH_TIME = #{record.publishTime,jdbcType=TIMESTAMP},
+      VER_URL = #{record.verUrl,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      PUBLISH_STAFF = #{record.publishStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.sys.dao.model.AppVersion" >
+    update t_app_version
+    <set >
+      <if test="verProgram != null" >
+        VER_PROGRAM = #{verProgram,jdbcType=VARCHAR},
+      </if>
+      <if test="verPublishNo != null" >
+        VER_PUBLISH_NO = #{verPublishNo,jdbcType=VARCHAR},
+      </if>
+      <if test="verNo != null" >
+        VER_NO = #{verNo,jdbcType=INTEGER},
+      </if>
+      <if test="ifForce != null" >
+        IF_FORCE = #{ifForce,jdbcType=VARCHAR},
+      </if>
+      <if test="verDetail != null" >
+        VER_DETAIL = #{verDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="verOs != null" >
+        VER_OS = #{verOs,jdbcType=VARCHAR},
+      </if>
+      <if test="verAdaptOs != null" >
+        VER_ADAPT_OS = #{verAdaptOs,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null" >
+        PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="verUrl != null" >
+        VER_URL = #{verUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="publishStaff != null" >
+        PUBLISH_STAFF = #{publishStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.sys.dao.model.AppVersion" >
+    update t_app_version
+    set VER_PROGRAM = #{verProgram,jdbcType=VARCHAR},
+      VER_PUBLISH_NO = #{verPublishNo,jdbcType=VARCHAR},
+      VER_NO = #{verNo,jdbcType=INTEGER},
+      IF_FORCE = #{ifForce,jdbcType=VARCHAR},
+      VER_DETAIL = #{verDetail,jdbcType=VARCHAR},
+      VER_OS = #{verOs,jdbcType=VARCHAR},
+      VER_ADAPT_OS = #{verAdaptOs,jdbcType=VARCHAR},
+      PUBLISH_TIME = #{publishTime,jdbcType=TIMESTAMP},
+      VER_URL = #{verUrl,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      PUBLISH_STAFF = #{publishStaff,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

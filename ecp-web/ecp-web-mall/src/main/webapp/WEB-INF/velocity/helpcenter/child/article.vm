@@ -1,0 +1,36 @@
+#parse("/sys/sys_param.vm")
+#if($article && ${article.id} && '' != $!{article.id})
+	<div class="help-box" style = "min-height:250px;">
+        <div class="tit">$!{article.articleTitle}</div>
+        <div class="con" id="arti-content">
+			<input type="hidden" id="arti-detail-url" value = "$!{article.staticUrl}"/>
+		</div>
+    </div>
+    <script type="text/javascript">
+	$(function() {
+		//根据静态文件路径，填充富文本内容。
+		var artiContent =  $("#arti-content","#help-body");
+		var staticUrl = $("#arti-detail-url",artiContent).val();
+		if(staticUrl){
+			var url = staticUrl;
+			$.ajax({
+				url : url,
+				async : true,
+				type : "get",
+				dataType : 'jsonp',
+				jsonp :'jsonpCallback',//注意此处写死jsonCallback
+				success: function (data) {
+					artiContent.empty();
+					artiContent.html(data.result);
+			    },
+			    error:function(){
+			    	artiContent.html("<div class='pro-empty'>网络错误</div>");
+			    }
+			});
+		}
+		
+	});
+	</script>
+#else
+	<div class="pro-empty">#if($errMsg && '' != $!{errMsg})$!{errMsg}#else暂无信息#end</div>
+#end

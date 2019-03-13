@@ -1,0 +1,42 @@
+#if($shopProm)
+    #set($shopPromTypeStyle="")
+    #set($shopPromTypeStyle="display:none;")
+
+        #if($shopProm.promInfoDTO && $shopProm.promInfoDTO.nameShort)
+            #set($shopPromTypeStyle="")
+        #end
+
+    <!-- 优惠项目列表 -->
+    #set($shopPromListStyle="display:none;")
+    #if($shopProm.promInfoDTOList && $shopProm.promInfoDTOList.size() > 0)
+        #set($shopPromListStyle="")
+    #end
+
+<div class="cd-xj cd-cx" style="$shopPromListStyle">
+    <div class="cx-cont shop-prom-select shopPromInfoBox">
+
+        <div class="cx-box notice" style="$shopPromListStyle">
+            <span class="c-orange mr20 shopPromTheme">
+                #if($!{shopProm.promInfoDTO.nameShort})
+                    $!{shopProm.promInfoDTO.nameShort}
+                #else
+                    不使用优惠
+                #end
+            </span>
+            <span class="shopPromMessage">
+                #if($shopProm.ifFulfillProm && $shopProm.ifFulfillProm == true)
+                    $!{shopProm.promTypeMsgResponseDTO.fulfilMsg}
+                #else
+                    $!{shopProm.promTypeMsgResponseDTO.noFulfilMsg}
+                #end
+            </span>
+        </div>
+        <span class="ui-arrow ui-arrow-right" id="shop-prom-$!{cart.id}_$velocityCount"></span>
+
+        <!-- 底部划出 -->
+        #parse("order/cart/prom/shop-prom-slide.vm")
+        <!-- 底部划出 end-->
+
+    </div>
+</div>
+#end

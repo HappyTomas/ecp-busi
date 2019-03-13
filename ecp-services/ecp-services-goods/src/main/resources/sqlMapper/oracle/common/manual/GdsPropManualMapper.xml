@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.common.manual.GdsPropManualMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsProp" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PROP_NAME" property="propName" jdbcType="VARCHAR" />
+    <result column="PROP_SNAME" property="propSname" jdbcType="VARCHAR" />
+    <result column="PROP_VALUE_TYPE" property="propValueType" jdbcType="VARCHAR" />
+    <result column="PROP_TYPE" property="propType" jdbcType="VARCHAR" />
+    <result column="PROP_DESC" property="propDesc" jdbcType="VARCHAR" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PROP_NAME, PROP_SNAME, PROP_VALUE_TYPE, PROP_TYPE, PROP_DESC, SORT_NO, STATUS, 
+    CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="queryPropIdsByExample" resultType="long" parameterType="com.zengshi.ecp.goods.dao.model.GdsPropCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select ID from (select t_1.ID,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    ID
+    from t_gds_prop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  
+</mapper>

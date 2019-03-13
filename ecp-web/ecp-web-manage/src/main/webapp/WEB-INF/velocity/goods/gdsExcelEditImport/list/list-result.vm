@@ -1,0 +1,17 @@
+#parse("/module/mod-grid.vm")
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/jquery/highlight/styles/sunburst.css" type="text/css">
+    <script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsExcelEditImport/list-result.js?version=$!{JS_VERSION}" ></script>
+    <div class="row-fluid" >
+        <div class="row-fluid" >
+            <h3 class="heading">导入成功结果列表：</h3>
+            <div class="row-fluid" >
+                <table id="dataGridTableSuccess" ></table>
+            </div>
+        </div>
+        <div class="row-fluid" >
+            <h3 class="heading">导入失败结果列表：</h3>
+            <div class="row-fluid" >
+                <table id="dataGridTableFail" ></table>
+            </div>
+        </div>
+    </div>

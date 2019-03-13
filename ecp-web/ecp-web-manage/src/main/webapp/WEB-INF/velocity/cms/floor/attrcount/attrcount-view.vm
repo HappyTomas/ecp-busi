@@ -1,0 +1,71 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/floor/attrcount/attrcount-view.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<h3 class="heading">楼层属性查看</h3>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/floorattrcount/save">
+		<div class="span8">
+			<input type="hidden" id="id" name="id" value="$!{respDTO.id}" />
+			<input type="hidden" id="placeId" name="placeId" value="$!{respDTO.placeId}" />
+			<input type="hidden" id="floorId" name="floorId" value="$!{respDTO.floorId}" />
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属楼层：</label>
+    				<label class="controls  text_line">
+    				 #escapeHtml($!{respDTO.floorName})	
+					</label>
+    			</div>
+    		</div>
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">楼层属性：</label>
+    				<label class="controls  text_line">
+    				 #escapeHtml($!{respDTO.floorAttr})	
+					</label>
+    			</div>
+    		</div>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">显示数量：</label>
+    				<label class="controls  text_line">
+    				 #escapeHtml($!{respDTO.showCount})	
+					</label>
+    			</div>
+    		</div>
+			
+    	<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label required">创建时间：</label>
+    				<label class="controls  text_line">
+						$!date.format('yyyy-MM-dd',$!{respDTO.createTime})
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label required">修改时间：</label>
+    				<label class="controls  text_line">
+						$!date.format('yyyy-MM-dd',$!{respDTO.updateTime})
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="">
+				<div class="control-group">
+					<div class="controls  text_line">
+						<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+					</div>
+				</div>
+			</div>
+			
+    </div>
+    <div class="clear"></div>
+</form>
+</div>

@@ -1,0 +1,32 @@
+#parse("/module/mod-tree.vm")
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/category/category-select.js?version=$!{JS_VERSION}" ></script>
+<body style="background-color:#FFFFFF">
+    <!--分类树-->
+    <div class="row-fluid">
+                <div class="span3">
+                	<!--关键字搜索框-->
+                    <div class="search-wrap">
+                           <input type="text" id="keyword" placeholder="输入关键字搜索" class="input-block-level" />
+                           <i class="sl-icon icon-search" id="search" style="right:20px;"></i>
+                    </div>
+                	<!--树数据展示-->
+                    <div class="tree" style="height:350px;overflow:auto;">
+                        <ul id="category-tree" class="ztree"></ul>
+                    </div>
+                </div>
+        
+    	
+                <input type="hidden" id="catg-type" value="$!{reqVO.catgType}"/>
+                #if('1' ==  $!{multi})
+                <input type="hidden" id="multi" value="$!{multi}"/>
+                #end
+                <input type="hidden" id="catlog-id" value="$!{reqVO.catlogId}"/>
+                <input type="hidden" id="maxShowNode" value ="$!{maxShowNode}">
+    </div>
+    <div class="btn-wrap">
+            <span class="sbtn sbtn-blue" id="confirm">确认</span>
+            <span class="sbtn" id="close"> 关闭</span>
+    </div>
+ </body>

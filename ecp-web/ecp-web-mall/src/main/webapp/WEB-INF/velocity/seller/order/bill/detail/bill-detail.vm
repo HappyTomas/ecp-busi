@@ -1,0 +1,50 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/seller/order/bill/bill-detail.js?version=$!{JS_VERSION}"></script>
+
+<div>
+    <table class="seller-table">
+        <thead>
+        <tr>
+            <td style="width: 170px">订单编号</td>
+            <td style="width: 150px">订单金额</td>
+            <td style="width: 150px">发票抬头</td>
+            <td>发票内容</td>
+            <td>是否附加明细</td>
+            <td>开票状态</td>
+			<td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+		#if(!$sendListPage.list || $sendListPage.list.size() == 0)
+	       <tr class="fav-opt">
+			<td colspan="7">
+			        #if(!$msg)很遗憾，暂无数据#else $!msg #end
+			</td>
+		</tr>
+	    #end
+		#foreach ($record in $sendListPage.list)
+        <tr>
+            <td><a href="javascript:void(0);" class="orderId">$!{record.orderId}</a></td>
+			<td>#moneyNum($!{record.realMoney})</td>
+            <td>$!{record.invoiceTitle}</td>
+            <td>$!{record.invoiceContent}</td>
+			#if($!{record.detailFlag} == "0")
+				<td>否</td>
+			#else
+                <td>是</td>
+			#end
+			#if($!{record.billingFlag} == "0")
+				<td>未开票</td>
+			#else
+                <td>已开票</td>
+			#end
+            <td>#if($!{record.billingFlag} == "0")<a href="javascript:void(0);" onclick="bill_grid.reviewOrd('$!{record.orderId}')">开票</a>|#end<a href="javascript:void(0);" onclick="bill_grid.getPrintDetail('$!{record.orderId}')">打印</a></td>
+        </tr>
+		#end
+        </tr>
+        </tbody>
+    </table>
+    <div class="row-fluid">
+		<div id="pageControlbar" class="ecppage" data-total-page="$!{sendListPage.totalPage}" data-total-row="$!{sendListPage.totalRow}" data-page-size="$!{sendListPage.pageSize}" data-page-number="$!{sendListPage.pageNumber}" data-status="begin"></div>
+    </div>
+</div>

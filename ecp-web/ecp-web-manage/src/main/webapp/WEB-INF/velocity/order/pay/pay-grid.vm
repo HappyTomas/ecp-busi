@@ -1,0 +1,142 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<style type="text/css">
+</style>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/pay-grid.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/other/order.util.js?version=$!{JS_VERSION}" ></script>
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal required-validate" action="${CONTEXT_PATH}/order/pay/exportYhPayExcel" method="POST" style="margin-bottom: 0px;">
+				 <input type="hidden" id="auditType" name="auditType" value="01" />
+				<div class="row-fluid">
+                <div class="span4">
+                    <div class="control-group">
+                        <label class="control-label">开始日期：</label>
+                        <div class="controls">
+                            <input type="text" style="cursor: pointer" class="input-medium required Wdate"  id="startTime" placeholder="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'endDate\')}'})" name="startTime" value="$!date.format('yyyy-MM-dd',$!{begDate})">
+                            <input type="hidden" id="begDate" name="begDate" value="$!date.format('yyyy-MM-dd',$!{begDate})" />
+						</div> 
+                    </div>
+                </div>
+				 <div class="span4">
+                    <div class="control-group">
+                        <label class="control-label">截止日期：</label>
+
+                        <div class="controls">
+                            <input type="text" style="cursor: pointer" class="input-medium required Wdate"  id="endTime" placeholder="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'begDate\')}'})" name="endTime"  value="$!date.format('yyyy-MM-dd',$!{endDate})">
+							<input type="hidden" id="endDate" name="endDate" value="$!date.format('yyyy-MM-dd',$!{endDate})" />
+						</div>
+                    </div>
+                </div>
+				<div class="span4 yhDiv">
+                    <div class="control-group">
+                        <label class="control-label">订单编号：</label>
+                        <div class="controls">
+                            <input type="text" name="orderId" class="input-medium" value="" placeholder="">
+                        </div>
+                    </div>
+                </div> 
+				<div class="clear"></div>
+			</div>
+			<div class="row-fluid yhDiv">
+                <div class="span4">
+                    <div class="control-group">
+                        <label class="control-label">用户账号：</label>
+                        <div class="controls">
+                            <input type="text" name="staffCode" class="input-medium" value="" placeholder="">
+                        </div>
+
+                    </div>
+                </div>
+				 <div class="span4">
+                    <div class="control-group">
+                        <label class="control-label">店铺：</label>
+
+                        <div class="controls">
+							<select name="shopId" class="input-medium" id="shopId"  >
+        						<option value="">--请选择--</option>
+								#shopStatuslist('','1')
+        					</select>
+                        </div>
+                    </div>
+                </div>
+				<div class="span4">
+                    <div class="control-group">
+                        <label class="control-label">支付通道：</label>
+                        <div class="controls">
+							<select class="input-medium"  id="payWay" name="payWay">
+        						<option value="">--请选择--</option>
+        						#listParam('ORD_PAY_WAY')
+        					</select>
+                        </div>
+                    </div>
+                </div> 
+				<div class="clear"></div>
+			</div> 
+			<div class="row-fluid yhDiv">
+                <div class="span4">
+                    <div class="control-group">
+                        <label class="control-label">对账状态：</label>
+                        <div class="controls">
+							<select class="input-medium"  id="" name="auditStatus">
+        						<option value="">--请选择--</option>
+        						#listParam('ORD_AUDIT_STATUS')
+        					</select>
+                        </div>
+
+                    </div>
+                </div> 
+				<div class="clear"></div>
+			</div> 
+			</form>
+		</div>
+		<!--进度条-->
+     
+        <div class="row-fluid" style="margin-bottom: 10px;">
+            <div class="span6">
+                <a class="btn" id="btnFormExport" href="#"><i class="icon-download-alt icon-white"></i> 导出数据</a>
+            </div>
+            <div class="pull-right">
+
+                <a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+
+                <a class="btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+            </div>
+        </div>
+		<div class="alert alert-info yhDiv" style="margin-bottom:10px;">
+			<label class="control-label">订单总笔数<span id="transOrderCounts" class="numberFont"></span>笔,
+                        <span class="yhTypeName">支付</span>成功笔数<span id="successOrderCounts" class="numberFont"></span>笔,
+						交易总金额<span id="transAmounts" class="numberFont"></span>元,
+						<span class="yhTypeName">支付</span>成功总金额<span id="successOrderAmounts" class="numberFont"></span>元
+			</label>
+		</div>
+		<ul class="nav nav-tabs" id="myTab">
+			<li class="active"><a href="#yhPayTab">银行支付账单</a></li>
+			<li><a href="#ptPayTab">支付差异对账单</a></li>
+			<li><a href="#yhBackTab">银行退款账单</a></li> 
+			<li><a href="#ptBackTab">退款差异对账单</a></li>
+			
+		</ul> 
+        <div class="tab-content">
+		  <div class="tab-pane active" id="yhPayTab" data-toggle="tab">
+				<div class="row-fluid">
+					<table id="yhPayGridTable"></table>
+				</div>
+		  </div>
+		  <div class="tab-pane" id="ptPayTab" data-toggle="tab">
+				<div class="row-fluid">
+					<table id="ptPayGridTable"></table>
+				</div>
+		  </div> 
+		  <div class="tab-pane" id="yhBackTab" data-toggle="tab">
+				<div class="row-fluid">
+					<table id="yhBackGridTable"></table>
+				</div>
+		  </div>  
+		  <div class="tab-pane" id="ptBackTab" data-toggle="tab">
+				<div class="row-fluid">
+					<table id="ptBackGridTable"></table>
+				</div>
+		  </div> 
+        </div>
+		

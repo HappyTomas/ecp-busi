@@ -1,0 +1,189 @@
+#parse("sys/sys_param.vm")
+	<link href="$!{CSS_PATH}/member.css" type="text/css" rel="stylesheet"/>
+	<link href="$!{CSS_PATH}/reset.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js"></script>
+
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/pay-offline.js?version=$!{JS_VERSION}" ></script>
+
+    <script>	
+
+        $(function () {
+            $('.hoverDrow').on('mouseover', function () {
+                $(this).addClass('hover');
+            }).on('mouseout', function (e) {
+                $(this).removeClass('hover');
+            });
+            U.jcarousel('#careimg')
+            U.qtip('.uqtip', {
+                content: {
+                    text: '<p>福建福州市鼓楼区城区福建省福州540号五凤山庄2号楼501</p><p>15709787534</p>',
+                    title: "李晓明"
+                }
+            });
+            U.qtip('#waitzf1', {
+                content: {
+                    text: '<div class="trace-content">' +
+                    '<div class="trace-state">您提交了订单请确认支付</div>' +
+                    '<div class="t-gray">2015-09-09 16:38:13</div>' +
+                    '<div class="trace-state">您提交了订单请确认支付</div>' +
+                    '<div class="t-gray">2015-09-09 16:38:13</div>' +
+                    '<div>',
+                    title: "普通快递"
+                }
+            });
+//           /* $('.uqtip').qtip({
+//                content: {
+//                    text: '<p>福建福州市鼓楼区城区福建省福州540号五凤山庄2号楼501</p><p>15709787534</p>',
+//                    title:"李晓明"
+//                },
+//                style: {
+//                    classes: 'qtip-bootstrap'
+//                },
+//                position: {
+//                    my: 'right center',
+//                    at: 'left center'
+//                }
+//            });*/
+        })
+
+    </script>
+
+
+
+<!--导航 begin-->
+
+<!--导航 end-->
+
+<!--左侧导航begin-->
+<!--左侧导航 end-->
+
+<!--主要内容 begin-->
+<div id="container">
+    <div class="wrap1200 ">
+        <div id="content" class="clearfix">
+            <div id="nav" >
+                <div class="nav-wrap">
+                    <div class="navlist">
+                    <div class="nav-hd">
+                        <h3>我的账户 <i class="nav-down "></i></h3>
+                    </div>
+                    <ul class="nav-bd">
+                        <li>
+                            <a href="">个人资料</a>
+                        </li>
+                        <li>
+                            <a href="">我的积分</a>
+                        </li>
+                        <li>
+                            <a href="">我的优惠</a>
+                        </li>
+                        <li>
+                            <a href="">我的钱包</a>
+                        </li>
+                        <li>
+                            <a href="#">虚拟币</a>
+                        </li>
+                        <li>
+                            <a href="">
+                                店铺会员
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">我的收藏</a>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+            <div id="main">
+
+                <!-- 我的订单 begin -->
+                <div class="mbox order-list">
+
+                    <div class="mbox-body">
+                        <div class="mt clearfix">
+                            <ul class="mt-l f16">
+                                <li><b>请选择支付方式</b></li>
+                                <li class="active">
+                                    <a href="">在线支付</a>
+                                </li>
+                                <li class="">
+                                    <a href="">线下支付</a>
+                                </li>
+                            </ul>
+                            <!--<div class="mt-r">-->
+                            <!--<div class="search">-->
+                            <!--<input type="text" class="itxt" placeholder="商品名称/商品编号/订单号">-->
+                            <!--<a href="javascript:;" class="def-btn search-btn">搜索<b></b></a>-->
+                            <!--<a href="#none" class="def-btn high-search">高级<i class="ci-right"><s>◇</s></i></a>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="mc">
+                            <div class="alert">
+                                温馨提示：为了保障供货商第一时间发货，
+                            </div>
+                            <table class="table table-bordered table-th">
+                                <thead>
+                                <tr >
+                                    <th>状态</th>
+                                    <th>订单号</th>
+                                    <th>订单总类</th>
+                                    <th>归属店铺</th>
+                                    <th>下单时间</th>
+                                    <th>总数量</th>
+                                    <th>总金额</th>
+                                    <th>运费</th>
+                                    <th>付款凭证</th>
+                                    <th>留言</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <input type="hidden" id="orderId" value="$!{orderId}"></input>
+                                    <input type="hidden" id="shopId" value="$!{offlineresp.getShopId()}"></input>
+                                    <td><img src="../images/suo.png"> </td>
+                                    <td>$!{orderId}</td>
+                                    <td>正常订单</td>
+                                    <td>正常订单</td>
+                                    <td>$!date.format('yyyy-MM-dd',$!{offlineresp.getOrderTime()})</td>
+                                    <td class="c-red">$!{offlineresp.getOrderAmount()}</td>
+                                    <td class="c-red">#money($!{offlineresp.getRealMoney()})</td>
+                                    <td class="c-red">#money($!{offlineresp.getRealExpressFee()})</td>
+                                    <td>
+                                            
+                                        <div class="add-img">
+											
+											<div class="img-off">
+												<img width="60" height="60" data-src="holder.js/300x200?text=图片预览区" alt="" index="0">
+                                    		</div>
+                                            <a id="offlineImageId" href="javascript:void(0);">添加图片</a>
+                                        </div>
+                                    </td>
+                                    <td><input id="remark" type="text"></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10" >
+                                        <div class="pull-right"> <button>查看订单详情</button>
+                                        <button id="save">保留凭证和留言</button></div>
+
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!--主要内容 end-->
+

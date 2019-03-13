@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.prom.dao.mapper.busi.PromUserLimitMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.prom.dao.model.PromUserLimit" >
+    <id column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <id column="PROM_ID" property="promId" jdbcType="INTEGER" />
+    <id column="LIMIT_TYPE" property="limitType" jdbcType="VARCHAR" />
+    <id column="LIMIT_TYPE_VALUE" property="limitTypeValue" jdbcType="VARCHAR" />
+    <id column="OPT_VALUE" property="optValue" jdbcType="VARCHAR" />
+    <result column="PROM_CNT_LIMIT" property="promCntLimit" jdbcType="INTEGER" />
+    <result column="BUY_CNT" property="buyCnt" jdbcType="INTEGER" />
+    <result column="REMAIND_CNT" property="remaindCnt" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    STAFF_ID, PROM_ID, LIMIT_TYPE, LIMIT_TYPE_VALUE, OPT_VALUE, PROM_CNT_LIMIT, BUY_CNT, 
+    REMAIND_CNT, CREATE_TIME, CREATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.prom.dao.model.PromUserLimitCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_prom_user_limit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.prom.dao.model.PromUserLimitKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_prom_user_limit
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and PROM_ID = #{promId,jdbcType=INTEGER}
+      and LIMIT_TYPE = #{limitType,jdbcType=VARCHAR}
+      and LIMIT_TYPE_VALUE = #{limitTypeValue,jdbcType=VARCHAR}
+      and OPT_VALUE = #{optValue,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.zengshi.ecp.prom.dao.model.PromUserLimitKey" >
+    delete from t_prom_user_limit
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and PROM_ID = #{promId,jdbcType=INTEGER}
+      and LIMIT_TYPE = #{limitType,jdbcType=VARCHAR}
+      and LIMIT_TYPE_VALUE = #{limitTypeValue,jdbcType=VARCHAR}
+      and OPT_VALUE = #{optValue,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.prom.dao.model.PromUserLimit" >
+    insert into t_prom_user_limit (STAFF_ID, PROM_ID, LIMIT_TYPE, 
+      LIMIT_TYPE_VALUE, OPT_VALUE, PROM_CNT_LIMIT, 
+      BUY_CNT, REMAIND_CNT, CREATE_TIME, 
+      CREATE_STAFF)
+    values (#{staffId,jdbcType=INTEGER}, #{promId,jdbcType=INTEGER}, #{limitType,jdbcType=VARCHAR}, 
+      #{limitTypeValue,jdbcType=VARCHAR}, #{optValue,jdbcType=VARCHAR}, #{promCntLimit,jdbcType=INTEGER}, 
+      #{buyCnt,jdbcType=INTEGER}, #{remaindCnt,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.prom.dao.model.PromUserLimit" >
+    insert into t_prom_user_limit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="promId != null" >
+        PROM_ID,
+      </if>
+      <if test="limitType != null" >
+        LIMIT_TYPE,
+      </if>
+      <if test="limitTypeValue != null" >
+        LIMIT_TYPE_VALUE,
+      </if>
+      <if test="optValue != null" >
+        OPT_VALUE,
+      </if>
+      <if test="promCntLimit != null" >
+        PROM_CNT_LIMIT,
+      </if>
+      <if test="buyCnt != null" >
+        BUY_CNT,
+      </if>
+      <if test="remaindCnt != null" >
+        REMAIND_CNT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="promId != null" >
+        #{promId,jdbcType=INTEGER},
+      </if>
+      <if test="limitType != null" >
+        #{limitType,jdbcType=VARCHAR},
+      </if>
+      <if test="limitTypeValue != null" >
+        #{limitTypeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="optValue != null" >
+        #{optValue,jdbcType=VARCHAR},
+      </if>
+      <if test="promCntLimit != null" >
+        #{promCntLimit,jdbcType=INTEGER},
+      </if>
+      <if test="buyCnt != null" >
+        #{buyCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remaindCnt != null" >
+        #{remaindCnt,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.prom.dao.model.PromUserLimitCriteria" resultType="java.lang.Long" >
+    select count(*) from t_prom_user_limit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_prom_user_limit
+    <set >
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.promId != null" >
+        PROM_ID = #{record.promId,jdbcType=INTEGER},
+      </if>
+      <if test="record.limitType != null" >
+        LIMIT_TYPE = #{record.limitType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.limitTypeValue != null" >
+        LIMIT_TYPE_VALUE = #{record.limitTypeValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.optValue != null" >
+        OPT_VALUE = #{record.optValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.promCntLimit != null" >
+        PROM_CNT_LIMIT = #{record.promCntLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyCnt != null" >
+        BUY_CNT = #{record.buyCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.remaindCnt != null" >
+        REMAIND_CNT = #{record.remaindCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_prom_user_limit
+    set STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      PROM_ID = #{record.promId,jdbcType=INTEGER},
+      LIMIT_TYPE = #{record.limitType,jdbcType=VARCHAR},
+      LIMIT_TYPE_VALUE = #{record.limitTypeValue,jdbcType=VARCHAR},
+      OPT_VALUE = #{record.optValue,jdbcType=VARCHAR},
+      PROM_CNT_LIMIT = #{record.promCntLimit,jdbcType=INTEGER},
+      BUY_CNT = #{record.buyCnt,jdbcType=INTEGER},
+      REMAIND_CNT = #{record.remaindCnt,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.prom.dao.model.PromUserLimit" >
+    update t_prom_user_limit
+    <set >
+      <if test="promCntLimit != null" >
+        PROM_CNT_LIMIT = #{promCntLimit,jdbcType=INTEGER},
+      </if>
+      <if test="buyCnt != null" >
+        BUY_CNT = #{buyCnt,jdbcType=INTEGER},
+      </if>
+      <if test="remaindCnt != null" >
+        REMAIND_CNT = #{remaindCnt,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and PROM_ID = #{promId,jdbcType=INTEGER}
+      and LIMIT_TYPE = #{limitType,jdbcType=VARCHAR}
+      and LIMIT_TYPE_VALUE = #{limitTypeValue,jdbcType=VARCHAR}
+      and OPT_VALUE = #{optValue,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.prom.dao.model.PromUserLimit" >
+    update t_prom_user_limit
+    set PROM_CNT_LIMIT = #{promCntLimit,jdbcType=INTEGER},
+      BUY_CNT = #{buyCnt,jdbcType=INTEGER},
+      REMAIND_CNT = #{remaindCnt,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER}
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and PROM_ID = #{promId,jdbcType=INTEGER}
+      and LIMIT_TYPE = #{limitType,jdbcType=VARCHAR}
+      and LIMIT_TYPE_VALUE = #{limitTypeValue,jdbcType=VARCHAR}
+      and OPT_VALUE = #{optValue,jdbcType=VARCHAR}
+  </update>
+</mapper>

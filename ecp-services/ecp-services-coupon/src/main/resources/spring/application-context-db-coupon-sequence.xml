@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+  <bean id="seq_coup_type_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_TYPE_ID"/>
+	</bean>	
+   <bean id="seq_coup_type_log_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_TYPE_LOG_ID"/>
+	</bean>
+	<bean id="seq_coup_info_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_INFO_ID"/>
+	</bean>
+	<bean id="seq_coup_info_log_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_INFO_LOG_ID"/>
+	</bean>
+	<bean id="seq_coup_var_limit_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_VAR_LIMIT_ID"/>
+	</bean>
+	<bean id="seq_coup_catg_limit_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_CATG_LIMIT_ID"/>
+	</bean>
+	<bean id="seq_coup_use_limit_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_USE_LIMIT_ID"/>
+	</bean>
+	<bean id="seq_coup_get_limit_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_GET_LIMIT_ID"/>
+	</bean>
+	<bean id="seq_coup_full_limit_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_FULL_LIMIT_ID"/>
+	</bean>
+	<bean id="seq_coup_black_limit_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_BLACK_LIMIT_ID"/>
+	</bean>
+	<bean id="seq_coup_shop_limit_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_SHOP_LIMIT_ID"/>
+	</bean>
+	
+	<bean id="seq_coup_detail_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_DETAIL_ID"/>
+	</bean>
+	
+	<bean id="seq_coup_detail_log_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_DETAIL_LOG_ID"/>
+	</bean>
+	
+	<bean id="seq_coup_detail_idx_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_DETAIL_IDX_ID"/>
+	</bean>
+	<bean id="seq_coup_consume_idx_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_CONSUME_IDX_ID"/>
+	</bean>
+	<bean id="seq_coup_consume_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_CONSUME_ID"/>
+	</bean>
+	
+	<bean id="seq_coup_present_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_PRESENT_ID"/>
+	</bean>
+	<bean id="seq_coup_batch_conf_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_BATCH_CONF_ID"/>
+	</bean>
+	
+	<bean id="seq_coup_freeze_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_COUP_FREEZE_ID"/>
+	</bean>
+</beans>

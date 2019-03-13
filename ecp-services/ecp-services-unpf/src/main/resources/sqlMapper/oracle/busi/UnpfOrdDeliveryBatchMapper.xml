@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.unpf.dao.mapper.busi.UnpfOrdDeliveryBatchMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.unpf.dao.model.UnpfOrdDeliveryBatch" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PLAT_TYPE" property="platType" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="OUTER_ID" property="outerId" jdbcType="VARCHAR" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="DELIVERY_TYPE" property="deliveryType" jdbcType="VARCHAR" />
+    <result column="SEND_DATE" property="sendDate" jdbcType="TIMESTAMP" />
+    <result column="SEND_NAME" property="sendName" jdbcType="VARCHAR" />
+    <result column="SEND_TEL" property="sendTel" jdbcType="VARCHAR" />
+    <result column="SEND_PHONE" property="sendPhone" jdbcType="VARCHAR" />
+    <result column="SEND_ADDRESS" property="sendAddress" jdbcType="VARCHAR" />
+    <result column="SEND_ZIP" property="sendZip" jdbcType="VARCHAR" />
+    <result column="EXPRESS_ID" property="expressId" jdbcType="VARCHAR" />
+    <result column="EXPRESS_NO" property="expressNo" jdbcType="VARCHAR" />
+    <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+    <result column="CONTACT_TEL" property="contactTel" jdbcType="VARCHAR" />
+    <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="CONTACT_ZIP" property="contactZip" jdbcType="VARCHAR" />
+    <result column="CONTACT_ADDRESS" property="contactAddress" jdbcType="VARCHAR" />
+    <result column="BRING_NAME" property="bringName" jdbcType="VARCHAR" />
+    <result column="CARD_TYPE" property="cardType" jdbcType="VARCHAR" />
+    <result column="CARD_ID" property="cardId" jdbcType="VARCHAR" />
+    <result column="BRING_TEL" property="bringTel" jdbcType="VARCHAR" />
+    <result column="BRING_PHONE" property="bringPhone" jdbcType="VARCHAR" />
+    <result column="CONTACT_DATE" property="contactDate" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PLAT_TYPE, ORDER_ID, OUTER_ID, STAFF_ID, SHOP_ID, DELIVERY_TYPE, SEND_DATE, SEND_NAME, 
+    SEND_TEL, SEND_PHONE, SEND_ADDRESS, SEND_ZIP, EXPRESS_ID, EXPRESS_NO, CONTACT_NAME, 
+    CONTACT_TEL, CONTACT_PHONE, CONTACT_ZIP, CONTACT_ADDRESS, BRING_NAME, CARD_TYPE, 
+    CARD_ID, BRING_TEL, BRING_PHONE, CONTACT_DATE, REMARK, CREATE_TIME, CREATE_STAFF, 
+    UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdDeliveryBatchCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_unpf_ord_delivery_batch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_unpf_ord_delivery_batch
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_unpf_ord_delivery_batch
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdDeliveryBatchCriteria" >
+    delete from t_unpf_ord_delivery_batch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdDeliveryBatch" >
+    insert into t_unpf_ord_delivery_batch (ID, PLAT_TYPE, ORDER_ID, 
+      OUTER_ID, STAFF_ID, SHOP_ID, 
+      DELIVERY_TYPE, SEND_DATE, SEND_NAME, 
+      SEND_TEL, SEND_PHONE, SEND_ADDRESS, 
+      SEND_ZIP, EXPRESS_ID, EXPRESS_NO, 
+      CONTACT_NAME, CONTACT_TEL, CONTACT_PHONE, 
+      CONTACT_ZIP, CONTACT_ADDRESS, BRING_NAME, 
+      CARD_TYPE, CARD_ID, BRING_TEL, 
+      BRING_PHONE, CONTACT_DATE, REMARK, 
+      CREATE_TIME, CREATE_STAFF, UPDATE_TIME, 
+      UPDATE_STAFF)
+    values (#{id,jdbcType=INTEGER}, #{platType,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{outerId,jdbcType=VARCHAR}, #{staffId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{deliveryType,jdbcType=VARCHAR}, #{sendDate,jdbcType=TIMESTAMP}, #{sendName,jdbcType=VARCHAR}, 
+      #{sendTel,jdbcType=VARCHAR}, #{sendPhone,jdbcType=VARCHAR}, #{sendAddress,jdbcType=VARCHAR}, 
+      #{sendZip,jdbcType=VARCHAR}, #{expressId,jdbcType=VARCHAR}, #{expressNo,jdbcType=VARCHAR}, 
+      #{contactName,jdbcType=VARCHAR}, #{contactTel,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, 
+      #{contactZip,jdbcType=VARCHAR}, #{contactAddress,jdbcType=VARCHAR}, #{bringName,jdbcType=VARCHAR}, 
+      #{cardType,jdbcType=VARCHAR}, #{cardId,jdbcType=VARCHAR}, #{bringTel,jdbcType=VARCHAR}, 
+      #{bringPhone,jdbcType=VARCHAR}, #{contactDate,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateStaff,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdDeliveryBatch" >
+    insert into t_unpf_ord_delivery_batch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="platType != null" >
+        PLAT_TYPE,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="outerId != null" >
+        OUTER_ID,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="deliveryType != null" >
+        DELIVERY_TYPE,
+      </if>
+      <if test="sendDate != null" >
+        SEND_DATE,
+      </if>
+      <if test="sendName != null" >
+        SEND_NAME,
+      </if>
+      <if test="sendTel != null" >
+        SEND_TEL,
+      </if>
+      <if test="sendPhone != null" >
+        SEND_PHONE,
+      </if>
+      <if test="sendAddress != null" >
+        SEND_ADDRESS,
+      </if>
+      <if test="sendZip != null" >
+        SEND_ZIP,
+      </if>
+      <if test="expressId != null" >
+        EXPRESS_ID,
+      </if>
+      <if test="expressNo != null" >
+        EXPRESS_NO,
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME,
+      </if>
+      <if test="contactTel != null" >
+        CONTACT_TEL,
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE,
+      </if>
+      <if test="contactZip != null" >
+        CONTACT_ZIP,
+      </if>
+      <if test="contactAddress != null" >
+        CONTACT_ADDRESS,
+      </if>
+      <if test="bringName != null" >
+        BRING_NAME,
+      </if>
+      <if test="cardType != null" >
+        CARD_TYPE,
+      </if>
+      <if test="cardId != null" >
+        CARD_ID,
+      </if>
+      <if test="bringTel != null" >
+        BRING_TEL,
+      </if>
+      <if test="bringPhone != null" >
+        BRING_PHONE,
+      </if>
+      <if test="contactDate != null" >
+        CONTACT_DATE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="platType != null" >
+        #{platType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="outerId != null" >
+        #{outerId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryType != null" >
+        #{deliveryType,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDate != null" >
+        #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendName != null" >
+        #{sendName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTel != null" >
+        #{sendTel,jdbcType=VARCHAR},
+      </if>
+      <if test="sendPhone != null" >
+        #{sendPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sendAddress != null" >
+        #{sendAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sendZip != null" >
+        #{sendZip,jdbcType=VARCHAR},
+      </if>
+      <if test="expressId != null" >
+        #{expressId,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null" >
+        #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactZip != null" >
+        #{contactZip,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null" >
+        #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bringName != null" >
+        #{bringName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="bringTel != null" >
+        #{bringTel,jdbcType=VARCHAR},
+      </if>
+      <if test="bringPhone != null" >
+        #{bringPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactDate != null" >
+        #{contactDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdDeliveryBatchCriteria" resultType="java.lang.Long" >
+    select count(*) from t_unpf_ord_delivery_batch
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_unpf_ord_delivery_batch
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.platType != null" >
+        PLAT_TYPE = #{record.platType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outerId != null" >
+        OUTER_ID = #{record.outerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.deliveryType != null" >
+        DELIVERY_TYPE = #{record.deliveryType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendDate != null" >
+        SEND_DATE = #{record.sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sendName != null" >
+        SEND_NAME = #{record.sendName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendTel != null" >
+        SEND_TEL = #{record.sendTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendPhone != null" >
+        SEND_PHONE = #{record.sendPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendAddress != null" >
+        SEND_ADDRESS = #{record.sendAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendZip != null" >
+        SEND_ZIP = #{record.sendZip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressId != null" >
+        EXPRESS_ID = #{record.expressId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressNo != null" >
+        EXPRESS_NO = #{record.expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactName != null" >
+        CONTACT_NAME = #{record.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactTel != null" >
+        CONTACT_TEL = #{record.contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPhone != null" >
+        CONTACT_PHONE = #{record.contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactZip != null" >
+        CONTACT_ZIP = #{record.contactZip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactAddress != null" >
+        CONTACT_ADDRESS = #{record.contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bringName != null" >
+        BRING_NAME = #{record.bringName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardType != null" >
+        CARD_TYPE = #{record.cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardId != null" >
+        CARD_ID = #{record.cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bringTel != null" >
+        BRING_TEL = #{record.bringTel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bringPhone != null" >
+        BRING_PHONE = #{record.bringPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactDate != null" >
+        CONTACT_DATE = #{record.contactDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_unpf_ord_delivery_batch
+    set ID = #{record.id,jdbcType=INTEGER},
+      PLAT_TYPE = #{record.platType,jdbcType=VARCHAR},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      OUTER_ID = #{record.outerId,jdbcType=VARCHAR},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      DELIVERY_TYPE = #{record.deliveryType,jdbcType=VARCHAR},
+      SEND_DATE = #{record.sendDate,jdbcType=TIMESTAMP},
+      SEND_NAME = #{record.sendName,jdbcType=VARCHAR},
+      SEND_TEL = #{record.sendTel,jdbcType=VARCHAR},
+      SEND_PHONE = #{record.sendPhone,jdbcType=VARCHAR},
+      SEND_ADDRESS = #{record.sendAddress,jdbcType=VARCHAR},
+      SEND_ZIP = #{record.sendZip,jdbcType=VARCHAR},
+      EXPRESS_ID = #{record.expressId,jdbcType=VARCHAR},
+      EXPRESS_NO = #{record.expressNo,jdbcType=VARCHAR},
+      CONTACT_NAME = #{record.contactName,jdbcType=VARCHAR},
+      CONTACT_TEL = #{record.contactTel,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{record.contactPhone,jdbcType=VARCHAR},
+      CONTACT_ZIP = #{record.contactZip,jdbcType=VARCHAR},
+      CONTACT_ADDRESS = #{record.contactAddress,jdbcType=VARCHAR},
+      BRING_NAME = #{record.bringName,jdbcType=VARCHAR},
+      CARD_TYPE = #{record.cardType,jdbcType=VARCHAR},
+      CARD_ID = #{record.cardId,jdbcType=VARCHAR},
+      BRING_TEL = #{record.bringTel,jdbcType=VARCHAR},
+      BRING_PHONE = #{record.bringPhone,jdbcType=VARCHAR},
+      CONTACT_DATE = #{record.contactDate,jdbcType=TIMESTAMP},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdDeliveryBatch" >
+    update t_unpf_ord_delivery_batch
+    <set >
+      <if test="platType != null" >
+        PLAT_TYPE = #{platType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="outerId != null" >
+        OUTER_ID = #{outerId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryType != null" >
+        DELIVERY_TYPE = #{deliveryType,jdbcType=VARCHAR},
+      </if>
+      <if test="sendDate != null" >
+        SEND_DATE = #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sendName != null" >
+        SEND_NAME = #{sendName,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTel != null" >
+        SEND_TEL = #{sendTel,jdbcType=VARCHAR},
+      </if>
+      <if test="sendPhone != null" >
+        SEND_PHONE = #{sendPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="sendAddress != null" >
+        SEND_ADDRESS = #{sendAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sendZip != null" >
+        SEND_ZIP = #{sendZip,jdbcType=VARCHAR},
+      </if>
+      <if test="expressId != null" >
+        EXPRESS_ID = #{expressId,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null" >
+        EXPRESS_NO = #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        CONTACT_TEL = #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactZip != null" >
+        CONTACT_ZIP = #{contactZip,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null" >
+        CONTACT_ADDRESS = #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="bringName != null" >
+        BRING_NAME = #{bringName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        CARD_TYPE = #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        CARD_ID = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="bringTel != null" >
+        BRING_TEL = #{bringTel,jdbcType=VARCHAR},
+      </if>
+      <if test="bringPhone != null" >
+        BRING_PHONE = #{bringPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactDate != null" >
+        CONTACT_DATE = #{contactDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdDeliveryBatch" >
+    update t_unpf_ord_delivery_batch
+    set PLAT_TYPE = #{platType,jdbcType=VARCHAR},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      OUTER_ID = #{outerId,jdbcType=VARCHAR},
+      STAFF_ID = #{staffId,jdbcType=INTEGER},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      DELIVERY_TYPE = #{deliveryType,jdbcType=VARCHAR},
+      SEND_DATE = #{sendDate,jdbcType=TIMESTAMP},
+      SEND_NAME = #{sendName,jdbcType=VARCHAR},
+      SEND_TEL = #{sendTel,jdbcType=VARCHAR},
+      SEND_PHONE = #{sendPhone,jdbcType=VARCHAR},
+      SEND_ADDRESS = #{sendAddress,jdbcType=VARCHAR},
+      SEND_ZIP = #{sendZip,jdbcType=VARCHAR},
+      EXPRESS_ID = #{expressId,jdbcType=VARCHAR},
+      EXPRESS_NO = #{expressNo,jdbcType=VARCHAR},
+      CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      CONTACT_TEL = #{contactTel,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      CONTACT_ZIP = #{contactZip,jdbcType=VARCHAR},
+      CONTACT_ADDRESS = #{contactAddress,jdbcType=VARCHAR},
+      BRING_NAME = #{bringName,jdbcType=VARCHAR},
+      CARD_TYPE = #{cardType,jdbcType=VARCHAR},
+      CARD_ID = #{cardId,jdbcType=VARCHAR},
+      BRING_TEL = #{bringTel,jdbcType=VARCHAR},
+      BRING_PHONE = #{bringPhone,jdbcType=VARCHAR},
+      CONTACT_DATE = #{contactDate,jdbcType=TIMESTAMP},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

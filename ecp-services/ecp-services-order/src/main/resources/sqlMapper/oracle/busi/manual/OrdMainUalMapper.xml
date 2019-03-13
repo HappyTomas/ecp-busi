@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.manual.OrdMainUalMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdMain" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ORDER_CODE" property="orderCode" jdbcType="VARCHAR" />
+    <result column="ORDER_AMOUNT" property="orderAmount" jdbcType="INTEGER" />
+    <result column="ORDER_MONEY" property="orderMoney" jdbcType="INTEGER" />
+    <result column="REAL_MONEY" property="realMoney" jdbcType="INTEGER" />
+    <result column="REAL_EXPRESS_FEE" property="realExpressFee" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="PAY_TIME" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="DELIVER_DATE" property="deliverDate" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="ORDER_TWO_STATUS" property="orderTwoStatus" jdbcType="VARCHAR" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+    <result column="PAY_TYPE" property="payType" jdbcType="VARCHAR" />
+    <result column="PAY_FLAG" property="payFlag" jdbcType="VARCHAR" />
+    <result column="DISPATCH_TYPE" property="dispatchType" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="PAY_LOCK" property="payLock" jdbcType="VARCHAR" />
+    <result column="BUYER_MSG" property="buyerMsg" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="SYS_TYPE" property="sysType" jdbcType="VARCHAR" />
+    <result column="PAY_WAY" property="payWay" jdbcType="VARCHAR" />
+    <result column="ORDER_SCORE" property="orderScore" jdbcType="INTEGER" />
+    <result column="INVOICE_TYPE" property="invoiceType" jdbcType="VARCHAR" />
+    <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+    <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="CHNL_ADDRESS" property="chnlAddress" jdbcType="VARCHAR" />
+    <result column="POST_CODE" property="postCode" jdbcType="VARCHAR" />
+    <result column="CONTACT_NUMBER" property="contactNumber" jdbcType="VARCHAR" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    <result column="CITY_CODE" property="cityCode" jdbcType="VARCHAR" />
+    <result column="COUNTY_CODE" property="countyCode" jdbcType="VARCHAR" />
+    <result column="BRING_NAME" property="bringName" jdbcType="VARCHAR" />
+    <result column="CARD_TYPE" property="cardType" jdbcType="VARCHAR" />
+    <result column="CARD_ID" property="cardId" jdbcType="VARCHAR" />
+    <result column="BRING_NUMBER" property="bringNumber" jdbcType="VARCHAR" />
+    <result column="BRING_PHONE" property="bringPhone" jdbcType="VARCHAR" />
+    <result column="BILLING_FLAG" property="billingFlag" jdbcType="VARCHAR" />
+    <result column="SEND_INVOICE_TYPE" property="sendInvoiceType" jdbcType="VARCHAR" />
+    <result column="INVOICE_EXPRESS_NO" property="invoiceExpressNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ORDER_CODE, ORDER_AMOUNT, ORDER_MONEY, REAL_MONEY, REAL_EXPRESS_FEE, SHOP_ID, 
+    SHOP_NAME, STAFF_ID, ORDER_TIME, PAY_TIME, DELIVER_DATE, STATUS, ORDER_TWO_STATUS, 
+    ORDER_TYPE, PAY_TYPE, PAY_FLAG, DISPATCH_TYPE, SOURCE, PAY_LOCK, BUYER_MSG, CREATE_TIME, 
+    CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, SITE_ID, SYS_TYPE, PAY_WAY, ORDER_SCORE, 
+    INVOICE_TYPE, CONTACT_NAME, CONTACT_PHONE, CHNL_ADDRESS, POST_CODE, CONTACT_NUMBER, 
+    PROVINCE, CITY_CODE, COUNTY_CODE, BRING_NAME, CARD_TYPE, CARD_ID, BRING_NUMBER, BRING_PHONE, 
+    BILLING_FLAG, SEND_INVOICE_TYPE, INVOICE_EXPRESS_NO
+  </sql>
+  <select id="countSumOrderMoneyByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdMainCriteria" resultType="java.lang.Long" >
+    select sum(basic_money) from t_ord_main
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="countSumRealMoneyByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdMainCriteria" resultType="java.lang.Long" >
+    select sum(real_money) from t_ord_main
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+</mapper>

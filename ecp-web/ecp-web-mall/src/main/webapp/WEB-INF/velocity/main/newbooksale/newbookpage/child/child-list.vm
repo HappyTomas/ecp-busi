@@ -1,0 +1,45 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-page.vm")
+
+#if($gridResult && $gridResult.list && !$errorMessage)
+<ul class="newbook-list clearfix">
+   #if($gridResult.list.size() > 0 )
+   	#foreach($newBook in $gridResult.list)
+	<li>
+		<div class="pro-wrap">
+			<div class="p-img">
+				<a target='_blank' href="#if($!{newBook.url})${CONTEXT_PATH}$!{newBook.url}#else javascript:void(0)#end"> <img width="150" height="150"
+					src="$!{newBook.mainPic.uRL}" alt="$!{newBook.gdsName}">
+				</a>
+			</div>
+			<p class="p-pri">
+				<b class="c-red"> #money($!{newBook.discountPrice}) </b> <b class="c-gray t-mline"> #money($!{newBook.guidePrice})
+				</b>
+			</p>
+			<p class="p-name">
+				<a target='_blank' href="#if($!{newBook.url})${CONTEXT_PATH}$!{newBook.url}#else javascript:void(0)#end"> $!{newBook.gdsName} </a>
+			</p>
+
+		</div>
+		<div class="p-auto-color">
+		#set($authorValue = $!{newBook.allPropMaps.get("1001").values[0].propValue})
+			<span title = "$!{authorValue}">#if(${authorValue} && ${authorValue} != '')$!{authorValue} 著 #end</span> <i class="spit"></i> <span class="cbs" title="$!{newBook.allPropMaps.get("1006").values[0].propValue}">$!{newBook.allPropMaps.get("1006").values[0].propValue}</span>
+		</div>
+	</li>
+	#end
+	#else
+	   <div class ='pro-empty'>暂无数据，敬请期待！</div>
+	#end
+</ul>
+#else  ## 错误处理
+#end
+<!--     分页       start -->
+<div class="pagination text-right mpage">
+	<div class="row-fluid ecppage" id="pageControlbar"
+		data-total-page="$!{gridResult.totalPage}"
+		data-total-row="$!{gridResult.totalRow}"
+		data-page-size="$!{gridResult.pageSize}"
+		data-page-number="$!{gridResult.pageNumber}" data-status="begin"></div>
+</div>
+<!--     分页       end    -->
+<script type="text/javascript" src="$!{BUSIJS_PATH}/main/newbooksale/newbookpage/child/child-list.js"></script>

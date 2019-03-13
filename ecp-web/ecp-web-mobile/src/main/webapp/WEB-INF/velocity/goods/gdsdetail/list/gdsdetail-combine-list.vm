@@ -1,0 +1,118 @@
+#parse("/sys/sys_param.vm")
+#if(!$!{fixedCombineList} || $!{fixedCombineList.size()}>0)
+<div class="pro-team">
+    <div class="head">
+        <span>优惠套餐</span>
+        ##<span class="tip">（商品部分会有四五个商品）</span>
+        <span class="hp">换一批</span>
+    </div>
+    <div class="cont" >
+		#foreach($combine in $!{fixedCombineList})
+            <div class="teamItem">
+                <div class="scroll-wrap">
+                    <div class="scroll" style="">
+                        <ul class="teamC clearfix">
+                            #set($buyprice = 0)
+                            #set($realprice = 0)
+        					#set($custprice = 0)
+                            #foreach($info in $!{combine.gdsPromMatchSkuVOList})
+                            	#if($!{info.skuInfo.id}==$!{skuId})
+            						<li class="item">
+        								<input type="hidden" value="$!{info.skuInfo.id}" id="fixedFixedSkuId"/>
+                                        <input type="hidden" value="$!{info.skuInfo.skuProps}" id="fixedFixedSkuProps"/>
+                                    	<input type="hidden" value="$!{info.skuInfo.gdsName}" id="fixedFixedGdsName"/>
+                                    	<input type="hidden" value="$!{info.skuInfo.GdsId}" id="fixedFixedGdsId"/>
+                                    	<input type="hidden" value="$!{info.shopId}" id="fixedFixedShopId"/>
+                                    	<input type="hidden" value="$!{info.ShopName}" id="fixedFixedShopName"/>
+                                    	<input type="hidden" value="$!{info.skuInfo.mainCatgs}" id="fixedFixedMainCatgs"/>
+                                    	<input type="hidden" value="$!{info.promId}" id="fixedFixedPromId"/>
+                                    	<input type="hidden" value="$!{info.skuInfo.gdsTypeId}" id="fixedFixedGdsTypeId"/>
+                                    	<input type="hidden" value="$velocityCount" id="fixedIndex"/>
+                                    	<input type="hidden" value="$!{info.skuInfo.gdsStatus}" id="fixedGdsStatus"/>
+                                            <div class="img-wrap">
+												<a href="$!{CONTEXT_PATH}/gdsdetail/$!{info.skuInfo.gdsId}-$!{info.skuInfo.id}">
+													<img src="${aiTool.genImageUrl($!{info.skuInfo.mainPic.mediaUuid},'57x57!')}"/>
+												</a>
+                                            </div>
+                                            <p>$!{info.skuInfo.gdsName}</p>
+                                        <p>#money($!{info.price})</p>
+                                        <del>#money($!{info.skuInfo.realPrice})</del>
+                                    </li>
+                                    #set($buyprice = ($buyprice + $!{info.price}))
+                                    #set($realprice = ($realprice + $!{info.skuInfo.realPrice}))
+                            	#end
+                            #end
+                        	#foreach($info in $!{combine.gdsPromMatchSkuVOList})
+        						#if(!($!{info.skuInfo.id}==$!{skuId}))
+        							<li class="fh">+</li>
+                                    <li class="item">
+        								<input type="hidden" gdsStatus="$!{info.skuInfo.gdsStatus}" index="$velocityCount" name="fixedCombineCheck" gdsTypeId='$!{info.skuInfo.gdsTypeId}' promId='$!{info.promId}' mainCatgs="$!{info.skuInfo.mainCatgs}" name="combineCheck" gdsName='$!{info.skuInfo.gdsName}' gdsId='$!{info.skuInfo.gdsId}' skuId='$!{info.skuInfo.id}' skuProps='$!{info.skuInfo.skuProps}'>
+                                            <div class="img-wrap">
+												<a href="$!{CONTEXT_PATH}/gdsdetail/$!{info.skuInfo.gdsId}-$!{info.skuInfo.id}">
+													<img src="${aiTool.genImageUrl($!{info.skuInfo.mainPic.mediaUuid},'57x57!')}"/>
+												</a>
+                                            </div>
+                                        <p>$!{info.skuInfo.gdsName}</p>
+                                        <p>#money($!{info.price})</p>
+                                        <del>#money($!{info.skuInfo.realPrice})</del>
+                                    </li>
+                                    #set($buyprice = ($buyprice + $!{info.price}))
+                                    #set($realprice = ($realprice + $!{info.skuInfo.realPrice}))
+        						#end
+        					#end
+        					#set($custprice = $realprice - $buyprice)
+                        </ul>
+                    </div>
+                </div>
+                <div class="count">
+                    <div class="fh">=</div>
+                    <div class="team-info">
+                        <p class="tit">套餐价</p>
+                        <p class="tit">#money($buyprice)</p>
+                        <p style = "text-align:center">优惠</p>
+                        <p style = "text-align:center">(#moneyNum($custprice)元)</p>
+                        <p>
+                          <span class="btn"  name="fixedCombineBuyBtn">
+        					购买套餐
+                          </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        #end
+    </div>
+</div>
+<script>
+    $(function(){
+		
+        teamShow(0);
+        function teamShow(index){
+            var $team=$('.pro-team .teamItem').eq(index);
+            var w=0;
+            $team.addClass('show').siblings().removeClass('show');
+            $('.teamC li',$team).each(function(){
+                w=w+$(this).width();
+            });
+            $('.scroll',$team).width(w+10);
+            var $scrollObj=$('.scroll-wrap',$team)[0];
+            new $.AMUI.iScroll($scrollObj, {
+                scrollX: true,
+                scrollY: false, 
+            	preventDefault:false
+            });
+        }
+        $('.pro-team .hp').click(function(){
+            var size=$('.pro-team .teamItem').size();
+            var index=$('.pro-team .teamItem.show').index();
+            if(index<(size-1)){
+                index=index+1;
+            }else{
+                index=0;
+            }
+            teamShow(index);
+        });
+
+    })
+</script>
+#end
+	

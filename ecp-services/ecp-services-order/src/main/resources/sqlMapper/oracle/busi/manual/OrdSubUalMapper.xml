@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.manual.OrdSubUalMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdSub" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="ORDER_CODE" property="orderCode" jdbcType="VARCHAR" />
+    <result column="CATEGORY_ID" property="categoryId" jdbcType="INTEGER" />
+    <result column="GDS_ID" property="gdsId" jdbcType="INTEGER" />
+    <result column="GDS_NAME" property="gdsName" jdbcType="VARCHAR" />
+    <result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+    <result column="SKU_HIS_ID" property="skuHisId" jdbcType="INTEGER" />
+    <result column="SKU_INFO" property="skuInfo" jdbcType="VARCHAR" />
+    <result column="GROUP_TYPE" property="groupType" jdbcType="VARCHAR" />
+    <result column="GROUP_DETAIL" property="groupDetail" jdbcType="VARCHAR" />
+    <result column="ORDER_AMOUNT" property="orderAmount" jdbcType="INTEGER" />
+    <result column="AGENT_PRICE" property="agentPrice" jdbcType="INTEGER" />
+    <result column="BUY_PRICE" property="buyPrice" jdbcType="INTEGER" />
+    <result column="ORDER_MONEY" property="orderMoney" jdbcType="INTEGER" />
+    <result column="SHARE_MONEY" property="shareMoney" jdbcType="INTEGER" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="PROXY_SHOP_ID" property="proxyShopId" jdbcType="INTEGER" />
+    <result column="DELIVER_STATUS" property="deliverStatus" jdbcType="VARCHAR" />
+    <result column="REMAIN_AMOUNT" property="remainAmount" jdbcType="INTEGER" />
+    <result column="DELIVER_AMOUNT" property="deliverAmount" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="REP_CODE" property="repCode" jdbcType="INTEGER" />
+    <result column="STOCK_ID" property="stockId" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="ResultOrderMap" type="com.zengshi.ecp.order.dao.model.OrdSubOrderIdUal" >
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  <select id="countRemainAmountByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubCriteria" resultType="java.lang.Long" >
+    select sum(remain_amount) from t_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="countOrderIdByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubCriteria" resultType="java.lang.Long" >
+    select count(distinct order_id) from t_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <select id="countEvaluationWait" parameterType="com.zengshi.ecp.order.dao.model.OrdSubCriteria" resultType="java.lang.Long" >
+    select count(1) from t_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <select id="selectOrderIdByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubCriteria" resultMap="ResultOrderMap" >
+    select distinct order_id from t_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="sumDiscountMoneyByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubCriteria" resultType="java.lang.Long" >
+    select sum(discount_money) from t_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>    
+  <select id="sumBasicMoneyByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubCriteria" resultType="java.lang.Long" >
+    select sum(base_price * order_amount) from t_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <select id="sumOrderAmountByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubCriteria" resultType="java.lang.Long" >
+    select sum(order_amount) from t_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,165 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>  
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsProp/prop-add.js?version=$!{JS_VERSION}" ></script>
+<style type="text/css">
+<!--
+table,th,tr,td {
+	border: 1px solid #ccc;
+}
+td,th{
+width:150px;
+}
+
+/*a  upload */
+.a-upload {
+    padding: 4px 10px;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+    cursor: pointer;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+.a-upload  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+.a-upload:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
+}
+
+-->
+</style>
+			<h3 class="heading">属性新增</h3>
+			<div class="alert alert-error hide formValidateMessages" >
+	
+            </div>
+			<div class="formBox row-fluid">
+				<form id="propInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+				<div class="span8">
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">属性名称：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level required htmlcheck" name="propName" placeholder="" validate="{rangelength:[1,42]}" value="" />
+							
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">属性别名：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level" name="propSname"  value="" validate="{rangelength:[1,42]}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">属性类型：</label>
+							<div class="controls">
+							
+								#select("GDS_PROP_TYPE", "propType" , true, "")
+							    
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">属性值类型：</label>
+							<div class="controls">
+								#select("GDS_PROP_VALUE_TYPE", "propValueType" , true, "3")
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">属性排序：</label>
+							<div class="controls">
+								<input type="text" class='input-block-level  digits' max="99999" name="sortNo" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					
+						<div class="control-group">
+							<label class="control-label">属性描述：</label>
+							<div class="controls">
+								<textarea rows="4" class="input-block-level" name="propDesc" validate="{rangelength:[1,80]}"></textarea>
+							</div>
+						</div>
+					
+				</div>
+				<div class="row-fluid formSep" id="propValTable">
+					<div class="span12">
+					<div style="margin-left:120px">
+					  	
+							<table class="table table-bordered seller-dztb" >
+				             <thead>
+				              <tr>            
+				                <th style="text-align:center;">属性值名称</th><th style="text-align:center;">属性值图片</th><th style="text-align:center;">属性值排序</th><th style="text-align:center;">操作</th>
+				              </tr>
+				             </thead>
+				             <tbody id = "propValT">
+				             </tbody>
+							</table>	  	
+							<button type="button" class="btn" id="btn_prop_add"><i class="icon-plus icon-white"></i>新增属性值</button>
+
+					 </div>	
+					</div>
+				
+				</div>
+			
+				<div class="row-fluid formSep" id="inputValTable">	
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">手动输入类型：</label>
+							<div class="controls">
+							
+								#select("GDS_PROP_VALUE_INPUT_TYPE", "propInputType" , true, "")
+							    
+							</div>
+						</div>
+					</div>
+					<div class="span6" id="inputValidate">
+						<div class="control-group">
+							<label class="control-label">手动输入校验：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level" name="propInputRule"  value="" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="fbtn" style="float:left;margin-left:300px;">
+					<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i> 保　存</button>
+					<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i> 返　回</button>
+				</div>
+				</div>
+		
+				<div class="clear"></div>
+				</form>
+			</div>
+			

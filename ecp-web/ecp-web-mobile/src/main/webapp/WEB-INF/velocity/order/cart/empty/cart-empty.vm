@@ -1,0 +1,17 @@
+##
+## 涉及变量 cartList Controller返回
+##
+#parse("sys/sys_param.vm")
+<div class="ui-content" id="nullList" style="#if($!cartList.ordCartList.size())display:none #end">
+    <div class="ui-empty">
+        <div class="empty-img">
+            <img src="$!IMAGE_PATH/car-nodata.png" alt=""/>
+        </div>
+        <div class="tip-bold">
+            很遗憾
+        </div>
+        <div class="tip-txt">
+            您暂无任何商品可以结算
+        </div>
+    </div>
+</div>

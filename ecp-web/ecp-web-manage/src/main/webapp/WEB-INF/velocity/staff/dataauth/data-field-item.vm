@@ -1,0 +1,124 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-tree.vm")
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/dataauth/data-field-item.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/dataauth/func-comp-tree.js?version=$!{JS_VERSION}" ></script>
+
+
+<div class="alert alert-error hide formValidateMessages">
+
+</div>
+
+<div class="formBox">
+    <form id="detailInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+        <!--hidden prop-->
+        <input type="hidden" id="id" name="id" />
+		<!-- 页面内容 -->
+		<div class="row-fluid">
+    		<div class="span12 formSep well well-searchForm">
+    			<div class="control-group pull-left">
+                    <label class="control-label">归属子系统：</label>
+                    <div class="controls">
+                        <select id="sysCode" name="sysCode" style="width: 180px">
+                            #listParam('SYS_SUB_SYSTEM')
+                        </select>
+                    </div>
+    			</div>
+    		</div>
+		</div>
+        <div class="row-fluid">
+            <div class="span3">
+				<label>功能点</label>
+				<div class="well well-searchForm" id style="height:530px;">
+					<ul id="treeFunc" class="ztree" style="height:100%; width: 100%; overflow:auto;"></ul>
+                </div>
+            </div>
+            <div class="span9">
+				<label>结果集属性</label>
+                <div class="well well-searchForm">
+                    <div class="formSep">
+						<div class="row-fluid">
+                            <div class="control-group span5">
+                                <label class="control-label">名称：</label>
+                                <div class="controls">
+                                    <input type="text" name="name" style="width:210px;" placeholder='名称' class="input-block-level required htmlcheck" maxlength="32"/>
+                                </div>
+                            </div>
+    						<div class="control-group span5">
+                                <label id="saveFlag" class="control-label text-warning" style="display:none">new</label>
+                            </div>
+                            <div class="control-group span2"></div>
+                        </div>
+                    </div>
+                    <div class="formSep">
+                        <div class="row-fluid">
+                            <div class="control-group span5">
+                                <label class="control-label">对象属性名：</label>
+                                <div class="controls">
+                                    <input type="text" name="attrName" placeholder="对象属性名" style="width:210px;" class="input-block-level required htmlcheck" maxlength="32" />
+                                </div>
+                            </div>
+                            <div class="control-group span5">
+                                <label class="control-label">数据类型：</label>
+                                <div class="controls">
+                                    <select id="valueType" name="valueType" style="width:210px;" class="required">
+										<option value="java.lang.Integer">java.lang.Integer</option>
+										<option value="int">int</option>
+										<option value="java.lang.Double">java.lang.Double</option>
+										<option value="double">double</option>
+										<option value="java.lang.Float">java.lang.Float</option>
+										<option value="float">float</option>
+										<option value="java.lang.Long">java.lang.Long</option>
+										<option value="long">long</option>
+										<option value="java.lang.Short">java.lang.Short</option>
+										<option value="short">short</option>
+										<option value="java.lang.Boolean">java.lang.Boolean</option>
+										<option value="boolean">boolean</option>
+										<option value="java.lang.String">java.lang.String</option>
+										<option value="java.util.Date">java.util.Date</option>
+									</select>
+                                </div>
+                            </div>
+							<div class="control-group span2"></div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="row-fluid">
+                            <div class="control-group span5">
+                                <label class="control-label">数据格式：</label>
+                                <div class="controls">
+                                    <input type="text" name="valueFormate" placeholder="数据格式" style="width:210px;" class="input-block-level htmlcheck" maxlength="32" />
+                                </div>
+                            </div>
+                            <div class="control-group span5">
+                                <label class="control-label">默认值：</label>
+                                <div class="controls">
+                                    <input type="text" name="defaultValue" placeholder="默认值" style="width:210px;" class="input-block-level htmlcheck" maxlength="32" />
+                                </div>
+							</div>
+                            <div class="control-group span2"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="formSep">
+                    <div class="row-fluid">
+                  	  	<div class="pull-left">
+                  	  		<button type="button" class="btn" id="btnFormAddSubmit"><i class="icon-plus"></i> 新　增</button>
+                            <button type="button" class="btn btn-danger" id="btnFormDeleteSubmit"><i class="icon-trash"></i> 删　除</button>
+                  	  	</div>
+                        <div class="pull-right">
+                            <button type="button" class="btn btn-info disabled" id="btnFormSaveSubmit"><i class="icon-ok-sign"></i> 保　存</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row-fluid">
+                    <table id="dataGridTable"></table>
+                </div>
+            </div>
+        </div>
+
+    </form>
+</div>
+

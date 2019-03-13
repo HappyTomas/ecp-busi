@@ -1,0 +1,34 @@
+#parse("/sys/sys_param.vm")
+<!-- 积分商城   搜索页面      分类树菜单  编号为1-->
+<a target='_blank' class="parent" href="
+	#if(${catgParent.catgCode} && $!{catgParent.catgCode}!='')
+		${CONTEXT_PATH}/search?category=$!{catgParent.catgCode} 
+	#elseif(${catgParent.catgUrl} && $!{catgParent.catgUrl}!='')
+		${CONTEXT_PATH}/$!{catgParent.catgUrl} 
+	#else
+		${CONTEXT_PATH}/search?keyword=#stringEncode($!{catgParent.catgName})
+	#end
+	">
+	$!{catgParent.catgName}
+</a>
+<ul class="child">
+	<!-- <li class="current"><i class="picon"></i><a href="#">数码家电</a></li> -->
+	#foreach(${catgTwo} in $catgChild)
+		#if($velocityCount < 7)
+			<li>
+				<i class="picon"></i>
+    			<a target='_blank' href="
+    				#if(${catgTwo.catgCode} && $!{catgTwo.catgCode}!='')
+    					${CONTEXT_PATH}/search?category=$!{catgTwo.catgCode} 
+    				#elseif(${catgTwo.catgUrl} && $!{catgTwo.catgUrl}!='')
+    					${CONTEXT_PATH}/$!{catgTwo.catgUrl} 
+    				#else
+    					${CONTEXT_PATH}/search?keyword=#stringEncode($!{catgTwo.catgName})
+    				#end
+    				">
+    				$!{catgTwo.catgName}
+    			</a>
+			</li>
+		#end
+	#end
+</ul>

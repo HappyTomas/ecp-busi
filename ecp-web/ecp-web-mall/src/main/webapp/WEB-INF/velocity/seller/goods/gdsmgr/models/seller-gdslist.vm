@@ -1,0 +1,283 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsmgr/seller-gdslist.js?version=$!{JS_VERSION}"></script>
+##积分商品 ifGdsScore == "1"
+<div class="nItem">
+   <div>
+       <table class="seller-table">
+         <thead>
+           <tr>
+               <td>
+				<input type="checkbox" id="checkAll"/>
+			   </td>
+               <td>
+				商品编码
+			   </td>
+               <td style="width: 200px">
+				商品名称
+			   </td>
+               <td>
+				主分类名称
+			   </td>
+               <td>
+				商品编号
+			   </td>
+               <td>
+				商品价格
+			   </td>
+               <td>
+				运费模板
+			   </td>
+               <td>
+				状态
+			   </td>
+               <td style="width: 125px">
+				操作
+			   </td>
+           </tr>
+         </thead>
+        <tbody>
+			   #if($_error_msg_)
+				 #if("0" == $ifGdsScore)
+    				<td colspan='9' style="color:red;">
+    					查询异常[$_error_msg_]
+    				</td>
+				   #else
+					<td colspan='7' style="color:red;">
+    					查询异常[$_error_msg_]
+    				</td>
+				   #end 
+               #elseif(!$gridResult || !$gridResult.getList() || $!{gridResult.getList().size()}<=0)
+        		<tr>
+				   #if("0" == $ifGdsScore)
+    				<td colspan='9'>
+    					没有符合条件商品信息。
+    				</td>
+				   #else
+					<td colspan='7'>
+    					没有符合条件商品信息。
+    				</td>
+				   #end
+    		    </tr>
+        	   #else
+            	   #foreach($gdsInfo in $gridResult.getList())
+            		<tr>
+    	                <td>
+    					   <input type="checkbox" name="gdsId" value="$!{gdsInfo.id}"/>
+    					</td>
+    	                <td>
+    						$!{gdsInfo.id}
+    					</td>
+    	                <td>
+    	                    #if($gdsInfo.mainPic && $gdsInfo.mainPic.URL)
+									<div class="img-wrap" style="width:59px;height:61px;">
+	                                    <img src="$!{gdsInfo.mainPic.URL}" alt="" onload="autoResizeImage(59, 61, this)"/>
+	                                </div>
+							#end
+    	                    <div class="td-hhtxt">
+								#if("99" == $gdsInfo.gdsStatus)
+									$!{gdsInfo.gdsName}
+								#else
+									<a target="_blank" href="$!{gdsInfo.gdsDetailUrl}">$!{gdsInfo.gdsName}</a>
+								#end
+                            </div>
+    					</td>
+    	                <td>
+    						$!{gdsInfo.mainCatgName}
+    					</td>
+    	                <td>
+    						$!{gdsInfo.isbn}
+    					</td>
+    	                <td>
+    						#if($gdsInfo.guidePrice)
+								#moneyNum($gdsInfo.guidePrice)
+							#end
+    					</td>
+						<td>
+							    #if("99" == $gdsInfo.gdsStatus || "11" == $gdsInfo.gdsStatus)
+									#if(!$gdsInfo.shipTemplateName || -1 == $gdsInfo.shipTemplateId || 0 == $gdsInfo.shipTemplateId)
+										<a style='color:#ddd' href='javascript:void(0)' disabled>设置运费模板</a>
+								    #else
+										<div>$!{gdsInfo.shipTemplateName}</div>
+										<a style='color:#ddd' href='javascript:void(0)' disabled>取消运费模板</a>
+									#end
+								#else
+									#if(!$gdsInfo.shipTemplateName || -1 == $gdsInfo.shipTemplateId || 0 == $gdsInfo.shipTemplateId)
+										<a href='javascript:void(0)' onclick="setGdsShiptemp(this,${gdsInfo.id},${gdsInfo.shopId},${gdsInfo.mainCatgs})">
+											设置运费模板
+									    </a>
+									#else
+										<div>$!{gdsInfo.shipTemplateName}</div>
+										<a href='javascript:void(0)' onclick="cancelGdsShiptemp(this,${gdsInfo.id},${gdsInfo.shopId})">
+											 取消运费模板
+										</a>
+									#end
+								#end
+						</td>
+						<td>
+							$!{gdsInfo.gdsStatusName}
+						</td>
+						<td class="opt">
+							## 积分商品操作设置开始
+							#if("1" == $ifGdsScore)
+								#if("0" == $gdsInfo.shopStatus)
+    								#if("0" == $gdsInfo.gdsStatus)
+    								   <i title="上架" class="sl-icon icon-opt0"></i>
+                                       <i title="编辑" class="sl-icon icon-opt1"></i>
+                                       <i title="删除" class="sl-icon icon-opt3"></i>
+                                       <i title="详情" class="sl-icon icon-opt5" onclick="gdsDetail(${gdsInfo.id})"></i>
+    								#elseif("11" == $gdsInfo.gdsStatus)
+									   <i title="下架" class="sl-icon icon-opt2"></i>
+                                       <i title="详情" class="sl-icon icon-opt5" onclick="gdsDetail(${gdsInfo.id})"></i>
+    								#elseif("22" == $gdsInfo.gdsStatus)
+									   <i title="上架" class="sl-icon icon-opt0"></i>
+                                       <i title="编辑" class="sl-icon icon-opt1"></i>
+                                       <i title="删除" class="sl-icon icon-opt3"></i>
+                                       <i title="详情" class="sl-icon icon-opt5" onclick="gdsDetail(${gdsInfo.id})"></i>
+    								#elseif("99" == $gdsInfo.gdsStatus)
+    								#else
+								    #end
+								#else
+									#if("0" == $gdsInfo.gdsStatus)
+										  <i title="上架" class="sl-icon icon-opt0" onclick="gdsUp(${gdsInfo.id},'single',${gdsInfo.shopId})"></i>
+                                          <i title="编辑" class="sl-icon icon-opt1" onclick="gdsEdit(${gdsInfo.id},${gdsInfo.ifScoreGds},${gdsInfo.shopId})"></i>
+										  <i title="删除" class="sl-icon icon-opt3" onclick="gdsRemove(${gdsInfo.id},${gdsInfo.ifScoreGds},${gdsInfo.shopId})"></i>
+                                          <i title="详情" class="sl-icon icon-opt5" onclick="gdsDetail(${gdsInfo.id},${gdsInfo.ifScoreGds})"></i>
+    								#elseif("11" == $gdsInfo.gdsStatus)
+									   <i title="下架" class="sl-icon icon-opt2" onclick="gdsDown(${gdsInfo.id},'single',${gdsInfo.shopId})"></i>
+                                       <i title="详情" class="sl-icon icon-opt5" onclick="gdsDetail(${gdsInfo.id},${gdsInfo.ifScoreGds})"></i>
+    								#elseif("22" == $gdsInfo.gdsStatus)
+									   <i title="上架" class="sl-icon icon-opt0" onclick="gdsUp(${gdsInfo.id},'single',${gdsInfo.shopId})"></i>
+                                       <i title="编辑" class="sl-icon icon-opt1" onclick="gdsEdit(${gdsInfo.id},${gdsInfo.ifScoreGds},${gdsInfo.shopId})"></i>
+                                       <i title="删除" class="sl-icon icon-opt3" onclick="gdsRemove(${gdsInfo.id},${gdsInfo.ifScoreGds},${gdsInfo.shopId})"></i>
+                                       <i title="详情" class="sl-icon icon-opt5" onclick="gdsDetail(${gdsInfo.id},${gdsInfo.ifScoreGds})"></i>
+    								#elseif("99" == $gdsInfo.gdsStatus)
+    								#else
+								    #end
+								#end
+                            ## 积分商品设置结束
+							#else
+							## 普通商品操作设置开始
+							    #if("0" == $gdsInfo.shopStatus)
+    								#if("0" == $gdsInfo.gdsStatus)
+									   #if($gdsInfo.verifySwitch=="1")
+										  <i title="提交上架审核" class="sl-icon icon-opt0"></i>
+									   #else
+										  <i title="上架" class="sl-icon icon-opt0"></i>
+									   #end
+									   <i title="编辑" class="sl-icon icon-opt1"></i>
+									   
+									   #if($gdsInfo.verifySwitch=="1")
+										  <i title="提交删除审核" class="sl-icon icon-opt3"></i>
+									   #else
+										  <i title="删除" class="sl-icon icon-opt3"></i>
+									   #end
+									   
+									   <i title="详情" class="sl-icon icon-opt5" onclick="gdsDetail(${gdsInfo.id})"></i>
+									   
+									   #if($gdsInfo.verifySwitch=="1")
+										  <i title="审核记录" class="sl-icon icon-opt6"></i>
+									   #end
+									   
+    								#elseif("11" == $gdsInfo.gdsStatus)
+									   <i title="下架" class="sl-icon icon-opt2"></i>
+                                       <i title="详情" class="sl-icon icon-opt5" onclick="gdsDetail(${gdsInfo.id})"></i>
+									   #if($gdsInfo.verifySwitch=="1")
+									       <i title="审核记录" class="sl-icon icon-opt6"></i>
+									   #end
+    								#elseif("22" == $gdsInfo.gdsStatus)
+									   #if($gdsInfo.verifySwitch=="1")
+										  <i title="提交上架审核" class="sl-icon icon-opt0"></i>
+									   #else
+										  <i title="上架" class="sl-icon icon-opt0"></i>
+									   #end
+									   <i title="编辑" class="sl-icon icon-opt1"></i>
+									   
+									   #if($gdsInfo.verifySwitch=="1")
+										  <i title="提交删除审核" class="sl-icon icon-opt3"></i>
+									   #else
+										  <i title="删除" class="sl-icon icon-opt3"></i>
+									   #end
+									   
+									   <i title="详情" class="sl-icon icon-opt5" onclick="gdsDetail(${gdsInfo.id})"></i>
+									   
+									   #if($gdsInfo.verifySwitch=="1")
+										  <i title="审核记录" class="sl-icon icon-opt6"></i>
+									   #end
+    								#elseif("99" == $gdsInfo.gdsStatus)
+										#if($gdsInfo.verifySwitch=="1")
+										  <i title="审核记录" class="sl-icon icon-opt6"></i>
+									   #end
+    								#else
+								    #end
+								#else
+									#set($paramStr="gdsId='"+$gdsInfo.id+"' shopId='"+$gdsInfo.shopId+"'")
+									#if("0" == $gdsInfo.gdsStatus)
+									   #if($gdsInfo.verifySwitch=="1")
+										  <i title="提交上架审核" class="sl-icon icon-opt0 commitForVerify" $paramStr value="11"></i>
+									   #else
+										  <i title="上架" class="sl-icon icon-opt0" onclick="gdsUp(${gdsInfo.id},'single',${gdsInfo.shopId})"></i>
+									   #end
+									   <i title="编辑" class="sl-icon icon-opt1" onclick="gdsEdit(${gdsInfo.id},${gdsInfo.ifScoreGds},${gdsInfo.shopId})"></i>
+									   
+									   #if($gdsInfo.verifySwitch=="1")
+										  <i title="提交删除审核" class="sl-icon icon-opt3 commitForVerify" value="99" $paramStr></i>
+									   #else
+										  <i title="删除" class="sl-icon icon-opt3" onclick="gdsRemove(${gdsInfo.id},${gdsInfo.ifScoreGds},${gdsInfo.shopId})"></i>
+									   #end
+									   
+									   <i title="详情" class="sl-icon icon-opt5" onclick="gdsDetail(${gdsInfo.id},${gdsInfo.ifScoreGds})"></i>
+									   
+									   #if($gdsInfo.verifySwitch=="1")
+										  <i title="审核记录" class="sl-icon icon-opt6" onclick="showVeriyRecord(${gdsInfo.shopId},${gdsInfo.id})"></i>
+									   #end
+									   
+    								#elseif("11" == $gdsInfo.gdsStatus)
+									   <i title="下架" class="sl-icon icon-opt2" onclick="gdsDown(${gdsInfo.id},'single',${gdsInfo.shopId})"></i>
+                                       <i title="详情" class="sl-icon icon-opt5" onclick="gdsDetail(${gdsInfo.id})"></i>
+									   #if($gdsInfo.verifySwitch=="1")
+									       <i title="审核记录" class="sl-icon icon-opt6" onclick="showVeriyRecord(${gdsInfo.shopId},${gdsInfo.id})"></i>
+									   #end
+    								#elseif("22" == $gdsInfo.gdsStatus)
+									   #if($gdsInfo.verifySwitch=="1")
+										  <i title="提交上架审核" class="sl-icon icon-opt0 commitForVerify" $paramStr value="11"></i>
+									   #else
+										  <i title="上架" class="sl-icon icon-opt0" onclick="gdsUp(${gdsInfo.id},'single',${gdsInfo.shopId})"></i>
+									   #end
+									   <i title="编辑" class="sl-icon icon-opt1" onclick="gdsEdit(${gdsInfo.id},${gdsInfo.ifScoreGds},${gdsInfo.shopId})"></i>
+									   
+									   #if($gdsInfo.verifySwitch=="1")
+										  <i title="提交删除审核" class="sl-icon icon-opt3 commitForVerify" $paramStr value="99"></i>
+									   #else
+										  <i title="删除" class="sl-icon icon-opt3" onclick="gdsRemove(${gdsInfo.id},${gdsInfo.ifScoreGds},${gdsInfo.shopId})"></i>
+									   #end
+									   
+									   <i title="详情" class="sl-icon icon-opt5" onclick="gdsDetail(${gdsInfo.id},${gdsInfo.ifScoreGds})"></i>
+									   
+									   #if($gdsInfo.verifySwitch=="1")
+										  <i title="审核记录" class="sl-icon icon-opt6" onclick="showVeriyRecord(${gdsInfo.shopId},${gdsInfo.id})"></i>
+									   #end
+    								#elseif("99" == $gdsInfo.gdsStatus)
+										#if($gdsInfo.verifySwitch=="1")
+										  <i title="审核记录" class="sl-icon icon-opt6" onclick="showVeriyRecord(${gdsInfo.shopId},${gdsInfo.id})"></i>
+									    #end
+    								#else
+								    #end
+								#end
+							## 普通商品操作
+							#end
+						</td>
+    	            </tr>
+    			   #end
+    		   #end
+         </tbody>
+       </table>
+   </div>
+    <div id="pageControlbar" 
+		class="ecppage" 
+		data-total-page="$!{gridResult.totalPage}" 
+		data-total-row="$!{gridResult.totalRow}" 
+		data-page-size="$!{gridResult.pageSize}" 
+		data-page-number="$!{gridResult.pageNumber}" 
+		data-status="begin">
+	</div>
+</div>

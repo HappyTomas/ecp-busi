@@ -1,0 +1,35 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/modular/wap/modular-wap-floor-c.js?version=$!{JS_VERSION}" ></script>
+
+
+<div class="form-block formItem">
+    <label>楼层模板示例</label>
+    <img style="max-width:250px;max-height:200px" id="imagePreview" src="#genImageUrl($!{respVO.vfsId},'')"  class="img-polaroid">
+</div>
+#foreach($floorPlaceRespDTO in $!{floorPlaceRespDTOList})
+	#set($indexCount_1020 = '1020_1_'+$!{velocityCount})
+	#set($indexCount_1015 = '1015_1_'+$!{velocityCount})
+<div class="form-block formItem">
+    <label>$!{attrs.get(1020).propName}</label>
+	<input type="hidden" id="propValue" value="$!{mapPropPre.get($indexCount_1020).propValue}">
+	<input type="hidden" id="propValueId" value="$!{mapPropPre.get($indexCount_1020).propValueId}">
+	<input type="hidden" id="propId" value="$!{attrs.get(1020).id}">
+	<input type="hidden" id="propItemId" value="$!{mapPropPre.get($indexCount_1020).id}"/>
+	<input type="hidden" id="controlPropId" value="$!{velocityCount}"/>
+	<input type="hidden" id="propGroupId" value="1"/>
+        <div class="wap_img_upload" image-max-width="$!{floorPlaceRespDTO.placeWidth}" image-max-height="$!{floorPlaceRespDTO.placeHeight}" file-size-limit="$!{floorPlaceRespDTO.placeSize}KB" file-id="$!{mapPropPre.get($indexCount_1020).propValue}" file-url="#genImageUrl($!{mapPropPre.get($indexCount_1020).propValue},'')" >
+        </div>
+    </div>
+<div class="form-block formItem">
+    <label>$!{attrs.get(1015).propName}</label>
+    <div class="input-append">
+    	<input type="hidden" id="propValue" value="$!{mapPropPre.get($indexCount_1015).propValue}"/>
+    	<input type="hidden" id="propValueId" value="$!{mapPropPre.get($indexCount_1015).propValueId}">
+    	<input type="hidden" id="propId" value="$!{attrs.get(1015).id}">
+    	<input type="hidden" id="propItemId" value="$!{mapPropPre.get($indexCount_1015).id}"/>
+		<input type="hidden" id="controlPropId" value="$!{velocityCount}"/>
+		<input type="hidden" id="propGroupId" value="1"/>
+        <input type="text" value="$!{mapPropPre.get($indexCount_1015).propValue}" class="input-block-level link-input-tool #if($!{attrs.get(1015).ifHaveto}=='1')required#end" onKeyDown="CommonModularFloor.inputAssignMent(this);" onkeyup="CommonModularFloor.inputAssignMent(this);" placeholder="如果输入绝对路径,请以http://开头!">
+    </div>
+</div>
+#end

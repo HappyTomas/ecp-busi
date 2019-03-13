@@ -1,0 +1,60 @@
+<div class="seller-box" id="gds-category">
+        <div class="head">
+            <h3>分类信息</h3>
+        </div>
+        <div class="body">
+            <div class="row-fluid">
+                <div class="span4 offset1">
+                    <div class="type-t">
+                        <span class="t">
+                            平台分类
+                        </span>
+                        <a href="#" class="pull-right" id="selptPlat">
+                            <i class="sl-icon icon-add"></i>
+                            添加平台分类
+                        </a>
+                    </div>
+                    <table class="table table-bordered type-tb">
+                        <thead>
+                        <tr>
+                            <th>分类名称</th>
+                            <th>分类类型</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="catagoryList">
+                        <tr>
+							<td id="$!{catgCode}">$!{catgName}</td>
+                            <td id="1">主分类</td>
+                            <td>-</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+				#if($!{GDS_SHOP_CATEGORY}=='1')
+                <div class="span4 offset2">
+                    <div class="type-t">
+                        <span class="t">
+                            商品分类
+                        </span>
+                        <a id="seldpShop" href="#" class="pull-right">
+                            <i class="sl-icon icon-add"></i>
+                            添加商品分类
+                        </a>
+
+                    </div>
+                    <table class="table table-bordered type-tb">
+                        <thead>
+                        <tr>
+                            <th>分类名称</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="shopCatagoryList">
+                        </tbody>
+                    </table>
+                </div>
+				#end
+            </div>
+        </div>
+</div>

@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.busi.GdsExcelImpLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsExcelImpLog" >
+    <id column="IMPORT_ID" property="importId" jdbcType="INTEGER" />
+    <result column="IMPORT_FILE" property="importFile" jdbcType="VARCHAR" />
+    <result column="IMPORT_UUID" property="importUuid" jdbcType="VARCHAR" />
+    <result column="IMPORT_STATUS" property="importStatus" jdbcType="VARCHAR" />
+    <result column="IMPORT_SRC" property="importSrc" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    IMPORT_ID, IMPORT_FILE, IMPORT_UUID, IMPORT_STATUS, IMPORT_SRC, CREATE_TIME, CREATE_STAFF, 
+    UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImpLogCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_gds_excel_imp_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_gds_excel_imp_log
+    where IMPORT_ID = #{importId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_gds_excel_imp_log
+    where IMPORT_ID = #{importId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImpLogCriteria" >
+    delete from t_gds_excel_imp_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImpLog" >
+    insert into t_gds_excel_imp_log (IMPORT_ID, IMPORT_FILE, IMPORT_UUID, 
+      IMPORT_STATUS, IMPORT_SRC, CREATE_TIME, 
+      CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+      )
+    values (#{importId,jdbcType=INTEGER}, #{importFile,jdbcType=VARCHAR}, #{importUuid,jdbcType=VARCHAR}, 
+      #{importStatus,jdbcType=VARCHAR}, #{importSrc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImpLog" >
+    insert into t_gds_excel_imp_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="importId != null" >
+        IMPORT_ID,
+      </if>
+      <if test="importFile != null" >
+        IMPORT_FILE,
+      </if>
+      <if test="importUuid != null" >
+        IMPORT_UUID,
+      </if>
+      <if test="importStatus != null" >
+        IMPORT_STATUS,
+      </if>
+      <if test="importSrc != null" >
+        IMPORT_SRC,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="importId != null" >
+        #{importId,jdbcType=INTEGER},
+      </if>
+      <if test="importFile != null" >
+        #{importFile,jdbcType=VARCHAR},
+      </if>
+      <if test="importUuid != null" >
+        #{importUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="importStatus != null" >
+        #{importStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="importSrc != null" >
+        #{importSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImpLogCriteria" resultType="java.lang.Long" >
+    select count(*) from t_gds_excel_imp_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_gds_excel_imp_log
+    <set >
+      <if test="record.importId != null" >
+        IMPORT_ID = #{record.importId,jdbcType=INTEGER},
+      </if>
+      <if test="record.importFile != null" >
+        IMPORT_FILE = #{record.importFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.importUuid != null" >
+        IMPORT_UUID = #{record.importUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.importStatus != null" >
+        IMPORT_STATUS = #{record.importStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.importSrc != null" >
+        IMPORT_SRC = #{record.importSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_gds_excel_imp_log
+    set IMPORT_ID = #{record.importId,jdbcType=INTEGER},
+      IMPORT_FILE = #{record.importFile,jdbcType=VARCHAR},
+      IMPORT_UUID = #{record.importUuid,jdbcType=VARCHAR},
+      IMPORT_STATUS = #{record.importStatus,jdbcType=VARCHAR},
+      IMPORT_SRC = #{record.importSrc,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImpLog" >
+    update t_gds_excel_imp_log
+    <set >
+      <if test="importFile != null" >
+        IMPORT_FILE = #{importFile,jdbcType=VARCHAR},
+      </if>
+      <if test="importUuid != null" >
+        IMPORT_UUID = #{importUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="importStatus != null" >
+        IMPORT_STATUS = #{importStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="importSrc != null" >
+        IMPORT_SRC = #{importSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where IMPORT_ID = #{importId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImpLog" >
+    update t_gds_excel_imp_log
+    set IMPORT_FILE = #{importFile,jdbcType=VARCHAR},
+      IMPORT_UUID = #{importUuid,jdbcType=VARCHAR},
+      IMPORT_STATUS = #{importStatus,jdbcType=VARCHAR},
+      IMPORT_SRC = #{importSrc,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER}
+    where IMPORT_ID = #{importId,jdbcType=INTEGER}
+  </update>
+</mapper>

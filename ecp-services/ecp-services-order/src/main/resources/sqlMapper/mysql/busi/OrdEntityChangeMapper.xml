@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.OrdEntityChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdEntityChange" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="FROM_TYPE" property="fromType" jdbcType="VARCHAR" />
+    <result column="IMPORT_NO" property="importNo" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="ENTITY_CODE_BF" property="entityCodeBf" jdbcType="VARCHAR" />
+    <result column="ENTITY_CODE_AF" property="entityCodeAf" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SHOP_ID, FROM_TYPE, IMPORT_NO, STATUS, ORDER_ID, ENTITY_CODE_BF, ENTITY_CODE_AF, 
+    REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.OrdEntityChangeCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_ord_entity_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ord_entity_change
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_ord_entity_change
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdEntityChangeCriteria" >
+    delete from t_ord_entity_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.OrdEntityChange" >
+    insert into t_ord_entity_change (ID, SHOP_ID, FROM_TYPE, 
+      IMPORT_NO, STATUS, ORDER_ID, 
+      ENTITY_CODE_BF, ENTITY_CODE_AF, REMARK
+      )
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{fromType,jdbcType=VARCHAR}, 
+      #{importNo,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{entityCodeBf,jdbcType=VARCHAR}, #{entityCodeAf,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.OrdEntityChange" >
+    insert into t_ord_entity_change
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="fromType != null" >
+        FROM_TYPE,
+      </if>
+      <if test="importNo != null" >
+        IMPORT_NO,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="entityCodeBf != null" >
+        ENTITY_CODE_BF,
+      </if>
+      <if test="entityCodeAf != null" >
+        ENTITY_CODE_AF,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="fromType != null" >
+        #{fromType,jdbcType=VARCHAR},
+      </if>
+      <if test="importNo != null" >
+        #{importNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="entityCodeBf != null" >
+        #{entityCodeBf,jdbcType=VARCHAR},
+      </if>
+      <if test="entityCodeAf != null" >
+        #{entityCodeAf,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdEntityChangeCriteria" resultType="java.lang.Long" >
+    select count(*) from t_ord_entity_change
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_ord_entity_change
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fromType != null" >
+        FROM_TYPE = #{record.fromType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.importNo != null" >
+        IMPORT_NO = #{record.importNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entityCodeBf != null" >
+        ENTITY_CODE_BF = #{record.entityCodeBf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entityCodeAf != null" >
+        ENTITY_CODE_AF = #{record.entityCodeAf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_ord_entity_change
+    set ID = #{record.id,jdbcType=INTEGER},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      FROM_TYPE = #{record.fromType,jdbcType=VARCHAR},
+      IMPORT_NO = #{record.importNo,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      ENTITY_CODE_BF = #{record.entityCodeBf,jdbcType=VARCHAR},
+      ENTITY_CODE_AF = #{record.entityCodeAf,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.OrdEntityChange" >
+    update t_ord_entity_change
+    <set >
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="fromType != null" >
+        FROM_TYPE = #{fromType,jdbcType=VARCHAR},
+      </if>
+      <if test="importNo != null" >
+        IMPORT_NO = #{importNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="entityCodeBf != null" >
+        ENTITY_CODE_BF = #{entityCodeBf,jdbcType=VARCHAR},
+      </if>
+      <if test="entityCodeAf != null" >
+        ENTITY_CODE_AF = #{entityCodeAf,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.OrdEntityChange" >
+    update t_ord_entity_change
+    set SHOP_ID = #{shopId,jdbcType=INTEGER},
+      FROM_TYPE = #{fromType,jdbcType=VARCHAR},
+      IMPORT_NO = #{importNo,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=VARCHAR},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      ENTITY_CODE_BF = #{entityCodeBf,jdbcType=VARCHAR},
+      ENTITY_CODE_AF = #{entityCodeAf,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

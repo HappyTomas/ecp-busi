@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.PayIntfNotifyLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.PayIntfNotifyLog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PAY_WAY" property="payWay" jdbcType="VARCHAR" />
+    <result column="TYPE_CODE" property="typeCode" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="PAYWAY_REQUEST_NO" property="paywayRequestNo" jdbcType="VARCHAR" />
+    <result column="REQUEST_TIME" property="requestTime" jdbcType="TIMESTAMP" />
+    <result column="RESPONSE_TIME" property="responseTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zengshi.ecp.order.dao.model.PayIntfNotifyLogWithBLOBs" extends="BaseResultMap" >
+    <result column="REQUEST_MSG" property="requestMsg" jdbcType="LONGVARCHAR" />
+    <result column="RESPONSE_MSG" property="responseMsg" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PAY_WAY, TYPE_CODE, ORDER_ID, STAFF_ID, PAYWAY_REQUEST_NO, REQUEST_TIME, RESPONSE_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    REQUEST_MSG, RESPONSE_MSG
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zengshi.ecp.order.dao.model.PayIntfNotifyLogCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_pay_intf_notifylog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.PayIntfNotifyLogCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_pay_intf_notifylog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_pay_intf_notifylog
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_pay_intf_notifylog
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.PayIntfNotifyLogCriteria" >
+    delete from t_pay_intf_notifylog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.PayIntfNotifyLogWithBLOBs" >
+    insert into t_pay_intf_notifylog (ID, PAY_WAY, TYPE_CODE, 
+      ORDER_ID, STAFF_ID, PAYWAY_REQUEST_NO, 
+      REQUEST_TIME, RESPONSE_TIME, REQUEST_MSG, 
+      RESPONSE_MSG)
+    values (#{id,jdbcType=INTEGER}, #{payWay,jdbcType=VARCHAR}, #{typeCode,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=VARCHAR}, #{staffId,jdbcType=INTEGER}, #{paywayRequestNo,jdbcType=VARCHAR}, 
+      #{requestTime,jdbcType=TIMESTAMP}, #{responseTime,jdbcType=TIMESTAMP}, #{requestMsg,jdbcType=LONGVARCHAR}, 
+      #{responseMsg,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.PayIntfNotifyLogWithBLOBs" >
+    insert into t_pay_intf_notifylog
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY,
+      </if>
+      <if test="typeCode != null" >
+        TYPE_CODE,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="paywayRequestNo != null" >
+        PAYWAY_REQUEST_NO,
+      </if>
+      <if test="requestTime != null" >
+        REQUEST_TIME,
+      </if>
+      <if test="responseTime != null" >
+        RESPONSE_TIME,
+      </if>
+      <if test="requestMsg != null" >
+        REQUEST_MSG,
+      </if>
+      <if test="responseMsg != null" >
+        RESPONSE_MSG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="payWay != null" >
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null" >
+        #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="paywayRequestNo != null" >
+        #{paywayRequestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestTime != null" >
+        #{requestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="responseTime != null" >
+        #{responseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requestMsg != null" >
+        #{requestMsg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="responseMsg != null" >
+        #{responseMsg,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.PayIntfNotifyLogCriteria" resultType="java.lang.Long" >
+    select count(*) from t_pay_intf_notifylog
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_pay_intf_notifylog
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.payWay != null" >
+        PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeCode != null" >
+        TYPE_CODE = #{record.typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.paywayRequestNo != null" >
+        PAYWAY_REQUEST_NO = #{record.paywayRequestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.requestTime != null" >
+        REQUEST_TIME = #{record.requestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.responseTime != null" >
+        RESPONSE_TIME = #{record.responseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.requestMsg != null" >
+        REQUEST_MSG = #{record.requestMsg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.responseMsg != null" >
+        RESPONSE_MSG = #{record.responseMsg,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_pay_intf_notifylog
+    set ID = #{record.id,jdbcType=INTEGER},
+      PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      TYPE_CODE = #{record.typeCode,jdbcType=VARCHAR},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      PAYWAY_REQUEST_NO = #{record.paywayRequestNo,jdbcType=VARCHAR},
+      REQUEST_TIME = #{record.requestTime,jdbcType=TIMESTAMP},
+      RESPONSE_TIME = #{record.responseTime,jdbcType=TIMESTAMP},
+      REQUEST_MSG = #{record.requestMsg,jdbcType=LONGVARCHAR},
+      RESPONSE_MSG = #{record.responseMsg,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_pay_intf_notifylog
+    set ID = #{record.id,jdbcType=INTEGER},
+      PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      TYPE_CODE = #{record.typeCode,jdbcType=VARCHAR},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      PAYWAY_REQUEST_NO = #{record.paywayRequestNo,jdbcType=VARCHAR},
+      REQUEST_TIME = #{record.requestTime,jdbcType=TIMESTAMP},
+      RESPONSE_TIME = #{record.responseTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.PayIntfNotifyLogWithBLOBs" >
+    update t_pay_intf_notifylog
+    <set >
+      <if test="payWay != null" >
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="typeCode != null" >
+        TYPE_CODE = #{typeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="paywayRequestNo != null" >
+        PAYWAY_REQUEST_NO = #{paywayRequestNo,jdbcType=VARCHAR},
+      </if>
+      <if test="requestTime != null" >
+        REQUEST_TIME = #{requestTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="responseTime != null" >
+        RESPONSE_TIME = #{responseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="requestMsg != null" >
+        REQUEST_MSG = #{requestMsg,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="responseMsg != null" >
+        RESPONSE_MSG = #{responseMsg,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zengshi.ecp.order.dao.model.PayIntfNotifyLogWithBLOBs" >
+    update t_pay_intf_notifylog
+    set PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      TYPE_CODE = #{typeCode,jdbcType=VARCHAR},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      STAFF_ID = #{staffId,jdbcType=INTEGER},
+      PAYWAY_REQUEST_NO = #{paywayRequestNo,jdbcType=VARCHAR},
+      REQUEST_TIME = #{requestTime,jdbcType=TIMESTAMP},
+      RESPONSE_TIME = #{responseTime,jdbcType=TIMESTAMP},
+      REQUEST_MSG = #{requestMsg,jdbcType=LONGVARCHAR},
+      RESPONSE_MSG = #{responseMsg,jdbcType=LONGVARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.PayIntfNotifyLog" >
+    update t_pay_intf_notifylog
+    set PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      TYPE_CODE = #{typeCode,jdbcType=VARCHAR},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      STAFF_ID = #{staffId,jdbcType=INTEGER},
+      PAYWAY_REQUEST_NO = #{paywayRequestNo,jdbcType=VARCHAR},
+      REQUEST_TIME = #{requestTime,jdbcType=TIMESTAMP},
+      RESPONSE_TIME = #{responseTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

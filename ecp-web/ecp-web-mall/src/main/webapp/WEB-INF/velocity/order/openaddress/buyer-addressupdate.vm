@@ -1,0 +1,9 @@
+#parse("/module/mod-form.vm")
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/css/style.css"/>
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/css/style_extend.css"/>
+<link rel="Stylesheet" type="text/css" href="$!{CSS_PATH}/reset.css">
+<link rel="Stylesheet" type="text/css" href="$!{CSS_PATH}/pay.css">
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.validate.html.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/openaddress/buyer-addressupdate.js"></script>
+#parse("/order/openaddress/buyer-addr.vm")

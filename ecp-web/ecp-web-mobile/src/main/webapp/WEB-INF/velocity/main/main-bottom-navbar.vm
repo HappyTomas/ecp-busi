@@ -1,0 +1,72 @@
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-bottom-navbar.js?version=$!{JS_VERSION}"></script>
+<!-- Navbar -->
+#set($bottomSiteId = '1')
+#if($!{session.getAttribute('currSiteId')} == '2')
+	#set($bottomSiteId = '2')
+#else
+	#set($bottomSiteId = '1')
+#end
+<div data-am-widget="navbar" class="am-navbar am-cf am-navbar-mall" id="main_navbar">
+    <input type="hidden" class="bottom-site-id" value="$!{bottomSiteId}" />
+    <ul class="am-navbar-nav am-cf am-avg-sm-4">
+    	#if(${bottomSiteId} == '2')
+    		<li class="active">
+	            <a href="javascript:void(0);" lazy-href="#translate('CMS_SITE_MAPPING','2')/homepage" linkkey="homepage">
+	                <span class="iconfont icon-home"></span>
+	                <span class="am-navbar-label">积分首页</span>
+	            </a>
+	        </li>
+	        <li>
+	            <a href="javascript:void(0);" lazy-href="#translate('CMS_SITE_MAPPING','2')/category" linkkey="category">
+	                <span class="iconfont icon-type"></span>
+	                <span class="am-navbar-label">积分分类</span>
+	            </a>
+	        </li>
+	        <li>
+	            <a href="javascript:void(0);" lazy-href="#translate('CMS_SITE_MAPPING','2')/ranking" linkkey="ranking">
+	                <span class="iconfont icon-phb"></span>
+	                <span class="am-navbar-label">积分排行榜</span>
+	            </a>
+	        </li>
+	        <li>
+	            <a href="javascript:void(0);" lazy-href="#translate('CMS_SITE_MAPPING','2')/point/order/cart/list" linkkey="cart">
+	                <span class="iconfont icon-cart"></span>
+	                <span class="am-navbar-label">积分购物车</span>
+	            </a>
+	        </li>
+    	#else
+    		<li class="active">
+	            <a href="javascript:void(0);" lazy-href="#translate('CMS_SITE_MAPPING','1')/homepage" linkkey="homepage">
+	                <span class="iconfont icon-home"></span>
+	                <span class="am-navbar-label">首页</span>
+	            </a>
+	        </li>
+	        <li>
+	            <a href="javascript:void(0);" lazy-href="#translate('CMS_SITE_MAPPING','1')/category" linkkey="category">
+	                <span class="iconfont icon-type"></span>
+	                <span class="am-navbar-label">分类</span>
+	            </a>
+	        </li>
+	        <li>
+	            <a href="javascript:void(0);" lazy-href="#translate('CMS_SITE_MAPPING','1')/ranking" linkkey="ranking">
+	                <span class="iconfont icon-phb"></span>
+	                <span class="am-navbar-label">排行榜</span>
+	            </a>
+	        </li>
+	        <li>
+	            <a href="javascript:void(0);" lazy-href="#translate('CMS_SITE_MAPPING','1')/order/cart/list" linkkey="cart">
+	                <span class="iconfont icon-cart"></span>
+	                <span class="am-navbar-label">购物车</span>
+	            </a>
+				<span class="num-tip" style="display:none"></span>
+	        </li>
+    	#end
+        
+        <li>
+            <a href="javascript:void(0);" lazy-href="#translate('CMS_SITE_MAPPING','1')/member/index?siteFlag=$!{bottomSiteId}" linkkey="member">
+                <span class="iconfont icon-member"></span>
+                <span class="am-navbar-label">个人中心</span>
+            </a>
+        </li>
+    </ul>
+</div>

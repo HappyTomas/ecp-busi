@@ -1,0 +1,662 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.common.ShopPayWayMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.PayWay" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="PAY_WAY_NAME" property="payWayName" jdbcType="VARCHAR" />
+    <result column="PAY_WAY_TYPE" property="payWayType" jdbcType="VARCHAR" />
+    <result column="PAY_ACCT_TYPE" property="payAcctType" jdbcType="VARCHAR" />
+    <result column="PAY_IMAGE" property="payImage" jdbcType="VARCHAR" />
+    <result column="PAY_LOGO" property="payLogo" jdbcType="VARCHAR" />
+    <result column="CHAR_SET" property="charSet" jdbcType="VARCHAR" />
+    <result column="PAY_ACTION_URL" property="payActionUrl" jdbcType="VARCHAR" />
+    <result column="PAY_QUERY_URL" property="payQueryUrl" jdbcType="VARCHAR" />
+    <result column="PAY_REFUND_URL" property="payRefundUrl" jdbcType="VARCHAR" />
+    <result column="BIND_URL" property="bindUrl" jdbcType="VARCHAR" />
+    <result column="BIND_TRANSFER_URL" property="bindTransferUrl" jdbcType="VARCHAR" />
+    <result column="PAY_RETURN_URL" property="payReturnUrl" jdbcType="VARCHAR" />
+    <result column="PAY_NOTIFY_URL" property="payNotifyUrl" jdbcType="VARCHAR" />
+    <result column="PAY_BIND_NOTIFY_URL" property="payBindNotifyUrl" jdbcType="VARCHAR" />
+    <result column="PAY_REFUND_NOTIFY_URL" property="payRefundNotifyUrl" jdbcType="VARCHAR" />
+    <result column="PAY_ERROR_URL" property="payErrorUrl" jdbcType="VARCHAR" />
+    <result column="SIGN_TYPE" property="signType" jdbcType="VARCHAR" />
+    <result column="PAY_MERC_CODE" property="payMercCode" jdbcType="VARCHAR" />
+    <result column="PAY_PRIVATE_KEY" property="payPrivateKey" jdbcType="VARCHAR" />
+    <result column="PAY_PRIVATE_USER" property="payPrivateUser" jdbcType="VARCHAR" />
+    <result column="PAY_PRIVATE_PASSWD" property="payPrivatePasswd" jdbcType="VARCHAR" />
+    <result column="PAY_VERIFY_CERT" property="payVerifyCert" jdbcType="VARCHAR" />
+    <result column="PROPERTY_FILE" property="propertyFile" jdbcType="VARCHAR" />
+    <result column="LOG_FILE_URL" property="logFileUrl" jdbcType="VARCHAR" />
+    <result column="SHOW_ORDER" property="showOrder" jdbcType="INTEGER" />
+    <result column="USE_FLAG" property="useFlag" jdbcType="VARCHAR" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="PAY_AUDIT_URL" property="payAuditUrl" jdbcType="VARCHAR" />
+    <result column="PAY_REFUND_METHOD" property="payRefundMethod" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PAY_WAY_NAME, PAY_WAY_TYPE, PAY_ACCT_TYPE, PAY_IMAGE, PAY_LOGO, CHAR_SET, PAY_ACTION_URL, 
+    PAY_QUERY_URL, PAY_REFUND_URL, BIND_URL, BIND_TRANSFER_URL, PAY_RETURN_URL, PAY_NOTIFY_URL, 
+    PAY_BIND_NOTIFY_URL, PAY_REFUND_NOTIFY_URL, PAY_ERROR_URL, SIGN_TYPE, PAY_MERC_CODE, 
+    PAY_PRIVATE_KEY, PAY_PRIVATE_USER, PAY_PRIVATE_PASSWD, PAY_VERIFY_CERT, PROPERTY_FILE, 
+    LOG_FILE_URL, SHOW_ORDER, USE_FLAG, CREATE_STAFF, CREATE_TIME, UPDATE_STAFF, UPDATE_TIME, 
+    PAY_AUDIT_URL, PAY_REFUND_METHOD
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.PayWayCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_pay_way
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_pay_way
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_pay_way
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.PayWayCriteria" >
+    delete from t_pay_way
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.PayWay" >
+    insert into t_pay_way (ID, PAY_WAY_NAME, PAY_WAY_TYPE, 
+      PAY_ACCT_TYPE, PAY_IMAGE, PAY_LOGO, 
+      CHAR_SET, PAY_ACTION_URL, PAY_QUERY_URL, 
+      PAY_REFUND_URL, BIND_URL, BIND_TRANSFER_URL, 
+      PAY_RETURN_URL, PAY_NOTIFY_URL, PAY_BIND_NOTIFY_URL, 
+      PAY_REFUND_NOTIFY_URL, PAY_ERROR_URL, SIGN_TYPE, 
+      PAY_MERC_CODE, PAY_PRIVATE_KEY, PAY_PRIVATE_USER, 
+      PAY_PRIVATE_PASSWD, PAY_VERIFY_CERT, PROPERTY_FILE, 
+      LOG_FILE_URL, SHOW_ORDER, USE_FLAG, 
+      CREATE_STAFF, CREATE_TIME, UPDATE_STAFF, 
+      UPDATE_TIME, PAY_AUDIT_URL, PAY_REFUND_METHOD
+      )
+    values (#{id,jdbcType=VARCHAR}, #{payWayName,jdbcType=VARCHAR}, #{payWayType,jdbcType=VARCHAR}, 
+      #{payAcctType,jdbcType=VARCHAR}, #{payImage,jdbcType=VARCHAR}, #{payLogo,jdbcType=VARCHAR}, 
+      #{charSet,jdbcType=VARCHAR}, #{payActionUrl,jdbcType=VARCHAR}, #{payQueryUrl,jdbcType=VARCHAR}, 
+      #{payRefundUrl,jdbcType=VARCHAR}, #{bindUrl,jdbcType=VARCHAR}, #{bindTransferUrl,jdbcType=VARCHAR}, 
+      #{payReturnUrl,jdbcType=VARCHAR}, #{payNotifyUrl,jdbcType=VARCHAR}, #{payBindNotifyUrl,jdbcType=VARCHAR}, 
+      #{payRefundNotifyUrl,jdbcType=VARCHAR}, #{payErrorUrl,jdbcType=VARCHAR}, #{signType,jdbcType=VARCHAR}, 
+      #{payMercCode,jdbcType=VARCHAR}, #{payPrivateKey,jdbcType=VARCHAR}, #{payPrivateUser,jdbcType=VARCHAR}, 
+      #{payPrivatePasswd,jdbcType=VARCHAR}, #{payVerifyCert,jdbcType=VARCHAR}, #{propertyFile,jdbcType=VARCHAR}, 
+      #{logFileUrl,jdbcType=VARCHAR}, #{showOrder,jdbcType=INTEGER}, #{useFlag,jdbcType=VARCHAR}, 
+      #{createStaff,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{payAuditUrl,jdbcType=VARCHAR}, #{payRefundMethod,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.PayWay" >
+    insert into t_pay_way
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="payWayName != null" >
+        PAY_WAY_NAME,
+      </if>
+      <if test="payWayType != null" >
+        PAY_WAY_TYPE,
+      </if>
+      <if test="payAcctType != null" >
+        PAY_ACCT_TYPE,
+      </if>
+      <if test="payImage != null" >
+        PAY_IMAGE,
+      </if>
+      <if test="payLogo != null" >
+        PAY_LOGO,
+      </if>
+      <if test="charSet != null" >
+        CHAR_SET,
+      </if>
+      <if test="payActionUrl != null" >
+        PAY_ACTION_URL,
+      </if>
+      <if test="payQueryUrl != null" >
+        PAY_QUERY_URL,
+      </if>
+      <if test="payRefundUrl != null" >
+        PAY_REFUND_URL,
+      </if>
+      <if test="bindUrl != null" >
+        BIND_URL,
+      </if>
+      <if test="bindTransferUrl != null" >
+        BIND_TRANSFER_URL,
+      </if>
+      <if test="payReturnUrl != null" >
+        PAY_RETURN_URL,
+      </if>
+      <if test="payNotifyUrl != null" >
+        PAY_NOTIFY_URL,
+      </if>
+      <if test="payBindNotifyUrl != null" >
+        PAY_BIND_NOTIFY_URL,
+      </if>
+      <if test="payRefundNotifyUrl != null" >
+        PAY_REFUND_NOTIFY_URL,
+      </if>
+      <if test="payErrorUrl != null" >
+        PAY_ERROR_URL,
+      </if>
+      <if test="signType != null" >
+        SIGN_TYPE,
+      </if>
+      <if test="payMercCode != null" >
+        PAY_MERC_CODE,
+      </if>
+      <if test="payPrivateKey != null" >
+        PAY_PRIVATE_KEY,
+      </if>
+      <if test="payPrivateUser != null" >
+        PAY_PRIVATE_USER,
+      </if>
+      <if test="payPrivatePasswd != null" >
+        PAY_PRIVATE_PASSWD,
+      </if>
+      <if test="payVerifyCert != null" >
+        PAY_VERIFY_CERT,
+      </if>
+      <if test="propertyFile != null" >
+        PROPERTY_FILE,
+      </if>
+      <if test="logFileUrl != null" >
+        LOG_FILE_URL,
+      </if>
+      <if test="showOrder != null" >
+        SHOW_ORDER,
+      </if>
+      <if test="useFlag != null" >
+        USE_FLAG,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="payAuditUrl != null" >
+        PAY_AUDIT_URL,
+      </if>
+      <if test="payRefundMethod != null" >
+        PAY_REFUND_METHOD,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="payWayName != null" >
+        #{payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="payWayType != null" >
+        #{payWayType,jdbcType=VARCHAR},
+      </if>
+      <if test="payAcctType != null" >
+        #{payAcctType,jdbcType=VARCHAR},
+      </if>
+      <if test="payImage != null" >
+        #{payImage,jdbcType=VARCHAR},
+      </if>
+      <if test="payLogo != null" >
+        #{payLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="charSet != null" >
+        #{charSet,jdbcType=VARCHAR},
+      </if>
+      <if test="payActionUrl != null" >
+        #{payActionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payQueryUrl != null" >
+        #{payQueryUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payRefundUrl != null" >
+        #{payRefundUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bindUrl != null" >
+        #{bindUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTransferUrl != null" >
+        #{bindTransferUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payReturnUrl != null" >
+        #{payReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payNotifyUrl != null" >
+        #{payNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payBindNotifyUrl != null" >
+        #{payBindNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payRefundNotifyUrl != null" >
+        #{payRefundNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payErrorUrl != null" >
+        #{payErrorUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null" >
+        #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="payMercCode != null" >
+        #{payMercCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payPrivateKey != null" >
+        #{payPrivateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="payPrivateUser != null" >
+        #{payPrivateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="payPrivatePasswd != null" >
+        #{payPrivatePasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="payVerifyCert != null" >
+        #{payVerifyCert,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyFile != null" >
+        #{propertyFile,jdbcType=VARCHAR},
+      </if>
+      <if test="logFileUrl != null" >
+        #{logFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="showOrder != null" >
+        #{showOrder,jdbcType=INTEGER},
+      </if>
+      <if test="useFlag != null" >
+        #{useFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payAuditUrl != null" >
+        #{payAuditUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payRefundMethod != null" >
+        #{payRefundMethod,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.PayWayCriteria" resultType="java.lang.Long" >
+    select count(*) from t_pay_way
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_pay_way
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payWayName != null" >
+        PAY_WAY_NAME = #{record.payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payWayType != null" >
+        PAY_WAY_TYPE = #{record.payWayType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payAcctType != null" >
+        PAY_ACCT_TYPE = #{record.payAcctType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payImage != null" >
+        PAY_IMAGE = #{record.payImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payLogo != null" >
+        PAY_LOGO = #{record.payLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.charSet != null" >
+        CHAR_SET = #{record.charSet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payActionUrl != null" >
+        PAY_ACTION_URL = #{record.payActionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payQueryUrl != null" >
+        PAY_QUERY_URL = #{record.payQueryUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payRefundUrl != null" >
+        PAY_REFUND_URL = #{record.payRefundUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bindUrl != null" >
+        BIND_URL = #{record.bindUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bindTransferUrl != null" >
+        BIND_TRANSFER_URL = #{record.bindTransferUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payReturnUrl != null" >
+        PAY_RETURN_URL = #{record.payReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payNotifyUrl != null" >
+        PAY_NOTIFY_URL = #{record.payNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payBindNotifyUrl != null" >
+        PAY_BIND_NOTIFY_URL = #{record.payBindNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payRefundNotifyUrl != null" >
+        PAY_REFUND_NOTIFY_URL = #{record.payRefundNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payErrorUrl != null" >
+        PAY_ERROR_URL = #{record.payErrorUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signType != null" >
+        SIGN_TYPE = #{record.signType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payMercCode != null" >
+        PAY_MERC_CODE = #{record.payMercCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payPrivateKey != null" >
+        PAY_PRIVATE_KEY = #{record.payPrivateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payPrivateUser != null" >
+        PAY_PRIVATE_USER = #{record.payPrivateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payPrivatePasswd != null" >
+        PAY_PRIVATE_PASSWD = #{record.payPrivatePasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payVerifyCert != null" >
+        PAY_VERIFY_CERT = #{record.payVerifyCert,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propertyFile != null" >
+        PROPERTY_FILE = #{record.propertyFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.logFileUrl != null" >
+        LOG_FILE_URL = #{record.logFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showOrder != null" >
+        SHOW_ORDER = #{record.showOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.useFlag != null" >
+        USE_FLAG = #{record.useFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.payAuditUrl != null" >
+        PAY_AUDIT_URL = #{record.payAuditUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payRefundMethod != null" >
+        PAY_REFUND_METHOD = #{record.payRefundMethod,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_pay_way
+    set ID = #{record.id,jdbcType=VARCHAR},
+      PAY_WAY_NAME = #{record.payWayName,jdbcType=VARCHAR},
+      PAY_WAY_TYPE = #{record.payWayType,jdbcType=VARCHAR},
+      PAY_ACCT_TYPE = #{record.payAcctType,jdbcType=VARCHAR},
+      PAY_IMAGE = #{record.payImage,jdbcType=VARCHAR},
+      PAY_LOGO = #{record.payLogo,jdbcType=VARCHAR},
+      CHAR_SET = #{record.charSet,jdbcType=VARCHAR},
+      PAY_ACTION_URL = #{record.payActionUrl,jdbcType=VARCHAR},
+      PAY_QUERY_URL = #{record.payQueryUrl,jdbcType=VARCHAR},
+      PAY_REFUND_URL = #{record.payRefundUrl,jdbcType=VARCHAR},
+      BIND_URL = #{record.bindUrl,jdbcType=VARCHAR},
+      BIND_TRANSFER_URL = #{record.bindTransferUrl,jdbcType=VARCHAR},
+      PAY_RETURN_URL = #{record.payReturnUrl,jdbcType=VARCHAR},
+      PAY_NOTIFY_URL = #{record.payNotifyUrl,jdbcType=VARCHAR},
+      PAY_BIND_NOTIFY_URL = #{record.payBindNotifyUrl,jdbcType=VARCHAR},
+      PAY_REFUND_NOTIFY_URL = #{record.payRefundNotifyUrl,jdbcType=VARCHAR},
+      PAY_ERROR_URL = #{record.payErrorUrl,jdbcType=VARCHAR},
+      SIGN_TYPE = #{record.signType,jdbcType=VARCHAR},
+      PAY_MERC_CODE = #{record.payMercCode,jdbcType=VARCHAR},
+      PAY_PRIVATE_KEY = #{record.payPrivateKey,jdbcType=VARCHAR},
+      PAY_PRIVATE_USER = #{record.payPrivateUser,jdbcType=VARCHAR},
+      PAY_PRIVATE_PASSWD = #{record.payPrivatePasswd,jdbcType=VARCHAR},
+      PAY_VERIFY_CERT = #{record.payVerifyCert,jdbcType=VARCHAR},
+      PROPERTY_FILE = #{record.propertyFile,jdbcType=VARCHAR},
+      LOG_FILE_URL = #{record.logFileUrl,jdbcType=VARCHAR},
+      SHOW_ORDER = #{record.showOrder,jdbcType=INTEGER},
+      USE_FLAG = #{record.useFlag,jdbcType=VARCHAR},
+      CREATE_STAFF = #{record.createStaff,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      PAY_AUDIT_URL = #{record.payAuditUrl,jdbcType=VARCHAR},
+      PAY_REFUND_METHOD = #{record.payRefundMethod,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.PayWay" >
+    update t_pay_way
+    <set >
+      <if test="payWayName != null" >
+        PAY_WAY_NAME = #{payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="payWayType != null" >
+        PAY_WAY_TYPE = #{payWayType,jdbcType=VARCHAR},
+      </if>
+      <if test="payAcctType != null" >
+        PAY_ACCT_TYPE = #{payAcctType,jdbcType=VARCHAR},
+      </if>
+      <if test="payImage != null" >
+        PAY_IMAGE = #{payImage,jdbcType=VARCHAR},
+      </if>
+      <if test="payLogo != null" >
+        PAY_LOGO = #{payLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="charSet != null" >
+        CHAR_SET = #{charSet,jdbcType=VARCHAR},
+      </if>
+      <if test="payActionUrl != null" >
+        PAY_ACTION_URL = #{payActionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payQueryUrl != null" >
+        PAY_QUERY_URL = #{payQueryUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payRefundUrl != null" >
+        PAY_REFUND_URL = #{payRefundUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bindUrl != null" >
+        BIND_URL = #{bindUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTransferUrl != null" >
+        BIND_TRANSFER_URL = #{bindTransferUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payReturnUrl != null" >
+        PAY_RETURN_URL = #{payReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payNotifyUrl != null" >
+        PAY_NOTIFY_URL = #{payNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payBindNotifyUrl != null" >
+        PAY_BIND_NOTIFY_URL = #{payBindNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payRefundNotifyUrl != null" >
+        PAY_REFUND_NOTIFY_URL = #{payRefundNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payErrorUrl != null" >
+        PAY_ERROR_URL = #{payErrorUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="signType != null" >
+        SIGN_TYPE = #{signType,jdbcType=VARCHAR},
+      </if>
+      <if test="payMercCode != null" >
+        PAY_MERC_CODE = #{payMercCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payPrivateKey != null" >
+        PAY_PRIVATE_KEY = #{payPrivateKey,jdbcType=VARCHAR},
+      </if>
+      <if test="payPrivateUser != null" >
+        PAY_PRIVATE_USER = #{payPrivateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="payPrivatePasswd != null" >
+        PAY_PRIVATE_PASSWD = #{payPrivatePasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="payVerifyCert != null" >
+        PAY_VERIFY_CERT = #{payVerifyCert,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyFile != null" >
+        PROPERTY_FILE = #{propertyFile,jdbcType=VARCHAR},
+      </if>
+      <if test="logFileUrl != null" >
+        LOG_FILE_URL = #{logFileUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="showOrder != null" >
+        SHOW_ORDER = #{showOrder,jdbcType=INTEGER},
+      </if>
+      <if test="useFlag != null" >
+        USE_FLAG = #{useFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payAuditUrl != null" >
+        PAY_AUDIT_URL = #{payAuditUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payRefundMethod != null" >
+        PAY_REFUND_METHOD = #{payRefundMethod,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.PayWay" >
+    update t_pay_way
+    set PAY_WAY_NAME = #{payWayName,jdbcType=VARCHAR},
+      PAY_WAY_TYPE = #{payWayType,jdbcType=VARCHAR},
+      PAY_ACCT_TYPE = #{payAcctType,jdbcType=VARCHAR},
+      PAY_IMAGE = #{payImage,jdbcType=VARCHAR},
+      PAY_LOGO = #{payLogo,jdbcType=VARCHAR},
+      CHAR_SET = #{charSet,jdbcType=VARCHAR},
+      PAY_ACTION_URL = #{payActionUrl,jdbcType=VARCHAR},
+      PAY_QUERY_URL = #{payQueryUrl,jdbcType=VARCHAR},
+      PAY_REFUND_URL = #{payRefundUrl,jdbcType=VARCHAR},
+      BIND_URL = #{bindUrl,jdbcType=VARCHAR},
+      BIND_TRANSFER_URL = #{bindTransferUrl,jdbcType=VARCHAR},
+      PAY_RETURN_URL = #{payReturnUrl,jdbcType=VARCHAR},
+      PAY_NOTIFY_URL = #{payNotifyUrl,jdbcType=VARCHAR},
+      PAY_BIND_NOTIFY_URL = #{payBindNotifyUrl,jdbcType=VARCHAR},
+      PAY_REFUND_NOTIFY_URL = #{payRefundNotifyUrl,jdbcType=VARCHAR},
+      PAY_ERROR_URL = #{payErrorUrl,jdbcType=VARCHAR},
+      SIGN_TYPE = #{signType,jdbcType=VARCHAR},
+      PAY_MERC_CODE = #{payMercCode,jdbcType=VARCHAR},
+      PAY_PRIVATE_KEY = #{payPrivateKey,jdbcType=VARCHAR},
+      PAY_PRIVATE_USER = #{payPrivateUser,jdbcType=VARCHAR},
+      PAY_PRIVATE_PASSWD = #{payPrivatePasswd,jdbcType=VARCHAR},
+      PAY_VERIFY_CERT = #{payVerifyCert,jdbcType=VARCHAR},
+      PROPERTY_FILE = #{propertyFile,jdbcType=VARCHAR},
+      LOG_FILE_URL = #{logFileUrl,jdbcType=VARCHAR},
+      SHOW_ORDER = #{showOrder,jdbcType=INTEGER},
+      USE_FLAG = #{useFlag,jdbcType=VARCHAR},
+      CREATE_STAFF = #{createStaff,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      PAY_AUDIT_URL = #{payAuditUrl,jdbcType=VARCHAR},
+      PAY_REFUND_METHOD = #{payRefundMethod,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

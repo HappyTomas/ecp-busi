@@ -1,0 +1,354 @@
+#parse("sys/sys_param.vm")
+<link rel="stylesheet" type="text/css" media="screen" href="$CSS_PATH/reset.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="$CSS_PATH/member.css"/>
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+<script type="text/javascript" src="$RESOURCE_PATH/jquery/slides/slides.jquery.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/staff/buyer-center.js"></script>
+<!--content-->
+
+            
+
+            <!--会员中心-->
+            <div id="main">
+                <div class="user-info">
+                    <div class="user-base">
+                        <div class="uimg">
+                        	#if(${custPic})
+								<img width="110" height="110" src="#genImageUrl(${custPic},'220x220')" />
+							#else
+								<img width="110" height="110" src="../images/mb-defuser.png" />
+							#end
+                            <input type="hidden" id="defaultImageUrl" name="defaultImageUrl" value="${defaultImageUrl}" />
+                        </div>
+						 <span id="staffCode" style="display:none">$!{nickname}</span>
+                        <div class="umsg">
+                            <div>
+                               <span class="uqq">
+                                   <font size="5">$!{nickname}</font> ，您好!
+                               </span>
+                            </div>
+                            <div>
+                                <label style="cursor:default">
+                                    	会员等级：
+                                </label>
+                              <span>
+                              		#custLevelCode($!{custLevelCode},'STAFF_CUST_LEVEL')#translate('STAFF_CUST_LEVEL',$!{custLevelCode})
+                              </span>
+                              &nbsp;&nbsp;&nbsp;
+                              <a href="$CONTEXT_PATH/information/index">资料修改</a>
+                            </div>
+                            <div>
+                                <label style="cursor:default">
+                                  	  账号安全级别：
+                                </label>
+                              <span class="level1">
+                                 	 $!{securityLevel}
+                              </span>&nbsp;&nbsp;
+                                	#if($!{isPhoneBind} == 'true')
+	                                	<i class="mb-icon key-phone" >
+	                                    </i><a href="$CONTEXT_PATH/buyer/check/phone" style="cursor:hand">变更手机</a>
+                                	#else
+                                		<i class="mb-icon key-phone01">
+                                    	</i>
+                                    	<a href="$CONTEXT_PATH/buyer/check/phone" style="cursor:hand">绑定手机</a>
+                                	#end
+                                &nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:default">
+                                	#if($!{isEmailBind} == 'true')
+                                		<i class="mb-icon key-email">
+                                    	</i>邮箱已绑定
+                                	#else
+                                		<i class="mb-icon key-email01">
+	                                    </i>
+	                                   	 <a href="$CONTEXT_PATH/buyer/check/mail" style="cursor:hand">绑定邮箱</a>
+                                	#end
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="user-assets">
+                        <h3 class="head">
+                            	我的资产
+                        </h3>
+
+                        <div class="body">
+                            <div class="wait-list">
+                                <ul>
+                                    <li>
+                                        <a href="$CONTEXT_PATH/order/pay">
+                                            <i class="wait-icon wait-fk">
+                                            </i>
+                                           	 待付款 <b class="c-red" id="orderPay">0</b>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="$CONTEXT_PATH/order/send">
+                                            <i class="wait-icon wait-pj">
+                                            </i>
+                                           	 待发货 <b class="c-red" id="orderSend">0</b>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="$CONTEXT_PATH/order/recept">
+                                            <i class="wait-icon wait-sk">
+                                            </i>
+                                           	 待收货 <b class="c-red" id="orderRecept">0</b>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="$CONTEXT_PATH/order/recepted">
+                                            <i class="wait-icon wait-zt">
+                                            </i>
+                                            	已收货 <b class="c-red" id="orderRecepted">0</b>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="asset2">
+                                <ul>
+                                    
+                                    <li>
+                                        <label style="cursor:default">我的积分：</label>
+                                     <a href="$CONTEXT_PATH/buyerscore/index">
+	                                     <span class="c-red" id="myScore">
+	                                         0
+	                                     </span>
+                                     </a>
+                                    </li>
+                                    <li>
+                                        <label style="cursor:default">账户余额：</label>
+                                        <a href="$CONTEXT_PATH/buyeracct/index">
+		                                     <span class="c-red" id="myAcct">
+		                                         0.00 
+		                                     </span>
+                                     	</a>元
+                                    </li>
+                                    <li>
+                                        <label style="cursor:default">优惠券：</label>
+                                        <a href="$CONTEXT_PATH/mycoup/index">
+		                                     <span class="c-red" id="myCoup">
+		                                         0
+		                                     </span>
+                                     	</a>
+                                       	 张
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 我的订单 begin -->
+                <div class="mbox order-list mt10">
+                    <div class="mbox-head">
+                        <h3>
+                            	我的订单
+                        </h3>
+                        <a class="hright" href="$CONTEXT_PATH/order/all" id="moreOrder">
+                            	<font color='blue'>查看更多订单</font>
+                        </a>
+                    </div>
+                    <div class="mbox-body">
+                        <div class="mt clearfix">
+                            <ul class="mt-l">
+                                <li>
+                                    <a href="javascript:void(0);" class="active" id="pay_list">待付款</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" id="send_list">待发货</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" id="recept_list">待收货</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" id="recepted_list">已收货</a>
+                                </li>
+                                <li class="cg">
+                                    <a href="javascript:void(0);">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mc">
+                            <table class="order-tb">
+                                <thead>
+                                <tr>
+                                    <th>订单详情</th>
+                                    <th>实付款（元）</th>
+                                    <th>
+                                        <div class="deal-state hoverDrow" id="orderState">
+                                            <a href="#none" class="state-txt drowt">交易状态</a>
+                                            <select id="orderStatus" style="display:none">
+                                           	 	#listParam('ORD_ORDER_STATUS','')
+                                            </select>
+                                            <div class="state-list drowc">
+                                                <ul>
+                                                    <li>
+                                                        <a href="#none" class=""><b></b>全部状态</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#none" class="curr"><b></b>等待付款</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#none"><b></b>等待收货</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#none"><b></b>已完成</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#none"><b></b>已取消</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                 <!-- 我的订单列表 -->
+                                <tbody id="buyer-orderlist">
+										
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <!-- 我的订单 end -->
+
+                <div class="mbox order-care mt10">
+                    <div class="mbox-head">
+                        <h3 style="border: 0">
+                          	  我收藏的商品
+                        </h3>
+                        <!--
+                        <div class="extral">
+                            <a href="">
+                                	降价商品<span>0</span>
+                            </a>
+                            <a href="">
+                                	促销商品<span>0</span>
+                            </a>
+                        </div>
+                        -->
+                        <a href="$CONTEXT_PATH/favgoods" class="hright"><font color='blue'>查看更多</font></a>
+                    </div>
+                    <div class="mbox-body">
+                        <div class="slide-jcarousel careimg" id="careimg" style='text-align:center;'>
+                        	<span style='text-align:center;'><font size='3'>没有查到符合条件的记录，请尝试其他条件。</font></span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!--商品推荐 star-->
+                <!--
+                <div class="mt10">
+                    <ul class="sptj-tit">
+                        <li><a href="#" class="titQh">最佳组合</a></li>
+                        <li><a href="#">最高销量</a></li>
+                    </ul>
+                    <div class="cnxhBox  sptj-box">
+                        <ul class="cnxh-com clearfix">
+                            <li><a href="#"><img src="../images/pro01.jpg"></a>
+
+                                <p class="name"><a href="#">中药功效快快记忆法（第三版） </a></p>
+
+                                <p class="author">林日初　著</p>
+
+                                <p class="price">
+                                    <span class="rob">&yen;12.40</span>
+                                    <span class="price_r">&yen;18.00</span>
+                                </p>
+                                <p class="name">
+                                    <a href="" class="btn-default">
+                                        	加入购物车
+                                    </a>
+                                </p>
+
+                            </li>
+                            <li><a href="#"><img src="../images/pro01.jpg"></a>
+
+                                <p class="name"><a href="#">中药功效快快记忆法（第三版） </a></p>
+
+                                <p class="author">林日初　著</p>
+
+                                <p class="price">
+                                    <span class="rob">&yen;12.40</span>
+                                    <span class="price_r">&yen;18.00</span>
+                                </p>
+                                <p class="name">
+                                    <a href="" class="btn-default">
+                                        	加入购物车
+                                    </a>
+                                </p>
+
+                            </li>
+                            <li><a href="#"><img src="../images/pro01.jpg"></a>
+
+                                <p class="name"><a href="#">中药功效快快记忆法（第三版） </a></p>
+
+                                <p class="author">林日初　著</p>
+
+                                <p class="price">
+                                    <span class="rob">&yen;12.40</span>
+                                    <span class="price_r">&yen;18.00</span>
+                                </p>
+                                <p class="name">
+                                    <a href="" class="btn-default">
+                                       	 加入购物车
+                                    </a>
+                                </p>
+
+                            </li>
+                            <li><a href="#"><img src="../images/pro01.jpg"></a>
+
+                                <p class="name"><a href="#">中药功效快快记忆法（第三版） </a></p>
+
+                                <p class="author">林日初　著</p>
+
+                                <p class="price">
+                                    <span class="rob">&yen;12.40</span>
+                                    <span class="price_r">&yen;18.00</span>
+                                </p>
+                                <p class="name">
+                                    <a href="" class="btn-default">
+                                       	 加入购物车
+                                    </a>
+                                </p>
+
+                            </li>
+                            <li><a href="#"><img src="../images/pro01.jpg"></a>
+
+                                <p class="name"><a href="#">中药功效快快记忆法（第三版） </a></p>
+
+                                <p class="author">林日初　著</p>
+
+                                <p class="price">
+                                    <span class="rob">&yen;12.40</span>
+                                    <span class="price_r">&yen;18.00</span>
+                                </p>
+                                <p class="name">
+                                    <a href="" class="btn-default">
+                                      	  加入购物车
+                                    </a>
+                                </p>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                -->
+                <!--商品推荐 end-->
+            </div>
+			<!--付款-->
+			<form method="POST" action="$!{CONTEXT_PATH}/pay/offline" id="payForm">
+				<input type="hidden" name="orderId" value=""/>
+			</form>
+			<!--取消订单-->
+			<form method="POST" action="$!{CONTEXT_PATH}/order/myorder/cancel" id="cancelForm">
+				<input type="hidden" name="orderId" value=""/>
+			</form>
+			<!--确认收货-->
+			<form id="confirmOrd" action="${CONTEXT_PATH}/order/recept/confirmord" method="POST">
+                <input type="hidden" name="orderId" value=""></input>
+			</form>

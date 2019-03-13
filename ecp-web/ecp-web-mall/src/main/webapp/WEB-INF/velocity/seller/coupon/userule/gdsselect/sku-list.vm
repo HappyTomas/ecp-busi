@@ -1,0 +1,38 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/userule/gdsselect/sku-list.js?version=$!{JS_VERSION}" ></script>
+	 						<table class="seller-table mt15 table-striped" id="gdsTable">
+                               <thead>
+	                               <tr>
+	                                    <td ><input type="checkbox" name="checkbox" id="dt_row_all_check" title="全选/全取消" /></td>
+	                                    <td >编码</td>
+	                                    <td >商品名称</td>
+							            <td >分类</td>
+							            <td >状态</td>
+							            <td >属性</td>
+							            <td >指导价格</td>
+	                                </tr>
+                               </thead>
+                               <tbody>
+						        	#if(!$page.getResult() || $page.pageCount <=0)
+						        		<tr><td colspan='7'>很遗憾，暂无数据。</td><tr>
+						        	#end
+						        	#foreach($attr in $page.getResult())
+					        		<tr>
+					        			<td><input type="checkbox" name="checkboxgds"  id="$!{attr.id}" value="$!{attr.id}"/></td>
+						                <td >$!{attr.id}</td>
+						                <td class="td-hhtxt " > <div style="width: 200px;text-align:center;">#escapeHtml( "$!{attr.gdsName}")</div></td>
+						                <td >#escapeHtml( "$!{attr.mainCatgName}")</td>
+						                <td >#escapeHtml( "$!{attr.gdsStatusName}")</td>
+						                <td >#escapeHtml( "$!{attr.skuProps}")</td>
+						                <td >
+						                #moneyNum($!{attr.guidePrice}) 
+						                </td>
+						            </tr>
+									#end
+								</tbody>
+							</table>
+						    <div class="fav-opt clearfix" style="margin-top: 20px;">
+						        <div class="row-fluid">
+								<div id="pageControlbar" class="ecppage" data-total-page="${page.pageCount}" data-total-row="${page.count}" data-page-size="${page.pageSize}" data-page-number="${page.pageNo}" data-status="begin"></div>
+								</div>
+						    </div>

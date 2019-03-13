@@ -1,0 +1,12 @@
+<table>
+    <tbody>
+    #foreach($param in $!{value-relation})
+    	<tr>
+            <td style="width:120px;">$!{param.vidName}</td>
+			<td> < > </td>
+			<td>$!{param.outVidName}</td>
+            <td class="handle"><a href="javascript:void(0);" onclick="ACTION_RELATION.DELETE('$!{param.id}', 'value')">删除</a> </td>
+        </tr>
+    #end
+    </tbody>
+</table>

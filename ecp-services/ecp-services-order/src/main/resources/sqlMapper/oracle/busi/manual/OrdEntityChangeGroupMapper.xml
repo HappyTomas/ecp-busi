@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.manual.OrdEntityChangeGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdEntityChange" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="FROM_TYPE" property="fromType" jdbcType="VARCHAR" />
+    <result column="IMPORT_NO" property="importNo" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="ENTITY_CODE_BF" property="entityCodeBf" jdbcType="VARCHAR" />
+    <result column="ENTITY_CODE_AF" property="entityCodeAf" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  <sql id="Column_Entity_Code_Af" >
+    ENTITY_CODE_AF
+  </sql>
+  <sql id="Column_Entity_Code_Bf" >
+    ENTITY_CODE_BF
+  </sql>
+  
+  <select id="countEntityCodeBf" parameterType="com.zengshi.ecp.order.dao.model.OrdEntityChangeCriteria" resultType="java.lang.Long" >
+    select count(entity_code_bf) from t_ord_entity_change 
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    group by entity_code_bf
+  </select>
+  <select id="countEntityCodeAf" parameterType="com.zengshi.ecp.order.dao.model.OrdEntityChangeCriteria" resultType="java.lang.Long" >
+    select count(entity_code_af) from t_ord_entity_change 
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    group by entity_code_af
+  </select>
+</mapper>

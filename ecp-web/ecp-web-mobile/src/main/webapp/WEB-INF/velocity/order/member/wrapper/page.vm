@@ -1,0 +1,26 @@
+#parse("sys/sys_param.vm")
+
+#parse("/order/member/scroll/head.vm")
+
+<div class="page">
+    <div id="wrapper2" data-am-widget="list_news" class="am-list-news scroll-wrap">
+
+        <div class="am-list-news-bd scroll">
+            <div class="pull-action loading pull-down">
+                <span class="pull-label"> 下拉刷新</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+
+            <div class="ui-content-fixBottom scrollCont" style="padding-bottom: 50px">
+                <div class="odr-box odr-boxA shopItem">
+                    <div class="loading-lo"></div>
+                </div>
+            </div>
+
+            <div class="pull-action pull-up" style="bottom: 0">
+                <span class=" pull-label"> 上拉加载更多</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+</div>

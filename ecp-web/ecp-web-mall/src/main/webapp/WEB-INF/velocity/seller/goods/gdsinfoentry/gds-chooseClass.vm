@@ -1,0 +1,78 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<link href="$!{CSS_PATH}/seller/mCustomScrollbar/jquery.mCustomScrollbar.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/jquery/mCustomScrollbar/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/jquery/mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsinfoentry/gds-chooseClass.js?version=$!{JS_VERSION}" ></script>
+<div class="seller-box">
+        <div class="head">
+            <h3>分类信息</h3>
+        </div>
+        <div class="body">
+			<div class="form-horizontal" style="margin-left: -70px">
+				<div class="row-fluid">
+				<div class="span6">
+                <div class="control-group">
+                    <label class="control-label">产品类型：</label>
+                    <div class="controls">
+                        <select name="gdsType" id="gdsType">
+							#foreach($list in $!{typeList})
+								<option value="$!{list.id}">$!{list.typeName}</option>
+							#end
+                        </select>
+                    </div>
+                </div>
+				</div>
+
+				<div class="span6">
+				 <div class="control-group">
+                    <label class="control-label">店铺名称：</label>
+                    <div class="controls">
+							<select name="shopId" id="shopId"  >
+						   #set($scoreShopId=${paramTools.getSysConfigCode("GDS_SCORE_SHOP_DEFAULT")})
+                           #sellerList($!shopId,$scoreShopId)
+                            </select>
+                         
+                    </div>
+                </div>
+				</div>
+				</div>
+             </div>
+			 
+			 
+             <div class="sType-contanier mscroll">
+                 <div class="sType-box">
+                     <div class="clearfix" id="me">
+                         <div class="sType-item">
+                             <div class="cont">
+                                 <ul class="cont-list">
+                                     #foreach($list in $!{classList})
+										<li class="listNode firstNode" id="$!{list.catgCode}" catgName="$!{list.catgName}">
+											$!{list.catgName}<span class="opt-left"></span>
+										</li>
+									 #end
+                                 </ul>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+            <div class="alert sel-alert" style="margin-top: 15px;">
+				<form method="post" id="catgClassForm" action="gdsinfoentry/entrybaseinfo">
+					<input type="hidden" name="catgCode" id="catgCode" value=""/>
+					<input type="hidden" name="catgName" id="catgName" value=""/>
+					<input type="hidden" name="gdsTypeId" id="gdsTypeId" value=""/>
+					<input type="hidden" name="gdsTypeName" id="gdsTypeName" value=""/>
+					<input type="hidden" name="haveType" id="haveType" value="$!{haveType}"/>
+					<input type="hidden" name="shopIdVal" id="shopIdVal" value=""/>
+
+                    <span class="arrow"></span>
+                                                          你选择的分类为：<span class="sel-cont" id="selecEnd"></span>
+	            </form>
+            </div>
+        </div>
+
+        <div class="btn-wrap">
+            <span class="sbtn" id="btn_next" disabled>下一步</span>
+        </div>
+</div>

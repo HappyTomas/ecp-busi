@@ -1,0 +1,48 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/main/category/category.js?version=$!{JS_VERSION}"></script>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        积分分类
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        <a href="javascript:void(0);" class="">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content">
+	#if($catgSons && ${catgSons.size()} > 0)
+    <div data-am-widget="tabs" class="am-tabs am-tabs-default point-tab">
+        <ul class="am-tabs-nav am-cf">
+        	#foreach($catg in $catgSons)
+        	#set($even = '')
+        	#set($even = $velocityCount % 2)
+            <li class="#if($velocityCount == 1 ) am-active loaded #end #if($even == 0 )lb-color01 #end" catg-id = "$!{catg.id}" tab-no="$velocityCount"><a href="[data-tab-panel-$velocityCount]">$!{catg.catgName}</a></li>
+            #end
+        </ul>
+        <div class="am-tabs-bd">
+        	#foreach($catg in $catgSons)
+            <div data-tab-panel-$!{velocityCount} id="tabs-bd$velocityCount" class="am-tab-panel #if($velocityCount == 1 ) am-active #end">
+            	#if($velocityCount == 1 )
+            		#parse("main/category/list/category-list.vm")
+            	#else
+            		<div class="loading-lo">
+     			    </div>
+            	#end
+            </div>
+            #end
+        </div>
+    </div>
+    #else
+    <div class="pro-empty">
+       	  #if($errMsg && $errMsg != '')$!errMsg #else 暂无分类  #end
+     </div>
+	#end
+
+</div>
+
+<script>##用于底部栏目切换  必须在main-bottom-navbar之前
+$(function(){
+	$.cookie('SUPPORT-WEB-COOKIE-MOUDEL', "category", {path : '/'});
+});
+</script>

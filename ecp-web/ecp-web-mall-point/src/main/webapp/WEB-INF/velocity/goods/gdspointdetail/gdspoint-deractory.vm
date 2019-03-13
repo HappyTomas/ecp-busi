@@ -1,0 +1,11 @@
+<div class="npro-type">
+    <div class="head">
+        <i class="picon"></i>
+        所有礼品
+    </div>
+    <ul class="list">
+        <li class="item first ecp-component sidebar-catg-shader" data-place-id="703" data-menu-type="1" data-place-height ="301"
+                data-module="ecp-component/sidebar-catg-shader">
+        </li>
+    </ul>
+</div>

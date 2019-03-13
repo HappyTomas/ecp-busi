@@ -1,0 +1,175 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-page.vm")
+#parse("sys/sys_param.vm")
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/seller/sellerpageinfo/seller-manage-pageInfo-edit.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+<style>
+        .page-al li {
+            float: left;
+            width: 18%;
+            text-align: center;
+            margin-left: 1%;
+            margin-top: 1%;
+            margin-right: 1%;
+            position: relative;
+            list-style: none;
+        }
+
+        .page-al li .pageliborder {
+            border: 1px solid #e3e3e4;
+            padding: 20px 0;
+        }
+
+        .pt20 {
+            padding-bottom: 40px;
+        }
+        .c-blue {
+            color: #408ee5;
+        }
+
+    </style>
+<script type="text/javascript">
+ function replaceSpace(obj){
+ obj.value = obj.value.replace(/s/gi,'')
+}
+</script>
+
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<div class="alert alert-error hide formValidateMessages" >
+	##showSpringAllError("vo")
+</div>
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/place/save">
+		<div class="span8">
+			<input type="hidden" id="id" name="id" value="$!{respVO.id}" />
+			<input type="hidden"  id="templateId" name="templateId"/>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">页面名称：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large required" maxlength="32" name="pageName" id="pageName" value="$!{respVO.pageName}" placeholder="输入页面名称" />
+						<span class="help-inline">页面名称最大长度不能超过32个字符！</span>
+					</div>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属站点：</label>
+    				<div class="controls">
+    					<select id="siteId" name="siteId" class="input-large required" value="$!{respVO.siteId}" selected><!--#if($!{respVO.siteId} == $!{site.id}) selected  #end class="required"-->
+							#siteList($!{respVO.siteId})
+    					</select>
+						<span class="help-inline">请选择所属站点！</span>
+    				</div>
+    			</div>
+    		</div>
+			
+    		<div class="formSep">
+    			<div class="control-group">
+                    <label class="control-label">平台类型：</label>
+                    <div class="controls">
+						<select name="platformType" class="input-large required">
+							#listParam('CMS_PLATFORM_TYPE',$!{respVO.platformType})
+                        </select>
+						<span class="help-inline">请选择平台类型！</span>
+                    </div>
+                </div>
+            </div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">页面类型：</label>
+    				<div class="controls">
+    					<select id="pageTypeId" name="pageTypeId" class="input-large required">
+							#foreach($pageType in $pageTypeList)
+    							<option value="$!{pageType.id}" #if($!{respVO.pageTypeId} == $!{pageType.id}) selected  #end >#escapeHtml($!{pageType.pageTypeName})</option>
+        					#end
+    					</select>  
+						<span class="help-inline">请选择页面类型！</span>
+    				</div>
+    			</div>
+    		</div>
+			
+			<div class="formSep" id="shop_div">
+    			<div class="control-group">
+    				<label class="control-label">所属店铺：</label>
+    				<div class="controls">
+    					<select id="shopId" name="shopId" class="input-large required" disabled>
+							#if($!{respVO.shopId})
+								#shopStatuslist($!{respVO.shopId},'1')
+							#else
+								#shopStatuslist($!{shopId},'1')
+							#end
+							
+    					</select>
+    					<span class="help-inline">请选择所属店铺！</span>
+    				</div>
+    			</div>
+    		</div>
+			
+			<!--
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">生效时间：</label>
+    				<div class="controls">
+						<input type="text" id="validTime" name="validTime"  class="input-large Wdate date " onClick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'%y-%M-%d',maxDate:'#F{$dp.$D(\'invalidTime\')}'})" value="$!date.format('yyyy-MM-dd',$!{respVO.validTime})"/>
+						<span class="help-inline">格式：yyyy-MM-dd</span>
+					</div>
+    			</div>
+    		</div>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">失效时间：</label>
+    				<div class="controls">
+						<input type="text" id="invalidTime" name="invalidTime" class="input-large Wdate date " onClick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'validTime\')}'})" value="$!date.format('yyyy-MM-dd',$!{respVO.invalidTime})"/>
+						<span class="help-inline">格式：yyyy-MM-dd</span>
+					</div>
+    			</div>
+    		</div>
+			-->
+			<div class="text-center">
+				<button type="button" class="btn" id="btnFormNext">下一步</button>
+				#if($!{respVO.id})##编辑页面 才有保存按钮
+				<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i>保存</button>
+				#end
+				<button type="button" class="btn" id="btnReturn"><i class="icon-remove-sign icon-white"></i>取消</button>
+    		</div>
+        </div>
+        <ul class="page-al" id ="page-using-temp">
+            #*#if(${tempResp} && ${tempResp.id})
+            <li>
+                <div class="pageliborder"><img src="#genImageUrl($!{tempResp.showPic},'150x150!')" alt="$!{tempResp.templateName}"/>
+                    ##<p>上传模板缩略图</p>
+                </div>
+                <h3>$!{tempResp.templateName}</h3>
+                <div>
+                    <a href="" class="btn">正在使用</a>
+                    ##<a href="" class="btn">预览</a>
+                </div>
+            </li>
+            #end*#
+        </ul>
+	</form>
+</div>
+<div class="row-fluid">
+	<div class="control-group">
+		<div class="controls">
+			<label><input name="isUseTemplate" id="isUseTemplate"  type="checkbox" value="" />从模板覆盖</label>
+	</div>
+	</div>
+</div>
+<div class="hide" id = "template-lib-div">
+	<ul class="nav nav-tabs" id="template-type-tab">
+	    
+	</ul>
+	<div id ="template-lib-list">
+	</div>
+</div>
+	

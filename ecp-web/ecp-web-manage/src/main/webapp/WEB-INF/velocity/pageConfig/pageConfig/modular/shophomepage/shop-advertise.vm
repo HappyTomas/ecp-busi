@@ -1,0 +1,128 @@
+#parse("pageConfig/pageConfig/modular/common/common-head.vm")
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+<input type="hidden" id="propPreStr" value="$!{propPreStr}"/>
+<div class="well-searchForm">
+	##错误提示信息start.需要
+	<div class="hide alert error-msg" id="error-msg">
+	</div>
+	##错误提示信息end.需要
+	<div class="dialog-body">
+        <div class="dialog-content">
+            <form id="paramsSetForm" class="required-validate form-horizontal templateItemForms" data-url="$!{CONTEXT_PATH}/modular-dynamic/commonModularFormSave">
+    			<div class="dynamicFormMainBox">
+    				##作为公共的入参保存的
+    				<input type="hidden" id="modularPageId" value="$!{pageId}"/>
+                	<input type="hidden" id="modularModularId" value="$!{modularId}"/>
+                	<input type="hidden" id="modularItemId" value="$!{itemId}"/>
+    				##标题、是否显示标题 ======start
+                    <div class="row-fluid">
+                        <div class="span5 formItem" >
+                            <div class="control-group">
+                                <label class="control-label">$!{attrs.get(1000).propName}：</label>
+                                <div class="controls">
+    								<input type="hidden" id="propValue" value="$!{propPre.get(1000).propValue}">
+    								<input type="hidden" id="propValueId" value="$!{propPre.get(1000).propValueId}">
+    								<input type="hidden" id="propId" value="$!{attrs.get(1000).id}">
+    								<input type="hidden" id="propItemId" value="$!{propPre.get(1000).id}"/>
+                                    <input type="text" class="input-block-level #if($!{attrs.get(1000).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);"   onkeyup="CommonModular.inputAssignMent(this);"/>
+                                </div>
+                            </div>
+                        </div>
+    					##是否显示标题 ======start
+                        <div class="span2 formItem" style="margin-left: 4px">
+                            <label class="lable-ck">
+    							#if($!{attrs.get(1001).ifHaveto}=='1')<span style="color:red;">* </span>#end
+    								<input type="hidden" id="propValue" value="$!{propPre.get(1001).propValue}">
+    								<input type="hidden" id="propValueId" value="$!{propPre.get(1001).propValueId}">
+    								<input type="hidden" id="propId" value="$!{attrs.get(1001).id}">
+    								<input type="hidden" id="propItemId" value="$!{propPre.get(1001).id}"/>
+    								<input type="checkbox"/>$!{attrs.get(1001).propName}
+    						</label>
+                        </div>
+    					##是否显示标题 ======start
+    					##标题是否居中显示 ======start
+                        <div class="span3 formItem" style="margin-left: 4px">
+                            <label class="lable-ck">
+    							#if($!{attrs.get(1002).ifHaveto}=='1')<span style="color:red;">* </span>#end
+    								<input type="hidden" id="propValue" value="$!{propPre.get(1002).propValue}">
+    								<input type="hidden" id="propValueId" value="$!{propPre.get(1002).propValueId}">
+    								<input type="hidden" id="propId" value="$!{attrs.get(1002).id}">
+    								<input type="hidden" id="propItemId" value="$!{propPre.get(1002).id}"/>
+    								<input type="checkbox"/>$!{attrs.get(1002).propName}
+    						</label>
+                        </div>
+    					##标题是否居中显示 ======end
+                    </div>
+    				##标题、是否显示标题 ======end
+    				
+    				##展示数量、是否轮播 ======start
+                    <div class="row-fluid">
+                        <div class="span5 formItem">
+                            <div class="control-group">
+                                <label class="control-label">$!{attrs.get(1004).propName}：</label>
+                                <div class="controls">
+    								<input type="hidden" id="propValue" value="$!{propPre.get(1004).propValue}">
+    								<input type="hidden" id="propValueId" value="$!{propPre.get(1004).propValueId}">
+    								<input type="hidden" id="propId" value="$!{attrs.get(1004).id}">
+    								<input type="hidden" id="propItemId" value="$!{propPre.get(1004).id}"/>
+                                    <select style="width:214px;" class="input-block-level #if($!{attrs.get(1004).ifHaveto}=='1')required#end" onchange="CommonModular.selectAssignMent(this)">
+    									<option value="" valueId="">--请选择--</option>
+    									#if($attrs.get(1004).modularPropValRespDTOList && $attrs.get(1004).modularPropValRespDTOList.size() > 0)
+                        					#foreach($prop in $attrs.get(1004).modularPropValRespDTOList)
+        										<option value="$!{prop.propValue}" valueId="$!{prop.id}">$!{prop.valueDesc}</option>
+    										#end
+                    					#end
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+    					##是否轮播 ======start
+    					<div class="span2 formItem" style="margin-left: 4px">
+                            <label class="lable-ck">
+    							#if($!{attrs.get(1005).ifHaveto}=='1')<span style="color:red;">* </span>#end
+    								<input type="hidden" id="propValue" value="$!{propPre.get(1005).propValue}">
+    								<input type="hidden" id="propValueId" value="$!{propPre.get(1005).propValueId}">
+    								<input type="hidden" id="propId" value="$!{attrs.get(1005).id}">
+    								<input type="hidden" id="propItemId" value="$!{propPre.get(1005).id}"/>
+    								<input type="checkbox"/>$!{attrs.get(1005).propName}
+    						</label>
+                        </div>
+    					##是否轮播 ======end
+                    </div>
+    				##展示数量、是否轮播 ======end
+    				
+    				##内容位置 ======start
+                    <div class="row-fluid">
+    					<!-- 内容位置选择 start-->
+                        <div class="span5 formItem">
+                            <div class="control-group">
+                                <label class="control-label">$!{attrs.get(1006).propName}：</label>
+                                <div class="controls">
+    								<input type="hidden" id="propValue" value="$!{propPre.get(1006).propValue}">
+    								<input type="hidden" id="propValueId" value="$!{propPre.get(1006).propValueId}">
+    								<input type="hidden" id="propId" value="$!{attrs.get(1006).id}">
+    								<input type="hidden" id="propItemId" value="$!{propPre.get(1006).id}"/>
+    								##这个reMark隐藏域只针对弹出框选中选项的名称
+    								<input type="hidden" id="remark" value="$!{propPre.get(1006).remark}"/>
+                                    <input type="text" value="$!{propPre.get(1006).remark}" id="placeName" class="input-block-level #if($!{attrs.get(1006).ifHaveto}=='1')required#end" readonly="readonly"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span7">
+                            <span class="btn" id="contentLocationButton" style="margin-left: 10px">选择内容位置</span>
+                            <span class="btn" id="advertiseButton">去配置广告</span>
+                        </div>
+    					<!-- 内容位置选择 end-->
+                    </div>
+    				##内容位置 ======end
+                </div>
+            </form>
+        </div>
+	</div>
+    <div class="text-center">
+        <span id="btnSave" class="btn btn-info"><i class="icon-ok-sign icon-white"></i>确定</span>
+        <span id="btnCancel" class="btn"><i class="icon-reply icon-white"></i>取消</span>
+    </div>
+ </div>

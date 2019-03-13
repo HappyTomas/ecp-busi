@@ -1,0 +1,48 @@
+#parse("/sys/sys_param.vm")
+#parse("/sys/sys_head.vm")
+#parse("/module/mod-form.vm")
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/stock/opt-stock.js?version=$!{JS_VERSION}" ></script>
+		<body style="background-color:#ffffff">
+			<div class="alert alert-error hide formValidateMessages" >
+	
+            </div>
+		
+      <div class="seller-well" >
+			
+				
+				<form id="repAddForm" class="form-horizontal required-validate"  >
+
+				    <div class="formSep" >
+						<input name="shopId" value="$shopId" type="hidden"/>
+						<div class="control-group" style="margin-left:50px">
+							<label class="control-label">调整方式：</label>
+							<div class="controls">
+                               
+							<select style="width:100px" name="turnType">
+								<option value="01">调增</option>
+								<option value="02">调减</option>
+							</select>
+						     
+							</div>
+						</div>
+					</div>
+					<div class="formSep" >
+						<div class="control-group" style="margin-left:50px">
+							<label class="control-label">调整数量：</label>
+							<div class="controls">
+								<div style="width:100px">
+                            <input type="text" class="input-large required digits" name="turnCount" placeholder="调整数量" />
+                                </div>
+							</div>						
+						</div>	
+					</div>
+					<div class="btn-wrap" style="height:20px">
+                           <span class="sbtn sbtn-blue" id="btnSave">保    存</span>
+	                        <span class="sbtn"  id="btnReturn">返　回</span>
+                     </div>
+					
+				</form>
+			</div>
+				</body>

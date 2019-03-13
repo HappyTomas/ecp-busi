@@ -1,0 +1,42 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-page.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/goods/gdsdetail/gds-evaluation-list.js"></script>
+<table class="table elist" >
+    <tbody >
+        #if($!{list.list.size()}==0)
+            <tr>
+                <td colspan="3" style="text-align:center">「暂无评价」</td>
+            </tr>
+            #else
+                #foreach($eval in $!{list.list})
+                    <tr>
+                        <td class="euser">
+                            <p class="ename">$!{eval.staffName}
+                                <div class="elevel">
+                                    <label>会员等级：</label>			
+                                    <span>$!{eval.staffLevelName}</span>
+                                    <i class="icon-rank rank1"></i>
+                                </div>
+						</td>
+						<td class="edec">
+							$!{eval.detail}
+						</td>
+                        <td class="etime" style="width:150px;">
+                            <span>$!date.format('yyyy-MM-dd HH:mm:ss',$!{eval.evaluationTime})</span>
+                        </td>
+					</tr>
+                #end
+        #end
+</tbody>
+<tfoot>
+	 #if($!{list.list.size()}>0)
+        <tr>
+            <td colspan="3">
+                <div id="pageMainBox">
+                    <div id="pageControlbar" class="ecppage" data-total-page="${list.totalPage}" data-total-row="${list.totalRow}"  data-page-size="${list.pageSize}" data-page-number="${list.pageNumber}" data-status="begin"></div>
+                </div>
+            </td>
+        </tr>
+	#end
+</tfoot>
+</table>

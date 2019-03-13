@@ -1,0 +1,32 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/unpf/sync/sync-tab.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/../js/framework/manage/extend/ebc.check.js?version=$!{JS_VERSION}" ></script>
+
+<ul class="nav nav-tabs" id="myTab">
+    <li class="active"><a href="#prom-info">$!{unpfShopAuthRespDTO.platTypeName}-授权基本信息</a></li>
+    <li><a href="#discount-rule">$!{unpfShopAuthRespDTO.platTypeName}(分类、商品)黑名单设置</a></li>
+    <li><a href="#prom-rule">$!{unpfShopAuthRespDTO.platTypeName}-分类关联设置</a></li>
+    <li><a href="#shopcfg">基本参数设置</a></li>
+    <li><a href="#discount-stock-rule">$!{unpfShopAuthRespDTO.platTypeName}库存推送黑名单设置</a></li>
+    <div class="pull-right">
+        <button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i> 返　回</button>
+    </div>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane active" id="prom-info">
+        #parse("/unpf/auth/shopAuth-edit-form.vm")
+    </div>
+    <div class="tab-pane" id="discount-rule">
+        #parse("/unpf/auth/shopLimit-index.vm")
+    </div>
+    <div class="tab-pane" id="prom-rule">
+        #parse("/unpf/catemap/catemap-index.vm")
+    </div>
+    <div class="tab-pane" id="shopcfg">
+        #parse("/unpf/shopcfg/shopcfg-form.vm")
+    </div>
+    <div class="tab-pane" id="discount-stock-rule">
+        #parse("/unpf/auth/shopLimit-stock-index.vm")
+    </div>
+</div>

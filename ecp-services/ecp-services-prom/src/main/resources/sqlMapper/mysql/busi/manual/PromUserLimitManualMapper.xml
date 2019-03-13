@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.prom.dao.mapper.busi.manual.PromUserLimitManualMapper" >
+    <resultMap id="BaseResultMap" type="com.zengshi.ecp.prom.dao.model.PromUserLimit" >
+    <id column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <id column="PROM_ID" property="promId" jdbcType="INTEGER" />
+    <id column="LIMIT_TYPE" property="limitType" jdbcType="VARCHAR" />
+    <id column="LIMIT_TYPE_VALUE" property="limitTypeValue" jdbcType="VARCHAR" />
+    <result column="PROM_CNT_LIMIT" property="promCntLimit" jdbcType="INTEGER" />
+    <result column="BUY_CNT" property="buyCnt" jdbcType="INTEGER" />
+    <result column="REMAIND_CNT" property="remaindCnt" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="OPT_VALUE" property="optValue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  <update id="updateCntBySelective" parameterType="com.zengshi.ecp.prom.dao.model.PromUserLimit" >
+    update t_prom_user_limit set  REMAIND_CNT = REMAIND_CNT-#{buyCnt,jdbcType=INTEGER},BUY_CNT = BUY_CNT+#{buyCnt,jdbcType=INTEGER}
+    where PROM_ID = #{promId,jdbcType=INTEGER}
+      and STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and LIMIT_TYPE = #{limitType,jdbcType=VARCHAR}
+      and LIMIT_TYPE_VALUE = #{limitTypeValue,jdbcType=VARCHAR}
+      and REMAIND_CNT-#{buyCnt,jdbcType=VARCHAR} >=0
+      and OPT_VALUE=#{optValue,jdbcType=VARCHAR}
+  </update>
+  
+   <update id="addCntBySelective" parameterType="com.zengshi.ecp.prom.dao.model.PromUserLimit" >
+    update t_prom_user_limit set  REMAIND_CNT = REMAIND_CNT+#{buyCnt,jdbcType=INTEGER},BUY_CNT = BUY_CNT-#{buyCnt,jdbcType=INTEGER}
+     where PROM_ID = #{promId,jdbcType=INTEGER}
+      and STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and LIMIT_TYPE = #{limitType,jdbcType=VARCHAR}
+      and LIMIT_TYPE_VALUE = #{limitTypeValue,jdbcType=VARCHAR}
+      and PROM_CNT_LIMIT-REMAIND_CNT-#{buyCnt,jdbcType=INTEGER} >=0
+      and OPT_VALUE=#{optValue,jdbcType=VARCHAR}
+  </update>
+</mapper>

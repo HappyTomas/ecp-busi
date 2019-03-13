@@ -1,0 +1,135 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/modular/wap/modular-edit-menu-tool.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/modular/wap/modular-wap-column.js?version=$!{JS_VERSION}" ></script>
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+<input type="hidden" id="propPreStr" value="$!{propPreStr}"/>
+<form id="paramsSetForm" class="required-validate  templateItemForms focus-column-form" data-url="$!{CONTEXT_PATH}/modular-dynamic/commonModularFormSave">
+    <div class="dynamicFormMainBox">
+       	<input type="hidden" id="modularPageId" value="$!{pageId}"/>
+       	<input type="hidden" id="modularModularId" value="$!{modularId}"/>
+       	<input type="hidden" id="modularItemId" value="$!{itemId}"/>	
+        <h3 class="tit" style="color:red">栏目模块</h3>
+        
+        <div class="edit-tip">
+            <i class="close wap_close_i" id="close_i"></i>
+        
+            <p class="title">模块使用小贴士</p>
+        
+            <div class="content">
+                                                       图片建议尺寸：76*76<br>
+              	  栏目最多为8个，该模块可尝试展示导航信息。
+            </div>
+        </div>
+        #set($propGroupNum = 0) ##展示的图片组置为1
+        #set($totalGroupNum = 8) ##最大可编辑数
+        
+        #if($props && $props.size() > 0)
+        	#set($propGroupNum=${props.get(0).itemPropGroupPreRespDTOList.size()})
+        #end
+        #if(!$propGroupNum || $propGroupNum <= 0) ##数组至少得有一个值
+        	#set($propGroupNum=1)
+        	#set($totalGroupList = [1])
+        #else
+        	#set($totalGroupList = ${props.get(0).itemPropGroupPreRespDTOList})
+        #end
+        
+        #foreach($i in $totalGroupList)
+        #if($velocityCount <= $totalGroupList.size())
+        	#set($imgCode = '1020_1_' + $velocityCount)
+        	#set($txtCode = '1023_1_' + $velocityCount)
+        	#set($linkCode = '1015_1_' + $velocityCount)
+			<div class="form-group">
+				<div class="menu">
+                   	<span class="mup"></span>
+                   	<span class="mdown"></span>
+                    <span class="mdel"></span>
+                </div>
+				<div class="form-block formItem">
+		            <label>$!{attrs.get(1020).propName}</label>
+		        	<input type="hidden" id="propValue" value="$!{propPre.get($!{imgCode}).propValue}">
+		        	<input type="hidden" id="propValueId" value="$!{propPre.get($!{imgCode}).propValueId}">
+		        	<input type="hidden" id="propId" value="$!{attrs.get(1020).id}">
+		        	<input type="hidden" id="propItemId" value="$!{propPre.get($!{imgCode}).id}"/>
+		        	<input type="hidden" id="propGroupId" value="1"/>
+		        	<input type="hidden" id="controlPropId" value="$velocityCount"/>
+		        	#set($fileId = '')
+		        	#set($fileId = $!{propPre.get($!{imgCode}).propValue})
+		            <div class="wap_img_upload"  file-id="$!{fileId}" file-url="#if($!{fileId} && $!{fileId} != '' )#genImageUrl($!{fileId},'') #end" image-max-height="76" image-max-width="76">
+		            </div>
+		        </div>
+		        <div class="form-block formItem">
+		            <label>$!{attrs.get(1023).propName}</label>
+		        	<input type="hidden" id="propValue" value="$!{propPre.get($!{txtCode}).propValue}">
+		        	<input type="hidden" id="propValueId" value="$!{propPre.get($!{txtCode}).propValueId}">
+		        	<input type="hidden" id="propId" value="$!{attrs.get(1023).id}">
+		        	<input type="hidden" id="propItemId" value="$!{propPre.get($!{txtCode}).id}"/>
+		        	<input type="hidden" id="propGroupId" value="1"/>
+					<input type="hidden" id="controlPropId" value="$velocityCount"/>
+		            <input type="text" class="input-block-level cms-input-w-limit #if($!{attrs.get(1023).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);"   onkeyup="CommonModular.inputAssignMent(this);" oninput="CommonModular.inputAssignMent(this);" onpropertychange="CommonModular.inputAssignMent(this);" max-length ='10' placeholder="请输入文本">
+		        </div>
+		        <div class="form-block formItem">
+		            <label>$!{attrs.get(1015).propName}</label>
+		            <div class="input-append">
+		            	<input type="hidden" id="propValue" value="$!{propPre.get($!{linkCode}).propValue}">
+		            	<input type="hidden" id="propValueId" value="$!{propPre.get($!{linkCode}).propValueId}">
+		            	<input type="hidden" id="propId" value="$!{attrs.get(1015).id}">
+		            	<input type="hidden" id="propItemId" value="$!{propPre.get($!{linkCode}).id}"/>
+		            	<input type="hidden" id="propGroupId" value="1"/>
+						<input type="hidden" id="controlPropId" value="$velocityCount"/>
+		                <input type="text" class="input-block-level link-input-tool #if($!{attrs.get(1015).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);"   onkeyup="CommonModular.inputAssignMent(this);" oninput="CommonModular.inputAssignMent(this);" onpropertychange="CommonModular.inputAssignMent(this);" placeholder="如果输入绝对路径,请以http://开头!">
+		            </div>
+		        </div>
+		    </div>
+		#end
+	    #end
+	    <p class="btn-add">
+            + 添加 <em class="num">$!propGroupNum</em>/<span class="total-num">$!{totalGroupNum}</span>
+        </p>
+        ##参数组空模板
+        <script id="focus-form-group-pro" type="text/html">
+        	<div class="form-group">
+				<div class="menu">
+                   	<span class="mup"></span>
+                   	<span class="mdown"></span>
+                    <span class="mdel"></span>
+                </div>
+				<div class="form-block formItem">
+		            <label>$!{attrs.get(1020).propName}</label>
+		        	<input type="hidden" id="propValue" value="">
+		        	<input type="hidden" id="propValueId" value="">
+		        	<input type="hidden" id="propId" value="$!{attrs.get(1020).id}">
+		        	<input type="hidden" id="propItemId" value=""/>
+		        	<input type="hidden" id="propGroupId" value="1"/>
+		        	<input type="hidden" id="controlPropId" value=""/>
+		            <div class="wap_img_upload"  file-id="" file-url="" image-max-height="76" image-max-width="76">
+		            </div>
+		        </div>
+		        <div class="form-block formItem">
+		            <label>$!{attrs.get(1023).propName}</label>
+		        	<input type="hidden" id="propValue" value="">
+		        	<input type="hidden" id="propValueId" value="">
+		        	<input type="hidden" id="propId" value="$!{attrs.get(1023).id}">
+		        	<input type="hidden" id="propItemId" value=""/>
+		        	<input type="hidden" id="propGroupId" value="1"/>
+					<input type="hidden" id="controlPropId" value=""/>
+		            <input type="text" class="input-block-level cms-input-w-limit #if($!{attrs.get(1023).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);"   onkeyup="CommonModular.inputAssignMent(this);" oninput="CommonModular.inputAssignMent(this);" onpropertychange="CommonModular.inputAssignMent(this);" max-length ='10' placeholder="请输入文本">
+		        </div>
+		        <div class="form-block formItem">
+		            <label>$!{attrs.get(1015).propName}</label>
+		            <div class="input-append">
+		            	<input type="hidden" id="propValue" value="">
+		            	<input type="hidden" id="propValueId" value="">
+		            	<input type="hidden" id="propId" value="$!{attrs.get(1015).id}">
+		            	<input type="hidden" id="propItemId" value=""/>
+		            	<input type="hidden" id="propGroupId" value="1"/>
+						<input type="hidden" id="controlPropId" value=""/>
+		                <input type="text" class="input-block-level link-input-tool" onKeyDown="CommonModular.inputAssignMent(this);"   onkeyup="CommonModular.inputAssignMent(this);" oninput="CommonModular.inputAssignMent(this);" onpropertychange="CommonModular.inputAssignMent(this);" >
+		            </div>
+		        </div>
+		    </div>
+    	</script>
+    </div>
+</form>
+

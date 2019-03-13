@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.common.GdsCategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsCategory" >
+    <id column="CATG_CODE" property="catgCode" jdbcType="VARCHAR" />
+    <result column="CATG_NAME" property="catgName" jdbcType="VARCHAR" />
+    <result column="CATG_LEVEL" property="catgLevel" jdbcType="INTEGER" />
+    <result column="CATG_TYPE" property="catgType" jdbcType="VARCHAR" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="CATG_PARENT" property="catgParent" jdbcType="VARCHAR" />
+    <result column="CATLOG_ID" property="catlogId" jdbcType="INTEGER" />
+    <result column="IF_ENTITY_CODE" property="ifEntityCode" jdbcType="VARCHAR" />
+    <result column="IF_LEAF" property="ifLeaf" jdbcType="VARCHAR" />
+    <result column="CATG_URL" property="catgUrl" jdbcType="VARCHAR" />
+    <result column="CATG_TYPE_UNIT" property="catgTypeUnit" jdbcType="INTEGER" />
+    <result column="MIN_PRICE" property="minPrice" jdbcType="INTEGER" />
+    <result column="MAX_PRICE" property="maxPrice" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="MEDIA_UUID" property="mediaUuid" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="IF_SHOW" property="ifShow" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="IF_ABLE_EDIT" property="ifAbleEdit" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CATG_CODE, CATG_NAME, CATG_LEVEL, CATG_TYPE, SORT_NO, CATG_PARENT, CATLOG_ID, IF_ENTITY_CODE, 
+    IF_LEAF, CATG_URL, CATG_TYPE_UNIT, MIN_PRICE, MAX_PRICE, SHOP_ID, MEDIA_UUID, STATUS, 
+    IF_SHOW, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, IF_ABLE_EDIT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsCategoryCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_gds_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_gds_category
+    where CATG_CODE = #{catgCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_gds_category
+    where CATG_CODE = #{catgCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsCategoryCriteria" >
+    delete from t_gds_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.goods.dao.model.GdsCategory" >
+    insert into t_gds_category (CATG_CODE, CATG_NAME, CATG_LEVEL, 
+      CATG_TYPE, SORT_NO, CATG_PARENT, 
+      CATLOG_ID, IF_ENTITY_CODE, IF_LEAF, 
+      CATG_URL, CATG_TYPE_UNIT, MIN_PRICE, 
+      MAX_PRICE, SHOP_ID, MEDIA_UUID, 
+      STATUS, IF_SHOW, CREATE_TIME, 
+      CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, 
+      IF_ABLE_EDIT)
+    values (#{catgCode,jdbcType=VARCHAR}, #{catgName,jdbcType=VARCHAR}, #{catgLevel,jdbcType=INTEGER}, 
+      #{catgType,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{catgParent,jdbcType=VARCHAR}, 
+      #{catlogId,jdbcType=INTEGER}, #{ifEntityCode,jdbcType=VARCHAR}, #{ifLeaf,jdbcType=VARCHAR}, 
+      #{catgUrl,jdbcType=VARCHAR}, #{catgTypeUnit,jdbcType=INTEGER}, #{minPrice,jdbcType=INTEGER}, 
+      #{maxPrice,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{mediaUuid,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{ifShow,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, 
+      #{ifAbleEdit,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsCategory" >
+    insert into t_gds_category
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="catgCode != null" >
+        CATG_CODE,
+      </if>
+      <if test="catgName != null" >
+        CATG_NAME,
+      </if>
+      <if test="catgLevel != null" >
+        CATG_LEVEL,
+      </if>
+      <if test="catgType != null" >
+        CATG_TYPE,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+      <if test="catgParent != null" >
+        CATG_PARENT,
+      </if>
+      <if test="catlogId != null" >
+        CATLOG_ID,
+      </if>
+      <if test="ifEntityCode != null" >
+        IF_ENTITY_CODE,
+      </if>
+      <if test="ifLeaf != null" >
+        IF_LEAF,
+      </if>
+      <if test="catgUrl != null" >
+        CATG_URL,
+      </if>
+      <if test="catgTypeUnit != null" >
+        CATG_TYPE_UNIT,
+      </if>
+      <if test="minPrice != null" >
+        MIN_PRICE,
+      </if>
+      <if test="maxPrice != null" >
+        MAX_PRICE,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="mediaUuid != null" >
+        MEDIA_UUID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="ifShow != null" >
+        IF_SHOW,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="ifAbleEdit != null" >
+        IF_ABLE_EDIT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="catgCode != null" >
+        #{catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="catgName != null" >
+        #{catgName,jdbcType=VARCHAR},
+      </if>
+      <if test="catgLevel != null" >
+        #{catgLevel,jdbcType=INTEGER},
+      </if>
+      <if test="catgType != null" >
+        #{catgType,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="catgParent != null" >
+        #{catgParent,jdbcType=VARCHAR},
+      </if>
+      <if test="catlogId != null" >
+        #{catlogId,jdbcType=INTEGER},
+      </if>
+      <if test="ifEntityCode != null" >
+        #{ifEntityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ifLeaf != null" >
+        #{ifLeaf,jdbcType=VARCHAR},
+      </if>
+      <if test="catgUrl != null" >
+        #{catgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="catgTypeUnit != null" >
+        #{catgTypeUnit,jdbcType=INTEGER},
+      </if>
+      <if test="minPrice != null" >
+        #{minPrice,jdbcType=INTEGER},
+      </if>
+      <if test="maxPrice != null" >
+        #{maxPrice,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="mediaUuid != null" >
+        #{mediaUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ifShow != null" >
+        #{ifShow,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="ifAbleEdit != null" >
+        #{ifAbleEdit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsCategoryCriteria" resultType="java.lang.Long" >
+    select count(*) from t_gds_category
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_gds_category
+    <set >
+      <if test="record.catgCode != null" >
+        CATG_CODE = #{record.catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catgName != null" >
+        CATG_NAME = #{record.catgName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catgLevel != null" >
+        CATG_LEVEL = #{record.catgLevel,jdbcType=INTEGER},
+      </if>
+      <if test="record.catgType != null" >
+        CATG_TYPE = #{record.catgType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortNo != null" >
+        SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.catgParent != null" >
+        CATG_PARENT = #{record.catgParent,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catlogId != null" >
+        CATLOG_ID = #{record.catlogId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ifEntityCode != null" >
+        IF_ENTITY_CODE = #{record.ifEntityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifLeaf != null" >
+        IF_LEAF = #{record.ifLeaf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catgUrl != null" >
+        CATG_URL = #{record.catgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catgTypeUnit != null" >
+        CATG_TYPE_UNIT = #{record.catgTypeUnit,jdbcType=INTEGER},
+      </if>
+      <if test="record.minPrice != null" >
+        MIN_PRICE = #{record.minPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.maxPrice != null" >
+        MAX_PRICE = #{record.maxPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mediaUuid != null" >
+        MEDIA_UUID = #{record.mediaUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifShow != null" >
+        IF_SHOW = #{record.ifShow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.ifAbleEdit != null" >
+        IF_ABLE_EDIT = #{record.ifAbleEdit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_gds_category
+    set CATG_CODE = #{record.catgCode,jdbcType=VARCHAR},
+      CATG_NAME = #{record.catgName,jdbcType=VARCHAR},
+      CATG_LEVEL = #{record.catgLevel,jdbcType=INTEGER},
+      CATG_TYPE = #{record.catgType,jdbcType=VARCHAR},
+      SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      CATG_PARENT = #{record.catgParent,jdbcType=VARCHAR},
+      CATLOG_ID = #{record.catlogId,jdbcType=INTEGER},
+      IF_ENTITY_CODE = #{record.ifEntityCode,jdbcType=VARCHAR},
+      IF_LEAF = #{record.ifLeaf,jdbcType=VARCHAR},
+      CATG_URL = #{record.catgUrl,jdbcType=VARCHAR},
+      CATG_TYPE_UNIT = #{record.catgTypeUnit,jdbcType=INTEGER},
+      MIN_PRICE = #{record.minPrice,jdbcType=INTEGER},
+      MAX_PRICE = #{record.maxPrice,jdbcType=INTEGER},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      MEDIA_UUID = #{record.mediaUuid,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      IF_SHOW = #{record.ifShow,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      IF_ABLE_EDIT = #{record.ifAbleEdit,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsCategory" >
+    update t_gds_category
+    <set >
+      <if test="catgName != null" >
+        CATG_NAME = #{catgName,jdbcType=VARCHAR},
+      </if>
+      <if test="catgLevel != null" >
+        CATG_LEVEL = #{catgLevel,jdbcType=INTEGER},
+      </if>
+      <if test="catgType != null" >
+        CATG_TYPE = #{catgType,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="catgParent != null" >
+        CATG_PARENT = #{catgParent,jdbcType=VARCHAR},
+      </if>
+      <if test="catlogId != null" >
+        CATLOG_ID = #{catlogId,jdbcType=INTEGER},
+      </if>
+      <if test="ifEntityCode != null" >
+        IF_ENTITY_CODE = #{ifEntityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ifLeaf != null" >
+        IF_LEAF = #{ifLeaf,jdbcType=VARCHAR},
+      </if>
+      <if test="catgUrl != null" >
+        CATG_URL = #{catgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="catgTypeUnit != null" >
+        CATG_TYPE_UNIT = #{catgTypeUnit,jdbcType=INTEGER},
+      </if>
+      <if test="minPrice != null" >
+        MIN_PRICE = #{minPrice,jdbcType=INTEGER},
+      </if>
+      <if test="maxPrice != null" >
+        MAX_PRICE = #{maxPrice,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="mediaUuid != null" >
+        MEDIA_UUID = #{mediaUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="ifShow != null" >
+        IF_SHOW = #{ifShow,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="ifAbleEdit != null" >
+        IF_ABLE_EDIT = #{ifAbleEdit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CATG_CODE = #{catgCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.goods.dao.model.GdsCategory" >
+    update t_gds_category
+    set CATG_NAME = #{catgName,jdbcType=VARCHAR},
+      CATG_LEVEL = #{catgLevel,jdbcType=INTEGER},
+      CATG_TYPE = #{catgType,jdbcType=VARCHAR},
+      SORT_NO = #{sortNo,jdbcType=INTEGER},
+      CATG_PARENT = #{catgParent,jdbcType=VARCHAR},
+      CATLOG_ID = #{catlogId,jdbcType=INTEGER},
+      IF_ENTITY_CODE = #{ifEntityCode,jdbcType=VARCHAR},
+      IF_LEAF = #{ifLeaf,jdbcType=VARCHAR},
+      CATG_URL = #{catgUrl,jdbcType=VARCHAR},
+      CATG_TYPE_UNIT = #{catgTypeUnit,jdbcType=INTEGER},
+      MIN_PRICE = #{minPrice,jdbcType=INTEGER},
+      MAX_PRICE = #{maxPrice,jdbcType=INTEGER},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      MEDIA_UUID = #{mediaUuid,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      IF_SHOW = #{ifShow,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      IF_ABLE_EDIT = #{ifAbleEdit,jdbcType=VARCHAR}
+    where CATG_CODE = #{catgCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

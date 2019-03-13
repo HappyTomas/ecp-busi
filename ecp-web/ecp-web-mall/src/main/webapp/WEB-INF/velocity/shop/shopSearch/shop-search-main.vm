@@ -1,0 +1,60 @@
+   
+   #parse("/sys/sys_param.vm")
+   <link rel="Stylesheet" type="text/css" href="$RESOURCE_PATH/bootstrap/core/2.3.2/css/bootstrap.css">
+    <link rel="Stylesheet" type="text/css" href="$CSS_PATH/reset.css">
+    <link rel="Stylesheet" type="text/css" href="$CSS_PATH/search.css">
+    <link rel="stylesheet" href="$CSS_PATH/shop.css"/>
+ <script type="text/javascript" src="$!{BUSIJS_PATH}/shop/shopSearch/shop-grid.js?version=$!{JS_VERSION}" ></script>
+
+ <input type="hidden" id="pageSize" value="$!{pageSize}">
+ <input type="hidden" id="pageNumber" value="$!{pageNumber}"> 
+ <input type="hidden" id="totalPage" value="$!{totalPage}"> 
+ <input type="hidden" id="totalNumber" value="$!{totalNumber}"> 
+ <input type="hidden" id="keyword" value="$!{extra.keyword}"> 
+ 
+<div class="wrap1200">
+    <div class="search-sl mt15 mb15"><i class="shop-icon shop-icon-find"></i>找到相关店铺<span id="totalRow">$gridResult.totalRow</span>家</div>
+    <div class="search-box">
+        <div class="sl-head mb10 clearfix">
+            <ul class="sl-order">
+                <li class="first selected" sort="default" id="sortDef">
+                    默认
+                </li>
+                <li sort="saleCount" id="sortSale">
+                    销量
+                </li>
+     
+            </ul>
+            <div class="fr f-width clearfix">
+                <ul class="shop-select">
+                
+                    <li class="shop-item drop-shopdown"><div  id="evalRateShow" style="float:left">好评率&nbsp;</div>
+                        <i class="icon-angle-down"></i>
+                        <span class="spacer"></span>
+
+                        <div class="shop-down">
+                            <ul id="evalRateLevel">
+								<li level="0" selected="true"><a href="#" >全部</a></li>
+                                <li level="1"><a href="#" >100%以上</a></li>
+                                <li level="2"><a href="#">90%以上</a></li>
+                                <li level="3"><a href="#">80%以上</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                <div class="sl-page shop-search-page">
+                    <span class="pagew disable" id="preBtn"><i class="micon micon-bpage"></i></span>
+                    <span class="page">
+                        <b id="prepage">#if($gridResult.totalPage==0) 0 #else 1 #end
+                       </b>/<i id="totalPageComp">$gridResult.totalPage</i>
+                    </span>
+                    <span class="pagew" id="backBtn"><i class="micon micon-npage"></i></span>
+                </div>
+            </div>
+        </div>
+		  <div id="shopList">
+      #parse("/shop/shopSearch/page/shopSearch-page.vm")
+		  </div>
+
+    </div>
+</div>

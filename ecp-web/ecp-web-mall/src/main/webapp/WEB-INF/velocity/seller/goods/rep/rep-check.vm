@@ -1,0 +1,71 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/rep/rep-check.js?version=$!{JS_VERSION}" ></script>
+#parse("/seller/goods/rep/rep-custom-css.vm")
+			<div class="alert alert-error hide formValidateMessages" ></div>
+		
+			<div class="formBox">
+			    <div class="main-inner" style="padding-left: 10px">
+				   <form id="repAddForm" class="form-horizontal  required-validate">
+					<div class="row-fluid">
+                         <div class="span4">
+                             <div class="control-group">
+                                 <label class="control-label">店铺编码：</label>
+                                 <div class="controls">
+                                     <select name="shopId" disabled="true">
+							            #shoplist($shopId)
+							          </select>
+                                 </div>
+                             </div>
+                         </div>
+
+						 <div class="span4">
+                             <div class="control-group">
+                                 <label class="control-label">仓库名称：</label>
+                                 <div class="controls">
+									 <input type="text" class="input-large required" name="repname"   placeholder="仓库名称" value="$repName" disabled="true"/>
+								     <input type="hidden" name="shopId"  value="$shopId"/>
+                                 </div>
+                             </div>
+                         </div>
+                    </div>
+					
+					<div class="row-fluid">
+                           <div class="control-group">
+                               <label class="control-label">仓库适用范围：</label>
+                               <div class="controls">
+                                   <div class="seller-citys">
+                                       <div class="tips">
+                                           <div><i class="sl-icon sl-icon-check"></i>表示该省份已被覆盖（注意：此时库存是省份粒度）</div>
+                                           <div><i class="sl-icon icon-lack"></i>表示该省份下有地市被覆盖（注意：如果该省份下所有地市被选中，而省份没有勾选，此时不等同于该省份被选中，库存是地市粒度</div>
+										   <input type="hidden" name="id" value="$id" />
+                                       </div>
+                                       <div class="city-list clearfix" id="selAdapt">
+											   #foreach($areaInfo in $areaInfos)
+                							      #if($areaInfo.ifHasOver == true)
+                							           #if($areaInfo.ifCityLevel == true && $areaInfo.ifCRepHasOver==true)	
+                							              <div class="localspan"  style="width:28%"><div><div ><input type="hidden" citys="" id="$areaInfo.provinceCode"/><input type="checkbox" value="$areaInfo.provinceCode" style="display:none"/><img src="$IMAGE_PATH/goods/check_sep.jpg" style="width:16px;height:16px"/><div style="display: inline">$areaInfo.areaName</div><a class="selCityArea" >设置地市区域</a></div></div></div>
+                				                       #elseif($areaInfo.ifCityLevel == false &&$areaInfo.ifCRepHasOver==true)
+                							               <div class="localspan"  style="width:28%"><div><div ><input type="hidden" citys="" id="$areaInfo.provinceCode"/><input type="checkbox" value="$areaInfo.provinceCode" checked="checked" disabled="true"/><img src="$IMAGE_PATH/goods/check_sep.jpg" style="width:16px;height:16px;display:none"/><div style="display: inline">$areaInfo.areaName</div><a class="selCityArea" >设置地市区域</a></div></div></div>
+                                                       #else
+                							                <div class="localspan"  style="width:28%"><div><div ><input type="hidden" citys="" id="$areaInfo.provinceCode"/><input type="checkbox" value="$areaInfo.provinceCode" disabled="true"/><img src="$IMAGE_PATH/goods/check_sep.jpg" style="width:16px;height:16px;display:none"/><div style="display: inline">$areaInfo.areaName</div><a class="selCityArea" >设置地市区域</a></div></div></div>
+                							           #end
+                							      #else
+                							           <div class="localspan"  style="width:28%"><div><div ><input type="hidden" citys="" id="$areaInfo.provinceCode"/><input type="checkbox" value="$areaInfo.provinceCode" disabled="true"/><img src="$IMAGE_PATH/goods/check_sep.jpg" style="width:16px;height:16px;display:none"/><div style="display: inline">$areaInfo.areaName</div><a class="selCityArea" >设置地市区域</a></div></div></div>
+                							      #end	
+                							    #end
+                                       </div>
+                                   </div>
+                               </div>
+                           </div>
+                     </div>
+					<div style="">
+						<center>
+    						<div class="control-group">
+    							<div class="controls">
+    								<button type="button" class="sbtn" id="btnReturn"><i class="icon-reply"></i> 返　回</button>
+    							</div>
+    						</div>
+						</center>
+					</div>
+				</form>
+			</div>

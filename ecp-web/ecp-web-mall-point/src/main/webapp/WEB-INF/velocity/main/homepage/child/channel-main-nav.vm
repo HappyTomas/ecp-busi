@@ -1,0 +1,37 @@
+##积分商城首页的栏目组件对应的页面
+#parse("sys/sys_param.vm")
+<input type="hidden" id="nav-type" name="nav-type" value="$!{navType}" />
+<ul class="navs pull-right">
+    #foreach($channel in $channelsList)
+   		#if($!{channel.id} && $!{channel.id} !='')
+   			#if($velocityCount != 1)
+   				<li class="spit">|</li>
+   			#end 
+   		
+   			<li class="item #if($!{channel.isOutLink} && $!{channel.isOutLink} != '1') main-mav-item #end">
+   				<a href="#if($!{channel.isOutLink} && $!{channel.isOutLink} != '1')$CONTEXT_PATH/#end$!{channel.channelUrl}"  id="nav_$!{channel.id}" url="$!{channel.channelUrl}">$!{channel.channelName}</a>
+   			</li>
+		#end
+	#end
+</ul>
+
+
+#*  
+<ul class="navs pull-right">
+    <li class="item current">
+        <a href="${CONTEXT_PATH}/homepage?nav_type=0">首页</a>
+    </li>
+    <li class="spit">|</li>
+    <li class="item">
+        <a href="${CONTEXT_PATH}/search?field=updateTime&sort=desc&nav_type=1">最新上架</a>
+    </li>
+    <li class="spit">|</li>
+    <li class="item">
+        <a href="${CONTEXT_PATH}/search?category=2&nav_type=2">实物礼品</a>
+    </li>
+    <li class="spit">|</li>
+    <li class="item">
+        <a href="${CONTEXT_PATH}/search?category=1704&nav_type=3">苹果专区</a>
+    </li>
+</ul>
+*#

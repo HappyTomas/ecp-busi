@@ -1,0 +1,21 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/shop/ship-grid.js?version=$!{JS_VERSION}" ></script>
+<div class="well well-searchForm">
+    <form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+        <input type="hidden" name="shopid" id="shopid" value="$!{shopid}"/>
+        <div class="row-fluid">
+        	<div class="span6">
+                <div class="control-group">
+                    <label class="control-label">默认运费模板：</label>
+                    <div class="controls">
+                        <input type="text" value="$!{tempInfo.shipTemplateName}" id="shipTemplateName" name="shipTemplateName" maxlength="20" disabled/>
+                    </div>
+                </div>
+        	</div>
+        </div>
+    </form>
+</div>
+<div class="row-fluid">
+	<table id="shipdataGridTable"></table>
+</div>

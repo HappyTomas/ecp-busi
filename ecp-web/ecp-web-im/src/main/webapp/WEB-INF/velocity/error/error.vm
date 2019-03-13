@@ -1,0 +1,14 @@
+#parse("/sys/sys_param.vm")
+<style>
+    html,body{
+        min-height: 100%;
+        background: #e0dada;
+    }
+</style>
+<div class="ui-error">
+	 <div class="w">
+        <img class="logo" src="$IMAGE_PATH/logo.png" alt="">
+    </div>
+    <div class="error-txt" >对不起客官，您没有权限使用当前模块，请咨询平台管理员</div>
+    <a href="$CONTEXT_PATH/login" class="error-btn"></a>
+</div>

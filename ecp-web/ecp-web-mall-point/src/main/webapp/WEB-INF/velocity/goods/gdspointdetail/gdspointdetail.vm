@@ -1,0 +1,52 @@
+<meta charset="UTF-8">
+    <title>积分商城</title>
+    #parse("sys/sys_param.vm")
+    	<link rel="Stylesheet" type="text/css" href="$!RESOURCE_PATH/bootstrap/core/2.3.2/css/bootstrap.css">
+        <link rel="Stylesheet" type="text/css" href="$CSS_PATH/reset.css">
+        <link rel="Stylesheet" type="text/css" href="$CSS_PATH/point.css">
+    	<!--购物车路径线-->
+    	<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/fly/jquery.fly.min.js"></script>
+		<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/fly/requestAnimationFrame.js"></script>
+        <script type="text/javascript" src="$BUSIJS_PATH/goods/gdspointdetail/gdspointdetail.js?version=$!{JS_VERSION}"></script>
+		<script type="text/javascript" src="$BUSIJS_PATH/search/search-box.js"></script>
+        #if($!{gdsDetailInfo.skuInfo.gdsStatus} == '99')
+            ##已删除的商品提示、或者不存在的商品
+            #parse("/goods/gdspointdetail/gdspoint-gdsdelete.vm")
+		#else
+			<!--内容 begin-->
+                <div class="wrap1000">
+                    <div id="content-c">
+                        <div id="lnav">
+                            <!--目录分类start-->
+                            #parse("/goods/gdspointdetail/gdspoint-deractory.vm")
+                            <!--目录分类end-->
+                            <div id="nav-search"></div>
+							<!--<div class="p-search">
+                                <input type="text" placeholder="请输入关键字" id="searchTxt">
+                                <button class="c-orange" type="button" id="searchBtn">
+                                    <i class="picon icon-search"></i>
+                                </button>
+                            </div>-->
+                            <!--兑换排行榜start-->
+                            #parse("/goods/gdspointdetail/gdspoint-exchangeRank.vm")
+                            <!--兑换排行榜end-->
+                        </div>
+                        <div id="main">
+                            <div class="dmain">
+                                <!--商品简介 begin-->
+                                <div class="pro-intro clearfix">
+                                    #parse("/goods/gdspointdetail/gdspoint-gdsPictrue.vm")
+                                    #parse("/goods/gdspointdetail/gdspoint-gdsInfo.vm")
+                                </div>
+                                <!--商品简介 end-->
+                                <!--商品描述 begin-->
+								<input type="hidden" value="$!{gdsDetailInfo.gdsDesc}" id="gdsDesc"/>
+								<input type="hidden" value="$!{gdsDetailInfo.gdsPartlist}" id="gdsPartlist"/>
+                                #parse("/goods/gdspointdetail/gdspoint-decription.vm")
+                                <!--商品描述 end-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             <!--内容 end-->
+        #end

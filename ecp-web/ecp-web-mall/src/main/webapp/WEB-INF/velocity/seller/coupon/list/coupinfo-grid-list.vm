@@ -1,0 +1,79 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/list/coupinfo-grid-list.js?version=$!{JS_VERSION}" ></script>
+<div class="nItem">
+ 
+   <div style="overflow-x: auto;">
+       <table class="seller-table table-striped" id="coupTable">
+         <thead>
+           <tr>
+           		<td style="width:50px"><input type="checkbox" id="dt_row_all_check"></td>
+                <td>站点</td>
+                <td style="width: 50px">店铺</td>
+                <td style="width: 150px">优惠券名称</td>
+                <td>优惠券类型</td>
+                <td>面额</td>
+			    <td>发行总量</td>
+			    <td>已领取总量</td>
+			  	<td>日期类型</td>
+				<td>生效时间</td>
+				<td>失效时间</td>
+				<td>优惠码</td>
+				<td>状态</td>
+				<td>操作</td>
+           </tr>
+         </thead>
+        <tbody>
+           #if(!$coupPage.getResult()||$coupPage.pageCount <=0)
+    		<tr>
+				<td colspan='14'>
+					很遗憾，暂无数据。
+				</td>
+		    </tr>
+    	   #else
+				#foreach($pageInfo in $coupPage.getResult())
+        		<tr>
+        			<td><input name="checkboxcoup" type="checkbox" value="$!{pageInfo.id}" id="$!{pageInfo.id}" status="$!{pageInfo.statusName}"></td>
+	                <td>#escapeHtml(" $!{pageInfo.siteName}")</td>
+                    <td> #escapeHtml(" $!{pageInfo.shopName}")</td>
+                    <td  class="td-hhtxt " > <div>#escapeHtml(" $!{pageInfo.coupName}")  </div></td>
+					<td> #escapeHtml( "$!{pageInfo.coupTypeName}")</td>
+					<td>  #if($!{pageInfo.coupValue} <= 0)
+            				 抵用券
+            			#else
+            				 #moneyNum($!{pageInfo.coupValue})
+						#end
+					</td>
+					<td> $!pageInfo.coupNum</td>
+					<td> $!pageInfo.getNum</td>
+					<td>#escapeHtml( "$!{pageInfo.effTypeName}")</td>
+					<td> 
+						$!date.format('yyyy-MM-dd HH:mm:ss',$!{pageInfo.activeTime})
+					</td>
+					<td> 
+						$!date.format('yyyy-MM-dd HH:mm:ss',$!{pageInfo.inactiveTime})
+					</td>
+					<td> 
+						$!{pageInfo.coupCode}
+					</td>
+					<td>#escapeHtml( "$!{pageInfo.statusName}") </td>
+                    <td>
+                    	<a href="javascript:void(0);" onclick="coupinfoGrid.copy('$!{pageInfo.id}')">复制</a>|<a href="javascript:void(0);" onclick="coupinfoGrid.detail('$!{pageInfo.id}')">详情</a>
+                    	#if($!{pageInfo.status} == '1')
+                    		 |<a href="javascript:void(0);" onclick="coupinfoGrid.invalid('$!{pageInfo.id}')">失效</a>
+            			#end
+            			#if($!{pageInfo.status} == '2')
+            				 |<a href="javascript:void(0);" onclick="coupinfoGrid.edit('$!{pageInfo.id}')">编辑</a>
+            				 |<a href="javascript:void(0);" onclick="coupinfoGrid.del('$!{pageInfo.id}')">删除</a>
+            				 |<a href="javascript:void(0);" onclick="coupinfoGrid.valid('$!{pageInfo.id}')">生效</a>
+						#end
+                    </td>
+	            </tr>
+			   #end
+		   #end
+         </tbody>
+       </table>
+   </div>
+  <div id="pageControlbar" class="ecppage" data-total-page="${coupPage.pageCount}" data-total-row="${coupPage.count}" data-page-size="${coupPage.pageSize}" data-page-number="${coupPage.pageNo}" data-status="begin"></div>
+</div>
+	
+	

@@ -1,0 +1,140 @@
+#parse("sys/sys_param.vm")
+<script src="$!BUSIJS_PATH/order/detail/order-detail.js?version=$!{JS_VERSION}"></script>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        订单详情
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        <a href="javascript:history.go(-1)" class="">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content-fixBottom">
+    <div class="odr-box ord-num">订单号：$!orderId</div>
+    #if($addr)
+        <div class="odr-box odr-pad ">
+            <div class="r-address">
+                <i class="icon icon-name"></i>
+
+                <div>$!addr.contactName <span class="c-orange Vmlr">|</span> $!addr.contactPhone</div>
+            </div>
+            <div class="r-address">
+                <i class="icon icon-adr"></i>
+
+                <div class="adre">
+                    <span class="adre-w">$!addr.chnlAddress</span>
+                </div>
+            </div>
+        </div>
+    #end
+    <div class="odr-box">
+        <div>
+            <div class="odr-tit odr-pad">
+                <span><i class="icon icon-ord-shop"></i>$!ordMain.shopName</span>
+            </div>
+            <div class="odr-con ">
+                <ul class="ui-list li-bo">
+                    #set($scores=0)
+                    #foreach($ordSub in $!ordSubs)
+                        <li>
+                            <a href="#translate('CMS_SITE_MAPPING','2')$!{ordSub.gdsUrl}">
+##                            <a href="$!{CONTEXT_PATH}$!{ordSub.gdsUrl}">
+                                <div class="img-wrap">
+                                    <div class="img-border"><img src="$!ordSub.picUrl" alt=""></div>
+                                </div>
+                                <div class="cont">
+                                    <p class="tit">$!ordSub.gdsName</p>
+
+                                    <div>
+                                        <span class="pro-pri">价格：#set($score = "")#if(!$null.isNull($!{ordSub.score}))#set($scores = $scores + $!ordSub.score)#set($score = "$!{ordSub.score}积分 + ")#end $!score &yen;$!{aiNumber.showMoneyByTwoDecimal("$!ordSub.discountPrice")}</span>
+                                        <span class="pro-dis">数量：x $!ordSub.orderAmount</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                    #end
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="odr-box">
+        <ul class="o-list">
+            <li><span>支付方式</span>
+                <nav>#translate("ORD_PAY_TYPE",$!{ordMain.payType})</nav>
+            </li>
+            <li><span>配送方式</span>
+                <nav>#translate("STAFF_SHOP_DISTRIBUTION_WAY",$!{ordMain.dispatchType})</nav>
+            </li>
+            #if($!deliverys && $!deliverys.size()>0)
+            <li class="wl-list"><span>物流信息<span class="ui-arrow ui-arrow-right pull-right"></span></span>
+
+                <div class="wl-list-c" style="display:none">
+                    #foreach($!delivery in $!deliverys)
+                        <p>物流单号：<strong>$!delivery.expressNo </strong>| &nbsp;
+                            送货方式：#translate('STAFF_SHOP_DISTRIBUTION_WAY' $!delivery.deliveryType)| &nbsp;
+                            发货时间：$!date.format('yyyy-MM-dd HH:mm:ss ',$!delivery.sendDate)| &nbsp;
+                            物流公司：$!delivery.expressName</p>
+                    #end
+                </div>
+            #else
+            <li><span>物流信息</span>
+                <nav>暂未发货</nav>
+            #end
+        </li>
+            <li><span>发票信息</span>
+                #if($!invoiceComm)
+                    <nav><a id="invoice" class="active">查看详情</a></nav>
+                #else
+                    <nav>暂无发票</nav>
+                #end
+            </li>
+
+        </ul>
+    </div>
+    <div class="odr-box">
+        <div class="text-right pribox">
+            <p>实付款：<span class="c-orange">$!{ordMain.orderScore}积分+<i>&yen;</i>$!{aiNumber.showMoneyByTwoDecimal("$!ordMain.realMoney")}</span></p>
+            <p class="color">下单时间：<time>$!date.format('yyyy-MM-dd HH:mm:ss',$!{ordMain.orderTime})</time></p>
+        </div>
+    </div>
+
+</div>
+##<div class="am-navbar am-cf am-navbar-mall ord-dbg">
+##    <div class="pad-box">
+##        <div class="pad-pri"><span>合计：</span><span class="c-orange ft26">&yen;$!{aiNumber.showMoneyByTwoDecimal("$!ordMain.realMoney")}</span></div>
+##        <a href="" class="btn btn-whith">取消订单</a>&nbsp;&nbsp;<a href="" class="btn btn-gw">去付款</a>
+##    </div>
+##</div>
+#if($!ordMain.status == "01")
+<div class="am-navbar am-cf am-navbar-mall ord-dbg">
+    <div class="odr-footer" id="payfooter">
+        <div class="odr-time"><p class="odr-time-tit">付款剩余时间</p>
+           <p class="odr-time-time">$!{hour}小时$!{minutes}分钟</p></div>
+        <div class="odr-btn">
+            <a id="cancel" class="wbtn wbtn-radius wbtn-default">取消订单</a>
+			<a class="wbtn wbtn-radius" id="gopay">去支付</a>
+        </div>
+		<form method="POST" action="$CONTEXT_PATH/pay/queryWay" id="$!orderId">
+            <input name="orderIds" value="$!orderId" type="hidden">
+            <input name="shopId" value="$ordMain.shopId" type="hidden">
+            <input name="oper" value="01" type="hidden">
+            <input name="orderMoney" value="$ordMain.realMoney" type="hidden">
+        </form>
+    </div>
+</div>
+#end 
+
+#parse("order/detail/order-invoice.vm")
+
+#if($!ordMain.status=="05")
+	<input type="hidden" id="orderId" value="$!orderId" />
+    <div class="am-navbar am-cf am-navbar-mall ord-dbg">
+        <div class="pad-box">
+            <div class="pad-pri"> 
+            </div>
+            <a href="javascript:void(0)" class="btn btn-gw confirmord">确认收货</a>
+        </div>
+    </div>
+#end
+

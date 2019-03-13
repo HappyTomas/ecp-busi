@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.unpf.dao.mapper.busi.UnpfShopAuthMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.unpf.dao.model.UnpfShopAuth" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PLAT_TYPE" property="platType" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="APPKEY" property="appkey" jdbcType="VARCHAR" />
+    <result column="APPSCRET" property="appscret" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="EXPIRED_TIME" property="expiredTime" jdbcType="TIMESTAMP" />
+    <result column="SERVER_URL" property="serverUrl" jdbcType="VARCHAR" />
+    <result column="FORMAT" property="format" jdbcType="VARCHAR" />
+    <result column="SIGNMETHOD" property="signmethod" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="AUTH_URL" property="authUrl" jdbcType="VARCHAR" />
+    <result column="REDIRECT_URI" property="redirectUri" jdbcType="VARCHAR" />
+    <result column="AUTH_CODE" property="authCode" jdbcType="VARCHAR" />
+    <result column="ACCESS_TOKEN" property="accessToken" jdbcType="VARCHAR" />
+    <result column="REFRESH_TOKEN" property="refreshToken" jdbcType="VARCHAR" />
+    <result column="EXPIRED_TIME_A" property="expiredTimeA" jdbcType="TIMESTAMP" />
+    <result column="EXPIRED_TIME_R" property="expiredTimeR" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PLAT_TYPE, SHOP_ID, APPKEY, APPSCRET, STATUS, EXPIRED_TIME, SERVER_URL, FORMAT, 
+    SIGNMETHOD, VERSION, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, AUTH_URL, 
+    REDIRECT_URI, AUTH_CODE, ACCESS_TOKEN, REFRESH_TOKEN, EXPIRED_TIME_A, EXPIRED_TIME_R
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfShopAuthCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_unpf_shop_auth
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_unpf_shop_auth
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_unpf_shop_auth
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfShopAuth" >
+    insert into t_unpf_shop_auth (ID, PLAT_TYPE, SHOP_ID, 
+      APPKEY, APPSCRET, STATUS, 
+      EXPIRED_TIME, SERVER_URL, FORMAT, 
+      SIGNMETHOD, VERSION, CREATE_TIME, 
+      CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, 
+      AUTH_URL, REDIRECT_URI, AUTH_CODE, 
+      ACCESS_TOKEN, REFRESH_TOKEN, EXPIRED_TIME_A, 
+      EXPIRED_TIME_R)
+    values (#{id,jdbcType=INTEGER}, #{platType,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, 
+      #{appkey,jdbcType=VARCHAR}, #{appscret,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{expiredTime,jdbcType=TIMESTAMP}, #{serverUrl,jdbcType=VARCHAR}, #{format,jdbcType=VARCHAR}, 
+      #{signmethod,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, 
+      #{authUrl,jdbcType=VARCHAR}, #{redirectUri,jdbcType=VARCHAR}, #{authCode,jdbcType=VARCHAR}, 
+      #{accessToken,jdbcType=VARCHAR}, #{refreshToken,jdbcType=VARCHAR}, #{expiredTimeA,jdbcType=TIMESTAMP}, 
+      #{expiredTimeR,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfShopAuth" >
+    insert into t_unpf_shop_auth
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="platType != null" >
+        PLAT_TYPE,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="appkey != null" >
+        APPKEY,
+      </if>
+      <if test="appscret != null" >
+        APPSCRET,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="expiredTime != null" >
+        EXPIRED_TIME,
+      </if>
+      <if test="serverUrl != null" >
+        SERVER_URL,
+      </if>
+      <if test="format != null" >
+        FORMAT,
+      </if>
+      <if test="signmethod != null" >
+        SIGNMETHOD,
+      </if>
+      <if test="version != null" >
+        VERSION,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="authUrl != null" >
+        AUTH_URL,
+      </if>
+      <if test="redirectUri != null" >
+        REDIRECT_URI,
+      </if>
+      <if test="authCode != null" >
+        AUTH_CODE,
+      </if>
+      <if test="accessToken != null" >
+        ACCESS_TOKEN,
+      </if>
+      <if test="refreshToken != null" >
+        REFRESH_TOKEN,
+      </if>
+      <if test="expiredTimeA != null" >
+        EXPIRED_TIME_A,
+      </if>
+      <if test="expiredTimeR != null" >
+        EXPIRED_TIME_R,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="platType != null" >
+        #{platType,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="appkey != null" >
+        #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="appscret != null" >
+        #{appscret,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="expiredTime != null" >
+        #{expiredTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serverUrl != null" >
+        #{serverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null" >
+        #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="signmethod != null" >
+        #{signmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="authUrl != null" >
+        #{authUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="redirectUri != null" >
+        #{redirectUri,jdbcType=VARCHAR},
+      </if>
+      <if test="authCode != null" >
+        #{authCode,jdbcType=VARCHAR},
+      </if>
+      <if test="accessToken != null" >
+        #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshToken != null" >
+        #{refreshToken,jdbcType=VARCHAR},
+      </if>
+      <if test="expiredTimeA != null" >
+        #{expiredTimeA,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiredTimeR != null" >
+        #{expiredTimeR,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfShopAuthCriteria" resultType="java.lang.Long" >
+    select count(*) from t_unpf_shop_auth
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_unpf_shop_auth
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.platType != null" >
+        PLAT_TYPE = #{record.platType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.appkey != null" >
+        APPKEY = #{record.appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appscret != null" >
+        APPSCRET = #{record.appscret,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expiredTime != null" >
+        EXPIRED_TIME = #{record.expiredTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.serverUrl != null" >
+        SERVER_URL = #{record.serverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.format != null" >
+        FORMAT = #{record.format,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signmethod != null" >
+        SIGNMETHOD = #{record.signmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        VERSION = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.authUrl != null" >
+        AUTH_URL = #{record.authUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.redirectUri != null" >
+        REDIRECT_URI = #{record.redirectUri,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authCode != null" >
+        AUTH_CODE = #{record.authCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accessToken != null" >
+        ACCESS_TOKEN = #{record.accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refreshToken != null" >
+        REFRESH_TOKEN = #{record.refreshToken,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expiredTimeA != null" >
+        EXPIRED_TIME_A = #{record.expiredTimeA,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.expiredTimeR != null" >
+        EXPIRED_TIME_R = #{record.expiredTimeR,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_unpf_shop_auth
+    set ID = #{record.id,jdbcType=INTEGER},
+      PLAT_TYPE = #{record.platType,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      APPKEY = #{record.appkey,jdbcType=VARCHAR},
+      APPSCRET = #{record.appscret,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      EXPIRED_TIME = #{record.expiredTime,jdbcType=TIMESTAMP},
+      SERVER_URL = #{record.serverUrl,jdbcType=VARCHAR},
+      FORMAT = #{record.format,jdbcType=VARCHAR},
+      SIGNMETHOD = #{record.signmethod,jdbcType=VARCHAR},
+      VERSION = #{record.version,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      AUTH_URL = #{record.authUrl,jdbcType=VARCHAR},
+      REDIRECT_URI = #{record.redirectUri,jdbcType=VARCHAR},
+      AUTH_CODE = #{record.authCode,jdbcType=VARCHAR},
+      ACCESS_TOKEN = #{record.accessToken,jdbcType=VARCHAR},
+      REFRESH_TOKEN = #{record.refreshToken,jdbcType=VARCHAR},
+      EXPIRED_TIME_A = #{record.expiredTimeA,jdbcType=TIMESTAMP},
+      EXPIRED_TIME_R = #{record.expiredTimeR,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfShopAuth" >
+    update t_unpf_shop_auth
+    <set >
+      <if test="platType != null" >
+        PLAT_TYPE = #{platType,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="appkey != null" >
+        APPKEY = #{appkey,jdbcType=VARCHAR},
+      </if>
+      <if test="appscret != null" >
+        APPSCRET = #{appscret,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="expiredTime != null" >
+        EXPIRED_TIME = #{expiredTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="serverUrl != null" >
+        SERVER_URL = #{serverUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="format != null" >
+        FORMAT = #{format,jdbcType=VARCHAR},
+      </if>
+      <if test="signmethod != null" >
+        SIGNMETHOD = #{signmethod,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        VERSION = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="authUrl != null" >
+        AUTH_URL = #{authUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="redirectUri != null" >
+        REDIRECT_URI = #{redirectUri,jdbcType=VARCHAR},
+      </if>
+      <if test="authCode != null" >
+        AUTH_CODE = #{authCode,jdbcType=VARCHAR},
+      </if>
+      <if test="accessToken != null" >
+        ACCESS_TOKEN = #{accessToken,jdbcType=VARCHAR},
+      </if>
+      <if test="refreshToken != null" >
+        REFRESH_TOKEN = #{refreshToken,jdbcType=VARCHAR},
+      </if>
+      <if test="expiredTimeA != null" >
+        EXPIRED_TIME_A = #{expiredTimeA,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expiredTimeR != null" >
+        EXPIRED_TIME_R = #{expiredTimeR,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfShopAuth" >
+    update t_unpf_shop_auth
+    set PLAT_TYPE = #{platType,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      APPKEY = #{appkey,jdbcType=VARCHAR},
+      APPSCRET = #{appscret,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      EXPIRED_TIME = #{expiredTime,jdbcType=TIMESTAMP},
+      SERVER_URL = #{serverUrl,jdbcType=VARCHAR},
+      FORMAT = #{format,jdbcType=VARCHAR},
+      SIGNMETHOD = #{signmethod,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      AUTH_URL = #{authUrl,jdbcType=VARCHAR},
+      REDIRECT_URI = #{redirectUri,jdbcType=VARCHAR},
+      AUTH_CODE = #{authCode,jdbcType=VARCHAR},
+      ACCESS_TOKEN = #{accessToken,jdbcType=VARCHAR},
+      REFRESH_TOKEN = #{refreshToken,jdbcType=VARCHAR},
+      EXPIRED_TIME_A = #{expiredTimeA,jdbcType=TIMESTAMP},
+      EXPIRED_TIME_R = #{expiredTimeR,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

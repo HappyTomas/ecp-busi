@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean class="com.zengshi.ecp.frame.utils.RuleMap">
+		<constructor-arg>  
+			<map>  
+				<entry key="t_msg_insite" value-ref="msgInsiteDistributedRule" />
+				<entry key="t_msg_send_detail" value-ref="msgSendDetailDistributedRule" />
+				<entry key="t_msg_info" value-ref="msgInfoDistributedRule" />
+			</map>  
+		</constructor-arg>  
+	</bean> 
+	<!--站内消息表-->
+	<bean id="msgInsiteDistributedRule" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="T_MSG_INSITE_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!--消息发送明细表-->
+	<bean id="msgSendDetailDistributedRule" class="com.db.distribute.DistributedTableRule">
+        <property name="distributeKey" value="msg_info_id" />
+        <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+        <property name="tableNamePattern" value="T_MSG_SEND_DETAIL_{00}" />
+        <property name="tableNameRule">
+            <value>{keyValue:{keyColumn:'msg_info_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+        </property>
+        <property name="logicDBRule">
+            <value>{keyValue:{keyValue:{keyColumn:'msg_info_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+        </property>
+        <property name="allowFullTableScan" value="true" />
+        <property name="subTableCount" value="4" />
+    </bean>
+    <!--消息信息表-->
+    <bean id="msgInfoDistributedRule" class="com.db.distribute.DistributedTableRule">
+        <property name="distributeKey" value="msg_info_id" />
+        <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+        <property name="tableNamePattern" value="T_MSG_INFO_{00}" />
+        <property name="tableNameRule">
+            <value>{keyValue:{keyColumn:'msg_info_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+        </property>
+        <property name="logicDBRule">
+            <value>{keyValue:{keyValue:{keyColumn:'msg_info_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+        </property>
+        <property name="allowFullTableScan" value="true" />
+        <property name="subTableCount" value="4" />
+    </bean>
+    
+	
+</beans>

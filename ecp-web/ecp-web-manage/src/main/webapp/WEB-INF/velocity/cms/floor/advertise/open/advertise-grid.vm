@@ -1,0 +1,56 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/floor/advertise/open/advertise-grid.js?version=$!{JS_VERSION}" ></script>
+
+<!--搜索区域-->
+<div class="well well-searchForm">
+	<form id="advertise_grid_searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+	<div class="row-fluid">
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">广告语：</label>
+				<div class="controls">
+					<input type="text" id="advertise_grid_advertiseTitle" name="advertiseTitle" class="input-small" style="width:80%" value="" placeholder="请输入广告语">
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">内容位置：</label>
+				<div class="controls">
+					<select id="advertise_grid_placeId" name ="placeId" class="input-small" style="width:80%">
+						<option value="" selected >--请选择--</option>
+						#foreach($place in $placeList)
+							<option value="$!{place.id}">#escapeHtml($!{place.placeName})</option>
+    					#end
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">店铺：</label>
+				<div class="controls">
+					<select id="advertise_grid_shopId" name="shopId" class="input-small" style="width:80%">
+						<option value="">--请选择--</option>
+						#shoplist() 
+					</select>
+				</div>
+			</div>
+		</div>
+	</div>
+	</form>
+</div>
+
+<!--操作按钮区域-->
+<div class="row-fluid" style="margin-bottom: 10px;">
+	<div class="pull-right">
+		<a class="btn" id="advertise_grid_btnFormSearch" href="javascript:void(0)"><i class="icon-search icon-white"></i>查询</a>
+		<a class="btn btn-default" id="advertise_grid_btnFormReset" href="javascript:void(0)"><i class="icon-asterisk"></i>重置</a>
+	</div>
+</div>
+
+<!--列表区域-->
+<div  class="row-fluid" >
+	<table id="advertise_grid_dataGridTable"></table>
+</div>

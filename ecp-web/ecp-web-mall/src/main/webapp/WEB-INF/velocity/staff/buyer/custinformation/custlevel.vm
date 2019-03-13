@@ -1,0 +1,34 @@
+#parse("sys/sys_param.vm")
+                         <!--我的级别-->
+                    <div class=" " id="grade">
+                        <p class="showP">您的会员级别是：#custLevelCode($!{custInfo.custLevelCode},'STAFF_CUST_LEVEL')#translate('STAFF_CUST_LEVEL',$!{custInfo.custLevelCode})</p>
+                        <p class="showP">会员级别有效期：长期有效</p>
+                        <p class="showP">您目前的成长值为<font style="color:red">$!{custInfo.custGrowValue}</font> #if(${gaplevel.custLevelName})，再获得<font style="color:red">$!{gaplevel.gapValue}</font>成长值即可升级到 <a href="#">$!{gaplevel.custLevelName}</a></p>#end
+                        <p class="showP">获得成长值的办法：购物、 评价。 </p>
+                        <form class="mt30">
+                            <legend>我的成长值明细</legend>
+                        </form>
+                        <table class="table table-bordered mt10">
+                            <thead>
+                            <tr>
+                                <th>时间</th>
+                                <th>成长值</th>
+                                <th>成长值来源</th>
+                                <th>订单号</th>
+                            
+                            </tr>
+                            </thead>
+                            <tbody>
+                            #foreach($attr in $growinfo)
+							 <tr>
+                                <td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.createTime})</td>
+                                <td>$!{attr.growValue}</td>
+                                <td>#translate('STAFF_ACTION_TYPE',$!{attr.sourceType})</td>
+                                <td><a href="$!{CONTEXT_PATH}/ord/detail/$!{attr.ordId}">$!{attr.ordId}</a></td>
+                              
+                            </tr>
+							#end
+                            </tbody>
+                        </table>
+                        <div class="pull-right" style="color:#999">仅显示最近20条记录</div>
+                    </div>

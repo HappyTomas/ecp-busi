@@ -1,0 +1,121 @@
+#parse("sys/sys_param.vm")
+<title>请选择支付方式-积分商城</title>
+	<link href="$!{CSS_PATH}/order.css" type="text/css" rel="stylesheet"/>
+	<link href="$!{CSS_PATH}/reset.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js"></script>
+
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/order/point/pay/pay-way.js?version=$!{JS_VERSION}" ></script>
+ 
+
+<!--主要内容 begin-->
+<div id="content">
+    <div class="wrap1200">
+        <div class="order-sb-state">
+            <div class="sus-tip">
+                <table width="100%" border="0">
+                    <tbody>
+                    <tr>
+                        <td class="mstate-icc">
+                           <i class="mstate"></i>
+                        </td>
+                        <td>
+                            <p class="txt"> 
+                                <strong class="c-gray">
+                                    请在 <span class="c-red">$!{hour}小时</span>内完成支付，超时后将取消订单
+                                </strong>
+                                <strong class="c-gray">
+                                    付款后，我们会尽快为您发货
+                                </strong>
+                            </p>
+                            <ul class="odetail pway-detail">
+                                <li>
+                                    <label>金额：</label>
+                                    <span class="c-red">#money($!{realMoney})元</span>
+                                </li>
+                                <li style="display:none">
+                                    <label>订单编号：</label>
+                                    <span>$!{orderId}</span>
+                                </li>
+                                 <li>
+                                    <label>订单编号：</label>
+                                    <span>$!{showOrderIds}</span>
+                                </li>
+                                
+                            </ul>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="pay-way">
+            <h4>选择支付方式</h4>
+            <ul class="pay-type">
+                <li class="selected">
+                    个人账户
+                </li> 
+            </ul>
+            <div class="pay-online">
+                <table class="">
+                    <tbody>
+                       #foreach($param in $!{wayList})
+							<tr>
+    							<th class="payMainL">
+                                    <strong>
+										#if($!{param.payWayType}=='01')
+											支付平台
+										#elseif($!{param.payWayType}=='02')
+											银行卡支付
+									    #elseif($!{param.payWayType}=='03')
+											信用卡支付
+										#elseif($!{param.payWayType}=='04')
+											供应链贷款支付（沃金融）
+										#elseif($!{param.payWayType}=='05')
+											线下支付
+										#end	
+									</strong>
+									#if($!{param.payWayType}=='01')
+											<div>手机等大额支付推荐使用支付宝快捷支付</div>
+										#elseif($!{param.payWayType}=='02')
+											<div>手机等大额支付推荐使用支付宝快捷支付</div>
+									    #elseif($!{param.payWayType}=='03')
+											<div>手机等大额支付推荐使用支付宝快捷支付</div>
+										#elseif($!{param.payWayType}=='04')
+											<div>手机等大额支付推荐使用支付宝快捷支付</div>
+										#elseif($!{param.payWayType}=='05')
+											<div>手机等大额支付推荐使用支付宝快捷支付</div>
+										#end	
+                                    
+                                </th>
+								<td>
+									#foreach($item in $!{param.payWayList})
+                                        #if($item.id!='9006')
+                                        <label class="bankcc selected">
+                                            <input type="radio" name="strRadio" value="$!{orderId},$!{item.id}" class="bradio"/>
+                                            <i class="banklogo">
+												<img src="$!{item.payImage}"/>
+											</i>
+                                        </label>
+                                        #end
+									#end
+								</td>
+                            </tr>  
+					   #end 
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                          <td colspan="2">
+                              <input type="button" id="btn_payment" value="去支付" class="mbtn mbtn-orange"/>
+                          </td>
+                      </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!--主要内容 end-->
+

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    #parse("/sys/sys_param.vm")
+    <meta charset="UTF-8">
+    <title>商品介绍</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<!--     <script type="text/javascript">
+//javascript中使用全局URL基础路径
+//框架插件中使用，业务模块中勿用
+var $webroot = '/ecp-web-mobile/';
+</script> -->
+
+<link rel="stylesheet" type="text/css" href="$RESOURCE_PATH/contentinfo/amazeui.min.css" />
+
+<script type="text/javascript" src="$RESOURCE_PATH/contentinfo/flexible.js"></script>
+<script type="text/javascript" src="$RESOURCE_PATH/contentinfo/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="$RESOURCE_PATH/contentinfo/amazeui.min.js"></script>
+<script type="text/javascript" src="$RESOURCE_PATH/contentinfo/amazeui.js"></script>
+<script type="text/javascript" src="$RESOURCE_PATH/contentinfo/e.core.js"></script>
+<script type="text/javascript" src="$RESOURCE_PATH/contentinfo/e.dialog.js"></script>
+<link rel="stylesheet" type="text/css" href="$RESOURCE_PATH/contentinfo/public.css" />
+<link rel="stylesheet" type="text/css" href="$RESOURCE_PATH/contentinfo/mall.css" />
+    
+    
+</head>
+<body>
+<div class="pro-dt-box">
+       <!--  #foreach($param in $!{gdsDetailInfo.skuInfo.richTextPropMap.entrySet()})
+				#set($values = '')
+				#set($propName = $!{param.value.propName})
+				#foreach($value in $!{param.value.values})
+    				#set($values = $!{value.propValue})
+    				#if($propName != '章节节选')
+    				<div class="proappCon">
+    					<div class="p-tit"><span class="ibox"></span>$propName</div>
+	                    <div class="p-con" >
+	                    	$values
+	                    </div>
+                    </div>
+ 					#end
+    			#end
+			#end
+		#foreach($param in $!{gdsDetailInfo.skuInfo.richTextPropMap.entrySet()})
+				#set($values = '')
+				#set($propName = $!{param.value.propName})
+				#foreach($value in $!{param.value.values})
+    				#set($values = $!{value.propValue})
+    				#if($propName == '章节节选')
+    				<div class="proappCon">
+    					<div class="p-tit"><span class="ibox"></span>$propName</div>
+	                    <div class="p-con" >
+	                    	$values
+	                    </div>
+                    </div>
+ 					#end
+    			#end
+			#end -->
+		#set($count = 0)
+		#set($values = '')
+			#foreach($value in $!{gdsDetailInfo.skuInfo.richTextPropMap.get("1020").values})
+				#set($values = $!{value.propValue})
+				#if($values && $values !="")
+					#set($count = $count + 1)
+    				<div class="proappCon">
+    					<div class="p-tit"><span class="ibox"></span>内容简介</div>
+	                    <div class="p-con" >
+	                    	$values
+	                    </div>
+                    </div>
+				#end
+			#end
+		#set($values = '')
+			#foreach($value in $!{gdsDetailInfo.skuInfo.richTextPropMap.get("1021").values})
+				#set($values = $!{value.propValue})
+				#if($values && $values !="")
+					#set($count = $count + 1)
+    				<div class="proappCon">
+    					<div class="p-tit"><span class="ibox"></span>目录</div>
+	                    <div class="p-con" >
+	                    	$values
+	                    </div>
+                    </div>
+				#end
+			#end
+		#set($values = '')
+			#foreach($value in $!{gdsDetailInfo.skuInfo.richTextPropMap.get("1022").values})
+				#set($values = $!{value.propValue})
+				#if($values && $values !="")
+					#set($count = $count + 1)
+    				<div class="proappCon">
+    					<div class="p-tit"><span class="ibox"></span>作者介绍</div>
+	                    <div class="p-con" >
+	                    	$values
+	                    </div>
+                    </div>
+				#end
+			#end
+		#set($values = '')
+			#foreach($value in $!{gdsDetailInfo.skuInfo.richTextPropMap.get("1023").values})
+				#set($values = $!{value.propValue})
+				#if($values && $values !="")
+					#set($count = $count + 1)
+    				<div class="proappCon">
+    					<div class="p-tit"><span class="ibox"></span>编辑推荐</div>
+	                    <div class="p-con" >
+	                    	$values
+	                    </div>
+                    </div>
+				#end
+			#end
+		#set($values = '')
+			#foreach($value in $!{gdsDetailInfo.skuInfo.richTextPropMap.get("1024").values})
+				#set($values = $!{value.propValue})
+				#if($values && $values !="")
+					#set($count = $count + 1)
+    				<div class="proappCon">
+    					<div class="p-tit"><span class="ibox"></span>专家推荐</div>
+	                    <div class="p-con" >
+	                    	$values
+	                    </div>
+                    </div>
+				#end
+			#end
+		#set($values = '')
+			#foreach($value in $!{gdsDetailInfo.skuInfo.richTextPropMap.get("1025").values})
+				#set($values = $!{value.propValue})
+				#if($values && $values !="")
+					#set($count = $count + 1)
+    				<div class="proappCon">
+    					<div class="p-tit"><span class="ibox"></span>章节节选</div>
+	                    <div class="p-con" >
+	                    	$values
+	                    </div>
+                    </div>
+				#end
+			#end
+			#if($count == 0 && $!{gdsDetailInfo.gdsDesc} && $!{gdsDetailInfo.gdsDesc} != '')##没有属性且商品描述有值 显示商品描述
+		        #set($count = $count + 1)
+	                <div class="proappCon" id="gdsDetailDescHead">
+	   					<div class="p-tit"><span class="ibox"></span>产品详情</div>
+	   					<div class="p-con" id="gdsDetailDesc">
+	   						$!{gdsDetailInfo.gdsDesc}
+	                    </div>
+	                </div>
+				#end
+			#if($count ==0)
+                <div class="body">
+                    <div class="pro-dec" id="">
+                        <div class="p-nodata" style="margin-top:50%;">
+                            <img src="$IMAGE_PATH/detail_none.png">
+                        </div>
+                    </div>
+                </div>	
+			#end					
+</div>
+
+</body>
+</html>

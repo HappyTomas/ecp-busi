@@ -1,0 +1,27 @@
+#parse("sys/sys_param.vm")
+##用于处理页面背景 start
+<style>
+##处理背景色
+#if($!{pageAttr.backgroundColor} && 
+	$!{pageAttr.backgroundColor}!="" && 
+	$!{pageAttr.showBackFlag}=="1")
+.phone-content{background-color: #$!{pageAttr.backgroundColor}}
+#end
+##处理背景图
+#if($!{pageAttr.backgroundPic} && 
+	$!{pageAttr.backgroundPic}!="" && 
+	$!{pageAttr.backgroupShowType} &&
+	$!{pageAttr.backgroupShowType} != ''
+	)
+	
+	#if($!{pageAttr.backgroupShowType} == "01")
+	    #set($backgroupShowType = "repeat")
+	#elseif($!{pageAttr.backgroupShowType} == "02")
+		#set($backgroupShowType = "no-repeat")
+	#elseif($!{pageAttr.backgroupShowType} == "03")
+		#set($backgroupShowType = "repeat-y")
+	#end
+.phone-content{background-image: url(#genImageUrl($!{pageAttr.backgroundPic}));background-repeat:$!{backgroupShowType}}
+#end
+</style>
+##用于处理页面背景 end

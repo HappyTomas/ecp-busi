@@ -1,0 +1,471 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.AuditTradeCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.AuditTradeCheck" >
+    <id column="PAY_WAY" property="payWay" jdbcType="VARCHAR" />
+    <id column="TRANS_NO" property="transNo" jdbcType="VARCHAR" />
+    <result column="CHECK_DATE" property="checkDate" jdbcType="TIMESTAMP" />
+    <result column="TRANS_AMOUNT" property="transAmount" jdbcType="INTEGER" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="CARD_NO" property="cardNo" jdbcType="VARCHAR" />
+    <result column="CARD_NAME" property="cardName" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="PAY_TIME" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="PAY_DESCRIPTION" property="payDescription" jdbcType="VARCHAR" />
+    <result column="CHECK_STATUS" property="checkStatus" jdbcType="VARCHAR" />
+    <result column="ORDER_AMOUNT" property="orderAmount" jdbcType="INTEGER" />
+    <result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+    <result column="PAY_WAY_NAME" property="payWayName" jdbcType="VARCHAR" />
+    <result column="AUDIT_STATUS" property="auditStatus" jdbcType="VARCHAR" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="AUDIT_TYPE" property="auditType" jdbcType="VARCHAR" />
+    <result column="REFUND_ORDER_AMOUNT" property="refundOrderAmount" jdbcType="INTEGER" />
+    <result column="REFUND_TRANS_AMOUNT" property="refundTransAmount" jdbcType="INTEGER" />
+    <result column="BACK_ID" property="backId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    PAY_WAY, TRANS_NO, CHECK_DATE, TRANS_AMOUNT, ORDER_ID, STAFF_ID, CARD_NO, CARD_NAME, 
+    SHOP_ID, PAY_TIME, PAY_DESCRIPTION, CHECK_STATUS, ORDER_AMOUNT, BANK_NAME, PAY_WAY_NAME, 
+    AUDIT_STATUS, SITE_ID, AUDIT_TYPE, REFUND_ORDER_AMOUNT, REFUND_TRANS_AMOUNT, BACK_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.AuditTradeCheckCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_audit_trade_check
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.AuditTradeCheckKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_audit_trade_check
+    where PAY_WAY = #{payWay,jdbcType=VARCHAR}
+      and TRANS_NO = #{transNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.AuditTradeCheckKey" >
+    delete from t_audit_trade_check
+    where PAY_WAY = #{payWay,jdbcType=VARCHAR}
+      and TRANS_NO = #{transNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.AuditTradeCheckCriteria" >
+    delete from t_audit_trade_check
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.AuditTradeCheck" >
+    insert into t_audit_trade_check (PAY_WAY, TRANS_NO, CHECK_DATE, 
+      TRANS_AMOUNT, ORDER_ID, STAFF_ID, 
+      CARD_NO, CARD_NAME, SHOP_ID, 
+      PAY_TIME, PAY_DESCRIPTION, CHECK_STATUS, 
+      ORDER_AMOUNT, BANK_NAME, PAY_WAY_NAME, 
+      AUDIT_STATUS, SITE_ID, AUDIT_TYPE, 
+      REFUND_ORDER_AMOUNT, REFUND_TRANS_AMOUNT, BACK_ID
+      )
+    values (#{payWay,jdbcType=VARCHAR}, #{transNo,jdbcType=VARCHAR}, #{checkDate,jdbcType=TIMESTAMP}, 
+      #{transAmount,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{staffId,jdbcType=INTEGER}, 
+      #{cardNo,jdbcType=VARCHAR}, #{cardName,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{payDescription,jdbcType=VARCHAR}, #{checkStatus,jdbcType=VARCHAR}, 
+      #{orderAmount,jdbcType=INTEGER}, #{bankName,jdbcType=VARCHAR}, #{payWayName,jdbcType=VARCHAR}, 
+      #{auditStatus,jdbcType=VARCHAR}, #{siteId,jdbcType=INTEGER}, #{auditType,jdbcType=VARCHAR}, 
+      #{refundOrderAmount,jdbcType=INTEGER}, #{refundTransAmount,jdbcType=INTEGER}, #{backId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.AuditTradeCheck" >
+    insert into t_audit_trade_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="payWay != null" >
+        PAY_WAY,
+      </if>
+      <if test="transNo != null" >
+        TRANS_NO,
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE,
+      </if>
+      <if test="transAmount != null" >
+        TRANS_AMOUNT,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="cardNo != null" >
+        CARD_NO,
+      </if>
+      <if test="cardName != null" >
+        CARD_NAME,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="payTime != null" >
+        PAY_TIME,
+      </if>
+      <if test="payDescription != null" >
+        PAY_DESCRIPTION,
+      </if>
+      <if test="checkStatus != null" >
+        CHECK_STATUS,
+      </if>
+      <if test="orderAmount != null" >
+        ORDER_AMOUNT,
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME,
+      </if>
+      <if test="payWayName != null" >
+        PAY_WAY_NAME,
+      </if>
+      <if test="auditStatus != null" >
+        AUDIT_STATUS,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="auditType != null" >
+        AUDIT_TYPE,
+      </if>
+      <if test="refundOrderAmount != null" >
+        REFUND_ORDER_AMOUNT,
+      </if>
+      <if test="refundTransAmount != null" >
+        REFUND_TRANS_AMOUNT,
+      </if>
+      <if test="backId != null" >
+        BACK_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="payWay != null" >
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="transNo != null" >
+        #{transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transAmount != null" >
+        #{transAmount,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="cardNo != null" >
+        #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardName != null" >
+        #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payDescription != null" >
+        #{payDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="payWayName != null" >
+        #{payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="auditType != null" >
+        #{auditType,jdbcType=VARCHAR},
+      </if>
+      <if test="refundOrderAmount != null" >
+        #{refundOrderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="refundTransAmount != null" >
+        #{refundTransAmount,jdbcType=INTEGER},
+      </if>
+      <if test="backId != null" >
+        #{backId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.AuditTradeCheckCriteria" resultType="java.lang.Long" >
+    select count(*) from t_audit_trade_check
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_audit_trade_check
+    <set >
+      <if test="record.payWay != null" >
+        PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transNo != null" >
+        TRANS_NO = #{record.transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkDate != null" >
+        CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.transAmount != null" >
+        TRANS_AMOUNT = #{record.transAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.cardNo != null" >
+        CARD_NO = #{record.cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardName != null" >
+        CARD_NAME = #{record.cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.payTime != null" >
+        PAY_TIME = #{record.payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.payDescription != null" >
+        PAY_DESCRIPTION = #{record.payDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkStatus != null" >
+        CHECK_STATUS = #{record.checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderAmount != null" >
+        ORDER_AMOUNT = #{record.orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.bankName != null" >
+        BANK_NAME = #{record.bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payWayName != null" >
+        PAY_WAY_NAME = #{record.payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditStatus != null" >
+        AUDIT_STATUS = #{record.auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditType != null" >
+        AUDIT_TYPE = #{record.auditType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundOrderAmount != null" >
+        REFUND_ORDER_AMOUNT = #{record.refundOrderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundTransAmount != null" >
+        REFUND_TRANS_AMOUNT = #{record.refundTransAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.backId != null" >
+        BACK_ID = #{record.backId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_audit_trade_check
+    set PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      TRANS_NO = #{record.transNo,jdbcType=VARCHAR},
+      CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      TRANS_AMOUNT = #{record.transAmount,jdbcType=INTEGER},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      CARD_NO = #{record.cardNo,jdbcType=VARCHAR},
+      CARD_NAME = #{record.cardName,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      PAY_TIME = #{record.payTime,jdbcType=TIMESTAMP},
+      PAY_DESCRIPTION = #{record.payDescription,jdbcType=VARCHAR},
+      CHECK_STATUS = #{record.checkStatus,jdbcType=VARCHAR},
+      ORDER_AMOUNT = #{record.orderAmount,jdbcType=INTEGER},
+      BANK_NAME = #{record.bankName,jdbcType=VARCHAR},
+      PAY_WAY_NAME = #{record.payWayName,jdbcType=VARCHAR},
+      AUDIT_STATUS = #{record.auditStatus,jdbcType=VARCHAR},
+      SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      AUDIT_TYPE = #{record.auditType,jdbcType=VARCHAR},
+      REFUND_ORDER_AMOUNT = #{record.refundOrderAmount,jdbcType=INTEGER},
+      REFUND_TRANS_AMOUNT = #{record.refundTransAmount,jdbcType=INTEGER},
+      BACK_ID = #{record.backId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.AuditTradeCheck" >
+    update t_audit_trade_check
+    <set >
+      <if test="checkDate != null" >
+        CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transAmount != null" >
+        TRANS_AMOUNT = #{transAmount,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="cardNo != null" >
+        CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      </if>
+      <if test="cardName != null" >
+        CARD_NAME = #{cardName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="payTime != null" >
+        PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payDescription != null" >
+        PAY_DESCRIPTION = #{payDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        ORDER_AMOUNT = #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="payWayName != null" >
+        PAY_WAY_NAME = #{payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="auditStatus != null" >
+        AUDIT_STATUS = #{auditStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        SITE_ID = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="auditType != null" >
+        AUDIT_TYPE = #{auditType,jdbcType=VARCHAR},
+      </if>
+      <if test="refundOrderAmount != null" >
+        REFUND_ORDER_AMOUNT = #{refundOrderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="refundTransAmount != null" >
+        REFUND_TRANS_AMOUNT = #{refundTransAmount,jdbcType=INTEGER},
+      </if>
+      <if test="backId != null" >
+        BACK_ID = #{backId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where PAY_WAY = #{payWay,jdbcType=VARCHAR}
+      and TRANS_NO = #{transNo,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.AuditTradeCheck" >
+    update t_audit_trade_check
+    set CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      TRANS_AMOUNT = #{transAmount,jdbcType=INTEGER},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      STAFF_ID = #{staffId,jdbcType=INTEGER},
+      CARD_NO = #{cardNo,jdbcType=VARCHAR},
+      CARD_NAME = #{cardName,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      PAY_DESCRIPTION = #{payDescription,jdbcType=VARCHAR},
+      CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
+      ORDER_AMOUNT = #{orderAmount,jdbcType=INTEGER},
+      BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      PAY_WAY_NAME = #{payWayName,jdbcType=VARCHAR},
+      AUDIT_STATUS = #{auditStatus,jdbcType=VARCHAR},
+      SITE_ID = #{siteId,jdbcType=INTEGER},
+      AUDIT_TYPE = #{auditType,jdbcType=VARCHAR},
+      REFUND_ORDER_AMOUNT = #{refundOrderAmount,jdbcType=INTEGER},
+      REFUND_TRANS_AMOUNT = #{refundTransAmount,jdbcType=INTEGER},
+      BACK_ID = #{backId,jdbcType=INTEGER}
+    where PAY_WAY = #{payWay,jdbcType=VARCHAR}
+      and TRANS_NO = #{transNo,jdbcType=VARCHAR}
+  </update>
+</mapper>

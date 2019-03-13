@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.busi.GdsEvalShopIdxMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsEvalShopIdx" >
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="GDS_ID" property="gdsId" jdbcType="INTEGER" />
+    <result column="EVAL_ID" property="evalId" jdbcType="INTEGER" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="STAFF_NAME" property="staffName" jdbcType="VARCHAR" />
+    <result column="EVALUATION_TIME" property="evaluationTime" jdbcType="TIMESTAMP" />
+    <result column="BUY_TIME" property="buyTime" jdbcType="TIMESTAMP" />
+    <result column="GDS_NAME" property="gdsName" jdbcType="VARCHAR" />
+    <result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="ORDER_SUB_ID" property="orderSubId" jdbcType="VARCHAR" />
+    <result column="SCORE" property="score" jdbcType="INTEGER" />
+    <result column="CORRESPONDENCY_SCORE" property="correspondencyScore" jdbcType="INTEGER" />
+    <result column="SERVICEATTITUDE_SCORE" property="serviceattitudeScore" jdbcType="INTEGER" />
+    <result column="DELIVERYSPEED_SCORE" property="deliveryspeedScore" jdbcType="INTEGER" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="IS_ANONYMOUS" property="isAnonymous" jdbcType="VARCHAR" />
+    <result column="IS_REPLY" property="isReply" jdbcType="INTEGER" />
+    <result column="LABEL_NAMES" property="labelNames" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SHOP_ID, GDS_ID, EVAL_ID, STAFF_ID, STAFF_NAME, EVALUATION_TIME, BUY_TIME, GDS_NAME, 
+    SKU_ID, ORDER_ID, ORDER_SUB_ID, SCORE, CORRESPONDENCY_SCORE, SERVICEATTITUDE_SCORE, 
+    DELIVERYSPEED_SCORE, CONTENT, IS_ANONYMOUS, IS_REPLY, LABEL_NAMES, STATUS, CREATE_TIME, 
+    CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsEvalShopIdxCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_gds_eval_shop_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsEvalShopIdxCriteria" >
+    delete from t_gds_eval_shop_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.goods.dao.model.GdsEvalShopIdx" >
+    insert into t_gds_eval_shop_idx (SHOP_ID, GDS_ID, EVAL_ID, 
+      STAFF_ID, STAFF_NAME, EVALUATION_TIME, 
+      BUY_TIME, GDS_NAME, SKU_ID, 
+      ORDER_ID, ORDER_SUB_ID, SCORE, 
+      CORRESPONDENCY_SCORE, SERVICEATTITUDE_SCORE, 
+      DELIVERYSPEED_SCORE, CONTENT, IS_ANONYMOUS, 
+      IS_REPLY, LABEL_NAMES, STATUS, 
+      CREATE_TIME, CREATE_STAFF, UPDATE_TIME, 
+      UPDATE_STAFF)
+    values (#{shopId,jdbcType=INTEGER}, #{gdsId,jdbcType=INTEGER}, #{evalId,jdbcType=INTEGER}, 
+      #{staffId,jdbcType=INTEGER}, #{staffName,jdbcType=VARCHAR}, #{evaluationTime,jdbcType=TIMESTAMP}, 
+      #{buyTime,jdbcType=TIMESTAMP}, #{gdsName,jdbcType=VARCHAR}, #{skuId,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=VARCHAR}, #{orderSubId,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, 
+      #{correspondencyScore,jdbcType=INTEGER}, #{serviceattitudeScore,jdbcType=INTEGER}, 
+      #{deliveryspeedScore,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{isAnonymous,jdbcType=VARCHAR}, 
+      #{isReply,jdbcType=INTEGER}, #{labelNames,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateStaff,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsEvalShopIdx" >
+    insert into t_gds_eval_shop_idx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="gdsId != null" >
+        GDS_ID,
+      </if>
+      <if test="evalId != null" >
+        EVAL_ID,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="staffName != null" >
+        STAFF_NAME,
+      </if>
+      <if test="evaluationTime != null" >
+        EVALUATION_TIME,
+      </if>
+      <if test="buyTime != null" >
+        BUY_TIME,
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME,
+      </if>
+      <if test="skuId != null" >
+        SKU_ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="orderSubId != null" >
+        ORDER_SUB_ID,
+      </if>
+      <if test="score != null" >
+        SCORE,
+      </if>
+      <if test="correspondencyScore != null" >
+        CORRESPONDENCY_SCORE,
+      </if>
+      <if test="serviceattitudeScore != null" >
+        SERVICEATTITUDE_SCORE,
+      </if>
+      <if test="deliveryspeedScore != null" >
+        DELIVERYSPEED_SCORE,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="isAnonymous != null" >
+        IS_ANONYMOUS,
+      </if>
+      <if test="isReply != null" >
+        IS_REPLY,
+      </if>
+      <if test="labelNames != null" >
+        LABEL_NAMES,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsId != null" >
+        #{gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="evalId != null" >
+        #{evalId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffName != null" >
+        #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluationTime != null" >
+        #{evaluationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="buyTime != null" >
+        #{buyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gdsName != null" >
+        #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSubId != null" >
+        #{orderSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="correspondencyScore != null" >
+        #{correspondencyScore,jdbcType=INTEGER},
+      </if>
+      <if test="serviceattitudeScore != null" >
+        #{serviceattitudeScore,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryspeedScore != null" >
+        #{deliveryspeedScore,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="isAnonymous != null" >
+        #{isAnonymous,jdbcType=VARCHAR},
+      </if>
+      <if test="isReply != null" >
+        #{isReply,jdbcType=INTEGER},
+      </if>
+      <if test="labelNames != null" >
+        #{labelNames,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsEvalShopIdxCriteria" resultType="java.lang.Long" >
+    select count(*) from t_gds_eval_shop_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_gds_eval_shop_idx
+    <set >
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsId != null" >
+        GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.evalId != null" >
+        EVAL_ID = #{record.evalId,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffName != null" >
+        STAFF_NAME = #{record.staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.evaluationTime != null" >
+        EVALUATION_TIME = #{record.evaluationTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.buyTime != null" >
+        BUY_TIME = #{record.buyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gdsName != null" >
+        GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skuId != null" >
+        SKU_ID = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderSubId != null" >
+        ORDER_SUB_ID = #{record.orderSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.score != null" >
+        SCORE = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.correspondencyScore != null" >
+        CORRESPONDENCY_SCORE = #{record.correspondencyScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.serviceattitudeScore != null" >
+        SERVICEATTITUDE_SCORE = #{record.serviceattitudeScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.deliveryspeedScore != null" >
+        DELIVERYSPEED_SCORE = #{record.deliveryspeedScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.content != null" >
+        CONTENT = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isAnonymous != null" >
+        IS_ANONYMOUS = #{record.isAnonymous,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isReply != null" >
+        IS_REPLY = #{record.isReply,jdbcType=INTEGER},
+      </if>
+      <if test="record.labelNames != null" >
+        LABEL_NAMES = #{record.labelNames,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_gds_eval_shop_idx
+    set SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      EVAL_ID = #{record.evalId,jdbcType=INTEGER},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      STAFF_NAME = #{record.staffName,jdbcType=VARCHAR},
+      EVALUATION_TIME = #{record.evaluationTime,jdbcType=TIMESTAMP},
+      BUY_TIME = #{record.buyTime,jdbcType=TIMESTAMP},
+      GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      SKU_ID = #{record.skuId,jdbcType=INTEGER},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      ORDER_SUB_ID = #{record.orderSubId,jdbcType=VARCHAR},
+      SCORE = #{record.score,jdbcType=INTEGER},
+      CORRESPONDENCY_SCORE = #{record.correspondencyScore,jdbcType=INTEGER},
+      SERVICEATTITUDE_SCORE = #{record.serviceattitudeScore,jdbcType=INTEGER},
+      DELIVERYSPEED_SCORE = #{record.deliveryspeedScore,jdbcType=INTEGER},
+      CONTENT = #{record.content,jdbcType=VARCHAR},
+      IS_ANONYMOUS = #{record.isAnonymous,jdbcType=VARCHAR},
+      IS_REPLY = #{record.isReply,jdbcType=INTEGER},
+      LABEL_NAMES = #{record.labelNames,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

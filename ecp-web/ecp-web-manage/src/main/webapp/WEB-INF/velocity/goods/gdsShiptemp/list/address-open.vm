@@ -1,0 +1,51 @@
+#parse("sys/sys_param.vm")
+<link href="${CONTEXT_PATH}/css/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsShiptemp/address-open.js?version=$!{JS_VERSION}" ></script>
+<div id="maincontainer" class="clearfix">
+<div id="contentwrapper">
+            <table class="table table-bordered  table-striped citytb">
+                <tr>
+                    <td class="ftd">
+                        省分：
+                    </td>
+                    <td class="ltd">
+                        <ul class="citylist clearfix">
+							#foreach($list in $!{provinceList})
+                            <li name="head" class="fitem hchild" >
+                                <div class="itxt">
+                                    <label class="">
+                                        <input type="checkbox" name="province" areaCode="$!{list.areaCode}" areaName="$!{list.areaName}" areaLevel="$!{list.areaLevel}"/>
+											$!{list.areaName}
+                                    </label>
+                                    <span calss="">
+                                      (<font name="checkCount">0</font>)
+                                     <i class="icon-caret-down" onclick="openChild(this)"></i>
+                                   </span>
+                                </div>
+                                <ul class="citylist clearfix child">
+									#foreach($c in $!{list.list})
+                                         <li>
+                                                <div class="itxt">
+                                                <label class="">
+                                                    <input type="checkbox" name="city" provinceCode="$!{list.areaCode}" provinceName="$!{list.areaName}" areaLevel="$!{list.areaLevel}" cityCode="$!{c.areaCode}" cityName="$!{c.areaName}"/>
+														$!{c.areaName}
+                                                </label>
+                                            </div>
+                                        </li>
+									#end
+                                </ul>
+                            </li>
+							#end
+                        </ul>
+                    </td>
+                </tr>
+            </table>
+        <div class="btn-wrap btn-wrap-save" style="position: fixed;width: 100%; bottom: 10px;">
+            
+             <a class="btn btn-info" style="margin-right:10px;" id="btnFormSave" href="#"><i class=" icon-ok-sign icon-white"></i> 确认</a>		
+                      
+             <a class="btn" id="btnFormCancle" href="javascript:void(0);"> <i class=" icon-remove-sign icon-white"></i> 关闭</a>
+
+        </div>
+    </div>
+</div>

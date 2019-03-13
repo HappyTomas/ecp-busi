@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.busi.ScoreSourceMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.ScoreSource" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SOURCE_TYPE" property="sourceType" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="SCORE" property="score" jdbcType="INTEGER" />
+    <result column="SUB_ORDER_ID" property="subOrderId" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="INURE_TIME" property="inureTime" jdbcType="TIMESTAMP" />
+    <result column="TOTAL_SCORE" property="totalScore" jdbcType="INTEGER" />
+    <result column="FREEZE_SCORE" property="freezeScore" jdbcType="INTEGER" />
+    <result column="USED_SCORE" property="usedScore" jdbcType="INTEGER" />
+    <result column="BALANCE_SCORE" property="balanceScore" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="BACK_FLAG" property="backFlag" jdbcType="CHAR" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="ISBN_CODE" property="isbnCode" jdbcType="VARCHAR" />
+    <result column="BOOK_CODE" property="bookCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SOURCE_TYPE, STATUS, STAFF_ID, SCORE, SUB_ORDER_ID, ORDER_ID, INURE_TIME, TOTAL_SCORE, 
+    FREEZE_SCORE, USED_SCORE, BALANCE_SCORE, REMARK, CREATE_STAFF, CREATE_TIME, UPDATE_STAFF, 
+    UPDATE_TIME, BACK_FLAG, SITE_ID,ISBN_CODE,BOOK_CODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSourceCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_score_source
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_score_source
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_score_source
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSourceCriteria" >
+    delete from t_score_source
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSource" >
+    insert into t_score_source (ID, SOURCE_TYPE, STATUS, 
+      STAFF_ID, SCORE, SUB_ORDER_ID, 
+      ORDER_ID, INURE_TIME, TOTAL_SCORE, 
+      FREEZE_SCORE, USED_SCORE, BALANCE_SCORE, 
+      REMARK, CREATE_STAFF, CREATE_TIME, 
+      UPDATE_STAFF, UPDATE_TIME, BACK_FLAG, 
+      SITE_ID,ISBN_CODE,BOOK_CODE)
+    values (#{id,jdbcType=INTEGER}, #{sourceType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{staffId,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{subOrderId,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=VARCHAR}, #{inureTime,jdbcType=TIMESTAMP}, #{totalScore,jdbcType=INTEGER}, 
+      #{freezeScore,jdbcType=INTEGER}, #{usedScore,jdbcType=INTEGER}, #{balanceScore,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createStaff,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{backFlag,jdbcType=CHAR}, 
+      #{siteId,jdbcType=INTEGER},#{isbnCode,jdbcType=VARCHAR},#{bookCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSource" >
+    insert into t_score_source
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="sourceType != null" >
+        SOURCE_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="score != null" >
+        SCORE,
+      </if>
+      <if test="subOrderId != null" >
+        SUB_ORDER_ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="inureTime != null" >
+        INURE_TIME,
+      </if>
+      <if test="totalScore != null" >
+        TOTAL_SCORE,
+      </if>
+      <if test="freezeScore != null" >
+        FREEZE_SCORE,
+      </if>
+      <if test="usedScore != null" >
+        USED_SCORE,
+      </if>
+      <if test="balanceScore != null" >
+        BALANCE_SCORE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="backFlag != null" >
+        BACK_FLAG,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="isbnCode != null" >
+        ISBN_CODE,
+      </if>
+      <if test="bookCode != null" >
+        BOOK_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sourceType != null" >
+        #{sourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="subOrderId != null" >
+        #{subOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="inureTime != null" >
+        #{inureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalScore != null" >
+        #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="freezeScore != null" >
+        #{freezeScore,jdbcType=INTEGER},
+      </if>
+      <if test="usedScore != null" >
+        #{usedScore,jdbcType=INTEGER},
+      </if>
+      <if test="balanceScore != null" >
+        #{balanceScore,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backFlag != null" >
+        #{backFlag,jdbcType=CHAR},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="isbnCode != null" >
+        #{isbnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bookCode != null" >
+        #{bookCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSourceCriteria" resultType="java.lang.Long" >
+    select count(*) from t_score_source
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_score_source
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sourceType != null" >
+        SOURCE_TYPE = #{record.sourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.score != null" >
+        SCORE = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.subOrderId != null" >
+        SUB_ORDER_ID = #{record.subOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inureTime != null" >
+        INURE_TIME = #{record.inureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.totalScore != null" >
+        TOTAL_SCORE = #{record.totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.freezeScore != null" >
+        FREEZE_SCORE = #{record.freezeScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.usedScore != null" >
+        USED_SCORE = #{record.usedScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.balanceScore != null" >
+        BALANCE_SCORE = #{record.balanceScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.backFlag != null" >
+        BACK_FLAG = #{record.backFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isbnCode != null" >
+        REMARK = #{record.isbnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bookCode != null" >
+        REMARK = #{record.bookCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_score_source
+    set ID = #{record.id,jdbcType=INTEGER},
+      SOURCE_TYPE = #{record.sourceType,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      SCORE = #{record.score,jdbcType=INTEGER},
+      SUB_ORDER_ID = #{record.subOrderId,jdbcType=VARCHAR},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      INURE_TIME = #{record.inureTime,jdbcType=TIMESTAMP},
+      TOTAL_SCORE = #{record.totalScore,jdbcType=INTEGER},
+      FREEZE_SCORE = #{record.freezeScore,jdbcType=INTEGER},
+      USED_SCORE = #{record.usedScore,jdbcType=INTEGER},
+      BALANCE_SCORE = #{record.balanceScore,jdbcType=INTEGER},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      BACK_FLAG = #{record.backFlag,jdbcType=CHAR},
+      SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      ISBN_CODE = #{record.isbnCode,jdbcType=VARCHAR},
+      BOOK_CODE = #{record.bookCode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSource" >
+    update t_score_source
+    <set >
+      <if test="sourceType != null" >
+        SOURCE_TYPE = #{sourceType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        SCORE = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="subOrderId != null" >
+        SUB_ORDER_ID = #{subOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="inureTime != null" >
+        INURE_TIME = #{inureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalScore != null" >
+        TOTAL_SCORE = #{totalScore,jdbcType=INTEGER},
+      </if>
+      <if test="freezeScore != null" >
+        FREEZE_SCORE = #{freezeScore,jdbcType=INTEGER},
+      </if>
+      <if test="usedScore != null" >
+        USED_SCORE = #{usedScore,jdbcType=INTEGER},
+      </if>
+      <if test="balanceScore != null" >
+        BALANCE_SCORE = #{balanceScore,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="backFlag != null" >
+        BACK_FLAG = #{backFlag,jdbcType=CHAR},
+      </if>
+      <if test="siteId != null" >
+        SITE_ID = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        ISBN_CODE = #{isbnCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        BOOK_CODE = #{bookCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSource" >
+    update t_score_source
+    set SOURCE_TYPE = #{sourceType,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      STAFF_ID = #{staffId,jdbcType=INTEGER},
+      SCORE = #{score,jdbcType=INTEGER},
+      SUB_ORDER_ID = #{subOrderId,jdbcType=VARCHAR},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      INURE_TIME = #{inureTime,jdbcType=TIMESTAMP},
+      TOTAL_SCORE = #{totalScore,jdbcType=INTEGER},
+      FREEZE_SCORE = #{freezeScore,jdbcType=INTEGER},
+      USED_SCORE = #{usedScore,jdbcType=INTEGER},
+      BALANCE_SCORE = #{balanceScore,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      BACK_FLAG = #{backFlag,jdbcType=CHAR},
+      SITE_ID = #{siteId,jdbcType=INTEGER},
+      ISBN_CODE = #{isbnCode,jdbcType=VARCHAR},
+      BOOK_CODE = #{bookCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByCreateTimeEndSelective" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSource" >
+    update t_score_source
+    <set >
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where STAFF_ID = #{staffId,jdbcType=INTEGER} and CREATE_TIME <![CDATA[ < ]]> #{createTime,jdbcType=TIMESTAMP}
+      and STATUS IN ('1','2')
+  </update>
+</mapper>

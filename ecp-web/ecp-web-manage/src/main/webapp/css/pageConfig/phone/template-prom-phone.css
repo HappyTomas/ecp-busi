@@ -1,0 +1,582 @@
+@charset "UTF-8";
+/**
+  * 促销样式--移动端
+ **/
+.promTpl-more {
+  background: url("../../../images/pageConfig/phone/prom-more.png") no-repeat;
+  background-size: 0.453125rem 1.53125rem;
+  display: inline-block;
+  vertical-align: text-top;
+}
+.promTpl-more.mini-more {
+  width: 0.234375rem;
+  height: 0.390625rem;
+  background-position: 0 -0.453125rem;
+  margin-top: -0.046875rem;
+}
+/* 商品列表模板 beign*/
+.promTpl-pList {
+  background: #fff;
+}
+.promTpl-pList ul {
+  margin-left: -1%;
+  font-size: 0.375rem;
+}
+.promTpl-pList .item {
+  display: block;
+  width: 49%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  float: left;
+  margin-left: 1%;
+  margin-bottom: 1%;
+  padding: 0.15625rem;
+  background-color: #fff;
+}
+.promTpl-pList .item a {
+  color: #333;
+}
+.promTpl-pList .item h3,
+.promTpl-pList .item .price {
+  height: 0.53125rem;
+}
+.promTpl-pList .item .price {
+  font-size: 0.375rem;
+}
+.promTpl-pList .item .prc-del {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.28125rem;
+}
+.promTpl-pList .item .carBtn {
+  position: relative;
+  background-color: #ff6a00;
+  color: #fff;
+  width: 100%;
+  display: block;
+  height: 0.9375rem;
+  line-height: 0.9375rem;
+  text-align: center;
+}
+.promTpl-pList .mini-more {
+  margin-top: 0.09375rem;
+  position: absolute;
+  right: 0.78125rem;
+  top: 0.125rem;
+}
+.promTpl-pList .img-wrap {
+  overflow: hidden;
+  text-align: center;
+  background-color: #ecebe9;
+  width: 100%;
+  height: 4.53125rem;
+  line-height: 4.5rem;
+}
+.promTpl-pList .img-wrap img {
+  width: 4.328125rem;
+  height: 4.328125rem;
+}
+.promTpl-pList h3 {
+  text-align: left;
+  word-break: break-all;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.promTpl-pList.columns-3 .item {
+  width: 32.3333333333333%;
+}
+.promTpl-pList.columns-3 .item .img-wrap {
+  width: 100%;
+  height: auto;
+  line-height: normal;
+}
+.promTpl-pList.columns-3 .item .img-wrap img {
+  width: 2.84375rem;
+  height: 2.84375rem;
+}
+/* 商品列表模板  end*/
+.pro-pad .modular-body {
+  padding: 0!important;
+}
+/* 优惠券 begin */
+.promTpl-yhq .act-yhq {
+  position: relative;
+  width: 9.6875rem;
+  height: 3.90625rem;
+  margin: 0 auto;
+  background: url("../../../images/pageConfig/phone/activity/yhq.png") no-repeat;
+  background-size: 9.6875rem 4.828125rem;
+}
+.promTpl-yhq .price-box {
+  /*  .box-flex();
+    .flex-align();*/
+}
+.promTpl-yhq .yhq-box {
+  overflow: hidden;
+  margin-left: 0.46875rem;
+}
+.promTpl-yhq .yhq-box ul {
+  margin-left: -0.125rem;
+  margin-top: 0.40625rem;
+}
+.promTpl-yhq .yhq-box li {
+  float: left;
+  width: 2.84375rem;
+  height: 1.890625rem;
+  background: url("../../../images/pageConfig/phone/activity/yhq01.png") no-repeat;
+  background-size: 2.84375rem 1.890625rem;
+  margin-left: 0.125rem;
+  padding: 0 0.09375rem;
+  color: #fff;
+  font-size: 0;
+}
+.promTpl-yhq .yhq-box li.yhqbg03 {
+  background-image: url("../../../images/pageConfig/phone/activity/yhq03.png");
+}
+.promTpl-yhq .yhq-box li.yhqbg02 {
+  background-image: url("../../../images/pageConfig/phone/activity/yhq02.png");
+}
+.promTpl-yhq .yhq-box .price {
+  display: inline-block;
+  line-height: normal;
+}
+.promTpl-yhq .yhq-box .price-sign {
+  font-size: 0.375rem;
+}
+.promTpl-yhq .yhq-box .price-m {
+  font-size: 0.625rem;
+  font-family: impact;
+  font-weight: 900;
+  line-height: 1.03125rem;
+}
+.promTpl-yhq .yhq-box .while {
+  text-align: left;
+  float: right;
+  font-size: 0.25rem;
+  line-height: normal;
+  margin-top: 0.15625rem;
+}
+.promTpl-yhq .yhq-box .while-q {
+  font-size: 0.375rem;
+  font-weight: 900;
+}
+.promTpl-yhq .yhq-box .user-tj {
+  font-size: 0.25rem;
+  text-align: center;
+  margin-top: 0.078125rem;
+}
+.promTpl-yhq .yhq-box .receive {
+  width: 100%;
+  height: 0.34375rem;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0;
+  background-color: #f5f5f5;
+  background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(#ffcf09 50%), color-stop(#ffe46f 50%));
+  background: -webkit-linear-gradient(#ffcf09 50%, #ffe46f 50%);
+  background: -o-linear-gradient(#ffcf09 50%, #ffe46f 50%);
+  background: -moz-linear-gradient(#ffcf09 50%, #ffe46f 50%);
+  background: linear-gradient(#ffcf09 50%, #ffe46f 50%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffcf09', endColorstr='#ffe46f', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.promTpl-yhq .yhq-box .receive a {
+  display: inline-block;
+  color: #6b0199;
+  font-size: 0.25rem;
+}
+.promTpl-yhq .yhq-btn {
+  position: absolute;
+  left: 50%;
+  margin-left: -1.265625rem;
+  bottom: 0.625rem;
+}
+.promTpl-yhq .yhq-btn img {
+  width: 2.546875rem;
+  height: 0.9375rem;
+}
+/* 优惠券 end */
+/*特价*/
+.promTpl-spl .list-item {
+  overflow: hidden;
+  margin-bottom: 1%;
+}
+.promTpl-spl .list-item ul {
+  margin-left: -1%;
+}
+.promTpl-spl .list-item .item {
+  position: relative;
+  float: left;
+  margin-left: 1%;
+  width: 32%;
+  text-align: center;
+  margin-bottom: 1%;
+}
+.promTpl-spl .list-item .item img {
+  width: 3.171875rem;
+  height: 4.265625rem;
+}
+.promTpl-spl .list-item .item .see {
+  position: absolute;
+  bottom: 0.46875rem;
+  left: 50%;
+  margin-left: -1.25rem;
+  width: 2.5rem;
+  background: rgba(255, 40, 33, 0.8);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.40625rem;
+  line-height: 0.578125rem;
+}
+.promTpl-spl .list-item .item .see-c02 {
+  background: rgba(49, 186, 255, 0.8);
+}
+.promTpl-spl .list-item .item .see-c03 {
+  background: rgba(255, 121, 37, 0.8);
+}
+.promTpl-spl .list-item .item .see-c04 {
+  background: rgba(165, 29, 205, 0.8);
+}
+.promTpl-spl .list-item .item .see-c05 {
+  background: rgba(255, 70, 138, 0.8);
+}
+.promTpl-spl .see-more {
+  background: url("../../../images/pageConfig/phone/activity/more-g.png") no-repeat;
+  background-size: 0.453125rem 1.53125rem;
+  display: inline-block;
+  vertical-align: text-top;
+}
+.promTpl-spl .see-more.more01 {
+  width: 0.359375rem;
+  height: 0.359375rem;
+  background-position: 0 -0.015625rem;
+  margin-top: 0.078125rem;
+}
+.promTpl-spl .see-more.more02 {
+  width: 0.234375rem;
+  height: 0.390625rem;
+  background-position: 0 -0.453125rem;
+  margin-top: -0.046875rem;
+}
+.promTpl-spl .see-more.more03 {
+  width: 0.40625rem;
+  height: 0.46875rem;
+  background-position: 0 -0.9375rem;
+  margin-top: -0.0625rem;
+}
+.promTpl-spl .list-item-2 .item {
+  width: 49%;
+}
+.promTpl-spl .list-item-2 .item img {
+  width: 4.78125rem;
+  height: 3.4375rem;
+}
+.promTpl-spl .list-item-2 .item .see {
+  left: 20%;
+  margin-left: 0;
+}
+.promTpl-spl .list-item-2 .item-con {
+  padding: 0.15625rem;
+  background-color: #fff;
+}
+.promTpl-spl .list-item-2 .item-con .img-pos {
+  height: 4.328125rem;
+}
+.promTpl-spl .list-item-2 .item-con img {
+  width: 4.328125rem;
+  height: 4.328125rem;
+}
+.promTpl-spl .list-item-2 .item-con h3,
+.promTpl-spl .list-item-2 .item-con .price {
+  text-align: left;
+  font-size: 0.375rem;
+  word-break: break-all;
+  word-wrap: break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.promTpl-spl .list-item-2 .item-con .price {
+  font-size: 0.375rem;
+}
+.promTpl-spl .list-item-2 .item-con .conbtn {
+  background-color: #ff6a00;
+  color: #fff;
+  width: 100%;
+  display: block;
+  height: 0.9375rem;
+  line-height: 0.9375rem;
+}
+.promTpl-spl .list-item-2 .item-con .prc-del {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.28125rem;
+}
+/*特价 end*/
+/*二期切图*/
+.promTpl-cpn-v2 ul {
+  background-color: #fff;
+  padding-top: 0.3125rem;
+  overflow: hidden;
+}
+.promTpl-cpn-v2 .cpn-item {
+  position: relative;
+  width: 9.375rem;
+  height: 2.140625rem;
+  background: url("../../../images/pageConfig/phone/activity/coupon-v2.png") no-repeat;
+  background-size: 9.375rem 2.140625rem;
+  margin-bottom: 0.3125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+.promTpl-cpn-v2 .item-con {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+}
+.promTpl-cpn-v2 .item-left {
+  width: 2.96875rem;
+  color: #fff;
+  text-indent: 0.46875rem;
+}
+.promTpl-cpn-v2 .item-left em {
+  font-size: 0.375rem;
+}
+.promTpl-cpn-v2 .item-right {
+  width: 2.5rem;
+}
+.promTpl-cpn-v2 .price {
+  font-size: 1.125rem;
+  font-weight: 900;
+}
+.promTpl-cpn-v2 .p-sel {
+  color: #fefd51;
+  font-size: 0.46875rem;
+}
+.promTpl-cpn-v2 .p-elc,
+.promTpl-cpn-v2 .p-cls {
+  font-size: 0.34375rem;
+  color: #036aab;
+}
+.promTpl-cpn-v2 .p-cls {
+  color: #ffffff;
+}
+.promTpl-cpn-v2 .s-btn {
+  width: 1.84375rem;
+  height: 0.78125rem;
+  display: block;
+  background-color: #fff;
+  color: #ff9c9c;
+  text-align: center;
+  line-height: 0.78125rem;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0.078125rem 0 #399ddc;
+  -moz-box-shadow: 0 0.078125rem 0 #399ddc;
+  box-shadow: 0 0.078125rem 0 #399ddc;
+  cursor: pointer;
+}
+.promTpl-cpn-v2 .s-btn-suc {
+  background-color: #b0b0b0;
+  color: #fff;
+}
+.promTpl-tabP-v2 .modular-head img {
+  width: 10rem;
+  height: 2.34375rem;
+}
+.promTpl-tabP-v2 .prom-tab {
+  border-top: 1px solid #d4d4d4;
+  border-bottom: 1px solid #d4d4d4;
+  height: 1.0625rem;
+  line-height: 1.0625rem;
+}
+.promTpl-tabP-v2 .tab-item {
+  min-width: 2.5rem;
+  float: left;
+  text-align: center;
+  font-size: 0.375rem;
+  position: relative;
+  background-color: #fff;
+  border-bottom: 1px solid #d4d4d4;
+}
+.promTpl-tabP-v2 .tab-item:after {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -0.3125rem;
+  content: "";
+  height: 0.625rem;
+  display: inline-block;
+  width: 1px;
+  background-color: #ecebe9;
+}
+.promTpl-tabP-v2 .tab-item:last-child:after {
+  display: none;
+}
+.promTpl-tabP-v2 .tab-item a {
+  height: 1rem;
+  line-height: 1rem;
+  display: inline-block;
+  padding: 0 0.15625rem;
+  border-bottom: 2px solid transparent;
+  color: #666666;
+  font-size: 0.375rem;
+}
+.promTpl-tabP-v2 .tab-item a:hover {
+  color: #ff6a00;
+  border-bottom: 2px solid #ff6a00;
+}
+.promTpl-tabP-v2 .tab-item.active a {
+  color: #ff6a00;
+  border-bottom: 2px solid #ff6a00;
+}
+.promTpl-tabP-v2 .key-list {
+  background-color: #f5f5f5;
+  overflow: hidden;
+  padding-bottom: 12px;
+}
+.promTpl-tabP-v2 .key-list li {
+  float: left;
+  background-color: #fff;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  margin-left: 0.3125rem;
+  padding: 0.0625rem 0.3125rem;
+  margin-top: 0.3125rem;
+  color: #333;
+}
+.promTpl-tabP-v2 .key-list li a {
+  color: #333;
+}
+.promTpl-tabP-v2 .key-list .gray-b {
+  background-color: #aeaeae;
+  color: #fff;
+}
+.promTpl-tabP-v2 .key-list .gray-b a {
+  color: #fff;
+}
+.promTpl-tabP-v2 .pro-list {
+  font-size: 0.375rem;
+  background-color: #fff;
+}
+.promTpl-tabP-v2 .pro-list .item {
+  position: relative;
+  border: 1px solid #ecebe9;
+  background-color: #fff;
+  margin-bottom: 0.3125rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.promTpl-tabP-v2 .pro-list .img-wrap {
+  position: relative;
+  width: 3.84375rem;
+  height: 3.84375rem;
+  overflow: hidden;
+  line-height: 3.84375rem;
+  text-align: center;
+  background-color: #ecebe9;
+}
+.promTpl-tabP-v2 .pro-list .img-wrap img {
+  max-width: 100%;
+  max-height: 100%;
+}
+.promTpl-tabP-v2 .pro-list .rw-icon {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  background: url("../../../images/pageConfig/phone/rw-icon.png") no-repeat;
+  background-size: 1.25rem 2.703125rem;
+  display: block;
+}
+.promTpl-tabP-v2 .pro-list .rw-icon-ltea,
+.promTpl-tabP-v2 .pro-list .rw-icon-lele {
+  width: 1.1875rem;
+  height: 1.1875rem;
+  background-position: 0 0;
+  z-index: 100;
+}
+.promTpl-tabP-v2 .pro-list .rw-icon-lele {
+  background-position: 0 -1.40625rem;
+}
+.promTpl-tabP-v2 .pro-list .item-cont {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  flex: 1;
+  padding: 0.15625rem 0.3125rem 0 0.15625rem;
+  font-size: 0.375rem;
+  overflow: hidden;
+}
+.promTpl-tabP-v2 .pro-list .p-tit {
+  height: 1.15625rem;
+  overflow: hidden;
+}
+.promTpl-tabP-v2 .pro-list .p-tip {
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.promTpl-tabP-v2 .pro-list .p-ll {
+  margin-bottom: 0.078125rem;
+}
+.promTpl-tabP-v2 .pro-list .p-color {
+  padding: 0 2px;
+  margin-right: 2px;
+  font-size: 12px;
+  display: inline-block;
+  background-color: #ea563c;
+  color: #fff;
+  vertical-align: middle;
+}
+.promTpl-tabP-v2 .pro-list .p-color-radius {
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+.promTpl-tabP-v2 .pro-list .p-font {
+  font-size: 0.28125rem;
+  color: #999999;
+}
+.promTpl-tabP-v2 .pro-list .p-line {
+  position: absolute;
+  bottom: 0.15625rem;
+  width: 55%;
+  line-height: 0.625rem;
+}
+.promTpl-tabP-v2 .act {
+  background: url("../../../images/pageConfig/phone/ticons.png") no-repeat;
+  background-size: 6.25rem 6.25rem;
+  display: inline-block;
+}
+.promTpl-tabP-v2 .act-phone {
+  background-position: -1.234375rem 0.0625rem;
+  width: 1.9375rem;
+  height: 0.625rem;
+  font-size: 0.28125rem;
+  color: #ea563c;
+  padding-left: 0.46875rem;
+  text-align: center;
+}
+.promTpl-tabP-v2 .act-collect {
+  background-position: 0rem -1.59375rem;
+  width: 0.46875rem;
+  height: 0.4375rem;
+  float: right;
+  margin-top: 0.0625rem;
+}
+.promTpl-tabP-v2 .act-collect-sc {
+  background-position: 0 0;
+}
+.promTpl-tabP-v2 .c-orange {
+  color: #ea563c;
+  margin-right: 0.3125rem;
+}
+/*二期切图 end*/

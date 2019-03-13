@@ -1,0 +1,178 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/buyer-companyinfo.js?version=$!{JS_VERSION}" ></script>
+<style>
+.error {
+    color: red;
+}
+</style>
+<form class="form-horizontal required-validate regist" id="aptitudeinfo1">
+        <div class="control-group">
+            <label class="control-label">企业名称：</label>
+
+            <div class="controls">
+                <input type="text" name="companyName" id="companyName" class="required" value="$!{custAuthstr.companyName}">
+                <input name="companyId" value="$!{custInfo.companyId}" id="companyId" type="hidden" />
+            </div>
+    	</div>
+       	<div class="control-group">
+            <label class="control-label">企业所在地：</label>
+
+            <div class="controls">
+                <select class="jquery-area span2 " name="provinceCode" id="p-code1"  area-type="admin" area-level="province" area-children="city-code1" area-defaultvalue="$!{custAuthstr.provinceCode}" ></select>
+                <select class="jquery-area span2 "  name="cityCode" id="city-code1" area-type="admin" area-level="city" area-children="county-code1" area-defaultvalue="$!{custAuthstr.cityCode}" ></select>
+                <select class="jquery-area span2 "  name="countyCode" id="county-code1" area-type="admin" area-level="county" area-children="" area-defaultvalue="$!{custAuthstr.countyCode}"></select>
+            </div>
+    	</div>
+       	<div class="control-group">
+            <label class="control-label">企业地址：</label>
+
+            <div class="controls">
+                <input type="text" name="companyAdress" id="companyAdress" class="required" value="$!{custAuthstr.companyAdress}">
+            </div>
+    	</div>
+       	<div class="control-group">
+            <label class="control-label">企业行业：</label>
+
+            <div class="controls">
+                <select class="selboxheight" name="trade" id="trade">
+                    <option value="">请选择</option>
+					#listParam('COMPANY_INFO_TRADE',$!{custAuthstr.trade})
+                </select>
+            </div>
+    	</div>
+        <div class="control-group">
+            <label class="control-label">企业类型：</label>
+
+            <div class="controls">
+                <select class="selboxheight" name="companyType" id="companyType">
+                    <option value="">请选择</option>
+					#listParam('COMPANY_INFO_TYPE',$!{custAuthstr.companyType})
+                </select>
+            </div>
+    	</div>
+       	<div class="control-group">
+            <label class="control-label">企业人数：</label>
+
+            <div class="controls">
+                <select class="selboxheight" name="employeeNum" id="employeeNum">
+                    <option value="">请选择</option>
+					#listParam('COMPANY_INFO_EMPLOYEE',$!{custAuthstr.employeeNum})
+                </select>
+            </div>
+    	</div>
+        <legend>企业联系方式</legend>
+       	<div class="control-group">
+            <label class="control-label">联系人：</label>
+
+            <div class="controls">
+                <input type="text" name="linkPersonMsg" id="linkPersonMsg" class="required" value="$!{custAuthstr.linkPersonMsg}"/>
+            </div>
+    	</div>
+        <div class="control-group">
+            <label class="control-label">联系人手机：</label>
+
+            <div class="controls">
+                <input type="text" class="mobilePhone required" maxlength="11" name="linkPhoneMsg" value="$!{custAuthstr.linkPhoneMsg}"/>
+            </div>
+    	</div>
+        <div class="control-group">
+            <label class="control-label">固定电话：</label>
+
+           <div class="controls">
+                <input type="text" name="linkTelephone" maxlength="20" value="$!{custAuthstr.linkTelephone}" placeholder="" class="phone" maxlength="20">
+            </div>
+    	</div>
+        <div class="control-group">
+            <label class="control-label">联系人身份证号：</label>
+
+            <div class="controls">
+                <input type="text" class="txtIdCard" name="linkPsnCard" id="linkPsnCard" value="$!{custAuthstr.linkPsnCard}"/>
+            </div>
+    	</div>
+        <div class="control-group">
+        <label class="control-label">企业邮箱：</label>
+
+        <div class="controls">
+            <input type="text" class="email" name="companyEmail" id="companyEmail" value="$!{custAuthstr.companyEmail}"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">企业微信：</label>
+
+        <div class="controls">
+            <input type="text" name="companyWeixin" id="companyWeixin" value="$!{custAuthstr.companyWeixin}"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">企业QQ号：</label>
+
+        <div class="controls">
+            <input type="text" name="companyQq" id="companyQq" value="$!{custAuthstr.companyQq}"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">备注：</label>
+
+        <div class="controls">
+            <textarea rows="3" class="tarea" name="remark">$!{custAuthstr.remark}</textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">验证码：</label>
+
+        <div class="controls">
+           <input type="text" class="required input-small required" name="captchaCode" id="captchaCode">
+            <img id="captchaCodeImg" src="$!{CONTEXT_PATH}/captcha/CapthcaImage" alt=""/>
+            <span id="refleshCaptchaCode"><a href="javascript:void(0);">看不清楚，换一张</a></span>
+        </div>
+    </div>
+        
+     	<!-- <div class="control-group">
+            <label class="control-label">联系人：</label>
+            <div class="controls">
+                <input type="text" placeholder="">
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <label class="checkbox">
+                    <input type="checkbox"> 是否开启免打扰模式（除系统短信外，其它促销类短信不再发送）
+                </label>
+                <button type="submit" class="btn btn-danger">保存</button>
+            </div>
+        </div>
+        <legend>上传企业附件</legend>
+        <div class="control-group">
+            <ul class="accessory clearfix">
+                <li>
+                    <p><a href="#"><i class="icon-plus-sign"></i>添加图片</a></p>
+                    <div class="imgbox"><img src="../images/yf-tpl.jpg"></div>
+                    <p><span class="c-red">*</span>上传法人代表证件照</p>
+                </li>
+                <li>
+                    <p><a href="#"><i class="icon-plus-sign"></i>添加图片</a></p>
+                    <div class="imgbox"><img src="../images/yf-tpl.jpg"></div>
+                    <p><span class="c-red">*</span>上传工商执照图片</p>
+                </li>
+                <li>
+                    <p>
+                        <a href="#"><i class="icon-plus-sign"></i>上传附件</a></p>
+                    <div class="imgbox"> <img src="../images/yf-tpl.jpg"></div>
+                    <p><span class="c-red">*</span>上传税务附件</p>
+                </li>
+            </ul>
+            <div class="alert-red">
+                *仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于4M
+            </div>
+        </div>  -->
+    
+        
+        <div class="control-group">
+            <div class="controls">
+               <!-- <button type="submit" class="btn btn btn-danger">提交申请</button>&nbsp;&nbsp;
+                <button type="submit" class="btn" id="btnSave1">保存</button> -->
+                <button type="button" class="btn btn btn-danger" id="btnSave1">提交申请</button>
+            </div>
+        </div>
+</form>

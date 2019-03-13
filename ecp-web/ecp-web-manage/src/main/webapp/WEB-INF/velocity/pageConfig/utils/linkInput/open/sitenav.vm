@@ -1,0 +1,62 @@
+#parse("sys/sys_param.vm")
+
+<!--列表区域-->
+<table class="table table-striped table-bordered dataTable">
+      <thead>
+        <tr>
+          <th>站内导航名称</th>
+          <th>链接地址</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        #if(${reqVO.flatType} == "mobile")
+        <tr>
+          <td>首页</td>
+          <td>/homepage</td>
+          <td><a href='javascript:void(0)' onclick='_selectTypeItem("/homepage","首页")'>选定</a></td>
+        </tr>
+        <tr>
+          <td>分类</td>
+          <td>/category</td>
+          <td><a href='javascript:void(0)' onclick='_selectTypeItem("/category","分类")'>选定</a></td>
+        </tr>
+        <tr>
+          <td>排行榜</td>
+          <td>/ranking</td>
+          <td><a href='javascript:void(0)' onclick='_selectTypeItem("/ranking","排行榜")'>选定</a></td>
+        </tr>
+		<tr>
+          <td>购物车</td>
+          <td>#if($!{reqVO.siteId} == 2)/point#end/order/cart/list</td>
+          <td><a href='javascript:void(0)' onclick='_selectTypeItem("#if($!{reqVO.siteId} == 2)/point#end/order/cart/list","购物车")'>选定</a></td>
+        </tr>
+		<tr>
+          <td>个人中心</td>
+          <td>#translate('CMS_SITE_MAPPING','1')/member/index?siteFlag=$!{reqVO.siteId}</td>
+          <td><a href='javascript:void(0)' onclick='_selectTypeItem("#translate('CMS_SITE_MAPPING','1')/member/index?siteFlag=$!{reqVO.siteId}","个人中心")'>选定</a></td>
+        </tr>
+        #elseif(${reqVO.flatType} == "web")
+        	#if($!{reqVO.siteId} == 1) ##商城 
+	        
+	        #elseif($!{reqVO.siteId} == 2) ##积分商城 
+	        ##elseif($!{reqVO.siteId} == 3) ##官网 
+	        ##elseif($!{reqVO.siteId} == 4) ##智网 
+	        #else
+	        <tr>
+          	  <td colspan="3" style="text-align: center;">暂无数据</td>
+	        </tr>
+	        #end
+        #elseif(${reqVO.flatType} == "app")
+        	#if($!{reqVO.siteId} == 1) ##商城 web
+	        
+	        #elseif($!{reqVO.siteId} == 2) ##积分商城 web
+	        #else
+	        <tr colsan="3">
+          	  <td>暂无数据</td>
+	        </tr>
+	        #end
+        #end
+      </tbody>
+</table>
+

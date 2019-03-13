@@ -1,0 +1,114 @@
+#parse("/module/mod-form.vm") #parse("/module/mod-editor.vm")
+#parse("/module/mod-tree.vm")
+<link href="${CONTEXT_PATH}/css/goods/product-mgr.css" rel="stylesheet"
+	type="text/css" media="screen" />
+<script type="text/javascript"
+	src="$!{BUSIJS_PATH}/goods/gdsmediacatg/plugins/gds.mcdropdown.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript"
+	src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript"
+	src="$!{BUSIJS_PATH}/goods/gdsMedia/media-add.js?version=$!{JS_VERSION}"></script>
+<style type="text/css">
+select[disabled] {
+	appearance: none;
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	padding: 0px 0px 0px 4px;
+}
+
+select[disabled]::-ms-expand {
+	display: none;
+}
+</style>
+<div class="alert alert-error hide formValidateMessages"></div>
+<div class="rk-editc pull-left">
+
+	<form id="detailInfoForm" class="form-horizontal  required-validate"
+		style="margin-bottom: 0px;" method="post">
+		<div class="row-fluid" style="width: 400px; float: left;">
+			<div class="span4">
+				<br />
+				<div class="control-group">
+					<label class="control-label">店铺名称：</label>
+					<div class="controls">
+						<select class="required" id="shopId" name="shopId">
+							##shoplist()
+							#shopStatuslist('','1')
+						</select>
+					</div>
+				</div>
+				<br />
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label">图片分类：</label>
+					<div class="controls">
+						<input type="text" class="required" placeholder="点击选择分类"
+							name="mediaCatgSelector" id="mediaCatgSelector" /> <input
+							type="hidden" name="picCatgCode" id="picCatgCode" />
+					</div>
+				</div>
+				<br />
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label">图片名称：</label>
+					<div class="controls">
+						<input class=" required" name="mediaName" type="text"
+							placeholder="不多于64个汉字" />
+					</div>
+				</div>
+				<br />
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label">图片排序：</label>
+					<div class="controls">
+						<input class="  required digits " maxlength="5" name="sortNo"
+							type="text" placeholder="必须为整数" />
+					</div>
+				</div>
+				<br />
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label ">图片类型：</label>
+					<div class="controls">
+						<select name="mediaType" disabled="true">
+							#listParam("GDS_MEDIA_TYPE","")
+						</select>
+					</div>
+				</div>
+				<br />
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label ">图片文件： </label>
+					<div class="controls">
+						<input type="file" class="com_input required" id="mediaFile"
+							name="mediaFile" value="" /> <input type="hidden" id="mediaUuid"
+							name="mediaUuid" value="" /> <input type="hidden" id="fileName"
+							name="fileName" />
+					</div>
+				</div>
+			</div>
+			<!-- end of div span4 -->
+		</div>
+		<!-- end of div row-fluid-->
+		<div id="imgshowdiv"
+			style="width: 160px; float: right; margin-top: 20px; margin-right: 20px">
+			<div style="width: 150px; height: 150px; border: 1px solid;">
+				<img id="imgShow" alt="" src="" style="width: 150px; height: 150px;" />
+			</div>
+			<div class="alert rk-alert" style="width: 105px;">
+				图片格式必须是：png,jpg,jpeg,并且小于5M</div>
+		</div>
+		<br />
+		<div class="btn-wrap " style="clear: both;">
+			<input value="开始上传" type="button" id="btnUpload"
+				class="btn btn-primary" />
+				##<input  data-loading-text="保存"
+			##	type="button" id="btnFormSave" class="btn btn-info"> <i class=" icon-ok-sign icon-white"></i> 保存 </>
+				<a class="btn btn-info" id="btnFormSave" href="#"><i class=" icon-ok-sign icon-white"></i> 保存</a>
+				<a class="btn" href="javascript:void(0)" id="btnReturn"><i class="icon-reply icon-white"></i> 返回</a>
+				
+				##<inputvalue="返回" type="button" id="btnReturn" class="btn" style="margin-left: 10px" />
+		</div>
+	</form>
+
+	<!-- 隐藏字段 -->
+	<input type="hidden" id="uploadAble" name="uploadAble" value="0" />
+	<!-- 是否上传成功 -->
+	<input type="hidden" id="uploaded" name="uploaded" value="0" />
+
+</div>

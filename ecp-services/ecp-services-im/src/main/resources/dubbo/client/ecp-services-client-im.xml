@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://code.alibabatech.com/schema/dubbo  
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+	">  
+	
+	<!-- 用户登陆信息与权限-->
+	<dubbo:reference id="imAuthRSV" interface="com.zengshi.ecp.im.dubbo.interfaces.IimAuthRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${im.dubbo.group}"/>
+
+	<!-- 用户openfire用户的服务-->
+	<dubbo:reference id="ofuserRSV" interface="com.zengshi.ecp.im.dubbo.interfaces.IOfuserRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${im.dubbo.group}"/>
+
+	<!--用于买家会员和客服人员的队列管理的服务 -->
+	<dubbo:reference id="custServiceMgrRSV" interface="com.zengshi.ecp.im.dubbo.interfaces.ICustServiceMgrRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${im.dubbo.group}"/>
+
+    <!-- 用户openfire用户的服务-->
+	<dubbo:reference id="staffHotlineRSV" interface="com.zengshi.ecp.im.dubbo.interfaces.IStaffHotlineRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${im.dubbo.group}"/>
+
+    <!--客服人员满意度的评价服务 -->
+    <dubbo:reference id="satisfyEvaluateRSV" interface="com.zengshi.ecp.im.dubbo.interfaces.ISatisfyEvaluateRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${im.dubbo.group}"/>
+    
+    <!--常用语分组 -->
+    <dubbo:reference id="phrasebookGroupRSV" interface="com.zengshi.ecp.im.dubbo.interfaces.IPhrasebookGroupRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${im.dubbo.group}"/>
+    
+    <!--常用语短语 -->
+    <dubbo:reference id="phrasebookItemRSV" interface="com.zengshi.ecp.im.dubbo.interfaces.IPhrasebookItemRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${im.dubbo.group}"/>
+
+</beans>

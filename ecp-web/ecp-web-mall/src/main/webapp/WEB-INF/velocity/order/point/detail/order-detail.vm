@@ -1,0 +1,236 @@
+#parse("sys/sys_param.vm")
+<!--content-->
+<style>
+    .order-info {
+        font-family: arial;
+    }
+
+    .order-trace {
+        font-family: arial;
+    }
+</style>
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+<div id="content">
+    <!--订单状态-->
+	#set($mystatus = $!{sOrderDetailsMain.status})
+    <div class="wrap1200 mt10">
+        <div class="order-num">
+            订单号： $!{orderId}
+            <span class="ml20">状态：<span class="c-green">#translate("ORD_ORDER_STATUS",$!{sOrderDetailsMain.status})</span></span>
+        </div>
+    </div>
+    <!--订单进度条-->
+    <div class="wrap1200 mt10">
+        <div class="progressBar">
+		#process($status $statuslist $mystatus)
+		</div>	
+
+    </div>
+
+    <!--订单跟踪 付款信息-->
+    <div class="wrap1200 order-box">
+        <ul class="tab" id="teamTab">
+            <li class="active"><h2>订单跟踪</h2></li>
+            <li><h2>付款信息</h2></li>
+        </ul>
+        <div class="" id="teamTabc">
+        <!--订单跟踪-->
+        <div class="order-trace">
+            <table class="order-table">
+                <thead>
+                <tr>
+                    <th>处理时间</th>
+                    <th>处理信息</th>
+                    <th>操作人</th>
+                </tr>
+                <tbody>
+						#foreach($!track in $!sOrderDetailsTracks)
+                        <tr>
+                            <td>$!date.format('yyyy-MM-dd HH:mm:ss ',$!track.createTime)</td>
+                            <td>$!track.nodeDesc</td>
+                            <td>$!track.createStaffName</td>
+                        </tr>
+						#end
+                 </tbody>
+            </table>
+            <!--<div class="extra">
+                <span id="jdshfs"> 送货方式：普通快递 </span><span>承运人：普通快递</span><span>货运单号：9934351499</span>
+            </div>-->
+        </div>
+        <!--付款信息-->
+        <div class="order-trace">
+            <table class="order-table">
+                <thead>
+                <tr>
+                    <th>付款方式：#translate("ORD_PAY_TYPE",$!{sOrderDetailsMain.payType})</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr>##set($orderDetailMoney = $!{sOrderDetailsMain.orderMoney}-$!{sOrderDetailsDiscount.discountPromSum})
+                        #set($orderDetailMoney = $!sOrderDetailsMain.realMoney - $!sOrderDetailsMain.realExpressFee)
+						<td>商品金额：#money($!orderDetailMoney)</td>
+                        <td>运费金额：#money($!sOrderDetailsMain.realExpressFee)</td>
+
+                    </tr>
+                    <tr>
+                        ##<td>优惠总金额：#money($!sOrderDetailsDiscount.discountAcctSum)</td>
+                        ##<td>实际运费：#money($!sOrderDetailsMain.realExpressFee)</td>
+
+                    </tr>
+                    <tr>
+                        <td>应支付金额：#money($!sOrderDetailsMain.realMoney)</td>
+
+                    </tr>
+                    <tr>
+                        <td>付款时间：$!date.format('yyyy-MM-dd HH:mm:ss ',$!sOrderDetailsMain.payTime)</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+		<!--物流信息-->
+        </div>
+
+    </div>
+    <!--订单信息-->
+    <div class="wrap1200 ">
+        <div class="order-info">
+            <div class="order-info-tit">订单信息</div>
+            <div class="order-info-com">
+                <dl class="fore clearfix">
+                        <dt>物流信息</dt>
+                        #if($!ordExpressDetailsResps && $!ordExpressDetailsResps.size()>0)
+  						<dd class="wl-list">
+                            #foreach($!delivery in $!ordExpressDetailsResps)                                
+                            <div class="item">
+                            <div class="tit">
+                                <label>送货方式：</label><span>#translate('STAFF_SHOP_DISTRIBUTION_WAY' $!delivery.deliveryType)</span>                              
+                                <label>物流公司：</label><span>$!delivery.expressName</span>
+                                <label>物流单号：</label><span><strong>$!delivery.expressNo </strong></span>
+                                <label>发货时间：</label><span>$!date.format('yyyy-MM-dd HH:mm:ss ',$!delivery.sendDate)</span>            
+                            </div>
+                            #if($!delivery.deliveryType==1)
+	                            #set($expNum = 0)
+	                            #if($!delivery.ordExpressDetailResps && $!delivery.ordExpressDetailResps.size()>0)
+	                            <div class="cont">
+	                                <ul class="infos">
+	                                #foreach($!express in $!delivery.ordExpressDetailResps)
+	                                    #if($expNum < 5)
+	                                    <li>
+	                                    #else
+	                                    <li style="display: none">
+	                                    #end
+	                                        <span class="time">
+	                                            $!date.format('yyyy-MM-dd HH:mm:ss ',$!express.expressTime)
+	                                        </span>
+	                                        <div class="txt">
+	                                             $!{express.context}
+	                                        </div>
+	                                    </li>
+	                                    #set($expNum = $expNum +1)
+	                                #end
+	                                </ul>
+	                                #if($expNum > 5)
+	                                <div class="more" id="showdetail_">查看全部</div>
+	                                #end
+	                            </div>
+	                            #else
+	                              <div class="cont">
+	                               <ul class="infos">
+	                                   <li>
+	                              	       	 暂时没有该运单号码的物流信息
+	                              	   </li>
+	                               </ul>
+	                              </div>
+		                        #end                            
+                            #end
+                        </div>
+                                                 
+                            #end
+							</dd>
+                        #else
+                            <dd>暂未发货</dd>
+                        #end
+							
+                    </dl>
+                <dl class="fore clearfix">
+                    <dt>收货人信息</dt>
+                    <dd>
+                        <ul>
+                            <li>收&nbsp;货&nbsp;人：$!sOrderDetailsMain.contactName</li>
+                            <li>地&nbsp;&nbsp;&nbsp;&nbsp;址：$!sOrderDetailsMain.chnlAddress</li>
+                            <li>手机号码：$!sOrderDetailsMain.contactPhone</li>
+                            <li>固定电话：$!sOrderDetailsMain.contactNumber</li>
+                        </ul>
+                    </dd>
+
+                </dl>
+                <dl class="clearfix">
+                    <dt>支付及配送方式</dt>
+                    <dd>
+                        <ul>
+                            <li>支付方式：#translate("ORD_PAY_TYPE",$!{sOrderDetailsMain.payType})</li>
+
+
+                            <li>运&nbsp;&nbsp;&nbsp;&nbsp;费：#money(0)</li>
+
+                        </ul>
+                    </dd>
+                </dl> 
+         </div>
+        </div>
+    </div>
+
+    <!--商品清单-->
+    <div class="wrap1200 ">
+        <div class="order-info clearfix">
+            <div class="order-info-tit">商品清单</div>
+            <div class="order-info-com01">
+                <table class="order-info-table">
+                    <thead>
+                    <tr>
+                        <th>商品编号</th>
+                        <th>商品图片</th>
+                        <th>商品名称</th>
+                        <th>兑换积分</th>
+                        <th>商品数量</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="kong">
+                        <td colspan="6"></td>
+                    </tr>
+					#foreach($!ordersub in $!sOrderDetailsSubs)
+					<tr class="bg-fff">
+                        <td><div class="border-right">$!ordersub.skuId </div></td>
+                        <td><div class="border-right"><a href="#siteInfo(2)$!ordersub.gdsUrl" target="_blank"><img src="#genImageUrl($!ordersub.getPicId(),'200x200!')" width="48"></img></a></div></td>
+                        <td><div class="border-right"><a href="#siteInfo(2)$!ordersub.gdsUrl" target="_blank">$!ordersub.gdsName</a></div></td>
+                        <td><div class="border-right">$!{ordersub.score}积分+#money($!ordersub.buyPrice)</div></td>
+                        <td><div class="border-right">x $!ordersub.orderAmount</div></td>
+                    </tr>
+					#end
+                    </tbody>
+                </table>
+            </div>
+            <div class="total clearfix">
+                <ul>
+                    ###set($orderMoney = $!{sOrderDetailsMain.orderMoney}-$!{sOrderDetailsDiscount.discountPromSum})
+					#set($orderMoney = $!sOrderDetailsMain.realMoney - $!sOrderDetailsMain.realExpressFee)
+                    <li><span>总商品金额：</span>$!{sOrderDetailsMain.orderScore}积分+#money($!orderMoney)</li>
+                    ##if($!{sOrderDetailsDiscount.discountAcctSum} > 0)
+                    ##   <li><span>- 优惠：</span>#money($!sOrderDetailsDiscount.discountAcctSum)</li>
+                    ##end
+                    <li><span>+ 运费：</span>#money(0)</li>
+                </ul>
+                <div class="extra">
+					#set($orderMoney1 = $!sOrderDetailsMain.realMoney - $!sOrderDetailsMain.realExpressFee)
+                    应付总额：<span class="ftx04"><b>$!{sOrderDetailsMain.orderScore}积分+#money($!orderMoney1)</b></span>
+                </div>
+            </div>
+        </div>
+    </div>
+	</div>
+</div>

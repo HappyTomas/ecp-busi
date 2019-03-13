@@ -1,0 +1,50 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/sys/cfg/parameter-edit.js?version=$!{JS_VERSION}" ></script>
+<h3 class="heading">系统参数管理</h3>
+<form id="btnForm" class="hidden" action="" method="post">
+	<input type="hidden" id = "paraCode1" name="paraCode" value= '$!{paraCode}'/>
+	<input type="hidden" id = "paraDesc1" name="paraDesc" value= '$!{paraDesc}'/>
+	<input type="hidden" id = "paraValue1" name="paraValue" value= '$!{paraValue}'/>
+</form>
+<div class="formBox row-fluid">
+		<div class="formBox">
+			<form id="editInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+    			<!--  隐藏域  保存查询条件-->
+				<input type="hidden" id="searchParams" name="searchParams" value = "$!{sysCfgResDTO.paraCode}" />
+    		<div class="row-fluid formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">参数名：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large required htmlcheck span6" id="paraCode" name="paraCode"  minlength="1" maxlength="32" value="$!{sysCfgResDTO.paraCode}" />
+    				</div>
+    			</div>
+    		</div>
+    		<div class="row-fluid formSep">
+    			<div class="control-group">
+    				<label class="control-label">参数值：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large required htmlcheck span6" id="paraValue" name="paraValue"  minlength="1" maxlength="128" value="$!{sysCfgResDTO.paraValue}" />
+    				</div>
+    			</div>
+            </div>
+			<div class="row-fluid formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">参数描述：</label>
+    				<div class="controls">
+    					<textarea class="span6" id="paraDesc"   name="paraDesc"  rows="5" value=""
+    					onkeydown="checkMaxInput(this,256)"  onkeyup="checkMaxInput(this,256)" onfocus="checkMaxInput(this,256)" >$!{sysCfgResDTO.paraDesc}</textarea>
+    					</br><span class="help-inline" id="span" style="margin-right:10px;">最多<strong style="color:red">256</strong>个字符</span>
+     				</div>
+    			</div>
+    		</div>
+    		<div class="">
+				<div class="control-group">
+					<div class="controls">
+						<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign"></i> 保　存</button>
+						<button type="button" class="btn" id="btnReturn"> <i class="icon-reply icon-white"></i> 返　回</button>
+					</div>
+    			</div>
+     	   </div>
+		</form>
+      </div>
+</div>

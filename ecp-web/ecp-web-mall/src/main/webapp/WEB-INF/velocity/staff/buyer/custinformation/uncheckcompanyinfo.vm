@@ -1,0 +1,108 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<style>
+	.controls{line-height:30px;}
+</style>
+<form class="form-horizontal required-validate regist" id="aptitudeinfo1">
+        <div class="control-group">
+            <label class="control-label">企业名称：</label>
+
+            <div class="controls">
+            	$!{companySignInfo.companyName}
+            </div>
+    	</div>
+       	<div class="control-group">
+            <label class="control-label">企业所在地：</label>
+
+            <div class="controls">
+            	#areaName($!{companySignInfo.provinceCode})
+				#areaName($!{companySignInfo.cityCode})
+				#areaName($!{companySignInfo.countyCode})
+            </div>
+    	</div>
+       	<div class="control-group">
+            <label class="control-label">企业地址：</label>
+
+            <div class="controls">
+            	$!{companySignInfo.companyAdress}
+            </div>
+    	</div>
+       	<div class="control-group">
+            <label class="control-label">企业行业：</label>
+
+            <div class="controls">
+                #translate('COMPANY_INFO_TRADE',$!{companySignInfo.trade})
+            </div>
+    	</div>
+        <div class="control-group">
+            <label class="control-label">企业类型：</label>
+
+            <div class="controls">
+               #translate('COMPANY_INFO_TYPE',$!{companySignInfo.companyType})
+            </div>
+    	</div>
+       	<div class="control-group">
+            <label class="control-label">企业人数：</label>
+
+            <div class="controls">
+                #translate('COMPANY_INFO_EMPLOYEE',$!{companySignInfo.employeeNum})
+            </div>
+    	</div>
+        <legend>企业联系方式</legend>
+       	<div class="control-group">
+            <label class="control-label">联系人：</label>
+
+            <div class="controls">
+            	$!{companySignInfo.linkPersonMsg}
+            </div>
+    	</div>
+        <div class="control-group">
+            <label class="control-label">联系人手机：</label>
+
+            <div class="controls">
+            	$!{companySignInfo.linkPhoneMsg}
+            </div>
+    	</div>
+        <div class="control-group">
+            <label class="control-label">固定电话：</label>
+
+           <div class="controls">
+           		$!{companySignInfo.linkTelephone}
+            </div>
+    	</div>
+        <div class="control-group">
+            <label class="control-label">联系人身份证号：</label>
+
+            <div class="controls">
+            	$!{companySignInfo.linkPsnCard}
+            </div>
+    	</div>
+        <div class="control-group">
+        <label class="control-label">企业邮箱：</label>
+
+        <div class="controls">
+        	$!{companySignInfo.companyEmail}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">企业微信：</label>
+
+        <div class="controls">
+        	$!{companySignInfo.companyWeixin}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">企业QQ号：</label>
+
+        <div class="controls">
+        	$!{companySignInfo.companyQq}
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">备注：</label>
+
+        <div class="controls">
+        	<span style="word-wrap:break-word;width:300px;display:block;">$!{companySignInfo.remark}</span>
+        </div>
+    </div>
+</form>

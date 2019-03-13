@@ -1,0 +1,29 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/unpf/goods/send/gdsUpdate.js?version=$!{JS_VERSION}" ></script>
+<input type="hidden" name="platType" id="platType" value="$!{vo.platType}"/>
+<input type="hidden" name="shopId" id="shopId" value="$!{vo.shopId}"/>
+<input type="hidden" name="gdsId" id="gdsId" value="$!{vo.gdsId}"/>
+<div class="well well-searchForm">
+    <div class="row-fluid" style="display: block">
+        <div class="control-group">
+            <label class="control-label" style="float: left;margin-left: 12px">对接平台：</label>
+            <div class="controls" style="float: left">
+                <input type="radio"  style="float:none;margin-top:-2px" name="platType" value="taobao" #if($!{platType}=='taobao')checked="checked" #end/>淘宝
+                <input type="radio"  style="float:none;margin-left:10px;margin-top:-2px" name="platType"  value="youzan" #if($!{platType}=='youzan')checked="checked" #end/>有赞
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid" style="display: block">
+        <div class="control-group">
+            <label class="control-label" style="float: left;margin-top: 5px">对接商品ID：</label>
+            <div class="controls" style="float: left" >
+                <input type="text" style="width: 200px;" class="input-xxlarge required" name="sendGds" id="sendGds" value="$!{outGdsId}"/>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="btn-wrap" id="down-info" style="text-align: center">
+    <button class="btn btn-info" data-loading-text="保存中..." id="saveGdsUpdate"><i class=" icon-ok-sign icon-white"></i> 保存</button>
+    <a class="btn" href="javascript:void(0)" id="backGdsUpdate"><i class="icon-reply icon-white"></i> 返回</a>
+</div>

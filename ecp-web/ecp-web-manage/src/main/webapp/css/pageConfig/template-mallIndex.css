@@ -1,0 +1,1300 @@
+@charset "UTF-8";
+a:hover {
+  text-decoration: none;
+  color: #ff6a00;
+}
+/* 左侧导航 begin*/
+.tpl-nav {
+  border: 1px solid #dddddd;
+}
+.tpl-nav .ref-icon {
+  background-position: 0 0;
+}
+.tpl-nav .teach-icon {
+  background-position: 0px -21px;
+}
+.tpl-nav .exam-icon {
+  background-position: 0px -41px;
+}
+.tpl-nav .science-icon {
+  background-position: 0px -64px;
+}
+.tpl-nav .train-icon {
+  background-position: 0px -85px;
+}
+.tpl-nav .computer-icon {
+  background-position: 0px -130px;
+}
+.tpl-nav .electron-icon {
+  background-position: 0px -155px;
+}
+.tpl-nav .modular-body {
+  background-color: #fff;
+}
+.tpl-nav dl {
+  padding: 2px 15px;
+  position: relative;
+}
+.tpl-nav dt {
+  font-size: 14px;
+  height: 34px;
+  line-height: 34px;
+  font-family: \5B8B\4F03;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.tpl-nav dd {
+  padding-top: 10px;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.tpl-nav dd a {
+  white-space: nowrap;
+}
+.tpl-nav .navBox {
+  border: 1px solid transparent;
+  position: relative;
+  top: -1px;
+  left: -1px;
+}
+.tpl-nav .navBox dl:before {
+  content: '';
+  position: absolute;
+  right: -2px;
+  height: 100%;
+  width: 3px;
+  background-color: white;
+  top: 0;
+  z-index: 1;
+  display: block;
+}
+.tpl-nav .gray-bg dl {
+  background-color: #f7f7f7;
+}
+.tpl-nav .gray-bg dl:before {
+  background-color: #f7f7f7;
+}
+.tpl-nav .nCont {
+  position: relative;
+}
+.tpl-nav .hover {
+  border: 1px solid #ff6a00;
+}
+.tpl-nav .hover .list {
+  display: block;
+}
+.tpl-nav .hover dl:before {
+  right: -3px;
+  z-index: 11;
+}
+.angle-right {
+  width: 6px;
+  height: 9px;
+  float: right;
+  margin-top: 12px;
+  background: url("../../images/pageConfig/tpl-icons.png") -21px -18px;
+}
+.navChild {
+  display: none;
+  border: 1px solid #ff6a00;
+  padding: 0 10px;
+  position: absolute;
+  z-index: 10;
+  width: 750px;
+  min-height: 410px;
+  left: 187px;
+  top: -1px;
+  background: #ffffff;
+}
+.navChild .lItem {
+  border-bottom: 1px dashed #dddddd;
+  display: table-row;
+  width: 100%;
+  table-layout: fixed;
+}
+.navChild .lItem:last-child .tit,
+.navChild .lItem:last-child .con {
+  border-bottom: 0 none;
+}
+.navChild .tit {
+  font-size: 14px;
+  font-weight: 900;
+  text-align: right;
+  display: table-cell;
+  vertical-align: top;
+  padding: 10px;
+  border-bottom: 1px dashed #dddddd;
+  width: 85px;
+  word-break: break-all;
+}
+.navChild .con {
+  display: table-cell;
+  padding: 10px;
+  border-bottom: 1px dashed #dddddd;
+}
+.navChild li {
+  float: left;
+  line-height: 24px;
+  padding: 0 3px;
+}
+.tpl-nav2 {
+  border: 3px solid #ff6a00;
+  /* .navBox-hover{
+    border-width: 0;
+  }*/
+  /*.navChild{
+    border: 3px solid transparent;
+    top: -3px;
+    left: 184px;
+  }*/
+}
+.tpl-nav2 .modular-head {
+  line-height: 40px;
+  height: 40px;
+  background-color: #ffdeba;
+  font-weight: 900;
+  padding-left: 10px;
+  color: #333;
+}
+.tpl-nav2 .modular-head span {
+  padding-left: 22px;
+  background-image: url(../../images/pageConfig/navIcon.png);
+  background-repeat: no-repeat;
+}
+.tpl-nav2 .modular-head .teach-icon {
+  background-position: 0px -18px;
+}
+.tpl-nav2 .navBox {
+  border-color: transparent;
+  border-width: 3px 0 3px 0;
+  margin-top: -2px;
+  position: relative;
+  left: 0;
+}
+.tpl-nav2 .navBox:hover.navBox-hover {
+  border-bottom-color: #ff6a00;
+  border-top-color: #ff6a00;
+}
+.tpl-nav2 .navBox:hover.navBox-hover .navChild {
+  border-width: 3px;
+  display: block;
+  left: 184px;
+  top: -3px;
+}
+.tpl-nav2 .navBox:hover.navBox-hover dl:before {
+  right: -3px;
+  z-index: 11;
+}
+.tpl-nav2 .navBox dl:before {
+  right: 0px;
+  width: 3px;
+}
+/* 左侧导航 end*/
+.mallTpl-banner {
+  height: 412px;
+}
+.mallTpl-banner img {
+  height: 100%;
+}
+.modular-head {
+  height: 30px;
+  line-height: 27px;
+  font-size: 16px;
+  padding: 0;
+  background: transparent;
+}
+.modular-head .hright {
+  color: #ff6a00;
+  float: right;
+  font-size: 12px;
+}
+.mallTpl-notice .modular-body {
+  background-color: #fff;
+}
+.mallTpl-notice li {
+  line-height: 26px;
+  padding-left: 10px;
+  height: 26px;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mallTpl-notice li a:hover {
+  color: #ff6a00;
+}
+.tpl-box {
+  border: 1px solid #dddddd;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+.mallTpl-hotPl {
+  overflow: hidden;
+}
+.mallTpl-hotPl .modular-body {
+  background-color: #fff;
+}
+.mallTpl-hotPl ul {
+  padding: 10px 10px 0 10px;
+  word-break: break-all;
+}
+.mallTpl-hotPl li {
+  margin-left: 5px;
+  margin-bottom: 10px;
+  border-bottom: 1px dotted #c5c5c5;
+  padding-bottom: 5px;
+  height: auto;
+}
+.mallTpl-hotPl li i {
+  float: left;
+  margin-left: -10px;
+  font-size: 14px;
+  font-weight: 900;
+  font-style: normal;
+  margin-top: 2px;
+}
+.mallTpl-hotPl .pl-date {
+  color: #999;
+}
+.mallTpl-hotPl .pl-com span {
+  color: #017BFF;
+  margin-right: 10px;
+}
+/* 重磅推荐begin */
+.ficon {
+  background: url("../../images/pageConfig/ficon.png") no-repeat;
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+.ficon-sd {
+  margin-top: 10px;
+  background-position: 0 -29px;
+}
+.ficon-ts {
+  background-position: 0 -59px;
+}
+.ficon-jz {
+  background-position: 0 -88px;
+}
+.ficon-like {
+  background-position: 0 -117px;
+}
+.grade-core {
+  width: 90px;
+  display: inline-block;
+  height: 16px;
+  background: url("../../images/pageConfig/star.png") 0 -15px;
+  position: relative;
+  margin-top: 2px;
+}
+.grade-core span {
+  display: inline-block;
+  height: 100%;
+  background: url("../../images/pageConfig/star.png") 0 0;
+}
+.grade-core .star1 {
+  width: 20%;
+}
+.grade-core .star2 {
+  width: 40%;
+}
+.grade-core .star3 {
+  width: 60%;
+}
+.grade-core .star4 {
+  width: 80%;
+}
+.grade-core .star5 {
+  width: 100%;
+}
+.mallTpl-recomm {
+  background-color: #f7f7f7;
+  border: 1px solid #dddddd;
+}
+.mallTpl-recomm .ficon {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+.mallTpl-recomm .modular-head {
+  height: 45px;
+  line-height: 40px;
+  border-bottom: 1px solid #dddddd;
+}
+.mallTpl-recomm .modular-body {
+  height: 250px;
+  overflow: hidden;
+}
+.mallTpl-recomm ul h3 a {
+  color: #694821;
+}
+.mallTpl-recomm ul .author {
+  color: #999999;
+  line-height: 30px;
+  height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mallTpl-recomm ul .grade {
+  width: 90px;
+  display: inline-block;
+  height: 16px;
+  background: url("../../images/pageConfig/star.png") 0 -15px;
+  position: relative;
+  margin-top: 2px;
+}
+.mallTpl-recomm ul .grade span {
+  display: inline-block;
+  height: 100%;
+  background: url("../../images/pageConfig/star.png") 0 0;
+}
+.mallTpl-recomm ul .grade .star1 {
+  width: 20%;
+}
+.mallTpl-recomm ul .grade .star2 {
+  width: 40%;
+}
+.mallTpl-recomm ul .grade .star3 {
+  width: 60%;
+}
+.mallTpl-recomm ul .grade .star4 {
+  width: 80%;
+}
+.mallTpl-recomm ul .grade .star5 {
+  width: 100%;
+}
+.mallTpl-recomm li {
+  float: left;
+  width: 50%;
+  margin-top: 20px;
+}
+.mallTpl-recomm .img-p {
+  margin-left: 10px;
+  float: left;
+  width: 150px;
+  text-align: center;
+  padding-top: 10px;
+  margin-right: 10px;
+}
+.mallTpl-recomm .img-p img {
+  width: 150px;
+  height: 150px;
+}
+.mallTpl-recomm .bdr {
+  border-right: 1px solid #dddddd;
+}
+.mallTpl-recomm .recon-about {
+  padding-right: 10px;
+}
+.mallTpl-recomm .about {
+  margin-top: 10px;
+  height: 60px;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.mallTpl-recomm .sbtn {
+  margin-top: 20px;
+}
+.mallTpl-recomm .img-pri {
+  margin-top: 10px;
+}
+.mallTpl-recomm .price-z {
+  color: #ff6a00;
+  font-size: 14px;
+  margin-right: 10px;
+  font-family: "Arial";
+}
+.mallTpl-recomm .price-l {
+  text-decoration: line-through;
+  color: #999999;
+}
+/* 重磅推荐end */
+/* 新书速递 beign */
+.tpl-newTab {
+  position: relative;
+}
+.tpl-newTab .modular-head {
+  line-height: 17px;
+  height: 30px;
+  position: relative;
+}
+.tpl-newTab .modular-head .ficon {
+  margin-right: 10px;
+  margin-top: -2px;
+  /* position: absolute;
+      left: 20px;
+      top: -15px;*/
+}
+.tpl-newTab .modular-body {
+  background-color: #fff;
+  border: 1px solid #dddddd;
+  min-height: 270px;
+}
+.tpl-newTab .tab-nav {
+  height: 35px;
+  overflow: hidden;
+}
+.tpl-newTab .tab-nav ul {
+  float: right;
+  border-left: 1px solid #dddddd;
+  margin-top: -1px;
+  margin-right: -1px;
+}
+.tpl-newTab .tab-nav li {
+  float: left;
+  background-color: #f7f7f7;
+  border: 1px solid #dddddd;
+  padding: 0 15px;
+  height: 33px;
+  line-height: 33px;
+  margin-left: -1px;
+  cursor: pointer;
+}
+.tpl-newTab .tab-nav .active {
+  background-color: white;
+  border-bottom: 1px solid white;
+}
+.tpl-newTab .tab-content {
+  margin-top: 10px;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+/* 新书速递 end*/
+.tpl-books:before,
+.tpl-books:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.tpl-books:after {
+  clear: both;
+}
+.tpl-books .img-wrap img {
+  width: 150px;
+  height: 150px;
+}
+.tpl-books > li {
+  float: left;
+  width: 25%;
+  margin-bottom: 10px;
+  text-align: center;
+}
+.tpl-books > li:hover a {
+  color: #ff6a00;
+}
+.tpl-books .li-inner {
+  padding: 0 10px;
+}
+.tpl-books .name {
+  padding: 7px 20px 0;
+  height: 42px;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+  text-align: left;
+}
+.tpl-books .author {
+  padding: 0 20px;
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+  color: #AAA;
+  text-align: left;
+}
+.tpl-books .price {
+  padding-left: 20px;
+  height: 16px;
+  line-height: 16px;
+  overflow: hidden;
+  font-family: "Arial";
+  font-size: 14px;
+  text-align: left;
+}
+.tpl-books .price .rob {
+  color: #ff6a00;
+  margin-right: 8px;
+}
+.tpl-books .price .price_r {
+  color: #AAA;
+  text-decoration: line-through;
+}
+/* 排行榜 begin */
+.tpl-rankTab .modular-head {
+  position: relative;
+  /*  &:before{
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 16px;
+      margin-right: 10px;
+      margin-top: 14px;
+      background: @c-orange;
+      position: absolute;
+      left: 0;
+      top: -12px;
+    }*/
+}
+.tpl-rankTab .modular-body {
+  background-color: #f7f7f7;
+  border: 1px solid #dddddd;
+  border-top: 3px solid #dddddd;
+  padding: 0 10px;
+}
+.tpl-rankTab .tab-nav {
+  height: 40px;
+  overflow: hidden;
+}
+.tpl-rankTab .tab-nav li {
+  float: left;
+  text-align: center;
+  padding: 0 10px;
+  border-bottom: 1px solid #ff6a00;
+  height: 39px;
+  line-height: 39px;
+  position: relative;
+}
+.tpl-rankTab .tab-nav li:before {
+  background: url("../../images/pageConfig/d-topl.png") no-repeat;
+  width: 14px;
+  height: 5px;
+  position: absolute;
+  content: '';
+  bottom: -1px;
+  left: 50%;
+  margin-left: -7px;
+  display: none;
+}
+.tpl-rankTab .tab-nav li.active:before {
+  display: block;
+}
+.tpl-rankTab .list .tit {
+  margin-left: 20px;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.tpl-rankTab .list .tit a:hover {
+  color: #ff6a00;
+}
+.tpl-rankTab .list .img-wrap {
+  float: left;
+  margin-right: 10px;
+}
+.tpl-rankTab .list .img-wrap img {
+  width: 90px;
+  height: 90px;
+}
+.tpl-rankTab .list .item-c {
+  margin-left: 20px;
+  height: 93px;
+  display: none;
+}
+.tpl-rankTab .list .item-c a:hover {
+  color: #ff6a00;
+}
+.tpl-rankTab .list .item-c .rob {
+  color: #ff6a00;
+  overflow: hidden;
+  margin-right: 12px;
+  font-family: "Arial";
+}
+.tpl-rankTab .list .item-c .price_r {
+  color: #aaa;
+  text-decoration: line-through;
+  overflow: hidden;
+}
+.tpl-rankTab .list li {
+  padding: 11px 10px;
+  position: relative;
+}
+.tpl-rankTab .list li.active .tit {
+  display: none;
+}
+.tpl-rankTab .list li.active .item-c {
+  display: block;
+}
+.tpl-rankTab .list .name {
+  height: 40px;
+  overflow: hidden;
+  word-break: break-all;
+}
+.tpl-rankTab .rank {
+  background: #999;
+  color: white;
+  padding: 1px 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  position: absolute;
+  top: 10px;
+  left: 0;
+  display: inline-block;
+  height: 14px;
+  line-height: 14px;
+  margin-top: 2px;
+}
+.tpl-rankTab .rank-one {
+  background: #ff6a00;
+}
+/* 排行榜 end */
+/* 人卫书本 begin */
+.mallTpl-book {
+  padding-top: 30px;
+}
+.mallTpl-book .modular-head {
+  position: relative;
+  padding-left: 0;
+  margin-top: -30px;
+}
+.mallTpl-book .modular-head .ficon {
+  margin-top: 0;
+  margin-right: 10px;
+}
+.mallTpl-book .modular-body {
+  background-color: #fff;
+  border: 1px solid #dddddd;
+  border-top: 3px solid #dddddd;
+}
+.mallTpl-book .lbook-wrap {
+  height: 545px;
+  padding-left: 196px;
+}
+.mallTpl-book .tpl-books {
+  margin: 20px 0;
+}
+.mallTpl-book .lbook {
+  width: 194px;
+  border-right: 1px solid #dddddd;
+  float: left;
+  height: 100%;
+  margin-left: -196px;
+}
+.mallTpl-book .lbook img {
+  width: 194px;
+  height: 370px;
+}
+.mallTpl-book .lbook .list {
+  padding-top: 35px;
+}
+.mallTpl-book .lbook li {
+  float: left;
+  width: 45%;
+  margin-left: 5%;
+  line-height: 35px;
+  height: 35px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mallTpl-book .tpl-arrowNav {
+  float: left;
+  width: 100%;
+  height: 100%;
+  border-bottom: 1px solid #dddddd;
+  border-right: 1px solid #dddddd;
+}
+.tpl-arrowNav {
+  position: relative;
+}
+.tpl-arrowNav .tab-nav {
+  position: absolute;
+  right: 0;
+  top: -35px;
+}
+.tpl-arrowNav .tab-nav li {
+  float: left;
+  font-size: 14px;
+}
+.tpl-arrowNav .tab-nav li.active a {
+  position: relative;
+  border-bottom-color: #ff6a00;
+}
+.tpl-arrowNav .tab-nav li.active a:before {
+  display: block;
+}
+.tpl-arrowNav .tab-nav a {
+  line-height: 32px;
+  height: 32px;
+  padding: 0 15px;
+  display: block;
+  color: #333;
+  border-bottom: 3px solid transparent;
+}
+.tpl-arrowNav .tab-nav a:before {
+  content: '';
+  width: 20px;
+  height: 10px;
+  background: url("../../images/pageConfig/tpl-icons.png") no-repeat;
+  background-position: -132px -95px;
+  position: absolute;
+  bottom: -3px;
+  left: 50%;
+  margin-left: -10px;
+  display: none;
+}
+/* 人卫书本 end */
+/* 专家编辑 begin */
+.mallTpl-editTab .ficon {
+  float: left;
+  margin-top: -3px;
+  margin-right: 10px;
+}
+.mallTpl-editTab .tab-content {
+  background-color: #fff;
+}
+.mallTpl-editTab .tab-nav {
+  overflow: hidden;
+}
+.mallTpl-editTab .tab-nav li {
+  float: left;
+  font-size: 18px;
+  margin-right: 10px;
+}
+.mallTpl-editTab .tab-nav .active a {
+  color: #ff6a00;
+}
+.mallTpl-editTab .tab-content {
+  border: 1px solid #dddddd;
+}
+.mallTpl-editTab .autor-info {
+  border-right: 1px solid #dddddd;
+  float: left;
+  margin-top: 20px;
+  margin-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 20px;
+  width: 194px;
+  line-height: 180%;
+}
+.mallTpl-editTab .autor-info img {
+  width: 196px;
+  height: 106px;
+  border: 1px solid #dddddd;
+}
+.mallTpl-editTab .autor-info .aname {
+  height: 30px;
+  font-weight: 900;
+  font-size: 14px;
+  text-align: center;
+  line-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mallTpl-editTab .autor-info .txt {
+  height: 190px;
+  overflow: hidden;
+  word-break: break-all;
+}
+.mallTpl-editTab .book-info {
+  margin-left: 260px;
+  margin-top: 20px;
+  margin-right: 20px;
+}
+.mallTpl-editTab .book-info h3 {
+  font-size: 16px;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mallTpl-editTab .book-info .rob {
+  color: #C30000;
+  line-height: 20px;
+  height: 20px;
+  font-size: 14px;
+  font-family: arial;
+}
+.mallTpl-editTab .book-info .txt {
+  line-height: 22px;
+  margin-top: 20px;
+  height: 84px;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.mallTpl-editTab .img-bk {
+  height: 220px;
+}
+.mallTpl-editTab .img-wrap {
+  width: 200px;
+  height: 200px;
+  margin-right: 10px;
+  float: left;
+}
+.mallTpl-editTab .realCom {
+  border-top: 1px solid #dddddd;
+  padding-top: 30px;
+  padding-bottom: 18px;
+}
+.mallTpl-editTab .realCom p {
+  font-size: 14px;
+  padding-left: 40px;
+  padding-bottom: 13px;
+  height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mallTpl-editTab .realCom a {
+  color: #ff6a00;
+}
+/* 专家编辑 end */
+/* 水平广告begin */
+.tpl-ad {
+  /*.ads-hn1{
+    span{
+      width: 100%;
+    }
+  }
+  .ads-hn2{
+    span{
+      width: 50%;
+    }
+    a{
+      padding:0 5px;
+    }
+  }
+  .ads-hn3{
+    span{
+        width: 33.3333333%;
+      }
+    a{
+      padding:0 5px;
+    }
+  }
+  .ads-hn4{
+    span{
+      width: 25%;
+    }
+    a{
+      padding:0 5px;
+    }
+  }*/
+}
+.tpl-ad .ads {
+  font-size: 0;
+  margin-left: -10px;
+}
+.tpl-ad .ads span {
+  display: inline-block;
+  margin-bottom: 5px;
+  margin-left: 10px;
+}
+.tpl-ad .ads img {
+  width: 100%;
+}
+.tpl-ad .ads a {
+  display: block;
+}
+/* 水平广告end */
+/* 垂直广告begin */
+/*.tpl-adv{
+  margin-top: 30px;
+  margin-bottom: 0;
+  img{
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}*/
+/* 垂直广告end */
+/* 猜你喜欢 begin */
+.mallTpl-fav .modular-head {
+  position: relative;
+}
+.mallTpl-fav .modular-head .ficon {
+  margin-right: 10px;
+}
+.mallTpl-fav .modular-body {
+  background: #fff;
+  border: 1px solid #dddddd;
+}
+.mallTpl-fav .fav-wrap {
+  padding-right: 238px;
+  position: relative;
+}
+.mallTpl-fav .favList {
+  float: left;
+  width: 238px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: #f7f7f7;
+  height: 100%;
+}
+.mallTpl-fav .favList li {
+  line-height: 40px;
+  padding-left: 20px;
+  font-size: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-right: 10px;
+}
+.mallTpl-fav .favList .tit {
+  font-size: 16px;
+  padding-left: 20px;
+  line-height: 35px;
+  padding-top: 10px;
+  color: #062f7e;
+}
+.mallTpl-fav .tpl-books {
+  padding: 20px 0;
+}
+.mallTpl-fav .tpl-books > li {
+  width: 20%;
+}
+/* 猜你喜欢 end */
+/* 重磅推荐2级 begin*/
+.tpl-blockTab {
+  position: relative;
+}
+.tpl-blockTab .tab-nav {
+  position: absolute;
+  right: 0;
+  top: 2px;
+}
+.tpl-blockTab .tab-nav li {
+  float: left;
+  font-size: 14px;
+}
+.tpl-blockTab .tab-nav a {
+  padding: 0 10px;
+  margin-left: 10px;
+  display: block;
+}
+.tpl-blockTab .tab-nav .active a {
+  background-color: #ff6a00;
+  color: white;
+}
+.tpl-blockTab .modular-head {
+  position: relative;
+  color: #ff6a00;
+}
+.tpl-blockTab .modular-body {
+  border: 1px solid #dddddd;
+  border-top: 2px solid #ff6a00;
+  background: #fff;
+}
+.tpl-blockTab .tpl-books {
+  margin: 20px 0;
+}
+/* 重磅推荐2级 begin*/
+/* 新书预售 begin */
+.mallTpl-preSale .modular-head {
+  color: #ff6a00;
+}
+.mallTpl-preSale .modular-head .hright {
+  color: #333;
+}
+.mallTpl-preSale .modular-head .hright:hover {
+  color: #ff6a00;
+}
+.mallTpl-preSale .modular-body {
+  height: 280px;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+}
+.mallTpl-preSale .img-w {
+  width: 80px;
+  float: left;
+  padding: 10px;
+}
+.mallTpl-preSale .img-w img {
+  width: 80px;
+  height: 116px;
+}
+.mallTpl-preSale h2 {
+  font-size: 14px;
+  margin-top: 10px;
+  white-space: normal;
+  line-height: 20px;
+  height: 40px;
+  overflow: hidden;
+}
+.mallTpl-preSale .price-j {
+  color: red;
+  line-height: 20px;
+  height: 20px;
+  font-size: 16px;
+  font-weight: 900;
+  font-family: arial;
+}
+.mallTpl-preSale .price_r {
+  color: #A7A7A7;
+  text-decoration: line-through;
+  line-height: 18px;
+  height: 18px;
+  font-size: 14px;
+}
+/* 新书预售 end */
+/* 单个图片轮播 begin */
+.slide-body {
+  height: 100%;
+}
+.slide-body:hover .prev,
+.slide-body:hover .next {
+  display: block;
+}
+.slide-switch a {
+  position: absolute;
+  top: 50%;
+  margin-top: -29px;
+  background: url("../../images/pageConfig/tpl-icons.png") no-repeat;
+  width: 19px;
+  height: 59px;
+  cursor: pointer;
+  z-index: 3;
+  display: none;
+}
+.slide-switch .prev {
+  background-position: -56px -129px;
+  left: 0;
+}
+.slide-switch .prev:hover {
+  background-position: -96px -130px;
+}
+.slide-switch .next {
+  right: 0;
+  background-position: -76px -129px;
+}
+.slide-switch .next:hover {
+  background-position: -116px -129px;
+}
+.slide-page {
+  position: absolute;
+  background-color: rgba(218, 218, 218, 0.5);
+  border-radius: 10px;
+  left: 50%;
+  bottom: 10px;
+  margin-left: -30px;
+  padding: 0 5px;
+  z-index: 2;
+}
+.slide-page li {
+  float: left;
+  height: 11px;
+  line-height: 9px;
+  padding: 0 2px;
+  color: white;
+  display: block;
+  cursor: pointer;
+}
+.slide-page li a {
+  color: #fff;
+}
+.slide-page li .current {
+  color: green;
+}
+.slide-list {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+}
+.slide-list li {
+  float: left;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: none;
+  height: 100%;
+  text-align: left;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+/* 单个图片轮播 end */
+/* jcarousel begin */
+.jcarousel-body {
+  padding: 0 20px 0 0;
+  position: relative;
+  height: 245px;
+  overflow: hidden;
+}
+.jcarousel-body:hover .jcarousel-trigger a {
+  display: block;
+}
+.jcarousel-trigger a {
+  position: absolute;
+  top: 50%;
+  margin-top: -29px;
+  vertical-align: middle;
+  background: url("../../images/pageConfig/tpl-icons.png") no-repeat;
+  width: 18px;
+  height: 32px;
+  z-index: 6;
+  display: none;
+}
+.jcarousel-trigger .jcarousel-prev {
+  left: 5px;
+  _left: -30px;
+  background-position: 0 -197px;
+}
+.jcarousel-trigger .jcarousel-prev:hover {
+  background-position: -106px -196px;
+}
+.jcarousel-trigger .jcarousel-next {
+  background-position: -30px -197px;
+  right: 5px;
+}
+.jcarousel-trigger .jcarousel-next:hover {
+  background-position: -133px -196px;
+}
+.jcarousel-list {
+  width: 4000px;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.jcarousel-list li {
+  width: 188px;
+}
+/* jcarousel end */
+/* 二级重磅推荐 begin */
+.hicon {
+  background: url("../../images/pageConfig/head-icon.png");
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  vertical-align: middle;
+}
+.hicon-new {
+  background-position: 0px -32px;
+}
+.hicon-ck {
+  background-position: 0px -231px;
+}
+.tpl-jcarousel .modular-head {
+  position: relative;
+  color: #ff6a00;
+}
+.tpl-jcarousel .modular-body {
+  background-color: #fff;
+  padding: 20px 0;
+  border: 1px solid #dddddd;
+  border-top: 2px solid #ff6a00;
+}
+.tpl-jcarousel .tpl-books {
+  width: 760px;
+  float: left;
+}
+/* 二级重磅推荐 end */
+/* 二级页面排行 beign */
+.tpl-rankTab2 .modular-head {
+  color: #ff6a00;
+  padding: 0;
+}
+.tpl-rankTab2 .modular-head:before {
+  display: none;
+}
+.tpl-rankTab2 .modular-body {
+  background-color: #fff;
+  border-top-width: 1px;
+}
+.tpl-rankTab2 .list li {
+  padding: 5px 10px;
+  border-bottom: 1px dashed #dddddd;
+}
+.tpl-rankTab2 .list .tit {
+  height: auto;
+  text-overflow: inherit;
+  white-space: normal;
+  display: inline-table;
+}
+.tpl-rankTab2 .list .tit:before {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  width: 0;
+}
+.tpl-rankTab2 .list .tit a {
+  display: inline-block;
+  vertical-align: middle;
+  height: 40px;
+  overflow: hidden;
+}
+.tpl-rankTab2 .more-bd {
+  height: 30px;
+  overflow: hidden;
+  line-height: 30px;
+}
+.tpl-rankTab2 .more-bd a {
+  float: right;
+  color: #062f7e;
+}
+.tpl-rankTab2 .rank {
+  background: url("../../images/pageConfig/rank.png");
+  width: 8px;
+  height: 22px;
+  text-align: center;
+  background-position: 0 30px;
+  top: 5px;
+  color: #333;
+}
+.tpl-rankTab2 .rank-one {
+  color: #fff;
+  background-position: 0 0;
+}
+.tpl-rankTab2 .rank-two {
+  color: #fff;
+  background-position: 0 -26px;
+}
+.tpl-rankTab2 .rank-three {
+  color: #fff;
+  background-position: 0px -53px;
+}
+/* 二级页面排行 end */
+/* 二级页面商品推荐 beign */
+.tpl-recommend .modular-head {
+  position: relative;
+  color: #ff6a00;
+  padding: 0;
+}
+.tpl-recommend .modular-body {
+  border: 1px solid #dddddd;
+  background-color: #f7f7f7;
+}
+.tpl-recommend li {
+  padding: 15px;
+  border-bottom: 1px dashed #dddddd;
+  width: 172px;
+  margin: 0 auto;
+}
+.tpl-recommend li:last-child {
+  border: none;
+}
+.tpl-recommend .img-w {
+  border: 1px solid #dddddd;
+  width: 170px;
+  margin: 0 auto;
+}
+.tpl-recommend .img-w img {
+  height: 170px;
+  width: 170px;
+}
+.tpl-recommend p {
+  display: inline-block;
+  height: 18px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+}
+.tpl-recommend .rob {
+  color: #C30;
+  overflow: hidden;
+  font-weight: bold;
+  margin-right: 12px;
+  font-family: "Arial";
+}
+/* 二级页面商品推荐 end */

@@ -1,0 +1,519 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.search.dao.mapper.common.SecOperLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.search.dao.model.SecOperLog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CONFIG_ID" property="configId" jdbcType="INTEGER" />
+    <result column="OBJECT_ID" property="objectId" jdbcType="INTEGER" />
+    <result column="FIELD_ID" property="fieldId" jdbcType="INTEGER" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="NOW_TIME" property="nowTime" jdbcType="TIMESTAMP" />
+    <result column="DATACOUNT" property="datacount" jdbcType="INTEGER" />
+    <result column="FAILURECOUNT" property="failurecount" jdbcType="INTEGER" />
+    <result column="FAILUREINFO" property="failureinfo" jdbcType="VARCHAR" />
+    <result column="SECONDS" property="seconds" jdbcType="INTEGER" />
+    <result column="TPS" property="tps" jdbcType="INTEGER" />
+    <result column="ERROR" property="error" jdbcType="VARCHAR" />
+    <result column="OPER_TYPE" property="operType" jdbcType="VARCHAR" />
+    <result column="OPER_CONFIG_TYPE" property="operConfigType" jdbcType="VARCHAR" />
+    <result column="OPER_OBJECT_TYPE" property="operObjectType" jdbcType="VARCHAR" />
+    <result column="OPER_FIELD_TYPE" property="operFieldType" jdbcType="VARCHAR" />
+    <result column="OPER_COLL_TYPE" property="operCollType" jdbcType="VARCHAR" />
+    <result column="OPER_INDEX_TYPE" property="operIndexType" jdbcType="VARCHAR" />
+    <result column="ARGS" property="args" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CONFIG_ID, OBJECT_ID, FIELD_ID, START_TIME, NOW_TIME, DATACOUNT, FAILURECOUNT, 
+    FAILUREINFO, SECONDS, TPS, ERROR, OPER_TYPE, OPER_CONFIG_TYPE, OPER_OBJECT_TYPE, 
+    OPER_FIELD_TYPE, OPER_COLL_TYPE, OPER_INDEX_TYPE, ARGS, STATUS, CREATE_STAFF, CREATE_TIME, 
+    UPDATE_STAFF, UPDATE_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.search.dao.model.SecOperLogCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_sec_oper_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sec_oper_log
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_sec_oper_log
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.search.dao.model.SecOperLogCriteria" >
+    delete from t_sec_oper_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.search.dao.model.SecOperLog" >
+    insert into t_sec_oper_log (ID, CONFIG_ID, OBJECT_ID, 
+      FIELD_ID, START_TIME, NOW_TIME, 
+      DATACOUNT, FAILURECOUNT, FAILUREINFO, 
+      SECONDS, TPS, ERROR, 
+      OPER_TYPE, OPER_CONFIG_TYPE, OPER_OBJECT_TYPE, 
+      OPER_FIELD_TYPE, OPER_COLL_TYPE, OPER_INDEX_TYPE, 
+      ARGS, STATUS, CREATE_STAFF, 
+      CREATE_TIME, UPDATE_STAFF, UPDATE_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{configId,jdbcType=INTEGER}, #{objectId,jdbcType=INTEGER}, 
+      #{fieldId,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{nowTime,jdbcType=TIMESTAMP}, 
+      #{datacount,jdbcType=INTEGER}, #{failurecount,jdbcType=INTEGER}, #{failureinfo,jdbcType=VARCHAR}, 
+      #{seconds,jdbcType=INTEGER}, #{tps,jdbcType=INTEGER}, #{error,jdbcType=VARCHAR}, 
+      #{operType,jdbcType=VARCHAR}, #{operConfigType,jdbcType=VARCHAR}, #{operObjectType,jdbcType=VARCHAR}, 
+      #{operFieldType,jdbcType=VARCHAR}, #{operCollType,jdbcType=VARCHAR}, #{operIndexType,jdbcType=VARCHAR}, 
+      #{args,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createStaff,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.search.dao.model.SecOperLog" >
+    insert into t_sec_oper_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="configId != null" >
+        CONFIG_ID,
+      </if>
+      <if test="objectId != null" >
+        OBJECT_ID,
+      </if>
+      <if test="fieldId != null" >
+        FIELD_ID,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="nowTime != null" >
+        NOW_TIME,
+      </if>
+      <if test="datacount != null" >
+        DATACOUNT,
+      </if>
+      <if test="failurecount != null" >
+        FAILURECOUNT,
+      </if>
+      <if test="failureinfo != null" >
+        FAILUREINFO,
+      </if>
+      <if test="seconds != null" >
+        SECONDS,
+      </if>
+      <if test="tps != null" >
+        TPS,
+      </if>
+      <if test="error != null" >
+        ERROR,
+      </if>
+      <if test="operType != null" >
+        OPER_TYPE,
+      </if>
+      <if test="operConfigType != null" >
+        OPER_CONFIG_TYPE,
+      </if>
+      <if test="operObjectType != null" >
+        OPER_OBJECT_TYPE,
+      </if>
+      <if test="operFieldType != null" >
+        OPER_FIELD_TYPE,
+      </if>
+      <if test="operCollType != null" >
+        OPER_COLL_TYPE,
+      </if>
+      <if test="operIndexType != null" >
+        OPER_INDEX_TYPE,
+      </if>
+      <if test="args != null" >
+        ARGS,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="configId != null" >
+        #{configId,jdbcType=INTEGER},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="fieldId != null" >
+        #{fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nowTime != null" >
+        #{nowTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datacount != null" >
+        #{datacount,jdbcType=INTEGER},
+      </if>
+      <if test="failurecount != null" >
+        #{failurecount,jdbcType=INTEGER},
+      </if>
+      <if test="failureinfo != null" >
+        #{failureinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="seconds != null" >
+        #{seconds,jdbcType=INTEGER},
+      </if>
+      <if test="tps != null" >
+        #{tps,jdbcType=INTEGER},
+      </if>
+      <if test="error != null" >
+        #{error,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="operConfigType != null" >
+        #{operConfigType,jdbcType=VARCHAR},
+      </if>
+      <if test="operObjectType != null" >
+        #{operObjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="operFieldType != null" >
+        #{operFieldType,jdbcType=VARCHAR},
+      </if>
+      <if test="operCollType != null" >
+        #{operCollType,jdbcType=VARCHAR},
+      </if>
+      <if test="operIndexType != null" >
+        #{operIndexType,jdbcType=VARCHAR},
+      </if>
+      <if test="args != null" >
+        #{args,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.search.dao.model.SecOperLogCriteria" resultType="java.lang.Long" >
+    select count(*) from t_sec_oper_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_sec_oper_log
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.configId != null" >
+        CONFIG_ID = #{record.configId,jdbcType=INTEGER},
+      </if>
+      <if test="record.objectId != null" >
+        OBJECT_ID = #{record.objectId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldId != null" >
+        FIELD_ID = #{record.fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="record.startTime != null" >
+        START_TIME = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.nowTime != null" >
+        NOW_TIME = #{record.nowTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.datacount != null" >
+        DATACOUNT = #{record.datacount,jdbcType=INTEGER},
+      </if>
+      <if test="record.failurecount != null" >
+        FAILURECOUNT = #{record.failurecount,jdbcType=INTEGER},
+      </if>
+      <if test="record.failureinfo != null" >
+        FAILUREINFO = #{record.failureinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.seconds != null" >
+        SECONDS = #{record.seconds,jdbcType=INTEGER},
+      </if>
+      <if test="record.tps != null" >
+        TPS = #{record.tps,jdbcType=INTEGER},
+      </if>
+      <if test="record.error != null" >
+        ERROR = #{record.error,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operType != null" >
+        OPER_TYPE = #{record.operType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operConfigType != null" >
+        OPER_CONFIG_TYPE = #{record.operConfigType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operObjectType != null" >
+        OPER_OBJECT_TYPE = #{record.operObjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operFieldType != null" >
+        OPER_FIELD_TYPE = #{record.operFieldType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operCollType != null" >
+        OPER_COLL_TYPE = #{record.operCollType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.operIndexType != null" >
+        OPER_INDEX_TYPE = #{record.operIndexType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.args != null" >
+        ARGS = #{record.args,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_sec_oper_log
+    set ID = #{record.id,jdbcType=INTEGER},
+      CONFIG_ID = #{record.configId,jdbcType=INTEGER},
+      OBJECT_ID = #{record.objectId,jdbcType=INTEGER},
+      FIELD_ID = #{record.fieldId,jdbcType=INTEGER},
+      START_TIME = #{record.startTime,jdbcType=TIMESTAMP},
+      NOW_TIME = #{record.nowTime,jdbcType=TIMESTAMP},
+      DATACOUNT = #{record.datacount,jdbcType=INTEGER},
+      FAILURECOUNT = #{record.failurecount,jdbcType=INTEGER},
+      FAILUREINFO = #{record.failureinfo,jdbcType=VARCHAR},
+      SECONDS = #{record.seconds,jdbcType=INTEGER},
+      TPS = #{record.tps,jdbcType=INTEGER},
+      ERROR = #{record.error,jdbcType=VARCHAR},
+      OPER_TYPE = #{record.operType,jdbcType=VARCHAR},
+      OPER_CONFIG_TYPE = #{record.operConfigType,jdbcType=VARCHAR},
+      OPER_OBJECT_TYPE = #{record.operObjectType,jdbcType=VARCHAR},
+      OPER_FIELD_TYPE = #{record.operFieldType,jdbcType=VARCHAR},
+      OPER_COLL_TYPE = #{record.operCollType,jdbcType=VARCHAR},
+      OPER_INDEX_TYPE = #{record.operIndexType,jdbcType=VARCHAR},
+      ARGS = #{record.args,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.search.dao.model.SecOperLog" >
+    update t_sec_oper_log
+    <set >
+      <if test="configId != null" >
+        CONFIG_ID = #{configId,jdbcType=INTEGER},
+      </if>
+      <if test="objectId != null" >
+        OBJECT_ID = #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="fieldId != null" >
+        FIELD_ID = #{fieldId,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="nowTime != null" >
+        NOW_TIME = #{nowTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="datacount != null" >
+        DATACOUNT = #{datacount,jdbcType=INTEGER},
+      </if>
+      <if test="failurecount != null" >
+        FAILURECOUNT = #{failurecount,jdbcType=INTEGER},
+      </if>
+      <if test="failureinfo != null" >
+        FAILUREINFO = #{failureinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="seconds != null" >
+        SECONDS = #{seconds,jdbcType=INTEGER},
+      </if>
+      <if test="tps != null" >
+        TPS = #{tps,jdbcType=INTEGER},
+      </if>
+      <if test="error != null" >
+        ERROR = #{error,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        OPER_TYPE = #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="operConfigType != null" >
+        OPER_CONFIG_TYPE = #{operConfigType,jdbcType=VARCHAR},
+      </if>
+      <if test="operObjectType != null" >
+        OPER_OBJECT_TYPE = #{operObjectType,jdbcType=VARCHAR},
+      </if>
+      <if test="operFieldType != null" >
+        OPER_FIELD_TYPE = #{operFieldType,jdbcType=VARCHAR},
+      </if>
+      <if test="operCollType != null" >
+        OPER_COLL_TYPE = #{operCollType,jdbcType=VARCHAR},
+      </if>
+      <if test="operIndexType != null" >
+        OPER_INDEX_TYPE = #{operIndexType,jdbcType=VARCHAR},
+      </if>
+      <if test="args != null" >
+        ARGS = #{args,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.search.dao.model.SecOperLog" >
+    update t_sec_oper_log
+    set CONFIG_ID = #{configId,jdbcType=INTEGER},
+      OBJECT_ID = #{objectId,jdbcType=INTEGER},
+      FIELD_ID = #{fieldId,jdbcType=INTEGER},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      NOW_TIME = #{nowTime,jdbcType=TIMESTAMP},
+      DATACOUNT = #{datacount,jdbcType=INTEGER},
+      FAILURECOUNT = #{failurecount,jdbcType=INTEGER},
+      FAILUREINFO = #{failureinfo,jdbcType=VARCHAR},
+      SECONDS = #{seconds,jdbcType=INTEGER},
+      TPS = #{tps,jdbcType=INTEGER},
+      ERROR = #{error,jdbcType=VARCHAR},
+      OPER_TYPE = #{operType,jdbcType=VARCHAR},
+      OPER_CONFIG_TYPE = #{operConfigType,jdbcType=VARCHAR},
+      OPER_OBJECT_TYPE = #{operObjectType,jdbcType=VARCHAR},
+      OPER_FIELD_TYPE = #{operFieldType,jdbcType=VARCHAR},
+      OPER_COLL_TYPE = #{operCollType,jdbcType=VARCHAR},
+      OPER_INDEX_TYPE = #{operIndexType,jdbcType=VARCHAR},
+      ARGS = #{args,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

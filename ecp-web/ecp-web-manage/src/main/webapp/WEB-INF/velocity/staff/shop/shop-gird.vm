@@ -1,0 +1,80 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script >
+var IMG_PATH = "$!{IMAGE_PATH}";
+</script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.form.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/shop/shop-grid.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">店铺名称：</label>
+						<div class="controls">
+							<input type="text" name="shopName" class="input-medium" value="" placeholder="输入店铺名称">
+								
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">所属企业：</label>
+						<div class="controls">
+							<select style="width:160px" name="companyId">
+									<option value="">
+										--请选择--
+                                    </option>
+									#companylist("$!{companyId}")
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">是否热门店铺：</label>
+						<div class="controls">
+							<select style="width:160px" name="hotShowSupported">
+									<option value="">
+										--请选择--
+                                    </option>
+									<option value="1">
+										是
+                                    </option>
+                                    <option value="0">
+										否
+                                    </option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			</form>
+			<input type="hidden" name="ids" id="ids" value="$!{companyId}"/>
+        </div>
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="span6">
+				<a class="btn" id="btn_code_edit" href="#"><i class="icon-edit icon-white"></i> 编辑</a>
+				<a class="btn" id="btn_express_edit" href="#"><i class="icon-edit icon-white"></i> 物流管理</a>
+				<a class="btn" id="btn_code_active" href="#"><i class="icon-ok-sign icon-white"></i> 生效</a>
+				<a class="btn btn-danger" id="btn_code_valid" href="#"><i class="icon-remove-sign icon-white"></i> 失效</a>
+			</div>
+			<div class="pull-right">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+	
+	
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>
+			
+	
+	
+       	<form id="editFrom" action="${CONTEXT_PATH}/shop/edit" method="post">
+			<input type="hidden"  name ="shopId" id ="shopId" value="" />
+        </form>

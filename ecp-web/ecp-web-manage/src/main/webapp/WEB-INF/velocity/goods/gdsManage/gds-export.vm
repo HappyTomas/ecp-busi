@@ -1,0 +1,28 @@
+
+<script type="text/javascript">
+
+    $(function(){
+	debugger;
+        var exportIds = '${exportIds}';
+        var exportShopId = '${exportShopId}';
+        $.gridLoading({"message": "正在生成...."});//遮罩
+        $.eAjax({
+            url: GLOBAL.WEBROOT + '/gdsmanage/getExportFileId',
+			data : {
+						"ids" : exportIds,
+						"shopId" : exportShopId
+					},
+            success: function (result) {
+                $.gridUnLoading();
+                if (result && result.resultFlag == 'ok') {
+                    window.location.href = GLOBAL.WEBROOT + '/order/export/'+result.fileId;
+                } else {
+                    eDialog.alert(result.resultMsg);
+                }
+            },
+            failure: function () {
+                $.gridUnLoading();
+            }
+        });
+    });
+</script>

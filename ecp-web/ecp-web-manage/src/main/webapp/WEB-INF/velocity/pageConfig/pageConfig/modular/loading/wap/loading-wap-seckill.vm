@@ -1,0 +1,60 @@
+#parse("/sys/sys_param.vm")
+#set($title = "")##标题
+#set($titlePic = "")##标题图片
+#set($moreUrl = "")##更多链接
+
+#set($hideDiv = '')##是否默认隐藏
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+	#set($hideDiv = 'hide')
+#end
+
+#foreach($prop in $crossItemObj)
+	#if($!{prop.propId}=="1000")
+   		##标题
+   		#set($title = "$!{prop.propValue}")
+   	#elseif($!{prop.propId}=="1024")
+   		##更多链接地址
+   		#set($moreUrl = "$!{prop.propValue}")
+   	#elseif($!{prop.propId}=="1031")
+   		##链接地址
+   		#set($titlePic = "$!{prop.propValue}")
+   	#end
+#end
+<div class="phone-modular tpl-indexSeckill $!{hideDiv} ecp-component $!{componentMethod}" data-place-height="160" data-place-width="160" data-page-size="3" data-site-id="$!{pageInfo.siteId}" data-web-root = '#translate("CMS_SITE_MAPPING","$!{pageInfo.siteId}")' data-is-pub="$!{pagePub}" data-is-pc ="$!{pc}" data-component-method="$!{componentMethod}"  data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}">
+	#if(!$!{componentMethod} || '' == $!{componentMethod})
+	#parse("/pageConfig/pageConfigWap/edit/nodata/modular-nodata-wap.vm")
+	#else 
+		##========标题显示======start=======
+		#if("$!title" != "" || "$!titlePic" != "")
+	    <div class="modular-head">
+			#if("$!titlePic" != "")
+				<a href="javascript:void(0);" lazy-href="$!{moreUrl}">
+					<img src="#genImageUrl($!titlePic,'640x72!')" >
+	            </a>
+			#else
+				<span class="tit">$!{title}</span>
+	        	#if($!{moreUrl} && $!{moreUrl} != '')
+	        		<a class="more" href="javascript:void(0);" lazy-href="$!{moreUrl}" > 更多</a>
+	        	#end
+			#end
+	    </div>
+		#end
+		##========标题显示======end=======
+	    <div class="modular-body">
+	    	<ul class="clearfix">
+	              
+	        </ul>
+	     </div>
+    #end
+</div> 
+	

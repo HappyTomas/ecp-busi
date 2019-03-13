@@ -1,0 +1,4 @@
+#parse("/sys/sys_head.vm")
+#parse("/sys/sys_param.vm")
+#parse("/sys/sys_js_header.vm")
+ $screen_content

@@ -1,0 +1,46 @@
+#set($showAmount = "")##展示数量
+#set($showSpace = "" )##模块间隙
+#set($placeId = "")##内容位置。用来加载数据的。
+#set($showWay = "1")##展示方式.默认给他展示1个
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+#foreach($prop in $crossItemObj)
+	#if($!{prop.propId}=="1004")
+		##展示数量
+		#set($showAmount = $!{prop.propValue})
+	#elseif($!{prop.propId}=="1006")
+		##内容位置
+		#set($placeId = $!{prop.propValue})
+	#elseif($!{prop.propId}=="1010")
+		##展示方式
+		#set($showWay = $!{prop.propValue})
+	#elseif($!{prop.propId}=="1033")
+		##模块间隙
+		#set($showSpace = $!{prop.propValue})
+	#end
+#end
+##1501
+#set($styleClass="")
+#if($!{showSpace} == 1)
+	#set($styleClass="padding-top: 10px;")
+#end
+<div style="$!{styleClass}" class="tpl-ad ecp-component $!{componentMethod}" data-place-id="$!placeId" data-show-way = '$!{showWay}' data-place-size="$!showAmount" data-component-method="$!{componentMethod}" data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}">
+	#if(!$!{componentMethod} || '' == $!{componentMethod})
+		##判断是否已经配置了模板相应的属性
+	   	#parse("/pageConfig/pageConfig/edit/nodata/modular-nodata.vm")
+	#else
+		<div class="modular-body" style="min-heigth:10px;">
+		</div>
+	#end
+</div>

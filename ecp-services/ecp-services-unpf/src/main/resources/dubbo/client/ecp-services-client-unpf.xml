@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     ">
+    <dubbo:reference id="unpfOrdMainRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.order.IUnpfOrdMainRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}"/>
+    <dubbo:reference id="unpfOrdDeliverRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.order.IUnpfOrdDeliverRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}"/>
+	<dubbo:reference id="unpfShopAuthRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.auth.IUnpfShopAuthRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />
+    <dubbo:reference id="unpfTokenRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.token.IUnpfTokenRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />
+ 	<dubbo:reference id="unpfCategoryRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.IUnpfCategoryRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />
+    <dubbo:reference id="unpfMsgSycRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.msgSyc.IUnpfMsgSycRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />
+    <dubbo:reference id="unpfOrdDetialRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.order.IUnpfOrdDetialRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />
+	<dubbo:reference id="unpfGoodSendRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.gdssend.IUnpfGoodSendRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />
+    <dubbo:reference id="unpfGdsSendRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.gdssend.IUnpfGdsSendRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />	
+    <dubbo:reference id="unpfShopAuthTopicRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.gdssend.IUnpfShopAuthTopicRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />	
+ 	<dubbo:reference id="unpfSendLogRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.gdssend.IUnpfSendLogRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />	
+  	<dubbo:reference id="unpfShopLimitRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.IUnpfShopLimitRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />	
+ 	<dubbo:reference id="unpfGdsUnsendRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.gdssend.IUnpfGdsUnsendRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />	
+ 	<dubbo:reference id="unpfGdsUnsendHisRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.gdssend.IUnpfGdsUnsendHisRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />	
+ 	<dubbo:reference id="unpfShopExpressRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.order.IUnpfShopExpressRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />	
+	<dubbo:reference id="unpfShopCfgRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.IUnpfShopCfgRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />	
+ 	<dubbo:reference id="unpfCatgRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.catg.IUnpfCatgRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />	
+ 	<dubbo:reference id="unpfStockRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.stock.IUnpfStockRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />
+	<dubbo:reference id="unpfShopStockLimitRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.IUnpfShopStockLimitRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />
+	<dubbo:reference id="youzanSynOrdersRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.order.IYouzanSynOrdersRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />
+	<dubbo:reference id="unpfOrdExportRSV" interface="com.zengshi.ecp.unpf.dubbo.interfaces.order.IUnpfOrdExportRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${unpf.dubbo.group}" />
+  
+</beans>

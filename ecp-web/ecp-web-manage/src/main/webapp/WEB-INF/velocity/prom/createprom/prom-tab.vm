@@ -1,0 +1,40 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/prom-tab.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/../js/framework/manage/extend/ebc.check.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/common/prom-check.js?version=$!{JS_VERSION}" ></script>
+
+    <ul class="nav nav-tabs" id="myTab"> 
+      <li class="active"><a href="#prom-info">促销基本信息</a></li> 
+	  #if($!{promType.promTypeCode}!="1000000019")
+      <li><a href="#discount-rule">优惠规则</a></li> 
+	  #end
+  	  #if($!{ifShowPromRuleTab}!=true)
+      <li><a href="#prom-rule">促销规则</a></li> 
+	  #end
+       	<div class="pull-right">
+       	            #if($!{doAction}=='view')
+       	                <button type="button" class="btn" id="btnReturnTab" shopId="$!{shopId}"><i class="icon-reply"></i> 返回</button>
+       	            #else
+						<button type="button" class="btn btn-info" id="btnFormSubmit"><i class=" icon-ok-sign"></i> 提交</button>
+						<button type="button" class="btn" id="btnFormSave"  ><i class=" icon-ok-sign"></i> 保存草稿</button>
+						<button type="button" class="btn" id="btnReturnTab" shopId="$!{shopId}"><i class="icon-reply"></i> 返回</button>
+					#end
+					
+		 </div>		
+    </ul> 
+      
+    <div class="tab-content"> 
+      <div class="tab-pane active" id="prom-info">
+           #parse("/prom/createprom/prom-info.vm") 
+      </div> 
+	 #if($!{promType.promTypeCode}!="1000000019")
+     <div class="tab-pane" id="discount-rule">
+          #parse("/prom/createprom/discount-rule-default.vm") 
+      </div> 
+	 #end
+	 #if($!{ifShowPromRuleTab}!=true)
+       <div class="tab-pane" id="prom-rule">
+          #parse("/prom/createprom/prom-rule.vm") 
+      </div> 
+	  #end
+    </div> 

@@ -1,0 +1,59 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript"
+        src="$!{BUSIJS_PATH}/pageConfig/modular/open/modular-pageTypeView.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<link href="${CONTEXT_PATH}/css/cms/advertise-img.css" rel="stylesheet" type="text/css"/>
+
+<!--搜索区域-->
+<style>
+.label-list-hd {
+  padding-left:5px;
+}
+.label-list-hd input{
+   margin-top:-4px;
+   margin-right:5px;
+}  
+.label-list{
+  background-color: aliceblue;
+  padding: 10px 0;
+}
+.label-list label{
+    display: inline-block;
+    padding: 5px 10px;
+}
+.label-list label input{
+   margin-top:-4px;
+   margin-right:5px;
+}
+</style>
+<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+   <input class="applyPageTypeIds" id="applyPageTypeIds" type="hidden" value="$!{applyPageTypeId}">
+   <div class="label-list-hd">
+	   <label>
+	    <input type="checkbox" id="allSelect">全选/全不选
+	   </label>
+
+   </div>
+   <div class="label-list" style="height:128px; overflow:auto">
+    #if(${respsVO} && $respsVO.size() > 0)
+	   #foreach ($item in $respsVO)
+	     <label>
+	         <input class="typeId" type="hidden" value="$!{item.id}">
+		     <input type="checkbox" class="ck">
+		     <span class="txt">$!{item.pageTypeName}</span>
+	     </label>
+	   #end
+	#else
+	    <div class="text-center">暂无数据</div>
+	 #end
+   </div>
+</form>
+
+
+<!--操作按钮区域-->
+<div class="row-fluid" style="margin-top: 15px;">
+	<div class="text-center">
+		<a class="btn btn-info" id="closeDialog" href="javascript:void(0)"><i class=" icon-ok-sign icon-white"></i>确认</a>
+	</div>
+</div>

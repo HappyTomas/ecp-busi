@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.busi.manual.StockRepExtraMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.StockRepAdapt" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="REP_CODE" property="repCode" jdbcType="INTEGER" />
+    <result column="ADAPT_COUNTRY" property="adaptCountry" jdbcType="VARCHAR" />
+    <result column="ADAPT_PROVINCE" property="adaptProvince" jdbcType="VARCHAR" />
+    <result column="ADAPT_CITY" property="adaptCity" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+<sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+<select id="countGroupByGdsId" parameterType="com.zengshi.ecp.goods.dao.model.StockRepInfoIdxCriteria" resultType="java.lang.Long" >
+    SELECT COUNT( DISTINCT GDS_ID) from t_stock_rep_info_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if> 
+  </select>
+  
+  <select id="selectGroupByProvince" parameterType="com.zengshi.ecp.goods.dao.model.StockRepAdaptCriteria" resultMap="BaseResultMap" >
+    select ADAPT_PROVINCE from t_stock_rep_adapt
+  <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if> 
+    group by ADAPT_PROVINCE
+  </select>
+  
+    
+  <select id="selectGroupByCity" parameterType="com.zengshi.ecp.goods.dao.model.StockRepAdaptCriteria" resultMap="BaseResultMap" >
+    select ADAPT_CITY,ADAPT_PROVINCE from t_stock_rep_adapt
+  <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if> 
+    group by ADAPT_CITY,ADAPT_PROVINCE
+  </select>
+  
+  
+  
+</mapper>

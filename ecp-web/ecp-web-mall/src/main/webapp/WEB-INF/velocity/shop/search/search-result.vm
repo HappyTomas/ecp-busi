@@ -1,0 +1,68 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-page.vm")
+
+<link rel="Stylesheet" type="text/css" href="$!RESOURCE_PATH/bootstrap/core/2.3.2/css/bootstrap.css">
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/reset.css">
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/search.css">
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/shop.css">
+<script type="text/javascript" src="$BUSIJS_PATH/shop/search/search-render-util.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/shop/search/search-result.js?version=$!{JS_VERSION}"></script>
+
+
+<div class="wrap1200">
+    <div id="content-c" class="search mt10">
+		
+		<input type="hidden" id="searchingTxt" value="$!{extra.keyword}"/>
+		<input type="hidden" id="shopId" value="$!{shopId}"/>
+        
+		#parse("/shop/search/search-resultnav.vm")
+		
+        <div id="main">
+            
+            #parse("/shop/search/search-property.vm")
+			
+			<div class="sl-head mb10">
+				
+				<!--包含默认排序规则设置-->
+                <ul class="sl-order" id="sl-order">
+                    <li id="sales">
+                        销量
+                        <i class="micon micon-down"></i>
+                    </li>
+                    <li id="discountPrice">
+                        价格
+                        <i class="micon micon-downup"></i>
+                    </li>
+					<!--<li class="first selected" id="newProductTime">-->
+                    <li id="newProductTime">
+                        时间
+						<i class="micon micon-down"></i>
+                    </li>
+                </ul>
+                <div class="sl-hcz">
+                    <input type="text" class="itxt" id="searchInResultTxt" placeholder="在结果中搜索"/>
+					<input type="hidden" id="searchingInResultTxt" value=""/>
+                    <span class="mbtn" id="searchInResultBtn">确定</span>
+                </div>
+            
+                <div class="sl-hright">
+					
+					<!--默认以网格方式显示-->
+					<input type="hidden" id="showType" value="1"/>
+                    <span class="showbtn selected"><i class="micon micon-showtb"></i>网格</span>
+                    <span class="showbtn"><i class="micon micon-showlt"></i>列表</span>
+                    
+                </div>
+            </div>
+            
+			<div class="sl-main" id="shopGdsPageMainBox">
+                #parse("/shop/search/page/search-resultlist.vm")
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<!--快速导航-->
+#parse("/main/main-content-bottom.vm")

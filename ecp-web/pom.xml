@@ -1,0 +1,147 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.zengshi.ecpcore</groupId>
+		<artifactId>ecp-busi</artifactId>
+		<version>1.22-RELEASE</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+	<groupId>com.zengshi.ecpcore</groupId>
+	<artifactId>ecp-web</artifactId>
+	<version>1.22-RELEASE</version>
+	<packaging>pom</packaging>
+	<name>ecp-web</name>
+	<description>web工程</description>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		
+		<dependency>
+			<groupId>com.zengshi.paas</groupId>
+			<artifactId>zenPaaS</artifactId>
+			<version>${zenpaas-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zengshi.ecp</groupId>
+			<artifactId>webcore</artifactId>
+			<version>${webcore-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zengshi.ecp</groupId>
+			<artifactId>ecp-web-js</artifactId>
+			<version>${webcoreJs-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zengshi.ecp</groupId>
+			<artifactId>ecp-webcore</artifactId>
+			<version>${ecpwebcore-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zengshi.ecp</groupId>
+			<artifactId>ecp-server-start-client</artifactId>
+			<version>${ecp-server-start-client.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-demo-client</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-staff-client</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-prom-client</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-cms-client</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-goods-client</artifactId>
+			<version>1.22-RELEASE</version>
+
+		</dependency>
+		
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-coupon-client</artifactId>
+			<version>1.22-RELEASE</version>
+
+		</dependency>		
+
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-sys-client</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-order-client</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-search-client</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-im-client</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-common-intefaces</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zengshi.dependency.zas</groupId>
+			<artifactId>zas-client</artifactId>
+			<version>1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-unpf-client</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+	</dependencies>
+	
+	<modules>
+		<module>ecp-web-mall</module>
+		<module>ecp-web-mall-point</module>
+		<module>ecp-web-manage</module>
+		<module>ecp-web-mobile</module>
+		<module>ecp-web-mobile-point</module>
+		<module>ecp-web-im</module>
+		<module>web-build-jar</module>
+	</modules>
+</project>

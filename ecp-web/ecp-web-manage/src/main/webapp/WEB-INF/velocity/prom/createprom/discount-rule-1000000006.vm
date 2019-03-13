@@ -1,0 +1,29 @@
+			<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/discount-rule-1000000006.js?version=$!{JS_VERSION}" ></script>
+			<div class="formBox">
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					  <div class="formSep" >
+					        <div  class=" alert-info" style="margin-left:50px;">
+					                参加促销活动的商品订单总额超出配置的阈值金额时可享受一定的订单总价折扣。
+                                                                     例如: 购买满 &yen;200.00 即可享受 10% 的折扣。
+					     </div>
+					  </div>
+				 <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">订单金额超过：</label>
+							<div class="controls">
+								<input type="text" class="input-large required number moneyNumber" id="orderMoney" maxlength="12"  name="discountMap['orderMoney']" placeholder="请输入订单金额阀值 " value="#moneyNum($!{promVO.discountMap.orderMoney})"   />
+							</div>
+						</div>
+					</div>
+			  <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">折扣比例：</label>
+							<div class="controls">
+								<input type="text" class="input-large required number" id="discountRate" maxlength="12" name="discountMap['discountRate']" placeholder="请输入折扣比例 " value="$!{promVO.discountMap.discountRate}"   />
+								<span class="help-inline   alert-info"><span style="color:red">%</span>订单的折扣比例（例如10% 填写10）。</span>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			   

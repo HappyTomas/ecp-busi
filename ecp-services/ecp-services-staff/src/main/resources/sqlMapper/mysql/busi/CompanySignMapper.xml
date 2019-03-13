@@ -1,0 +1,1149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.busi.CompanySignMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.CompanySign" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <id column="COMPANY_ID" property="companyId" jdbcType="INTEGER" />
+    <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+    <result column="COMPANY_ADRESS" property="companyAdress" jdbcType="VARCHAR" />
+    <result column="TRADE" property="trade" jdbcType="VARCHAR" />
+    <result column="EMPLOYEE_NUM" property="employeeNum" jdbcType="VARCHAR" />
+    <result column="COUNTRY_CODE" property="countryCode" jdbcType="VARCHAR" />
+    <result column="PROVINCE_CODE" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="CITY_CODE" property="cityCode" jdbcType="VARCHAR" />
+    <result column="COUNTY_CODE" property="countyCode" jdbcType="VARCHAR" />
+    <result column="COMPANY_EMAIL" property="companyEmail" jdbcType="VARCHAR" />
+    <result column="LINK_PERSON_MSG" property="linkPersonMsg" jdbcType="VARCHAR" />
+    <result column="LINK_PHONE_MSG" property="linkPhoneMsg" jdbcType="VARCHAR" />
+    <result column="LINK_PSN_CARD" property="linkPsnCard" jdbcType="VARCHAR" />
+    <result column="LINK_TELEPHONE" property="linkTelephone" jdbcType="VARCHAR" />
+    <result column="COMPANY_WEIXIN" property="companyWeixin" jdbcType="VARCHAR" />
+    <result column="COMPANY_QQ" property="companyQq" jdbcType="VARCHAR" />
+    <result column="LICENCE_PATH" property="licencePath" jdbcType="VARCHAR" />
+    <result column="TAX_PATH" property="taxPath" jdbcType="VARCHAR" />
+    <result column="LEGAL_PERSON_IMAGE" property="legalPersonImage" jdbcType="VARCHAR" />
+    <result column="STAFF_CODE" property="staffCode" jdbcType="VARCHAR" />
+    <result column="COMPANY_CREATE_STAFF" property="companyCreateStaff" jdbcType="INTEGER" />
+    <result column="COMPANY_CREATE_TIME" property="companyCreateTime" jdbcType="TIMESTAMP" />
+    <result column="IS_ENTER" property="isEnter" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="LICENCE_CODE" property="licenceCode" jdbcType="VARCHAR" />
+    <result column="TAX_CODE" property="taxCode" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_FORM" property="organizationForm" jdbcType="VARCHAR" />
+    <result column="LICENCE_CAPITAL" property="licenceCapital" jdbcType="INTEGER" />
+    <result column="LEGAL_PERSON" property="legalPerson" jdbcType="VARCHAR" />
+    <result column="LEGAL_CARD" property="legalCard" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="INTEGER" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="SHOP_FULL_NAME" property="shopFullName" jdbcType="VARCHAR" />
+    <result column="SHOP_GRADE" property="shopGrade" jdbcType="VARCHAR" />
+    <result column="SHOP_DESC" property="shopDesc" jdbcType="VARCHAR" />
+    <result column="SHOP_STATUS" property="shopStatus" jdbcType="VARCHAR" />
+    <result column="SHOP_DEAL_TYPE" property="shopDealType" jdbcType="VARCHAR" />
+    <result column="CAUTION_MONEY" property="cautionMoney" jdbcType="INTEGER" />
+    <result column="MICRO_MESSAGE_EXT" property="microMessageExt" jdbcType="VARCHAR" />
+    <result column="HOT_SHOW_SUPPORTED" property="hotShowSupported" jdbcType="VARCHAR" />
+    <result column="HOT_SHOW_SORT" property="hotShowSort" jdbcType="INTEGER" />
+    <result column="LOGO_PATH" property="logoPath" jdbcType="VARCHAR" />
+    <result column="LINK_PERSON" property="linkPerson" jdbcType="VARCHAR" />
+    <result column="LINK_MOBILEPHONE" property="linkMobilephone" jdbcType="VARCHAR" />
+    <result column="LINK_EMAIL" property="linkEmail" jdbcType="VARCHAR" />
+    <result column="IS_USE_VIP" property="isUseVip" jdbcType="VARCHAR" />
+    <result column="OFFLINE_SUPPORTED" property="offlineSupported" jdbcType="VARCHAR" />
+    <result column="ONLINE_SUPPORTED" property="onlineSupported" jdbcType="VARCHAR" />
+    <result column="IS_WHITE_LIST" property="isWhiteList" jdbcType="VARCHAR" />
+    <result column="IS_BLACK_LIST" property="isBlackList" jdbcType="VARCHAR" />
+    <result column="INVALID_DATE" property="invalidDate" jdbcType="TIMESTAMP" />
+    <result column="INVALID_STAFF" property="invalidStaff" jdbcType="VARCHAR" />
+    <result column="CHECK_STATUS" property="checkStatus" jdbcType="VARCHAR" />
+    <result column="CHECK_STAFF" property="checkStaff" jdbcType="INTEGER" />
+    <result column="CHECK_DATE" property="checkDate" jdbcType="TIMESTAMP" />
+    <result column="CHECK_REMARK" property="checkRemark" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="COMPANY_TYPE" property="companyType" jdbcType="VARCHAR" />
+    <result column="DISTRIBUTION" property="distribution" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, COMPANY_ID, COMPANY_NAME, COMPANY_ADRESS, TRADE, EMPLOYEE_NUM, COUNTRY_CODE, 
+    PROVINCE_CODE, CITY_CODE, COUNTY_CODE, COMPANY_EMAIL, LINK_PERSON_MSG, LINK_PHONE_MSG, 
+    LINK_PSN_CARD, LINK_TELEPHONE, COMPANY_WEIXIN, COMPANY_QQ, LICENCE_PATH, TAX_PATH, 
+    LEGAL_PERSON_IMAGE, STAFF_CODE, COMPANY_CREATE_STAFF, COMPANY_CREATE_TIME, IS_ENTER, 
+    REMARK, LICENCE_CODE, TAX_CODE, ORGANIZATION_FORM, LICENCE_CAPITAL, LEGAL_PERSON, 
+    LEGAL_CARD, PARENT_ID, SHOP_NAME, SHOP_FULL_NAME, SHOP_GRADE, SHOP_DESC, SHOP_STATUS, 
+    SHOP_DEAL_TYPE, CAUTION_MONEY, MICRO_MESSAGE_EXT, HOT_SHOW_SUPPORTED, HOT_SHOW_SORT, 
+    LOGO_PATH, LINK_PERSON, LINK_MOBILEPHONE, LINK_EMAIL, IS_USE_VIP, OFFLINE_SUPPORTED, 
+    ONLINE_SUPPORTED, IS_WHITE_LIST, IS_BLACK_LIST, INVALID_DATE, INVALID_STAFF, CHECK_STATUS, 
+    CHECK_STAFF, CHECK_DATE, CHECK_REMARK, SOURCE, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, 
+    UPDATE_STAFF, COMPANY_TYPE, DISTRIBUTION
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.CompanySignCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_company_sign
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.CompanySignKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_company_sign
+    where ID = #{id,jdbcType=INTEGER}
+      and COMPANY_ID = #{companyId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.CompanySignKey" >
+    delete from t_company_sign
+    where ID = #{id,jdbcType=INTEGER}
+      and COMPANY_ID = #{companyId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.CompanySignCriteria" >
+    delete from t_company_sign
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.CompanySign" >
+    insert into t_company_sign (ID, COMPANY_ID, COMPANY_NAME, 
+      COMPANY_ADRESS, TRADE, EMPLOYEE_NUM, 
+      COUNTRY_CODE, PROVINCE_CODE, CITY_CODE, 
+      COUNTY_CODE, COMPANY_EMAIL, LINK_PERSON_MSG, 
+      LINK_PHONE_MSG, LINK_PSN_CARD, LINK_TELEPHONE, 
+      COMPANY_WEIXIN, COMPANY_QQ, LICENCE_PATH, 
+      TAX_PATH, LEGAL_PERSON_IMAGE, STAFF_CODE, 
+      COMPANY_CREATE_STAFF, COMPANY_CREATE_TIME, 
+      IS_ENTER, REMARK, LICENCE_CODE, 
+      TAX_CODE, ORGANIZATION_FORM, LICENCE_CAPITAL, 
+      LEGAL_PERSON, LEGAL_CARD, PARENT_ID, 
+      SHOP_NAME, SHOP_FULL_NAME, SHOP_GRADE, 
+      SHOP_DESC, SHOP_STATUS, SHOP_DEAL_TYPE, 
+      CAUTION_MONEY, MICRO_MESSAGE_EXT, HOT_SHOW_SUPPORTED, 
+      HOT_SHOW_SORT, LOGO_PATH, LINK_PERSON, 
+      LINK_MOBILEPHONE, LINK_EMAIL, IS_USE_VIP, 
+      OFFLINE_SUPPORTED, ONLINE_SUPPORTED, IS_WHITE_LIST, 
+      IS_BLACK_LIST, INVALID_DATE, INVALID_STAFF, 
+      CHECK_STATUS, CHECK_STAFF, CHECK_DATE, 
+      CHECK_REMARK, SOURCE, CREATE_TIME, 
+      CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, 
+      COMPANY_TYPE, DISTRIBUTION)
+    values (#{id,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, 
+      #{companyAdress,jdbcType=VARCHAR}, #{trade,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, 
+      #{countryCode,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{countyCode,jdbcType=VARCHAR}, #{companyEmail,jdbcType=VARCHAR}, #{linkPersonMsg,jdbcType=VARCHAR}, 
+      #{linkPhoneMsg,jdbcType=VARCHAR}, #{linkPsnCard,jdbcType=VARCHAR}, #{linkTelephone,jdbcType=VARCHAR}, 
+      #{companyWeixin,jdbcType=VARCHAR}, #{companyQq,jdbcType=VARCHAR}, #{licencePath,jdbcType=VARCHAR}, 
+      #{taxPath,jdbcType=VARCHAR}, #{legalPersonImage,jdbcType=VARCHAR}, #{staffCode,jdbcType=VARCHAR}, 
+      #{companyCreateStaff,jdbcType=INTEGER}, #{companyCreateTime,jdbcType=TIMESTAMP}, 
+      #{isEnter,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{licenceCode,jdbcType=VARCHAR}, 
+      #{taxCode,jdbcType=VARCHAR}, #{organizationForm,jdbcType=VARCHAR}, #{licenceCapital,jdbcType=INTEGER}, 
+      #{legalPerson,jdbcType=VARCHAR}, #{legalCard,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, 
+      #{shopName,jdbcType=VARCHAR}, #{shopFullName,jdbcType=VARCHAR}, #{shopGrade,jdbcType=VARCHAR}, 
+      #{shopDesc,jdbcType=VARCHAR}, #{shopStatus,jdbcType=VARCHAR}, #{shopDealType,jdbcType=VARCHAR}, 
+      #{cautionMoney,jdbcType=INTEGER}, #{microMessageExt,jdbcType=VARCHAR}, #{hotShowSupported,jdbcType=VARCHAR}, 
+      #{hotShowSort,jdbcType=INTEGER}, #{logoPath,jdbcType=VARCHAR}, #{linkPerson,jdbcType=VARCHAR}, 
+      #{linkMobilephone,jdbcType=VARCHAR}, #{linkEmail,jdbcType=VARCHAR}, #{isUseVip,jdbcType=VARCHAR}, 
+      #{offlineSupported,jdbcType=VARCHAR}, #{onlineSupported,jdbcType=VARCHAR}, #{isWhiteList,jdbcType=VARCHAR}, 
+      #{isBlackList,jdbcType=VARCHAR}, #{invalidDate,jdbcType=TIMESTAMP}, #{invalidStaff,jdbcType=VARCHAR}, 
+      #{checkStatus,jdbcType=VARCHAR}, #{checkStaff,jdbcType=INTEGER}, #{checkDate,jdbcType=TIMESTAMP}, 
+      #{checkRemark,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, 
+      #{companyType,jdbcType=VARCHAR}, #{distribution,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.CompanySign" >
+    insert into t_company_sign
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID,
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME,
+      </if>
+      <if test="companyAdress != null" >
+        COMPANY_ADRESS,
+      </if>
+      <if test="trade != null" >
+        TRADE,
+      </if>
+      <if test="employeeNum != null" >
+        EMPLOYEE_NUM,
+      </if>
+      <if test="countryCode != null" >
+        COUNTRY_CODE,
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE,
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE,
+      </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE,
+      </if>
+      <if test="companyEmail != null" >
+        COMPANY_EMAIL,
+      </if>
+      <if test="linkPersonMsg != null" >
+        LINK_PERSON_MSG,
+      </if>
+      <if test="linkPhoneMsg != null" >
+        LINK_PHONE_MSG,
+      </if>
+      <if test="linkPsnCard != null" >
+        LINK_PSN_CARD,
+      </if>
+      <if test="linkTelephone != null" >
+        LINK_TELEPHONE,
+      </if>
+      <if test="companyWeixin != null" >
+        COMPANY_WEIXIN,
+      </if>
+      <if test="companyQq != null" >
+        COMPANY_QQ,
+      </if>
+      <if test="licencePath != null" >
+        LICENCE_PATH,
+      </if>
+      <if test="taxPath != null" >
+        TAX_PATH,
+      </if>
+      <if test="legalPersonImage != null" >
+        LEGAL_PERSON_IMAGE,
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE,
+      </if>
+      <if test="companyCreateStaff != null" >
+        COMPANY_CREATE_STAFF,
+      </if>
+      <if test="companyCreateTime != null" >
+        COMPANY_CREATE_TIME,
+      </if>
+      <if test="isEnter != null" >
+        IS_ENTER,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="licenceCode != null" >
+        LICENCE_CODE,
+      </if>
+      <if test="taxCode != null" >
+        TAX_CODE,
+      </if>
+      <if test="organizationForm != null" >
+        ORGANIZATION_FORM,
+      </if>
+      <if test="licenceCapital != null" >
+        LICENCE_CAPITAL,
+      </if>
+      <if test="legalPerson != null" >
+        LEGAL_PERSON,
+      </if>
+      <if test="legalCard != null" >
+        LEGAL_CARD,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME,
+      </if>
+      <if test="shopFullName != null" >
+        SHOP_FULL_NAME,
+      </if>
+      <if test="shopGrade != null" >
+        SHOP_GRADE,
+      </if>
+      <if test="shopDesc != null" >
+        SHOP_DESC,
+      </if>
+      <if test="shopStatus != null" >
+        SHOP_STATUS,
+      </if>
+      <if test="shopDealType != null" >
+        SHOP_DEAL_TYPE,
+      </if>
+      <if test="cautionMoney != null" >
+        CAUTION_MONEY,
+      </if>
+      <if test="microMessageExt != null" >
+        MICRO_MESSAGE_EXT,
+      </if>
+      <if test="hotShowSupported != null" >
+        HOT_SHOW_SUPPORTED,
+      </if>
+      <if test="hotShowSort != null" >
+        HOT_SHOW_SORT,
+      </if>
+      <if test="logoPath != null" >
+        LOGO_PATH,
+      </if>
+      <if test="linkPerson != null" >
+        LINK_PERSON,
+      </if>
+      <if test="linkMobilephone != null" >
+        LINK_MOBILEPHONE,
+      </if>
+      <if test="linkEmail != null" >
+        LINK_EMAIL,
+      </if>
+      <if test="isUseVip != null" >
+        IS_USE_VIP,
+      </if>
+      <if test="offlineSupported != null" >
+        OFFLINE_SUPPORTED,
+      </if>
+      <if test="onlineSupported != null" >
+        ONLINE_SUPPORTED,
+      </if>
+      <if test="isWhiteList != null" >
+        IS_WHITE_LIST,
+      </if>
+      <if test="isBlackList != null" >
+        IS_BLACK_LIST,
+      </if>
+      <if test="invalidDate != null" >
+        INVALID_DATE,
+      </if>
+      <if test="invalidStaff != null" >
+        INVALID_STAFF,
+      </if>
+      <if test="checkStatus != null" >
+        CHECK_STATUS,
+      </if>
+      <if test="checkStaff != null" >
+        CHECK_STAFF,
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE,
+      </if>
+      <if test="checkRemark != null" >
+        CHECK_REMARK,
+      </if>
+      <if test="source != null" >
+        SOURCE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="companyType != null" >
+        COMPANY_TYPE,
+      </if>
+      <if test="distribution != null" >
+        DISTRIBUTION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAdress != null" >
+        #{companyAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="trade != null" >
+        #{trade,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeNum != null" >
+        #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null" >
+        #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyEmail != null" >
+        #{companyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPersonMsg != null" >
+        #{linkPersonMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhoneMsg != null" >
+        #{linkPhoneMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPsnCard != null" >
+        #{linkPsnCard,jdbcType=VARCHAR},
+      </if>
+      <if test="linkTelephone != null" >
+        #{linkTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWeixin != null" >
+        #{companyWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="companyQq != null" >
+        #{companyQq,jdbcType=VARCHAR},
+      </if>
+      <if test="licencePath != null" >
+        #{licencePath,jdbcType=VARCHAR},
+      </if>
+      <if test="taxPath != null" >
+        #{taxPath,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonImage != null" >
+        #{legalPersonImage,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCode != null" >
+        #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCreateStaff != null" >
+        #{companyCreateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="companyCreateTime != null" >
+        #{companyCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEnter != null" >
+        #{isEnter,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceCode != null" >
+        #{licenceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxCode != null" >
+        #{taxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationForm != null" >
+        #{organizationForm,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceCapital != null" >
+        #{licenceCapital,jdbcType=INTEGER},
+      </if>
+      <if test="legalPerson != null" >
+        #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCard != null" >
+        #{legalCard,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopFullName != null" >
+        #{shopFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopGrade != null" >
+        #{shopGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="shopDesc != null" >
+        #{shopDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="shopStatus != null" >
+        #{shopStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="shopDealType != null" >
+        #{shopDealType,jdbcType=VARCHAR},
+      </if>
+      <if test="cautionMoney != null" >
+        #{cautionMoney,jdbcType=INTEGER},
+      </if>
+      <if test="microMessageExt != null" >
+        #{microMessageExt,jdbcType=VARCHAR},
+      </if>
+      <if test="hotShowSupported != null" >
+        #{hotShowSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="hotShowSort != null" >
+        #{hotShowSort,jdbcType=INTEGER},
+      </if>
+      <if test="logoPath != null" >
+        #{logoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPerson != null" >
+        #{linkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMobilephone != null" >
+        #{linkMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null" >
+        #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="isUseVip != null" >
+        #{isUseVip,jdbcType=VARCHAR},
+      </if>
+      <if test="offlineSupported != null" >
+        #{offlineSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineSupported != null" >
+        #{onlineSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="isWhiteList != null" >
+        #{isWhiteList,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlackList != null" >
+        #{isBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidDate != null" >
+        #{invalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidStaff != null" >
+        #{invalidStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStaff != null" >
+        #{checkStaff,jdbcType=INTEGER},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkRemark != null" >
+        #{checkRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="distribution != null" >
+        #{distribution,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.CompanySignCriteria" resultType="java.lang.Long" >
+    select count(*) from t_company_sign
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_company_sign
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyId != null" >
+        COMPANY_ID = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyName != null" >
+        COMPANY_NAME = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyAdress != null" >
+        COMPANY_ADRESS = #{record.companyAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trade != null" >
+        TRADE = #{record.trade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeNum != null" >
+        EMPLOYEE_NUM = #{record.employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryCode != null" >
+        COUNTRY_CODE = #{record.countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceCode != null" >
+        PROVINCE_CODE = #{record.provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        CITY_CODE = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countyCode != null" >
+        COUNTY_CODE = #{record.countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyEmail != null" >
+        COMPANY_EMAIL = #{record.companyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkPersonMsg != null" >
+        LINK_PERSON_MSG = #{record.linkPersonMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkPhoneMsg != null" >
+        LINK_PHONE_MSG = #{record.linkPhoneMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkPsnCard != null" >
+        LINK_PSN_CARD = #{record.linkPsnCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkTelephone != null" >
+        LINK_TELEPHONE = #{record.linkTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyWeixin != null" >
+        COMPANY_WEIXIN = #{record.companyWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyQq != null" >
+        COMPANY_QQ = #{record.companyQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.licencePath != null" >
+        LICENCE_PATH = #{record.licencePath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxPath != null" >
+        TAX_PATH = #{record.taxPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalPersonImage != null" >
+        LEGAL_PERSON_IMAGE = #{record.legalPersonImage,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffCode != null" >
+        STAFF_CODE = #{record.staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyCreateStaff != null" >
+        COMPANY_CREATE_STAFF = #{record.companyCreateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyCreateTime != null" >
+        COMPANY_CREATE_TIME = #{record.companyCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isEnter != null" >
+        IS_ENTER = #{record.isEnter,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.licenceCode != null" >
+        LICENCE_CODE = #{record.licenceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxCode != null" >
+        TAX_CODE = #{record.taxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.organizationForm != null" >
+        ORGANIZATION_FORM = #{record.organizationForm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.licenceCapital != null" >
+        LICENCE_CAPITAL = #{record.licenceCapital,jdbcType=INTEGER},
+      </if>
+      <if test="record.legalPerson != null" >
+        LEGAL_PERSON = #{record.legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.legalCard != null" >
+        LEGAL_CARD = #{record.legalCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        PARENT_ID = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopName != null" >
+        SHOP_NAME = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopFullName != null" >
+        SHOP_FULL_NAME = #{record.shopFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopGrade != null" >
+        SHOP_GRADE = #{record.shopGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopDesc != null" >
+        SHOP_DESC = #{record.shopDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopStatus != null" >
+        SHOP_STATUS = #{record.shopStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopDealType != null" >
+        SHOP_DEAL_TYPE = #{record.shopDealType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cautionMoney != null" >
+        CAUTION_MONEY = #{record.cautionMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.microMessageExt != null" >
+        MICRO_MESSAGE_EXT = #{record.microMessageExt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hotShowSupported != null" >
+        HOT_SHOW_SUPPORTED = #{record.hotShowSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hotShowSort != null" >
+        HOT_SHOW_SORT = #{record.hotShowSort,jdbcType=INTEGER},
+      </if>
+      <if test="record.logoPath != null" >
+        LOGO_PATH = #{record.logoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkPerson != null" >
+        LINK_PERSON = #{record.linkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkMobilephone != null" >
+        LINK_MOBILEPHONE = #{record.linkMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkEmail != null" >
+        LINK_EMAIL = #{record.linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isUseVip != null" >
+        IS_USE_VIP = #{record.isUseVip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.offlineSupported != null" >
+        OFFLINE_SUPPORTED = #{record.offlineSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineSupported != null" >
+        ONLINE_SUPPORTED = #{record.onlineSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isWhiteList != null" >
+        IS_WHITE_LIST = #{record.isWhiteList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBlackList != null" >
+        IS_BLACK_LIST = #{record.isBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invalidDate != null" >
+        INVALID_DATE = #{record.invalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.invalidStaff != null" >
+        INVALID_STAFF = #{record.invalidStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkStatus != null" >
+        CHECK_STATUS = #{record.checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkStaff != null" >
+        CHECK_STAFF = #{record.checkStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkDate != null" >
+        CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.checkRemark != null" >
+        CHECK_REMARK = #{record.checkRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        SOURCE = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyType != null" >
+        COMPANY_TYPE = #{record.companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.distribution != null" >
+        DISTRIBUTION = #{record.distribution,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_company_sign
+    set ID = #{record.id,jdbcType=INTEGER},
+      COMPANY_ID = #{record.companyId,jdbcType=INTEGER},
+      COMPANY_NAME = #{record.companyName,jdbcType=VARCHAR},
+      COMPANY_ADRESS = #{record.companyAdress,jdbcType=VARCHAR},
+      TRADE = #{record.trade,jdbcType=VARCHAR},
+      EMPLOYEE_NUM = #{record.employeeNum,jdbcType=VARCHAR},
+      COUNTRY_CODE = #{record.countryCode,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{record.provinceCode,jdbcType=VARCHAR},
+      CITY_CODE = #{record.cityCode,jdbcType=VARCHAR},
+      COUNTY_CODE = #{record.countyCode,jdbcType=VARCHAR},
+      COMPANY_EMAIL = #{record.companyEmail,jdbcType=VARCHAR},
+      LINK_PERSON_MSG = #{record.linkPersonMsg,jdbcType=VARCHAR},
+      LINK_PHONE_MSG = #{record.linkPhoneMsg,jdbcType=VARCHAR},
+      LINK_PSN_CARD = #{record.linkPsnCard,jdbcType=VARCHAR},
+      LINK_TELEPHONE = #{record.linkTelephone,jdbcType=VARCHAR},
+      COMPANY_WEIXIN = #{record.companyWeixin,jdbcType=VARCHAR},
+      COMPANY_QQ = #{record.companyQq,jdbcType=VARCHAR},
+      LICENCE_PATH = #{record.licencePath,jdbcType=VARCHAR},
+      TAX_PATH = #{record.taxPath,jdbcType=VARCHAR},
+      LEGAL_PERSON_IMAGE = #{record.legalPersonImage,jdbcType=VARCHAR},
+      STAFF_CODE = #{record.staffCode,jdbcType=VARCHAR},
+      COMPANY_CREATE_STAFF = #{record.companyCreateStaff,jdbcType=INTEGER},
+      COMPANY_CREATE_TIME = #{record.companyCreateTime,jdbcType=TIMESTAMP},
+      IS_ENTER = #{record.isEnter,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      LICENCE_CODE = #{record.licenceCode,jdbcType=VARCHAR},
+      TAX_CODE = #{record.taxCode,jdbcType=VARCHAR},
+      ORGANIZATION_FORM = #{record.organizationForm,jdbcType=VARCHAR},
+      LICENCE_CAPITAL = #{record.licenceCapital,jdbcType=INTEGER},
+      LEGAL_PERSON = #{record.legalPerson,jdbcType=VARCHAR},
+      LEGAL_CARD = #{record.legalCard,jdbcType=VARCHAR},
+      PARENT_ID = #{record.parentId,jdbcType=INTEGER},
+      SHOP_NAME = #{record.shopName,jdbcType=VARCHAR},
+      SHOP_FULL_NAME = #{record.shopFullName,jdbcType=VARCHAR},
+      SHOP_GRADE = #{record.shopGrade,jdbcType=VARCHAR},
+      SHOP_DESC = #{record.shopDesc,jdbcType=VARCHAR},
+      SHOP_STATUS = #{record.shopStatus,jdbcType=VARCHAR},
+      SHOP_DEAL_TYPE = #{record.shopDealType,jdbcType=VARCHAR},
+      CAUTION_MONEY = #{record.cautionMoney,jdbcType=INTEGER},
+      MICRO_MESSAGE_EXT = #{record.microMessageExt,jdbcType=VARCHAR},
+      HOT_SHOW_SUPPORTED = #{record.hotShowSupported,jdbcType=VARCHAR},
+      HOT_SHOW_SORT = #{record.hotShowSort,jdbcType=INTEGER},
+      LOGO_PATH = #{record.logoPath,jdbcType=VARCHAR},
+      LINK_PERSON = #{record.linkPerson,jdbcType=VARCHAR},
+      LINK_MOBILEPHONE = #{record.linkMobilephone,jdbcType=VARCHAR},
+      LINK_EMAIL = #{record.linkEmail,jdbcType=VARCHAR},
+      IS_USE_VIP = #{record.isUseVip,jdbcType=VARCHAR},
+      OFFLINE_SUPPORTED = #{record.offlineSupported,jdbcType=VARCHAR},
+      ONLINE_SUPPORTED = #{record.onlineSupported,jdbcType=VARCHAR},
+      IS_WHITE_LIST = #{record.isWhiteList,jdbcType=VARCHAR},
+      IS_BLACK_LIST = #{record.isBlackList,jdbcType=VARCHAR},
+      INVALID_DATE = #{record.invalidDate,jdbcType=TIMESTAMP},
+      INVALID_STAFF = #{record.invalidStaff,jdbcType=VARCHAR},
+      CHECK_STATUS = #{record.checkStatus,jdbcType=VARCHAR},
+      CHECK_STAFF = #{record.checkStaff,jdbcType=INTEGER},
+      CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      CHECK_REMARK = #{record.checkRemark,jdbcType=VARCHAR},
+      SOURCE = #{record.source,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      COMPANY_TYPE = #{record.companyType,jdbcType=VARCHAR},
+      DISTRIBUTION = #{record.distribution,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.CompanySign" >
+    update t_company_sign
+    <set >
+      <if test="companyName != null" >
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAdress != null" >
+        COMPANY_ADRESS = #{companyAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="trade != null" >
+        TRADE = #{trade,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeNum != null" >
+        EMPLOYEE_NUM = #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null" >
+        COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyEmail != null" >
+        COMPANY_EMAIL = #{companyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPersonMsg != null" >
+        LINK_PERSON_MSG = #{linkPersonMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhoneMsg != null" >
+        LINK_PHONE_MSG = #{linkPhoneMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPsnCard != null" >
+        LINK_PSN_CARD = #{linkPsnCard,jdbcType=VARCHAR},
+      </if>
+      <if test="linkTelephone != null" >
+        LINK_TELEPHONE = #{linkTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWeixin != null" >
+        COMPANY_WEIXIN = #{companyWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="companyQq != null" >
+        COMPANY_QQ = #{companyQq,jdbcType=VARCHAR},
+      </if>
+      <if test="licencePath != null" >
+        LICENCE_PATH = #{licencePath,jdbcType=VARCHAR},
+      </if>
+      <if test="taxPath != null" >
+        TAX_PATH = #{taxPath,jdbcType=VARCHAR},
+      </if>
+      <if test="legalPersonImage != null" >
+        LEGAL_PERSON_IMAGE = #{legalPersonImage,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyCreateStaff != null" >
+        COMPANY_CREATE_STAFF = #{companyCreateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="companyCreateTime != null" >
+        COMPANY_CREATE_TIME = #{companyCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isEnter != null" >
+        IS_ENTER = #{isEnter,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceCode != null" >
+        LICENCE_CODE = #{licenceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="taxCode != null" >
+        TAX_CODE = #{taxCode,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationForm != null" >
+        ORGANIZATION_FORM = #{organizationForm,jdbcType=VARCHAR},
+      </if>
+      <if test="licenceCapital != null" >
+        LICENCE_CAPITAL = #{licenceCapital,jdbcType=INTEGER},
+      </if>
+      <if test="legalPerson != null" >
+        LEGAL_PERSON = #{legalPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="legalCard != null" >
+        LEGAL_CARD = #{legalCard,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopFullName != null" >
+        SHOP_FULL_NAME = #{shopFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopGrade != null" >
+        SHOP_GRADE = #{shopGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="shopDesc != null" >
+        SHOP_DESC = #{shopDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="shopStatus != null" >
+        SHOP_STATUS = #{shopStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="shopDealType != null" >
+        SHOP_DEAL_TYPE = #{shopDealType,jdbcType=VARCHAR},
+      </if>
+      <if test="cautionMoney != null" >
+        CAUTION_MONEY = #{cautionMoney,jdbcType=INTEGER},
+      </if>
+      <if test="microMessageExt != null" >
+        MICRO_MESSAGE_EXT = #{microMessageExt,jdbcType=VARCHAR},
+      </if>
+      <if test="hotShowSupported != null" >
+        HOT_SHOW_SUPPORTED = #{hotShowSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="hotShowSort != null" >
+        HOT_SHOW_SORT = #{hotShowSort,jdbcType=INTEGER},
+      </if>
+      <if test="logoPath != null" >
+        LOGO_PATH = #{logoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPerson != null" >
+        LINK_PERSON = #{linkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMobilephone != null" >
+        LINK_MOBILEPHONE = #{linkMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null" >
+        LINK_EMAIL = #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="isUseVip != null" >
+        IS_USE_VIP = #{isUseVip,jdbcType=VARCHAR},
+      </if>
+      <if test="offlineSupported != null" >
+        OFFLINE_SUPPORTED = #{offlineSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineSupported != null" >
+        ONLINE_SUPPORTED = #{onlineSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="isWhiteList != null" >
+        IS_WHITE_LIST = #{isWhiteList,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlackList != null" >
+        IS_BLACK_LIST = #{isBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidDate != null" >
+        INVALID_DATE = #{invalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidStaff != null" >
+        INVALID_STAFF = #{invalidStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStatus != null" >
+        CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStaff != null" >
+        CHECK_STAFF = #{checkStaff,jdbcType=INTEGER},
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="checkRemark != null" >
+        CHECK_REMARK = #{checkRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="companyType != null" >
+        COMPANY_TYPE = #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="distribution != null" >
+        DISTRIBUTION = #{distribution,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+      and COMPANY_ID = #{companyId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.CompanySign" >
+    update t_company_sign
+    set COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      COMPANY_ADRESS = #{companyAdress,jdbcType=VARCHAR},
+      TRADE = #{trade,jdbcType=VARCHAR},
+      EMPLOYEE_NUM = #{employeeNum,jdbcType=VARCHAR},
+      COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      COUNTY_CODE = #{countyCode,jdbcType=VARCHAR},
+      COMPANY_EMAIL = #{companyEmail,jdbcType=VARCHAR},
+      LINK_PERSON_MSG = #{linkPersonMsg,jdbcType=VARCHAR},
+      LINK_PHONE_MSG = #{linkPhoneMsg,jdbcType=VARCHAR},
+      LINK_PSN_CARD = #{linkPsnCard,jdbcType=VARCHAR},
+      LINK_TELEPHONE = #{linkTelephone,jdbcType=VARCHAR},
+      COMPANY_WEIXIN = #{companyWeixin,jdbcType=VARCHAR},
+      COMPANY_QQ = #{companyQq,jdbcType=VARCHAR},
+      LICENCE_PATH = #{licencePath,jdbcType=VARCHAR},
+      TAX_PATH = #{taxPath,jdbcType=VARCHAR},
+      LEGAL_PERSON_IMAGE = #{legalPersonImage,jdbcType=VARCHAR},
+      STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      COMPANY_CREATE_STAFF = #{companyCreateStaff,jdbcType=INTEGER},
+      COMPANY_CREATE_TIME = #{companyCreateTime,jdbcType=TIMESTAMP},
+      IS_ENTER = #{isEnter,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      LICENCE_CODE = #{licenceCode,jdbcType=VARCHAR},
+      TAX_CODE = #{taxCode,jdbcType=VARCHAR},
+      ORGANIZATION_FORM = #{organizationForm,jdbcType=VARCHAR},
+      LICENCE_CAPITAL = #{licenceCapital,jdbcType=INTEGER},
+      LEGAL_PERSON = #{legalPerson,jdbcType=VARCHAR},
+      LEGAL_CARD = #{legalCard,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=INTEGER},
+      SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      SHOP_FULL_NAME = #{shopFullName,jdbcType=VARCHAR},
+      SHOP_GRADE = #{shopGrade,jdbcType=VARCHAR},
+      SHOP_DESC = #{shopDesc,jdbcType=VARCHAR},
+      SHOP_STATUS = #{shopStatus,jdbcType=VARCHAR},
+      SHOP_DEAL_TYPE = #{shopDealType,jdbcType=VARCHAR},
+      CAUTION_MONEY = #{cautionMoney,jdbcType=INTEGER},
+      MICRO_MESSAGE_EXT = #{microMessageExt,jdbcType=VARCHAR},
+      HOT_SHOW_SUPPORTED = #{hotShowSupported,jdbcType=VARCHAR},
+      HOT_SHOW_SORT = #{hotShowSort,jdbcType=INTEGER},
+      LOGO_PATH = #{logoPath,jdbcType=VARCHAR},
+      LINK_PERSON = #{linkPerson,jdbcType=VARCHAR},
+      LINK_MOBILEPHONE = #{linkMobilephone,jdbcType=VARCHAR},
+      LINK_EMAIL = #{linkEmail,jdbcType=VARCHAR},
+      IS_USE_VIP = #{isUseVip,jdbcType=VARCHAR},
+      OFFLINE_SUPPORTED = #{offlineSupported,jdbcType=VARCHAR},
+      ONLINE_SUPPORTED = #{onlineSupported,jdbcType=VARCHAR},
+      IS_WHITE_LIST = #{isWhiteList,jdbcType=VARCHAR},
+      IS_BLACK_LIST = #{isBlackList,jdbcType=VARCHAR},
+      INVALID_DATE = #{invalidDate,jdbcType=TIMESTAMP},
+      INVALID_STAFF = #{invalidStaff,jdbcType=VARCHAR},
+      CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
+      CHECK_STAFF = #{checkStaff,jdbcType=INTEGER},
+      CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      CHECK_REMARK = #{checkRemark,jdbcType=VARCHAR},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      COMPANY_TYPE = #{companyType,jdbcType=VARCHAR},
+      DISTRIBUTION = #{distribution,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+      and COMPANY_ID = #{companyId,jdbcType=INTEGER}
+  </update>
+</mapper>

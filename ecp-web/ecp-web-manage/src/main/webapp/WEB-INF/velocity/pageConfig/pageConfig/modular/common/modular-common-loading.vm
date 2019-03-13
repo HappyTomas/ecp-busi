@@ -1,0 +1,116 @@
+#if($!{crossItem.modularRespDTO.modularType}=="01")
+	##专题页头
+	#parse("/pageConfig/pageConfig/modular/loading/promhomepage/loading-prom-specialheader.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="21")
+	##广告
+	#parse("/pageConfig/pageConfig/modular/loading/loading-shop-advertise.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="10")
+	##店铺商品分类
+	#parse("/pageConfig/pageConfig/modular/loading/shophomepage/loading-shop-category.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="27")
+	##商城二级页新品预告
+	#parse("/pageConfig/pageConfig/modular/loading/secondpage/loading-second-newgdsnotice.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="30")
+	##商品推荐
+	#parse("/pageConfig/pageConfig/modular/loading/secondpage/loading-second-gdsrecommend.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="26")
+	##商城首页商品分类
+	#parse("/pageConfig/pageConfig/modular/loading/mallhomepage/loading-mall-category.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="25")
+	##首页导航
+	#parse("/pageConfig/pageConfig/modular/loading/loading-common-headnav.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="11")
+	##店铺信息
+	#parse("/pageConfig/pageConfig/modular/loading/shophomepage/loading-shop-info.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="12")
+	##店铺热卖
+	#parse("/pageConfig/pageConfig/modular/loading/shophomepage/loading-shop-hotsale.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="13")
+	##店内搜索
+	#parse("/pageConfig/pageConfig/modular/loading/shophomepage/loading-shop-innerindex.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="24")
+	##商品展示
+	#if($!{pageTypeId}=="2" || $!{pageTypeId}=="4")
+		##用于商城活动页面的展示
+		#parse("/pageConfig/pageConfig/modular/loading/promhomepage/loading-prom-gdspictrues.vm")
+	#else
+		#parse("/pageConfig/pageConfig/modular/loading/loading-gds-show.vm")
+	#end
+#elseif($!{crossItem.modularRespDTO.modularType}=="22")
+	##用户热评
+	#parse("/pageConfig/pageConfig/modular/loading/mallhomepage/loading-mall-hoteval.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="29")
+	##猜你喜欢
+	#if($!{crossItem.modularRespDTO.platformType} == '03')  ##微信端
+		#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-guess.vm")
+	#else
+		#parse("/pageConfig/pageConfig/modular/loading/mallhomepage/loading-mall-guess.vm")
+	#end
+#elseif($!{crossItem.modularRespDTO.modularType}=="23")
+	##商品排行
+	#parse("/pageConfig/pageConfig/modular/loading/mallhomepage/loading-mall-gdsrankinglist.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="28")
+	##新品上市
+	#parse("/pageConfig/pageConfig/modular/loading/mallhomepage/loading-mall-new-gds.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="02")
+	##平铺图片
+	#parse("/pageConfig/pageConfig/modular/loading/mallhomepage/loading-mall-leaflets.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="20")
+	##商城公告
+	#parse("/pageConfig/pageConfig/modular/loading/mallhomepage/loading-mall-announcement.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="05")
+	##促销页面 宝贝图片
+#elseif($!{crossItem.modularRespDTO.modularType}=="100")
+	##单列图
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-oneImg.vm")	
+#elseif($!{crossItem.modularRespDTO.modularType}=="101")
+	##双列图
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-doubleImg.vm")	
+#elseif($!{crossItem.modularRespDTO.modularType}=="102")
+	##多列图
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-moreImg.vm")	
+#elseif($!{crossItem.modularRespDTO.modularType}=="103")
+	##焦点图模块
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-focus.vm")	
+#elseif($!{crossItem.modularRespDTO.modularType}=="104")
+	##楼层模块
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-floor.vm")	
+#elseif($!{crossItem.modularRespDTO.modularType}=="105")
+	##栏目模块
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-column.vm")	
+#elseif($!{crossItem.modularRespDTO.modularType}=="106")
+	##搜索模块
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-search.vm")	
+#elseif($!{crossItem.modularRespDTO.modularType}=="107")
+	##楼层模块
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-floorGds.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="108")
+	##优惠券模块
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-coupon.vm")	
+#elseif($!{crossItem.modularRespDTO.modularType}=="109")
+	##信息模块
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-noticeInfo.vm")	
+#elseif($!{crossItem.modularRespDTO.modularType}=="110")
+	##四列图模块
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-fourImg.vm")	
+#elseif($!{crossItem.modularRespDTO.modularType}=="112")
+	##竖排优惠券模块
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-couponVert.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="113")
+##积分模块
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-myPoint.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="115")
+	##秒杀模块
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-seckill.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="117")
+	##多楼层模块
+	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-multiFloors.vm")
+#elseif($!{crossItem.modularRespDTO.modularType}=="31")
+	#if($!{crossItem.modularRespDTO.platformType} == '03')  ##微信端
+    	##秒杀列表模块
+    	#parse("/pageConfig/pageConfig/modular/loading/wap/loading-wap-seckillList.vm")
+	#else
+		##秒杀列表模块
+    	#parse("/pageConfig/pageConfig/modular/loading/promhomepage/loading-prom-seckillList.vm")
+	#end
+#end

@@ -1,0 +1,78 @@
+#parse("/module/mod-form.vm")
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/build/util.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/build/build-create.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js"></script>
+
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        确认订单
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+		<a href="$CONTEXT_PATH/point/order/cart/list">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content-fixBottom" style="padding-bottom: 50px">
+	<form id="submitForm">
+		<!-- 收货地址 -->
+        #parse("order/build/build-custaddr.vm")
+
+		<!-- 店铺商品 -->
+		#parse("order/build/build-shopgds.vm")
+
+		<!-- 资费信息 start -->
+        <div class="odr-box01 odr-pad clearfix">
+##            <div class="ord-price">
+##                <div class="ord-ib">共计$!{orderAmounts}件商品##&nbsp;&nbsp;总商品金额：<span class="c-orange" id="build_orderMoneys" moneys="$!{orderMoneys}" >&yen;#moneyNum($!{orderMoneys})</span></div>
+##            </div>
+            <div class="ord-price">
+                <div class="ord-ib">共计$!{orderAmounts}件商品</div>
+            </div>
+           ## <div class="ord-price">
+            ##    <div class="ord-ib">运费：<span class="c-orange" id="build_realExpressFees">&yen;#moneyNum($!{realExpressFees})</span></div>
+            ##</div>
+           ## <div class="ord-price">
+            ##    <div class="ord-ib">积分：<span class="c-orange" id="bulid_scores">$!{scores}</span></div>
+           ## </div>
+			###if($acctSizes!=0)
+            ##<div class="ord-price">
+            ##    <div class="ord-ib">资金账户：<span class="c-orange" id="build_acct_fees">-&yen;0.00</span></div>
+           ## </div>
+			##end
+
+            <div class="ord-price">
+                <div class="ord-ib">应付总额：<span class="c-orange js_calc_allMoney">$!{scores}积分<b>+</b>&yen;#moneyNum($!{allMoney})</span></div>
+            </div>
+        </div>
+
+		<!-- 资费信息 end -->
+		<!-- 表单数据 -->
+		<!-- 收货地址 -->
+		<input id="addrId" name="addrId" type="hidden" value="$!{var_custaddr.id}" />
+		<!-- 支付方式 -->
+		<input id="payType" name="payType" type="hidden" />
+		<!-- 是否有实体商品 -->
+		<input id="gdsType" name="gdsType" type="hidden" />
+		<!-- 用户id -->
+		<input type="hidden" id="staffId" value="$!{staffId}"/>
+
+		<input type="hidden" id="mainHashKey" name="mainHashKey" value="$!{mainHashKey}"/>
+
+    </form>
+	<!-- 收货地址管理 -->
+	#parse("order/build/build-custaddr-canvas.vm")
+	<!-- 发票信息管理 -->
+	#parse("order/build/build-invoice-canvas.vm")
+
+</div>
+<!-- 商城地址 -->
+<input type="hidden" id="mallUrl" value="#translate('CMS_SITE_MAPPING','1')"/>
+<div class="am-navbar am-cf am-navbar-mall pay-bar">
+    <div class="pad-box">
+        <div class="pad-pri"><span>合计：</span><span class="c-orange ft26 js_calc_allMoney">$!{scores}积分<b>+</b>&yen;#moneyNum($!{allMoney})</span></div>
+        <a id="submitOrd" href="javascript:void(0);" class="btn btn-gw">去付款</a>
+    </div>
+</div>

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean class="com.zengshi.ecp.frame.utils.RuleMap">
+		<constructor-arg>  
+			<map>  				
+				<entry key="t_unpf_ord_main" value-ref="unpfOrdMain" />	
+				<entry key="t_unpf_ord_sub" value-ref="unpfOrdSub" />
+				<entry key="t_unpf_ord_log" value-ref="unpfOrdLog" />
+				<entry key="t_unpf_ord_delivery_batch" value-ref="unpfOrdDrliveryBatch" />
+				<entry key="t_unpf_ord_delivery_details" value-ref="unpfOrdDrliveryDetails" />	
+				<entry key="t_unpf_shop_auth" value-ref="unpfShopAuthDistributed" />	
+				<entry key="t_unpf_msg_syc" value-ref="unpfMsgSycDistributed" />	
+				<entry key="t_unpf_msg_syc_his" value-ref="unpfMsgSycHisDistributed" />		
+				<entry key="t_unpf_sku_send" value-ref="unpfSkuSendDistributed" />	
+				<entry key="t_unpf_gds_send" value-ref="unpfGdsSendDistributed" />
+				<entry key="t_unpf_send_log" value-ref="unpfSendLogDistributed" />
+				<entry key="t_unpf_shop_auth_topic" value-ref="unpfShopAuthTopicDistributed" />	
+				<entry key="t_unpf_gds_limit" value-ref="unpfGdsLimitDistributed" />												
+				<entry key="t_unpf_gds_catg_limit" value-ref="unpfGdsCatgLimitDistributed" />	
+				<entry key="t_unpf_gds_unsend_his" value-ref="unpfGdsUnsendHisDistributed" />
+				<entry key="t_unpf_gds_unsend" value-ref="unpfGdsUnsendDistributed" />	
+				<entry key="t_unpf_shop_express" value-ref="unpfShopExpressDistributed" />
+				<entry key="t_unpf_stock_limit" value-ref="unpfStockLimitDistributed" />
+				<entry key="t_unpf_stock_catg_limit" value-ref="unpfStockCatgLimitDistributed" />
+				<entry key="t_unpf_thing_lock" value-ref="unpfThingLock" />
+			</map>  
+		</constructor-arg>  
+	</bean>   
+	<bean id="unpfOrdMain" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+	    <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+	    <property name="tableNamePattern" value="t_unpf_ord_main_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+		<bean id="unpfOrdSub" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+	    <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+	    <property name="tableNamePattern" value="t_unpf_ord_sub_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+		<bean id="unpfOrdLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+	    <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+	    <property name="tableNamePattern" value="t_unpf_ord_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+		<bean id="unpfOrdDrliveryBatch" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+	    <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+	    <property name="tableNamePattern" value="t_unpf_ord_delivery_batch_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+		<bean id="unpfOrdDrliveryDetails" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+	    <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+	    <property name="tableNamePattern" value="t_unpf_ord_delivery_details_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="unpfShopAuthDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_shop_auth_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="unpfMsgSycDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_msg_syc_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+		<bean id="unpfMsgSycHisDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_msg_syc_his_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>	
+	<bean id="unpfSkuSendDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_sku_send_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>	
+	<bean id="unpfGdsSendDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_gds_send_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>	
+	<bean id="unpfSendLogDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_send_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>	
+	<bean id="unpfShopAuthTopicDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_shop_auth_topic_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>	
+	<bean id="unpfGdsCatgLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_gds_catg_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	 </bean>
+	<bean id="unpfGdsLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_gds_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	 </bean>
+	 
+	 <bean id="unpfGdsUnsendHisDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_gds_unsend_his_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	 </bean>
+	 
+	 <bean id="unpfGdsUnsendDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_gds_unsend_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	 </bean>
+	 <bean id="unpfShopExpressDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_shop_express_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	 </bean>
+	<bean id="unpfStockCatgLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_stock_catg_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="unpfStockLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_unpf_stock_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="unpfThingLock" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_thing_lock_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+</beans>

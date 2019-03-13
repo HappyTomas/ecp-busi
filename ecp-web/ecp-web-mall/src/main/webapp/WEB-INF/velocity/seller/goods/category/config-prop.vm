@@ -1,0 +1,95 @@
+<!-- main content -->
+	<div class="heading">
+	   属性配置
+	</div>
+<form class="form-horizontal" style="margin-bottom: 0px;" id="propBaseInfoForm">
+    <div class="row-fluid">
+    	<div class="span4">
+    		<div class="control-group">
+    			<label class="control-label">分类编码：</label>
+    			<div class="controls">
+    			     <input type="text" name="catgCode" id="prop-catg-code" value="" class="input-medium" readonly/>
+    			</div>
+    		</div>
+    	</div>
+    	<div class="span4">
+    		<div class="control-group">
+    			<label class="control-label">分类名称：</label>
+    			<div class="controls">
+    			     <input type="text" name="catgName" id="prop-catg-name" value="" class="input-medium" readonly/>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+</form>
+<div class="heading">
+    			已配置属性
+</div>
+<div class="well well-searchForm">
+	<form id="configedPropsForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" onsubmit="return false;">
+    	<div class="row-fluid">
+			<div class="span4">
+    			<div class="control-group">
+    				<button type="button" class="btn" id="batch-del-props">批量删除</button>
+    			</div>
+            </div>
+    		<div class="span8">
+    			<div class="control-group">
+    				<label class="control-label">属性名称：</label>
+    				<div class="controls">
+						<input type="hidden" name="catgCode" id="configed-prop-catgcode" />
+    					<input type="text" name="propName" class="input-medium htmlcheck" value="" placeholder="输入属性名称查询">
+							<button type="button" class="btn" id="search-btn-3">查询</button>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="clear"></div>
+    	</div>
+	</form>
+</div>
+
+<div class="row-fluid">
+    <div style=" height:300px;overflow:auto;">
+	  <table id="configedPropGridTable"></table>
+    </div>
+</div>
+	
+<div class="heading">
+            可选属性
+</div>
+
+<div class="well well-searchForm">
+	<form id="optionalPropsForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" onsubmit="return false;">
+    	<div class="row-fluid">
+			<div class="span4">
+    			<div class="control-group">
+    				<button type="button" class="btn" id="batch-add-props">批量添加</button>
+    			</div>
+            </div>
+    		<div class="span8">
+    			<div class="control-group">
+    				<label class="control-label">属性名称：</label>
+    				<div class="controls">
+						<input type="hidden" name="catgCode" id="opt-prop-catgcode"/> 
+    					<input type="text" name="propName" class="input-medium htmlcheck" value="" placeholder="输入属性名称查询"/>
+							<button type="button" class="btn" id="search-btn-4">查询</button>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="clear"></div>
+    	</div>
+	</form>
+</div>
+<div class="row-fluid">
+    <div style=" height:300px;overflow:auto;">
+	  <table id="optionalPropGridTable"></table>
+    </div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+		<center>
+	       <button type="button" class="btn" id="btnPropBack">返回</button>
+	   </center>
+    </div>
+</div>

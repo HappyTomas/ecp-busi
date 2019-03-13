@@ -1,0 +1,245 @@
+#parse("sys/sys_param.vm")
+<div #if($!{autoCombineList.size()}<=0 && $!{fixedCombineList.size()}<=0)style="display:none" #else #end>
+<ul class="tabn" #if($!{autoCombineList.size()}>0 || $!{fixedCombineList.size()}>0) #else style="display:none"#end>
+			#if($!{fixedCombineList.size()}>0)
+                <li class="active">
+                    <a href="#">固定套餐</a>
+                </li>
+			#end
+			#if($!{autoCombineList.size()}>0 && $!{fixedCombineList.size()}<=0)
+                <li class="active">
+                    <a href="#">自由搭配</a>
+                </li>
+			#elseif($!{autoCombineList.size()}>0)
+				<li>
+                    <a href="#">自由搭配</a>
+                </li>
+			#end
+</ul>
+<div class="tabc"  >
+
+    #set($fixed = 0)
+
+    #if($!{fixedCombineList.size()}>0)
+    <div class="citem pro-teamj #if($!{fixedCombineList.size()}>0 && $!{autoCombineList.size()}<=0)active#end"  >
+        <ul class="jn">
+            #foreach($combine in $!{fixedCombineList})
+                <li #if($velocityCount==1)class="active fir"#end>
+                #set($promTheme = $!{combine.promInfoDTO.promTheme})
+                #if($promTheme.length()>10)
+                #set($promThemeCut = $promTheme.substring(0,10))
+                    <span>$promThemeCut</span>
+                    
+                #else
+                	<span>$promTheme</span>
+                #end
+                </li>
+            #end
+        </ul>
+        <div class="jc">
+            #foreach($combine in $!{fixedCombineList})
+                #set($fixed = ( $velocityCount ))
+                <div class="jitem">
+                    <div class="clearfix">
+                        <ul class="pull-left glist">
+                            #set($yuanprice = 0)
+                            #set($buyprice = 0)
+                            #set($cutprice = 0)
+                            #set($fixedContain = '0')
+                            #foreach($info in $!{combine.gdsPromMatchSkuVOList})
+                            ##if($velocityCount==1)
+                                #if($!{info.skuInfo.id}==$!{skuId})
+                                    #parse("/goods/gdsdetail/list/fixed-combine-one.vm")
+                                    #set($fixedContain = '1')
+                                #end
+                            #end
+											#if($fixedContain=='0')
+                            #foreach($info in $!{combine.gdsPromMatchSkuVOList})
+                                #if($velocityCount==1)
+                                    #parse("/goods/gdsdetail/list/fixed-combine-one.vm")
+                                #end
+                            #end
+                        #end
+                        </ul>
+                        <div class="pull-left team slide jcarousel">
+                            <div id="jcarouseln-$fixed" class="slide-trigger">
+                                <a href="javascript:" class="slide-prev" data-rel="caroSwitch$fixed"></a>
+                                <a href="javascript:" class="slide-next " data-rel="caroSwitch$fixed"></a>
+                            </div>
+                            <div class="slide-box">
+                                <ul id="jcarouselc-$fixed" class="jcarousel-container glist">
+                                    #foreach($info in $!{combine.gdsPromMatchSkuVOList})
+                                        #if($fixedContain=='1')
+                                            #if($!{info.skuInfo.id}==$!{skuId})
+                                            #else
+                                                #parse("/goods/gdsdetail/list/fixed-combine-auto.vm")
+                                            #end
+                                        #else
+                                            #if($velocityCount==1)
+                                            #else
+                                                #parse("/goods/gdsdetail/list/fixed-combine-auto.vm")
+                                            #end
+                                        #end
+
+                                    #end
+                                </ul>
+                            </div>
+                        </div>
+                       #* <div class="gcount">
+                            <p class="c-gray">
+                                搭配价: <span class="c-red">&yen;#moneyNum($buyprice)</span>
+                            </p>
+                            <p>
+                                <a href="javascript:void(0);" class="gobtn" name="fixedCombineBuyBtn" style="width:60px">立即购买</a>
+                            </p>
+                        </div>*#
+
+                        <div class="gcount">
+                            #if($!{combine.ifPromShipFree}=="1")
+                                <div class="pack">
+                                    <span class="pack-f">包邮</span>
+                                </div>
+                            #end
+                            <div class="box-simple">
+                                <div class="head">
+                                    原价合计：<span class="t-mline" id="combineAllPrice">#moneyNum($yuanprice)元</span>
+                                </div>
+                                <div class="body">
+                                    <p class="tt">固定套餐</p>
+                                    <div class="cpri" id="combineAllPriceAfter">
+                                        &yen;#moneyNum($buyprice)
+                                    </div>
+                                    <p class="disconut">
+                                        立省：<span id="combineAllPriceAfterCut">&yen;#moneyNum($cutprice)元</span>
+                                    </p>
+                                    <p class="c-gray">套餐搭配更实惠</p>
+                                    <p>
+                                        <a href="javascript:void(0)" class="gobtn" name="fixedCombineBuyBtn">立即购买</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="eq addsymbo">
+                            =
+                        </div>
+                    </div>
+                </div>
+            #end
+        </div>
+    #end
+</div>
+
+
+    #set($count = $!{fixedCombineList.size()})
+
+
+	#if($!{autoCombineList.size()}>0)
+            <div class="citem #if($!{autoCombineList.size()}>0)active#end" id="zyTeam" >
+                        <ul class="jn">
+                            #foreach($combine in $!{autoCombineList})
+                                <li #if($velocityCount==1)class="active fir"#end>
+								#set($promTheme = $!{combine.promInfoDTO.promTheme})
+				                #if($promTheme.length()>10)
+				                #set($promThemeCut = $promTheme.substring(0,10))
+				                    <span>$promThemeCut</span>
+				                    
+				                #else
+				                	<span>$promTheme</span>
+				                #end
+                                </li>
+                            #end
+                        </ul>
+                        <div class="jc">
+                            #foreach($combine in $!{autoCombineList})
+								#set($count = $fixed + $velocityCount)
+                                <div class="jitem">
+                                    <!-- <p class="gname">
+											纸质书+数字教材
+									</p>-->
+                                    <div class="clearfix">
+                                        <ul class="glist pull-left">
+                                            #set($yuanprice = '')
+                                            #set($buyprice = '')
+                                            #set($cutprice = '')
+											#set($contain = '0')
+                                            #foreach($info in $!{combine.gdsPromMatchSkuVOList})
+                                                ###if($velocityCount==1)
+												#if($!{info.skuInfo.id}==$!{skuId})
+                                                    #parse("/goods/gdsdetail/list/auto-combine-one.vm")
+													#set($contain = '1')
+                                                #end
+											#end
+											<!--判断， 如果初始化的商品当前单品在组合搭配中没有的话，则默认取的第一个噢-->
+											#if($contain=='0')
+												#foreach($info in $!{combine.gdsPromMatchSkuVOList})
+                                                    #if($velocityCount==1)
+                                                        #parse("/goods/gdsdetail/list/auto-combine-one.vm")
+                                                    #end
+												#end
+											#end
+                                        </ul>
+                                        <div class="pull-left team slide jcarousel">
+                                            <div id="jcarouseln-$count" class="slide-trigger">
+                                                <a href="javascript:" class="slide-prev" data-rel="caroSwitch$count"></a>
+                                                <a href="javascript:" class="slide-next " data-rel="caroSwitch$count"></a>
+                                            </div>
+                                            <div class="slide-box">
+                                                <ul id="jcarouselc-$count" class="jcarousel-container glist">
+                                                    #foreach($info in $!{combine.gdsPromMatchSkuVOList})
+                                                        ##if($velocityCount==1)
+														#if($contain=='1')
+    														#if($!{info.skuInfo.id}==$!{skuId})
+                                                            #else
+    															#parse("/goods/gdsdetail/list/auto-combine-auto.vm")
+															#end
+														#else
+															#if($velocityCount==1)
+                                                            #else
+    															#parse("/goods/gdsdetail/list/auto-combine-auto.vm")
+															#end
+														#end
+                                                    #end
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="gcount">
+                                            #if($!{combine.ifPromShipFree}=="1")
+                                                <div class="pack">
+                                                    <span class="pack-f">包邮</span>
+                                                </div>
+                                            #end
+                                            <div class="box-simple">
+                                                <div class="head">
+														原价合计：<span class="t-mline" id="combineAllPrice">#moneyNum($yuanprice)元</span>
+                                                </div>
+                                                <div class="body">
+                                                    <p class="tt">自由搭配</p>
+                                                    <div class="cpri" id="combineAllPriceAfter">
+															&yen;#moneyNum($buyprice)
+                                                    </div>
+                                                    <p class="disconut">
+															立省：<span id="combineAllPriceAfterCut">&yen;#moneyNum($cutprice)元</span>
+                                                    </p>
+                                                    <p class="c-gray">套餐搭配更实惠</p>
+                                                    <p>
+                                                        <a href="javascript:void(0)" class="gobtn" name="autoCombineBuyBtn">立即购买</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="eq addsymbo">
+                                            =
+                                        </div>
+                                    </div>
+                                </div>
+                            #end
+                        </div>
+            </div>
+	#end
+
+
+</div>
+</div>
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="${CONTEXT_PATH}/js/jquery/powerSwitch/jquery-powerSwitch.js"></script>

@@ -1,0 +1,88 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/modular/wap/modular-edit-menu-tool.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/modular/wap/modular-wap-dobleImg.js?version=$!{JS_VERSION}" ></script>
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+<input type="hidden" id="propPreStr" value="$!{propPreStr}"/>
+<script>
+</script>
+		
+<form id="paramsSetForm" class="required-validate form-horizontal templateItemForms" data-url="$!{CONTEXT_PATH}/modular-dynamic/commonModularFormSave">
+    <div class="dynamicFormMainBox">
+    	<input type="hidden" id="modularPageId" value="$!{pageId}"/>
+    	<input type="hidden" id="modularModularId" value="$!{modularId}"/>
+    	<input type="hidden" id="modularItemId" value="$!{itemId}"/>	
+        <h3 class="tit" style="color:red">双列图片模块</h3>
+        
+        <div class="edit-tip">
+            <i class="close wap_close_i" id="close_i"></i>
+        
+            <p class="title">模块使用小贴士</p>
+        
+            <div class="content">
+                图片建议尺寸：296*160<br>
+                该模块可以尝试展示店铺的宝贝分类哦
+            </div>
+        </div>
+        <div class="form-group">
+			<div class="menu">
+               	<span class="mup"></span>
+               	<span class="mdown"></span>
+            </div>
+            <div class="form-block formItem">
+	            <label>上传图片</label>
+	        	<input type="hidden" id="propValue" value="$!{propPre.get('1020_1_1').propValue}">
+	        	<input type="hidden" id="propValueId" value="$!{propPre.get('1020_1_1').propValueId}">
+	        	<input type="hidden" id="propId" value="$!{attrs.get(1020).id}">
+	        	<input type="hidden" id="propItemId" value="$!{propPre.get('1020_1_1').id}"/>
+	        	<input type="hidden" id="controlPropId" value="1"/>
+	        	<input type="hidden" id="propGroupId" value="1"/>
+	            <div class="wap_img_upload" file-id="$!{propPre.get('1020_1_1').propValue}" file-url="#genImageUrl($!{propPre.get('1020_1_1').propValue},'')"  image-max-width="296" image-max-height="160">
+	            </div>
+	        </div>
+	        <div class="form-block formItem">
+	            <label>链接地址</label>
+	            <div class="input-append">
+	                <input type="hidden" id="propValue" value="$!{propPre.get('1015_1_1').propValue}">
+	            	<input type="hidden" id="propValueId" value="$!{propPre.get('1015_1_1').propValueId}">
+	            	<input type="hidden" id="propId" value="$!{attrs.get(1015).id}">
+	            	<input type="hidden" id="propItemId" value="$!{propPre.get('1015_1_1').id}"/>
+					<input type="hidden" id="controlPropId" value="1"/>
+					<input type="hidden" id="propGroupId" value="1"/>
+	                <input type="text" class="input-block-level link-input-tool #if($!{attrs.get(1015).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);" onkeyup="CommonModular.inputAssignMent(this);" oninput="CommonModular.inputAssignMent(this);" onpropertychange="CommonModular.inputAssignMent(this);" placeholder="如果输入绝对路径,请以http://开头!">
+	            </div>
+	        </div>
+        </div>
+        <div class="form-group">
+			<div class="menu">
+               	<span class="mup"></span>
+               	<span class="mdown"></span>
+            </div>
+            <div class="form-block formItem">
+	            <label>上传图片</label>
+	        	<input type="hidden" id="propValue" value="$!{propPre.get('1020_1_2').propValue}">
+	        	<input type="hidden" id="propValueId" value="$!{propPre.get('1020_1_2').propValueId}">
+	        	<input type="hidden" id="propId" value="$!{attrs.get(1020).id}">
+	        	<input type="hidden" id="propItemId" value="$!{propPre.get('1020_1_2').id}"/>
+				<input type="hidden" id="controlPropId" value="2"/>
+				<input type="hidden" id="propGroupId" value="1"/>
+	            <div class="wap_img_upload" file-id="$!{propPre.get('1020_1_2').propValue}" file-url="#genImageUrl($!{propPre.get('1020_1_2').propValue},'')" image-max-width="296" image-max-height="160">
+	            </div>
+	        </div>
+	        <div class="form-block formItem">
+	            <label>链接地址</label>
+	            <div class="input-append">
+	                <input type="hidden" id="propValue" value="$!{propPre.get('1015_1_2').propValue}">
+	            	<input type="hidden" id="propValueId" value="$!{propPre.get('1015_1_2').propValueId}">
+	            	<input type="hidden" id="propId" value="$!{attrs.get(1015).id}">
+	            	<input type="hidden" id="propItemId" value="$!{propPre.get('1015_1_2').id}"/>
+					<input type="hidden" id="controlPropId" value="2"/>
+					<input type="hidden" id="propGroupId" value="1"/>
+	                <input type="text" class="input-block-level link-input-tool #if($!{attrs.get(1015).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);" onkeyup="CommonModular.inputAssignMent(this);" oninput="CommonModular.inputAssignMent(this);" onpropertychange="CommonModular.inputAssignMent(this);" placeholder="如果输入绝对路径,请以http://开头!">
+	            </div>
+	        </div>
+        </div>
+    </div>
+</form>
+

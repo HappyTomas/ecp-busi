@@ -1,0 +1,298 @@
+@charset "UTF-8";
+/**
+  * 促销样式
+ **/
+/* 促销模板 beign*/
+.promTpl-tab .modular-head {
+  height: 60px;
+  text-align: center;
+  background: transparent;
+}
+.promTpl-tab .modular-head .tit {
+  padding: 0 20px;
+  position: relative;
+  font-size: 30px;
+  font-weight: bold;
+  display: inline-block;
+  color: #f05a28;
+}
+.promTpl-tab .modular-head .tit:after,
+.promTpl-tab .modular-head .tit:before {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 70px;
+  height: 60px;
+  top: 0;
+}
+.promTpl-tab .modular-head .tit:before {
+  left: -60px;
+  background: url("../../images/pageConfig/tpl-lheadbg.png");
+}
+.promTpl-tab .modular-head .tit:after {
+  right: -60px;
+  background: url("../../images/pageConfig/tpl-rheadbg.png");
+}
+.promTpl-tab .tab-nav ul {
+  height: 40px;
+  overflow: hidden;
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+}
+.promTpl-tab .tab-nav li {
+  display: table-cell;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  background: #ffaeae;
+  cursor: pointer;
+}
+.promTpl-tab .tab-nav li a {
+  color: #fff;
+}
+.promTpl-tab .tab-nav .active {
+  background: #fff;
+}
+.promTpl-tab .tab-nav .active a {
+  color: #2b93d9;
+}
+.promTpl-tab .tab-nav .oneLi {
+  background: #ffaeae;
+}
+.promTpl-tab .tab-nav .oneLi a {
+  color: #fff;
+}
+.promTpl-list .tUl-wrap {
+  background-color: #fff;
+  padding: 15px 15px 5px 15px;
+}
+.promTpl-list .tLi {
+  background-color: #FFECF9;
+}
+.promTpl-list .li-inner {
+  padding: 10px;
+}
+.promTpl-list .floor-tab {
+  height: 83px;
+}
+.promTpl-list .floor-tab .name-wrap {
+  background: url("../../images/pageConfig/sales/floor-bg.png") no-repeat;
+  display: block;
+  float: left;
+  width: 241px;
+  margin-top: 15px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  height: 100%;
+}
+.promTpl-list .floor-tab .name {
+  text-align: center;
+  overflow: hidden;
+  font-size: 18px;
+  line-height: 120px;
+  padding-right: 45px;
+  padding-left: 10px;
+  color: #dc1800;
+}
+.promTpl-list .tpl-img {
+  margin-bottom: 10px;
+  text-align: center;
+  background-color: #fff;
+}
+.promTpl-list a {
+  text-decoration: none;
+}
+.promTpl-list .pro-tit {
+  color: #d60a03;
+  font-weight: 900;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  word-break: break-all;
+  word-wrap: break-word;
+  height: 20px;
+}
+.promTpl-list .pro-pri {
+  position: relative;
+  line-height: 18px;
+}
+.promTpl-list .pro-pri .pri {
+  padding-right: 70px;
+}
+.promTpl-list .pro-pri .act {
+  color: #e7406d;
+  font-weight: 900;
+}
+.promTpl-list .pro-pri p {
+  color: #fd9090;
+  white-space: nowrap;
+}
+.promTpl-list .pro-btn {
+  background: url("../../images/pageConfig/sales/pro-btn.png") no-repeat;
+  width: 62px;
+  height: 22px;
+  display: inline-block;
+  padding-left: 5px;
+  color: #fff;
+  font-weight: 900;
+  position: absolute;
+  right: 0px;
+  top: 5px;
+}
+.promTpl-coupon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.promTpl-coupon ul {
+  font-size: 0;
+}
+.promTpl-coupon ul li {
+  background: url(../../images/pageConfig/coupon-bg.png) no-repeat;
+  width: 234px;
+  height: 121px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  display: inline-block;
+  margin-left: 15px;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+.promTpl-coupon ul .price {
+  display: inline-block;
+}
+.promTpl-coupon ul .price-sign {
+  font-size: 24px;
+}
+.promTpl-coupon ul .price-m {
+  font-size: 54px;
+  font-family: impact;
+  font-weight: 900;
+  line-height: 66px;
+}
+.promTpl-coupon ul .receive {
+  width: 188px;
+  height: 22px;
+  line-height: 22px;
+  display: inline-block;
+  margin-bottom: 0;
+  font-size: 12px;
+  color: #333333;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #f5f5f5;
+  background: -webkit-gradient(linear, 0 0, 0 100%, color-stop(#ffffff 50%), color-stop(#e6e6e6 50%));
+  background: -webkit-linear-gradient(#ffffff 50%, #e6e6e6 50%);
+  background: -o-linear-gradient(#ffffff 50%, #e6e6e6 50%);
+  background: -moz-linear-gradient(#ffffff 50%, #e6e6e6 50%);
+  background: linear-gradient(#ffffff 50%, #e6e6e6 50%);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe6e6e6', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.promTpl-coupon ul .receive a {
+  color: #c588db;
+  font-weight: 900;
+  display: block;
+}
+.promTpl-coupon ul .receive a:hover {
+  color: #999;
+}
+.promTpl-coupon ul .while {
+  text-align: left;
+  float: right;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+.promTpl-coupon ul .while-q {
+  font-size: 24px;
+}
+.promTpl-coupon .couponList {
+  height: 151px;
+  overflow: hidden;
+}
+.promTpl-coupon .more {
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  margin-top: -10px;
+  cursor: pointer;
+  display: none;
+  background: url("../../images/pageConfig/sales/prom-open.png") center center no-repeat;
+}
+.promTpl-coupon .couponUp {
+  background-image: url("../../images/pageConfig/sales/prom-t.png");
+}
+/*.promTpl-coupon-row2{
+  padding-top: 310px;
+  .couponList{
+    height: 310px;
+    overflow: hidden;
+  }
+}*/
+/* 促销模板 end*/
+/* 楼层导航 begin*/
+.skipfloor {
+  width: 120px;
+  right: 10px;
+  top: 230px;
+  border: 0 none;
+}
+.tpl-floor {
+  background: url("../../images/pageConfig/tpl-floorbg.png") no-repeat;
+  padding-top: 140px;
+}
+.tpl-floor .modular-head {
+  height: 30px;
+  background-color: transparent;
+  text-align: center;
+  font-size: 14px;
+  position: absolute;
+  width: 100%;
+  top: 85px;
+  padding: 0;
+}
+.tpl-floor .navigation {
+  background: url("../../images/pageConfig/tpl-floorBbg.png");
+  width: 94px;
+  margin: 0 auto;
+  background-repeat: no-repeat repeat;
+}
+.tpl-floor .navigation li {
+  background: transparent;
+  border: 0;
+}
+.tpl-floor .navigation li a {
+  padding: 0;
+  height: 24px;
+  line-height: 24px;
+  color: #bf7a0e;
+  text-decoration: none;
+}
+.tpl-floor .navigation .current {
+  background: #fef0be;
+  margin: 0 5px;
+}
+.tpl-floor .floor-list .toTop {
+  width: 94px;
+  margin: 0 auto;
+  background: url("../../images/pageConfig/tpl-floortop.png");
+  background-repeat: no-repeat;
+  height: 46px;
+  cursor: pointer;
+  border: 0;
+}
+.tpl-floor .floor-list .iconfont {
+  font-size: 0;
+}
+/*楼层导航  end*/

@@ -1,0 +1,375 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script> 
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/other/order.util.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/file-init.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/payway-add.js?version=$!{JS_VERSION}" ></script>
+<style type="text/css">  
+.file-wrap {
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file-wrap input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter:alpha(opacity=0);
+}
+</style>
+	<h3 class="heading">新增</h3>
+	<div class="alert alert-error hide formValidateMessages" >
+
+    </div>
+    <ul class="nav nav-tabs" id="myTab">
+		<li class="active"><a href="#textTab">文本</a></li>
+		<li><a href="#linkTab">链接</a></li>	
+		<li><a href="#fileTab">文件</a></li>	
+	</ul>
+	<form id="paywayForm" class="form-horizontal required-validate " style="margin-bottom: 0px;" enctype="multipart/form-data">				
+	<div class="tab-content">				
+        <div class="tab-pane active" id="textTab">
+			<div class="row-fluid formSep">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">支付通道编码：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level required htmlcheck" name="id" placeholder="" maxlength="4"/>							
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">支付通道名称：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level required htmlcheck" name="payWayName" placeholder="" maxlength="64" />							
+						</div>
+					</div>
+				</div>
+			</div>	
+			<div class="row-fluid formSep">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">支付通道类型：</label>
+						<div class="controls">
+							<select id="payWayType" class="input-large required" name="payWayType" autocomplete="off">
+							    <option value="">&nbsp;</option>
+							    
+								<option value="01">支付平台</option>									
+								<option value="02">银行卡支付</option>
+								<option value="03">信用卡支付</option>
+								<option value="04">供应链贷款支付（沃金融）</option>
+								<option value="05">线下支付</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">编码格式：</label>
+						<div class="controls">
+							<select id="charSet" class="input-large required" name="charSet" autocomplete="off">
+							 	<option value="">&nbsp;</option>
+								<option value="utf-8">utf-8</option>
+								<option value="gbk">gbk</option>	
+								<option value="gb2312">gb2312</option>								
+							</select>								
+						</div>
+					</div>
+				</div>	
+			</div>	
+			<div class="row-fluid formSep">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">支持账户类型：</label>
+						<div class="controls">
+							<select id="payAcctType" class="input-large required" name="payAcctType" autocomplete="off">
+							    <option value="">&nbsp;</option>
+								<option value="01">个人账户</option>
+								<option value="02">对公账户</option>								
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">签名方式：</label>
+						<div class="controls">
+							<select id="signType" class="input-large" name="signType" autocomplete="off">
+							    <option value="">&nbsp;</option>
+								<option value="01">证书文件</option>
+								<option value="02">properties资源文件</option>		
+								<option value="03">密钥字符串</option>						
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid formSep">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">退款方式：</label>
+						<div class="controls">
+							<select id="payRefundMethod" class="input-large" name="payRefundMethod" autocomplete="off">
+							    <option value="">&nbsp;</option>
+								<option value="01">不经页面跳转</option>
+								<option value="02">经页面跳转到支付公司页面进行操作</option>		
+													
+							</select>
+						</div>
+					</div>
+				</div>	
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">平台商户号：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="payMercCode" placeholder="" maxlength="32"/>							
+						</div>
+					</div>
+				</div>																			
+			</div>
+			<div class="row-fluid formSep">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">平台私钥库用户：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="payPrivateUser" placeholder="" maxlength="64"/>							
+						</div>
+					</div>
+				</div>	
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">平台私钥密码：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="payPrivatePasswd" placeholder="" maxlength="64"/>							
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="row-fluid formSep">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">日志地址：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="logFileUrl" placeholder="" maxlength="256"/>							
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">展示顺序：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="showOrder" placeholder="" onkeyup="this.value=this.value.replace(/\D/g,'')"  onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="4"/>							
+						</div>
+					</div>
+				</div>
+			</div>	
+			<div class="row-fluid formSep">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">是否启用：</label>
+						<div class="controls">
+							<select id="useFlag" class="input-large required" name="useFlag" autocomplete="off">
+							    <option value="">&nbsp;</option>
+								<option value="1">是</option>
+								<option value="0">否</option>		
+													
+							</select>
+						</div>
+					</div>
+				</div>					
+				
+			</div>									
+		</div>			 
+        <div class="tab-pane" id="linkTab">
+			<div class="row-fluid formSep">					
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">支付提交地址：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="payActionUrl" placeholder="" maxlength="128"/>					
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">查询接口地址：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="payQueryUrl" placeholder="" maxlength="128"/>					
+						</div>
+					</div>
+				</div>
+			</div>					
+			<div class="row-fluid formSep">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">退款接口地址：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="payRefundUrl" placeholder="" maxlength="128"/>					
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">银行卡绑定地址：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="bindUrl" placeholder="" maxlength="128"/>					
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid formSep">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">绑卡转移接口地址：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="bindTransferUrl" placeholder="" maxlength="128"/>					
+						</div>
+					</div>
+				</div>									
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">支付返回地址：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="payReturnUrl" placeholder="" maxlength="128"/>					
+						</div>
+					</div>
+				</div>
+		    </div>
+		    <div class="row-fluid formSep">
+			    <div class="span6">
+					<div class="control-group">
+						<label class="control-label">支付结果通知接收地址：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="payNotifyUrl" placeholder="" maxlength="128"/>					
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">绑卡结果通知接收地址：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="payBindNotifyUrl" placeholder="" maxlength="128"/>					
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid formSep">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">退款通知接收地址：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="payRefundNotifyUrl" placeholder="" maxlength="128"/>					
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">报错返回地址：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="payErrorUrl" placeholder="" maxlength="128"/>							
+						</div>
+					</div>
+				</div>						
+			</div>
+			<div class="row-fluid formSep">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">对账请求地址：</label>
+						<div class="controls">
+							<input type="text" class="input-block-level" name="payAuditUrl" placeholder="" maxlength="128"/>							
+						</div>
+					</div>
+				</div>						
+			</div>
+		</div>
+        <div class="tab-pane" id="fileTab">
+            <div class="row-fluid formSep">
+				<div class="span12">
+					<div class="control-group">
+						<label class="control-label">支付图标：</label>
+						<div class="controls">            						            	
+							<input type="text" id="file1" name="payImage" style="width:211px;" class="input-large autoParamFile"  ifBasic="0" ifmulti="input" valueId="" propType="2" propId="1" propName="文件" placeholder="请选择图片" readonly="readonly"/>
+							<a href="javascript:;" class="btn file-wrap">上传文件
+								<input class="upFileTyle" type="file" name="uploadFileObj" id="uploadObj1" ifBasic="0" ifmulti="input" valueId="" propType="2" propId="1" propName="文件" value=""  accept="image/*"/>
+		                    </a>
+							<button type="button" onclick="cancelFile(this)" class="btn file-wrap" style="display:none;" >清除</button>						               			
+	        			</div>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid formSep">
+				<div class="span12">
+					<div class="control-group">
+						<label class="control-label">水印图标：</label>									
+						<div class="controls">	            		    
+							<input type="text" id="file2" name="payLogo" style="width:211px;" class="input-large autoParamFile"  ifBasic="0" ifmulti="input" valueId="" propType="2" propId="2" propName="文件" placeholder="请选择图片" readonly="readonly" />
+							<a href="javascript:;" class="btn file-wrap">上传文件
+								<input class="upFileTyle" type="file" name="uploadFileObj" id="uploadObj2" ifBasic="0" ifmulti="input" valueId="" propType="2" propId="2" propName="文件" value=""  accept="image/*"/>
+		                    </a>
+							<button type="button" onclick="cancelFile(this)" class="btn file-wrap" style="display:none;">清除</button>												
+	        			</div>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid formSep">					
+				<div class="span12">
+					<div class="control-group">
+						<label class="control-label">平台私钥文件：</label>					
+						<div class="controls">
+							<input type="text" id="file3" name="payPrivateKey" style="width:211px;" class="input-large autoParamFile" ifBasic="0" ifmulti="input" valueId="" propType="2" propId="3" propName="文件" placeholder="请选择文件" readonly="readonly"/>
+							<a href="javascript:;" class="btn file-wrap">上传文件
+								<input class="upFileTyle" type="file" name="uploadFileObj" id="uploadObj3" ifBasic="0" ifmulti="input" valueId="" propType="2" propId="3" propName="文件" value=""/>
+		                    </a>
+							<button type="button" onclick="cancelFile(this)" class="btn file-wrap" style="display:none;">清除</button>
+		                </div>
+					</div>
+				</div>
+			</div>								
+			<div class="row-fluid formSep">	
+				<div class="span12">
+					<div class="control-group">
+						<label class="control-label">证书配置文件：</label>
+						<div class="controls">
+							<input type="text" id="file4" name="propertyFile" style="width:211px;" class="input-large autoParamFile" value="" name="autoParamFile2" ifBasic="0" ifmulti="input" valueId="" propType="2" propId="4" propName="文件" placeholder="请选择文件" readonly="readonly"/>
+							<a href="javascript:;" class="btn file-wrap">上传文件
+								<input class="upFileTyle" type="file" name="uploadFileObj" id="uploadObj4" ifBasic="0" ifmulti="input" valueId="" propType="2" propId="4" propName="文件" value=""/>
+		                    </a>
+							<button type="button" onclick="cancelFile(this)" class="btn file-wrap" style="display:none;">清除</button>
+		                </div>
+					</div>
+				</div>
+			</div>										
+			<div class="row-fluid formSep">					
+				<div class="span12">
+					<div class="control-group">
+						<label class="control-label">平台验签公钥：</label>				
+						<div class="controls">
+							<input type="text" id="file5" name="payVerifyCert" style="width:211px;" class="input-large autoParamFile"  ifBasic="0" ifmulti="input" valueId="" propType="2" propId="5" propName="文件" placeholder="请选择文件" readonly="readonly"/>
+							<a href="javascript:;" class="btn file-wrap">上传文件
+								<input class="upFileTyle" type="file" name="uploadFileObj" id="uploadObj5" ifBasic="0" ifmulti="input" valueId="" propType="2" propId="5" propName="文件" value=""/>
+		                    </a>
+							<button type="button" onclick="cancelFile(this)" class="btn file-wrap" style="display:none;">清除</button>
+		                </div>
+					</div>
+				</div>					
+			</div>					
+	    </div>			   
+    </div>
+</div>				
+<div class="row-fluid formSep" align="center">	
+	<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i> 保　存</button>
+	<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i> 返　回</button>
+</div>		
+<div class="clear"></div>
+</form>
+		
+			

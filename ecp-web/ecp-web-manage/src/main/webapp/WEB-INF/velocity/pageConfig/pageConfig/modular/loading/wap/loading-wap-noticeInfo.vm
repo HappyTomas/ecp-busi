@@ -1,0 +1,38 @@
+#parse("/sys/sys_param.vm")
+#set($totalNum = "")##展示数量
+
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+
+#foreach($prop in $crossItemObj)
+	#if($!{prop.propId}=="1004")
+		##展示数量
+		#set($totalNum = "$!{prop.propValue}")
+	#end
+#end
+<div class="phone-modular tpl-notice ecp-component $!{componentMethod}" data-total-num="$!totalNum" data-web-root = '#translate("CMS_SITE_MAPPING","$!{pageInfo.siteId}")' data-site-id = "$!{pageInfo.siteId}" data-is-pub="$!{pagePub}" data-component-method="$!{componentMethod}"  data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}">
+    #if(!$!{componentMethod} || '' == $!{componentMethod})
+	#parse("/pageConfig/pageConfigWap/edit/nodata/modular-nodata-wap.vm")
+	#else 
+    <div class="modular-body" >
+        <div class="cont">
+            <div id="notice" class="am-slider" style = "min-height:35px;">
+            </div>
+            <a href="javascript:void(0);" lazy-href="/info/infoList">
+            	<span class="more">更多></span>
+            </a>
+        </div>
+    </div>
+    #end
+</div>

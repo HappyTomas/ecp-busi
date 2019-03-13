@@ -1,0 +1,28 @@
+<!-- 购物车 -->
+##
+## 涉及变量 cartList Controller返回
+##
+<div class="am-navbar am-cf am-navbar-mall cd-nav-btn" style="bottom:49px">
+    <div class="cd-box-l">
+        <div class="cd-checkt">
+            <input type="checkbox" class="ui-checkbox" id="selectAllItem2"/>
+            <label for="selectAllItem2">全选</label>
+            <!-- 数据来源字段，0为WEB端，1为APP端 -->
+            <input type="hidden" name="source" id="websiteSource" value="1">
+            <input type="hidden" name="staffId" id="staffId" value="$!{cartList.staffId}">
+        </div>
+        <div class="prc" id="edittotal">
+            <p class="c-orange">合计：&yen;<span id="cartAmountCount">0.00</span></p>
+##            <p class="c-orange">已节省：&yen;<span id="discountTotal">0.00</span></p>
+            <p>不含运费</p>
+        </div>
+        <a href="javascript:void(0);" class="btn gobtn" id="goCheck">结算</a>
+        <div class="cb-box-btn" id="finishtotal" style="display:none">
+
+##            <a href="javascript:void (0)" class="cb-btn" data-am-offcanvas="{target: '#slideButtom_share_weixin'}">分享</a>
+##            <a href="javascript:void (0)" class="cb-btn" id="addToFollows">移入关注</a>
+            <a href="javascript:void (0)" class="cb-btn cb-btn-del" id="delCheckedItem">删除</a>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,76 @@
+<div id="page-gg" class="am-offcanvas">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+        <div class="am-offcanvas-content pro-ggCont">
+			<div class="ggScroll">
+            <div class="pro-ggDt">
+                <div class="img-wrap" id="skuParamPic">
+                    <img src="${aiTool.genImageUrl($!{gdsDetailInfo.mainPic.mediaUuid},'85x85!')}" alt=""/>
+                </div>
+                <div class="cont">
+                    <!-- <p class="pri" id="skuParamPrice">#money($!{gdsDetailInfo.skuInfo.discountPrice})</p> -->
+                    #if(${gdsDetailInfo.skuInfo.appSpecPrice} && $!{gdsDetailInfo.skuInfo.appSpecPrice}!=0)
+					<span class="pri" id="skuParamPrice">#money($!{gdsDetailInfo.skuInfo.appSpecPrice})</span>##手机专享价
+					#else
+					<span class="pri" id="skuParamPrice">#money($!{gdsDetailInfo.skuInfo.discountPrice})</span>##原价
+					#end
+                    <p><span id="skuParamSkuId">$!{gdsDetailInfo.gdsName}</span></p>
+                </div>
+            </div>
+            <div class="pro-ggTbW">
+                <table class="pro-ggTb">
+					#set($hasSelectedSku = "")
+					#foreach($param in $!{gdsDetailInfo.params})
+                        <tr>
+                            <th>$!{param.propName}</th>
+                            <td>
+                                <div class="ui-selBox">
+    								#foreach($value in $!{param.values})
+    									#set($selected = '')
+    									#foreach($skuprop in $!{gdsDetailInfo.skuInfo.props})
+                                            #foreach($skuValue in $!{skuprop.values})
+                                                #if($!{skuValue.id}==$!{value.id})
+                                                    #set($selected = 'selected')
+                                                    #set($hasSelectedSku = $hasSelectedSku + "<span class='tit'>$!{param.propName}</span> <span>$!{value.propValue}</span> ")
+                                                #end
+                                            #end
+                                        #end
+    									<span class="$selected" name="skuprop" valueId="$!{value.id}" propId="$!{param.id}" propName="$!{param.propName}" value="$!{value.propValue}">$!{value.propValue}</span>
+    								#end
+                                </div>
+                            </td>
+                        </tr>
+					#end
+                    <tr>
+                        <th>
+							数量
+                        </th>
+                        <td>
+                            <div class="cd-jj">
+							#if("$!{gdsDetailInfo.gdsTypeId}"!="")
+								#if(!$constant.isBuyMore("$gdsDetailInfo.gdsTypeId"))
+                                	<span id="purchaseAmount" gdsTypeId="$!{gdsDetailInfo.gdsTypeId}">1</span>
+                                #else
+                                    <span>
+                                        <a href="javascript:void(0)" class="cd-btn" id="reduceCount">-</a>
+        									<input name="" gdsTypeId="$!{gdsDetailInfo.gdsTypeId}" class="itxt" onKeyDown="modiAmount(this);"   onkeyup="modiAmount(this);" id="purchaseAmount" type="text" value="1" max="#if($!{gdsType.ifBuyonce}=='0')1#elseif(($!{stockStatus}=='00' && $ifPage=='1') || $!{gdsType.ifNeedstock}=='0')999999999#else$!{gdsDetailInfo.skuInfo.realAmount}#end">
+        								<a href="javascript:void(0)" class="cd-btn" id="addCount">+</a>
+                                    </span>
+								#end
+							#end
+								<div class="item-right"><div class="alert pro-alert"  id="orderAlert" style="display:none;color:red;" >购买量已超过实际库存</div></div>
+                                <span><font id="realAmount" style="display:none;">#if($!{gdsDetailInfo.gdsTypeId}=='2')1#elseif(($!{stockStatus}=='00' && $ifPage=='1') ||$!{gdsType.ifNeedstock}=='0')999999999#else$!{gdsDetailInfo.skuInfo.realAmount}#end</font>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+			</div>
+			<div class="btn-fix" style="position: relative">
+				<span name="addToCart" #if(($!{stockStatus}=='00' && $!{gdsType.ifNeedstock}=='1' )||$!{gdsDetailInfo.skuInfo.gdsStatus}!="11")class="wbtn wbtn-disable"  disabled  #else class="wbtn" #end id="addtoCartTrigger">加入购物车</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 规格 end -->

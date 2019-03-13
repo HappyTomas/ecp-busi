@@ -1,0 +1,25 @@
+                <ul class="cp-list">
+				#if(!$couppage.getResult())
+        		          没有符合条件的记录。
+				#end
+				#foreach($activeItem in $couppage.getResult())
+                    <li>
+                        <div class="conponbg #if($!{datatype}!="1") conponbg02 #end">
+                            <div class="cp-box cp-align">
+								#if(${activeItem.coupValue}<0)
+                                      <span class="cp-price">抵用</span>
+                                 #else
+                                <span class="cp-yan">&yen;</span>
+                                <span class="cp-price">#moneyNoYen($!{activeItem.coupValue})</span>
+								#end
+							</div>
+                            <div class="cp-box cp-con">
+                                <p class="cp-tit">$!{activeItem.shopName}</p>
+                                <p class="cp-tit">$!{activeItem.conditions}</p>
+                                <p class="cp-date">$!date.format('yyyy-MM-dd',$!{activeItem.activeTime})-$!date.format('yyyy-MM-dd',$!{activeItem.inactiveTime})</p>
+                            </div>
+                            <div class="#if($!{activeItem.coupStatus}=="0") #elseif($!{activeItem.coupStatus}=="1")cpT cpT-b01 #elseif($!{activeItem.coupStatus}=="2")cpT cpT-b02  #elseif($!{activeItem.coupStatus}=="3")cpT cpT-b03 #end "></div>
+                        </div>
+                    </li>
+				#end
+                </ul>

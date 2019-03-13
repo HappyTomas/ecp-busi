@@ -1,0 +1,32 @@
+#parse("sys/sys_param.vm")
+
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        排行榜
+    </div>
+    <span class="am-header-left">
+		<a href="javascript:" onclick="history.go(-1); ">
+			<img class="logo" src="$IMAGE_PATH/logo.png" alt=""/>
+        </a>
+	</span>
+    <div class="am-header-right">
+    	<a href="$!CONTEXT_PATH/msg/index">
+          <span class="opt">
+             <i class="iconfont icon-msg"></i>
+				消息
+          </span>
+        </a>
+    </div>
+</header>
+
+##排行榜组件
+<div class="ui-content-fixBottom ecp-component wechat-mall-gdsrankinglist" data-status="1" data-place-id="1702" data-gds-size="10" data-tab-size="1000" data-place-width="75" data-place-height="75" data-module="ecp-component/wechat-mall-gdsrankinglist">
+	<div class="loading-lo"></div>
+</div>
+
+<script>##用于底部栏目切换
+$(function(){
+	$.cookie('SUPPORT-WEB-COOKIE-MOUDEL', "ranking", {path : '/'});
+});
+</script>
+#parse("/main/main-bottom-navbar.vm")

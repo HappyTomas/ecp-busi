@@ -1,0 +1,3 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/modular/wap/modular-common-wap.js?version=$!{JS_VERSION}" ></script>
+$screen_content

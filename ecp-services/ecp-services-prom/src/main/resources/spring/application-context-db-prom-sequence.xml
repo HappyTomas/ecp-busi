@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <bean id="seq_prom_info_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_INFO_ID"/>
+	</bean>	
+	 <bean id="seq_prom_sku_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_SKU_ID"/>
+	</bean>	
+	<bean id="seq_prom_sku_limit_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_SKU_LIMIT_ID"/>
+	</bean>
+	<bean id="seq_prom_chk_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_CHK_ID"/>
+	</bean>
+	<bean id="seq_prom_type_msg_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_TYPE_MSG_ID"/>
+	</bean>
+	<bean id="seq_prom_constraint_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_CONSTRAINT_ID"/>
+	</bean>
+	<bean id="seq_prom_group_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_GROUP_ID"/>
+	</bean>
+	<bean id="seq_prom_cal_rule_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_CAL_RULE_ID"/>
+	</bean>
+	 <bean id="seq_prom_type4shop_log_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_TYPE4SHOP_LOG_ID"/>
+	</bean>
+	 <bean id="seq_prom_type4shop_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_TYPE4SHOP_ID"/>
+	</bean>
+	 <bean id="seq_prom_match_sku_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_MATCH_SKU_ID"/>
+	</bean>
+	 <bean id="seq_prom_2_solr_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_2_SOLR_ID"/>
+	</bean>
+	 <bean id="seq_prom_import_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_IMPORT_ID"/>
+	</bean>
+	<bean id="seq_prom_to_ord_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_TO_ORD_ID"/>
+	</bean>
+	<bean id="seq_prom_to_ord_present_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PROM_TO_ORD_PRESENT_ID"/>
+	</bean>	
+</beans>

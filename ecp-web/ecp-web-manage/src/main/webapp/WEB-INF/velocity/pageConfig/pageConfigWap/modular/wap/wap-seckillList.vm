@@ -1,0 +1,47 @@
+#parse("sys/sys_param.vm")
+
+
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+<input type="hidden" id="propPreStr" value="$!{propPreStr}"/>
+<script>
+</script>
+		
+<form id="paramsSetForm" class="required-validate form-horizontal templateItemForms" data-url="$!{CONTEXT_PATH}/modular-dynamic/commonModularFormSave">
+    <div class="dynamicFormMainBox">
+        	<input type="hidden" id="modularPageId" value="$!{pageId}"/>
+        	<input type="hidden" id="modularModularId" value="$!{modularId}"/>
+        	<input type="hidden" id="modularItemId" value="$!{itemId}"/>	
+        <h3 class="tit" style="color:red">秒杀列表模块</h3>
+        
+        <div class="edit-tip">
+            <i class="close wap_close_i" id="close_i"></i>
+        
+            <p class="title">模块使用小贴士</p>
+        
+            <div class="content">
+				该模块用于限时抢购列表展示，所有有效的抢购活动都会展示出来，用户手动选择分页配置!
+            </div>
+        </div>
+		<div class="form-block formItem">
+            <label>$!{attrs.get(1021).propName}</label>
+            <div class="input-append">
+            	<input type="hidden" id="propValue" value="$!{propPre.get('1021_0_0').propValue}">
+            	<input type="hidden" id="propValueId" value="$!{propPre.get('1021_0_0').propValueId}">
+            	<input type="hidden" id="propId" value="$!{attrs.get(1021).id}">
+            	<input type="hidden" id="propItemId" value="$!{propPre.get('1021_0_0').id}"/>
+				<input type="hidden" id="controlPropId" value="0"/>
+				<input type="hidden" id="propGroupId" value="0"/>
+				<select class="input-block-level #if($!{attrs.get(1021).ifHaveto}=='1')required#end" onchange="CommonModular.selectAssignMent(this)">
+					<option value="" valueId="">--请选择--</option>
+                	#if($attrs.get(1021).modularPropValRespDTOList && $attrs.get(1021).modularPropValRespDTOList.size() > 0)
+                		#foreach($prop in $attrs.get(1021).modularPropValRespDTOList)
+                			<option value="$!{prop.propValue}" valueId="$!{prop.id}">$!{prop.valueDesc}</option>
+                		#end
+                	#end
+                </select>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.common.AuditABCPayDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.AuditABCPayDetail" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CHECK_DATE" property="checkDate" jdbcType="TIMESTAMP" />
+    <result column="MERC_CODE" property="mercCode" jdbcType="VARCHAR" />
+    <result column="TRANS_TYPE" property="transType" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="TRANS_TIME" property="transTime" jdbcType="TIMESTAMP" />
+    <result column="TRANS_AMOUNT" property="transAmount" jdbcType="VARCHAR" />
+    <result column="MERCH_ACCT_ID" property="merchAcctId" jdbcType="VARCHAR" />
+    <result column="MERCH_ACCT_MONEY" property="merchAcctMoney" jdbcType="VARCHAR" />
+    <result column="PAYEE_ACCT" property="payeeAcct" jdbcType="VARCHAR" />
+    <result column="ACCT_TYPE" property="acctType" jdbcType="VARCHAR" />
+    <result column="FEE" property="fee" jdbcType="VARCHAR" />
+    <result column="STAGING_FEE" property="stagingFee" jdbcType="VARCHAR" />
+    <result column="ACCOUNTING_DATE" property="accountingDate" jdbcType="TIMESTAMP" />
+    <result column="TRANS_NO" property="transNo" jdbcType="VARCHAR" />
+    <result column="TRANSNO9014" property="transno9014" jdbcType="VARCHAR" />
+    <result column="OLD_ORDER_ID" property="oldOrderId" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CHECK_DATE, MERC_CODE, TRANS_TYPE, ORDER_ID, TRANS_TIME, TRANS_AMOUNT, MERCH_ACCT_ID, 
+    MERCH_ACCT_MONEY, PAYEE_ACCT, ACCT_TYPE, FEE, STAGING_FEE, ACCOUNTING_DATE, TRANS_NO, 
+    TRANSNO9014, OLD_ORDER_ID, CREATE_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.AuditABCPayDetailCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_audit_abcpay_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_audit_abcpay_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_audit_abcpay_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.AuditABCPayDetailCriteria" >
+    delete from t_audit_abcpay_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.AuditABCPayDetail" >
+    insert into t_audit_abcpay_detail (ID, CHECK_DATE, MERC_CODE, 
+      TRANS_TYPE, ORDER_ID, TRANS_TIME, 
+      TRANS_AMOUNT, MERCH_ACCT_ID, MERCH_ACCT_MONEY, 
+      PAYEE_ACCT, ACCT_TYPE, FEE, 
+      STAGING_FEE, ACCOUNTING_DATE, TRANS_NO, 
+      TRANSNO9014, OLD_ORDER_ID, CREATE_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{checkDate,jdbcType=TIMESTAMP}, #{mercCode,jdbcType=VARCHAR}, 
+      #{transType,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{transTime,jdbcType=TIMESTAMP}, 
+      #{transAmount,jdbcType=VARCHAR}, #{merchAcctId,jdbcType=VARCHAR}, #{merchAcctMoney,jdbcType=VARCHAR}, 
+      #{payeeAcct,jdbcType=VARCHAR}, #{acctType,jdbcType=VARCHAR}, #{fee,jdbcType=VARCHAR}, 
+      #{stagingFee,jdbcType=VARCHAR}, #{accountingDate,jdbcType=TIMESTAMP}, #{transNo,jdbcType=VARCHAR}, 
+      #{transno9014,jdbcType=VARCHAR}, #{oldOrderId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.AuditABCPayDetail" >
+    insert into t_audit_abcpay_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE,
+      </if>
+      <if test="mercCode != null" >
+        MERC_CODE,
+      </if>
+      <if test="transType != null" >
+        TRANS_TYPE,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="transTime != null" >
+        TRANS_TIME,
+      </if>
+      <if test="transAmount != null" >
+        TRANS_AMOUNT,
+      </if>
+      <if test="merchAcctId != null" >
+        MERCH_ACCT_ID,
+      </if>
+      <if test="merchAcctMoney != null" >
+        MERCH_ACCT_MONEY,
+      </if>
+      <if test="payeeAcct != null" >
+        PAYEE_ACCT,
+      </if>
+      <if test="acctType != null" >
+        ACCT_TYPE,
+      </if>
+      <if test="fee != null" >
+        FEE,
+      </if>
+      <if test="stagingFee != null" >
+        STAGING_FEE,
+      </if>
+      <if test="accountingDate != null" >
+        ACCOUNTING_DATE,
+      </if>
+      <if test="transNo != null" >
+        TRANS_NO,
+      </if>
+      <if test="transno9014 != null" >
+        TRANSNO9014,
+      </if>
+      <if test="oldOrderId != null" >
+        OLD_ORDER_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercCode != null" >
+        #{mercCode,jdbcType=VARCHAR},
+      </if>
+      <if test="transType != null" >
+        #{transType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="transTime != null" >
+        #{transTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transAmount != null" >
+        #{transAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="merchAcctId != null" >
+        #{merchAcctId,jdbcType=VARCHAR},
+      </if>
+      <if test="merchAcctMoney != null" >
+        #{merchAcctMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeAcct != null" >
+        #{payeeAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType != null" >
+        #{acctType,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="stagingFee != null" >
+        #{stagingFee,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingDate != null" >
+        #{accountingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transNo != null" >
+        #{transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transno9014 != null" >
+        #{transno9014,jdbcType=VARCHAR},
+      </if>
+      <if test="oldOrderId != null" >
+        #{oldOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.AuditABCPayDetailCriteria" resultType="java.lang.Long" >
+    select count(*) from t_audit_abcpay_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_audit_abcpay_detail
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkDate != null" >
+        CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.mercCode != null" >
+        MERC_CODE = #{record.mercCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transType != null" >
+        TRANS_TYPE = #{record.transType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transTime != null" >
+        TRANS_TIME = #{record.transTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.transAmount != null" >
+        TRANS_AMOUNT = #{record.transAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchAcctId != null" >
+        MERCH_ACCT_ID = #{record.merchAcctId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchAcctMoney != null" >
+        MERCH_ACCT_MONEY = #{record.merchAcctMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payeeAcct != null" >
+        PAYEE_ACCT = #{record.payeeAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acctType != null" >
+        ACCT_TYPE = #{record.acctType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fee != null" >
+        FEE = #{record.fee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stagingFee != null" >
+        STAGING_FEE = #{record.stagingFee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.accountingDate != null" >
+        ACCOUNTING_DATE = #{record.accountingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.transNo != null" >
+        TRANS_NO = #{record.transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transno9014 != null" >
+        TRANSNO9014 = #{record.transno9014,jdbcType=VARCHAR},
+      </if>
+      <if test="record.oldOrderId != null" >
+        OLD_ORDER_ID = #{record.oldOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_audit_abcpay_detail
+    set ID = #{record.id,jdbcType=INTEGER},
+      CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      MERC_CODE = #{record.mercCode,jdbcType=VARCHAR},
+      TRANS_TYPE = #{record.transType,jdbcType=VARCHAR},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      TRANS_TIME = #{record.transTime,jdbcType=TIMESTAMP},
+      TRANS_AMOUNT = #{record.transAmount,jdbcType=VARCHAR},
+      MERCH_ACCT_ID = #{record.merchAcctId,jdbcType=VARCHAR},
+      MERCH_ACCT_MONEY = #{record.merchAcctMoney,jdbcType=VARCHAR},
+      PAYEE_ACCT = #{record.payeeAcct,jdbcType=VARCHAR},
+      ACCT_TYPE = #{record.acctType,jdbcType=VARCHAR},
+      FEE = #{record.fee,jdbcType=VARCHAR},
+      STAGING_FEE = #{record.stagingFee,jdbcType=VARCHAR},
+      ACCOUNTING_DATE = #{record.accountingDate,jdbcType=TIMESTAMP},
+      TRANS_NO = #{record.transNo,jdbcType=VARCHAR},
+      TRANSNO9014 = #{record.transno9014,jdbcType=VARCHAR},
+      OLD_ORDER_ID = #{record.oldOrderId,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.AuditABCPayDetail" >
+    update t_audit_abcpay_detail
+    <set >
+      <if test="checkDate != null" >
+        CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="mercCode != null" >
+        MERC_CODE = #{mercCode,jdbcType=VARCHAR},
+      </if>
+      <if test="transType != null" >
+        TRANS_TYPE = #{transType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="transTime != null" >
+        TRANS_TIME = #{transTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transAmount != null" >
+        TRANS_AMOUNT = #{transAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="merchAcctId != null" >
+        MERCH_ACCT_ID = #{merchAcctId,jdbcType=VARCHAR},
+      </if>
+      <if test="merchAcctMoney != null" >
+        MERCH_ACCT_MONEY = #{merchAcctMoney,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeAcct != null" >
+        PAYEE_ACCT = #{payeeAcct,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType != null" >
+        ACCT_TYPE = #{acctType,jdbcType=VARCHAR},
+      </if>
+      <if test="fee != null" >
+        FEE = #{fee,jdbcType=VARCHAR},
+      </if>
+      <if test="stagingFee != null" >
+        STAGING_FEE = #{stagingFee,jdbcType=VARCHAR},
+      </if>
+      <if test="accountingDate != null" >
+        ACCOUNTING_DATE = #{accountingDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transNo != null" >
+        TRANS_NO = #{transNo,jdbcType=VARCHAR},
+      </if>
+      <if test="transno9014 != null" >
+        TRANSNO9014 = #{transno9014,jdbcType=VARCHAR},
+      </if>
+      <if test="oldOrderId != null" >
+        OLD_ORDER_ID = #{oldOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.AuditABCPayDetail" >
+    update t_audit_abcpay_detail
+    set CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      MERC_CODE = #{mercCode,jdbcType=VARCHAR},
+      TRANS_TYPE = #{transType,jdbcType=VARCHAR},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      TRANS_TIME = #{transTime,jdbcType=TIMESTAMP},
+      TRANS_AMOUNT = #{transAmount,jdbcType=VARCHAR},
+      MERCH_ACCT_ID = #{merchAcctId,jdbcType=VARCHAR},
+      MERCH_ACCT_MONEY = #{merchAcctMoney,jdbcType=VARCHAR},
+      PAYEE_ACCT = #{payeeAcct,jdbcType=VARCHAR},
+      ACCT_TYPE = #{acctType,jdbcType=VARCHAR},
+      FEE = #{fee,jdbcType=VARCHAR},
+      STAGING_FEE = #{stagingFee,jdbcType=VARCHAR},
+      ACCOUNTING_DATE = #{accountingDate,jdbcType=TIMESTAMP},
+      TRANS_NO = #{transNo,jdbcType=VARCHAR},
+      TRANSNO9014 = #{transno9014,jdbcType=VARCHAR},
+      OLD_ORDER_ID = #{oldOrderId,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

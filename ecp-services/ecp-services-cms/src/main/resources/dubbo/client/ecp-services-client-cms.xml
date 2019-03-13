@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://code.alibabatech.com/schema/dubbo  
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+	">  
+     
+  <!-- -->
+	<dubbo:reference id="cmsAdvertiseRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsAdvertiseRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>
+    <dubbo:reference id="cmsInfoRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsInfoRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+    <dubbo:reference id="cmsPlaceRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPlaceRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+    <dubbo:reference id="cmsFloorRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+    <dubbo:reference id="cmsFloorTabRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorTabRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+    <dubbo:reference id="cmsFloorAttrCountRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorAttrCountRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+    <dubbo:reference id="cmsFloorAdvertiseRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorAdvertiseRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+    <dubbo:reference id="cmsFloorGdsRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorGdsRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+    <dubbo:reference id="cmsFloorLabelRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorLabelRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsFloorCouponRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorCouponRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsComponentRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsComponentRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>
+    <dubbo:reference id="cmsSiteRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsSiteRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+    <dubbo:reference id="cmsTemplateRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsTemplateRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+    <dubbo:reference id="cmsListRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsListRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+    <dubbo:reference id="cmsRecommendRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsRecommendRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsHotSearchRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsHotSearchRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsPlaceCategoryRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPlaceCategoryRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsGdsCategoryRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsGdsCategoryRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsArticleRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsArticleRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsChannelRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsChannelRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsSiteInfoRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsSiteInfoRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsPlaceChannelRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPlaceChannelRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsLinkRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLinkRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsFloorTemplateRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorTemplateRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsFloorPlaceRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorPlaceRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsAppFloorRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsAppFloorRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsAppFloorDataRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsAppFloorDataRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>
+	<dubbo:reference id="cmsImageSwitcherRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsImageSwitcherRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>    
+	
+	<dubbo:reference id="cmsPageColorRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPageColorRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>    
+	<dubbo:reference id="cmsPageInfoRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPageInfoRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>    
+	<dubbo:reference id="cmsPageTypeRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPageTypeRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>    
+	<dubbo:reference id="cmsLayoutTypeRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutTypeRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>    
+	<dubbo:reference id="cmsPageAttrPreRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPageAttrPreRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>    
+	<dubbo:reference id="cmsPageAttrPubRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPageAttrPubRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/> 
+	<dubbo:reference id="cmsLayoutPreRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutPreRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>    
+	<dubbo:reference id="cmsLayoutPubRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutPubRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>
+	<dubbo:reference id="cmsLayoutAttrPreRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutAttrPreRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>    
+	<dubbo:reference id="cmsLayoutAttrPubRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutAttrPubRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/> 
+	<dubbo:reference id="cmsLayoutItemPreRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutItemPreRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>    
+	<dubbo:reference id="cmsLayoutItemPubRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutItemPubRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>
+	<dubbo:reference id="cmsItemPropPreRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsItemPropPreRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>    
+	<dubbo:reference id="cmsItemPropPubRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsItemPropPubRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>                                              
+	<dubbo:reference id="cmsPicHotPreRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPicHotPreRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>    
+	<dubbo:reference id="cmsPicHotPubRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPicHotPubRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>                            
+	<dubbo:reference id="cmsModularComponentRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsModularComponentRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsModularRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsModularRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsModularPropRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsModularPropRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsModularParaPropRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsModularParaPropRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>                            
+	<dubbo:reference id="cmsModularPropValRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsModularPropValRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>                                               
+	<dubbo:reference id="cmsTemplateLibRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsTemplateLibRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>  
+	<dubbo:reference id="cmsTemplateLayoutRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsTemplateLayoutRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>                                               
+	<dubbo:reference id="cmsTemplateLayoutItemRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsTemplateLayoutItemRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>                                                                         
+	<dubbo:reference id="cmsPageConfigRSV" interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPageConfigRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${cms.dubbo.group}"/>                                                                         
+	 
+	
+</beans>  

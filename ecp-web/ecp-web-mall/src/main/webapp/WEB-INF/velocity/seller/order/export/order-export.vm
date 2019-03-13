@@ -1,0 +1,44 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript">
+    $(function(){
+        var exportInfo = '${exportInfo}';
+        var exportType = '${exportType}';
+        var p = JSON.parse(exportInfo);
+		var URL = '';
+		if(exportType == 'getSellerDetail'){
+			URL = GLOBAL.WEBROOT + '/seller/order/detail/'+ exportType;
+		} else {
+			URL = GLOBAL.WEBROOT + '/seller/order/manage/'+ exportType;
+		}
+		$('#info').text("正在下载。。。");
+        $.eAjax({
+            url: URL,
+            data: p,
+            success: function (result) {
+                if (result && result.resultFlag == 'ok') {
+                    window.location.href = GLOBAL.WEBROOT + '/seller/order/manage/export/'+result.fileId;
+                } else {
+                    eDialog.alert(result.resultMsg);
+                }
+				$('#info').text("");
+            },
+            failure: function () {
+				$('#info').text("");
+            }
+        });
+    });
+</script>
+<style>
+.loadingText {
+	width : 100%;
+	height : 100%;
+	line-height : 100%;
+	font-size : 30px;
+	font-weight : blod;
+	text-align : center;
+	margin-top : 150px;
+}
+</style>
+<div id="info" class="loadingText">
+	
+</div>

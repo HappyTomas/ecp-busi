@@ -1,0 +1,43 @@
+	    #if($null.isNull($catgList) || $catgList.isEmpty())
+		
+	      #else
+	         <div style="margin-left:10px;">
+	          <div class="row-fluid ">
+	             <div class="formSep"></div>
+					  <h4 class="formSep">
+					      已选择黑名单分类
+					 </h4>
+				 <div class="nItem">
+		   			<div style="overflow-x: auto;">
+					  <div class="row-fluid" style="margin-bottom: 10px;">
+									<div class="span6">
+										<a class="btn delRowTd" id="btn130AllDel" href="javascript:void(0)"><i class="icon-remove icon-white"></i>批量删除</a>
+									</div>
+                             </div> 
+                             <table id="coup130Table" class="seller-table coupon-tb">
+	                              <thead>
+	                                  <tr role="row">
+	                                      <th class="center selectColumn sorting_disabled" rowspan="1" colspan="1" aria-label="选择" align="center" style="width: 35px; vertical-align: middle; text-align: center; padding: 0px;"><input type="checkbox" id="dt_row_all_check" title="全选/全取消" style="margin: 0px;"></th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="分类编码" style="width: 40px;">分类编码</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="分类名称" style="width: 60px;">分类名称</th>
+	                                      <th class="sorting_disabled delRowTd" rowspan="1" colspan="1" aria-label="操作" style="width: 40px;">操作</th>
+	                                   </tr>
+	                                </thead>
+	                                 <tbody id="coup110TableTbody">
+	                                  #foreach( $catgVO in $catgList)
+	                                  <tr id="$!{catgVO.catgCode}-$!{catgVO.catgName}" role="row" class=odd">
+										    <td class=" center selectColumn" align="center" style="width: 35px; vertical-align: middle; text-align: center; padding: 0px;">
+											<input type="checkbox" id="130-$!{catgVO.catgCode}" catgcode="$!{catgVO.catgCode}" name="checkboxcoup130" >
+											</td>
+											<td>#escapeHtml( "$!{catgVO.catgCode}")</td>
+											<td  class="td-hhtxt" > <div>#escapeHtml( "$!{catgVO.catgName}")</div></td>
+											<td class="delRowTd"><a class="btn" data="$!{catgVO.catgCode}" name="delRow" href="javascript:void(0)"><i class="icon-remove icon-white"></i>删除</a></td>
+											</tr>
+	                                   #end
+	                                </tbody>
+	                          </table>
+                        </div>
+                	 </div>
+                 </div>
+               </div> 
+           #end      

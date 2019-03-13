@@ -1,0 +1,114 @@
+#parse("sys/sys_param.vm")
+<!--如果是活动的，则设置为1024 。否则为1200-->
+#if($!{pageTypeId}=="2" || $!{pageTypeId}=="4")
+	<link href="$!{CSS_PATH}/pageConfig/layout-1024.css" rel="stylesheet" type="text/css" media="screen"/>
+	<script type="text/javascript" src="$BUSIJS_PATH/pageConfig/pageConfig/modular/loading/promhomepage/prom-gdspictrues-template.js?version=$!{JS_VERSION}"></script>
+#end
+<!-- 模块化脚本基础库 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/requirejs/require.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/requirejs.common.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/public/public-js.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/preview/item-render.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/preview/page-common-preview.js?v=${JS_VERSION}"></script>
+<style>
+##处理背景色
+#if($!{pageAttr} && 
+	$!{pageAttr.backgroundColor} && 
+	$!{pageAttr.backgroundColor}!="" && 
+	$!{pageAttr.showBackFlag}=="1")
+.page-edit{background-color: #$!{pageAttr.backgroundColor}}
+#end
+img.imgFullWidth{width: 100%;height: 600px;}
+</style>
+#set($shopId = $!{pageInfo.shopId})
+<input type="hidden" value="$!{pageInfo.shopId}" id="hiddenShopId"/>
+<input type="hidden" value="$!{pageInfo.siteId}" id="siteId"/>
+##用于处理背景图片start
+<input type="hidden" id="attr-backgroundPic" value="$!{pageAttr.backgroundPic}">
+<input type="hidden" id="attr-backgroupShowType" value="$!{pageAttr.backgroupShowType}">
+##用于处理背景图片end
+##用于处理标题背景颜色start
+<input type="hidden" id="attr-titleBackgroundColor" value="$!{pageAttr.matchingColour}">
+##用于处理标题背景颜色end
+<input type="hidden" id="pre-itemIds" value="$!{itemIds}"/>
+<input type="hidden" id="pageTypeId" value="$!{pageTypeId}"/>
+<!-- 
+布局类型
+01：左右居中
+02：左右全宽
+03：左侧悬浮
+04：右侧悬浮
+-->
+<div class="page-edit">#*page-container2*#
+	<div class="layoutcontainer previewMainBox">
+		<!--渲染内容开始 start-->
+        ##布局项目
+        #foreach($!layout in $!pageConfig)
+        	##左、右悬浮
+        	#if($layout.cmsLayoutTypeRespDTO.layoutShowType && 
+        		($layout.cmsLayoutTypeRespDTO.layoutShowType == "03" || $layout.cmsLayoutTypeRespDTO.layoutShowType == "04"))
+				##左右悬浮
+				#set($layOutItemObj = $!layout.layoutItemPubRespDTOMap.entrySet())
+				#foreach($columnItem in $!layOutItemObj)
+					#foreach($crossItem in $!{columnItem.value})
+						#if($crossItem && $crossItem.modularId && $crossItem.modularId!="" && $crossItem.id && $crossItem.id!="")
+						<div class="modular skipfloor">
+							<input type="hidden" id="itemId" value="$!{crossItem.id}">
+							#parse($!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentVmUrl})
+						</div>
+						#end
+					#end
+				#end
+        		##parse("pageConfig/pageConfig/edit/page-common-floataround.vm")
+        	#else
+	        	#set($fullLayout = "")
+	        	#if($layout.cmsLayoutTypeRespDTO.layoutShowType && $layout.cmsLayoutTypeRespDTO.layoutShowType=="02")
+	        		#set($fullLayout = "layout-full")
+	        	#else
+	        		#set($fullLayout = "")
+				#end
+				<!--一个布局 start-->
+        		<div class="layout $!{fullLayout}" id="_layoutFloor_$!{layout.layoutId}">
+					<div class="layout-inner">
+            			<input type="hidden" name="layoutId" value="$!{layout.id}">
+							##循环有多少列start
+							#foreach($columnItem in $!layout.layoutItemPubRespDTOMap.entrySet())
+								##获取布局宽度start
+								#set($layoutIndex = $velocityCount - 1)
+        						#set($width = "")
+        						#foreach($map in $!{layout.cmsLayoutTypeRespDTO.layoutItemSizeMap.entrySet()})
+        							#if($layoutIndex == $map.key)
+										#set($width = "width:" + $!{map.value} + "px;")
+        							#end
+								#end
+								#if(!$null.isNull($fullLayout) && $fullLayout!="")
+            		    			#set($width = "width:100%;")
+            		    		#end
+								
+								##获取布局宽度end
+								<div class="tItem" style="$!{width}">##item 这里表示一列
+									##循环有多少行。既是有多少个纵向的item $!{columnItem.value}为List<CmsLayoutItemPreRespDTO> itemPropPreRespDTOList
+    								#foreach($crossItem in $!{columnItem.value})
+										<div class="modular" id="layoutFloor_$!{crossItem.itemId}">##一个模块start
+										
+										#if($crossItem && $crossItem.modularId && $crossItem.modularId!="" && $crossItem.id && $crossItem.id!="")
+        									##判断是否已经给模块配置了属性
+											#if($!{crossItem.itemPropPubRespDTOList} && $!{crossItem.itemPropPubRespDTOList.size()}>0)
+            									##这里抽出来成公共的模块，给编辑预览 发布公共调用。以后所有要添加的模块都要到这个vm里面进行逻辑处理
+            									##parse("/pageConfig/pageConfig/modular/common/modular-common-loading.vm")
+												#parse($!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentVmUrl})
+											#end##判断是否已经给模块配置了属性end
+										#end
+										</div>##一个模块 end
+    								#end
+								</div>
+							#end##循环多少列end
+					</div>
+        		</div>
+				<!--一个布局 end-->
+        	#end
+		#end
+		<!--渲染内容开始 end-->
+    </div>
+</div>

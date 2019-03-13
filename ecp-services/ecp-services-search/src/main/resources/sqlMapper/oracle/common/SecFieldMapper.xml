@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.search.dao.mapper.common.SecFieldMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.search.dao.model.SecField" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="OBJECT_ID" property="objectId" jdbcType="INTEGER" />
+    <result column="FIELD_BEAN_FIELD_NAME" property="fieldBeanFieldName" jdbcType="VARCHAR" />
+    <result column="FIELD_TYPE_NAME" property="fieldTypeName" jdbcType="VARCHAR" />
+    <result column="FIELD_INDEX_NAME" property="fieldIndexName" jdbcType="VARCHAR" />
+    <result column="FIELD_NAMECN" property="fieldNamecn" jdbcType="VARCHAR" />
+    <result column="FIELD_COMMENT" property="fieldComment" jdbcType="VARCHAR" />
+    <result column="FIELD_IF_BELONGTO_DF" property="fieldIfBelongtoDf" jdbcType="VARCHAR" />
+    <result column="FIELD_PROCESSOR_NAME" property="fieldProcessorName" jdbcType="VARCHAR" />
+    <result column="FIELD_IF_MUTLIVALUE" property="fieldIfMutlivalue" jdbcType="VARCHAR" />
+    <result column="FIELD_IF_FACET" property="fieldIfFacet" jdbcType="VARCHAR" />
+    <result column="FIELD_IF_SPELLCHECK" property="fieldIfSpellcheck" jdbcType="VARCHAR" />
+    <result column="FIELD_IF_HLFIELD" property="fieldIfHlfield" jdbcType="VARCHAR" />
+    <result column="FIELD_SORT" property="fieldSort" jdbcType="VARCHAR" />
+    <result column="FIELD_IF_SORTCUST" property="fieldIfSortcust" jdbcType="VARCHAR" />
+    <result column="FIELD_BOOST" property="fieldBoost" jdbcType="INTEGER" />
+    <result column="FIELD_IF_MULTILAN" property="fieldIfMultilan" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="FIELD_SORT_NUM" property="fieldSortNum" jdbcType="INTEGER" />
+    <result column="FIELD_PARAMS" property="fieldParams" jdbcType="VARCHAR" />
+    <result column="FIELD_INIT_SORT" property="fieldInitSort" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OBJECT_ID, FIELD_BEAN_FIELD_NAME, FIELD_TYPE_NAME, FIELD_INDEX_NAME, FIELD_NAMECN, 
+    FIELD_COMMENT, FIELD_IF_BELONGTO_DF, FIELD_PROCESSOR_NAME, FIELD_IF_MUTLIVALUE, FIELD_IF_FACET, 
+    FIELD_IF_SPELLCHECK, FIELD_IF_HLFIELD, FIELD_SORT, FIELD_IF_SORTCUST, FIELD_BOOST, 
+    FIELD_IF_MULTILAN, STATUS, CREATE_STAFF, CREATE_TIME, UPDATE_STAFF, UPDATE_TIME, 
+    FIELD_SORT_NUM, FIELD_PARAMS, FIELD_INIT_SORT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.search.dao.model.SecFieldCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_sec_field
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sec_field
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_sec_field
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.search.dao.model.SecFieldCriteria" >
+    delete from t_sec_field
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.search.dao.model.SecField" >
+    insert into t_sec_field (ID, OBJECT_ID, FIELD_BEAN_FIELD_NAME, 
+      FIELD_TYPE_NAME, FIELD_INDEX_NAME, FIELD_NAMECN, 
+      FIELD_COMMENT, FIELD_IF_BELONGTO_DF, FIELD_PROCESSOR_NAME, 
+      FIELD_IF_MUTLIVALUE, FIELD_IF_FACET, FIELD_IF_SPELLCHECK, 
+      FIELD_IF_HLFIELD, FIELD_SORT, FIELD_IF_SORTCUST, 
+      FIELD_BOOST, FIELD_IF_MULTILAN, STATUS, 
+      CREATE_STAFF, CREATE_TIME, UPDATE_STAFF, 
+      UPDATE_TIME, FIELD_SORT_NUM, FIELD_PARAMS, 
+      FIELD_INIT_SORT)
+    values (#{id,jdbcType=INTEGER}, #{objectId,jdbcType=INTEGER}, #{fieldBeanFieldName,jdbcType=VARCHAR}, 
+      #{fieldTypeName,jdbcType=VARCHAR}, #{fieldIndexName,jdbcType=VARCHAR}, #{fieldNamecn,jdbcType=VARCHAR}, 
+      #{fieldComment,jdbcType=VARCHAR}, #{fieldIfBelongtoDf,jdbcType=VARCHAR}, #{fieldProcessorName,jdbcType=VARCHAR}, 
+      #{fieldIfMutlivalue,jdbcType=VARCHAR}, #{fieldIfFacet,jdbcType=VARCHAR}, #{fieldIfSpellcheck,jdbcType=VARCHAR}, 
+      #{fieldIfHlfield,jdbcType=VARCHAR}, #{fieldSort,jdbcType=VARCHAR}, #{fieldIfSortcust,jdbcType=VARCHAR}, 
+      #{fieldBoost,jdbcType=INTEGER}, #{fieldIfMultilan,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createStaff,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{fieldSortNum,jdbcType=INTEGER}, #{fieldParams,jdbcType=VARCHAR}, 
+      #{fieldInitSort,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.search.dao.model.SecField" >
+    insert into t_sec_field
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="objectId != null" >
+        OBJECT_ID,
+      </if>
+      <if test="fieldBeanFieldName != null" >
+        FIELD_BEAN_FIELD_NAME,
+      </if>
+      <if test="fieldTypeName != null" >
+        FIELD_TYPE_NAME,
+      </if>
+      <if test="fieldIndexName != null" >
+        FIELD_INDEX_NAME,
+      </if>
+      <if test="fieldNamecn != null" >
+        FIELD_NAMECN,
+      </if>
+      <if test="fieldComment != null" >
+        FIELD_COMMENT,
+      </if>
+      <if test="fieldIfBelongtoDf != null" >
+        FIELD_IF_BELONGTO_DF,
+      </if>
+      <if test="fieldProcessorName != null" >
+        FIELD_PROCESSOR_NAME,
+      </if>
+      <if test="fieldIfMutlivalue != null" >
+        FIELD_IF_MUTLIVALUE,
+      </if>
+      <if test="fieldIfFacet != null" >
+        FIELD_IF_FACET,
+      </if>
+      <if test="fieldIfSpellcheck != null" >
+        FIELD_IF_SPELLCHECK,
+      </if>
+      <if test="fieldIfHlfield != null" >
+        FIELD_IF_HLFIELD,
+      </if>
+      <if test="fieldSort != null" >
+        FIELD_SORT,
+      </if>
+      <if test="fieldIfSortcust != null" >
+        FIELD_IF_SORTCUST,
+      </if>
+      <if test="fieldBoost != null" >
+        FIELD_BOOST,
+      </if>
+      <if test="fieldIfMultilan != null" >
+        FIELD_IF_MULTILAN,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="fieldSortNum != null" >
+        FIELD_SORT_NUM,
+      </if>
+      <if test="fieldParams != null" >
+        FIELD_PARAMS,
+      </if>
+      <if test="fieldInitSort != null" >
+        FIELD_INIT_SORT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="objectId != null" >
+        #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="fieldBeanFieldName != null" >
+        #{fieldBeanFieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldTypeName != null" >
+        #{fieldTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIndexName != null" >
+        #{fieldIndexName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldNamecn != null" >
+        #{fieldNamecn,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldComment != null" >
+        #{fieldComment,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIfBelongtoDf != null" >
+        #{fieldIfBelongtoDf,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldProcessorName != null" >
+        #{fieldProcessorName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIfMutlivalue != null" >
+        #{fieldIfMutlivalue,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIfFacet != null" >
+        #{fieldIfFacet,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIfSpellcheck != null" >
+        #{fieldIfSpellcheck,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIfHlfield != null" >
+        #{fieldIfHlfield,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldSort != null" >
+        #{fieldSort,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIfSortcust != null" >
+        #{fieldIfSortcust,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldBoost != null" >
+        #{fieldBoost,jdbcType=INTEGER},
+      </if>
+      <if test="fieldIfMultilan != null" >
+        #{fieldIfMultilan,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fieldSortNum != null" >
+        #{fieldSortNum,jdbcType=INTEGER},
+      </if>
+      <if test="fieldParams != null" >
+        #{fieldParams,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldInitSort != null" >
+        #{fieldInitSort,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.search.dao.model.SecFieldCriteria" resultType="java.lang.Long" >
+    select count(*) from t_sec_field
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_sec_field
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.objectId != null" >
+        OBJECT_ID = #{record.objectId,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldBeanFieldName != null" >
+        FIELD_BEAN_FIELD_NAME = #{record.fieldBeanFieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldTypeName != null" >
+        FIELD_TYPE_NAME = #{record.fieldTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldIndexName != null" >
+        FIELD_INDEX_NAME = #{record.fieldIndexName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldNamecn != null" >
+        FIELD_NAMECN = #{record.fieldNamecn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldComment != null" >
+        FIELD_COMMENT = #{record.fieldComment,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldIfBelongtoDf != null" >
+        FIELD_IF_BELONGTO_DF = #{record.fieldIfBelongtoDf,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldProcessorName != null" >
+        FIELD_PROCESSOR_NAME = #{record.fieldProcessorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldIfMutlivalue != null" >
+        FIELD_IF_MUTLIVALUE = #{record.fieldIfMutlivalue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldIfFacet != null" >
+        FIELD_IF_FACET = #{record.fieldIfFacet,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldIfSpellcheck != null" >
+        FIELD_IF_SPELLCHECK = #{record.fieldIfSpellcheck,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldIfHlfield != null" >
+        FIELD_IF_HLFIELD = #{record.fieldIfHlfield,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldSort != null" >
+        FIELD_SORT = #{record.fieldSort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldIfSortcust != null" >
+        FIELD_IF_SORTCUST = #{record.fieldIfSortcust,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldBoost != null" >
+        FIELD_BOOST = #{record.fieldBoost,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldIfMultilan != null" >
+        FIELD_IF_MULTILAN = #{record.fieldIfMultilan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fieldSortNum != null" >
+        FIELD_SORT_NUM = #{record.fieldSortNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.fieldParams != null" >
+        FIELD_PARAMS = #{record.fieldParams,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fieldInitSort != null" >
+        FIELD_INIT_SORT = #{record.fieldInitSort,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_sec_field
+    set ID = #{record.id,jdbcType=INTEGER},
+      OBJECT_ID = #{record.objectId,jdbcType=INTEGER},
+      FIELD_BEAN_FIELD_NAME = #{record.fieldBeanFieldName,jdbcType=VARCHAR},
+      FIELD_TYPE_NAME = #{record.fieldTypeName,jdbcType=VARCHAR},
+      FIELD_INDEX_NAME = #{record.fieldIndexName,jdbcType=VARCHAR},
+      FIELD_NAMECN = #{record.fieldNamecn,jdbcType=VARCHAR},
+      FIELD_COMMENT = #{record.fieldComment,jdbcType=VARCHAR},
+      FIELD_IF_BELONGTO_DF = #{record.fieldIfBelongtoDf,jdbcType=VARCHAR},
+      FIELD_PROCESSOR_NAME = #{record.fieldProcessorName,jdbcType=VARCHAR},
+      FIELD_IF_MUTLIVALUE = #{record.fieldIfMutlivalue,jdbcType=VARCHAR},
+      FIELD_IF_FACET = #{record.fieldIfFacet,jdbcType=VARCHAR},
+      FIELD_IF_SPELLCHECK = #{record.fieldIfSpellcheck,jdbcType=VARCHAR},
+      FIELD_IF_HLFIELD = #{record.fieldIfHlfield,jdbcType=VARCHAR},
+      FIELD_SORT = #{record.fieldSort,jdbcType=VARCHAR},
+      FIELD_IF_SORTCUST = #{record.fieldIfSortcust,jdbcType=VARCHAR},
+      FIELD_BOOST = #{record.fieldBoost,jdbcType=INTEGER},
+      FIELD_IF_MULTILAN = #{record.fieldIfMultilan,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      FIELD_SORT_NUM = #{record.fieldSortNum,jdbcType=INTEGER},
+      FIELD_PARAMS = #{record.fieldParams,jdbcType=VARCHAR},
+      FIELD_INIT_SORT = #{record.fieldInitSort,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.search.dao.model.SecField" >
+    update t_sec_field
+    <set >
+      <if test="objectId != null" >
+        OBJECT_ID = #{objectId,jdbcType=INTEGER},
+      </if>
+      <if test="fieldBeanFieldName != null" >
+        FIELD_BEAN_FIELD_NAME = #{fieldBeanFieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldTypeName != null" >
+        FIELD_TYPE_NAME = #{fieldTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIndexName != null" >
+        FIELD_INDEX_NAME = #{fieldIndexName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldNamecn != null" >
+        FIELD_NAMECN = #{fieldNamecn,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldComment != null" >
+        FIELD_COMMENT = #{fieldComment,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIfBelongtoDf != null" >
+        FIELD_IF_BELONGTO_DF = #{fieldIfBelongtoDf,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldProcessorName != null" >
+        FIELD_PROCESSOR_NAME = #{fieldProcessorName,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIfMutlivalue != null" >
+        FIELD_IF_MUTLIVALUE = #{fieldIfMutlivalue,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIfFacet != null" >
+        FIELD_IF_FACET = #{fieldIfFacet,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIfSpellcheck != null" >
+        FIELD_IF_SPELLCHECK = #{fieldIfSpellcheck,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIfHlfield != null" >
+        FIELD_IF_HLFIELD = #{fieldIfHlfield,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldSort != null" >
+        FIELD_SORT = #{fieldSort,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldIfSortcust != null" >
+        FIELD_IF_SORTCUST = #{fieldIfSortcust,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldBoost != null" >
+        FIELD_BOOST = #{fieldBoost,jdbcType=INTEGER},
+      </if>
+      <if test="fieldIfMultilan != null" >
+        FIELD_IF_MULTILAN = #{fieldIfMultilan,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fieldSortNum != null" >
+        FIELD_SORT_NUM = #{fieldSortNum,jdbcType=INTEGER},
+      </if>
+      <if test="fieldParams != null" >
+        FIELD_PARAMS = #{fieldParams,jdbcType=VARCHAR},
+      </if>
+      <if test="fieldInitSort != null" >
+        FIELD_INIT_SORT = #{fieldInitSort,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.search.dao.model.SecField" >
+    update t_sec_field
+    set OBJECT_ID = #{objectId,jdbcType=INTEGER},
+      FIELD_BEAN_FIELD_NAME = #{fieldBeanFieldName,jdbcType=VARCHAR},
+      FIELD_TYPE_NAME = #{fieldTypeName,jdbcType=VARCHAR},
+      FIELD_INDEX_NAME = #{fieldIndexName,jdbcType=VARCHAR},
+      FIELD_NAMECN = #{fieldNamecn,jdbcType=VARCHAR},
+      FIELD_COMMENT = #{fieldComment,jdbcType=VARCHAR},
+      FIELD_IF_BELONGTO_DF = #{fieldIfBelongtoDf,jdbcType=VARCHAR},
+      FIELD_PROCESSOR_NAME = #{fieldProcessorName,jdbcType=VARCHAR},
+      FIELD_IF_MUTLIVALUE = #{fieldIfMutlivalue,jdbcType=VARCHAR},
+      FIELD_IF_FACET = #{fieldIfFacet,jdbcType=VARCHAR},
+      FIELD_IF_SPELLCHECK = #{fieldIfSpellcheck,jdbcType=VARCHAR},
+      FIELD_IF_HLFIELD = #{fieldIfHlfield,jdbcType=VARCHAR},
+      FIELD_SORT = #{fieldSort,jdbcType=VARCHAR},
+      FIELD_IF_SORTCUST = #{fieldIfSortcust,jdbcType=VARCHAR},
+      FIELD_BOOST = #{fieldBoost,jdbcType=INTEGER},
+      FIELD_IF_MULTILAN = #{fieldIfMultilan,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      FIELD_SORT_NUM = #{fieldSortNum,jdbcType=INTEGER},
+      FIELD_PARAMS = #{fieldParams,jdbcType=VARCHAR},
+      FIELD_INIT_SORT = #{fieldInitSort,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

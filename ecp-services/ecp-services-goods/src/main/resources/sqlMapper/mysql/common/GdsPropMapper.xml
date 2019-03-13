@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.common.GdsPropMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsProp" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PROP_NAME" property="propName" jdbcType="VARCHAR" />
+    <result column="PROP_SNAME" property="propSname" jdbcType="VARCHAR" />
+    <result column="PROP_VALUE_TYPE" property="propValueType" jdbcType="VARCHAR" />
+    <result column="PROP_TYPE" property="propType" jdbcType="VARCHAR" />
+    <result column="PROP_DESC" property="propDesc" jdbcType="VARCHAR" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="PROP_INPUT_TYPE" property="propInputType" jdbcType="VARCHAR" />
+    <result column="PROP_INPUT_RULE" property="propInputRule" jdbcType="VARCHAR" />
+    <result column="IF_ABLE_EDIT" property="ifAbleEdit" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PROP_NAME, PROP_SNAME, PROP_VALUE_TYPE, PROP_TYPE, PROP_DESC, SORT_NO, STATUS, 
+    CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, PROP_INPUT_TYPE, PROP_INPUT_RULE, 
+    IF_ABLE_EDIT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsPropCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_gds_prop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_gds_prop
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_gds_prop
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsPropCriteria" >
+    delete from t_gds_prop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.goods.dao.model.GdsProp" >
+    insert into t_gds_prop (ID, PROP_NAME, PROP_SNAME, 
+      PROP_VALUE_TYPE, PROP_TYPE, PROP_DESC, 
+      SORT_NO, STATUS, CREATE_TIME, 
+      CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, 
+      PROP_INPUT_TYPE, PROP_INPUT_RULE, IF_ABLE_EDIT
+      )
+    values (#{id,jdbcType=INTEGER}, #{propName,jdbcType=VARCHAR}, #{propSname,jdbcType=VARCHAR}, 
+      #{propValueType,jdbcType=VARCHAR}, #{propType,jdbcType=VARCHAR}, #{propDesc,jdbcType=VARCHAR}, 
+      #{sortNo,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, 
+      #{propInputType,jdbcType=VARCHAR}, #{propInputRule,jdbcType=VARCHAR}, #{ifAbleEdit,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsProp" >
+    insert into t_gds_prop
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="propName != null" >
+        PROP_NAME,
+      </if>
+      <if test="propSname != null" >
+        PROP_SNAME,
+      </if>
+      <if test="propValueType != null" >
+        PROP_VALUE_TYPE,
+      </if>
+      <if test="propType != null" >
+        PROP_TYPE,
+      </if>
+      <if test="propDesc != null" >
+        PROP_DESC,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="propInputType != null" >
+        PROP_INPUT_TYPE,
+      </if>
+      <if test="propInputRule != null" >
+        PROP_INPUT_RULE,
+      </if>
+      <if test="ifAbleEdit != null" >
+        IF_ABLE_EDIT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="propName != null" >
+        #{propName,jdbcType=VARCHAR},
+      </if>
+      <if test="propSname != null" >
+        #{propSname,jdbcType=VARCHAR},
+      </if>
+      <if test="propValueType != null" >
+        #{propValueType,jdbcType=VARCHAR},
+      </if>
+      <if test="propType != null" >
+        #{propType,jdbcType=VARCHAR},
+      </if>
+      <if test="propDesc != null" >
+        #{propDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="propInputType != null" >
+        #{propInputType,jdbcType=VARCHAR},
+      </if>
+      <if test="propInputRule != null" >
+        #{propInputRule,jdbcType=VARCHAR},
+      </if>
+      <if test="ifAbleEdit != null" >
+        #{ifAbleEdit,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsPropCriteria" resultType="java.lang.Long" >
+    select count(*) from t_gds_prop
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_gds_prop
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.propName != null" >
+        PROP_NAME = #{record.propName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propSname != null" >
+        PROP_SNAME = #{record.propSname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propValueType != null" >
+        PROP_VALUE_TYPE = #{record.propValueType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propType != null" >
+        PROP_TYPE = #{record.propType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propDesc != null" >
+        PROP_DESC = #{record.propDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortNo != null" >
+        SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.propInputType != null" >
+        PROP_INPUT_TYPE = #{record.propInputType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propInputRule != null" >
+        PROP_INPUT_RULE = #{record.propInputRule,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifAbleEdit != null" >
+        IF_ABLE_EDIT = #{record.ifAbleEdit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_gds_prop
+    set ID = #{record.id,jdbcType=INTEGER},
+      PROP_NAME = #{record.propName,jdbcType=VARCHAR},
+      PROP_SNAME = #{record.propSname,jdbcType=VARCHAR},
+      PROP_VALUE_TYPE = #{record.propValueType,jdbcType=VARCHAR},
+      PROP_TYPE = #{record.propType,jdbcType=VARCHAR},
+      PROP_DESC = #{record.propDesc,jdbcType=VARCHAR},
+      SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      PROP_INPUT_TYPE = #{record.propInputType,jdbcType=VARCHAR},
+      PROP_INPUT_RULE = #{record.propInputRule,jdbcType=VARCHAR},
+      IF_ABLE_EDIT = #{record.ifAbleEdit,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsProp" >
+    update t_gds_prop
+    <set >
+      <if test="propName != null" >
+        PROP_NAME = #{propName,jdbcType=VARCHAR},
+      </if>
+      <if test="propSname != null" >
+        PROP_SNAME = #{propSname,jdbcType=VARCHAR},
+      </if>
+      <if test="propValueType != null" >
+        PROP_VALUE_TYPE = #{propValueType,jdbcType=VARCHAR},
+      </if>
+      <if test="propType != null" >
+        PROP_TYPE = #{propType,jdbcType=VARCHAR},
+      </if>
+      <if test="propDesc != null" >
+        PROP_DESC = #{propDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="propInputType != null" >
+        PROP_INPUT_TYPE = #{propInputType,jdbcType=VARCHAR},
+      </if>
+      <if test="propInputRule != null" >
+        PROP_INPUT_RULE = #{propInputRule,jdbcType=VARCHAR},
+      </if>
+      <if test="ifAbleEdit != null" >
+        IF_ABLE_EDIT = #{ifAbleEdit,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.goods.dao.model.GdsProp" >
+    update t_gds_prop
+    set PROP_NAME = #{propName,jdbcType=VARCHAR},
+      PROP_SNAME = #{propSname,jdbcType=VARCHAR},
+      PROP_VALUE_TYPE = #{propValueType,jdbcType=VARCHAR},
+      PROP_TYPE = #{propType,jdbcType=VARCHAR},
+      PROP_DESC = #{propDesc,jdbcType=VARCHAR},
+      SORT_NO = #{sortNo,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      PROP_INPUT_TYPE = #{propInputType,jdbcType=VARCHAR},
+      PROP_INPUT_RULE = #{propInputRule,jdbcType=VARCHAR},
+      IF_ABLE_EDIT = #{ifAbleEdit,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

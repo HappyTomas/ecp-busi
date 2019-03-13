@@ -1,0 +1,56 @@
+
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$BUSIJS_PATH/seller/order/pay/yhPayTab.js?version=$!{JS_VERSION}" ></script>
+
+<div >
+
+                <table class="seller-table">
+                    <thead>
+                    <tr>
+                        <td style="width: 170px">支付通道名称</td>
+                        <td style="width: 150px">订单编号</td>
+                        <td style="width: 150px">支付平台流水号</td>
+                        <td>清算金额</td>
+                        <td>订单金额</td>
+                        <td>支付时间</td>
+                        <td>对账状态</td>
+						<td>清算日期</td>
+                        <td>店铺名称</td>
+                        <td>会员名</td>
+                        <td>银行卡号</td>
+						<td>银行卡姓名</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+					#if(!$bankPayListPage.list || $bankPayListPage.list.size() == 0)
+            	       <tr class="fav-opt">
+            			<td colspan="12">
+            			        #if(!$msg)很遗憾，暂无数据#else $!msg #end
+            			</td>
+            		</tr>
+            	    #end
+            		#foreach ($record in $bankPayListPage.list)
+                    <tr>
+                        <td>#translate('ORD_PAY_WAY',$!{record.payWay})</td>
+						<td>$!{record.orderId}</td>
+						<td>$!{record.transNo}</td>
+						<td>#moneyNum($!{record.transAmount})</td>
+						<td>#moneyNum($!{record.orderAmount})</td>
+						<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{record.payTime})</td>
+                        <td>#translate('ORD_AUDIT_STATUS',$!{record.auditStatus})</td>
+						<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{record.checkDate})</td>
+                        <td>$!{record.shopName}</td>
+						<td>$!{record.staffName}</td>
+						<td>$!{record.cardNo}</td>
+						<td>$!{record.cardName}</td>
+                    </tr>
+					#end
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="row-fluid">
+                    <div id="pageControlbar" class="ecppage" data-total-page="$!{bankPayListPage.totalPage}" data-total-row="$!{bankPayListPage.totalRow}" data-page-size="$!{bankPayListPage.pageSize}" data-page-number="$!{bankPayListPage.pageNumber}" data-status="begin"></div>
+                </div>
+</div>

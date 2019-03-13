@@ -1,0 +1,6 @@
+		<input class="hide" id="shopCfgId"  value="$!{shopCfgId}">
+		#foreach($param in $!{list})
+		<div>
+    		#parse("/unpf/shopcfg/shopcfg-${param.spCode}.vm")
+    	</div>
+    	#end

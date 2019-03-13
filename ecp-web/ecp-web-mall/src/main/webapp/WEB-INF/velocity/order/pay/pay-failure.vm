@@ -1,0 +1,33 @@
+#parse("/module/mod-form.vm")
+#parse("sys/sys_param.vm")
+<title>付款失败</title>
+<link href="$!{CSS_PATH}/order.css" type="text/css" rel="stylesheet"/>
+<link href="$!{CSS_PATH}/reset.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+
+<!--主要内容 begin--> 
+<div id="content">
+    <div class="wrap1200">
+        <div class="order-sb-state">
+            <div class="error-tip">
+                <table width="100%" border="0">
+                    <tbody><tr>
+                        <td class="mstate-icc">
+                           <i class="mstate"></i>
+                        </td>
+                        <td>
+                            <p class="txt">
+                                <strong style="font-size: 20px;">您付款失败!</strong>
+                            </p> 
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<!--主要内容 end-->
+

@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.OrdMainStaffIdxMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdMainStaffIdx" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="DELIVER_DATE" property="deliverDate" jdbcType="TIMESTAMP" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="SYS_TYPE" property="sysType" jdbcType="VARCHAR" />
+    <result column="INVOICE_TYPE" property="invoiceType" jdbcType="VARCHAR" />
+    <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+    <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="DISPATCH_TYPE" property="dispatchType" jdbcType="VARCHAR" />
+    <result column="ORDER_TWO_STATUS" property="orderTwoStatus" jdbcType="VARCHAR" />
+    <result column="PAY_TRAN_NO" property="payTranNo" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, STAFF_ID, ORDER_TIME, STATUS, DELIVER_DATE, ORDER_ID, SITE_ID, SYS_TYPE, INVOICE_TYPE, 
+    CONTACT_NAME, CONTACT_PHONE, DISPATCH_TYPE, ORDER_TWO_STATUS, PAY_TRAN_NO, SHOP_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.OrdMainStaffIdxCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_ord_main_staff_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ord_main_staff_idx
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_ord_main_staff_idx
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdMainStaffIdxCriteria" >
+    delete from t_ord_main_staff_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.OrdMainStaffIdx" >
+    insert into t_ord_main_staff_idx (ID, STAFF_ID, ORDER_TIME, 
+      STATUS, DELIVER_DATE, ORDER_ID, 
+      SITE_ID, SYS_TYPE, INVOICE_TYPE, 
+      CONTACT_NAME, CONTACT_PHONE, DISPATCH_TYPE, 
+      ORDER_TWO_STATUS, PAY_TRAN_NO, SHOP_ID
+      )
+    values (#{id,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{deliverDate,jdbcType=TIMESTAMP}, #{orderId,jdbcType=VARCHAR}, 
+      #{siteId,jdbcType=INTEGER}, #{sysType,jdbcType=VARCHAR}, #{invoiceType,jdbcType=VARCHAR}, 
+      #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{dispatchType,jdbcType=VARCHAR}, 
+      #{orderTwoStatus,jdbcType=VARCHAR}, #{payTranNo,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.OrdMainStaffIdx" >
+    insert into t_ord_main_staff_idx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="deliverDate != null" >
+        DELIVER_DATE,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="sysType != null" >
+        SYS_TYPE,
+      </if>
+      <if test="invoiceType != null" >
+        INVOICE_TYPE,
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME,
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE,
+      </if>
+      <if test="dispatchType != null" >
+        DISPATCH_TYPE,
+      </if>
+      <if test="orderTwoStatus != null" >
+        ORDER_TWO_STATUS,
+      </if>
+      <if test="payTranNo != null" >
+        PAY_TRAN_NO,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverDate != null" >
+        #{deliverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="sysType != null" >
+        #{sysType,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null" >
+        #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatchType != null" >
+        #{dispatchType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTwoStatus != null" >
+        #{orderTwoStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payTranNo != null" >
+        #{payTranNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdMainStaffIdxCriteria" resultType="java.lang.Long" >
+    select count(*) from t_ord_main_staff_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_ord_main_staff_idx
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderTime != null" >
+        ORDER_TIME = #{record.orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deliverDate != null" >
+        DELIVER_DATE = #{record.deliverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysType != null" >
+        SYS_TYPE = #{record.sysType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceType != null" >
+        INVOICE_TYPE = #{record.invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactName != null" >
+        CONTACT_NAME = #{record.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPhone != null" >
+        CONTACT_PHONE = #{record.contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dispatchType != null" >
+        DISPATCH_TYPE = #{record.dispatchType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderTwoStatus != null" >
+        ORDER_TWO_STATUS = #{record.orderTwoStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payTranNo != null" >
+        PAY_TRAN_NO = #{record.payTranNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_ord_main_staff_idx
+    set ID = #{record.id,jdbcType=INTEGER},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      ORDER_TIME = #{record.orderTime,jdbcType=TIMESTAMP},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      DELIVER_DATE = #{record.deliverDate,jdbcType=TIMESTAMP},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      SYS_TYPE = #{record.sysType,jdbcType=VARCHAR},
+      INVOICE_TYPE = #{record.invoiceType,jdbcType=VARCHAR},
+      CONTACT_NAME = #{record.contactName,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{record.contactPhone,jdbcType=VARCHAR},
+      DISPATCH_TYPE = #{record.dispatchType,jdbcType=VARCHAR},
+      ORDER_TWO_STATUS = #{record.orderTwoStatus,jdbcType=VARCHAR},
+      PAY_TRAN_NO = #{record.payTranNo,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.OrdMainStaffIdx" >
+    update t_ord_main_staff_idx
+    <set >
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="deliverDate != null" >
+        DELIVER_DATE = #{deliverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        SITE_ID = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="sysType != null" >
+        SYS_TYPE = #{sysType,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceType != null" >
+        INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatchType != null" >
+        DISPATCH_TYPE = #{dispatchType,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTwoStatus != null" >
+        ORDER_TWO_STATUS = #{orderTwoStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payTranNo != null" >
+        PAY_TRAN_NO = #{payTranNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.OrdMainStaffIdx" >
+    update t_ord_main_staff_idx
+    set STAFF_ID = #{staffId,jdbcType=INTEGER},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      DELIVER_DATE = #{deliverDate,jdbcType=TIMESTAMP},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      SITE_ID = #{siteId,jdbcType=INTEGER},
+      SYS_TYPE = #{sysType,jdbcType=VARCHAR},
+      INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR},
+      CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      DISPATCH_TYPE = #{dispatchType,jdbcType=VARCHAR},
+      ORDER_TWO_STATUS = #{orderTwoStatus,jdbcType=VARCHAR},
+      PAY_TRAN_NO = #{payTranNo,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,28 @@
+#parse("sys/sys_param.vm")
+<ul class="ctUl">
+	 #if($!{list.list.size()}==0)
+       <p class="pro-emptyTxt">「暂无评论」</p>
+     #else
+        #foreach($eval in $!{list.list})
+        <li>
+            <div class="cimg">
+                <img src="$!{eval.custPic}" alt=""/>
+            </div>
+            <div class="cont">
+                <div class="ch">
+                    <span class="cname">$!{eval.staffName}</span>
+                    <span class="ctime">$!date.format('yyyy-MM-dd HH:mm',$!{eval.evaluationTime})</span>
+                </div>
+                <div class="txt">
+					$!{eval.detail}
+                </div>
+            </div>
+        </li>
+		#end
+	 #end
+</ul>
+#if($!{list.list.size()}>0)
+<div class="ctAll">
+    <a href="$!{CONTEXT_PATH}/gdsdetail/tomoregdseval?gdsId=$!{gdsId}&skuId=$!{skuId}">全部评论(<span class="num">$!{list.totalRow}</span>)</a>
+</div>
+#end

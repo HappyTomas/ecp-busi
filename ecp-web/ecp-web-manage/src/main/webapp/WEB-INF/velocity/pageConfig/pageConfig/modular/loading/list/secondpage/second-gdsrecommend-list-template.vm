@@ -1,0 +1,24 @@
+#parse("sys/sys_param.vm")
+#if(${gdsList} && $gdsList.size() > 0)
+	#foreach($gds in $!{gdsList})
+   	<li>
+          <div class="img-w">
+              <a href='#if($!{gds.url} && $!{gds.url} !='')$!{MALL_SITE_URL}$!{gds.url}' target='_blank' #else javascript:void(0);'#end><img src="$!{gds.mainPic.URL}"></a>
+          </div>
+          <p>特价
+          	   #if($!{gds.skuInfo.discountPrice} && $!{gds.skuInfo.discountPrice} != '')
+              <span class="rob">#money($!{gds.skuInfo.discountPrice})</span>
+              #end
+          </p>
+          <p>
+              <a href="#if($!{gds.url} && $!{gds.url} !='')$!{MALL_SITE_URL}$!{gds.url}" target='_blank' #else javascript:void(0);"#end>$!{gds.gdsName}</a>
+          </p>
+          #if(!${gds.mainCatgName} || ${gds.mainCatgName} == '')
+          	   #set(${gds.mainCatgName} = "无")
+          #end
+          <p>指导：$!{gds.mainCatgName}</p>
+   </li>
+   #end
+#else
+	<div class='pro-empty'>#if(${errMsg} && $!{errMsg} != '')$!{errMsg} #else 亲，暂无数据！#end</div>
+#end

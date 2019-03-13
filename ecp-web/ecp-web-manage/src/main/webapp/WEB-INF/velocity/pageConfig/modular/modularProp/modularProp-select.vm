@@ -1,0 +1,50 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/modular/modularProp/modularProp-select.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+
+<input type="hidden" name="modularId" id="modularId" value="$!{modularId}">
+
+<!--搜索区域-->
+<div class="well well-searchForm">
+    <form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <label class="control-label" for="pageName">属性名称：</label>
+                    <div class="controls">
+                        <input type="hidden" name="isValid" id="isValid" value="$!{isValid}">
+                        <input type="text" name="propName"  class="input-medium">
+                    </div>
+                </div>
+            </div>
+             <div class="span6">
+                <div class="control-group">
+                    <label class="control-label">属性值类型：</label>
+                    <div class="controls">
+	                     <select maxlength="2" name="propValueType" class="input-large">
+			    			<option value="">--请选择--</option>
+			    			#listParam('CMS_PROP_VALUE_TYPE',$!{promVO.propValueType})
+			    		</select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<!--操作按钮区域-->
+<div class="row-fluid" style="margin-bottom: 10px;">
+    <div class="span6">
+        <a class="btn btn-info" id="saveSelectProp" href="javascript:void(0)"><i class="icon-ok-sign icon-white"></i>保存</a>
+    </div>
+    <div class="pull-right">
+        <a class="btn btn-info" id="btnFormSearch" href="javascript:void(0)"><i class="icon-search icon-white"></i>查询</a>
+        <a class="btn" id="btnFormReset" href="javascript:void(0)"><i class="icon-refresh"></i>重置</a>
+    </div>
+</div>
+
+<!--列表区域-->
+<div class="row-fluid">
+    <table id="dataGridTable"></table>
+</div>

@@ -1,0 +1,40 @@
+<script type="text/javascript">
+    $('#radioPost').click(function(){
+        $('#post').removeAttr("disabled");
+        $('#templateId').attr('disabled',"true");
+        $('#templateId').val("");
+    });
+    $('#radioTemplate').click(function(){
+        $('#templateId').removeAttr("disabled");
+        $('#post').attr('disabled',"true");
+        $("#post").val("0.00");
+    });
+</script>
+<div class="formSep row-fluid">
+    #set($postCheck = "1")
+    #if("0.00" == ${unpfShopCfgInfoVO.post} && "" != ${unpfShopCfgInfoVO.templateId})
+        #set($postCheck = "0")
+    #end
+
+    <div class="row-fluid" id="costs">
+        <div class="span4">
+            <div class="control-group">
+                <label class="control-label"><input type="radio" id="radioPost" class="yunfeic" name="unpfShopCfgInfoVO.freight_by_buyer" #if($postCheck == '1') checked   #end style="margin-right: 5px;margin-top: 0px;float: initial;">统一运费：</label>
+                <div class="controls">
+                    <input type="text" id="post" name="unpfShopCfgInfoVO.post" value="$!{unpfShopCfgInfoVO.post}" #if($postCheck == '0') disabled #end style="width:80px;" ><span style="color:red">&nbsp;&nbsp;元</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid" id="mould">
+        <div class="span12">
+            <div class="control-group">
+                <label class="control-label"><input type="radio" id="radioTemplate" class="yunfeic" name="unpfShopCfgInfoVO.freight_by_buyer" #if($postCheck == '0') checked   #end style="margin-right: 5px;margin-top: 0px;float: initial;">运费模板：</label>
+                <div class="controls">
+                    <input type="text" id="templateId" name="unpfShopCfgInfoVO.templateId" value="$!{unpfShopCfgInfoVO.templateId}" onkeyup="this.value=this.value.replace(/\D/g,'')" #if($postCheck == '1') disabled #end  onafterpaste="this.value=this.value.replace(/\D/g,'')" ><span style="color:red;margin-top:0px;">注意该模板为第三方平台运费模板id&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

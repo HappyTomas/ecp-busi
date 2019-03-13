@@ -1,0 +1,103 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/regist.js"></script>
+<style >
+	.error{color:red;}
+</style>
+<!--header-->
+<div id="header" class="clearfix">
+    <!--logo-->
+    <div class="wrap960 logoBg">
+        <div class="logo">
+            <a href="$CONTEXT_PATH/homepage"><img src="#siteLogo('','485x130!')" style="float:left"/></a>
+        </div>
+        <div class="paylink">
+            <a href="$CONTEXT_PATH/register">
+                会员注册
+            </a>
+			|
+			<a href="$CONTEXT_PATH/register/company">
+				企业会员注册
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--regist-->
+<div id="content" class="wrap100 clearfix">
+    <div class="wrap960 login pad-tb ">
+        <div class="regist-tit">
+            <h3>用户注册</h3><span class="fr mt10 log">我已经注册，<a href="$CONTEXT_PATH/login"> 马上登录</a></span></div>
+        <div class="regist-box">
+            <form class="form-horizontal required-validate regist" id="formRegist">
+                <div class="control-group">
+                    <label class="control-label">用户名：</label>
+                    <div class="controls">
+                        <input type="text" name="staffCode" id="staffCode" class="checkStaffCode required">
+                        <span id="isExist"></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">请设置密码：</label>
+                    <div class="controls">
+                        <input type="password" class="required checkPassword" maxLength="16" id="StaffPassword" name="StaffPassword">
+                        <span>6-16位字符，建议由字母，数字和符号两种以上组合</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">请确认密码：</label>
+                    <div class="controls">
+                        <input type="password" class="required" maxLength="16" equalTo="#StaffPassword" id="StaffPassword2" name="StaffPassword2">
+                        <span>完成验证后，可以用手机号码登录和找回密码</span>
+                    </div>
+                </div>
+				#if($!{flag}=='1')
+                <div class="control-group">
+                    <label class="control-label" for="">验证手机：</label>
+                    <div class="controls">
+                        <input type="text" class="required mobilePhone" id="serialNumber" name="serialNumber" maxlength="11">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">短信验证码：</label>
+                    <div class="controls">
+                        <input type="text" class="required input-small required" name="phoneCode" id="phoneCode">
+                        <button type="button" class="verify-bg" id="sms-win-getcode">获取短信验证码</button>
+                    </div>
+                </div>
+				#else
+				 <div class="control-group">
+                    <label class="control-label" for="">手机号码：</label>
+                    <div class="controls">
+                        <input type="text" class="required mobilePhone" id="serialNumber" name="serialNumber" maxlength="11">
+                    </div>
+                </div>
+				
+				#end
+                <div class="control-group">
+                    <label class="control-label" for="">验证码：</label>
+                    <div class="controls">
+                        <input type="text" class="required input-small required" name="captchaCode" id="captchaCode">
+						<img id="captchaCodeImg" src="captcha/CapthcaImage"/>&nbsp;
+                        <span><a id="refleshCaptchaCode" href="javascript:void(0);">看不清楚，换一张</a></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                       <!-- <label class="checkbox">
+                            <input type="checkbox"> 我已阅读并同意
+                        </label>-->
+                        <input type="button" class="btn btn-danger" value="立即注册" >
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<form id="loginform">
+         <input type="hidden" name="j_username" id="j_username" />
+         <input type="hidden" name="j_password" id="j_password" />
+</form>
+<!--footer-->
+<!--底部 begin-->
+#parse("/main/main-bottom.vm")
+<!--底部 end-->

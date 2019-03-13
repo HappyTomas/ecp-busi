@@ -1,0 +1,56 @@
+#parse("sys/sys_param.vm")
+<title>收货地址管理</title>
+ 
+<link rel="stylesheet" href="$!{CSS_PATH}/member.css" />
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/buyer-address.js?version=$!{JS_VERSION}" ></script>
+
+            <!--会员中心-->
+<div id="main">
+    <ul class="sptj-tit" id="myTab">
+        <li><a href="#" class="titQh">收货地址</a></li>
+    </ul>
+    <div class="sptj-box addr-form clearfix">
+        <!--收货地址-->
+        <div class="show">
+            <span class="mbtn" id="addrnew">新增收货地址</span>
+            <span class="c-red ml10">您已创建$!{count}个收货地址，最多可创建10个</span>
+            <table class="add-table">
+                <thead>
+                <tr class="add-table-border">
+                    <th>收货人</th>
+                    <th>所在地区</th>
+                    <th>详细地址</th>
+                    <th>手机号码</th>
+                    <th>固话号码</th>
+                    <th>操作</th>
+                    <th class="add-button"></th>
+                </tr>
+                </thead>
+                <tbody>
+											#foreach($param in $listaddr)
+                <tr class="add-table-border">
+                    <td width="60px">$!{param.contactName}</td>
+                    <td width="120px">中国#areaName($!{param.province})#areaName($!{param.cityCode})#areaName($!{param.countyCode})</td>
+                    <td width="300px">$!{param.chnlAddress}</td>
+                    <td width="30px">$!{param.contactPhone}</td>
+                    <td width="60px">$!{param.contactNumber}</td>
+                    <td width="50px"><a href="javascript:void(0);" onclick="buyeredit.editaddr($!{param.id}, $!{param.staffId})"> 修改</a>|<a href=""javascript:void(0);"" onclick="buyeredit.deladdr($!{param.id}, $!{param.staffId})">删除</a></td>
+                    #if($!{param.usingFlag} == 1)
+                    <td width="50px"><span class="note-default"><a href="#">默认地址</a></span></td>
+                    #else
+                    <td width="50px"><span class="note"><a href="javascript:void(0);" onclick="buyeredit.setaddr($!{param.id}, $!{param.staffId})">设为默认</a> </span></td>
+                    #end
+                </tr>
+                #end
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+				<form id="editAddrFrom" action="${CONTEXT_PATH}/custaddr/editaddr" method="post">
+					<input type="hidden"  name ="addrid" id ="addrid" value="" />
+					<input type="hidden"  name ="staffid" id ="staffid" value="" />
+		    </form>
+</div>
+

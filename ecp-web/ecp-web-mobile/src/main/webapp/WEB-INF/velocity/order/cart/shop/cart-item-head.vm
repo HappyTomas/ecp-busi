@@ -1,0 +1,28 @@
+<div class="cd-box shop" id="select_shop_$!{cart.shopId}_$velocityCount">
+    <div class="cd-tit-bg">
+        <div class="cd-checkt">
+            <input type="checkbox" class="ui-checkbox shopCheck" id="checkbox_$!{cart.shopId}_$velocityCount"/>
+            <label for="checkbox_$!{cart.shopId}_$velocityCount"></label>
+        </div>
+
+        <div class="">
+            <span class="cd-t-font shopName">$!{cart.shopName}</span>
+            <input type="hidden" class="shopId"  value="$!{cart.shopId}">
+            #if($shopGiftContent!=""&&!$shopGiftContent)
+                <span class="c-orange cd-t-font-z">（$shopGiftContent）</span>
+            #end
+            <span class="ui-arrow ui-arrow-right"></span>
+
+            <input type="hidden" name="carList[$!{cartIndex}].staffId" id="shopStaffId" value="$!{cart.staffId}">
+            <input type="hidden" name="carList[$!{cartIndex}].cartId" id="shopCartId" value="$!{cart.id}">
+            <input type="hidden" name="carList[$!{cartIndex}].promId" id="shopPromId" value="$!{shopPromId}">
+            <input type="hidden" id="shopTempPromId" value="$!{shopPromId}">
+            <!-- 店铺优惠相关字段 -->
+            <input type="hidden" class="shopPromDiscountPrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!shopProm.discountPrice")}">
+            <input type="hidden" class="shopPromDiscountAmount" value="$!{aiNumber.showMoneyByTwoDecimal("$!shopProm.discountAmount")}">
+            <input type="hidden" class="shopPromDiscountMoney" value="$!{aiNumber.showMoneyByTwoDecimal("$!shopProm.discountMoney")}">
+            <input type="hidden" class="shopPromDiscountPriceMoney" value="$!{aiNumber.showMoneyByTwoDecimal("$!shopProm.discountMoney")}">
+        </div>
+    </div>
+    #parse("order/cart/prom/shop-prom-selected.vm")
+</div>

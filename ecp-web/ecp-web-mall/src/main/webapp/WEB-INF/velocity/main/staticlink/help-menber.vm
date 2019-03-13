@@ -1,0 +1,11 @@
+#parse("/sys/sys_param.vm")
+    <!--文本-->
+    <div class="wrap1000">
+        <div class="h-tit">
+            会员卡使用介绍
+        </div>
+        <div class="h-com">
+            <p align="center"><img src="$IMAGE_PATH/m-l.jpg" alt=""/></p>
+        </div>
+    </div>
+

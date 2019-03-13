@@ -1,0 +1,135 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+#parse("module/mod-upload.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/templateConfigWap/templateConfig-index-wap.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+<style>
+	.phone-layout .menu {
+        right: -30px;
+        width: 30px;
+    }
+</style>
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+<!-- 隐藏域    -->
+
+<input type="hidden" id = "templateId" value= "$!{templateLib.id}" />
+<input type="hidden" id = "templateName" value= "$!{templateLib.templateName}" />
+<input type="hidden" id = "pageTypeId" value= "$!{templateLib.pageTypeId}" />
+<input type="hidden" id="templateType" value="$!{templateLib.templateType}">
+<input type="hidden" id="reqType" name="reqType" value="$!{reqType}" />
+	
+
+
+<div id="page">
+    <!--topbar-->
+    #parse("pageConfig/templateConfig/topbar.vm")
+    <!--topbar end-->
+
+
+    <div class="main-wrapper main-wrapper-design-mode wpst-toolbar-show">
+
+        <!--left-->
+        #parse("pageConfig/templateConfigWap/sidebar-wap.vm")
+        <!--left end-->
+
+        <!--right-->
+        <div class="tpl-main">
+			
+			<div class="design-navigation-wrap">
+                <h2 class="design-tit">$!{templateLib.templateName}</h2>
+                <div class="page-operation-btns">
+                    <a class="page-publish-btn" data-target="#release" id="lnkTemplatePub" data-toggle="modal">发布</a>
+                </div>
+            </div>
+            <!--配置内容-->
+            <div class="div4" style="overflow:hidden;">
+                <div class="page-container">
+                    <div class="page-phone clearfix">
+                        <div class="page-decorate" id="pageDecorate">
+                            <div class="phone-wrap">
+                            	#if($!{templateLib.pageTypeId} != 51)
+								<div class="phone-header"></div>
+								#else
+								<div style="padding-top:5px;"></div>
+								#end
+								<div class="phone-content" id="tpl-content">
+									## 由编辑页填充内容 
+                                </div>
+                                #if($!{templateLib.pageTypeId} != 51)
+								<div class="phone-footer"></div>
+								#end
+                            </div>
+                        </div>
+                        <!--页面装修 end-->
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--right end-->
+    </div>
+</div>
+
+<div class="hide" id = "save-template-dialog">
+    <div class="dialog-content">
+    	<div class="hide alert error-msg" style="color:red;">
+		                            
+		</div>
+        <form class="save-template-form form-horizontal required-validate">
+			<input type="hidden" id="platform_type" value="$!{pageInfo.platformType}" />
+            <div class="span8" style="margin-top:20px;">
+            	<div class="row-fluid ">
+                    <div class="control-group">
+                        <label class="control-label">模板名称 : &nbsp;</label>
+                        <div class="controls">
+                            <input type="text" name="template-name" id="template-name" class="input-large required htmlcheck" minlength="2" maxlength="32" placeholder="名称不能超过32个字" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="span12">
+            	<div class="row-fluid">
+                    <div class="control-group">
+		                <label class="control-label">模板缩略图 : </label>
+		                <div class="controls">
+		               		<div class="panel-body">
+								<img class="image-preview img-polaroid" src="">
+								<input type="hidden" class="" name="no-image-preview" value="#genImageUrl('','130x130!')" />
+							</div>
+		                    <a href="javascript:void(0)" class="ks-uploader-button">
+		                        <span class="btn-text">上传图片</span>
+		                        <div style="overflow: hidden;">
+		                            <input type="file" name="uploadFileObj" id="save-template-pic" value="上传图片" class="file-input">
+		                        	<input type="hidden" class="show-pic" id="template-show-pic" name="show-pic" value="" />
+		                        </div>
+		                    </a>
+		                </div>
+		                <div class="text-error" style="margin-left:45px;">图片规格小于280*200px，小于100k，格式仅支持jpg,png,jpeg,gif,bmp。</div>
+		            </div>
+		         </div>
+            </div>
+        </form>
+    </div>
+    <div class="text-center">
+        <span class="btn btn-info save"><i class="icon-ok-sign icon-white"></i>确定</span>
+        <span class="btn cancel"><i class="icon-reply icon-white"></i>取消</span>
+    </div>
+</div>
+<div class="hide" id="page_pub_dialog">
+    <div class="dialog-content">
+    	<div class="pubDg-cont" style="text-align: center">
+            <div class="tip">发布成功，链接为：<a href="" id="page_pub_dialog_a" target="_blank"></a></div>
+			<div class="tip"><span>请用手机扫描二维码</span></div>
+            <div class="ewm">
+                <img id="page_pub_dialog_img" src="http://192.168.1.102:19080/imageServer/image/57bbb952e4b0d68f50cd7bb7.jpg" alt=""/>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <span class="btn btn-info save"><i class="icon-ok-sign icon-white"></i>查看页面</span>
+        <span class="btn cancel"><i class="icon-reply icon-white"></i>取消</span>
+    </div>
+</div>

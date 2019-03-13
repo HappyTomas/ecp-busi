@@ -1,0 +1,49 @@
+#parse("/sys/sys_head.vm")
+#parse("/module/mod-form.vm")
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+<link href="$!{RESOURCE_PATH}/bootstrap/extend/css/bootstrap_page.css" rel="stylesheet" type="text/css" media="screen"/>
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/cms/leaflet/models/leaflet-info.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+
+<div class="seller-mainR">
+    <div class="main">
+        <div class="seller-well">
+            <form action="" class="form-horizontal required-validate" id="searchForm">
+            	<input  type="hidden" id="siteId" name="siteId" value="$!{siteId}"/>
+				<div class="row-fluid">
+                    <div class="span4">
+                        <div class="control-group">
+                            <label class="control-label">主题：</label>
+		    				<div class="controls">
+		    					<input type="text" name="infoTitle" id="infoTitle" class="input-block-level" value="" placeholder="请输入主题">
+		    				</div>
+                        </div>
+					</div>
+					<div class="span4">
+            			<div class="control-group">
+            				<label class="control-label">类型：</label>
+		    				<div class="controls">
+		    					<select id="infoType" name ="infoType" class="input-block-level">
+		    						<option value="" selected >-请选择-</option>
+									#listParam('CMS_INFO_TYPE',"")
+		    					</select>
+		    				</div>
+            			</div>
+            		</div>
+                </div>
+            </form>
+        </div>
+        <div class="sbtn-group">
+             <!--查询，重置移动到这里，添加btn-w-right样式，重置按钮添加icon-color-->
+             <div class="btn-wrap btn-w-right">
+                 <span class="sbtn sbtn-blue" id="btnFormSearch"><i class="icon-search"></i> 查询</span>
+                 <span class="sbtn" id="btnFormReset"><i class="icon-asterisk icon-color"></i> 重置</span>
+             </div>
+		</div>
+        <div class="main-inner" id="leaflet-info-div">
+			 
+        </div>
+    </div>
+</div>

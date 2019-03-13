@@ -1,0 +1,148 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/requirejs/require.js?v=${JS_VERSION}"></script>
+#if($!{pageTypeId}=="2" || $!{pageTypeId}=="4")
+	<link href="$!{CSS_PATH}/pageConfig/layout-1024.css" rel="stylesheet" type="text/css" media="screen"/>
+#end
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/public/public-js.js?v=${JS_VERSION}"></script>
+<!-- 模块化脚本基础库 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/requirejs.common.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/preview/item-render.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/page-edit.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/preview/page-preview.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/hotImg/jquery.hotimg.js?v=${JS_VERSION}"></script>
+<style>
+.skipfloor {
+	border: 1px solid #AAAAAA;
+}
+img.imgFullWidth{width: 100%;height: 600px;}
+</style>
+<input type="hidden" id="pre-itemIds" value="$!{itemIds}"/>
+<!-- 
+布局类型
+01：左右居中
+02：左右全宽
+03：左侧悬浮
+04：右侧悬浮
+-->
+<div class="page-container2 page-edit">
+	<div class="layoutcontainer previewMainBox">
+		<small class="layout-prompt">建议提示：页面编辑用google浏览器或ie9以上游览器查看，效果最佳！</small>
+        ##布局项目
+        #foreach($!layout in $!pageConfig)
+        	##左、右悬浮
+        	#if($layout.cmsLayoutTypeRespDTO.layoutShowType && $!layout.layoutItemPreRespDTOList.size()>0 &&
+        		($layout.cmsLayoutTypeRespDTO.layoutShowType == "03" || $layout.cmsLayoutTypeRespDTO.layoutShowType == "04"))
+        		#set($item = $!layout.layoutItemPreRespDTOList.get(0))
+					#if($!{item.modularId})
+						<div class="skipfloor">
+            			<input type="hidden" id="itemId" value="$!{item.id}">
+            			<input type="hidden" id="pageId" value="$!{item.pageId}">
+            			<input type="hidden" id="modularId" value="$!{item.modularId}">
+            			<input type="hidden" id="modularType" value="$!{item.modularRespDTO.modularType}" >
+            		    <h2 class="top-img">
+            		        <img class="nodata" src="$!{IMAGE_PATH}/pageConfig/noPictures.png" alt=""/>
+            		    </h2>
+            		    <div class="floor-list">
+            		        <ul class="navigation">
+            		            <li><a href="#">楼层导航</a></li>
+            		        </ul>
+            		        <div class="toTop">
+            		            <span><i class="iconfont f22"></i></span>
+            		        </div>
+            		    </div>
+            		
+            		    <div class="modular-mask">
+            		        <div class="modular-mask-bg" style="height: 100%;"></div>
+            		        <div class="modular-mask-icon">
+            		            <a id="floorEdit" href="javascript:void(0);" class="ds-bar-edit lnkModuleEdit"><span>编辑</span></a>
+            		            <a href="javascript:void(0)" class="ds-bar-del lnkModuleDel"><span>删除</span></a>
+            		        </div>
+            		    </div>
+            		</div>
+            				#if($layout.cmsLayoutTypeRespDTO.layoutShowType == "04")
+            				<div class="rightNavSlide"> </div>
+            				#end
+					#end
+        	#else
+	        	#set($fullLayout = "")
+	        	#if($layout.cmsLayoutTypeRespDTO.layoutShowType && $layout.cmsLayoutTypeRespDTO.layoutShowType=="02")
+	        		#set($fullLayout = "layout-full")
+	        	#else
+	        		#set($fullLayout = "")
+	        	#end
+		<div class="layout $!{fullLayout}">
+		<div class="layout-inner">
+			<input type="hidden" name="layoutId" value="$!{layout.id}">
+		    	#foreach($!item in $!layout.layoutItemPreRespDTOList)
+		    		#set($width = "")
+		    		#if($item && $item.itemSize)
+		    			#set($width = "width:" + $item.itemSize + "px;")
+		    		#end
+		    		#if(!$null.isNull($fullLayout) && $fullLayout!="")
+		    			#set($width = "width:100%;")
+		    		#end
+		    
+		    		#if($item && $item.modularId && $item.modularId!="" && $item.id && $item.id!="")
+    					<div class="tItem" style="$!{width}">
+            		        <div class="modular" style="$!{width}">
+                		        <div class="template" style="$!{width}">
+                		        	<input type="hidden" id="itemId" value="$!{item.id}">
+                		        	<input type="hidden" id="pageId" value="$!{item.pageId}">
+                		        	<input type="hidden" id="modularId" value="$!{item.modularId}">
+                		        	<input type="hidden" id="modularType" value="$!{item.modularRespDTO.modularType}" >
+                		            <div class="nodata"></div>
+                		            <div class="modular-mask">
+                		                <div class="modular-mask-bg" ></div>
+                		                <div class="modular-mask-icon">
+                		                    <span><b>$!{item.modularRespDTO.modularName}</b> 宽度：$!{item.itemSize}</span>
+                		                    <!-- <a href="javascript:void(0);" class="ds-bar-link lnkHotSpot"><span>热点</span></a> -->
+                		                    <a href="javascript:void(0);" class="ds-bar-edit lnkModuleEdit"><span>编辑</span></a>
+                		                    <a href="javascript:void(0);" class="ds-bar-del lnkModuleDel"><span>删除</span></a>
+    										#if($item.modularRespDTO.modularType=='01')
+    										## 专题页头
+												#foreach($!picItem in $!item.itemPropPreRespDTOList)
+													#if($picItem.propId==11 && $picItem.status!=2)
+														<input type="hidden" id="hotPicId" value="$!{picItem.propValue}">
+														<input type="hidden" id="hotItemPropId" value="$!{picItem.id}">
+													#end	
+												#end
+                		                    <a href="javascript:void(0);" class="ds-bar-pos lnkModuleHot" id="addPos"><span>热点</span></a>
+    										#end
+                		                </div>
+                		            </div>
+                		        </div>
+            		        </div>
+    				    </div>
+					#else
+						<div class="tItem null" style="$!{width}">
+    						<div class="modular" >
+        						<div class="template" style="$!{width}">
+                		        	<input type="hidden" id="itemId" value="$!{item.id}">
+                		        	<input type="hidden" id="pageId" value="$!{item.pageId}">
+                		        	<input type="hidden" id="modularId" value="$!{item.modularId}">
+                		        	<input type="hidden" id="modularType" value="$!{item.modularRespDTO.modularType}" >
+                		            <div class="nodata">
+    									<span style="color:red;">
+    										该布局单元未配置模块，赶紧去【布局管理】中拖入模块吧！
+                                        </span>
+    								</div>
+                		            <div class="modular-mask">
+                		                <div class="modular-mask-bg" >
+        								</div>
+                		                <div class="modular-mask-icon">
+                		                    <span><b>$!{item.modularRespDTO.modularName}</b> 宽度：$!{item.itemSize}</span>
+                		                    <!-- <a href="javascript:void(0);" class="ds-bar-link lnkHotSpot"><span>热点</span></a> -->
+                		                </div>
+                		            </div>
+                		        </div>
+            		        </div>
+		    			</div>
+		        	#end
+		        #end
+		</div>
+		</div>
+        	#end
+		#end
+    </div>
+</div>

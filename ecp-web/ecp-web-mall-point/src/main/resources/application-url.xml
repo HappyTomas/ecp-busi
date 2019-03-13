@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+	<url>
+		<homePage>http://10.8.0.213:16080/ecp-web-mall/login?Referer=http://10.8.0.213:16084/ecp-web-mall-point/homepage</homePage>
+		<loginPage>http://10.8.0.213:16080/ecp-web-mall/register</loginPage><!--登录  -->
+		<logoutPage>/homepage</logoutPage><!--登出  -->
+		<registerPage>http://192.168.1.102:9080/country-web-mall/register</registerPage><!--注册  -->
+		<lostpasswordPage>/login</lostpasswordPage><!--忘记密码  -->
+		<updatepasswordPage>/login</updatepasswordPage><!--修改密码  -->
+		<mall>/login</mall><!--商城链接 -->
+		<notLogin>http://132.37.5.191:14300/izengshi</notLogin>
+		<notPermit>/permission/noPermission</notPermit>
+		<sessionExpired>http://132.37.5.191:14300/izengshi</sessionExpired>
+		<contextPage>http://www.izengshi.cn/izengshi</contextPage>
+	</url>
+	<site>
+		<key>2</key>
+	</site>
+</application>

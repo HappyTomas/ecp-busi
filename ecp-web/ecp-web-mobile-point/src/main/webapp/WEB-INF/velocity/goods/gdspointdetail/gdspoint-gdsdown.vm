@@ -1,0 +1,41 @@
+<div class="cont">
+    <div class="item mb10 font14">
+		#if($!{gdsDetailInfo.skuInfo.gdsStatus}=='22')
+			<b>该商品已下架!</b>
+        #elseif($!{gdsDetailInfo.skuInfo.gdsStatus}=='0')
+        	<b>该商品未上架!</b>
+        #end
+    </div>
+    <div class="pro-similar-tit">类似商品</div>
+    <ul class="pro-similar clearfix">
+	#if(!$!{commondCatGds} || $!{commondCatGds.size()}==0)
+		<div class="pro-empty">
+                           「暂无推荐商品」
+		</div>
+	#else
+    	#foreach($list in $!{commondCatGds})
+        <li>
+			<a href="${CONTEXT_PATH}/gdspointdetail/$!{list.skuInfo.gdsId}-$!{list.skuInfo.id}"> 
+				<img src="${aiTool.genImageUrl($!{list.skuInfo.mainPic.mediaUuid},'150x150!')}">
+                <p class="name">$!{list.gdsName}</p>
+                <p class="price">
+					 #foreach($scores in $!{gdsDetailInfo.scores})
+						#if($!{scores.ifDefault}=='1')
+							所需积分：<span class="rob">
+    							#if($!{scores.score} && $!{scores.price})
+    								$!{scores.score}积分+#money($!{scores.price})
+    							#elseif($!{scores.score})
+    								$!{scores.score}积分
+    							#elseif($!{scores.price})
+    								#money($!{scores.price})
+    							#end
+							</span>
+						#end
+					#end
+    			</p>
+			</a>
+		</li>
+		#end
+	#end
+    </ul>
+    </div>

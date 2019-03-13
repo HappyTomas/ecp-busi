@@ -1,0 +1,39 @@
+<li>
+    <div class="p-img">
+        <a href="${CONTEXT_PATH}/gdsdetail/$!{info.skuInfo.gdsId}-$!{info.skuInfo.id}">
+            <img width="150" height="150" src="${aiTool.genImageUrl($!{info.skuInfo.mainPic.mediaUuid},'150x150!')}" alt=""/>
+        </a>
+    </div>
+    <p class="p-name">
+        <a href="${CONTEXT_PATH}/gdsdetail/$!{info.skuInfo.gdsId}-$!{info.skuInfo.id}">
+            $!{info.skuInfo.gdsName}
+        </a>
+    </p>
+    <p class="p-actor c-gray">
+		#foreach($value in $!{info.skuInfo.allPropMaps.get('1001').values})
+			$!{value.propValue}
+        #end
+    </p>
+    <input type="hidden" value="$!{info.skuInfo.id}" id="fixedFixedSkuId"/>
+    <input type="hidden" value="$!{info.skuInfo.skuProps}" id="fixedFixedSkuProps"/>
+	<input type="hidden" value="$!{info.skuInfo.gdsName}" id="fixedFixedGdsName"/>
+	<input type="hidden" value="$!{info.skuInfo.GdsId}" id="fixedFixedGdsId"/>
+	<input type="hidden" value="$!{info.shopId}" id="fixedFixedShopId"/>
+	<input type="hidden" value="$!{info.ShopName}" id="fixedFixedShopName"/>
+	<input type="hidden" value="$!{info.skuInfo.mainCatgs}" id="fixedFixedMainCatgs"/>
+	<input type="hidden" value="$!{info.promId}" id="fixedFixedPromId"/>
+	<input type="hidden" value="$!{info.skuInfo.gdsTypeId}" id="fixedFixedGdsTypeId"/>
+	<input type="hidden" value="$velocityCount" id="fixedIndex"/>
+	<input type="hidden" value="$!{info.skuInfo.gdsStatus}" id="fixedGdsStatus"/>
+    <p class="p-pri">
+        <b class="c-red" name="combinePrice">
+				&yen;<font id="fixedGdsPriceAfter">#moneyNum($!{info.price})</font>
+        </b>
+        <b class="c-gray t-mline">
+				&yen;<font id="fixedGdsPrice">#moneyNum($!{info.skuInfo.realPrice})</font>
+        </b>
+    </p>
+</li>
+#set($buyprice = ($buyprice + $!{info.price}))
+#set($yuanprice = ($yuanprice + $!{info.skuInfo.realPrice}))
+#set($cutprice =  ($cutprice +( $!{info.skuInfo.realPrice} - $!{info.price})))

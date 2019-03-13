@@ -1,0 +1,45 @@
+#parse("/sys/sys_param.vm")
+
+<link rel="stylesheet" href="$!{CSS_PATH}/public.css?v=1"/>
+<link rel="stylesheet" href="$!{CSS_PATH}/chat.css?v=1"/>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/im/strophe.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/im/html.util.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/im/cust/CustChat.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/im/cust/index.js"></script>
+
+<input type="hidden" id="boshService" value="$!{boshService}"/>
+<input type="hidden" id="uName" value="$!{uName}"/>
+<input type="hidden" id="csaCode" value="$!{csaCode}"/>
+<input type="hidden" id="shopId" value="$!{shopIdForLogout}"/>
+<input type="hidden" id="staffCode" value="$!{staffCode}"/>
+<input type="hidden" id="sessionId" value="$!{sessionId}"/>
+<input type="hidden" id="issueType" value="$!{issueType}"/>
+<input type="hidden" id="ordId" value="$!{ordId}"/>
+<input type="hidden" id="gdsId" value="$!{gdsId}"/>
+<input type="hidden" id="shopIdForLogout" value="$!{shopIdForLogout}"/>
+<input type="hidden" id="csaCodeForLogout" value="$!{csaCodeForLogout}"/>
+<input type="hidden" id="uNameForLogout" value="$!{uNameForLogout}"/>
+<input type="hidden" id="waitCount" value="$!{waitCount}" />
+<input type="hidden" id="custPic" value="$!{custPic}"/>
+<input type="hidden" id="servPic" value="#genImageUrl($!{servPic})"/>
+<input type="hidden" id="custLevel" value="$!{custLevel}" />
+<input type="hidden" id="serName" value="$!{serName}"/>
+<input type="hidden" id="sessionTime" value="$!{sessionTime}"/>
+<input type="hidden" id="gdsDetailUrl" value="#siteInfo(1)/gdsdetail/"/>
+<input type="hidden" id="ordDetailUrl" value="#siteInfo(1)/ord/detail/"/>
+
+<section class="ui-pannel custom-pannel">
+    <div class="w">
+		<div class="chat-bar"></div>
+        <div class="chat-contanier clearfix">
+            <div class="tab-pane" id="chatPanel">
+                <div class="chat-win">
+                </div>
+               
+            </div>
+            <div class="tab-pane" style="display: none">222</div>
+        </div>
+    </div>
+</section>
+#parse("/im/template.vm")

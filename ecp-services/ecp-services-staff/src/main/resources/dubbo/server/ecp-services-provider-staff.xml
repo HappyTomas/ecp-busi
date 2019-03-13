@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     ">  
+   
+     <!--用于定义对外提供的服务 -->
+     <bean id="authStaffRSV" class="com.zengshi.ecp.staff.dubbo.impl.AuthStaffRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IAuthStaffRSV" ref="authStaffRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="custAddrRSV" class="com.zengshi.ecp.staff.dubbo.impl.CustAddrRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustAddrRSV" ref="custAddrRSV" provider="${default.dubbo.provider.id}"/>
+
+	 <!-- 资金账户管理服务 -->
+	 <bean id="acctManageRSV" class="com.zengshi.ecp.staff.dubbo.impl.AcctManageRSVImpl"></bean>
+	 <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IAcctManageRSV" ref="acctManageRSV" provider="${default.dubbo.provider.id}"/>
+	 
+    
+    <!-- 登陆验证服务 -->
+    <bean id="managerLoginRSV" class="com.zengshi.ecp.staff.dubbo.impl.ManagerLoginRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IManagerLoginRSV" ref="managerLoginRSV" provider="${default.dubbo.provider.id}"/>
+	<bean id="AuthLoginRSV" class="com.zengshi.ecp.staff.dubbo.impl.AuthLoginRSVImpl"></bean>
+	<dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IAuthLoginRSV" ref="AuthLoginRSV" provider="${default.dubbo.provider.id}"/>
+	 
+	 <!-- 会员管理服务 -->
+    <bean id="custManageRSV" class="com.zengshi.ecp.staff.dubbo.impl.CustManageRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustManageRSV" ref="custManageRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <!-- 企业管理服务 -->
+    <bean id="companyManageRSV" class="com.zengshi.ecp.staff.dubbo.impl.CompanyManageRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ICompanyManageRSV" ref="companyManageRSV" provider="${default.dubbo.provider.id}"/>
+	 
+    <!-- 企业会员审核 -->
+     <bean id="custCheckRSV" class="com.zengshi.ecp.staff.dubbo.impl.CustCheckRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustCheckRSV" ref="custCheckRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <!-- 企业信息-->
+     <bean id="custInfoRSV" class="com.zengshi.ecp.staff.dubbo.impl.CustInfoRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustInfoRSV" ref="custInfoRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <!-- 店铺会员、客服管理 -->
+     <bean id="shopManageRSV" class="com.zengshi.ecp.staff.dubbo.impl.ShopManageRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopManageRSV" ref="shopManageRSV" provider="${default.dubbo.provider.id}"/>
+
+     <!-- 入驻企业管理 -->
+     <bean id="companyCheckRSV" class="com.zengshi.ecp.staff.dubbo.impl.CompanyCheckRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ICompanyCheckRSV" ref="companyCheckRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="companySignRSV" class="com.zengshi.ecp.staff.dubbo.impl.CompanySignRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ICompanySignRSV" ref="companySignRSV" provider="${default.dubbo.provider.id}"/>
+
+    <!-- 店铺信息管理 -->
+     <bean id="shopInfoRSV" class="com.zengshi.ecp.staff.dubbo.impl.ShopInfoRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopInfoRSV" ref="shopInfoRSV" provider="${default.dubbo.provider.id}"/>
+     <!-- 店铺关注 -->
+     <bean id="shopCollectRSV" class="com.zengshi.ecp.staff.dubbo.impl.ShopCollectRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopCollectRSV" ref="shopCollectRSV" provider="${default.dubbo.provider.id}"/>
+     <!-- 店铺发货地址管理 -->
+     <bean id="shopShipperAddrSV" class="com.zengshi.ecp.staff.dubbo.impl.ShopShipperAddrRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopShipperAddrRSV" ref="shopShipperAddrSV" provider="${default.dubbo.provider.id}"/>
+               
+     <!-- 积分信息管理 -->
+     <bean id="scoreInfoRSV" class="com.zengshi.ecp.staff.dubbo.impl.ScoreInfoRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IScoreInfoRSV" ref="scoreInfoRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <!-- 菜单管理 -->
+     <bean id="authMenuRSV" class="com.zengshi.ecp.staff.dubbo.impl.MenuManageRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IMenuManageRSV" ref="authMenuRSV" provider="${default.dubbo.provider.id}"/>
+     
+      <!-- 企业缓存 -->
+     <bean id="companyCacheRSV" class="com.zengshi.ecp.staff.dubbo.impl.CompanyCacheRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ICompanyCacheRSV" ref="companyCacheRSV" provider="${default.dubbo.provider.id}"/>
+     
+       <!-- 店铺缓存 -->
+     <bean id="shopCacheRSV" class="com.zengshi.ecp.staff.dubbo.impl.ShopCacheRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopCacheRSV" ref="shopCacheRSV" provider="${default.dubbo.provider.id}"/>
+     
+       <!-- 会员等级 -->
+     <bean id="custLevelInfoRSV" class="com.zengshi.ecp.staff.dubbo.impl.CustLevelInfoRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustLevelInfoRSV" ref="custLevelInfoRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <!-- 用户组管理 -->
+     <bean id="staffGroupRSV" class="com.zengshi.ecp.staff.dubbo.impl.StaffGroupManageRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IStaffGroupManageRSV" ref="staffGroupRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <!-- 角色管理 -->
+     <bean id="authRoleRSV" class="com.zengshi.ecp.staff.dubbo.impl.RoleManageRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IRoleManageRSV" ref="authRoleRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <!-- 管理员管理 -->
+     <bean id="authAdminRSV" class="com.zengshi.ecp.staff.dubbo.impl.AuthAdminRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IAuthAdminRSV" ref="authAdminRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <!-- 用户权限关系-->
+     <bean id="authRelManageRSV" class="com.zengshi.ecp.staff.dubbo.impl.AuthRelManageRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IAuthRelManageRSV" ref="authRelManageRSV" provider="${default.dubbo.provider.id}"/>
+        
+     	<!-- 购物车积分Dubbo服务 -->
+     <bean id="scoreOrdCartsChkRSV" class="com.zengshi.ecp.staff.dubbo.impl.ScoreOrdCartsChkRSVImpl" />  
+	 <dubbo:service interface="com.zengshi.ecp.general.order.interfaces.IOrdCartsChkRSV"
+		ref="scoreOrdCartsChkRSV" provider="${default.dubbo.provider.id}" />
+		
+			<!-- 订单提交校验Dubbo服务 -->
+     <bean id="staffOrdSubChkRSV" class="com.zengshi.ecp.staff.dubbo.impl.StaffOrdSubChkRSVImpl" />  
+	 <dubbo:service interface="com.zengshi.ecp.general.order.interfaces.IOrderChkRSV"
+		ref="staffOrdSubChkRSV" provider="${default.dubbo.provider.id}" />
+		
+			<!-- 支付回调Dubbo服务 -->
+     <bean id="staffUnionRSV" class="com.zengshi.ecp.staff.dubbo.impl.StaffUnionRSVImpl" />  
+	 <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IStaffUnionRSV"
+		ref="staffUnionRSV" provider="${default.dubbo.provider.id}" />
+	  
+	 <!-- 数据权限管理 -->
+     <bean id="dataAuthManageRSV" class="com.zengshi.ecp.staff.dubbo.impl.DataAuthManageRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IDataAuthManageRSV" ref="dataAuthManageRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <!-- 数据权限规则 -->
+     <bean id="ruleOfDataAuth" class="com.zengshi.ecp.staff.dubbo.impl.DataAuthControlRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.server.auth.IRuleOfDataAuth" ref="ruleOfDataAuth" provider="${default.dubbo.provider.id}"/>
+
+     <!-- 数据过滤权限规则 -->
+     <bean id="ruleOfDataFilter" class="com.zengshi.ecp.staff.dubbo.impl.DataFilterControlRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.server.auth.attribute.IRuleOfDataFilter" ref="ruleOfDataFilter" provider="${default.dubbo.provider.id}"/>
+   
+    <!-- sso登录同步数据服务RSV -->
+	<bean id="ssoUserImportRSV" class="com.zengshi.ecp.staff.dubbo.impl.SsoUserImportRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ISsoUserImportRSV" ref="ssoUserImportRSV" provider="${default.dubbo.provider.id}"/>
+    
+     <!-- sso数据初始化RSV -->
+	<bean id="ssoUserForStaffRSV" class="com.zengshi.ecp.staff.dubbo.impl.SsoUserForStaffRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ISsoUserForStaffRSV" ref="ssoUserForStaffRSV" provider="${default.dubbo.provider.id}"/>
+	 
+	<!-- 会员绑定第三方服务RSV --> 
+	<bean id="custThirdCodeRSV" class="com.zengshi.ecp.staff.dubbo.impl.CustThirdCodeRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustThirdCodeRSV" ref="custThirdCodeRSV" provider="${default.dubbo.provider.id}"/>
+	  <!-- 积分规则缓存RSV -->
+	<bean id="scoreCacheRSV" class="com.zengshi.ecp.staff.dubbo.impl.ScoreCacheRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IScoreCacheRSV" ref="scoreCacheRSV" provider="${default.dubbo.provider.id}"/>
+	 
+    <!-- 积分计算RSV -->
+    <bean id="scoreCaclRSV" class="com.zengshi.ecp.staff.dubbo.impl.ScoreCaclRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IScoreCaclRSV" ref="scoreCaclRSV" provider="${default.dubbo.provider.id}"/>
+    
+    
+    <!-- 消息中心使用的根据用户Id获取消息中心相关的用户信息RSV -->
+    <bean id="mcUserRSV" class="com.zengshi.ecp.staff.dubbo.impl.McUserRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.general.sys.mc.interfaces.IMcUserRSV" ref="mcUserRSV" provider="${default.dubbo.provider.id}"/>
+	 
+	 <!-- 配合框架权限改造  START-->
+    <bean id="menuRSV" class="com.zengshi.ecp.staff.dubbo.impl.MenuRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.server.front.security.IMenuRSV" ref="menuRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <bean id="managerRSV" class="com.zengshi.ecp.staff.dubbo.impl.ManagerRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.server.front.security.IManagerRSV" ref="managerRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <bean id="loginRSV" class="com.zengshi.ecp.staff.dubbo.impl.LoginRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.server.front.security.ILoginRSV" ref="loginRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <bean id="authRSV" class="com.zengshi.ecp.staff.dubbo.impl.AuthRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.server.front.security.IAuthRSV" ref="authRSV" provider="${default.dubbo.provider.id}"/>
+    
+    
+    <!-- 配合框架权限改造  END-->
+    
+    <!-- 店铺子帐号RSV -->
+    <bean id="shopSubAuthStaffRSV" class="com.zengshi.ecp.staff.dubbo.impl.ShopSubAuthStaffRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopSubAuthStaffRSV" ref="shopSubAuthStaffRSV" provider="${default.dubbo.provider.id}"/>
+	<!-- 店铺支付通道 --> 
+	<bean id="shopPayWayRSV" class="com.zengshi.ecp.staff.dubbo.impl.ShopPayWayRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopPayWayRSV" ref="shopPayWayRSV" provider="${default.dubbo.provider.id}"/>
+
+	 <!-- 店铺搜索 -->
+	 <bean id="shopSearchDataListSupportRSV" class="com.zengshi.ecp.staff.dubbo.impl.ShopSearchDataListSupportRSVImpl" ></bean>
+	 <dubbo:service interface="com.zengshi.ecp.general.solr.interfaces.ISearchDataSupport" ref="shopSearchDataListSupportRSV" provider="${default.dubbo.provider.id}" group="shop" />
+	
+	<!-- 商城用户与微信用户关系RSV -->
+    <bean id="custWechatRelRSV" class="com.zengshi.ecp.staff.dubbo.impl.CustWechatRelRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustWechatRelRSV" ref="custWechatRelRSV" provider="${default.dubbo.provider.id}"/>
+	<!-- 积分退款退货改造RSV -->
+    <bean id="staffUnionCoreRWRSV" class="com.zengshi.ecp.staff.dubbo.impl.StaffUnionRWRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.staff.dubbo.interfaces.IStaffUnionRWRSV" ref="staffUnionCoreRWRSV" provider="${default.dubbo.provider.id}"/>
+	
+</beans>  

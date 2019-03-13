@@ -1,0 +1,33 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-page.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsinfoentry/gds-medialist.js?version=$!{JS_VERSION}" ></script>
+<input type="hidden" value="$!{shopId}" id="hiddenShopId"/>
+<div class="row-fluid" style="margin-left:10px;">
+#if($!{list.list.size()}==0)
+	   <div class="span12">
+		  <center>
+              <b>没有找到相关图片！</b>
+		  </center>
+	   </div>
+#else
+	 #foreach($a in $!{list.list})
+		<div class="item dbchoose" style="margin-right:14px;">
+            <img src="$!{a.URL}" id="$!{a.id}" mediaId="$!{a.mediaUuid}"/>
+            <div class="dec" mediaId="$!{a.mediaUuid}">
+                $!{a.mediaName}
+            </div>
+		</div>
+     #end
+#end
+</div>
+
+<input type="hidden" id="pageSize" value="$!{list.pageSize}"/>
+<input type="hidden" id="totalPage" value="$!{list.totalPage}"/>
+<input type="hidden" id="totalRow" value="$!{list.totalRow}"/>
+<input type="hidden" id="pageNumber" value="$!{list.pageNumber}"/>
+<!--分页-->
+<div class="row-fluid">
+	<div id="pageMainBox">
+		<div id="pageControlbar" class="pagination" data-total-page="${list.totalPage}" data-total-row="${list.totalRow}"  data-page-size="${list.pageSize}" data-page-number="${list.pageNumber}" data-status="begin"></div>
+	</div>
+</div>

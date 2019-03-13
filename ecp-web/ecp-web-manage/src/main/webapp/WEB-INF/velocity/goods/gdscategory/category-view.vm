@@ -1,0 +1,119 @@
+                 <!--按钮-->
+                <div class="heading ">
+                   <button class="btn btn-primary" id="btnEditCategory"><i class="icon-edit icon-white"></i> 编辑 </button>
+                </div>
+				<!--表单-->
+                <form class="form-horizontal" id="viewForm">
+                    <div class="row-fluid">
+                        <div class="span8">
+							<div class="control-group">
+                                <label for="" class="control-label">分类编码：</label>
+                                <div class="controls">
+                                    <input class="required" type="text" name="catgCode" id="v-catg-code" readonly="readonly" >
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="" class="control-label">名称：</label>
+                                <div class="controls">
+                                    <input class="required" type="text" name="catgName" id="v-catg-name" readonly="readonly" >
+                                </div>
+                            </div>
+                            <!-- <div class="control-group">
+                                <label for="" class="control-label">提成比例：</label>
+                                <div class="controls">
+                                    <input class="required" type="text" name="commission" id="v-commission" readonly="readonly" >
+                                </div>
+                            </div> -->
+                            <div class="control-group">
+                                <label for="" class="control-label">上级分类：</label>
+                                <div class="controls">
+                                    <input type="text" type="text" disabled="disabled" name="parentName" id="v-parent-name" readonly="readonly" />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="" class="control-label">排序：</label>
+                                <div class="controls">
+                                    <input type="text" name="sortNo" id="sort-no" readonly="readonly" />
+                                </div>
+                            </div>
+							
+							#if("2" == $!{reqVO.catgType})
+								<div class="control-group">
+                                <label for="" class="control-label">店铺：</label>
+                                <div class="controls">
+									<select name="shopId" id="v-shop-id" class="required" disabled="disabled">
+										<option value="">--请选择--</option>
+										#shopStatuslist($!{reqVO.shopId})
+                                    </select>
+                                </div>
+                            </div>
+							#end
+							
+							
+							#if("1" == $!{reqVO.catgType})
+							<div class="control-group">
+                                <label for="" class="control-label">归属目录：</label>
+                                <div class="controls">
+									<select name="catlogId" id="v-catlog-id" class="required" disabled="disabled">
+										<option value="">--请选择--</option>
+										#catlogList($!{reqVO.catlogId})
+                                    </select>
+                                </div>
+                            </div>
+							#end
+							
+							
+							#if("1" == $!{reqVO.catgType})
+                            <div class="control-group">
+                                <label for="" class="control-label">URL：</label>
+                                <div class="controls">
+                                    <input type="text" name="catgUrl" readonly="readonly"/>
+                                </div>
+                            </div>
+                            <!--div class="control-group">
+                                <label for="" class="control-label">默认单位：</label>
+                                <div class="controls">
+                                    <select name="catgTypeUnit" id="catg-type-unit">
+                                        <option value="1">单位1</option>
+                                        <option value="2">单位2</option>
+                                        <option value="3">单位3</option>
+                                    </select>
+                                </div>
+                            </div-->
+                            <!--div class="control-group">
+                                <label for="" class="control-label">实体配置：</label>
+                                <div class="controls">
+                                    #select("GDS_CATEGORY_IF_ENTITY_CODE", 'ifEntityCode' , false, "")
+                                </div>
+                            </div-->
+                            <div class="control-group">
+                                <label for="" class="control-label">在首页展示：</label>
+                                <div class="controls">
+                                    <label class="radio inline">
+                                        <input type="radio" name="ifShow" value="1" disabled="disabled" > 是
+                                    </label>
+									<label class="radio inline">
+                                        <input type="radio" name="ifShow" value="0" checked="checked" disabled="disabled" > 否
+                                    </label>
+                                </div>
+                            </div>
+							#end
+                        </div>
+                        <div class="span4">
+                            <div class="imgup-show">
+								##<img src="$!{IMAGE_PATH}/goods/yf-tpl.jpg" alt=""/>
+							    <img src="$!{IMAGE_PATH}/goods/image_preview.png" alt="" id="view-imgPreviewHold" style="display:none">
+							    <img src="$!{IMAGE_PATH}/goods/image_preview.png" alt="" id="view-imgPreview" style="display:none">
+                            </div>
+                            ##<div class="alert rk-alert">
+                            <div style="padding: 5px 0px 5px 10px;border-radius: 0;border: 0;color: #f0742b;font-size: 12px;
+    width: 230px;padding-top: 20px;">
+                                图片格式必须是：png,jpg,jpeg,gif并且小于100k
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+    <!-- main content -->
+
+

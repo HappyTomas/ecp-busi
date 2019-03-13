@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+#parse("/sys/sys_param.vm")
+    <meta charset="UTF-8">
+    <title>商品详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="$RESOURCE_PATH/contentinfo/amazeui.min.css" />
+	<script type="text/javascript" src="$RESOURCE_PATH/contentinfo/flexible.js"></script>
+	<script type="text/javascript" src="$RESOURCE_PATH/contentinfo/jquery-2.2.4.min.js"></script>
+	<script type="text/javascript" src="$RESOURCE_PATH/contentinfo/amazeui.min.js"></script>
+	<script type="text/javascript" src="$RESOURCE_PATH/contentinfo/amazeui.js"></script>
+	<script type="text/javascript" src="$RESOURCE_PATH/contentinfo/e.core.js"></script>
+	<script type="text/javascript" src="$RESOURCE_PATH/contentinfo/e.dialog.js"></script>
+	<link rel="stylesheet" type="text/css" href="$RESOURCE_PATH/contentinfo/public.css" />
+	<link rel="stylesheet" type="text/css" href="$RESOURCE_PATH/contentinfo/mall.css" />
+    <style type="text/css">
+       /*  .pro-dt-box {
+            padding: 50px 22px;
+            color: #666;
+			font-size:5px;
+        }
+        .pro-block {
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .pro-block .pro-block-tit {
+            margin-right: 20px;
+            float: left;
+        }
+        .pro-block .pro-block-con {
+            display: block;
+            overflow: hidden;
+        } */
+
+
+    </style>
+</head>
+<body>
+<div class="pro-dt-box">
+	#set($pCount = 0)
+#foreach($param in $!{gdsDetailInfo.skuInfo.gdsProps})
+	#if($!{param.ifBasic}=='1')
+		#set($show = '0')
+		#foreach($value in $!{param.values})
+    		#if($!{value.propValue} && $!{value.propValue} !="")
+				#set($show = '1')
+			#end
+		#end
+		#if($show=='1')
+			#set($pCount = $pCount + 1)
+            <div class="tit2">
+                <span >
+                    $!{param.propName}
+                </span>
+                <span >
+                    #foreach($value in $!{param.values})
+						#if(${param.id}=='1029')
+							#moneyNum($!{value.propValue})
+						#else
+							$!{value.propValue}
+						#end
+        			#end
+                </span>
+            </div>
+		#end
+	#end
+#end
+#if($pCount ==0)
+		                <div class="body">
+                            <div class="pro-dec" id="">
+                                <div class="p-nodata" style="margin-top:50%;">
+                                    <img src="$IMAGE_PATH/detail_none.png">
+                                </div>
+                            </div>
+                        </div>	
+			#end
+</div>
+
+</body>
+</html>

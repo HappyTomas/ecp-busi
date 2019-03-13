@@ -1,0 +1,55 @@
+ #parse("/sys/sys_param.vm")
+ #parse("/sys/sys_open_head.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/gdsgrid/more-gds-grid.js?version=$!{JS_VERSION}" ></script>
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+
+	<div class="row-fluid">
+		<div class="hide">
+			<input id="promId"  name="promId" value="${promId}" />
+			<input id="doAction"  name="doAction" value="${doAction}" />
+			<input id="promTypeCode"  name="promTypeCode" value="${promTypeCode}" />
+		</div>
+	   <div class="main">
+                <div class="seller-well">
+                    <form action="" class="form-horizontal required-validate" id="searchForm">
+	                        <div class="row-fluid">
+	                            <div class="span6">
+	                                <div class="control-group">
+	                                    <label class="control-label">商品编码：</label>
+	                                    <div class="controls">
+										      <input type="text" name="gdsId" id="gdsId" class="input-block-level "  placeholder="请输入商品编码">
+										</div>
+	                                </div>
+	                            </div>
+	                            <div class="span6">
+	                                <div class="control-group">
+	                                    <label class="control-label">单品编码：</label>
+	                                    <div class="controls">
+										      <input type="text" name="skuId" id="skuId" class="input-block-level "  placeholder="请输入单品编码">
+										</div>
+	                                </div>
+	                            </div>
+	                         </div> 
+                    </form>
+                </div>
+                
+                 <div class="sbtn-group">
+                    <!--查询，重置移动到这里，添加btn-w-right样式，重置按钮添加icon-color-->
+                    <div class="btn-wrap btn-w-right">
+                        <span class="sbtn sbtn-blue" id="moreGdsQueryBtn"><i class="icon-search"></i> 查询</span>
+                        <span class="sbtn" id="btnFormReset"><i class="icon-asterisk icon-color"></i> 重置</span> 
+                    </div>
+                     <!--添加图标-->
+                     #if($!{doAction}!='edit')
+                    	<span class="sbtn sbtn-blue" id="btn_code_add"><i class="icon-plus"></i> 确定</span>
+                     #end
+                    <span class="sbtn sbtn-blue" id="btnReturn"><i class="icon-reply"></i> 关闭</span>
+                </div>
+                
+                
+                <div class="main-inner ">
+                    <div id='gdsListDiv'>
+                    	##parse("/seller/prom/gdsgrid/more-gds-list.vm")
+                    </div>
+</div>

@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean class="com.zengshi.ecp.frame.utils.RuleMap">
+		<constructor-arg>  
+			<map>  
+				<entry key="t_ord_cart" value-ref="ordCart" />
+				<entry key="t_ord_cart_item" value-ref="ordCartItem" />
+				<entry key="t_ord_delivery_batch" value-ref="ordDeliveryBatch" />
+				<entry key="t_ord_delivery_details" value-ref="ordDeliveryDetails" />
+				<entry key="t_ord_delivery_entity" value-ref="ordDeliveryEntity" />
+				<entry key="t_ord_main_shop_idx" value-ref="ordMainShopIdx" />
+				<entry key="t_ord_main_staff_idx" value-ref="ordMainStaffIdx" />
+				<entry key="t_ord_entity_change" value-ref="ordEntityChange" />
+				<entry key="t_ord_entity_import" value-ref="ordEntityImport" />
+				<entry key="t_ord_main" value-ref="ordMain" />
+				<entry key="t_ord_sub" value-ref="ordSub" />
+				<entry key="t_ord_track" value-ref="ordTrack" />
+				<entry key="t_ord_invoice_comm" value-ref="ordInvoiceComm" /> 
+				<entry key="t_ord_invoice_tax" value-ref="ordInvoiceTax" />
+				<entry key="t_ord_gift" value-ref="ordGift" />
+				<entry key="t_ord_discount" value-ref="ordDiscount" />
+				<entry key="t_ord_prom" value-ref="ordProm" />
+				<entry key="t_ord_pay_rel" value-ref="ordPayRel" />
+				<entry key="t_ord_present" value-ref="ordPresent" />
+				<entry key="t_ord_file_import" value-ref="ordFileImport" />
+				<entry key="t_ord_offline" value-ref="ordOffline" />
+				<entry key="t_ord_offline_pic" value-ref="ordOfflinePic" />
+				<entry key="t_ord_offline_chk" value-ref="ordOfflineChk" />
+				<entry key="t_pay_shop_cfg" value-ref="payShopCfg" />
+				<entry key="t_pay_shop_cfg_log" value-ref="payShopCfgLog" />
+				<entry key="t_pay_request" value-ref="payRequest" />
+				<entry key="t_pay_refund" value-ref="payRefund" />
+				<entry key="t_pay_bindreq" value-ref="payBindReq" />
+				<entry key="t_pay_bind_transfer" value-ref="payBindTransfer" />
+				<entry key="t_pay_intf_reqlog" value-ref="payIntfReqLog" />
+				<entry key="t_pay_intf_notifylog" value-ref="payIntfNotifyLog" />
+				<entry key="t_pay_result" value-ref="payResult" />
+				<entry key="t_pay_repeat" value-ref="payRepeat" />
+				<entry key="t_pay_refund_result" value-ref="payRefundResult" />
+				<entry key="t_pay_bind" value-ref="payBind" />
+				<entry key="t_pay_bind_log" value-ref="payBindLog" />
+				<entry key="t_audit_trade_check" value-ref="auditTradeCheck" />
+				<entry key="t_ord_sub_shop_idx" value-ref="ordSubShopIdx" />
+				<entry key="t_ord_sub_staff_idx" value-ref="ordSubStaffIdx" />
+				<entry key="t_ord_cart_his" value-ref="ordCartHis" />
+				<entry key="t_ord_cart_item_his" value-ref="ordCartItemHis" />				
+				<entry key="t_ord_main_tm" value-ref="ordMainTM" />
+				<entry key="t_ord_sub_tm" value-ref="ordSubTM" />
+				<entry key="t_ord_import_log" value-ref="ordImportLog" />
+				<entry key="t_good_payed_report" value-ref="goodPayedReport" />	
+				<entry key="t_good_staff_payed_report" value-ref="goodStaffPayedReport" />
+				<entry key="t_inf_ord_main" value-ref="ordInfMain" />
+				<entry key="t_inf_ord_sub" value-ref="ordInfSub" />	
+				<entry key="t_thing_lock" value-ref="thingLock" />	
+				
+				
+				<entry key="t_ord_back_apply" value-ref="ordBackApply" />	
+				<entry key="t_ord_back_shop_idx" value-ref="ordBackShopIdx" />
+				<entry key="t_ord_back_staff_idx" value-ref="ordBackStaffIdx" />
+				<entry key="t_ord_back_coupon" value-ref="ordBackCoupon" />
+				<entry key="t_ord_back_detail" value-ref="ordBackDetail" />	
+				<entry key="t_ord_back_discount" value-ref="ordBackDiscount" />	
+				<entry key="t_ord_back_gds" value-ref="ordBackGds" />
+				<entry key="t_ord_back_gift" value-ref="ordBackGift" />
+				<entry key="t_ord_back_pic" value-ref="ordBackPic" />
+				<entry key="t_ord_back_track" value-ref="ordBackTrack" />	
+				<entry key="t_ord_express_detail" value-ref="ordExpressDetail" />	
+				<entry key="t_ord_express_req_log" value-ref="ordExpressReqLog" />		
+				<entry key="t_ord_sub_share" value-ref="ordSubShare" />																														
+			</map>  
+		</constructor-arg>  
+	</bean> 
+			
+
+
+	<bean id="ordCart" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+	    <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+	    <property name="tableNamePattern" value="t_ord_cart_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+ 	<bean id="ordCartItem" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+	    <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+	    <property name="tableNamePattern" value="t_ord_cart_item_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+ 
+ 
+  
+	<bean id="ordDeliveryBatch" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_delivery_batch_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+
+	<bean id="ordDeliveryDetails" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_delivery_details_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordDeliveryEntity" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_delivery_entity_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordMainShopIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_main_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordMainStaffIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_main_staff_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordEntityChange" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_entity_Change_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordEntityImport" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_entity_import_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordFileImport" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_file_import_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordMain" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_main_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordSub" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_sub_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordTrack" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_track_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="ordInvoiceComm" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_invoice_comm_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="ordInvoiceTax" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_invoice_tax_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="ordGift" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_gift_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="ordDiscount" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_discount_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="ordProm" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_prom_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="ordPayRel" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_pay_rel_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="ordPresent" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_present_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordOffline" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_offline_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordOfflinePic" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_offline_pic_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordOfflineChk" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_offline_chk_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payShopCfg" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_shop_cfg_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payShopCfgLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_shop_cfg_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payRequest" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_request_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payRefund" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_refund_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payBindReq" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_bindreq_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payBindTransfer" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_bind_transfer_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payIntfReqLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_intf_reqlog_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payIntfNotifyLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_intf_notifylog_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payResult" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_result_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payRepeat" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_repeat_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payRefundResult" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_refund_result_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payBind" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_bind_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="payBindLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_bind_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	
+	<bean id="auditTradeCheck" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_audit_trade_check_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="ordSubStaffIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_sub_staff_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordSubShopIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_sub_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordMainTM" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_code" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_main_tm_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_code', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_code', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordSubTM" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_sub_tm_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>	
+	<bean id="ordCartHis" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+	    <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+	    <property name="tableNamePattern" value="t_ord_cart_his_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+ 	<bean id="ordCartItemHis" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+	    <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+	    <property name="tableNamePattern" value="t_ord_cart_item_his_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>	
+ 	<bean id="ordImportLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="old_order_id" />
+	    <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+	    <property name="tableNamePattern" value="t_ord_import_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'old_order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'old_order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+    </bean>	
+ 	<bean id="goodPayedReport" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="site_id" />
+	    <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+	    <property name="tableNamePattern" value="t_good_payed_report_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'site_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'site_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />				
+	</bean>			
+ 	<bean id="goodStaffPayedReport" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="site_id" />
+	    <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+	    <property name="tableNamePattern" value="t_good_staff_payed_report_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'site_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'site_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordInfMain" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_inf_ord_main_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordInfSub" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_inf_ord_sub_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="thingLock" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_thing_lock_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<!-- 退货退款 -->
+	
+	<bean id="ordBackApply" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_back_apply_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordBackShopIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_back_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordBackStaffIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_back_staff_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordBackCoupon" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_back_coupon_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordBackDetail" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_back_detail_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordBackDiscount" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_back_discount_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordBackGds" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_back_gds_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordBackGift" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_back_gift_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordBackPic" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_back_pic_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="ordBackTrack" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_back_track_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="ordExpressDetail" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_express_detail_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="ordExpressReqLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_express_req_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="ordSubShare" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_sub_share_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+</beans>

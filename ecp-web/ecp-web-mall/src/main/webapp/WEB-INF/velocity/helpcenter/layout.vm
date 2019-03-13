@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>#siteName('')</title>
+	#parse("/sys/sys_param.vm")
+	#parse("/sys/sys_head.vm")
+	<link rel="stylesheet" type="text/css" href="$CSS_PATH/default.css"/>
+</head>
+<body>
+<!--右侧的楼层导航-->
+#parse("/main/main-sidebar.vm")
+
+<!--顶部 begin-->
+#parse("/main/main-site-nav.vm")
+<!--顶部 end-->
+
+<!--内容 begin-->
+<div id="webBody">
+	$screen_content
+</div>
+<!--内容 end-->
+
+<!--底部 begin-->
+#parse("/main/main-bottom.vm")
+<!--底部 end-->
+</body>
+</html>

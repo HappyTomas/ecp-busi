@@ -1,0 +1,43 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/list/open/list-gds.js?version=$!{JS_VERSION}" ></script>
+<link href="${CONTEXT_PATH}/css/cms/advertise-img.css" rel="stylesheet" type="text/css"/>
+<!--搜索区域-->
+<div class="well well-searchForm">
+	<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+    	<input type="hidden"  name="gdsStatus" id="gdsStatus" class="input-medium" value="11" >
+    	<div class="row-fluid">
+    		<div class="span6">
+    			<div class="control-group">
+    				<label class="control-label">商品名称：</label>
+    				<div class="controls">
+    					<input type="text" id="gdsName" name="gdsName" class="input-medium" value="" placeholder="请输入商品名称">
+    				</div>
+    			</div>
+    		</div>
+    		<div class="span6">
+    			<div class="control-group">
+    				<label class="control-label">店铺：</label>
+    				<div class="controls">
+    					<select id="shopId" name="shopId" class="input-medium">
+							#shopStatuslist('','1')
+    					</select>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+	</form>
+</div>
+
+<!--操作按钮区域-->
+<div class="row-fluid" style="margin-bottom: 10px;">
+	<div class="pull-right">
+		<a class="btn btn-info" id="btnFormSearch" href="javascript:void(0)"><i class="icon-search icon-white"></i>查询</a>
+		<a class="btn" id="btnFormReset" href="javascript:void(0)"><i class="icon-refresh"></i>重置</a>
+	</div>
+</div>
+
+<!--列表区域-->
+<div class="row-fluid">
+	<table id="dataGridTable"></table>
+</div>

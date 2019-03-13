@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://code.alibabatech.com/schema/dubbo  
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+	">  
+	
+
+	<dubbo:reference id="baseSysCfgRSV" interface="com.zengshi.ecp.server.front.param.IBaseSysCfgRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${sys.dubbo.group}"/>
+	
+	<dubbo:reference id="baseParamCfgRSV" interface="com.zengshi.ecp.server.front.param.IBaseParamCfgRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${sys.dubbo.group}"/>
+
+    <dubbo:reference id="baseAreaAdminRSV" interface="com.zengshi.ecp.server.front.param.IBaseAreaAdminRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${sys.dubbo.group}"/>
+    
+    <dubbo:reference id="baseExpressRSV" interface="com.zengshi.ecp.sys.dubbo.interfaces.IBaseExpressRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${sys.dubbo.group}"/>
+    
+    <dubbo:reference id="msgManageRSV" interface="com.zengshi.ecp.sys.dubbo.interfaces.IMsgManageRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${sys.dubbo.group}"/>
+    
+    <dubbo:reference id="smsActiveRSV" interface="com.zengshi.ecp.sys.dubbo.interfaces.ISmsActiveRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${sys.dubbo.group}"/>
+    
+    <dubbo:reference id="mcSyncSendRSV" interface="com.zengshi.ecp.sys.dubbo.interfaces.IMcSyncSendRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${sys.dubbo.group}"/>
+
+    <dubbo:reference id="sysCfgRSV" interface="com.zengshi.ecp.sys.dubbo.interfaces.ISysCfgRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${sys.dubbo.group}"/>
+
+    <dubbo:reference id="appVersionRSV" interface="com.zengshi.ecp.sys.dubbo.interfaces.IAppVersionRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${sys.dubbo.group}"/>
+ 
+    <dubbo:reference id="reportItemRSV" interface="com.zengshi.ecp.sys.dubbo.interfaces.IReportItemRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${sys.dubbo.group}"/>
+ 
+    <dubbo:reference id="msgInsiteRSV" interface="com.zengshi.ecp.sys.dubbo.interfaces.IMsgInsiteRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${sys.dubbo.group}"/>
+    
+    <dubbo:reference id="weixMenuRSV" interface="com.zengshi.ecp.sys.dubbo.interfaces.IWeixMenuRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${sys.dubbo.group}"/>
+ </beans>  

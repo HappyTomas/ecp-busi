@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+   <!--开始配置序列的取值处理-->	
+
+
+
+	<bean id="seq_ord_cart" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_CART"/>
+	</bean>
+	
+	<bean id="seq_ord_cart_item" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_CART_ITEM"/>
+	</bean>	
+	
+	<bean id="seq_ord_delivery_batch" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_DELIVERY_BATCH"/>
+	</bean>
+	
+	<bean id="seq_ord_delivery_details" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_DELIVERY_DETAILS"/>
+	</bean>
+	
+	<bean id="seq_ord_delivery_entity" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_DELIVERY_ENTITY"/>
+	</bean>
+	
+	<bean id="seq_ord_entity_import" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_ENTITY_IMPORT"/>
+	</bean>
+	
+	<bean id="seq_ord_entity_change" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_ENTITY_CHANGE"/>
+	</bean>
+	
+	<bean id="seq_ord_main_shop_idx" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_MAIN_SHOP_IDX"/>
+	</bean>
+	
+	<bean id="seq_ord_main_staff_idx" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_MAIN_STAFF_IDX"/>
+	</bean>
+	
+	<bean id="seq_ord_file_import" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_FILE_IMPORT"/>
+	</bean>
+	
+	<bean id="seq_ord_main" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_MAIN"/>
+	</bean>
+	
+	<bean id="seq_ord_sub" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_SUB"/>
+	</bean>
+	
+	<bean id="seq_ord_track" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_TRACK"/>
+	</bean>
+	
+	<bean id="seq_ord_invoice_comm" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_INVOICE_COMM"/>
+	</bean>	
+	
+	<bean id="seq_ord_invoice_tax" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_INVOICE_TAX"/>
+	</bean>		
+
+	<bean id="seq_ord_gift" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_GIFT"/>
+	</bean>	
+
+	<bean id="seq_ord_discount" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_DISCOUNT"/>
+	</bean>	
+	
+	<bean id="seq_ord_prom" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_PROM"/>
+	</bean>
+
+	<bean id="seq_ord_pay_rel" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+		<property name="sequenceName" value="SEQ_ORD_PAY_REL"/>
+	</bean>
+
+	<bean id="seq_ord_present" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_PRESENT"/>
+	</bean>
+
+	<bean id="seq_ord_delive_addr" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_DELIVE_ADDR"/>
+	</bean>	
+	<bean id="seq_ord_offline" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_OFFLINE"/>
+	</bean>	
+	<bean id="seq_ord_offline_pic" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_OFFLINE_PIC"/>
+	</bean>	
+	<bean id="seq_ord_offline_chk" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_OFFLINE_CHK"/>
+	</bean>	
+	<bean id="seq_audit_file_deal_log" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_AUDIT_FILE_DEAL_LOG"/>
+	</bean>	
+	<bean id="seq_audit_auto_log" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_AUDIT_AUTO_LOG"/>
+	</bean>	
+	<bean id="seq_pay_shop_cfg_log" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PAY_SHOP_CFG_LOG"/>
+	</bean>
+	<bean id="seq_pay_request" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PAY_REQUEST"/>
+	</bean>
+	<bean id="seq_pay_refund" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PAY_REFUND"/>
+	</bean>
+	<bean id="seq_pay_bindreq" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PAY_BINDREQ"/>
+	</bean>
+	<bean id="seq_pay_bind_transferq" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PAY_BIND_TRANSFERQ"/>
+	</bean>
+	<bean id="seq_pay_intf_reqlog" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PAY_INTF_REQLOG"/>
+	</bean>
+	<bean id="seq_pay_intf_notifylog" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PAY_INTF_NOTIFYLOG"/>
+	</bean>
+	<bean id="seq_pay_refund_result" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PAY_REFUND_RESULT"/>
+	</bean>
+	<bean id="seq_pay_bind" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PAY_BIND"/>
+	</bean>
+	<bean id="seq_pay_bind_log" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PAY_BIND_LOG"/>
+	</bean>
+	<bean id="seq_ord_sub_shop_idx" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_SUB_SHOP_IDX"/>
+	</bean>
+	
+	<bean id="seq_ord_sub_staff_idx" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_SUB_STAFF_IDX"/>
+	</bean>	
+	<bean id="seq_pay_quartz_info" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PAY_QUARTZ_INFO"/>
+	</bean>
+	
+	<bean id="seq_pay_quartz_info_log" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_PAY_QUARTZ_INFO_LOG"/>
+	</bean>
+	
+	<bean id="seq_audit_alipay_detail" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_AUDIT_ALIPAY_DETAIL"/>
+	</bean>
+	
+	<bean id="seq_audit_alipay_detail_log" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_AUDIT_ALIPAY_DETAIL_LOG"/>
+	</bean>
+	
+	<bean id="seq_audit_abcpay_detail" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_AUDIT_ABCPAY_DETAIL"/>
+	</bean>
+	
+	<bean id="seq_audit_abcpay_detail_log" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_AUDIT_ABCPAY_DETAIL_LOG"/>
+	</bean>
+	
+	<bean id="seq_audit_hongpay_detail" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_AUDIT_HONGPAY_DETAIL"/>
+	</bean>
+	
+	<bean id="seq_audit_hongpay_detail_log" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_AUDIT_HONGPAY_DETAIL_LOG"/>
+	</bean>
+	<!-- 退货退款 -->
+	<bean id="seq_ord_back_apply" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_BACK_APPLY"/>
+	</bean>
+	<bean id="seq_ord_back_shop_idx" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_BACK_SHOP_IDX"/>
+	</bean>
+	<bean id="seq_ord_back_staff_idx" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_BACK_STAFF_IDX"/>
+	</bean>
+	<bean id="seq_ord_back_coupon" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_BACK_COUPON"/>
+	</bean>
+	<bean id="seq_ord_back_detail" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_BACK_DETAIL"/>
+	</bean>
+	<bean id="seq_ord_back_discount" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_BACK_DISCOUNT"/>
+	</bean>
+	<bean id="seq_ord_back_gds" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_BACK_GDS"/>
+	</bean>
+	<bean id="seq_ord_back_gift" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_BACK_GIFT"/>
+	</bean>
+	<bean id="seq_ord_back_pic" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_BACK_PIC"/>
+	</bean>
+	<bean id="seq_ord_back_track" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_BACK_TRACK"/>
+	</bean>	
+	<bean id="seq_ord_express_detail" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_EXPRESS_DETAIL"/>
+	</bean>	
+	<bean id="seq_ord_express_req_log" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_EXPRESS_REQ_LOG"/>
+	</bean>	
+	<bean id="seq_ord_sub_share" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_ORD_SUB_SHARE"/>
+	</bean>	
+</beans>

@@ -1,0 +1,56 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/buyer/pwd/pwd.js?version=$!{JS_VERSION}" ></script>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        修改密码
+    </div>
+    <div class="am-header-left am-header-nav">
+        <a href="javascript:" class="" onclick="history.go(-1); ">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+    <style >
+		.error {color:red}
+    </style>
+</header>
+<div class="ui-content">
+    <div class="setbox">
+        <p class="font20">修改密码后，请牢记密码</p>
+    </div>
+    <form class="am-form am-form-horizontal lg-form reg-form" id="modifyPwdForm">
+        <div class="form-box">
+            <div class="am-form-group">
+                <label class="am-u-sm-2 am-form-label ">
+                    <i class="icon icon-lock"></i>旧&nbsp;&nbsp;密&nbsp;&nbsp;码</label>
+
+                <div class="am-u-sm-10">
+                    <input type="password" class="defineRequired checkPassword" requiredInfo="请输入原密码" placeholder="请输入原密码" name="oldPassword" id="oldPassword">
+                </div>
+            </div>
+        </div>
+        <div class="form-box">
+            <div class="am-form-group">
+                <label class="am-u-sm-2 am-form-label">
+                    <i class="icon icon-psd1-reg"></i>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+
+                <div class="am-u-sm-10">
+                    <input type="password" class="defineRequired checkPassword" requiredInfo="请输入新密码" name="newPassword" id="newPassword" placeholder="新密码">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label class="am-u-sm-2 am-form-label">
+                    <i class="icon icon-psd2-reg"></i>确认密码</label>
+
+                <div class="am-u-sm-10">
+                    <input type="password" equalTo="#newPassword" class="defineRequired checkPassword" requiredInfo="请再次输入新密码" id="newPassword2" placeholder="确认密码">
+                </div>
+            </div>
+        </div>
+
+        <div class="reg-b">
+            <div class="wbtn" id="savePwd">确认</div>
+        </div>
+    </form>
+</div>

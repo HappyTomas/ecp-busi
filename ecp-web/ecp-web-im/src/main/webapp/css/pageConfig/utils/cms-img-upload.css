@@ -1,0 +1,60 @@
+@charset "UTF-8";
+/**
+  * cms图片上传样式
+ **/
+.cms-upload-img .cms-img-wrap {
+  position: relative;
+}
+.cms-upload-img img {
+  width: 100%;
+  cursor: pointer;
+}
+.cms-upload-img .cms-shade {
+  display: none;
+  position: absolute;
+  color: #fff;
+  text-align: center;
+  height: 100%;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.cms-upload-img .cms-tip {
+  color: #7f8798;
+  font-size: 12px;
+  margin-top: 6px;
+}
+.cms-upload-img .cms-txt {
+  position: absolute;
+  height: 30px;
+  text-align: center;
+  width: 100%;
+  top: 50%;
+  margin-top: -15px;
+  font-size: 15px;
+  z-index: 2;
+  color: #fff;
+  cursor: pointer;
+  display:none;
+}
+.cms-upload-img:hover .cms-shade {
+  display: block;
+}
+.cms-upload-img:hover .cms-txt {
+  display: block;
+}
+.cms-upload-add .cms-img {
+  background: rgba(0, 0, 0, 0.2);
+}
+.cms-upload-img .cms-img {
+  border: 1px solid #999;
+}
+.cms-upload-add .cms-txt {
+  font-size: 20px;
+  font-weight: bold;
+  display: block;
+}
+.cms-upload-img input {
+  z-index:4;
+}

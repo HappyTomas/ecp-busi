@@ -1,0 +1,19 @@
+.col-btn {
+    padding: 0 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+    height: 20px;
+    line-height: 20px;
+    display: inline-block;
+    cursor: pointer;
+    margin: 10px auto 0;
+}
+
+.shop-explain {
+    padding: 4px 8px;
+    overflow: hidden;
+}
+
+.shop_top a {
+    color: #fff;
+}

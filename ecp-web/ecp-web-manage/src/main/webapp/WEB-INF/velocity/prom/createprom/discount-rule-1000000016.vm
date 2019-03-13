@@ -1,0 +1,67 @@
+<link href="${CONTEXT_PATH}/css/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/discount-rule-1000000016.js?version=$!{JS_VERSION}" ></script>
+			<div class="formBox">
+			    <div class="hide">
+			       <input type="text" id="postAreaCode" value="$!{promVO.discountMap.postAreaCode}"   /> 
+			    </div>
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					  <div class="formSep" >
+					        <div  class=" alert-info" style="margin-left:50px;">
+					                当消费达到特定金额时，可免费邮费。例如:当消费超过 &yen;150.00 时，可免邮费。
+					     </div>
+					  </div>
+				 <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">订单金额超过：</label>
+							<div class="controls">
+								<input type="text" class="input-large required number moneyNumber" id="orderMoney" maxlength="12"  name="discountMap['orderMoney']" placeholder="请输入订单金额阀值 " value="#moneyNum($!{promVO.discountMap.orderMoney})"   />
+							</div>
+						</div>
+					</div>
+					<!--
+					<div class="formSep">
+						<div class="control-group">
+						<label class="control-label">邮递区域：</label>
+							<div class="controls">
+								  <label class="control-label" style="text-align: left;" ><input type="checkbox" id="ifSelectAll"  name='discountMap["ifSelectAll"]' value="1"   #if (${aiTool.containStr("1","$!{promVO.discountMap.ifSelectAll}")}) checked #end><span style="color:red">&nbsp;全部区域</span></label>
+								  <label class="control-label" style="text-align: left;" ><input type="checkbox" id="postAreaExclude"  name='discountMap["postAreaExclude"]' value="1"  #if (${aiTool.containStr("1","$!{promVO.discountMap.postAreaExclude}")}) checked #end><span style="color:blue">&nbsp;除选中区域外</span></label>
+							</div>
+						</div>
+					</div>	
+					 <div id="maincontainer" class="citytb postHide #if (${aiTool.containStr("1","$!{promVO.discountMap.ifSelectAll}")}) hide #end" style="margin-top:20px;margin-left: 50px;margin-right:60px">
+                       <div id="contentwrapper">
+                        <ul class="clearfix">
+							#foreach($list in $!{provinceCityList})
+                            <li name="head" class="fitem hchild" >
+                                <div class="itxt">
+                                    <label class="">
+                                        <input type="checkbox" name="province" areaCode="$!{list.areaCode}" areaName="$!{list.areaName}" areaLevel="$!{list.areaLevel}"/>
+											$!{list.areaName}
+                                    </label>
+                                    <span calss="">
+                                      (<font name="checkCount">0</font>)
+                                     <i class="icon-caret-down" onclick="openChild(this)"></i>
+                                   </span>
+                                </div>
+                                <ul class="citylist clearfix child">
+									#foreach($c in $!{list.list})
+                                         <li>
+                                                <div class="itxt">
+                                                <label class="">
+                                                    <input type="checkbox" name="city" provinceCode="$!{list.areaCode}" provinceName="$!{list.areaName}" areaLevel="$!{list.areaLevel}" cityCode="$!{c.areaCode}" cityName="$!{c.areaName}"/>
+														$!{c.areaName}
+                                                </label>
+                                            </div>
+                                        </li>
+									#end
+                                </ul>
+                            </li>
+							#end
+                        </ul>
+					    </div>
+					</div>
+					
+					-->
+				</form>
+			</div>
+			   

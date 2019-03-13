@@ -1,0 +1,48 @@
+ #parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/gdsgrid/more-gds-list.js?version=$!{JS_VERSION}" ></script>
+	 <table class="seller-table mt15 table-striped">
+                               <thead>
+                               <tr>
+                               		<td><input type="checkbox" name="checkbox" id="dt_row_all_check" title="全选/全取消" /></td>
+                                    <td style="width:50px">店铺</td>
+                                    <td style="width:60px">分类</td>
+                                    <td style="width:60px">商品编码</td>
+						            <td style="width:120px">单品编码</td>
+						            <td style="width:120px">单品名称</td>
+						            <td style="width:80px">促销量</td>
+									#if($!{promTypeCode}=="1000000019")
+									<td style="width:70px">价格类型</td>
+									<td style="width:70px">秒杀价</td>
+									#end
+                                </tr>
+                               </thead>
+                               <tbody>
+        	#if(!$gdsPage.getResult()||$gdsPage.count==0)
+        		<tr><td colspan='9'>很遗憾，暂无数据。</td><tr>
+        	#end
+        	#foreach($attr in $gdsPage.getResult())
+        		<tr>
+        			<td><input type="checkbox" name="checkboxgds"  value="$!{attr.skuId}" id="$!{attr.id}"/></td>
+	                <td style="width:120px;">#escapeHtml( "$!{attr.shopName}")</td>
+	                <td style="width:80px;">#escapeHtml( "$!{attr.mainCatgName}")</td>
+	                <td style="width:80px;">$!{attr.gdsId}</td>
+	                <td style="width:80px;">$!{attr.skuId}</td>
+	                <td  class="td-hhtxt" > <div>#escapeHtml( "$!{attr.gdsName}")</div></td>
+	                <td style="width:80px">$!{attr.promCnt}</td>
+					#if($!{promTypeCode} == "1000000019")
+    					#if($!{attr.priceType} == "0")
+    					<td style="width:70px">折扣率</td>
+    					#else
+    					<td style="width:70px">固定价</td>
+						#end
+						<td style="width:70px">#moneyNum($!{attr.priceValue})</td>
+					#end
+	            </tr>
+			#end
+		</tbody>
+	</table>
+    <div class="fav-opt clearfix" style="margin-top: 20px;">
+        <div class="row-fluid">
+		     <div id="pageControlbar" class="ecppage" data-total-page="${gdsPage.pageCount}" data-total-row="${gdsPage.count}" data-page-size="${gdsPage.pageSize}" data-page-number="${gdsPage.pageNo}" data-status="begin"></div>
+		</div>
+    </div>

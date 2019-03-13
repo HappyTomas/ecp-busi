@@ -1,0 +1,55 @@
+	     #if($null.isNull($gdsList) || $gdsList.isEmpty())
+		
+	      #else
+	         <div style="margin-left:20px;">
+			     <div class="formSep"></div>
+					  <h4 class="formSep">
+					      已选择黑名单商品 
+					 </h4>
+		<div class="nItem">
+			<div style="overflow-x: auto;">
+	          <div class="row-fluid">
+					  <div class="row-fluid" style="margin-bottom: 10px;">
+									<div class="span6">
+										<a class="btn " id="btn_gds_delblack_batch" href="javascript:void(0)"><i class="icon-remove icon-white"></i>批量删除</a>
+									</div>
+                             </div> 
+                             <table id="gdsBlackTable" class="seller-table">
+	                              <thead>
+	                                  <tr role="row">
+	                                      <th class="center selectColumn sorting_disabled" rowspan="1" colspan="1" aria-label="选择" align="center" style="width: 35px; vertical-align: middle; text-align: center; padding: 0px;"><input type="checkbox" id="dt_row_all_check" title="全选/全取消" style="margin: 0px;"></th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="分类" style="width: 60px;">分类</th>
+	                                       <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="商品编码" style="width: 60px;">商品编码</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="单品编码" style="width: 60px;">单品编码</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="单品名称" style="width: 100px;">单品名称</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="单品属性" style="width: 60px;">单品属性</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="状态" style="width: 50px;">状态</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="价格" style="width: 40px;">价格</th>
+	                                      <!--<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="库存量" style="width: 80px;">库存量</th>-->
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="操作" style="width: 80px;">操作</th>
+	                                   </tr>
+	                                </thead>
+	                                 <tbody id="gdsBlackTableTbody">
+	                                  #foreach( $gdsVO in $gdsList)
+	                                   <tr id="$!{gdsVO.skuId}" role="row" class=odd">
+										    <td class=" center selectColumn" align="center" style="width: 35px; vertical-align: middle; text-align: center; padding: 0px;">
+											<input type="checkbox" id="$!{gdsVO.gdsId}-$!{gdsVO.skuId}" skuid="$!{gdsVO.skuId}" name="checkboxgds" >
+											</td>
+											<td>#escapeHtml( "$!{gdsVO.mainCatgName}")</td>
+											<td>$!{gdsVO.gdsId}</td>
+											<td>$!{gdsVO.skuId}</td>
+											 <td  class="td-hhtxt" > <div>$!{gdsVO.gdsName}</div></td>
+											 <td  class="td-hhtxt" > <div>$!{gdsVO.skuProps}</div></td>
+											<td>#escapeHtml( "$!{gdsVO.gdsStatusName}")</td>
+											<td>#moneyNum($!{gdsVO.guidePrice})</td>
+											<td><a class="btn" data="$!{gdsVO.skuId}" name="delGdsRow" href="javascript:void(0)"><i class="icon-remove icon-white"></i>删除</a></td>
+											</tr>
+	                                   #end
+	                                </tbody>
+	                          </table>
+                        </div>
+                     </div>
+                  </div>
+               </div> 
+               
+                #end

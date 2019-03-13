@@ -1,0 +1,14 @@
+
+    <!--文本-->
+    <div class="wrap1000">
+        <div class="h-tit">
+            积分有效期
+        </div>
+        <div class="h-com">
+            <p>积分有效期，时间为1年，过期清零；</p>
+            <br>
+            <p>备注2：新会员，积分首年不清零。</p>
+        </div>
+    </div>
+
+</div>

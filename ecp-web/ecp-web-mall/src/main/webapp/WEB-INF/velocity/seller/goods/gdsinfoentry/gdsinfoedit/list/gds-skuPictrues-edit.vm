@@ -1,0 +1,130 @@
+#parse("/sys/sys_head.vm")
+#parse("/module/mod-form.vm")
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsinfoentry/gds-skuPictrues.js?version=$!{JS_VERSION}" ></script>	
+<div class="seller-box" id="gds-pictrues">
+	<input type="hidden" value="" id="shopId"/>
+    <div class="head">
+        <h3>商品图片</h3>
+    </div>
+    <div class="body">
+        <div>
+            <div class="alert">
+                700*700以上图片可以在宝贝详情页主图提供图片放大功能
+            </div>
+            <div class="seller-imgs clearfix">
+				#foreach($a in $upPictrueAmount)
+                    <div class="item">
+						<div class="imgcont #if($velocityCount==1) active #end">
+							  #if($velocityCount==1)
+                                <i class="sl-icon icon-zt"></i>
+							  #end
+                              <img id="image$velocityCount" src="${aiTool.genImageUrl('','124x124!')}" alt="">
+                              ##<a href="#" class="imgclose" >x</a>
+                        </div>
+                        <div class="text-center">
+							<input type="hidden"
+								   name="mainPicVfsId" 
+								   picName="" 
+								   mediaRtype="" 
+								   mediaId="" 
+								   mediaType="" 
+								   id="picVfsId$velocityCount" 
+								   value="" 
+								   main="$velocityCount"/>
+							<div class="text-center">
+                                 <span class="sbtn a-upload">
+    								  #if($velocityCount==1)
+    								           上传主图
+    							     #else
+    									上传辅图
+    								 #end
+    							      <input class="com_input" index="$velocityCount" uploadimage="upload-pictures" type="file" id="detailPic$velocityCount" name="detailPic"/>
+								  </span>
+                            </div>
+                        </div>
+                   </div>
+				#end
+            </div>
+        </div>
+      <div class="seller-tpltab" style="margin-top: 20px;">
+		        <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#img-tpl" data-toggle="tab">图片空间</a></li>
+                                    ##<li><a href="#video-tpl" data-toggle="tab">视频中心</a></li>
+									<div class="alert">温馨提示：点击选中商品图片的图片显示框，再双击图片空间中的图片，即可添加图片。</div>
+                </ul>
+
+                <div class="tab-content">
+					## 图片空间START
+                    <div class="tab-pane active" id="img-tpl">
+                        <div class="row-fluid form-horizontal">
+                            <div class="span4">
+                                <div class="control-group">
+                                    <label class="control-label">分类：</label>
+                                    <div class="controls">
+										 <select class="input-mediue" name="mediaType" id="mediaType" style="width:100px;">
+        									#foreach($list in $!{mediaTypeList})
+    										  <option value="$!{list.spCode}">$!{list.spValue}</option>
+    										#end
+										 </select>
+                                    </div>
+                                </div>
+                            </div>
+							<div class="span8">
+                                <div class="control-group">
+                                    <label class="control-label">名称：</label>
+                                    <div class="controls">
+    									<input type="text" class="input-mediue" id="mediaName" style="width:100px;height:20px;padding:4px 6px;" placeholder="输入图片名称"/>
+                                        <span class="sbtn sbtn-blue" onclick="searchMedia()">搜索</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						
+                        <div class="pmrg-tpls">
+                            <div class="tpls clearfix" id="mediaList">
+                            </div>
+                        </div>
+                    </div>
+					## 图片空间END
+					## 视频中心START
+					<div class="tab-pane" id="video-tpl">
+                        <div class="row-fluid  form-horizontal">
+                            <div class="span4">
+                                <div class="control-group">
+                                    <label class="control-label">分类：</label>
+                                    <div class="controls">
+										 <select class="input-mediue" style="width:100px;" style="width:100px;">
+										 </select>
+                                    </div>
+                                </div>
+                            </div>
+							<div class="span6">
+                                <div class="control-group">
+                                    <label class="control-label">名称：</label>
+                                    <div class="controls">
+    									<input type="text" class="input-mediue" style="width:100px;height:20px;padding:4px 6px;" placeholder="输入图片名称"/>
+                                        <span class="sbtn sbtn-blue">搜索</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="pmrg-tpls">
+                            <div class="tpls clearfix">
+                            </div>
+                        </div>
+                    </div>
+					## 视频中心END
+                </div>
+            </div>
+            <div class="moreimg clearfix" id="more-pictrue">
+                更多（从图片库选择）&nbsp;<i class="icon-caret-down"></i>
+            </div>
+        </div>
+</div>
+<div class="btn-wrap">
+      <span class="sbtn sbtn-blue" id="btnFormSave">确认</span>
+      <span class="sbtn" id="btnFormCancle">关闭</span>
+</div>

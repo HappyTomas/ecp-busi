@@ -1,0 +1,20 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsVerify/gds-verify-window.js?version=$!{JS_VERSION}" ></script>
+<input type="hidden" value="$!{}" id="gdsId"/>
+<form id="gdsVerify" class="form-horizontal required-validate" style="margin-top: 20px;">
+    <div class="control-group">
+        <label class="control-label">
+		审核意见：</label>
+        <div class="controls">
+            <textarea rows="3" class="span7 required" id="verifyOption"></textarea>
+        </div>
+    </div>
+    <div class="control-group">
+        <div class="controls">
+            <button class="btn  gdsVerify" value="01"><i class="icon-ok"></i>审核通过</button>
+            <button class="btn gdsVerify" value="02"><i class="icon-remove"></i>审核拒绝</button>
+            <button type="button" class="btn " id="btnReturn"><i class="icon-remove-sign icon-white"></i> 关闭</button>
+        </div>
+    </div>
+</form>

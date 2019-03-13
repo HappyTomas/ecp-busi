@@ -1,0 +1,76 @@
+#parse("/module/mod-tree.vm")
+#parse("/module/mod-form.vm")
+<link href="$!{CSS_PATH}/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/category/category-main.js?version=$!{JS_VERSION}" ></script>
+<!-- main content -->
+##<div id="contentwrapper">
+       ## <div class="main_content" style="margin-left:0px;">
+            <div class="sType-content">
+                <!--按钮区-->
+				<div class="sType-head">
+                    <ul class="clearfix">
+                        <li>
+                            <i class="sbtn-icon iconfont" id="btnAddCategory">&#xe62c;</i>
+                            <p>新增分类</p>
+                        </li>
+                        <li>
+                            <i class="sbtn-icon iconfont" id="btnAddSubCategory">&#xe66f;</i>
+                            <p>新增子分类</p>
+                        </li>
+                        <li>
+                            <i class="sbtn-icon iconfont" id="btnDelCategory">&#xe617;</i>
+                            <p>删除分类</p>
+                        </li>
+                    </ul>
+                </div>
+				<div class="sType-body">
+					<div class="row-fluid">
+    					<!--左侧分类树-->
+                        <div class="span3 sType-tree">
+    						<!--关键字搜索框-->
+                            <div class="search-wrap">
+                                   <input type="text" id="keyword" placeholder="输入关键字搜索" class="input-block-level" />
+                                   <i class="sl-icon icon-search" id="search"></i>
+                            </div>
+    						<!--树数据展示-->
+                            <div class="tree" style="height:350px;overflow:auto;">
+                                <ul id="categoryTree" class="ztree"></ul>
+                            </div>
+                        </div>
+    
+    					<!--错误信息显示-->
+                        <div class="alert alert-error hide formValidateMessages" >
+                        </div>
+    					
+    					
+    					<!--详情显示层-->
+						<div class="span9">
+							<div class="sType-right" id='viewContent' style="display:none;">
+        						#parse("/seller/goods/category/category-view.vm")  
+                            </div>
+                        </div>
+    					
+    					<!--分类添加层-->
+						<div class="span9">
+							<div class="sType-right" id='formContent' style="display:none;">
+        						#parse("/seller/goods/category/category-form.vm")  
+                            </div>
+                        </div>
+    					
+						#*<!--属性配置层-->
+    					<div class="rk-editc pull-left" id='propConfig' style="display:none;">
+    						#parse("/seller/goods/category/config-prop.vm")  
+                        </div>
+    					<!--属性组配置层-->
+    					<div class="rk-editc pull-left" id='propgroupConfig' style="display:none;">
+    						#parse("/seller/goods/category/config-group.vm")  
+                        </div>*#
+					</div>
+                 </div>
+              </div>
+           <!-- </div> -->
+       ## </div>
+<!-- main content -->
+<input type="hidden" id="maxLevel" value="$!{maxLevel}"/>
+<input type="hidden" id="param-catlogId" value="$!{reqVO.catlogId}"/>
+##</div>

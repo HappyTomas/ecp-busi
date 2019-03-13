@@ -1,0 +1,363 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/companycheck/companycheck-form-more.js?version=$!{JS_VERSION}" ></script>
+<style>
+	._inline{line-height:30px;}
+	
+</style>
+
+			<h3 class="heading">企业店铺信息审核</h3>
+		
+			<div class="formBox row-fluid">
+				<form id="detailInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+					<input type="hidden" name="companyId" id="companyId" value="$!{companyId}"/>
+					<input type="hidden" name="Id" id="Id" value="$!{Id}"/>
+				<div class="span12">
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">店铺全称：</label>
+							<div class="controls">
+								
+								<span class="_inline">$!{CompanySign.shopFullName}</span>
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">店铺简称：</label>
+							<div class="controls">
+								<span class="_inline">$!{CompanySign.shopName}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+					<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">店铺微信推广号：</label>
+							<div class="controls">
+								
+								<span class="_inline">$!{CompanySign.microMessageExt}</span>
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">店铺联系人：</label>
+							<div class="controls">
+								<span class="_inline">$!{CompanySign.linkPerson}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">联系人手机号：</label>
+							<div class="controls">
+								
+								<span class="_inline">$!{CompanySign.linkMobilephone}</span>
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">联系人邮件：</label>
+							<div class="controls">
+								<span class="_inline">$!{CompanySign.linkEmail}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">是否支持店铺VIP：</label>
+							<div class="controls">
+								<span class="_inline">#translate('SHOP_USE_VIP',$!{CompanySign.isUseVip})</span>
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">是否支持线下支付：</label>
+							<div class="controls">
+								<span class="_inline">#translate('SHOP_OFFLINE_SUPPORTED',$!{CompanySign.offlineSupported})</span>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+						<div class="span6">
+						<div class="control-group">
+							<label class="control-label">店铺描述：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.shopDesc}</span>
+							</div>
+						</div>
+					</div>
+                    </div>
+							<h3 class="heading">企业信息审核</h3>
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业名称：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.companyName}</span>
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业所在地：</label>
+							<div class="controls">
+								<span class="_inline">#areaName($!{CompanySign.provinceCode})-#areaName($!{CompanySign.cityCode})-#areaName($!{CompanySign.countyCode})</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业详细地址：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.companyAdress}</span>
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业人数：</label>
+							<div class="controls">
+									<span class="_inline">#translate('COMPANY_INFO_EMPLOYEE',$!{CompanySign.employeeNum})</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+				
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">所属行业：</label>
+							<div class="controls">
+									<span class="_inline">#translate('COMPANY_INFO_TRADE',$!{CompanySign.trade})</span>
+							</div>
+						</div>
+					</div>
+						<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业法人姓名：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.legalPerson}</span>
+							</div
+						</div>
+					</div>
+				</div>
+                </div>
+					<div class="row-fluid formSep">
+				
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业法人身份证号：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.legalCard}</span>
+							</div>
+						</div>
+					</div>
+						<div class="span6">
+						<div class="control-group">
+							<label class="control-label">父企业：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.parentId}</span>
+							</div>
+						</div>
+					</div>
+					</div>
+					
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">工商执照号：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.licenceCode}</span>
+							</div>
+						</div>
+					</div>
+						<div class="span6">
+						<div class="control-group">
+							<label class="control-label">税务登记号：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.taxCode}</span>
+							</div>
+						</div>
+					</div>
+                </div>
+				<div class="row-fluid formSep">
+				
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">组织机构形式：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.organizationForm}</span>
+							</div>
+						</div>
+					</div>
+						<div class="span6">
+						<div class="control-group">
+							<label class="control-label">注册资金：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.licenceCapital}</span>
+							</div>
+						</div>
+				</div>
+                </div>
+				<div class="row-fluid formSep">
+				
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业性质：</label>
+							<div class="controls">
+									<span class="_inline">#translate('COMPANY_INFO_TYPE',$!{CompanySign.companyType})</span>
+							</div>
+						</div>
+					</div>
+                </div>
+			<div class="row-fluid formSep">
+				
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业联系人：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.linkPersonMsg}</span>
+							</div>
+						</div>
+					</div>
+						<div class="span6">
+						<div class="control-group">
+							<label class="control-label">联系人手机：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.linkPhoneMsg}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+					<div class="row-fluid formSep">
+				
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">固定电话：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.linkTelephone}</span>
+							</div>
+						</div>
+					</div>
+						<div class="span6">
+						<div class="control-group">
+							<label class="control-label">联系人身份证：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.linkPsnCard}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+				
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业邮箱：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.companyEmail}</span>
+							</div>
+						</div>
+					</div>
+						<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业微信：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.companyWeixin}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+				
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业QQ号：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.companyQq}</span>
+							</div>
+						</div>
+					</div>
+						
+				</div>
+					<div class="row-fluid formSep">
+						<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业备注：</label>
+							<div class="controls">
+									<span class="_inline">$!{CompanySign.remark}</span>
+							</div>
+						</div>
+					</div>
+                </div>
+				<div class="row-fluid formSep">
+				<div class="span3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">店铺logo</h3>
+						</div>
+						<div class="panel-body">
+						  <img src="$!{shoplogo}"/>
+							
+						
+						</div>
+					</div>
+				</div>
+			
+					<div class="span3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">法人代表证件照</h3>
+						</div>
+						<div class="panel-body">
+						  <img src="$!{legalPersonimage}"/>
+							
+						
+						</div>
+					</div>
+				</div>
+				<div class="span3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">工商执照图片</h3>
+						</div>
+						<div class="panel-body">
+						  <img src="$!{licence}"/>
+							
+						
+						</div>
+					</div>
+				</div>
+				<div class="span3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">税务附件</h3>
+						</div>
+						<div class="panel-body">
+						  <a href="$!{taxPath}">点击下载</a>
+						</div>
+					</div>
+				</div>
+                </div>
+				<div class="text-center">
+					<button type="button" class="btn" id="btnCheckOk"><i class="icon-ok"></i> 审核通过</button>
+					<button type="button" class="btn" id="btnCheckNo"><i class="icon-remove icon-white"></i> 审核不通过</button>
+					<button type="button" class="btn " id="btnReturn"><i class="icon-reply icon-white"></i> 返回</button>
+				</div>
+				</div>
+				<div class="clear"></div>
+				</form>
+			</div>
+			

@@ -1,0 +1,11 @@
+#parse("sys/sys_param.vm")
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+   	 兑换记录
+    </div>
+    <div class="am-header-left am-header-nav top-left" id="goback">
+        <a href="$!CONTEXT_PATH/homepage" class="">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>

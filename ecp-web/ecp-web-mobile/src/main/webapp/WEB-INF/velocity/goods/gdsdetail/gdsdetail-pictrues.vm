@@ -1,0 +1,14 @@
+<div class="pro-pic">
+	<div data-am-widget="slider" class="am-slider am-slider-a1 am-slider-pictrues" data-am-slider='{"directionNav":false}' id="gdsPictruesList">
+	    
+	</div>
+	#if ($!{ebook}==true)
+	<div class="rw-icon rw-icon-lele"></div>
+	#elseif ($!{dbook}==true)
+	<div class="rw-icon rw-icon-ltea"></div>
+	#else
+	#end
+	#if($!{valueAdded} == true)
+	<div class="pro-zzfw"></div> ##不加增值服务标签了
+	#end
+</div>

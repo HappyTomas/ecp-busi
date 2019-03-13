@@ -1,0 +1,46 @@
+<div id="filterContAll" class="am-offcanvas">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+        <div class="am-offcanvas-content pro-ggCont">
+            <div class="filter-items" id="filter-items">
+                <div class="filter-item" code="priceCode">
+                    <p>价格</p>
+                    <div class="ui-selBox">
+                        <span class="prop-item" code="1">0-89</span>
+                        <span class="prop-item" code="2">90-199</span>
+                        <span class="prop-item" code="3">200-299</span>
+                        <span class="prop-item" code="4">300-399</span>
+                        <span class="prop-item" code="5">400以上</span>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-fix">
+                <span class="wbtn wbtn-default" id="cancelAllSet">重置</span>
+                <span class="wbtn" id="propBtnAll">确定</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="filterContNew" class="am-offcanvas">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+        <div class="am-offcanvas-content pro-ggCont">
+            <div class="filter-items" id="filter-items">
+                <div class="filter-item" code="priceCode">
+                    <p>价格</p>
+                    <div class="ui-selBox">
+                        <span class="prop-item" code="1">0-89</span>
+                        <span class="prop-item" code="2">90-199</span>
+                        <span class="prop-item" code="3">200-299</span>
+                        <span class="prop-item" code="4">300-399</span>
+                        <span class="prop-item" code="5">400以上</span>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-fix">
+                <span class="wbtn wbtn-default" id="cancelNewSet">重置</span>
+                <span class="wbtn" id="propBtnNew">确定</span>
+            </div>
+
+        </div>
+    </div>
+</div>

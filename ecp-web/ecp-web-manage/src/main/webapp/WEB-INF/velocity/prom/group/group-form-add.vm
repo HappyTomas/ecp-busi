@@ -1,0 +1,71 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/group/group-form-add.js?version=$!{JS_VERSION}" ></script>
+			
+			<div class="alert alert-error hide formValidateMessages" >
+				#showSpringAllError("promGroup")
+            </div>
+			<div class="formBox">
+				<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					<div class="row-fluid">
+    					<div class="formSep">
+    						<div class="control-group">
+    							<label class="control-label">站点：</label>
+    							<div class="controls">
+    								<select id="siteId" name="siteId" class="required" value="$!{promGroup.siteId}">
+    									    #siteList('')
+    								 </select>
+    							</div>
+    						</div>
+    					</div>
+    				</div>
+				
+					<div class="formSep">
+						<div class="control-group">
+						<label class="control-label">开始时间：</label>
+							<div class="controls">
+								<input type="text" class="input-large Wdate required" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="showStartTime" name="showStartTime" />
+							</div>
+						</div>
+					</div>	
+						<div class="formSep">
+						<div class="control-group">
+					        <label class="control-label">结束时间：</label>
+							<div class="controls">
+								<input type="text" class="input-large Wdate required" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="showEndTime" name="showEndTime" />
+							</div>
+						</div>
+					</div>	
+						<div class="row-fluid">
+    					<div class="formSep">
+    						<div class="control-group">
+    							<label class="control-label" for="name">促销主题：</label>
+    					      <div class="controls">
+								<input type="text" class="span8 required" id="promTheme" name="promTheme" placeholder="" />
+								<input type="hidden" id="operation" value="1" />
+							</div>
+    						</div>
+    					</div>
+    				</div>
+					<div class="row-fluid formSep">
+							<div class="control-group">
+								<label class="control-label">内容：</label>
+								<div class="controls">
+									<textarea rows="4" class="span8 input-block-level" name="promContent"></textarea>
+								</div>
+						</div>
+					</div>					
+					<input type="hidden" id="savetype" name="type" value=""/>
+					<div class="">
+						
+						<div class="control-group">
+							<div class="controls">
+								<button type="button" class="btn btn-info" id="btnFormSave2"><i class="icon-ok-sign"></i>提交</button>
+								<button type="button" class="btn" id="btnFormSave"><i class="icon-ok-sign"></i>保存草稿</button>
+								<button type="button" class="btn" id="btnReturn"><i class="icon-reply"></i> 返回</button>
+								<!--<a class="btn btn-default" id="btnFormReset" href="javascript:void(0);"><i class="icon-asterisk"></i> 重置</a>-->
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+				

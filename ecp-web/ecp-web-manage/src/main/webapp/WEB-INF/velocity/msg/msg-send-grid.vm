@@ -1,0 +1,11 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<link rel="stylesheet" href="$!{CONTEXT_PATH}/js/bootstrap/plugin/bootstrap-switch/css/bootstrap-switch.css" />
+<script type="text/javascript" src="$!{CONTEXT_PATH}/js/bootstrap/plugin/bootstrap-switch/bootstrap-switch.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{CONTEXT_PATH}/js/bootstrap/plugin/bootstrap-switch/bootstrap-switch.min.js?version=$!{JS_VERSION}" ></script>
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/msg/msg-send-grid.js?version=$!{JS_VERSION}" ></script>
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>
+	

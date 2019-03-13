@@ -1,0 +1,108 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/hotImg/jquery.imagesloaded.min.js?v=${JS_VERSION}"></script>
+#set($picUrl1 = "")##图片
+#set($linkUrl1 = "")##链接地址
+#set($adid1 = "")##
+#set($picUrl2 = "")##图片
+#set($linkUrl2 = "")##链接地址
+#set($adid2 = "")##
+#set($picUrl3 = "")##图片
+#set($linkUrl3 = "")##链接地址
+#set($adid3 = "")##
+#set($picUrl4 = "")##图片
+#set($linkUrl4 = "")##链接地址
+#set($adid4 = "")##
+
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+
+#foreach($prop in $crossItemObj)
+	#if($!{pagePub})
+		#set($groupRespDTOList=$prop.itemPropGroupPubRespDTOList)
+	#else
+		#set($groupRespDTOList=$prop.itemPropGroupPreRespDTOList)
+	#end
+	#foreach($gropPropList in $groupRespDTOList)
+    	#foreach($controlProp in $gropPropList)
+			#if($!{controlProp.propId}=="1020")
+				#if($controlProp.controlPropId==1)
+					#set($picUrl1 = $!{controlProp.propValue})
+				#end
+				#if($controlProp.controlPropId==2)
+					#set($picUrl2 = $!{controlProp.propValue})
+				#end
+				#if($controlProp.controlPropId==3)
+					#set($picUrl3 = $!{controlProp.propValue})
+				#end
+				#if($controlProp.controlPropId==4)
+					#set($picUrl4 = $!{controlProp.propValue})
+				#end
+			#end	
+			#if($!{controlProp.propId}=="1015")
+				#if($controlProp.controlPropId==1)
+					#set($linkUrl1 = $!{controlProp.propValue})
+					#set($adid1 = $!{controlProp.id})
+				#end
+				#if($controlProp.controlPropId==2)
+					#set($linkUrl2 = $!{controlProp.propValue})
+					#set($adid2 = $!{controlProp.id})
+				#end
+				#if($controlProp.controlPropId==3)
+					#set($linkUrl3 = $!{controlProp.propValue})
+					#set($adid3 = $!{controlProp.id})
+				#end
+				#if($controlProp.controlPropId==4)
+					#set($linkUrl4 = $!{controlProp.propValue})
+					#set($adid4 = $!{controlProp.id})
+				#end
+			#end	
+		#end
+	#end	
+#end
+## class="modular-body ecp-component $!{componentMethod}" data-status="1" data-pagePub="$!{pagePub}" data-hotItemPropId="$hotItemPropId"  data-placeWidth="100%" data-placeHeight="100%" data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}" 
+<div class="phone-modular tpl-imgs-cell4 ecp-component $!{componentMethod}" data-web-root = '#translate("CMS_SITE_MAPPING","$!{pageInfo.siteId}")' data-is-pub="$!{pagePub}" data-picurl1="$!{picUrl1}" data-picurl2="$!{picUrl2}" data-picurl3="$!{picUrl3}" data-picurl4="$!{picUrl4}"  data-component-method="$!{componentMethod}"  data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}" ">
+	#if(!$!{componentMethod} || '' == $!{componentMethod})
+	#parse("/pageConfig/pageConfigWap/edit/nodata/modular-nodata-wap.vm")
+	#else 
+    <div class="modular-body">
+        <ul class="clearfix">
+            <li>
+                <a href="javascript:void(0);" lazy-href="$!{linkUrl1}" lazy-adid="$!{adid1}">
+                    <img id="double_row_image1" src="$IMAGE_PATH/pageConfig/noPictures280_280.png" #if("$!picUrl1" != "") lazy-src="#genImageUrl($!picUrl1,'283x283!')" #end
+                         alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" lazy-href="$!{linkUrl2}" lazy-adid="$!{adid2}">
+                    <img id="double_row_image2" src="$IMAGE_PATH/pageConfig/noPictures280_280.png" #if("$!picUrl2" != "") lazy-src="#genImageUrl($!picUrl2,'283x283!')" #end
+                         alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" lazy-href="$!{linkUrl3}" lazy-adid="$!{adid3}">
+                    <img id="double_row_image3" src="$IMAGE_PATH/pageConfig/noPictures280_280.png" #if("$!picUrl3" != "") lazy-src="#genImageUrl($!picUrl3,'283x283!')" #end
+                         alt="">
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" lazy-href="$!{linkUrl4}" lazy-adid="$!{adid4}">
+                    <img id="double_row_image4" src="$IMAGE_PATH/pageConfig/noPictures280_280.png" #if("$!picUrl4" != "") lazy-src="#genImageUrl($!picUrl4,'283x283!')" #end
+                         alt="">
+                </a>
+            </li>
+        </ul>
+    </div>
+    #end
+</div>
+	

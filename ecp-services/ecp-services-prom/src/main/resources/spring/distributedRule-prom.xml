@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean class="com.zengshi.ecp.frame.utils.RuleMap">
+		<constructor-arg>  
+			<map>  
+				<entry key="t_prom_info" value-ref="promInfoDistributed" />
+				<entry key="t_prom_cal_rule" value-ref="promCalRuleDistributed" />
+				<entry key="t_prom_constraint" value-ref="promConstraintDistributed" />
+				<entry key="t_prom_sku" value-ref="promSkuDistributed" />
+				<entry key="t_prom_sku_limit" value-ref="promSkuLimitDistributed" />
+				<!-- <entry key="t_prom_type_msg" value-ref="promTypeMsgDistributed" /> -->
+				<entry key="t_prom_chk" value-ref="promChkDistributed" />
+				<entry key="t_prom_group" value-ref="promGroupDistributed" />
+				<entry key="t_prom_gift" value-ref="promGiftDistributed" />
+				<entry key="t_prom_type4shop_log" value-ref="promType4shopLogDistributed" />
+				<entry key="t_prom_type4shop" value-ref="promType4shopDistributed" />
+				<entry key="t_prom_match_sku" value-ref="promMatchSkuDistributed" />
+				<entry key="t_prom_stock_limit" value-ref="promStockLimitDistributed" />
+				<entry key="t_prom_user_limit" value-ref="promUserLimitDistributed" />
+				<entry key="t_prom_2_solr" value-ref="prom2SolrDistributed" />
+				<entry key="t_prom_import" value-ref="promImportDistributed" />
+				<entry key="t_prom_import_log" value-ref="promImportLogDistributed" />
+				<entry key="t_prom_import_file" value-ref="promImportFileDistributed" />
+				<entry key="t_prom_ord" value-ref="promToOrderRel" />
+				<entry key="t_prom_ord_present" value-ref="promToOrderPresentRel" />
+				
+			</map>  
+		</constructor-arg>  
+	</bean> 
+  
+	<bean id="promInfoDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_info_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	
+	
+	<bean id="promCalRuleDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_cal_rule_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	
+	
+	<bean id="promConstraintDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_constraint_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	
+	
+	<bean id="promSkuDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_sku_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="promSkuLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_sku_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<!-- <bean id="promTypeMsgDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_type_msg_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean> -->
+	<bean id="promChkDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_chk_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="promGroupDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_group_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="promGiftDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="prom_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_gift_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'prom_id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'prom_id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="promType4shopLogDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_type4shop_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="promType4shopDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_type4shop_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="promMatchSkuDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_match_sku_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="promStockLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="prom_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_stock_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'prom_id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'prom_id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	 <bean id="promUserLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_user_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	 </bean>
+	 <bean id="prom2SolrDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_2_solr_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	 </bean>
+	 <bean id="promImportDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_import_{00}" />
+		<property name="tableNameRule">
+		<!-- 	<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value> -->
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+		<!-- 
+		<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		 -->
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	 </bean>
+	 <bean id="promImportLogDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_import_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	 </bean>
+	  <bean id="promImportFileDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="file_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_import_file_{00}" />
+		<property name="tableNameRule">
+            <value>{keyValue:{keyColumn:'file_id',
+				tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'file_id',tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	 </bean>
+	 
+	<bean id="promToOrderRel" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_ord_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	 </bean>
+	<bean id="promToOrderPresentRel" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_prom_ord_present_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	 </bean>
+</beans>

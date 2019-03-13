@@ -1,0 +1,17 @@
+			<div class="formBox">
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					   <div class="row-fluid" >
+                                <div class="span8">
+                                    <div class="control-group">
+                                        	<div class="controls">
+                                                <div class="alert sel-alert" style="margin-top: 15px;margin-bottom: 0">
+                                                    <span class="arrow"></span>
+                         					外围活动，仅作为包装促销使用。没有任何优惠。
+                                                </div>
+                                           </div>
+                                       </div>
+                                  </div>
+                          </div>
+				  </form>
+			</div>
+			   

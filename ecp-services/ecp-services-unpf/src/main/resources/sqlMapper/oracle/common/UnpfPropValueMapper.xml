@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.unpf.dao.mapper.common.UnpfPropValueMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.unpf.dao.model.UnpfPropValue" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="PROP_V_CODE" property="propVCode" jdbcType="VARCHAR" />
+    <result column="PROP_V_NAME" property="propVName" jdbcType="VARCHAR" />
+    <result column="PROP_V_SNAME" property="propVSname" jdbcType="VARCHAR" />
+    <result column="PROP_V_DESC" property="propVDesc" jdbcType="VARCHAR" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="CATG_CODE" property="catgCode" jdbcType="VARCHAR" />
+    <result column="PLAT_TYPE" property="platType" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="SHOP_AUTH_ID" property="shopAuthId" jdbcType="INTEGER" />
+    <result column="PROP_RELA_ID" property="propRelaId" jdbcType="INTEGER" />
+    <result column="PROP_CODE" property="propCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, PROP_V_CODE, PROP_V_NAME, PROP_V_SNAME, PROP_V_DESC, SORT_NO, STATUS, CREATE_TIME, 
+    CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, CATG_CODE, PLAT_TYPE, SHOP_ID, SHOP_AUTH_ID, 
+    PROP_RELA_ID, PROP_CODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfPropValueCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_unpf_prop_value
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_unpf_prop_value
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_unpf_prop_value
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfPropValueCriteria" >
+    delete from t_unpf_prop_value
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfPropValue" >
+    insert into t_unpf_prop_value (ID, PROP_V_CODE, PROP_V_NAME, 
+      PROP_V_SNAME, PROP_V_DESC, SORT_NO, 
+      STATUS, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_TIME, UPDATE_STAFF, CATG_CODE, 
+      PLAT_TYPE, SHOP_ID, SHOP_AUTH_ID, 
+      PROP_RELA_ID, PROP_CODE)
+    values (#{id,jdbcType=INTEGER}, #{propVCode,jdbcType=VARCHAR}, #{propVName,jdbcType=VARCHAR}, 
+      #{propVSname,jdbcType=VARCHAR}, #{propVDesc,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, #{catgCode,jdbcType=VARCHAR}, 
+      #{platType,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, #{shopAuthId,jdbcType=INTEGER}, 
+      #{propRelaId,jdbcType=INTEGER}, #{propCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfPropValue" >
+    insert into t_unpf_prop_value
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="propVCode != null" >
+        PROP_V_CODE,
+      </if>
+      <if test="propVName != null" >
+        PROP_V_NAME,
+      </if>
+      <if test="propVSname != null" >
+        PROP_V_SNAME,
+      </if>
+      <if test="propVDesc != null" >
+        PROP_V_DESC,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="catgCode != null" >
+        CATG_CODE,
+      </if>
+      <if test="platType != null" >
+        PLAT_TYPE,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="shopAuthId != null" >
+        SHOP_AUTH_ID,
+      </if>
+      <if test="propRelaId != null" >
+        PROP_RELA_ID,
+      </if>
+      <if test="propCode != null" >
+        PROP_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="propVCode != null" >
+        #{propVCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propVName != null" >
+        #{propVName,jdbcType=VARCHAR},
+      </if>
+      <if test="propVSname != null" >
+        #{propVSname,jdbcType=VARCHAR},
+      </if>
+      <if test="propVDesc != null" >
+        #{propVDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="catgCode != null" >
+        #{catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="platType != null" >
+        #{platType,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="shopAuthId != null" >
+        #{shopAuthId,jdbcType=INTEGER},
+      </if>
+      <if test="propRelaId != null" >
+        #{propRelaId,jdbcType=INTEGER},
+      </if>
+      <if test="propCode != null" >
+        #{propCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfPropValueCriteria" resultType="java.lang.Long" >
+    select count(*) from t_unpf_prop_value
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_unpf_prop_value
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.propVCode != null" >
+        PROP_V_CODE = #{record.propVCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propVName != null" >
+        PROP_V_NAME = #{record.propVName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propVSname != null" >
+        PROP_V_SNAME = #{record.propVSname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propVDesc != null" >
+        PROP_V_DESC = #{record.propVDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortNo != null" >
+        SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.catgCode != null" >
+        CATG_CODE = #{record.catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platType != null" >
+        PLAT_TYPE = #{record.platType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopAuthId != null" >
+        SHOP_AUTH_ID = #{record.shopAuthId,jdbcType=INTEGER},
+      </if>
+      <if test="record.propRelaId != null" >
+        PROP_RELA_ID = #{record.propRelaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.propCode != null" >
+        PROP_CODE = #{record.propCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_unpf_prop_value
+    set ID = #{record.id,jdbcType=INTEGER},
+      PROP_V_CODE = #{record.propVCode,jdbcType=VARCHAR},
+      PROP_V_NAME = #{record.propVName,jdbcType=VARCHAR},
+      PROP_V_SNAME = #{record.propVSname,jdbcType=VARCHAR},
+      PROP_V_DESC = #{record.propVDesc,jdbcType=VARCHAR},
+      SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      CATG_CODE = #{record.catgCode,jdbcType=VARCHAR},
+      PLAT_TYPE = #{record.platType,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      SHOP_AUTH_ID = #{record.shopAuthId,jdbcType=INTEGER},
+      PROP_RELA_ID = #{record.propRelaId,jdbcType=INTEGER},
+      PROP_CODE = #{record.propCode,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfPropValue" >
+    update t_unpf_prop_value
+    <set >
+      <if test="propVCode != null" >
+        PROP_V_CODE = #{propVCode,jdbcType=VARCHAR},
+      </if>
+      <if test="propVName != null" >
+        PROP_V_NAME = #{propVName,jdbcType=VARCHAR},
+      </if>
+      <if test="propVSname != null" >
+        PROP_V_SNAME = #{propVSname,jdbcType=VARCHAR},
+      </if>
+      <if test="propVDesc != null" >
+        PROP_V_DESC = #{propVDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="catgCode != null" >
+        CATG_CODE = #{catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="platType != null" >
+        PLAT_TYPE = #{platType,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="shopAuthId != null" >
+        SHOP_AUTH_ID = #{shopAuthId,jdbcType=INTEGER},
+      </if>
+      <if test="propRelaId != null" >
+        PROP_RELA_ID = #{propRelaId,jdbcType=INTEGER},
+      </if>
+      <if test="propCode != null" >
+        PROP_CODE = #{propCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfPropValue" >
+    update t_unpf_prop_value
+    set PROP_V_CODE = #{propVCode,jdbcType=VARCHAR},
+      PROP_V_NAME = #{propVName,jdbcType=VARCHAR},
+      PROP_V_SNAME = #{propVSname,jdbcType=VARCHAR},
+      PROP_V_DESC = #{propVDesc,jdbcType=VARCHAR},
+      SORT_NO = #{sortNo,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      CATG_CODE = #{catgCode,jdbcType=VARCHAR},
+      PLAT_TYPE = #{platType,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      SHOP_AUTH_ID = #{shopAuthId,jdbcType=INTEGER},
+      PROP_RELA_ID = #{propRelaId,jdbcType=INTEGER},
+      PROP_CODE = #{propCode,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

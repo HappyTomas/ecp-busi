@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>模板配置</title>
+    #parse("/sys/sys_head.vm")
+    <link href="$!{CSS_PATH}/pageConfig/public.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="$!{CSS_PATH}/pageConfig/template-config.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="$!{CSS_PATH}/pageConfig/layout-1024.css" rel="stylesheet" type="text/css" media="screen"/>
+
+    <!-- 全局插件   -->
+    <!-- js模板插件   -->
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/artTemplate/template-debug.js?version=$!{JS_VERSION}" ></script>
+	<!-- js拖拽插件   -->
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/jsmartdrag/jquery.jsmartdrag.js?version=$!{JS_VERSION}" ></script>
+	<!-- js取色版插件   -->
+	<link href="$!{BUSIJS_PATH}/pageConfig/public/jpicker-1.1.6/css/jPicker-1.1.6.min.css" rel="stylesheet" type="text/css" media="screen"/>
+	<link href="$!{BUSIJS_PATH}/pageConfig/public/jpicker-1.1.6/jPicker.css" rel="stylesheet" type="text/css" media="screen"/>
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/jpicker-1.1.6/jpicker-1.1.6.min.js?version=$!{JS_VERSION}" ></script>
+	<style>
+		.jPicker td[class="Text"] input {
+		    height: 20px;
+		}
+		.jPicker tr.Hex td.Text input.Hex {
+		    width: 60px;
+		}
+	</style>
+	<!-- js拖拽排序插件 -->
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/dragSort/jquery.dragsort-0.5.2.min.js?version=$!{JS_VERSION}" ></script>
+</head>
+
+<body>
+$screen_content
+</body>
+</html>
+

@@ -1,0 +1,57 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/hotImg/jquery.imagesloaded.min.js?v=${JS_VERSION}"></script>
+#set($couponId = "")##优惠券
+
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+		##displayPlatType 为显示终端类型  用于手机app访问促销页对于ajax操作换成a链接的表示
+        <div class="phone-modular promTpl-cpn-v2 ecp-component  $!{componentMethod}" data-web-root = '#translate("CMS_SITE_MAPPING","$!{pageInfo.siteId}")' data-display-plat-type="$!{displayPlatType}" data-is-pub="$!{pagePub}" data-component-method="$!{componentMethod}"  data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}">
+            #if(!$!{componentMethod} || '' == $!{componentMethod})
+			#parse("/pageConfig/pageConfigWap/edit/nodata/modular-nodata-wap.vm")
+			#else
+            <div class="modular-body">
+                <ul>
+	    			#set($prop ='')
+	           		#if($crossItemObj && $crossItemObj.size() > 0)
+	           		#set($prop = $crossItemObj.get(0))
+	    				#if($!{pagePub})
+	                		#set($groupRespDTOList=$prop.itemPropGroupPubRespDTOList)
+	                	#else
+	                		#set($groupRespDTOList=$prop.itemPropGroupPreRespDTOList)
+	                	#end
+	           			#if($prop && $groupRespDTOList && $groupRespDTOList.size() > 0)
+	                    	#foreach($gropPropList in $groupRespDTOList)
+	    				    	#set($couponId = "")##优惠券
+	    				    	#foreach($controlProp in $gropPropList)
+	    							#if($!{controlProp.propId}=="1030")
+	    								#set($couponId = $!{controlProp.propValue})
+	    							#end	
+	    						#end
+								<li class="cpn-item " coupon-id = "$!couponId">
+                                    <div class="item-left"><em>&yen;</em><span class="price"></span></div>
+                                    <div class="item-con">
+                                        <p><span class="p-sel"></span></p>
+                                    </div>
+                                    <div class="item-right receive" coupon-id = "$!couponId">
+                                        <a href="javascript:void(0);"><span class="s-btn">立即领取</span></a>
+									</div>
+                                </li>
+	    					#end
+	    				#end
+	    			#end
+				</ul>
+    	    </div>
+    	    #end
+    	</div>
+	

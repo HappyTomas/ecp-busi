@@ -1,0 +1,14 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/coup-tab.js?version=$!{JS_VERSION}" ></script>
+			<form id="promRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;margin-left: 50px;margin-top: 30px;" method="post" action=""  >
+				   <div class="row-fluid">
+				      <span >本次生成优惠码：</span>
+					  <span style="color:red" >$!{coupVO.coupInfoVO.coupCode}</span>
+				   </div>	
+				   <div class="pull-left"  style="margin-top: 30px;" >
+       	                <button type="button" class="btn btn-primary" id="btnReturn" code="$!{coupVO.coupInfoVO.coupCode}"><i class="icon-reply"></i> 返　回</button>
+				   </div>
+			</form>
+			 
+			   
+		    

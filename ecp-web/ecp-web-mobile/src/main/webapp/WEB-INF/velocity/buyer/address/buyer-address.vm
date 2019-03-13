@@ -1,0 +1,61 @@
+#parse("/sys/sys_param.vm")
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        收货地址管理
+    </div>
+    <div class="am-header-left am-header-nav">
+         <a href="$CONTEXT_PATH/infomation/index">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content-fixBottom">
+	#if(!$!{listaddr} || $!{listaddr.size()}==0)
+		<div class="ui-empty">
+                        <div class="empty-img">
+                            <img src="$!{IMAGE_PATH}/nodata01.png" alt="">
+                        </div>
+                        <div class="tip-bold">
+                    		很遗憾
+                        </div>
+                        <div class="tip-txt">
+                    	您还没有配置收货地址
+                        </div>
+                    </div>
+	#else
+		#foreach($param in $listaddr)
+        <div class="odr-box odr-pad #if($!{param.usingFlag} == 1)odr-check#end">
+            <div class="r-address">
+                <i class="icon icon-name"></i>
+    
+                <div>$!{param.contactName}<span class="c-orange mlr">|</span>$!{param.contactPhone}</div>
+            </div>
+            <div class="r-address">
+                <i class="icon icon-adr"></i>
+                <div class="adre">
+                    <span class="adre-w">$!{param.pccName} $!{param.chnlAddress}</span>
+                </div>
+            </div>
+            <hr/>
+            <div class="edit-adr">
+                <div>
+                    <input type="radio" class="ui-radio" name="radio" id="radio1" #if($!{param.usingFlag} == 1)checked#end/>
+                    <label for="radio1" class="setDefaultAddress" addrId="$!{param.id}" staffId="$!{param.staffId}">#if($!{param.usingFlag} == 1)默认地址#else 设为默认#end</label>
+                </div>
+                <div class="ed-icon">
+    				<span class="editAddress" addrId="$!{param.id}" staffId="$!{param.staffId}"><i class="icon icon-e-edit"></i>编辑</span>
+    				<span class="delAddress" addrId="$!{param.id}" staffId="$!{param.staffId}"><i class="icon  icon-e-del"></i>删除</span>
+                </div>
+            </div>
+        </div>
+    	#end
+	#end
+	
+<div data-am-widget="navbar" class="am-navbar am-navbar-mall  am-navbar-pro" id="">
+    <div class="reg-b">
+        <button class="wbtn" style="width:100%" id="addNewAddress">+ 新增收货地址</button>
+    </div>
+</div>
+<script src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js"></script>
+<script src="$!{RESOURCE_PATH}/util.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/buyer/address/buyer-address.js?version=$!{JS_VERSION}" ></script>

@@ -1,0 +1,43 @@
+ #parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/shop/shopchk-grid-list.js?version=$!{JS_VERSION}" ></script>
+	 <table id="dataGridTable"class="seller-table table-striped" >
+                            <thead>
+                            <tr role="row">
+                                <th >站点</th>
+                                <th >审核状态</th>
+                                <th >促销类型</th>
+                                <th >促销主题</th>
+                                <th >优先级</th>
+                                <th >促销开始时间</th>
+                                <th >促销截止时间</th>
+                                <th >操作</th>
+                            </tr>
+                            </thead>
+                               <tbody>
+        	#if(!$shopCheckPage.getResult()||$shopCheckPage.count==0)
+        		<tr><td colspan='8'>很遗憾，暂无数据。</td><tr>
+        	#end
+        	#foreach($attr in $shopCheckPage.getResult())
+                            <tr id="" role="row" class="odd">
+                                <td>#escapeHtml( "$!{attr.siteName}")  </td>
+                                <td>#escapeHtml( "$!{attr.statusName}")  </td>
+                                <td>#escapeHtml( "$!{attr.promTypeName}")  </td>
+                                <td class="td-hhtxt " ><div style="text-align:center;">#escapeHtml( "$!{attr.shopName}")  $!{attr.promTheme}</div></td>
+                                <td>$!{attr.priority}</td>
+                                <td >$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.startTime})</td>
+	               				<td >$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.endTime})</td>
+	               				<td>
+	               				#if($!{attr.status}=="40")
+	               				<a href='javascript:void(0)' onclick='verify("$!{attr.id}")' >&nbsp;审核&nbsp; </a>
+	               				#end
+	               				<a href='javascript:void(0)' onclick='detail("$!{attr.id}")' >&nbsp;详情&nbsp; </a>
+	               				</td>
+                            </tr>
+			#end
+		</tbody>
+	</table>
+    <div class="fav-opt clearfix" style="margin-top: 20px;">
+        <div class="row-fluid">
+		<div id="pageControlbar" class="ecppage" data-total-page="${shopCheckPage.pageCount}" data-total-row="${shopCheckPage.count}" data-page-size="${shopCheckPage.pageSize}" data-page-number="${shopCheckPage.pageNo}" data-status="begin"></div>
+		</div>
+    </div>

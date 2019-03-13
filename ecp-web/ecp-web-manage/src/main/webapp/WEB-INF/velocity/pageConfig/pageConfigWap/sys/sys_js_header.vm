@@ -1,0 +1,151 @@
+<style type="text/css">
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+</style>
+<script type="text/javascript">
+//javascript中使用全局URL基础路径
+var $webroot = '${CONTEXT_PATH}/';
+</script>
+<link href="$!{RESOURCE_PATH}/jquery/zebra_dialog/css/flat/zebra_dialog.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="$!{RESOURCE_PATH}/jquery/zebra_dialog/zebra_dialog_extend.css" rel="stylesheet" type="text/css" media="screen"/>
+
+
+<link href="$!{RESOURCE_PATH}/jquery/qTip2/jquery.qtip.css" rel="stylesheet" type="text/css" media="screen"/>
+<!-- Gebo Admin Style Tip -->
+<link href="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/lib/qtip2/jquery.qtip.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="$!{RESOURCE_PATH}/jquery/qTip2/jquery.qtip-extend.css" rel="stylesheet" type="text/css" media="screen"/>
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery-1.11.3.min.js"></script>
+<!-- 辅助jQuery版本升级过渡插件 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery-migrate-1.2.1.min.js"></script>
+
+<!--增加关于遮罩的组件-->
+<link rel="stylesheet" href="$!{CSS_PATH}/base/block.css" />
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery-blockui/jquery.blockUI.js"></script>
+
+<!-- smart resize event -->
+<script src="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/js/jquery.debouncedresize.min.js"></script>
+
+<!-- <script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.layer.js" ></script> -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.core.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.utils.js"></script>
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/qTip2/jquery.qtip.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.tip.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.url.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.nav.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.json.js"></script>
+<!-- 消息提示框 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/zebra_dialog/zebra_dialog.src.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.dialog.js"></script>
+<!-- 拖拽插件 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery-ui/jquery-ui.min.js"></script>
+
+<!-- Bootstrap framework -->
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/core/2.3.2/css/bootstrap.min.css" />
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/core/2.3.2/css/bootstrap-responsive.css" />
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/extend/css/bootstrap_panel.css" />
+<!-- Font-Awesome -->
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/plugin/font-awesome-3.2.1/css/font-awesome.min.css" />
+<!--[if IE 7]>
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/plugin/font-awesome-3.2.1/css/font-awesome-ie7.min.css">
+<![endif]-->
+
+<!-- splashy icons -->
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/img/splashy/splashy.css" />
+<!-- gebo color theme-->
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/css/blue.css" id="link_theme" />
+<!-- main styles -->
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/css/style.css" />
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/css/style_extend.css" />
+
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/css/font.css" />
+
+<!-- 管理平台新样式 -->
+<link rel="stylesheet" href="$!{CSS_PATH}/index.css"/>
+<!-- Favicon -->
+<!--
+<link rel="shortcut icon" href="favicon.ico" />
+-->
+
+<!-- 使IE8兼容HTML5 -->
+<!--[if lte IE 8]>
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/css/ie.css" />
+<script src="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/js/ie/html5.js"></script>
+<script src="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/js/ie/respond.min.js"></script>
+<![endif]-->
+
+
+<!-- Bootstrap兼容IE6浏览器 -->
+<!--[if lte IE 6]>
+<link rel="stylesheet" type="text/css" href="$!{RESOURCE_PATH}/jsLib/bootstrap/iehack/css/bootstrap-ie6.css">
+<link rel="stylesheet" type="text/css" href="$!{RESOURCE_PATH}/jsLib/bootstrap/iehack/css/ie.css">
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jsLib/bootstrap/iehack/bootstrap-ie.js"></script>
+<![endif]-->
+
+<link href="$!{CSS_PATH}/pageConfig/phone/amazeui/amazeui.css" rel="stylesheet" type="text/css" media="screen">
+<link href="$!{CSS_PATH}/pageConfig/template-public.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="$!{CSS_PATH}/pageConfig/template-config.css" rel="stylesheet" type="text/css" media="screen"/>
+
+<link href="$!{CSS_PATH}/pageConfig/phone/template-public-phone.css" rel="stylesheet" type="text/css" media="screen">
+<link href="$!{CSS_PATH}/pageConfig/phone/template-mall-phone.css" rel="stylesheet" type="text/css" media="screen">
+<link href="$!{CSS_PATH}/pageConfig/phone/template-prom-phone.css" rel="stylesheet" type="text/css" media="screen">
+<link href="$!{CSS_PATH}/pageConfig/phone/template-pc-fix.css" rel="stylesheet" type="text/css" media="screen">
+<link href="$!{BUSIJS_PATH}/pageConfig/public/mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/mCustomScrollbar/jquery.mousewheel.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+<script src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/amazeui/amazeui.js"></script>
+<script src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/util.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/tplconfig.js"></script>
+<!-- 全局插件   -->
+
+<!-- js模板插件   -->
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/artTemplate/template-debug.js?version=$!{JS_VERSION}" ></script>
+<!-- js拖拽插件   -->
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/jsmartdrag/jquery.jsmartdrag.js?version=$!{JS_VERSION}" ></script>
+<!-- js取色版插件   -->
+<link href="$!{BUSIJS_PATH}/pageConfig/public/jpicker-1.1.6/css/jPicker-1.1.6.min.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="$!{BUSIJS_PATH}/pageConfig/public/jpicker-1.1.6/jPicker.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/jpicker-1.1.6/jpicker-1.1.6.min.js?version=$!{JS_VERSION}" ></script>
+
+<!-- js拖拽排序插件 -->
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/dragSort/jquery.dragsort-0.5.2.min.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/hotImg/jquery.imagesloaded.min.js?v=${JS_VERSION}"></script>
+
+<!-- hidden elements width/height -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery.cookie.js"></script>
+<!-- bootstrap core -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/bootstrap/core/2.3.2/js/bootstrap.min.js"></script>
+<!-- bootstrap plugins -->
+
+<!-- 滚动条插件 -->
+<!-- <script type="text/javascript" src="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/lib/antiscroll/antiscroll.js"></script> -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery.slimscroll/jquery.slimscroll.min.js"></script>
+
+<!-- common functions -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/js/gebo_common.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/common/business/common-init.js"></script>
+
+<!-- 回到页面顶部插件 -->
+<link rel="stylesheet" media="screen,projection" href="$!{RESOURCE_PATH}/jquery/UItoTop/css/ui.totop.css" />
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/UItoTop/easing.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/UItoTop/jquery.ui.totop.js"></script>
+
+
+<!-- 基于Bootstrap的 -->
+<!-- 基于Bootstrap的弹出窗口 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/bootstrap/extend/js/b.dialog.js"></script>
+<!-- 基于Bootstrap的统一表单初始化 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/bootstrap/extend/js/b.ui.js"></script>
+
+
+<!-- 增加控制调试支持，让IE也可以支持在控制台调试 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/console/console.js"></script>
+<!-- 增加json:select数据结构查询语言，用于快速查找复杂JSON数据结构中的内容 -->
+<!-- <script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/jsonselect/jsonselect.js"></script> -->
+<link rel="stylesheet" href="$!{CSS_PATH}/child-reset.css" />
+
+

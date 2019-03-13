@@ -1,0 +1,6 @@
+    #parse("sys/sys_param.vm")
+       <div id="main" class="favShop">
+            <div id="pageMainBox">
+                #parse("/coup/gaincoup/div/gaincoup-list.vm")
+            </div>
+        </div>

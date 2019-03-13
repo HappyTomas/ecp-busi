@@ -1,0 +1,259 @@
+	#parse("/sys/sys_param.vm")
+
+
+    <script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/iCheck/icheck.js"></script>
+    <script type="text/javascript" src="$!{BUSIJS_PATH}/order/build/util.js"></script>
+    <script type="text/javascript" src="$!{BUSIJS_PATH}/order/build/build-create.js"></script>
+    <script>
+        $(function () {
+
+            $('#delbill').click(function(){
+                U.alertInfo("您确定要删除该发票信息吗？");
+            });
+
+            $('#modzttm').click(function(){
+                bDialog.open({
+                    title : "自提时间",
+                    width : 540,
+                    height : 300,
+                    url : 'payztTime_dialog.html'
+                });
+            });
+            $('.sendmd a').click(function(){
+                if($(this).hasClass('zt')){
+                    $('.zt-list').show();
+                }else{
+                    $('.zt-list').hide();
+                }
+
+
+
+            });
+
+
+            $('.sl-addr').live('hover',function(event){
+					if(event.type == 'mouseenter'){
+						$(this).addClass('hover');
+					}else{
+						$(this).removeClass('hover');
+					}
+            });
+			
+			$('.order-switch a').click(function () {
+                $(this).siblings().removeClass('checked')
+                    .find('input[type="radio"]').attr('checked', false);
+                $(this).addClass('checked')
+                    .find('input[type="radio"]').attr('checked', true);
+			});
+        });
+
+
+         
+
+
+    </script>
+	<style>
+	.micon-up{
+          background-image:url("$!{IMAGE_PATH}/iconNew.png");
+          background-repeat: no-repeat;
+          display: inline-block;
+          vertical-align: middle;
+          transform: rotate(180deg);
+          -webkit-transform: rotate(180deg);
+          -moz-transform: rotate(180deg);
+          -o-transform: rotate(180deg);
+        }
+	</style>
+
+
+###常量定义#
+#set($addrCanNo = "")
+#set($showNum  = 2)
+<!--内容 begin-->
+<div id="content">
+    <div class="wrap1000 pay">
+        <h2>
+            结算页
+        </h2>
+        
+      <form action="$!{CONTEXT_PATH}/order/build/submitOrder" method="post" id="submitForm">
+        <!--购物列表 star-->
+        <div class="pay-box" id="cust_addr">
+            <div class="head">
+                <h3>收货人信息</h3>
+                <a href="#" class="hright pmropt">新增收货地址</a>
+            </div>
+            <div class="body" style="padding: 0;">
+				<input type="hidden" class="_staffId" id="$!{staffId}"/>
+				 <input class="pay1" type="hidden" value="0" name="sumbitMainList[0].deliverType">
+				#foreach($!item in $!{addrs})
+					#set($isCheck = "")
+					
+						#if($velocityCount == 1)
+							#set($isCheck = "checked")
+						#end
+					#set($hide = "")
+						#if($velocityCount > $showNum)
+							#set($hide = "style='display:none'")
+						#end
+					
+					<div class="sl-addr mt10" $!{hide} id="$!{item.id}">
+                    <div class="order-switch">
+                        <a class="$isCheck" href="javascript:void(0)">
+							#if($velocityCount == 1)
+							<input class="pay1" type="radio" name="addrId" value="$!{item.id}" checked="checked"></input>
+                            $!{item.contactName}
+                            <b></b>
+							#else
+							<input class="pay1" type="radio" name="addrId" value="$!{item.id}"></input>
+                            $!{item.contactName}
+                            <b></b>
+							#end
+                        </a>
+                    </div>
+                    <span class="sl-name">
+                        $!{item.contactName} #areaName($!{item.province}) #areaName($!{item.cityCode}) #areaName($!{item.countyCode}) #addr($!{item.chnlAddress}, 30) #mobile($!{item.contactPhone})
+                    </span>
+                    <div class="addMgr">
+                      <span class="_default">设为默认地址</span>
+                      <span class="_update">修改</span>
+                      <span class="_delete">删除</span>
+                    </div>
+                </div>
+				#end
+					<div class="addropt">
+                        更多地址
+                        <i class="micon"></i>
+                    </div>
+                    <div class="addrlist">
+                      
+                    </div>
+                
+            </div>
+        </div>
+
+        <div class="carc">
+            <div class="car-head">
+                <div class="cell p-goods">商品名称</div>
+                <div class="cell p-point">兑换积分</div>
+                <div class="cell p-num">数量</div>
+                <div class="cell p-sum">小计</div>
+            </div>
+            <div class="car-list">
+				#set($ordCount = 0)
+				#foreach($ordMain in $!{preOrdMainList})
+					#set($index = $velocityCount - 1)
+					<input type="hidden" name="sumbitMainList[$!index].realExpressFee" class="_realExpressFees" value="0"></input>
+					#set($realMoney = $!{ordMain.getOrderMoney()})
+                    <input type="hidden" name="sumbitMainList[$!index].realMoney" class="_realMoney" value="$!{realMoney}"></input>
+				#set($index = $velocityCount - 1)
+				
+				<div class="_shop">	
+					<div class="car-item">
+						#foreach($ordSub in $!{ordMain.preOrdSubList})
+							#set($addrCanNo = $addrCanNo + $ordSub.gdsType)
+						<div class="item-list">
+						
+							<input type="hidden" class="_orderScores" value="0"></input>
+							<input type="hidden" class="_orderMoney" value="$!{ordMain.getOrderMoney()}"></input>
+                            <div class="item-body">
+                                <div class="cell p-goods">
+                                    <div class="p-img">
+                                        <a href="$!{CONTEXT_PATH}$!{ordSub.gdsUrl}"  target="_blank">
+                                            <img width="120" height="110" src="#genImageUrl($!ordSub.getPicId(),'200x200!')" alt="$!{ordSub.picUrl}"/>
+                                        </a>
+                                    </div>
+                                    <div class="p-name">
+                                        <a href="$!{CONTEXT_PATH}$!{ordSub.gdsUrl}" target="_blank">
+                                             $!{ordSub.gdsName}
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="cell p-point">
+									<input type="hidden" class="_orderScore" value="$!{ordSub.orderScore}"></input>
+									#set($ordScore = 0)
+									#if(!$null.isNull($!{ordSub.orderScore}))
+										#set($ordScore = $!{ordSub.orderScore})
+									#end
+										$!{ordSub.score}积分+&yen;${aiNumber.showMoneyByTwoDecimal("$!{ordSub.buyPrice}")}
+                                </div>
+                                <div class="cell p-num">
+                                    #set($subAm = 0)
+									#if(!$null.isNull($!{ordSub.orderAmount}))
+										#set($subAm = $!{ordSub.orderAmount})
+										#set($ordCount =$ordCount + $subAm)
+									#end
+                                    x $subAm
+                                </div>
+                                <div class="cell p-sum">
+									#set($ordScores = 0)
+									#if(!$null.isNull($!{ordSub.getScore()}))
+										#set($ordScores = ($!{ordSub.getScore()} * $subAm))
+									#end
+									
+									#set($ordMoneys = ($ordSub.buyPrice * $subAm))
+                                    $ordScores积分+&yen;#moneyNum($ordMoneys)
+                                </div>
+                            </div>
+                        </div>
+						#end
+                    </div>
+                </div>
+				#end
+            </div>
+            <div class="car-head pro-total">
+                <div class="total-box">
+                     <span class="tsl">
+                          已选择 <b class="c-red">$ordCount</b> 件商品
+                      </span>
+                      <span class="tl">
+                          总价：
+                      </span>
+                      <span class="tv">
+                          <span class="c-red">
+                              $!{allScores}
+                          </span>
+                          积分
+                         <b>+</b>
+                          <span class="c-red">
+                              &yen;#moneyNum($!{allMoney})
+                          </span>
+                      </span>
+                    <a class="gobtn"  href="javascript:void(0)" id="submitOrd">
+                       提交订单
+                    </a>
+                </div>
+            </div>
+            <div class="text-right"><a href="$!{CONTEXT_PATH}/order/cart/list" style="color:#0088cc">返回购物车</a></div>
+
+
+        </div>
+		<input type="hidden" id="_payType" value="0" name="payType"></input>
+		<input type="hidden" id="_gdsType" value="$addrCanNo" name="gdsType"></input>
+		<input type="hidden" id="mainHashKey" value="$!{mainHashKey}" name="mainHashKey"></input>
+        <!--购物列表 end-->
+      </form>
+    </div>
+</div>
+<!--内容 end-->
+
+    <div id="addTemplate" style="display:none">
+        <div class="sl-addr mt10">
+            <div class="order-switch">
+                <a class="" href="javascript:void(0)">
+                    <input class="pay1" type="radio" name="addrId" value=""/>
+
+                    <b></b>
+                </a>
+            </div>
+        <span class="sl-name">
+
+        </span>
+            <div class="addMgr">
+                <span class="_default">设为默认地址</span>
+                <span class="_update">修改</span>
+                <span class="_delete">删除</span>
+            </div>
+        </div>
+    </div>
+

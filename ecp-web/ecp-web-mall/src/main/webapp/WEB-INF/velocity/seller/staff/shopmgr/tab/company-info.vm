@@ -1,0 +1,178 @@
+#parse("sys/sys_param.vm")
+<style>
+	.controls{line-height:30px;}
+</style>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+        <form class="form-horizontal" id="companydetailfrom">
+            <div class="seller-box">
+                <div class="body">
+                    <div class="control-group">
+                        <label class="control-label">企业名称：</label>
+                        <div class="controls">
+							$!{companySignInfo.companyName}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业所在地：</label>
+
+                        <div class="controls">
+							#areaName($!{companySignInfo.provinceCode})
+							#areaName($!{companySignInfo.cityCode})
+							#areaName($!{companySignInfo.countyCode})
+			                
+			            </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业地址：</label>
+
+                        <div class="controls">
+                        	$!{companySignInfo.companyAdress}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业行业：</label>
+
+                        <div class="controls">
+							#translate('COMPANY_INFO_TRADE',$!{companySignInfo.trade})
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业类型：</label>
+
+                        <div class="controls">
+                        	#translate('COMPANY_INFO_TYPE',$!{companySignInfo.companyType})
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业人数：</label>
+
+                        <div class="controls">
+                        	#translate('COMPANY_INFO_EMPLOYEE',$!{companySignInfo.employeeNum})
+                        </div>
+                    </div>
+                 <!--   <div class="control-group">
+                        <label class="control-label">所属父企业：</label>
+                        <div class="controls">
+                            <select style="width:220px" name="parentId">
+                            #translate('COMPANY_INFO_EMPLOYEE',$!{companySignInfo.employeeNum})
+									<option value="">
+										请选择
+                                    </option>
+									#companylist("$!{companySignInfo.parentId}")
+							</select>
+                        </div>
+                    </div>		-->
+                    <div class="control-group">
+                        <label class="control-label">
+                            	企业法人姓名：
+                        </label>
+                        <div class="controls">
+                        	$!{companySignInfo.legalPerson}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+					                            企业法人身份证号：
+                        </label>
+                        <div class="controls">
+                        	$!{companySignInfo.legalCard}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="seller-box">
+                <div class="head">
+                    <h3>企业资质</h3>
+                </div>
+                <div class="body">
+                    <div class="control-group">
+                        <label class="control-label">
+                            	工商执照号：
+                        </label>
+
+                        <div class="controls">
+                       		$!{companySignInfo.licenceCode}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                           	 税务登记号：
+                        </label>
+                        <div class="controls">
+                        	$!{companySignInfo.taxCode}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                            	组织机构形式：
+                        </label>
+                        <div class="controls">
+                        	$!{companySignInfo.organizationForm}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">
+                          	  注册资金（元）：
+                         </label>
+                        <div class="controls">
+                        	$!{companySignInfo.licenceCapital}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="seller-box">
+                <div class="head">
+                    <h3>企业联系方式</h3>
+                </div>
+                <div class="body">
+                    <div class="control-group">
+                        <label class="control-label">联系人：</label>
+                        <div class="controls">
+                        	$!{companySignInfo.linkPersonMsg}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">联系人手机：</label>
+                        <div class="controls">
+                        	$!{companySignInfo.linkPhoneMsg}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">固定电话：</label>
+                        <div class="controls">
+                        	$!{companySignInfo.linkTelephone}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">联系人身份证号：</label>
+                        <div class="controls">
+                        	$!{companySignInfo.linkPsnCard}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业邮箱：</label>
+                        <div class="controls">
+                        	$!{companySignInfo.companyEmail}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业微信：</label>
+                        <div class="controls">
+                        	$!{companySignInfo.companyWeixin}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">企业QQ号：</label>
+                        <div class="controls">
+                        	$!{companySignInfo.companyQq}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">备注：</label>
+                        <div class="controls">
+                        	<span style="word-wrap:break-word;width:300px;display:block;">$!{companySignInfo.remark}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>

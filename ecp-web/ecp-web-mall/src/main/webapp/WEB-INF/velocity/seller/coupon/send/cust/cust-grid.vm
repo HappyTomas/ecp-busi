@@ -1,0 +1,51 @@
+#parse("/sys/sys_param.vm")
+#parse("/sys/sys_open_head.vm")
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+ <script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/send/cust/cust-grid.js?version=$!{JS_VERSION}" ></script>
+        <div class="seller-mainR">
+            <div class="main">
+                <div class="seller-well">
+                    <form action="" class="form-horizontal required-validate" id="searchForm" >
+                        <div class="row-fluid">
+	                              <div class="span6">
+	                                <div class="control-group">
+	                                    <label class="control-label">会员名：</label>
+	                                    <div class="controls">
+	                                        <input type="text" name="staffCode" id="staffCode"  class="input-block-level" value="" placeholder="输入工号">
+	                                    </div>
+	                                </div>
+	                            </div>
+                				<div class="span4">
+                					<div class="control-group">
+                						<label class="control-label">店铺：</label>
+                						<div class="controls">
+                							<select name="shopId" id="shopId" class="input-medium" >
+                									#sellerList('')
+                							</select>
+                						</div>
+                					</div>
+                				</div>
+                        </div>
+                    </form>
+                </div>
+              
+                
+                
+	                <div class="main-inner">
+	                    <div class="sbtn-group">
+		                    <!--添加图标-->
+								<span class="sbtn sbtn-blue" id="btn_code_modify"><i class="icon-plus"></i> 添加</span>
+								<span class="sbtn sbtn-blue" id="btnReturn"><i class="icon-reply"></i> 关闭</span>
+						   <div class=" btn-w-right">
+                                <span class="sbtn sbtn-blue"  id="btnFormSearch"><i class="icon-search"></i> 查询</span>
+                                <span class="sbtn" id="btnFormReset"><i class="icon-asterisk icon-color"></i> 重置</span>
+                            </div>
+						</div>
+						
+	               		<div style="overflow-x:auto;" id="custListDiv">
+		                    	##parse("/seller/coupon/send/cust/cust-list.vm")
+		                 </div>
+	                </div>
+    		</div>
+        </div>

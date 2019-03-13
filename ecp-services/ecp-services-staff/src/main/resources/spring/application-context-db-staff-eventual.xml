@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.
+        ">
+    
+    <!---最终一致性事务，完整的  begin--> 
+    <bean id="transactionManager1" class="com.distribute.tx.eventual.TransactionManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionManager"/>
+        <property name="sequence" ref="sequence"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="participant" value="sample_group"/>
+      <!--   <property name="transactionChecker" ref="transactionChecker"/> -->
+    </bean>
+    
+    <!-- <bean id="transactionChecker" class="com.zengshi.ecp.demo.facade.impl.assured.TransactionCheckerSample" /> -->
+    
+    <bean id="transactionListenerManager" class="com.distribute.tx.eventual.TransactionListenerManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="listener" ref="stockBuildSubStaffSV"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager"/>
+        <property name="participant" value="sample_group"/>
+        <property name="transactionList">
+	        <list>
+	        	 <value>business-topic-staff-stock</value>
+	        </list>
+        </property>
+    </bean>
+    <!-- 新建店铺时，创建媒体库子事务 -->
+    <bean id="buildMediaLibListenerManager" class="com.distribute.tx.eventual.TransactionListenerManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="listener" ref="shopBuildMediaSV"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager"/>
+        <property name="participant" value="build_media_group"/>
+        <property name="transactionList">
+	        <list>
+	        	 <value>business-topic-staff-stock</value>
+	        </list>
+        </property>
+    </bean>
+    
+    <!-- 新建店铺时，创建默认运费模板子事务 -->
+    <bean id="buildShipTemListenerManager" class="com.distribute.tx.eventual.TransactionListenerManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="listener" ref="shopBuildShipTemSV"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager"/>
+        <property name="participant" value="build_shiptem_group"/>
+        <property name="transactionList">
+	        <list>
+	        	 <value>business-topic-staff-stock</value>
+	        </list>
+        </property>
+    </bean>
+    
+    <bean id="companyTransactionListenerManager" class="com.distribute.tx.eventual.TransactionListenerManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="listener" ref="companyTxBuildRepSV"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager"/>
+        <property name="participant" value="company_build_rep"/>
+        <property name="transactionList">
+	        <list>
+	        	 <value>business-topic-company-rep</value>
+	        </list>
+        </property>
+    </bean>
+    
+    <bean id="shopInvalidTransactionManager" class="com.distribute.tx.eventual.TransactionListenerManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="listener" ref="shopTxOffShelvesGdsSV"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager"/>
+        <property name="participant" value="shop_invalid_off_gds"/>
+        <property name="transactionList">
+	        <list>
+	        	 <value>business-topic-shop-invalid</value>
+	        </list>
+        </property>
+    </bean>
+    <!-- 企业审核通过创建仓库 -->
+      <bean id="companyCheckTransactionManager" class="com.distribute.tx.eventual.TransactionListenerManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="listener" ref="companyCheckTxBuildRepSV"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager"/>
+        <property name="participant" value="company_build_stock"/>
+        <property name="transactionList">
+	        <list>
+	        	 <value>business-topic-company-check</value>
+	        </list>
+        </property>
+    </bean>
+    <!-- 企业审核通过创建店铺媒体库及目录 -->
+      <bean id="companyCheckShopTransactionManager" class="com.distribute.tx.eventual.TransactionListenerManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="listener" ref="companyCheckBuildMediaLibSV"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager"/>
+        <property name="participant" value="company_build_media"/>
+        <property name="transactionList">
+	        <list>
+	        	 <value>business-topic-company-check</value>
+	        </list>
+        </property>
+    </bean>
+    
+      <!-- 企业会员审核通过创建仓库 -->
+      <bean id="custCheckTransactionManager" class="com.distribute.tx.eventual.TransactionListenerManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="listener" ref="custCheckTxBuildRepSV"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager"/>
+        <property name="participant" value="companycust_build_stock"/>
+        <property name="transactionList">
+	        <list>
+	        	 <value>business-topic-cust-check</value>
+	        </list>
+        </property>
+    </bean>
+    
+    <!-- 商品分享购买送积分子事务 -->
+      <bean id="scoreForShareTransactionManager" class="com.distribute.tx.eventual.TransactionListenerManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="listener" ref="scoreForShareGdsSV"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager"/>
+        <property name="participant" value="score_for_share_gds"/>
+        <property name="transactionList">
+	        <list>
+	        	 <value>business-topic-pay</value>
+	        </list>
+        </property>
+    </bean>
+    
+    <!---最终一致性事务，完整的  end -->
+
+</beans>

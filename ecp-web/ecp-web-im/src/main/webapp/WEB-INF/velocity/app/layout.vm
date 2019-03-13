@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>请等待</title>
+#parse("/sys/sys_head.vm")
+</head>
+
+<body>
+
+<div id="maincontainer" class="main">
+	<!-- main content -->
+	$screen_content
+	<!-- main content -->
+</div>
+
+</body>
+</html>

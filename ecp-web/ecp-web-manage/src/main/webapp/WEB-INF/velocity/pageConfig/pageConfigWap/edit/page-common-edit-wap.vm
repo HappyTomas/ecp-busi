@@ -1,0 +1,59 @@
+#parse("sys/sys_param.vm")
+<!--  模块化脚本基础库 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/requirejs/require.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/requirejs.common.js?v=${JS_VERSION}"></script>
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/edit/page-common-edit-wap.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/preview/item-render.js?v=${JS_VERSION}"></script>
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/public/public-js.js?v=${JS_VERSION}"></script>
+
+##用于处理页面背景  在  pageConfig-index-wap.js 的 showPageEdit  方法回调sideBarWap.js 的展示背景方法
+<input type="hidden" id="pre-itemIds" value="$!{itemIds}"/>
+<input type="hidden" id="pageTypeId" value="$!{pageTypeId}"/>
+#set($shopId = $!{pageInfo.shopId})
+#set($pageEdit = true)
+<input type="hidden" value="$!{pageInfo.shopId}" id="hiddenShopId"/>
+<input type="hidden" value="#siteInfo('1')" id="mallUrl"/>
+<style>
+  	html {
+      font-size: 32px;
+       }
+</style>
+#foreach($!layout in $!pageConfig) 
+	<input type="hidden" value="$!{layout.id}" id="layoutId"/>
+	#set($item_index = 0)
+	## 布局循环
+	#if($!layout.layoutItemPreRespDTOMap)
+    	#foreach($columnItem in $!layout.layoutItemPreRespDTOMap.entrySet())
+    		#foreach($crossItem in $!{columnItem.value})
+    		#set($item_index = $item_index + 1)
+    			## 布局项
+    			#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+                <div class="phone-layout #if($item_index==1)active #end " id = "item-$!{crossItem.id}">##id 用于局部刷新时定位
+    				<input type="hidden" id="itemId" value="$!{crossItem.id}" />
+    				<input type="hidden" id="modularId" value="$!{crossItem.modularId}" />
+    				<input type="hidden" id="modularType" value="$!{crossItem.modularRespDTO.modularType}" />
+    				<input type="hidden" id="rowNo" value="$!{crossItem.rowNo}" />
+    				<input type="hidden" id="modularName" value="$!{crossItem.modularRespDTO.modularName}" >
+                    <input type="hidden" id="componentEditUrl" value="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentEditUrl}" >
+                    <input type="hidden" id="componentVmUrl" value="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentVmUrl}" >
+                    <div class="menu">
+                        <span class="mup"></span>
+                        <span class="medit"></span>
+                        <span class="mdown"></span>
+                        <span class="mdel"></span>
+                    </div>
+  					##parse("/pageConfig/pageConfig/modular/common/modular-common-loading.vm")
+  					#parse($!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentVmUrl})
+                </div>
+    		#end
+		#end
+	#else
+		<div class="phone-layout" id="default_layout_item">
+             <div class="module-placeholder">
+				亲，您还未添加任何模块，请将左侧模块拖动到这里开始装修哦~
+             </div>
+        </div>
+	#end
+#end

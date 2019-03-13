@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+
+
+	<!-- 
+	<bean class="com.zengshi.ecp.frame.utils.RuleMap">
+		<constructor-arg>  
+			<map>  
+				<entry key="t_demo_distributed" value-ref="demoDistributed" />
+			</map>  
+		</constructor-arg>  
+	</bean> 
+			
+
+  
+	<bean id="demoDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_demo_distributed_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	 -->
+	
+</beans>

@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.common.ImOrdBelongMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.ImOrdBelong" >
+    <id column="ORD_ID" property="ordId" jdbcType="VARCHAR" />
+    <result column="REAL_MONEY" property="realMoney" jdbcType="INTEGER" />
+    <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+    <result column="MOBILE_NUMBER" property="mobileNumber" jdbcType="VARCHAR" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="STAFF_CODE" property="staffCode" jdbcType="VARCHAR" />
+    <result column="ORD_TIME" property="ordTime" jdbcType="TIMESTAMP" />
+    <result column="PAY_TIME" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="BELONG_SER_CODE" property="belongSerCode" jdbcType="VARCHAR" />
+    <result column="BELONG_SER_NAME" property="belongSerName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ORD_ID, REAL_MONEY, CONTACT_NAME, MOBILE_NUMBER, STAFF_ID, STAFF_CODE, ORD_TIME, 
+    PAY_TIME, BELONG_SER_CODE, BELONG_SER_NAME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.ImOrdBelongCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_im_ord_belong
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_im_ord_belong
+    where ORD_ID = #{ordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_im_ord_belong
+    where ORD_ID = #{ordId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.ImOrdBelongCriteria" >
+    delete from t_im_ord_belong
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.ImOrdBelong" >
+    insert into t_im_ord_belong (ORD_ID, REAL_MONEY, CONTACT_NAME, 
+      MOBILE_NUMBER, STAFF_ID, STAFF_CODE, 
+      ORD_TIME, PAY_TIME, BELONG_SER_CODE, 
+      BELONG_SER_NAME)
+    values (#{ordId,jdbcType=VARCHAR}, #{realMoney,jdbcType=INTEGER}, #{contactName,jdbcType=VARCHAR}, 
+      #{mobileNumber,jdbcType=VARCHAR}, #{staffId,jdbcType=INTEGER}, #{staffCode,jdbcType=VARCHAR}, 
+      #{ordTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{belongSerCode,jdbcType=VARCHAR}, 
+      #{belongSerName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.ImOrdBelong" >
+    insert into t_im_ord_belong
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ordId != null" >
+        ORD_ID,
+      </if>
+      <if test="realMoney != null" >
+        REAL_MONEY,
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME,
+      </if>
+      <if test="mobileNumber != null" >
+        MOBILE_NUMBER,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE,
+      </if>
+      <if test="ordTime != null" >
+        ORD_TIME,
+      </if>
+      <if test="payTime != null" >
+        PAY_TIME,
+      </if>
+      <if test="belongSerCode != null" >
+        BELONG_SER_CODE,
+      </if>
+      <if test="belongSerName != null" >
+        BELONG_SER_NAME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ordId != null" >
+        #{ordId,jdbcType=VARCHAR},
+      </if>
+      <if test="realMoney != null" >
+        #{realMoney,jdbcType=INTEGER},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNumber != null" >
+        #{mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffCode != null" >
+        #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ordTime != null" >
+        #{ordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="belongSerCode != null" >
+        #{belongSerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="belongSerName != null" >
+        #{belongSerName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.ImOrdBelongCriteria" resultType="java.lang.Long" >
+    select count(*) from t_im_ord_belong
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_im_ord_belong
+    <set >
+      <if test="record.ordId != null" >
+        ORD_ID = #{record.ordId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.realMoney != null" >
+        REAL_MONEY = #{record.realMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.contactName != null" >
+        CONTACT_NAME = #{record.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mobileNumber != null" >
+        MOBILE_NUMBER = #{record.mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffCode != null" >
+        STAFF_CODE = #{record.staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ordTime != null" >
+        ORD_TIME = #{record.ordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.payTime != null" >
+        PAY_TIME = #{record.payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.belongSerCode != null" >
+        BELONG_SER_CODE = #{record.belongSerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.belongSerName != null" >
+        BELONG_SER_NAME = #{record.belongSerName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_im_ord_belong
+    set ORD_ID = #{record.ordId,jdbcType=VARCHAR},
+      REAL_MONEY = #{record.realMoney,jdbcType=INTEGER},
+      CONTACT_NAME = #{record.contactName,jdbcType=VARCHAR},
+      MOBILE_NUMBER = #{record.mobileNumber,jdbcType=VARCHAR},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      STAFF_CODE = #{record.staffCode,jdbcType=VARCHAR},
+      ORD_TIME = #{record.ordTime,jdbcType=TIMESTAMP},
+      PAY_TIME = #{record.payTime,jdbcType=TIMESTAMP},
+      BELONG_SER_CODE = #{record.belongSerCode,jdbcType=VARCHAR},
+      BELONG_SER_NAME = #{record.belongSerName,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.ImOrdBelong" >
+    update t_im_ord_belong
+    <set >
+      <if test="realMoney != null" >
+        REAL_MONEY = #{realMoney,jdbcType=INTEGER},
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="mobileNumber != null" >
+        MOBILE_NUMBER = #{mobileNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ordTime != null" >
+        ORD_TIME = #{ordTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="belongSerCode != null" >
+        BELONG_SER_CODE = #{belongSerCode,jdbcType=VARCHAR},
+      </if>
+      <if test="belongSerName != null" >
+        BELONG_SER_NAME = #{belongSerName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ORD_ID = #{ordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.ImOrdBelong" >
+    update t_im_ord_belong
+    set REAL_MONEY = #{realMoney,jdbcType=INTEGER},
+      CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      MOBILE_NUMBER = #{mobileNumber,jdbcType=VARCHAR},
+      STAFF_ID = #{staffId,jdbcType=INTEGER},
+      STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      ORD_TIME = #{ordTime,jdbcType=TIMESTAMP},
+      PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      BELONG_SER_CODE = #{belongSerCode,jdbcType=VARCHAR},
+      BELONG_SER_NAME = #{belongSerName,jdbcType=VARCHAR}
+    where ORD_ID = #{ordId,jdbcType=VARCHAR}
+  </update>
+</mapper>

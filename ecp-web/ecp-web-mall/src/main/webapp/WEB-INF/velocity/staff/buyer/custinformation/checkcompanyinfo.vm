@@ -1,0 +1,84 @@
+#parse("sys/sys_param.vm")
+<style>
+.seller-box {
+  background-color: #fff;
+}
+.seller-box a {
+  color: #017bff;
+}
+.seller-box > .head {
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 1px solid #d5d9e3;
+  margin: 0 10px;
+}
+.seller-box > .head h3 {
+  font-weight: bold;
+  padding: 0 5px;
+  display: inline-block;
+  background-color: #fff;
+  height: 35px;
+  line-height: 35px;
+  font-size: 14px;
+}
+.seller-box > .body {
+  padding: 10px;
+}
+.rz-examing {
+  font-size: 14px;
+  position: relative;
+  height: 130px;
+  margin-left: 20px;
+}
+.rz-examing .examing-img {
+  background: url("../images/seller-shop-l.png");
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120px;
+  height: 120px;
+}
+.rz-examing .fore02 {
+  padding-left: 150px;
+  padding-top: 15px;
+}
+.rz-examing .state-txt {
+  font-size: 18px;
+  color: #e4393c;
+  font-weight: 900;
+  margin: 5px 0;
+}
+</style>
+
+
+<!--<div class="seller-well" style="margin-top:5px">
+                    <div class="stepflex clearfix">
+                        <dl class="done">
+                            <dt class="s-num">1</dt>
+                            <dd class="s-text">入驻须知</dd>
+                        </dl>
+                        <dl class="done">
+                            <dt class="s-num">2</dt>
+                            <dd class="s-text">公司信息认证</dd>
+                        </dl>
+                        <dl class="done">
+                            <dt class="s-num">3</dt>
+                            <dd class="s-text">店铺信息认证</dd>
+                        </dl>
+                        <dl class="doing">
+                            <dt class="s-num">4</dt>
+                            <dd class="s-text">等待审核</dd>
+                        </dl>
+                    </div>
+                </div>-->
+                <div class="seller-box">
+                    <div class="body body-center">
+                        <div class="rz-examing">
+                            <s class="examing-img"></s>
+                            <div class="fore02 clearfix">
+                             <p class="state-txt">认证审核中</p>
+                                <p>我们会尽快审核，请您耐心等待，敬请留意！感谢您的支持！</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>

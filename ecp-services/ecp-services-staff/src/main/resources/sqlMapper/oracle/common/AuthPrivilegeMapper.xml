@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.common.AuthPrivilegeMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.AuthPrivilege" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ROLE_ADMIN" property="roleAdmin" jdbcType="VARCHAR" />
+    <result column="PRIVILEGE_TYPE" property="privilegeType" jdbcType="VARCHAR" />
+    <result column="SYS_CODE" property="sysCode" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ROLE_ADMIN, PRIVILEGE_TYPE, SYS_CODE, STATUS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.AuthPrivilegeCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_auth_privilege
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_auth_privilege
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_auth_privilege
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.AuthPrivilegeCriteria" >
+    delete from t_auth_privilege
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.AuthPrivilege" >
+    insert into t_auth_privilege (ID, ROLE_ADMIN, PRIVILEGE_TYPE, 
+      SYS_CODE, STATUS)
+    values (#{id,jdbcType=INTEGER}, #{roleAdmin,jdbcType=VARCHAR}, #{privilegeType,jdbcType=VARCHAR}, 
+      #{sysCode,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.AuthPrivilege" >
+    insert into t_auth_privilege
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="roleAdmin != null" >
+        ROLE_ADMIN,
+      </if>
+      <if test="privilegeType != null" >
+        PRIVILEGE_TYPE,
+      </if>
+      <if test="sysCode != null" >
+        SYS_CODE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="roleAdmin != null" >
+        #{roleAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeType != null" >
+        #{privilegeType,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCode != null" >
+        #{sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.AuthPrivilegeCriteria" resultType="java.lang.Long" >
+    select count(*) from t_auth_privilege
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_auth_privilege
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.roleAdmin != null" >
+        ROLE_ADMIN = #{record.roleAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.privilegeType != null" >
+        PRIVILEGE_TYPE = #{record.privilegeType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sysCode != null" >
+        SYS_CODE = #{record.sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_auth_privilege
+    set ID = #{record.id,jdbcType=INTEGER},
+      ROLE_ADMIN = #{record.roleAdmin,jdbcType=VARCHAR},
+      PRIVILEGE_TYPE = #{record.privilegeType,jdbcType=VARCHAR},
+      SYS_CODE = #{record.sysCode,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.AuthPrivilege" >
+    update t_auth_privilege
+    <set >
+      <if test="roleAdmin != null" >
+        ROLE_ADMIN = #{roleAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="privilegeType != null" >
+        PRIVILEGE_TYPE = #{privilegeType,jdbcType=VARCHAR},
+      </if>
+      <if test="sysCode != null" >
+        SYS_CODE = #{sysCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.AuthPrivilege" >
+    update t_auth_privilege
+    set ROLE_ADMIN = #{roleAdmin,jdbcType=VARCHAR},
+      PRIVILEGE_TYPE = #{privilegeType,jdbcType=VARCHAR},
+      SYS_CODE = #{sysCode,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

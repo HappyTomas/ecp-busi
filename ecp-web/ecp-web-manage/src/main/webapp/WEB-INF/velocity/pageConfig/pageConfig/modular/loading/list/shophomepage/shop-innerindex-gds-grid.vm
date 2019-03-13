@@ -1,0 +1,151 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-page.vm")
+<script >
+$(function(){
+	$('#pageControlbar').bPage({
+		url : $webroot+"/cmscommongetdata/page",
+		asyncLoad : true,
+		asyncTarget : '#pageMainBox',
+		//pageSize:16,
+		pageSizeMenu: [16,24,32,40],
+		params : function(){
+	    	return {
+	    		  "shopId":$('#hiddenShopId').val(),
+			      "field":shopIndex.getField(),
+			      "sort":shopIndex.getSort()
+		    };
+	    }
+	});
+})
+</script>
+<input  type="hidden" value="$!{isLogin}" id="isLogin"/>
+ <ul class="tUl p-list sr-grid clearfix">
+	#if($gridResult.list)
+		#foreach($good in $gridResult.list)
+         <li class="tLi resultItem">
+			 <input name="pGdsId" value="${good.id}" type="hidden"/>
+             <input name="pSkuId" value="${good.firstSkuId}" type="hidden"/>
+             <input name="pShopId" value="${good.shopId}" type="hidden"/>
+			 <input name="pDiscountPrice" value="$!{good.discountPrice}" type="hidden"/>
+			 <input name="pRealPrice" value="$!{good.defaultPrice}" type="hidden"/>
+			 <input name="pMainCatgs" value="$!{good.mainCategoryCode}" type="hidden"/>
+             <div class="li-inner">
+                 <div class="">
+                     <div class="tpl-img">
+                          <a href="$!{MALL_SITE_URL}/gdsdetail/${good.id}-${good.firstSkuId}" target="_blank" title="$!{good.gdsNameSrc}">
+                        <img src="$good.imageUrl" alt="">
+                    </a>
+                     </div>
+                     <p class="p-pri">
+                        ##如果该商品有参加了促销活动。则价格最终会被促销接口提供的价格覆盖。（业务需求。请注意）
+                        <b class="tpl-red" name="discountPrice">
+                        #money($!{good.discountPrice})
+                        </b>
+						##如果该商品有参加了促销活动。则价格最终会被促销接口提供的价格覆盖。（业务需求。请注意）
+                        <b class="tpl-gray t-mline" name="guidePrice">
+                        #money($!{good.guidePrice})
+                        </b>
+                     </p>
+                     <p class="p-name">
+                         <a href="$!{MALL_SITE_URL}/gdsdetail/${good.id}-${good.firstSkuId}" target="_blank" title="$!{good.gdsNameSrc}">
+                            $!{good.gdsName}<span id="gdsName-extends-desc"></span>
+                        </a>
+                     </p>
+                     <p class="p-pjnum">
+						已有 <b>$!{good.sales}</b>人付款
+                     </p>
+                     <div class="p-coll">
+                        <span class="ticon-box gdsCollect">
+							<input type="hidden" name="skuId" value="$!{good.firstSkuId}"/>
+                            <input type="hidden" name="isLogin" value="$isLogin">
+                              <a href="#">
+                                	<i class="ticon ticon-fav"></i>
+							  </a>
+                        </span>
+						#if($!{good.ifNeedStockAmount})
+    						#if($!{good.storageDesc})
+    							#if($!{good.storageStatus}=='00' )
+    								<span class="tbtn tbtn-grad tbtn-disable" title="此价格为普通会员折扣价，会员级别越高，享受越多优惠！具体折扣价，请登录后查看产品详情页">
+                                    <i class="ticon car"></i>
+                                    <b class="spit"></b>
+    									加入购物车
+    								</span>
+    							#else		
+                                <span class="tbtn tbtn-orange addToCart" img="$good.imageUrl" title="此价格为普通会员折扣价，会员级别越高，享受越多优惠！具体折扣价，请登录后查看产品详情页">
+        							<input type="hidden" name="shopId" value="$!{good.shopId}"/>
+        							<input type="hidden" name="shopName" value="$!{good.shopName}"/>
+        							<input type="hidden" name="gdsId" value="$!{good.id}"/>
+        							<input type="hidden" name="gdsTypeId" value="$!{good.gdsTypeId}"/>
+        							<input type="hidden" name="gdsName" value="$!{good.gdsName}"/>
+        							<input type="hidden" name="skuId" value="$!{good.firstSkuId}"/>
+        							<input type="hidden" name="skuProps" value="$!{good.skuProps}"/>
+        							<input type="hidden" name="mainCatgs" value="$!{good.mainCategoryCode}"/>
+        							
+                    				<i class="ticon car"></i>   		
+                                    <b class="spit"></b>
+    									加入购物车
+                                </span>
+    							#end
+    						#else
+    							<span class="tbtn tbtn-grad tbtn-disable">
+                                    <i class="ticon car"></i>
+                                    <b class="spit"></b>
+    									加入购物车
+    								</span>
+    						#end
+						#else
+							<span class="tbtn tbtn-orange addToCart" img="$good.imageUrl" title="此价格为普通会员折扣价，会员级别越高，享受越多优惠！具体折扣价，请登录后查看产品详情页">
+    							<input type="hidden" name="shopId" value="$!{good.shopId}"/>
+    							<input type="hidden" name="shopName" value="$!{good.shopName}"/>
+    							<input type="hidden" name="gdsId" value="$!{good.id}"/>
+    							<input type="hidden" name="gdsTypeId" value="$!{good.gdsTypeId}"/>
+    							<input type="hidden" name="gdsName" value="$!{good.gdsName}"/>
+    							<input type="hidden" name="skuId" value="$!{good.firstSkuId}"/>
+    							<input type="hidden" name="skuProps" value="$!{good.skuProps}"/>
+    							<input type="hidden" name="mainCatgs" value="$!{good.mainCategoryCode}"/>
+    						
+                				<i class="ticon ep"></i>
+                                <b class="spit"></b>
+									加入购物车
+                            </span>
+						
+						
+						#end
+                     </div>
+                 </div>
+                 <div class="p-autor">
+					##默认只有显示1个作者信息
+					#if($!{good.author})
+						#if($good.author.size() > 0)
+							#set($i=1)
+							#foreach($value in $good.author)
+								#if($i<=1)
+									#set($author=$value.trim())
+									<span title="$author">$author</span>
+								#else
+									#break
+								#end
+								#set($i=$i+1)
+
+							#end
+						#else
+							<span></span>
+						#end
+    				#else
+						<span></span>
+    				#end
+					<i class="spit"></i>
+					#if($!{good.publisher})
+						#set($publish=$good.publisher.trim())
+						<span class="cbs" title="$publish">$publish</span>
+					#else
+						<span class="cbs"> </span>
+					#end
+                 </div>
+             </div>
+         </li>
+		#end
+	#end
+ </ul>
+ <input type="hidden" id="searchTotal" value="$!{gridResult.totalRow}"/>
+ <div id="pageControlbar" class="ecppage" data-total-page="$!{gridResult.totalPage}" data-total-row="$!{gridResult.totalRow}"  data-page-size="$!{gridResult.pageSize}" data-page-number="$!{gridResult.pageNumber}" data-status="begin"></div>

@@ -1,0 +1,78 @@
+#parse("/sys/sys_param.vm")
+<input type="hidden" value="$!{promTypeCode}" id="promTypeCode"/>
+<div class="filter-content">
+    <div id="wrapper4" data-am-widget="list_news" class="am-list-news scroll-wrap">
+        <div class="am-list-news-bd scroll">
+            <div class="pull-action clearfixloading pull-down">
+                <span class="pull-label"> 下拉刷新</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <ul class="pro-list clearfix scrollCont">
+                <div class="loading-lo"></div>
+            </ul>
+
+            <div class="pull-action pull-up" style="bottom: 0">
+                <span class=" pull-label"> 上拉加载更多</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/x-handlebars-template" id="wrapper4-tpl">
+	{{if values.datas ==null || values.datas.length == 0}}
+		<div data-tab-panel-0 class="am-tab-panel am-active">
+            <div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$IMAGE_PATH/shop-nodata.png" alt="">
+                </div>
+                <div class="tip-bold">
+						很遗憾
+                </div>
+                <div class="tip-txt">
+						没有查到任何数据
+                </div>
+            </div>
+        </div>
+	{{/if}}
+    {{each values.datas as obj i}}
+    <div class="item">
+        <div class="img-wrap">
+            <a href="$!{CONTEXT_PATH}/gdsdetail/{{obj.gdsId}}-{{obj.skuId}}" title="{{obj.gdsNameSrc}}">
+                <img src="{{obj.imageUrl}}" alt="">
+            </a>
+        </div>
+        <div class="item-cont">
+            <p class="p-tit">
+                <span class="p-color p-color-radius">{{obj.promTypeName}}</span>
+                <a href="$!{CONTEXT_PATH}/gdsdetail/{{obj.gdsId}}-{{obj.skuId}}" title="{{obj.gdsNameSrc}}">{{#obj.gdsName}}</a>
+            </p>
+
+            ##<p class="p-tip">包邮</p>
+
+            ##<p class="p-ll clearfix"><span class="p-color">浏览过的书</span></p>
+
+         <p class="p-line"><span class="c-orange">&yen;{{obj.promPriceYun}}</span><span class="pull-right p-font">{{obj.sales}}人付款</span>
+         </p>
+        </div>
+    </div>
+    {{/each}}
+</script>
+<script >
+	$(function(){
+		$('#wrapper4',$("#saleGdsForm")).height($(window).height()
+        	-20
+    		-$('.am-header').height()
+    		-$('.shop-header').height()
+			-$('.shop-tab').height()
+    		-$('.cx-pro',$("#saleGdsForm")).outerHeight()
+    		-parseInt($('.cx-pro',$("#saleGdsForm")).css('margin-bottom'))
+    	);
+        var loadScrollSale = new LoadScroll("wrapper4", {
+            url:GLOBAL.WEBROOT + '/shopmain/scollsalelist',
+            params : {"shopId":$("#shopId").val(),"promTypeCode":$("#promTypeCode").val()},
+            isAjax:true,
+        });
+	});
+</script>

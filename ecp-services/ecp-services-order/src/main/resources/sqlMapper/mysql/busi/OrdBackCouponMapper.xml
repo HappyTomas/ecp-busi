@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.OrdBackCouponMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdBackCoupon" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="BACK_ID" property="backId" jdbcType="INTEGER" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="ORDER_SUB_ID" property="orderSubId" jdbcType="VARCHAR" />
+    <result column="PROC_TYPE" property="procType" jdbcType="VARCHAR" />
+    <result column="COUPON_TYPE_ID" property="couponTypeId" jdbcType="INTEGER" />
+    <result column="COUPON_TYPE_NAME" property="couponTypeName" jdbcType="VARCHAR" />
+    <result column="COUPON_CNT" property="couponCnt" jdbcType="INTEGER" />
+    <result column="COUPON_AMOUNT" property="couponAmount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, BACK_ID, ORDER_ID, ORDER_SUB_ID, PROC_TYPE, COUPON_TYPE_ID, COUPON_TYPE_NAME, 
+    COUPON_CNT, COUPON_AMOUNT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.OrdBackCouponCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_ord_back_coupon
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ord_back_coupon
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_ord_back_coupon
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdBackCouponCriteria" >
+    delete from t_ord_back_coupon
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.OrdBackCoupon" >
+    insert into t_ord_back_coupon (ID, BACK_ID, ORDER_ID, 
+      ORDER_SUB_ID, PROC_TYPE, COUPON_TYPE_ID, 
+      COUPON_TYPE_NAME, COUPON_CNT, COUPON_AMOUNT
+      )
+    values (#{id,jdbcType=INTEGER}, #{backId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, 
+      #{orderSubId,jdbcType=VARCHAR}, #{procType,jdbcType=VARCHAR}, #{couponTypeId,jdbcType=INTEGER}, 
+      #{couponTypeName,jdbcType=VARCHAR}, #{couponCnt,jdbcType=INTEGER}, #{couponAmount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.OrdBackCoupon" >
+    insert into t_ord_back_coupon
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="backId != null" >
+        BACK_ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="orderSubId != null" >
+        ORDER_SUB_ID,
+      </if>
+      <if test="procType != null" >
+        PROC_TYPE,
+      </if>
+      <if test="couponTypeId != null" >
+        COUPON_TYPE_ID,
+      </if>
+      <if test="couponTypeName != null" >
+        COUPON_TYPE_NAME,
+      </if>
+      <if test="couponCnt != null" >
+        COUPON_CNT,
+      </if>
+      <if test="couponAmount != null" >
+        COUPON_AMOUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="backId != null" >
+        #{backId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSubId != null" >
+        #{orderSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="procType != null" >
+        #{procType,jdbcType=VARCHAR},
+      </if>
+      <if test="couponTypeId != null" >
+        #{couponTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="couponTypeName != null" >
+        #{couponTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponCnt != null" >
+        #{couponCnt,jdbcType=INTEGER},
+      </if>
+      <if test="couponAmount != null" >
+        #{couponAmount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdBackCouponCriteria" resultType="java.lang.Long" >
+    select count(*) from t_ord_back_coupon
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_ord_back_coupon
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.backId != null" >
+        BACK_ID = #{record.backId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderSubId != null" >
+        ORDER_SUB_ID = #{record.orderSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.procType != null" >
+        PROC_TYPE = #{record.procType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couponTypeId != null" >
+        COUPON_TYPE_ID = #{record.couponTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.couponTypeName != null" >
+        COUPON_TYPE_NAME = #{record.couponTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.couponCnt != null" >
+        COUPON_CNT = #{record.couponCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.couponAmount != null" >
+        COUPON_AMOUNT = #{record.couponAmount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_ord_back_coupon
+    set ID = #{record.id,jdbcType=INTEGER},
+      BACK_ID = #{record.backId,jdbcType=INTEGER},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      ORDER_SUB_ID = #{record.orderSubId,jdbcType=VARCHAR},
+      PROC_TYPE = #{record.procType,jdbcType=VARCHAR},
+      COUPON_TYPE_ID = #{record.couponTypeId,jdbcType=INTEGER},
+      COUPON_TYPE_NAME = #{record.couponTypeName,jdbcType=VARCHAR},
+      COUPON_CNT = #{record.couponCnt,jdbcType=INTEGER},
+      COUPON_AMOUNT = #{record.couponAmount,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.OrdBackCoupon" >
+    update t_ord_back_coupon
+    <set >
+      <if test="backId != null" >
+        BACK_ID = #{backId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSubId != null" >
+        ORDER_SUB_ID = #{orderSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="procType != null" >
+        PROC_TYPE = #{procType,jdbcType=VARCHAR},
+      </if>
+      <if test="couponTypeId != null" >
+        COUPON_TYPE_ID = #{couponTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="couponTypeName != null" >
+        COUPON_TYPE_NAME = #{couponTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="couponCnt != null" >
+        COUPON_CNT = #{couponCnt,jdbcType=INTEGER},
+      </if>
+      <if test="couponAmount != null" >
+        COUPON_AMOUNT = #{couponAmount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.OrdBackCoupon" >
+    update t_ord_back_coupon
+    set BACK_ID = #{backId,jdbcType=INTEGER},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      ORDER_SUB_ID = #{orderSubId,jdbcType=VARCHAR},
+      PROC_TYPE = #{procType,jdbcType=VARCHAR},
+      COUPON_TYPE_ID = #{couponTypeId,jdbcType=INTEGER},
+      COUPON_TYPE_NAME = #{couponTypeName,jdbcType=VARCHAR},
+      COUPON_CNT = #{couponCnt,jdbcType=INTEGER},
+      COUPON_AMOUNT = #{couponAmount,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

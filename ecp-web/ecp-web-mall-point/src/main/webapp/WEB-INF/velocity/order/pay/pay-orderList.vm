@@ -1,0 +1,116 @@
+#parse("sys/sys_param.vm")
+	<link href="$!{CSS_PATH}/order.css" type="text/css" rel="stylesheet"/>
+	<link href="$!{CSS_PATH}/reset.css" type="text/css" rel="stylesheet"/>
+
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/pay-orderList.js?version=$!{JS_VERSION}" ></script>
+ 
+ 
+<!--主要内容 begin-->  
+<div id="content">
+    <div class="wrap1200">
+        <div class="order-sb-state">
+            <div class="sus-tip">
+                <table width="100%" border="0">
+                    <tbody><tr>
+                        <td class="mstate-icc">
+                           <i class="mstate"></i>
+                        </td>
+                        <td>
+                            <p class="txt">
+                                <strong>感谢您提交订单，我们将在您支付成功后处理此订单！
+                                </strong>
+                            </p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="warn-tip">
+                <table width="100%" border="0">
+                    <tbody><tr>
+                        <td class="mstate-icc">
+                            <i class="mstate"></i>
+                        </td>
+                        <td>
+                            <div class="txt">
+                                <strong>
+									请您在 <span class="c-red">#translate('ORD_PAY_LIMIT' '0')小时</span>内完成任务，超过时间将不能支付 <br/>
+                                    <div class="c-red"> (请核对订单金额，发起支付后订单金额将不可修改)</div>
+                                </strong>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="order-sb-list">
+            <div class="pay_online">
+                <h6>
+                    订单列表
+                </h6>
+                <table>
+                    <tbody>
+                    <tr>
+                        <th style="width:58px; ">
+							#if($!switchPayMerge == '1')
+							   <input type="checkbox" id="allChecked" style="margin:0 0 0"/><span>全选</span>
+							#end
+						</th>
+                        <th style="width:132px; ">订单编号</th>
+                        <th style="width:88px; ">订单种类</th>
+                        <th style="width:400px; ">归属店铺</th>
+                        <th style="width:158px; ">下单时间</th>
+                        <th style="width:102px; ">总数量</th>
+                        <th style="width:102px; ">总金额</th>
+                        <th style="width:62px;">运费</th>
+                    </tr>
+					 #foreach($item in $!{orderList})
+						#if($!{item.realMoney}!='0')
+    						<tr>
+                                <td>
+									#if($!switchPayMerge == '1')
+									   <input type="checkbox" class="addCheck" radioName="strRadio" value="$!{item.shopId},$!{item.id},$!{item.orderMoney}"/>
+									#else
+									   <input type="radio" name="strRadio" radioName="strRadio" value="$!{item.shopId},$!{item.id},$!{item.orderMoney}"/>
+								    #end
+								</td>
+                                <td><a href="$!{CONTEXT_PATH}/ord/detail/$!{item.id}">$!{item.id}</a></td>
+                                <td>
+    								#if($!{item.orderType}=='01')
+    									正常订单
+    								#elseif($!{item.orderType}=='02')
+    									正常订单
+    								#else
+    									正常订单
+    								#end
+    							</td>
+                                <td>
+                                    <div class="contact">
+                                        $!{item.shopName}
+                                        <span class="qq"></span>
+                                        <span class="qq"></span>
+                                    </div>
+                                </td>
+                                <td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{item.orderTime})</td>
+                                <td class="c-red">$!{item.orderAmount}</td>
+                                <td class="c-red">#money($!{item.realMoney})</td>
+                                <td class="c-red">#money($!{item.realExpressFee})</td>
+                            </tr>
+						#end
+					 #end 
+                    </tbody>
+                </table>
+					<div class="gooper">
+                        <span class="c-gray">请在#translate('ORD_PAY_LIMIT' '0')小时内完成支付，超时后将取消订单</span>
+                        <input type="button" value="去支付" id="btn_pay" class="mbtn mbtn-orange">
+                    </div> 
+            </div>
+        </div>
+    </div>
+	 
+</div> 
+
+
+<!--主要内容 end-->
+

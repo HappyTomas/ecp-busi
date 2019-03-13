@@ -1,0 +1,87 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/template/template-view.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<div class="alert alert-error hide formValidateMessages" >
+	##showSpringAllError("vo")
+</div>
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/template/save">
+		<div class="span8">
+			
+    		<div class="row-fluid formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">模板名称：</label>
+    				<label class="controls  text_line">
+                    #escapeHtml($!{respVO.templateName})   
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="row-fluid formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属站点：</label>
+    				<label class="controls  text_line">
+    					#escapeHtml($!{respVO.siteZH})
+    				</label>
+    			</div>
+            </div>
+			
+    		<div class="row-fluid formSep">
+    			<div class="control-group">
+    				<label class="control-label">模板分类：</label>
+    				<label class="controls  text_line">
+                        $!{respVO.templateClassZH}
+    			    </label>
+				</div>
+            </div>
+			
+			<div class="row-fluid formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">模板文件路径：</label>
+    				<label class="controls  text_line">
+    					#escapeHtml($!{respVO.templateFileUrl})
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">状态：</label>
+					<label class="controls  text_line">
+						$!{respVO.statusZH}
+					</label>
+				</div>
+			</div>
+		
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label required">创建时间：</label>
+    				<label class="controls  text_line">
+						$!date.format('yyyy-MM-dd',$!{respVO.createTime})
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label required">修改时间：</label>
+    				<label class="controls  text_line">
+						$!date.format('yyyy-MM-dd',$!{respVO.updateTime})
+					</label>
+    			</div>
+    		</div>
+			<div class="text-center">
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+			</div>
+        </div>
+	</form>
+</div>
+	

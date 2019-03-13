@@ -1,0 +1,54 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/search/search-page.js"></script>
+
+<ul class="clearfix info-list">
+
+	#if($gridResult.list && $gridResult.list.size() > 0)
+        #foreach($good in $gridResult.list)
+			#if($adid)
+    		   #set($detailURL=$!{CONTEXT_PATH}+"/gdspointdetail/"+${good.id}+"-"+${good.firstSkuId}+"?adid="+$adid+"&linktype=1")
+    		#else
+    		   #set($detailURL=$!{CONTEXT_PATH}+"/gdspointdetail/"+${good.id}+"-"+${good.firstSkuId})
+			#end
+			
+			
+    		<li>
+                <p class="p-info-border"><a href="$detailURL" target="_blank" title="$!{good.gdsNameSrc}">
+                
+                	#if($good.imageUrl)
+                	#if($good.imageUrl.contains("null_"))
+                   <img src="images/p-pro01.png"></a></p>
+                	#else 		
+               	<img src="$good.imageUrl"></a></p>
+                
+                	#end
+                	#else
+                   <img src="images/p-pro01.png"></a></p>
+                	#end
+                <p class="p-info-tit"><a href="$detailURL" target="_blank" stype="text-decoration:none;" title="$!{good.gdsNameSrc}">$!{good.gdsName}</a></p>
+           #if($good.score&&$good.score != 0)
+              #if($good.defaultPrice&&$good.defaultPrice !=0)
+             	 <p><i class="picon m-icon"></i><span>$!{good.score}积分+#money($!{good.defaultPrice})</span></p>
+             #else
+             	  <p><i class="picon m-icon"></i><span>$!{good.score}积分</span></p>
+             	
+             #end             
+             #else
+             #if($good.defaultPrice&&$good.defaultPrice !=0)
+                <p><i class="picon m-icon"></i><span> #money($!{good.defaultPrice})</span></p>
+             #else
+              <p><i class="picon m-icon"></i><span>0积分</span></p>
+              #end
+             #end
+              ##  <span class="cx-icon"></span>
+            </li>
+    	#end
+    #else
+    	<li style="height:50px">
+    	</li>
+	#end
+
+</ul>
+
+<input type="hidden" id="searchTotal" value="$!{gridResult.totalRow}"/>
+<div id="pageControlbar" class="ecppage" style="margin-right:20px" data-total-page="${gridResult.totalPage}" data-total-row="${gridResult.totalRow}"  data-page-size="${gridResult.pageSize}" data-page-number="${gridResult.pageNumber}" data-status="begin"></div>

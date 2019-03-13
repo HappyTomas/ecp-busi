@@ -1,0 +1,172 @@
+<!--商品问答 begin-->
+                    <div class="citem pro-ques">
+                        <div class="ui-tab">
+                            <div class="head">
+                                <ul class="quesn">
+                                    <li class="active">
+                                        <a href="#">全部商品咨询</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">商品咨询</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">商品咨询</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">商品评价</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">库存配送</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">支付</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">发票保修</a>
+                                    </li>
+                                </ul>
+                                <div class="serchwrap">
+                                    <input class="itxt" type="text"/>
+                                    <span class="mbtn mbtn-blue" style="margin-right: 10px;">搜索</span>
+                                    <a href="#" class="mbtn mbtn-blue">发表咨询</a>
+                                </div>
+                            </div>
+                            <div class="quesc">
+                                <div class="citem active">
+                                     <div class="wd">
+                                         <div class="witem">
+                                             <div class="wname">
+                                                用户21342
+                                             </div>
+                                             <div class="mh">
+                                                 ：
+                                             </div>
+                                             <div class="wtxt">
+                                               我想问问，几个月前我买有一本诊断学，我激活了，但没有收藏，现在我想看增值服务，显示已激活，看不
+                                             </div>
+                                         </div>
+                                         <div class="witem">
+                                             <div class="wname">
+                                                 <i class="micon micon-kf"></i>
+                                               人卫回复
+                                             </div>
+                                             <div class="mh">
+                                                 ：
+                                             </div>
+                                             <div class="wtxt kfd">
+                                                 您好，网络增值服务请拨打客服热线：4006-300-567
+                                             </div>
+                                         </div>
+                                         <span class="wtime">
+                                            2015-09-30
+                                         </span>
+                                    </div>
+                                    <div class="wd">
+                                        <div class="witem">
+                                            <div class="wname">
+                                                用户21342
+                                            </div>
+                                            <div class="mh">
+                                                ：
+                                            </div>
+                                            <div class="wtxt">
+                                                我想问问，几个月前我买有一本诊断学，我激活了，但没有收藏，现在我想看增值服务，显示已激活，看不
+                                            </div>
+                                        </div>
+                                        <div class="witem">
+                                            <div class="wname">
+                                                <i class="micon micon-kf"></i>
+                                                人卫回复
+                                            </div>
+                                            <div class="mh">
+                                                ：
+                                            </div>
+                                            <div class="wtxt kfd">
+                                                您好，网络增值服务请拨打客服热线：4006-300-567
+                                            </div>
+                                        </div>
+                                         <span class="wtime">
+                                            2015-09-30
+                                         </span>
+                                    </div>
+                                    <div class="wd">
+                                        <div class="witem">
+                                            <div class="wname">
+                                                用户21342
+                                            </div>
+                                            <div class="mh">
+                                                ：
+                                            </div>
+                                            <div class="wtxt">
+                                                我想问问，几个月前我买有一本诊断学，我激活了，但没有收藏，现在我想看增值服务，显示已激活，看不
+                                            </div>
+                                        </div>
+                                        <div class="witem">
+                                            <div class="wname">
+                                                <i class="micon micon-kf"></i>
+                                                人卫回复
+                                            </div>
+                                            <div class="mh">
+                                                ：
+                                            </div>
+                                            <div class="wtxt kfd">
+                                                您好，网络增值服务请拨打客服热线：4006-300-567
+                                            </div>
+                                        </div>
+                                         <span class="wtime">
+                                            2015-09-30
+                                         </span>
+                                    </div>
+                                    <div class="wd">
+                                        <div class="witem">
+                                            <div class="wname">
+                                                用户21342
+                                            </div>
+                                            <div class="mh">
+                                                ：
+                                            </div>
+                                            <div class="wtxt">
+                                                我想问问，几个月前我买有一本诊断学，我激活了，但没有收藏，现在我想看增值服务，显示已激活，看不
+                                            </div>
+                                        </div>
+                                        <div class="witem">
+                                            <div class="wname">
+                                                <i class="micon micon-kf"></i>
+                                                人卫回复
+                                            </div>
+                                            <div class="mh">
+                                                ：
+                                            </div>
+                                            <div class="wtxt kfd">
+                                                您好，网络增值服务请拨打客服热线：4006-300-567
+                                            </div>
+                                        </div>
+                                         <span class="wtime">
+                                            2015-09-30
+                                         </span>
+                                    </div>
+
+                                    <div class="pagination text-right mpage">
+                                        <ul class="clearfix">
+                                            <li class="disabled"><a href="#">&lt;上一页</a></li>
+                                            <li class="active"><a href="#">1</a></li>
+                                            <li><a href="#">2</a></li>
+                                            <li><a href="#">3</a></li>
+                                            <li><a href="#">4</a></li>
+                                            <li><a href="#">5</a></li>
+                                            <li><a href="#">下一页&gt;</a></li>
+                                            <li class="gopage">
+                                                共 <b>100</b>页
+                                                到第 <input type="text" value="2"> 页
+                                                <input class="gobtn" type="button" value="确定">
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!--商品问答 end-->

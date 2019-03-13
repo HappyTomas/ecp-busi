@@ -1,0 +1,111 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/auth/auth-shop-grid.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/auth/auths-add-form.js?version=$!{JS_VERSION}" ></script>
+<link href="${CONTEXT_PATH}/css/prom/auth/auth-add-form.css" rel="stylesheet" type="text/css" media="screen"/>
+
+			<h3 class="heading">促销类型-授权店铺</h3>
+			<div class="alert alert-error hide formValidateMessages" >
+				#showSpringAllError("promType4ShopVO")
+            </div>
+		
+			<div class="formBox">
+				<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					#*<div class="formSep row-fluid ">
+						<div class=" span6">
+								<div class="control-group">
+										<label class="control-label">促销类型：</label>
+											<div class="controls">
+												<select id="promTypeCode" name="promTypeCode" class="input-medium required" value="$!{promType4ShopVO.promTypeCode}">
+												     #listParam('PROM_TYPE','')
+												</select>
+											</div>
+									</div>
+							</div>
+						</div>*#
+						<div class="accordion switch-button" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="accordion-toggle" data-parent="#accordion2" href="#collapseOne"><i class="icon-edit"></i>
+     <span style="color:red">授权类型</span>选择
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">
+      <div class="row-fluid">
+         #foreach($promType in ${promTypeList})  
+				        #if ( $!{velocityCount}%4==1 )
+				                <div class="span3"  style="margin-left: 0px;margin-bottom: 20px;">	
+				        		
+				        #else
+				        		<div class="span3"  style="margin-bottom: 20px;">
+				        #end
+        				<div class="control-group">
+        						<label class="control-label">$promType.promTypeName</label>
+        						<div class="controls">
+        							   <div data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+			                                     <button class="btn " value="1" id="$promType.promTypeCode" name="$promType.promTypeName">开</button>
+			                                     <button class="btn active btn-primary"  value="0" id="$promType.promTypeCode" name="$promType.promTypeName">关</button>
+                                       </div>
+        						</div>
+        					</div>
+        				</div>  
+        				#end
+        			
+      		  </div>
+        </div>
+    </div>
+  </div>	
+ </div> 
+			 		<div class="formSep row-fluid ">
+							<div class="span6">
+										<div class="control-group">
+											<label class="control-label">使用开始时间：</label>
+												<div class="controls">
+													<input type="text" class="input-medium Wdate required" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="startTime" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{promType4ShopVO.startTime})"/>
+												</div>
+										</div>
+							</div>
+					</div>
+						<div class="formSep row-fluid ">
+								<div class="span6">
+									<div class="control-group">
+										<label class="control-label">使用截止时间：</label>
+											<div class="controls">
+												<input type="text" class="input-medium Wdate required" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="endTime" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{promType4ShopVO.endTime})"/>
+											</div>
+									</div>
+							</div>
+						</div>
+						<div class="formSep row-fluid ">
+				             <div class="span6">
+								<div class="control-group">
+									<label class="control-label">店铺：</label>
+										<div class="controls">
+											<button type="button" class="btn btn-info" id="btnShopQuery" ><i class="icon-search icon-white"></i> 查　询</button>
+										</div>
+								</div>
+					    </div>
+					</div>
+					           <div class="control-group">
+							      <div class="controls">
+			                           <table id="dataGridTable" style="width:570px;"></table>
+		                           </div>
+						      </div>
+					<div style="text-align:center;margin-top: 10px;">
+						<div class="control-group">
+							<div class="controls">
+								<button type="button" class="btn btn-info" id="btnFormAuthSave"><i class="icon-ok-sign icon-white"></i> 授　权</button>
+								<button type="button" class="btn" id="btnReturnAuth"><i class="icon-reply icon-white"></i> 返　回</button>
+							</div>
+						</div>
+					</div>
+				 <div class="hide" >
+				       <input type="text" name="shopIds" id="shopIds">
+                  </div>
+                  <div class="hide" >
+				       <input type="text" name="promTypeCode" id="promTypeCode">
+                  </div>
+				</form>
+			</div>
+			  

@@ -1,0 +1,37 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/staff/buyer/shopvip/list.js?version=$!{JS_VERSION}"></script>
+
+<table class="table table-bordered table-m">
+    <thead>
+	    <tr>
+	        <th>店铺</th>
+	        <th style="width:25%;">会员级别</th>
+	        <th style="width:25%;">优惠</th>
+	    </tr>
+    </thead>
+    <tbody>
+    	#if(${gridResult.list.size()} == 0)
+    		<tr><td colspan='3' style="text-align:center">没有符合条件的记录</td></tr>
+    	#end
+        #foreach( $lst in ${gridResult.list})
+            <tr>
+				<td><img src="#genImageUrl(${lst.logoPath},'40x40')" alt=""/>$!{lst.shopName}</td>
+				#if($!{lst.vipLevelName})
+					<td>$!{lst.vipLevelName}</td>
+				#else
+					<td>暂无等级</td>
+				#end
+				#if($!{lst.discount})
+					<td>$!{lst.discount}</td>
+				#else
+					<td>暂无优惠</td>
+				#end
+		    </tr>
+        #end
+    </tbody>
+</table>
+<div id="pageControlbar" class="ecppage" data-total-page="$!{gridResult.totalPage}" data-total-row="$!{gridResult.totalRow}"  data-page-size="$!{gridResult.pageSize}" data-page-number="$!{gridResult.pageNumber}" data-status="begin"></div>
+
+
+
+

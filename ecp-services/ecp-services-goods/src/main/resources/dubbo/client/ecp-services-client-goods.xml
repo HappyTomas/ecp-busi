@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://code.alibabatech.com/schema/dubbo  
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+	">
+	<!-- 库存Dubbo服务 -->
+	<dubbo:reference id="gdsStockRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsStockRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+
+	<!-- 赠品Dubbo服务 -->
+	<dubbo:reference id="gdsGiftRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsGiftRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+
+	<!-- 商品类型Dubbo服务 -->
+	<dubbo:reference id="gdsTypeRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsTypeRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+
+	<!-- 分类Dubbo服务 -->
+	<dubbo:reference id="gdsCategoryRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCategoryRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+
+	<!-- 媒体分类Dubbo服务 -->
+	<dubbo:reference id="gdsMediaCategoryRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsMediaCategoryRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+
+
+	<!-- 运费模板Dubbo服务 -->
+	<dubbo:reference id="gdsShiptempRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsShiptemRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+
+	<!-- 商品管理Dubbo服务 -->
+	<dubbo:reference id="gdsInfoManageRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsInfoManageRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+
+	<!-- 商品查询Dubbo服务 -->
+	<dubbo:reference id="gdsInfoQueryRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsInfoQueryRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+
+	<!-- 单品管理Dubbo服务 -->
+	<dubbo:reference id="gdsSkuInfoManageRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsSkuInfoManageRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+
+	<!-- 单品查询Dubbo服务 -->
+	<dubbo:reference id="gdsSkuInfoQueryRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsSkuInfoQueryRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+   <!-- 分类信息映射Dubbo服务-->
+
+    <dubbo:reference id="gdsCategorySyncRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCategorySyncRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />		
+
+	<!-- 价格Dubbo服务 -->
+	<dubbo:reference id="gdsPriceRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsPriceRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+
+	<!-- 媒体Dubbo服务 -->
+	<dubbo:reference id="gdsMediaRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsMediaRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+
+	<!-- 店铺/客户 收藏Dubbo服务 -->
+	<dubbo:reference id="gdsCollectRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCollectRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+
+	<!-- 平台推荐 Dubbo服务 -->
+	<dubbo:reference id="gdsPlatRecomRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsPlatRecomRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+
+	<!-- 猜你喜欢Dubbo服务 -->
+	<dubbo:reference id="gdsGuessYLRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsGuessYLRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+
+	<!-- 属性Dubbo服务 -->
+	<dubbo:reference id="gdsPropRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsPropRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+
+	<!-- 商品数据抽取Dubbo服务 -->
+	<dubbo:reference id="gdsSearchDataListSupportRSV"
+		interface="com.zengshi.ecp.general.solr.interfaces.ISearchDataSupport"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="goods" />
+
+	<!-- 属性组Dubbo服务 -->
+	<dubbo:reference id="gdsPropGroupRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsPropGroupRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+	<!-- 商品标签Dubbo服务 -->
+	<dubbo:reference id="gdsLabelRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsLabelRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+	<!-- 商品评价Dubbo服务 -->
+	<dubbo:reference id="gdsEvalRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsEvalRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+	<!-- 目录Dubbo服务 -->
+	<dubbo:reference id="gdsCatalogRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCatalogRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+
+	<!-- 到货通知Dubbo服务 -->
+	<dubbo:reference id="gdsArrmsgRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsArrmsgRSV" registry="${default.dubbo.registry.id}"
+		version="${default.dubbo.version}" group="${goods.dubbo.group}" />
+
+	<!-- 评价回复Dubbo服务 -->
+	<dubbo:reference id="gdsEvalReplyRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsEvalReplyRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+
+	<!-- 购买校验Dubbo服务 -->
+	<dubbo:reference id="gdsOrdCartsChkRSV"
+		interface="com.zengshi.ecp.general.order.interfaces.IOrdCartsChkRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+
+	<!-- 订单校验Dubbo服务 -->
+	<dubbo:reference id="gdsOrdSubChkRSV"
+		interface="com.zengshi.ecp.general.order.interfaces.IOrderChkRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+
+
+	<!--商品类型抽象策略Dubbo服务 -->
+	<dubbo:reference id="gdsInfoExternalRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsInfoExternalRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+		
+	<!-- 目录站点关联关系Dubbo服务 liyong -->	
+	<dubbo:reference id="gdsCatalog2SiteRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCatalog2SiteRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+		
+	<!-- 会员分类折扣商品黑名单Dubbo服务  -->	
+	<dubbo:reference id="gdsCatgCustBlacklistRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCatgCustBlacklistRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+		
+	<!-- 会员分类折扣Dubbo服务  -->	
+	<dubbo:reference id="gdsCatgCustDiscRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCatgCustDiscRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+		
+		<!-- 商品浏览记录Dubbo服务 -->	
+	<dubbo:reference id="gdsBrowseHisRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsBrowseHisRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+		
+				<!-- 积分商品价格记录Dubbo服务 -->	
+	<dubbo:reference id="gdsScoreExtRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsScoreExtRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+		
+		
+	<!--第三方系统商品和亚信侧电商平台商品编码映射服务-->
+	<dubbo:reference id="gdsInterfaceGdsRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsInterfaceGdsRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+		
+      <!--分类信息映射服务-->
+	<dubbo:reference id="gdsInterfaceCatgRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsInterfaceCatgRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+		
+			<!--商品excel导入日志服务-->
+    <dubbo:reference id="gdsExcelImpLogRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsExcelImpLogRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />			
+		
+					<!--商品excel导入中间表服务-->
+    <dubbo:reference id="gdsExcelImpToolRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsExcelImpToolRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />			
+		
+							<!--商品excel导入明细表服务-->
+    <dubbo:reference id="gdsExcelImpRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsExcelImpRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />		
+	
+	<!-- 目录与店铺关联服务 -->
+    <dubbo:reference id="gdsCatlog2ShopRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCatlog2ShopRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+	<!-- 商品收藏总量服务 -->	
+	<dubbo:reference id="gdsCollectCntRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCollectCntRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />	
+		
+	<!-- 类型属性服务 -->	
+	<dubbo:reference id="gdsType2PropRSV"
+		interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsType2PropRSV"
+		registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+		group="${goods.dubbo.group}" />
+
+	<!-- 属性服务 -->
+	<dubbo:reference id="gdsPropManageRSV"
+					 interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsPropManageRSV"
+					 registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+					 group="${goods.dubbo.group}" />
+					 
+					 
+	<!-- Gds001Action扩展服务 -->
+	<dubbo:reference id="gds001ActionExtRSV"
+					 interface="com.zengshi.ecp.goods.dubbo.interfaces.app.IGds001ActionExtRSV"
+					 registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+					 group="${goods.dubbo.group}" />
+					 
+	<!-- 商品域APP扩展Dubbo服务 -->				 
+	<dubbo:reference id="gdsAppActionExtRSV"
+					 interface="com.zengshi.ecp.goods.dubbo.interfaces.app.IGdsAppActionExtRSV"
+					 registry="${default.dubbo.registry.id}" version="${default.dubbo.version}"
+					 group="${goods.dubbo.group}" />
+	
+</beans>  

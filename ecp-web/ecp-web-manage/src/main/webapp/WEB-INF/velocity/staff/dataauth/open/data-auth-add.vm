@@ -1,0 +1,65 @@
+#parse("/module/mod-form.vm")
+<link rel="stylesheet" type="text/css" href="$!{RESOURCE_PATH}/bootstrap/plugin/bootstrap-toggle/css/bootstrap2-toggle.css" />
+<script type="text/javascript" src="$!{RESOURCE_PATH}/bootstrap/plugin/bootstrap-toggle/bootstrap2-toggle.js"></script>
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/dataauth/open/data-auth-add.js?version=$!{JS_VERSION}" ></script>
+
+<div class="formBox">
+    <form id="detailInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+	    <!-- 页面内容 -->
+	    <div class="well well-searchForm">
+	        <div class="control-group">
+	            <label class="control-label">规则名称：</label>
+	            <div class="controls">
+	                <input type="text" id="name" name="name" style="width:150px;" class="input-block-level htmlcheck required" maxlength="64" />
+	            </div>
+	        </div>
+	        <br/>
+	        <div class="control-group">
+	            <label class="control-label">规则编码：</label>
+	            <div class="controls">
+	                <input type="text" id="authCode" name="authCode" style="width:150px;" class="input-block-level htmlcheck required" maxlength="32" />
+	            </div>
+	        </div>
+	        <br/>
+	        <div class="control-group">
+	            <label class="control-label">规则类型：</label>
+	            <div class="controls">
+	                <input type="checkbox" name="authTypeShow" id="authTypeShow" checked>
+	                <input type="hidden" name="authType" id="authType" value="0">
+	            </div>
+	        </div>
+	        <br/>
+	        <div class="control-group">
+	            <label class="control-label">是否启用：</label>
+	            <div class="controls">
+                    <input type="checkbox" name="enabledShow" id="enabledShow" checked>
+                	<input type="hidden" name="enabled" id="enabled" value="1">
+	            </div>
+	        </div>
+	        <br/>
+	        <div class="control-group">
+	            <label class="control-label">规则来源：</label>
+	            <div class="controls">
+                    <select name="authSrc" style="width: 150px;">
+                    	<option value="1">行规则</option>
+                    	<option value="2">列规则</option>
+                    </select>
+	            </div>
+	        </div>
+	        <br/>
+	        <div class="control-group">
+	            <label class="control-label">规则描述：</label>
+	            <div class="controls">
+                    <textarea name="authDesc" maxlength="256" class="input-block-level htmlcheck"></textarea>
+	            </div>
+	        </div>
+	        <input type="hidden" name="sysCode" id="sysCode">
+	        <input type="hidden" name="funcId" id="funcId">
+	    </div>
+	</form>
+    <div class="btn-wrap btn-wrap-save text-center">
+        <a class="btn btn-info" style="margin-right:10px;" id="confirm"><i class="icon-ok-sign"></i> 保 存</a>
+        <a class="btn" id="close"><i class="icon-remove-sign"></i> 取 消</a>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+#parse("sys/sys_param.vm")
+<ul class="tpl-books">
+	#if(${detailRespDTOs} && $detailRespDTOs.size() > 0) 
+		#foreach($gdsInfo in ${detailRespDTOs})
+			#if($velocityCount <= 5)
+		    <li>
+		        <div class="li-inner">
+		            <a class="img-wrap" target="_blank" href="$!{MALL_SITE_URL}$!{gdsInfo.url}" alt="$!{gdsInfo.gdsName}">
+		            	<img src="$!{gdsInfo.mainPic.URL}">
+		            </a>
+		            <p class="name">
+		            	<a target='_blank' href="$!{MALL_SITE_URL}$!{gdsInfo.url}" title="$!{gdsInfo.gdsName}">$!{gdsInfo.gdsName} </a>
+		            </p>
+		            	#if($!{gdsInfo.allPropMaps.get("1001").values[0].propValue})
+		            		#set($authorValue = $!{gdsInfo.allPropMaps.get("1001").values[0].propValue})
+		            	#else
+		            		#set($authorValue = '')
+		            	#end
+		            #if($authorValue && $authorValue != '')<p class="author" title="$!{authorValue}">$!{authorValue} 著 </p>#end
+		            <p class="price">
+		            	<span class="rob">#if($!{gdsInfo.skuInfo.discountPrice})#money($!{gdsInfo.skuInfo.discountPrice})#end</span>
+		            	<span class="price_r">#if($!{gdsInfo.guidePrice})#money($!{gdsInfo.guidePrice})#end</span>
+		            </p>
+		        </div>
+		    </li>
+		    #end
+	    #end
+    #else
+	<div class='pro-empty'>#if($errorMassage && $errorMassage != '')$!{errorMassage} #else 亲，还没有数据，去商城逛逛吧！ #end</div>
+	#end
+</ul>
+<div class="favList">
+    <div class="tit">您可能喜欢的专业/分类:</div>
+    <ul class="cont">
+    	#if(${categoryRespDTOs} && $categoryRespDTOs.size() > 0) 
+		  #foreach($catgInfos in $!{categoryRespDTOs})
+		    #if($velocityCount < 6)
+		      <li>
+		          #foreach($catgInfo in $!{catgInfos})
+		          #if($velocityCount != 1)
+		           - 
+		          #end
+		      	  <a target='_blank' href="$!{MALL_SITE_URL}/search?category=$!{catgInfo.catgCode}" title="$!{catgInfo.catgName}">$!{catgInfo.catgName}</a>
+		          #end
+		      </li>
+		    #end
+		  #end 
+		#end
+    </ul>
+</div>

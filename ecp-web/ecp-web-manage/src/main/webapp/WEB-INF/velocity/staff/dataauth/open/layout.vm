@@ -1,0 +1,3 @@
+#parse("/sys/sys_head.vm")
+<link rel="stylesheet" href="$!{CSS_PATH}/index.css"/>
+$screen_content

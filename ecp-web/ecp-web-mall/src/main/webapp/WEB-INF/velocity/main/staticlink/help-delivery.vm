@@ -1,0 +1,12 @@
+#parse("/sys/sys_param.vm")
+    <!--文本-->
+    <div class="wrap1000">
+        <div class="h-tit">
+            快递送货
+        </div>
+        <div class="h-com">
+
+            <p>收到书款后两日内发货，1~5天到货。<b>先付书款后发书！</b></p>
+        </div>
+    </div>
+

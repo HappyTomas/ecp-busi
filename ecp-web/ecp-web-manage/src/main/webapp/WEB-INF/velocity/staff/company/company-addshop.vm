@@ -1,0 +1,284 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/holder/holder.js" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/company/company-shop-shiptemp.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/company/company-addshop.js?version=$!{JS_VERSION}" ></script>
+<style type="text/css">
+	##._inline{line-height:30px;}
+    body .modal{
+        border:none;
+    }
+    body .modal-header{
+     /*padding: 0px;*/
+    }
+	th{font-size:12px}
+	td{font-size:12px}
+	#list li{list-style-type:none;}
+	.heading{border-bottom: 1px solid #dcdcdc;
+    margin-bottom: 18px;
+    padding-bottom: 5px;
+    line-height: 27px;
+    font-size: 18px;
+    font-family: 'PT Sans', sans-serif;
+    font-weight: 400;}
+</style>
+	
+
+<div class="formBox row-fluid">
+	<h2 class="heading">店铺信息</h2>
+	
+    <form id="detailInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+    	<input type="hidden" name="companyId" id="companyId" value="$!{companyId}"/>
+    	<input type="hidden" name="Id" id="Id" value="$!{Id}"/>
+		
+    	<div class="formBox row-fluid">
+    		<div class="span8">
+        		<div class="row-fluid formSep">
+        			<div class="span6">
+        				<div class="control-group">
+        					<label class="control-label">店铺全称：</label>
+        					<div class="controls">
+        						<input type="text" class="input-block-level required htmlcheck" name="shopFullName" maxlength="64" />
+        					</div>
+        				</div>
+        			</div>
+        			<div class="span6">
+        				<div class="control-group">
+        					<label class="control-label">店铺简称：</label>
+        					<div class="controls">
+        						<input type="text" class="input-block-level required htmlcheck" name="shopName" maxlength="64" />
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		<div class="row-fluid formSep">
+        			<div class="span6">
+        				<div class="control-group">
+        					<label class="control-label">店铺微信推广号：</label>
+        					<div class="controls">
+        						<input type="text" class="input-block-level htmlcheck" name="microMessageExt" maxlength="30" />
+        					</div>
+        				</div>
+        			</div>
+        			<div class="span6">
+        				<div class="control-group">
+        					<label class="control-label">店铺联系人：</label>
+        					<div class="controls">
+        						<input type="text" class="input-block-level required htmlcheck" name="linkPerson" maxlength="32" />
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		<div class="row-fluid formSep">
+        			<div class="span6">
+        				<div class="control-group">
+        					<label class="control-label">联系人手机号：</label>
+        					<div class="controls">
+        						<input type="text" class="input-block-level mobilePhone htmlcheck required" name="linkMobilephone" maxlength="11" />
+        					</div>
+        				</div>
+        			</div>
+        			<div class="span6">
+        				<div class="control-group">
+        					<label class="control-label">联系人邮箱：</label>
+        					<div class="controls">
+        						<input type="text" class="input-block-level email htmlcheck required" name="linkEmail" maxlength="32" />
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		<div class="row-fluid formSep">
+        			<div class="span8">
+        				<div class="pull-left">
+        					<label class="control-label"><span style="color:red">*</span>配送方式：</label>
+        					<div class="controls" style="">
+        						<ul id="list"> 
+        							#foreach($param in $shopDistributeList)
+        	                			<li style="float:left;margin-left:15px;"><label><input type="checkbox" value="$!{param.spCode}" checked="checked" />$!{param.spValue}</label></li> 
+        							#end
+        						</ul>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		<div class="row-fluid formSep">
+        			<div class="span6">
+        				<div class="control-group">
+        					<label class="control-label">是否支持店铺VIP：</label>
+        					<div class="controls">
+        						#select('SHOP_USE_VIP','isUseVip',true)
+        						<input type="hidden" name="offlineSupported" value="1"/>
+        					</div>
+        				</div>
+        			</div>
+        			<!--##应改造需要，先改成不显示，且默认为支持，上面隐藏域值固定为1
+        			<div class="span6">
+        				<div class="control-group">
+        					<label class="control-label">是否支持线下支付：</label>
+        					<div class="controls">
+        						#select('SHOP_OFFLINE_SUPPORTED','offlineSupported',true)
+        					</div>
+        				</div>
+        			</div>
+        			-->
+        		</div>
+        		<div class="row-fluid formSep">			
+        			<div class="span6">
+        				<div class="control-group">
+        					<label class="control-label">入店保障金：</label>
+        					<div class="controls">
+        						<input type="text" class="input-block-level number htmlcheck" name="cautionMoney" maxlength="10" />
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		<div class="row-fluid formSep">
+        			<div class="span8">
+        				<div class="control-group">
+        					<label class="control-label">店铺描述：</label>
+        					<div class="controls">
+        						<textarea name="shopDesc" rows="4" class="input-block-level required htmlcheck"></textarea>
+        					</div>
+        				</div>
+        			</div>
+                </div>
+        		<h2 class="heading">店铺登录账号</h2>
+    			
+        		<div class="row-fluid formSep">
+        			<div class="span6">
+        				<div class="control-group">
+        					<label class="control-label">登录账户：</label>
+        					<div class="controls">
+        						<input type="text" class="input-block-level htmlcheck checkStaffCode required" name="staffCode" placeholder="" />
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		<div class="row-fluid formSep">
+        			<div class="span6">
+        				<div class="control-group">
+        					<label class="control-label">密码：</label>
+        					<div class="controls">
+        						<input type="password"  class="input-block-level checkPassword htmlcheck required" name="staffPasswd" equalTo="#staffPasswd2" id="staffPasswd" />
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        		<div class="row-fluid formSep">
+        			<div class="span6">
+        				<div class="control-group">
+        					<label class="control-label">确认密码：</label>
+        					<div class="controls">
+        						<input type="password"  class="input-block-level checkPassword htmlcheck required" name="staffPasswd2" equalTo="#staffPasswd" id="staffPasswd2"/>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+    		</div>
+        	<div class="span3">
+        		<div class="panel panel-default">
+        			<div class="panel-heading">
+        				<h3 class="panel-title">店铺LOGO</h3>
+        			</div>
+        			<div class="panel-body">
+        				<div class="thumbnail">
+        					#if(${logoPathURL})
+        					<img data-src="holder.js/300x200?text=图片预览区" alt="" id="imgPreview1" src="$!{logoPathURL}">
+        						#else
+        					<img alt="" id="imgPreview1" src="$IMAGE_PATH/goods/image_preview.png">		
+        							#end
+        					<div class="caption text-center">
+        						<p><a id="shoplogoUpload" href="javascript:void(0);" class="btn btn-info">Logo上传</a></p>
+        						<div class="alert fade in">
+        							<strong >限制大小小于：<font>2MB</font></strong>
+        							<br/>
+        							<strong >限制宽高规格小于：<font>300x200</font></strong>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="clear"></div>
+        	<input type="hidden"  name="logoMongodbKey" id="logoMongodbKey" value="$!{logoMongodbKey}"/>
+		</div>
+    </form>
+	
+	<!-- 店铺运费模版信息 -->
+    <div class="form-horizontal required-validate"> 
+    	<h2 class="heading">店铺运费模版信息</h2>	
+    
+        <div class="control-group">
+            <label class="control-label" >模板名称：</label>
+            <div class="controls">
+                <input  class=" required " type="text" id="shipTemplateName" name="shipTemplateName" maxlength="20"/>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">是否免邮：</label>
+            <div class="controls">
+                <label class="radio" style="width:60px;">
+                    <input type="checkbox" name="ifFree" id="ifFree"/> 免邮
+                </label>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">计价方式：</label>
+            <div class="controls">
+                <label class="radio inline" style="margin-right: 20px;">
+                    <input type="radio" name="textbox" checked id="1"/>  按件
+                </label>
+    			<!--
+                <label  class="radio inline" style="margin-right: 20px;">
+                    <input type="radio" name="textbox" id="2"/>按重量
+                </label>
+                <label  class="radio inline">
+                    <input type="radio" name="textbox" id="3"/>按体积
+                </label>
+    			-->
+                <label class="radio inline">
+                    <input type="radio" name="textbox" id="4"/>按金额
+                </label>
+            </div>
+        </div>
+        <div class="control-group" id="defaultFree">
+            <label class="control-label">默认运费：</label>
+            <div class="controls">
+                <table style="clear: none" class="table transtpl-tb table-bordered" >
+                    <thead>
+                    <tr>
+                        <th>运费方式</th>
+                        <th>运费</th>
+                        <th id="first">首件(件)</th>
+                        <th id="second">续件(件)</th>
+                        <th id="secondFree">续件运费(件)</th>
+                        <th id="noFree">免邮数量(件)</th>
+                    </tr>
+                    </thead>
+                    <tbody id="defaultPei">
+                    <tr>
+                        <td><select style="min-width:90px;width:90px;" id="pricingMode">
+    							<!--<option value="0">平邮</option>-->
+    								<option value="1">快递</option>
+    								<!--<option value="2">EMS</option>-->
+    						</select>
+    					</td>
+                            <td><font>运费</font><input type="text" name="dfree" onblur="validatorSenior(this,'price')" class="input-mini"></td>
+                            <td><input type="text" class="input-mini" onblur="validatorSenior(this,'number')" name="dfirst"></td>
+                            <td><font>每增加</font><input type="text" class="input-mini" onblur="validatorSenior(this,'number')" name="dsecond"></td>
+                            <td><font>续费</font><input type="text" class="input-mini" onblur="validatorSenior(this,'price')" name="dsecondFree"></td>
+                            <td><font>达到</font><input type="text" class="input-mini" onblur="validatorSenior(this,'number')" name="dnoFree"><font id="unit">件量</font><font>即可免邮</font></td>
+                         </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+	
+	<div class="clear"></div>
+	
+    <div class="text-center">
+    	<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i> 保	存</button>
+    	<button type="button" class="btn " id="btnReturn"><i class="icon-reply icon-white"></i> 返	回</button>
+    </div>
+</div>

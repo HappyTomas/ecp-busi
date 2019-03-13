@@ -1,0 +1,81 @@
+      #parse("sys/sys_param.vm")
+	   <form class="form-horizontal required-validate form-label130 show" id="custInformation">
+			  <div class="control-group">
+                            <label class="control-label">昵称：</label>
+                            <div class="controls">
+                                <input type="text" id="nickname" placeholder="昵称" value="$!{custInfo.nickname}" class="input-large" name="nickname" maxlength="8">
+									<input name="staffId" value="$!{custInfo.id}" id="staffId" type="hidden" />
+									<input type="hidden" name="companyId" value="$!{custInfo.companyId}" />
+									<input type="hidden" name="shopId" value="$!{custInfo.shopId}" />
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">性别：</label>
+                            <div class="controls">
+                                <select class="span2" style="width:224px;" name="gender">
+									#listParam('STAFF_CUST_GENDER',$!{custInfo.gender})
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">生日：</label>
+                            <div class="controls">
+								<input type="text" class="input-block-level required Wdate" style="width:224px;" onClick="WdatePicker({maxDate:'{%y-10}-%M-%d'})" name="custBirthday" value="$!date.format('yyyy-MM-dd',${custInfo.custBirthday})"/>
+                                <span class="help-inline">生日有惊喜！</span>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">手机：</label>
+                            <div class="controls">
+                                <label class="modify-label">$!{custInfo.serialNumber}</label>
+                                <!--<label class="modify-label"><a href="#">修改</a></label>
+                                <label class="modify-label">已验证</label>-->
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">邮箱：</label>
+                            <div class="controls">
+                                <label class="modify-label">$!{custInfo.email}<!--<a href="member-emailverify.html">验证</a>--></label>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">真实姓名：</label>
+                            <div class="controls">
+                                <input type="text" placeholder="您的姓名" value="$!{custInfo.custName}" name="custName" maxlength="8">
+                            </div>
+                        </div>
+						  <div class="control-group">
+                            <label class="control-label">固定电话：</label>
+                            <div class="controls">
+                                <input type="text" placeholder="区号-电话号码" class="checkPhone" value="$!{custInfo.telephone}" name="telephone" maxlength="16"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">所在地：</label>
+                            <div class="controls">
+                                <select class="jquery-area " name="provinceCode" id="p-code"  area-type="admin" area-level="province" area-children="city-code" area-defaultvalue="$!{custInfo.provinceCode}"></select>
+                                <select class="jquery-area "  name="cityCode" id="city-code" area-type="admin" area-level="city" area-children="county-code" area-defaultvalue="$!{custInfo.cityCode}"></select>
+                                <select class="jquery-area "  name="countyCode" id="county-code" area-type="admin" area-level="county" area-children="" area-defaultvalue="$!{custInfo.countyCode}"></select>
+                            </div>
+                        </div>
+                      
+                        <div class="control-group">
+                            <label class="control-label">详细地址：</label>
+                            <div class="controls">
+                                <input type="text" placeholder="详细地址" class="span6" value="$!{custInfo.datailedAddress}" name="datailedAddress" maxlength="128">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <label class="checkbox">
+									#if($!{custInfo.disturbFlag}=='1')
+                                    <input type="checkbox" name="disturbFlag" value="1" checked> 是否开启免打扰模式（除系统短信外，其它促销类短信不再发送）
+										#else
+									<input type="checkbox" name="disturbFlag" value="1"> 是否开启免打扰模式（除系统短信外，其它促销类短信不再发送）		
+										#end
+                                </label>
+                               
+                            </div>
+                        </div>
+                       </form>
+						<button type="button" class="btn btn-danger" id="sub" style="margin-left:45%">保存</button>

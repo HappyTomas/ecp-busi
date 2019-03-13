@@ -1,0 +1,142 @@
+#parse("/module/mod-tree.vm")
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<link href="$!{CSS_PATH}/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<link rel="stylesheet" href="$!{CSS_PATH}/news-plat.css"/>
+<link rel="stylesheet" href="$!{CSS_PATH}/index.css"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/unpf/catemap/catemap-index.js?version=$!{JS_VERSION}" ></script>
+        
+<div class="relaion-com">
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well-tit">
+                <span>管理平台分类</span>
+            </div>
+            <div class="well well-searchForm">
+				<div class="rk-search">
+                    <input type="text" id="keywordleft" style="width:200px"/>
+                    <a class="icon-search" id="searchleft"></a>
+				</div>
+                <div class="relation-box relation-height">
+                    <div class="tree-w">
+                        <ul id="category-tree-left" class="ztree">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="well-tit">
+                <span>第三方平台分类</span>
+            </div>
+            <div class="well well-searchForm">
+				<div class="rk-search">
+                    <input type="text" id="keywordright" style="width:200px"/>
+                    <a class="icon-search" id="searchright"></a>
+				</div>
+                <div class="relation-box relation-height">
+                    <div class="tree-w">
+                        <ul id="category-tree-right" class="ztree">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="span1">
+            <a class="btn btn-info" id="category-relation-button" onclick="ACTION_RELATION.ADD('category')">关联</a>
+        </div>
+        <div class="span5">
+            <div class="well-tit">
+                <span>分类关系</span>
+            </div>
+            <div class="well well-searchForm">
+                <div class="relation-box relation-height">
+					<table class="table" id="category-relation-table">
+					</table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well-tit mt10">
+                <span>规格属性</span>
+            </div>
+            <div class="well well-searchForm">
+                <div class="relation-box">
+                    <ul class="ztree" id="category-attribute-tree-left">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="well-tit mt10">
+                <span>规格属性</span>
+            </div>
+            <div class="well well-searchForm">
+                <div class="relation-box">
+                    <ul class="ztree" id="category-attribute-tree-right">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="span1">
+            <a class="btn btn-info" id="category-attribute-relation-button" onclick="ACTION_RELATION.ADD('attribute')">关联</a>
+        </div>
+        <div class="span5">
+            <div class="well-tit">
+                <span>属性关系</span>
+            </div>
+            <div class="well well-searchForm">
+                <div class="relation-box">
+                    <table class="table " id="category-attribute-relation-table">
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span3">
+            <div class="well-tit mt10">
+                <span>规格属性值</span>
+            </div>
+            <div class="well well-searchForm">
+                <div class="relation-box">
+                    <ul class="ztree" id="category-attribute-value-tree-left">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="span3">
+            <div class="well-tit mt10">
+                <span>规格属性值</span>
+            </div>
+            <div class="well well-searchForm">
+                <div class="relation-box">
+                    <ul class="ztree" id="category-attribute-value-tree-right">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="span1">
+            <a class="btn btn-info" id="category-attribute-value-relation-button" onclick="ACTION_RELATION.ADD('value')">关联</a>
+        </div>
+        <div class="span5">
+            <div class="well-tit">
+                <span>属性值关系</span>
+            </div>
+            <div class="well well-searchForm">
+                <div class="relation-box">
+                    <table class="table " id="category-attribute-value-relation-table">
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

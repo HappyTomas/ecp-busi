@@ -1,0 +1,16 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-page.vm")
+<ul class="t-conlist">
+	#if($respVO.list)
+		#foreach($info in $respVO.list)
+            <li title ="$!{info.infoTitle}"><a target='_blank' class="t-title" href="$!{CONTEXT_PATH}/info/infodetail?id=$!{info.id}">$!{info.infoTitle}</a><span class="t-time">$!date.format('yyyy-MM-dd',$!{info.pubTime})</span></li>
+		#end
+	#end
+</ul>
+
+<!--分页-->
+<div class="row-fluid">
+	<div id="pageControlbar" class="ecppage" data-total-page="${respVO.totalPage}" data-total-row="${respVO.totalRow}"  data-page-size="${respVO.pageSize}" data-page-number="${respVO.pageNumber}" data-status="begin"></div>
+</div>
+	
+<script type="text/javascript" src="$!{BUSIJS_PATH}/main/info/child/child-list.js"></script>

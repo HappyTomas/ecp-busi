@@ -1,0 +1,16 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsManage/sku-grid.js?version=$!{JS_VERSION}" ></script>
+<style>
+   .table-scroll{
+            height: 240px;
+            overflow: auto;
+        }
+    </style>
+<input type="hidden" value="$!{}" id="gdsId"/>
+<div class="row-fluid">
+	<div id="datatablesList" class="table-scroll"></div>
+</div>
+<div class="row" style="text-align:center;">
+	<button type="button" class="btn " id="btnReturn"><i class="icon-remove-sign icon-white"></i> 关闭</button>
+</div>

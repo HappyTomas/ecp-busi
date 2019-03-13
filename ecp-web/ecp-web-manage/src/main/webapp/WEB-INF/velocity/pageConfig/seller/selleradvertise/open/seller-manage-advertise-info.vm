@@ -1,0 +1,47 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/seller/selleradvertise/open/seller-manage-advertise-info.js?version=$!{JS_VERSION}" ></script>
+
+<!--搜索区域-->
+<div class="well well-searchForm">
+	<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+		<!--
+    	<input type="hidden"  name="status" id="status" class="input-medium" value="1" >
+		-->
+    	<div class="row-fluid">
+    		<div class="span6">
+    			<div class="control-group">
+    				<label class="control-label">主题：</label>
+    				<div class="controls">
+    					<input type="text" name="infoTitle" id="infoTitle" class="input-medium" value="" placeholder="请输入主题">
+    				</div>
+    			</div>
+    		</div>
+    		<div class="span6">
+    			<div class="control-group">
+    				<label class="control-label">类型：</label>
+    				<div class="controls">
+    					<select id="infoType" name ="infoType" class="input-medium">
+    						<option value="" selected >--请选择--</option>
+							#listParam('CMS_INFO_TYPE',"")
+    					</select>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="clear"></div>
+    	</div>
+	</form>
+</div>
+
+<!--操作按钮区域-->
+<div class="row-fluid" style="margin-bottom: 10px;">
+	<div class="pull-right">
+		<a class="btn btn-info" id="btnFormSearch" href="javascript:void(0)"><i class="icon-search icon-white"></i>查询</a>
+		<a class="btn" id="btnFormReset" href="javascript:void(0)"><i class="icon-refresh"></i>重置</a>
+	</div>
+</div>
+
+<!--列表区域-->
+<div class="row-fluid">
+	<table id="dataGridTable"></table>
+</div>

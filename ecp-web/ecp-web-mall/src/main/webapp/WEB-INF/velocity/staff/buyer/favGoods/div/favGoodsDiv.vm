@@ -1,0 +1,121 @@
+#parse("/module/mod-page.vm")
+<script type="text/javascript"
+	src="$!{RESOURCE_PATH}/bootstrap/extend/js/b.plugin.js"></script>
+<script type="text/javascript">
+	$(function() {
+		//更新搜索栏与分页条状态
+		FavGoods.updateBar();
+	});
+</script>
+<!--       隐藏框  用于更新搜索栏                  -->
+<input type="hidden" id="totalRow" value="$!{gridResult.totalRow}">
+<!--        begin of table          -->
+<table class="table">
+	<thead>
+		<tr>
+			<th>&nbsp;</th>
+			<th class="t-detail">商品详情</th>
+			<th class="t-money">金额</th>
+			<th class="t-order">库存</th>
+			<th class="t-opt">操作</th>
+		</tr>
+	</thead>
+	<!--        begin of 列表数据                       -->
+	<tbody id="datalist">
+	    #if(!$gridResult.list || $gridResult.list.size() == 0)
+	       <tr class="fav-opt">
+			<td colspan="5">
+			        #if(!$msg)您还没有关注任何商品哦，去商场逛逛吧！#else $!msg #end
+			</td>
+		</tr>
+	    #end
+		#foreach ($favgds in $gridResult.list)
+		 ##  获取数组下标
+		 #set($index = $velocityCount - 1)
+		 #if(!${favgds.num})  #set(${favgds.num} = 0)  #end
+		<tr id="$!{favgds.id}">
+			<td class="p-check"><input type="checkbox" class="icheck"></td>
+			<td class="p-info">
+				<div class="p-img">
+					<a href="${CONTEXT_PATH}$!{favgds.gdsUrl}"> <img width="70" height="70" src="$!{favgds.skuMainPic}"
+						alt="商品图片">
+					</a>
+				</div>
+
+				<div class="p-dec">
+					<p class="p-txt">
+						<a href="${CONTEXT_PATH}$!{favgds.gdsUrl}">
+							$!{favgds.gdsName}  
+						   #if($!{favgds.skuProps})
+						   	($!{favgds.skuProps})
+						   #end
+						 </a>
+					</p>
+
+					<div class="">
+						  <span>收藏人气：</span> <span class="hot">$!{favgds.collectStaffCount} </span> <span>
+						##	已有 $!{favgds.num} 评论 </span>
+					</div>
+				</div>
+			</td>
+			<td>
+				<p class="c-red">#money($!{favgds.nowPrice})</p>
+				#if ($reduceList.get($index) >= 0)
+				<p>
+					比放入时减低<span class="c-red"> #money($reduceList.get($index))</span>
+				</p> 
+				#else 
+				<p>
+				    #set($reduce = 0 - $reduceList.get($index))
+					比放入时升高 <span class="c-red"> #money($reduce)</span>
+				</p> 
+				#end
+			</td>
+			<td>
+				#if($!{favgds.stockInfo})
+					$!{favgds.stockInfo}
+				#else
+						无货
+				#end
+			
+			</td>
+			<td>
+				<p style="margin-bottom: 5px">
+					#if($!{favgds.stockInfo})
+						#if($!{favgds.stockInfo}=="无货")
+						#elseif($!{favgds.gdsStatus}!="11")
+						#else
+							<a href="javascript:void(0);" onclick="FavGoods.addToCart($!{favgds.skuId},this,$!{favgds.gdsTypeId})" class="addCard">加入购物车</a>
+						#end
+					#end
+				</p>
+				<p>
+					<a href="#"><span onclick="FavGoods.deleteOne($!{favgds.id})">删除</span></a>
+				</p>
+			</td>
+		</tr>
+		#end ##end of foreach
+	</tbody>
+
+	<!--        begin of 列表数据                       -->
+
+	<tfoot>
+		<tr class="fav-opt">
+			<td colspan="5">
+			 <div class="fav-opt clearfix" style="margin-top: 20px;">
+				<div class="f-checkbox pull-left">
+					<label> <input type="checkbox" id="checkAll" class="icheck"> 全部
+					</label> <a href="#"><span onclick="FavGoods.deleteBatch()">取消关注</span></a>
+				</div> <!--        begin    of    分页                      -->
+				<div class="row-fluid">
+					<div id="pageMainBox" class="pagination text-right mpage">
+						<div id="pageControlbar" data-total-page="$!{gridResult.totalPage}" data-total-row="$!{gridResult.totalRow}" data-page-size="$!{gridResult.pageSize}" data-page-number="$!{gridResult.pageNumber}" data-status="begin"></div>
+					</div>
+					<div class="" style="margin-top: 5px;"></div>
+				</div> <!--         end    of     分页                           -->
+				</div>
+			</td>
+		</tr>
+	</tfoot>
+</table>
+<!--        end of table          -->

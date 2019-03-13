@@ -1,0 +1,78 @@
+#parse("sys/sys_param.vm")
+#parse("/sys/sys_head_open.vm")
+#parse("/module/mod-form.vm")
+#parse("/module/mod-upload.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/seller/order/confirmrefund.js?version=$!{JS_VERSION}" ></script>
+<style>
+    /*修复上传图片样式*/
+    .accessory li {
+        float: left!important;
+        margin-right: 20px;
+        text-align: center;
+        list-style: none;
+    }
+    .accessory .imgbox {
+        border: 1px solid #ddd;
+        width: 120px;
+        height: 120px;
+        line-height: 120px;
+        color: #037dff;
+    }
+    .accessory p {
+        text-align: center;
+        line-height: 26px;
+        font-size: 12px;
+        margin: 5px 0;
+    }
+
+</style>
+<div class="seller-box">
+    <div class="head">
+        <h3>上传凭证</h3>
+    </div>
+    <div class="body">
+        <div class="control-group">
+            <ul class="accessory clearfix">
+                <li>
+                    <div class="imgbox">
+						<img data-src="holder.js/120x120?text=图片预览区" src="" id="id0" alt=""  style="width:120px;height:120px;">
+					</div>
+                    <div class="btn btn-mini fileInputBtn"><i class="icon-upload-alt"></i>文件上传</div>
+					<!--<input id="aa" type="file" name="dataReportFile" class="fileInputBtn" style="" />-->
+                </li>
+				<li>
+                    <div class="imgbox">
+						<img data-src="holder.js/120x120?text=图片预览区" src="" id="id1" alt=""  style="width:120px;height:120px;">
+					</div>
+                    <div class="btn btn-mini fileInputBtn"><i class="icon-upload-alt"></i>文件上传</div>
+                    <!--<input id="bb" type="file" name="dataReportFile" class="fileInputBtn" style="" />-->
+                </li>
+				<li>
+                    <div class="imgbox">
+						<img data-src="holder.js/120x120?text=图片预览区" src="" id="id2" alt=""  style="width:120px;height:120px;">
+					</div>
+                    <div class="btn btn-mini fileInputBtn"><i class="icon-upload-alt"></i>文件上传</div>
+					<!--<input id="cc" type="file" name="dataReportFile" class="fileInputBtn" style="" />-->
+                </li>
+            </ul>
+            <div class="alert rz-alert">
+                <p>*仅支持JPG、GIF、PNG、JPEG、BMP格式，文件小于4M</p>
+            </div>
+        </div>
+		<div class="control-group">
+            <div class="controls">
+    			<button type="button" class="btn btn-success" id="btn_submit"><i class="icon-ok"></i> 提交</button>
+    			<button type="button" class="btn btn-primary" id="btn_close"><i class="icon-ban-circle"></i> 关闭</button>
+            </div>
+        </div>
+		<form action="" accept-charset="" id="backrefundForm" method="" onsubmit=""> 
+            <input name="backId" id= "backId" value="$!{vo.backId}" type="hidden"></input>
+            <input name="orderId" id= "orderId" value="$!{vo.orderId}" type="hidden"></input>
+            <input name="applyType" id= "applyType" value="$!{applyType}" type="hidden"></input>
+            <input name="backPicList[0]" id= "imgid0" type="hidden"></input>
+            <input name="backPicList[1]" id= "imgid1" type="hidden"></input>
+            <input name="backPicList[2]" id= "imgid2" type="hidden"></input>
+        </form>
+    </div>
+</div>

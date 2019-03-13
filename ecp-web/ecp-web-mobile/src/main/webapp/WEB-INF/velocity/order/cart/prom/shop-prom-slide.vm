@@ -1,0 +1,49 @@
+##
+##涉及变量 cart,shopProm
+##
+<div id="slideButtom_$!{cart.id}_$velocityCount" class="am-offcanvas slideButtom" style="display:none;">
+    <div class="am-offcanvas-bar">
+        <div class="am-offcanvas-content">
+            <div class="pro-saleList shop-reduce">
+                <div class="tit">
+                    促销
+                    <span class="icon icon-close"></span>
+                </div>
+                <ul class="body">
+                    #foreach($promInfo in $shopProm.promInfoDTOList)
+                        #if($shopProm.promInfoDTO.id == $promInfo.id)
+                            #set($checked = "checked='checked'")
+                        #else
+                            #set($checked = "")
+                        #end
+                        <li class="shopPromOption modifyShopProm" style="cursor: pointer;">
+                            <input name="shopProm_$!{cart.id}" type="radio" style="display:none" value="$!{promInfo.id}" $!{checked} class="shopPromSelect"/>
+                            <span class="pro-mz">
+                                $!{promInfo.nameShort}
+                            </span>
+                            <div class="mz-txt">
+                                $!{promInfo.promTheme}
+                            </div>
+                            <span class="ui-arrow ui-arrow-right"></span>
+                        </li>
+                    #end
+                    #if($shopProm.promInfoDTO.id == -1)
+                        #set($nochecked = "checked='checked'")
+                    #else
+                        #set($nochecked = "")
+                    #end
+                    <li class="noShopPromOption modifyShopProm" style="cursor: pointer;">
+                        <input name="shopProm_$!{cart.id}" style="display:none" type="radio" $!{nochecked} value="-1" class="shopPromSelect"/>
+                        <span class="pro-mz">
+                            无优惠
+                        </span>
+                        <div class="mz-txt">
+                            不使用优惠活动
+                        </div>
+                        <span class="ui-arrow ui-arrow-right"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

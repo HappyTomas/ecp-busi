@@ -1,0 +1,2075 @@
+<itemRule>
+	<field id="infos" name="信息" type="label">
+		<label-group name="">
+			<label-group name="sys_infos">
+				<label name="欢迎" value="欢迎使用Schema新商品发布体系" desc="" />
+			</label-group>
+			<label-group name="dev_infos">
+				<label name="开发者说明"
+					value="1.此为消息机制，并且本条消息为开发者消息；2.DevInfo类型消息在第三方开发者有UI对客户展示时应主动屏蔽此类消息，比如这条消息不该被非开发者看到；3.新接口接入初期，有任何疑问或者发现Bug请到旺旺群（群号：836280177）交流"
+					desc="" />
+			</label-group>
+		</label-group>
+	</field>
+	<field id="title" name="商品标题" type="input">
+		<rules>
+			<rule name="valueTypeRule" value="text" />
+			<rule name="requiredRule" value="true" />
+			<rule name="minLengthRule" value="1" exProperty="include" unit="byte" />
+			<rule name="maxLengthRule" value="120" exProperty="include"
+				unit="byte" />
+		</rules>
+	</field>
+	<field id="sell_points" name="商品卖点" type="complex">
+		<rules>
+			<rule name="minLengthRule" value="0" exProperty="include" unit="character" />
+			<rule name="maxLengthRule" value="20" exProperty="include" unit="character" />
+			<rule name="tipRule" value="最多5个卖点短语,每个卖点短语最多6个字,总字数不超过20个字" />
+		</rules>
+		<fields>
+			<field id="sell_point_0" name="商品卖点" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="text" />
+					<rule name="minLengthRule" value="0" exProperty="include"
+						unit="character" />
+					<rule name="maxLengthRule" value="6" exProperty="include"
+						unit="character" />
+				</rules>
+			</field>
+			<field id="sell_point_1" name="商品卖点" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="text" />
+					<rule name="minLengthRule" value="0" exProperty="include"
+						unit="character" />
+					<rule name="maxLengthRule" value="6" exProperty="include"
+						unit="character" />
+				</rules>
+			</field>
+			<field id="sell_point_2" name="商品卖点" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="text" />
+					<rule name="minLengthRule" value="0" exProperty="include"
+						unit="character" />
+					<rule name="maxLengthRule" value="6" exProperty="include"
+						unit="character" />
+				</rules>
+			</field>
+			<field id="sell_point_3" name="商品卖点" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="text" />
+					<rule name="minLengthRule" value="0" exProperty="include"
+						unit="character" />
+					<rule name="maxLengthRule" value="6" exProperty="include"
+						unit="character" />
+				</rules>
+			</field>
+			<field id="sell_point_4" name="商品卖点" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="text" />
+					<rule name="minLengthRule" value="0" exProperty="include"
+						unit="character" />
+					<rule name="maxLengthRule" value="6" exProperty="include"
+						unit="character" />
+				</rules>
+			</field>
+		</fields>
+	</field>
+	<field id="item_type" name="发布类型" type="singleCheck">
+		<rules>
+			<rule name="requiredRule" value="true" />
+		</rules>
+		<options>
+			<option displayName="一口价" value="b" />
+		</options>
+		<default-value>b</default-value>
+	</field>
+	<field id="stuff_status" name="宝贝类型" type="singleCheck">
+		<rules>
+			<rule name="requiredRule" value="true" />
+		</rules>
+		<options>
+			<option displayName="全新" value="5" />
+		</options>
+		<default-value>5</default-value>
+	</field>
+	<field id="sub_stock" name="拍下减库存" type="singleCheck">
+		<rules>
+			<rule name="tipRule" value="秒杀商品或超低价抢购促销商品或热卖商品请选择拍下减库存，可以防止超卖情况！"
+				url="https://service.taobao.com/support/knowledge-1110945.htm" />
+		</rules>
+		<options>
+			<option displayName="是" value="true" />
+			<option displayName="否" value="false" />
+		</options>
+		<default-value>false</default-value>
+	</field>
+	<field id="second_kill" name="商品秒杀" type="multiCheck">
+		<rules>
+			<rule name="tipRule" value="若此商品参加秒杀活动，在此期间内必须设为秒杀商品，以防止作弊" />
+			<rule name="tipRule" value="秒杀商品的商品详情页面将不出现“加入购物车”按钮" />
+		</rules>
+		<options>
+			<option displayName="电脑用户" value="web" />
+			<option displayName="手机用户" value="wap" />
+		</options>
+	</field>
+	<field id="auction_point" name="返点比例" type="input">
+		<rules>
+			<rule name="valueTypeRule" value="decimal" />
+			<rule name="requiredRule" value="true" />
+			<rule name="regexRule" value="^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(\.[0-9]{0,5})?$" />
+			<rule name="minValueRule" value="0.5" exProperty="include" />
+			<rule name="maxValueRule" value="1.5" exProperty="include" />
+			<rule name="tipRule" value="该类商品的最低返点比例为0.5%，设定的返点比例必须是0.5%的整数倍，且不能高于1.5%" />
+		</rules>
+	</field>
+	<field id="item_status" name="商品状态" type="singleCheck">
+		<rules>
+			<rule name="requiredRule" value="true" />
+		</rules>
+		<options>
+			<option displayName="出售中" value="0" />
+			<option displayName="定时上架" value="1" />
+			<option displayName="仓库中" value="2" />
+		</options>
+		<default-value>0</default-value>
+	</field>
+	<field id="start_time" name="开始时间" type="input">
+		<rules>
+			<rule name="valueTypeRule" value="time" />
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="item_status" value="1"
+						symbol="!=" />
+				</depend-group>
+			</rule>
+		</rules>
+		<default-value>2016-12-23 18:06:48</default-value>
+	</field>
+	<field id="lang" name="商品文字的字符集" type="singleCheck">
+		<options>
+			<option displayName="zh_CN" value="zh_CN" />
+			<option displayName="zh_HK" value="zh_HK" />
+		</options>
+	</field>
+	<field id="quantity" name="商品数量" type="input">
+		<rules>
+			<rule name="valueTypeRule" value="integer" />
+			<rule name="requiredRule" value="true" />
+			<rule name="regexRule" value="^[0-9]*$" />
+			<rule name="minValueRule" value="0" exProperty="include" />
+			<rule name="maxValueRule" value="1000000" exProperty="not include" />
+			<rule name="tipRule" value="请认真填写。无货空挂，可能引起投诉与退款"
+				url="https://bangpai.taobao.com/group/thread/145336-9509231.htm" />
+		</rules>
+	</field>
+	<field id="price" name="商品价格" type="input">
+		<rules>
+			<rule name="valueTypeRule" value="decimal" />
+			<rule name="requiredRule" value="true" />
+			<rule name="regexRule" value="^([0-9]+|[0-9]{1,3}(,[0-9]{3})*)(\.[0-9]{0,2})?$" />
+			<rule name="minValueRule" value="0.00" exProperty="not include" />
+			<rule name="maxValueRule" value="100000000.00" exProperty="not include" />
+			<rule name="127233315_1" value="商品价格必须在销售属性表中所填最高与最低价格范围区间内" />
+			<rule name="tipRule" value="为避免价格变动引发的违规，请谨慎输入价格。"
+				url="https://rule.tmall.com/tdetail-2695.htm" />
+		</rules>
+	</field>
+	<field id="has_discount" name="是否支持会员折扣" type="singleCheck">
+		<options>
+			<option displayName="支持会员打折" value="true" />
+			<option displayName="不支持会员打折" value="false" />
+		</options>
+		<default-value>false</default-value>
+	</field>
+	<field id="inner_shop" name="页面模板-淘宝店铺" type="singleCheck">
+		<options>
+			<option displayName="默认宝贝详情页" value="341734105" />
+		</options>
+	</field>
+	<field id="delivery_way" name="提取方式" type="multiCheck">
+		<rules>
+			<rule name="requiredRule" value="true" />
+		</rules>
+		<options>
+			<option displayName="邮寄" value="2" />
+		</options>
+	</field>
+	<field id="locality_life.expirydate" name="有效期" type="singleCheck">
+		<rules>
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="delivery_way" value="1"
+						symbol="not contains" />
+				</depend-group>
+			</rule>
+		</rules>
+		<options>
+			<option displayName="按时间区间" value="1" />
+			<option displayName="按购买日起时间区间" value="2" />
+			<option displayName="按购买日起有效天数区间" value="3" />
+		</options>
+	</field>
+	<field id="locality_life.expirydate.startend" name="有效期按时间区间"
+		type="complex">
+		<rules>
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="locality_life.expirydate"
+						value="1" symbol="!=" />
+				</depend-group>
+			</rule>
+		</rules>
+		<fields>
+			<field id="locality_life.expirydate.startend.start" name="开始时间"
+				type="input">
+				<rules>
+					<rule name="valueTypeRule" value="date" />
+				</rules>
+			</field>
+			<field id="locality_life.expirydate.startend.end" name="结束时间"
+				type="input">
+				<rules>
+					<rule name="valueTypeRule" value="date" />
+				</rules>
+			</field>
+		</fields>
+	</field>
+	<field id="locality_life.expirydate.end" name="有效期按购买日起时间区间"
+		type="input">
+		<rules>
+			<rule name="valueTypeRule" value="date" />
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="locality_life.expirydate"
+						value="2" symbol="!=" />
+				</depend-group>
+			</rule>
+		</rules>
+	</field>
+	<field id="locality_life.expirydate.severalDays" name="有效期按购买日起有效天数区间"
+		type="input">
+		<rules>
+			<rule name="valueTypeRule" value="integer" />
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="locality_life.expirydate"
+						value="3" symbol="!=" />
+				</depend-group>
+			</rule>
+		</rules>
+	</field>
+	<field id="locality_life.network_id" name="网点id" type="input">
+		<rules>
+			<rule name="valueTypeRule" value="text" />
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="delivery_way" value="1"
+						symbol="not contains" />
+				</depend-group>
+			</rule>
+		</rules>
+	</field>
+	<field id="locality_life.merchant" name="码商" type="complex">
+		<rules>
+			<rule name="requiredRule" value="true" />
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="delivery_way" value="1"
+						symbol="not contains" />
+				</depend-group>
+			</rule>
+		</rules>
+		<fields>
+			<field id="locality_life.merchant.id" name="码商ID" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="long" />
+				</rules>
+			</field>
+			<field id="locality_life.merchant.name" name="码商名称" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="text" />
+				</rules>
+			</field>
+		</fields>
+	</field>
+	<field id="expired_refund" name="过期退款" type="complex">
+		<rules>
+			<rule name="requiredRule" value="true" />
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="delivery_way" value="1"
+						symbol="not contains" />
+				</depend-group>
+			</rule>
+		</rules>
+		<fields>
+			<field id="support_expired_refund_rate" name="支持过期退款" type="singleCheck">
+				<options>
+					<option displayName="是" value="1" />
+				</options>
+			</field>
+			<field id="expired_refund_rate" name="过期退款比例" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="integer" />
+					<rule name="minValueRule" value="1" exProperty="include" />
+					<rule name="maxValueRule" value="100" exProperty="include" />
+					<rule name="requiredRule" value="true" />
+					<rule name="tipRule" value="退款比例请输入1-100之间的整数" />
+					<rule name="disableRule" value="true">
+						<depend-group operator="and">
+							<depend-express fieldId="support_expired_refund_rate"
+								value="1" symbol="!=" />
+						</depend-group>
+					</rule>
+				</rules>
+			</field>
+		</fields>
+	</field>
+	<field id="locality_life.verification" name="核销打款" type="singleCheck">
+		<rules>
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="delivery_way" value="1"
+						symbol="not contains" />
+				</depend-group>
+			</rule>
+		</rules>
+		<options>
+			<option displayName="是" value="1" />
+		</options>
+	</field>
+	<field id="auto_refund" name="自动退款" type="complex">
+		<rules>
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="delivery_way" value="1"
+						symbol="not contains" />
+				</depend-group>
+			</rule>
+		</rules>
+		<fields>
+			<field id="support_auto_refund_rate" name="支持自动退款" type="singleCheck">
+				<options>
+					<option displayName="是" value="1" />
+				</options>
+			</field>
+			<field id="auto_refund_rate" name="过期自动比例" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="integer" />
+					<rule name="minValueRule" value="1" exProperty="include" />
+					<rule name="maxValueRule" value="100" exProperty="include" />
+					<rule name="tipRule" value="售中自动退款比例请输入1-100之间的整数" />
+					<rule name="disableRule" value="true">
+						<depend-group operator="and">
+							<depend-express fieldId="support_auto_refund_rate"
+								value="1" symbol="!=" />
+						</depend-group>
+					</rule>
+				</rules>
+			</field>
+		</fields>
+	</field>
+	<field id="location" name="所在地" type="complex">
+		<fields>
+			<field id="prov" name="省份" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="text" />
+					<rule name="requiredRule" value="true" />
+				</rules>
+			</field>
+			<field id="city" name="城市" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="text" />
+					<rule name="requiredRule" value="true" />
+				</rules>
+			</field>
+		</fields>
+	</field>
+	<field id="freight_payer" name="运费承担方式" type="singleCheck">
+		<rules>
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="delivery_way" value="2"
+						symbol="not contains" />
+				</depend-group>
+			</rule>
+		</rules>
+		<options>
+			<option displayName="卖家承担运费" value="2" />
+			<option displayName="买家承担运费" value="1" />
+		</options>
+		<default-value>1</default-value>
+	</field>
+	<field id="freight_by_buyer" name="买家承担运费" type="singleCheck">
+		<rules>
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="freight_payer" value="1"
+						symbol="!=" />
+				</depend-group>
+			</rule>
+		</rules>
+		<options>
+			<option displayName="使用运费模板" value="postage" />
+			<option displayName="设置运费" value="freight_details" />
+		</options>
+		<default-value>freight_details</default-value>
+	</field>
+	<field id="freight" name="运费" type="complex">
+		<rules>
+			<rule name="requiredRule" value="true" />
+			<rule name="requiredRule" value="true" />
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="freight_by_buyer" value="freight_details"
+						symbol="!=" />
+				</depend-group>
+			</rule>
+		</rules>
+		<default-complex-values />
+		<fields>
+			<field id="express_fee" name="快递费用" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="decimal" />
+				</rules>
+			</field>
+			<field id="post_fee" name="平邮费用" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="decimal" />
+				</rules>
+			</field>
+			<field id="ems_fee" name="EMS费用" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="decimal" />
+				</rules>
+			</field>
+		</fields>
+	</field>
+	<field id="postage_id" name="运费模板ID" type="input">
+		<rules>
+			<rule name="valueTypeRule" value="long" />
+			<rule name="disableRule" value="true">
+				<depend-group operator="and">
+					<depend-express fieldId="freight_by_buyer" value="postage"
+						symbol="!=" />
+				</depend-group>
+			</rule>
+		</rules>
+	</field>
+	<field id="seller_cids" name="商品所属的店铺类目列表" type="multiCheck">
+		<options>
+			<option displayName="促销图书" value="1277534375" />
+			<option displayName="促销图书（生活类）" value="1279619754" />
+			<option displayName="参考书" value="1279655547" />
+			<option displayName="教材" value="1275614943" />
+			<option displayName="考试用书" value="1279603504" />
+			<option displayName="生活类图书" value="1279618873" />
+			<option displayName="考试用书（细分类） &gt;&gt; 执业医师考试" value="671520285" />
+			<option displayName="考试用书（细分类） &gt;&gt; 卫生专业技术资格考试" value="671520286" />
+			<option displayName="考试用书（细分类） &gt;&gt; 执业护士考试" value="671520287" />
+			<option displayName="考试用书（细分类） &gt;&gt; 执业药师资格考试" value="671520288" />
+			<option displayName="考试用书（细分类） &gt;&gt; 研究生考试" value="671520289" />
+			<option displayName="考试用书（细分类） &gt;&gt; 其他考试" value="671520290" />
+			<option displayName="外文医学书" value="1152462000" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-内科综合" value="1279655606" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-血管内科" value="1279655607" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-消化内科" value="1279655608" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-内分泌" value="1279655609" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-神经内科" value="1279655610" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-呼吸内科" value="1279655611" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-血液内科" value="1279655612" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-肾内科" value="1279655613" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-风湿免疫" value="1279655614" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-感染科" value="1279655615" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-急诊科" value="1279655616" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-检验科" value="1279655617" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-精神科" value="1279655618" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-重症医学" value="1279655619" />
+			<option displayName="内科学-参考书 &gt;&gt; 内科学-其他内科" value="1279655620" />
+			<option displayName="外科学-参考书 &gt;&gt; 骨科" value="671520291" />
+			<option displayName="外科学-参考书 &gt;&gt; 泌尿外科" value="671520292" />
+			<option displayName="外科学-参考书 &gt;&gt; 心胸外科" value="671520293" />
+			<option displayName="外科学-参考书 &gt;&gt; 神经外科" value="671520294" />
+			<option displayName="外科学-参考书 &gt;&gt; 头颈外科" value="671520295" />
+			<option displayName="外科学-参考书 &gt;&gt; 整形外科" value="671520296" />
+			<option displayName="外科学-参考书 &gt;&gt; 外科综合" value="671520297" />
+			<option displayName="外科学-参考书 &gt;&gt; 其他外科" value="671520298" />
+			<option displayName="外科学-参考书 &gt;&gt; 血管外科" value="671541073" />
+			<option displayName="护理学-参考书" value="671541000" />
+			<option displayName="眼科学-参考书" value="671541401" />
+			<option displayName="妇产科学-参考书 &gt;&gt; 妇科" value="671520264" />
+			<option displayName="妇产科学-参考书 &gt;&gt; 产科" value="671520265" />
+			<option displayName="妇产科学-参考书 &gt;&gt; 其他妇产科" value="671520267" />
+			<option displayName="儿科学-参考书 &gt;&gt; 小儿内科" value="671520269" />
+			<option displayName="儿科学-参考书 &gt;&gt; 小儿外科" value="671520270" />
+			<option displayName="儿科学-参考书 &gt;&gt; 其他儿科" value="671520271" />
+			<option displayName="预防医学-参考书 &gt;&gt; 流行病学与传染病" value="671520275" />
+			<option displayName="预防医学-参考书 &gt;&gt; 营养与食品卫生" value="671520274" />
+			<option displayName="预防医学-参考书 &gt;&gt; 卫生管理" value="671543795" />
+			<option displayName="预防医学-参考书 &gt;&gt; 卫生统计" value="671520273" />
+			<option displayName="预防医学-参考书 &gt;&gt; 卫生检验" value="671543796" />
+			<option displayName="预防医学-参考书 &gt;&gt; 其他预防" value="671520276" />
+			<option displayName="中医药-参考书 &gt;&gt; 中医临床" value="671520278" />
+			<option displayName="中医药-参考书 &gt;&gt; 中医基础" value="671520279" />
+			<option displayName="中医药-参考书 &gt;&gt; 中医古籍" value="671520280" />
+			<option displayName="中医药-参考书 &gt;&gt; 方药" value="671520281" />
+			<option displayName="中医药-参考书 &gt;&gt; 针灸推拿" value="671520282" />
+			<option displayName="中医药-参考书 &gt;&gt; 其他中医" value="671520283" />
+			<option displayName="耳鼻咽喉和头颈外科-参考书" value="671520262" />
+			<option displayName="口腔科学-参考书" value="671541212" />
+			<option displayName="肿瘤学-参考书" value="671541213" />
+			<option displayName="皮肤性病学-参考书" value="671541827" />
+			<option displayName="麻醉学-参考书" value="671541828" />
+			<option displayName="影像医学-参考书" value="671541829" />
+			<option displayName="医学工具书 &gt;&gt; 年鉴" value="671541831" />
+			<option displayName="医学工具书 &gt;&gt; 辞书" value="671541832" />
+			<option displayName="医学工具书 &gt;&gt; 管理" value="671541833" />
+			<option displayName="药物学-参考书" value="671541834" />
+			<option displayName="其他参考书" value="671541838" />
+			<option displayName="临床医学 第八轮 本科教材" value="757005663" />
+			<option displayName="长学制-教材 &gt;&gt; 八年制" value="671542300" />
+			<option displayName="长学制-教材 &gt;&gt; 七年制" value="671542501" />
+			<option displayName="研究生-教材 &gt;&gt; 临床医学" value="671542503" />
+			<option displayName="研究生-教材 &gt;&gt; 中医药" value="671542505" />
+			<option displayName="研究生-教材 &gt;&gt; 口腔" value="671542502" />
+			<option displayName="研究生-教材 &gt;&gt; 其他" value="671542504" />
+			<option displayName="本科-教材 &gt;&gt; 临床医学" value="671541897" />
+			<option displayName="本科-教材 &gt;&gt; 预防医学" value="671542206" />
+			<option displayName="本科-教材 &gt;&gt; 口腔医学" value="671541896" />
+			<option displayName="本科-教材 &gt;&gt; 药学" value="671542202" />
+			<option displayName="本科-教材 &gt;&gt; 护理学" value="671541892" />
+			<option displayName="本科-教材 &gt;&gt; 检验医学" value="671541893" />
+			<option displayName="本科-教材 &gt;&gt; 医学影像" value="671542204" />
+			<option displayName="本科-教材 &gt;&gt; 麻醉学" value="671541898" />
+			<option displayName="本科-教材 &gt;&gt; 中医" value="671542207" />
+			<option displayName="本科-教材 &gt;&gt; 医学美容" value="671542203" />
+			<option displayName="本科-教材 &gt;&gt; 儿科学" value="671541888" />
+			<option displayName="本科-教材 &gt;&gt; 眼视光" value="671542201" />
+			<option displayName="本科-教材 &gt;&gt; 生殖医学" value="671541899" />
+			<option displayName="本科-教材 &gt;&gt; 康复治疗学" value="671541895" />
+			<option displayName="本科-教材 &gt;&gt; 应用心理学" value="671542205" />
+			<option displayName="本科-教材 &gt;&gt; 法医学" value="671541889" />
+			<option displayName="本科-教材 &gt;&gt; 精神医学" value="671541894" />
+			<option displayName="本科-教材 &gt;&gt; 外语教材" value="671541900" />
+			<option displayName="本科-教材 &gt;&gt; 整合教材" value="1233857354" />
+			<option displayName="本科-教材 &gt;&gt; 改革实验创新教材" value="671541890" />
+			<option displayName="本科-教材 &gt;&gt; 改革实验创新配套教材" value="671541891" />
+			<option displayName="本科整合教材" value="1233852702" />
+			<option displayName="成教专科-教材 &gt;&gt; 临床医学" value="671542219" />
+			<option displayName="成教专科-教材 &gt;&gt; 护理学" value="671542218" />
+			<option displayName="成教专科-教材 &gt;&gt; 药学" value="671542220" />
+			<option displayName="成教专科-教材 &gt;&gt; 预防医学" value="671542221" />
+			<option displayName="高职-教材 &gt;&gt; 基础课（五年一贯制）" value="671542412" />
+			<option displayName="高职-教材 &gt;&gt; 临床医学（五年一贯制）" value="671542416" />
+			<option displayName="高职-教材 &gt;&gt; 五年一贯制护理" value="671542419" />
+			<option displayName="高职-教材 &gt;&gt; 涉外护理" value="671542418" />
+			<option displayName="高职-教材 &gt;&gt; 药学" value="671542421" />
+			<option displayName="高职-教材 &gt;&gt; 口腔工艺技术" value="671542415" />
+			<option displayName="高职-教材 &gt;&gt; 检验技术" value="671542413" />
+			<option displayName="高职-教材 &gt;&gt; 医学影像技术" value="671542423" />
+			<option displayName="高职-教材 &gt;&gt; 中医药" value="671542424" />
+			<option displayName="高职-教材 &gt;&gt; 康复治疗技术" value="671542414" />
+			<option displayName="高职-教材 &gt;&gt; 医疗器械类专业" value="671542422" />
+			<option displayName="高职-教材 &gt;&gt; 眼视光专业" value="671542420" />
+			<option displayName="高职-教材 &gt;&gt; 美容" value="671542417" />
+			<option displayName="高职-教材 &gt;&gt; 改革实验创新教材" value="671542410" />
+			<option displayName="高职-教材 &gt;&gt; 改革实验创新配套教材" value="671542411" />
+			<option displayName="成教专升本-教材 &gt;&gt; 临床医学" value="671542224" />
+			<option displayName="成教专升本-教材 &gt;&gt; 护理学" value="671542222" />
+			<option displayName="成教专升本-教材 &gt;&gt; 检验" value="671542223" />
+			<option displayName="高专-教材 &gt;&gt; 临床医学" value="671542426" />
+			<option displayName="高专-教材 &gt;&gt; 护理学" value="671542425" />
+			<option displayName="中职-教材 &gt;&gt; 基础课、选修课" value="671542609" />
+			<option displayName="中职-教材 &gt;&gt; 护理、助产、涉外护理" value="671542608" />
+			<option displayName="中职-教材 &gt;&gt; 药剂" value="671542616" />
+			<option displayName="中职-教材 &gt;&gt; 医学检验" value="671542617" />
+			<option displayName="中职-教材 &gt;&gt; 口腔工艺技术" value="671542611" />
+			<option displayName="中职-教材 &gt;&gt; 医学影像技术" value="671542618" />
+			<option displayName="中职-教材 &gt;&gt; 生物技术" value="671542612" />
+			<option displayName="中职-教材 &gt;&gt; 眼视光技术" value="671542615" />
+			<option displayName="中职-教材 &gt;&gt; 卫生信息管理" value="671542614" />
+			<option displayName="中职-教材 &gt;&gt; 卫生保健" value="671542613" />
+			<option displayName="中职-教材 &gt;&gt; 康复技术" value="671542610" />
+			<option displayName="中等医学-教材 &gt;&gt; 社区医学" value="671542507" />
+			<option displayName="中等医学-教材 &gt;&gt; 药剂" value="671542508" />
+			<option displayName="中等医学-教材 &gt;&gt; 口腔工艺技术" value="671542506" />
+			<option displayName="中等医学-教材 &gt;&gt; 预防医学" value="671542509" />
+			<option displayName="四年制护理-教材" value="671520253" />
+			<option displayName="卫生部培训教材" value="671520251" />
+			<option displayName="其他教材" value="671520250" />
+			<option displayName="生活类图书（细分类） &gt;&gt; 生活保健" value="671522083" />
+			<option displayName="生活类图书（细分类） &gt;&gt; 疾病防治" value="671522084" />
+			<option displayName="生活类图书（细分类） &gt;&gt; 其他" value="671522085" />
+			<option displayName="电子音像制品 &gt;&gt; 西医临床" value="672415008" />
+			<option displayName="电子音像制品 &gt;&gt; 基础医学" value="672417639" />
+			<option displayName="电子音像制品 &gt;&gt; 中医学" value="672417640" />
+			<option displayName="电子音像制品 &gt;&gt; 考试辅导" value="672417641" />
+			<option displayName="电子音像制品 &gt;&gt; 科普" value="672417642" />
+			<option displayName="电子音像制品 &gt;&gt; 其他" value="672417643" />
+			<option displayName="赠品" value="1277525605" />
+			<option displayName="未分类图书" value="1279624027" />
+		</options>
+	</field>
+	<field id="white_bg_image" name="透明素材图" type="input">
+		<rules>
+			<rule name="valueTypeRule" value="url" />
+		</rules>
+	</field>
+	<field id="after_sale_id" name="售后说明模板ID" type="input">
+		<rules>
+			<rule name="valueTypeRule" value="long" />
+			<rule name="devTipRule" value="请使用taobao.aftersale.get接口获取售后说明模板信息"
+				url="http://api.taobao.com/apidoc/api.htm?path=cid:4-apiId:10448" />
+		</rules>
+	</field>
+	<field id="has_warranty" name="保修" type="singleCheck">
+		<rules>
+			<rule name="requiredRule" value="true" />
+		</rules>
+		<options>
+			<option displayName="有" value="true" />
+			<option displayName="无" value="false" />
+		</options>
+		<default-value>false</default-value>
+	</field>
+	<field id="has_invoice" name="发票" type="singleCheck">
+		<rules>
+			<rule name="requiredRule" value="true" />
+		</rules>
+		<options>
+			<option displayName="有" value="true" />
+		</options>
+		<default-value>true</default-value>
+	</field>
+	<field id="sell_promise" name="退换货服务" type="singleCheck">
+		<options>
+			<option displayName="是" value="true" />
+			<option displayName="否" value="false" />
+		</options>
+		<default-value>true</default-value>
+	</field>
+	<field id="has_showcase" name="橱窗推荐" type="singleCheck">
+		<options>
+			<option displayName="橱窗推荐" value="true" />
+			<option displayName="橱窗不推荐" value="false" />
+		</options>
+		<default-value>false</default-value>
+	</field>
+	<field id="outer_id" name="商家外部编码" type="input">
+		<rules>
+			<rule name="valueTypeRule" value="text" />
+			<rule name="maxLengthRule" value="64" exProperty="include" unit="byte" />
+		</rules>
+	</field>
+	<field id="description" name="商品描述" type="input">
+		<rules>
+			<rule name="valueTypeRule" value="html" />
+			<rule name="minLengthRule" value="5" exProperty="include" unit="character" />
+			<rule name="maxLengthRule" value="25000" exProperty="include"
+				unit="character" />
+			<rule name="requiredRule" value="true" />
+		</rules>
+	</field>
+	<field id="item_images" name="商品图片" type="complex">
+		<fields>
+			<field id="item_image_0" name="商品图片" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="url" />
+				</rules>
+			</field>
+			<field id="item_image_1" name="商品图片" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="url" />
+				</rules>
+			</field>
+			<field id="item_image_2" name="商品图片" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="url" />
+				</rules>
+			</field>
+			<field id="item_image_3" name="商品图片" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="url" />
+				</rules>
+			</field>
+			<field id="item_image_4" name="商品图片" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="url" />
+				</rules>
+			</field>
+		</fields>
+	</field>
+	<field id="item_wireless_images" name="商品无线图片" type="complex">
+		<default-complex-values>
+			<field id="item_wireless_images_3" type="input">
+				<value />
+			</field>
+			<field id="item_wireless_images_2" type="input">
+				<value />
+			</field>
+			<field id="item_wireless_images_5" type="input">
+				<value />
+			</field>
+			<field id="item_wireless_images_4" type="input">
+				<value />
+			</field>
+			<field id="item_wireless_images_1" type="input">
+				<value />
+			</field>
+		</default-complex-values>
+		<fields>
+			<field id="item_wireless_images_1" name="商品无线图片" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="url" />
+				</rules>
+			</field>
+			<field id="item_wireless_images_2" name="商品无线图片" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="url" />
+				</rules>
+			</field>
+			<field id="item_wireless_images_3" name="商品无线图片" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="url" />
+				</rules>
+			</field>
+			<field id="item_wireless_images_4" name="商品无线图片" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="url" />
+				</rules>
+			</field>
+			<field id="item_wireless_images_5" name="商品无线图片" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="url" />
+				</rules>
+			</field>
+		</fields>
+	</field>
+	<field id="item_size_weight" name="商品物流重量体积" type="complex">
+		<fields>
+			<field id="item_size" name="商品物流体积(立方米)" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="text" />
+				</rules>
+			</field>
+			<field id="item_weight" name="商品物流重量(千克)" type="input">
+				<rules>
+					<rule name="valueTypeRule" value="text" />
+					<rule name="regexRule" value="^\d+(\.\d+)?$" />
+				</rules>
+			</field>
+		</fields>
+	</field>
+	<field id="valid_thru" name="有效期" type="singleCheck">
+		<rules>
+			<rule name="requiredRule" value="true" />
+		</rules>
+		<options>
+			<option displayName="7天" value="7" />
+			<option displayName="14天" value="14" />
+		</options>
+	</field>
+	<field id="is_taobao" name="是否在淘宝和天猫显示" type="singleCheck">
+		<rules>
+			<rule name="tipRule" value="商品如果设置为在淘宝和天猫不显示，在淘宝、天猫的主站和后台均不显示该商品。（不设置默认为显示）" />
+		</rules>
+		<options>
+			<option displayName="是" value="true" />
+			<option displayName="否" value="false" />
+		</options>
+	</field>
+	<field id="is_ex" name="是否在外店显示" type="singleCheck">
+		<options>
+			<option displayName="是" value="true" />
+			<option displayName="否" value="false" />
+		</options>
+	</field>
+	<field id="is_3D" name="是否是3D" type="singleCheck">
+		<options>
+			<option displayName="是" value="true" />
+			<option displayName="否" value="false" />
+		</options>
+	</field>
+	<field id="service_version" name="天猫系统服务版本" type="input">
+		<rules>
+			<rule name="valueTypeRule" value="long" />
+			<rule name="requiredRule" value="true" />
+			<rule name="1308479876_1" value="系统提交的版本号需要和服务端服务版本号一致" />
+			<rule name="readOnlyRule" value="true" />
+		</rules>
+		<default-value>11100</default-value>
+	</field>
+	<field id="wireless_desc" name="新商品无线描述" type="complex">
+		<fields>
+			<field id="item_info" name="商品信息" type="complex">
+				<rules>
+					<rule name="devTipRule" value="该模块直接读取您已填写的商品信息，不需要编辑。如需查看实际效果，请通过发布后查看。" />
+				</rules>
+				<fields>
+					<field id="item_info_enable" name="是否启用" type="singleCheck">
+						<options>
+							<option displayName="启用" value="true" />
+							<option displayName="不启用" value="false" />
+						</options>
+					</field>
+				</fields>
+			</field>
+			<field id="item_picture" name="商品图片" type="complex">
+				<rules>
+					<rule name="devTipRule"
+						value="该模块最多可上传20张图片，图片类型支持png,jpg,jpeg。单个图片建议宽度为750px~1242px，高度≤1546px。" />
+				</rules>
+				<fields>
+					<field id="item_picture_enable" name="是否启用" type="singleCheck">
+						<options>
+							<option displayName="启用" value="true" />
+							<option displayName="不启用" value="false" />
+						</options>
+					</field>
+					<field id="image_hot_area_0" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_1" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_2" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_3" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_4" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_5" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_6" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_7" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_8" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_9" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_10" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_11" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_12" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_13" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_14" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_15" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_16" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_17" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_18" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+					<field id="image_hot_area_19" type="complex">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_picture_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+						<fields>
+							<field id="item_picture_image" type="input">
+								<rules>
+									<rule name="valueTypeRule" value="url" />
+								</rules>
+							</field>
+							<field id="hot_area" name="图片热区" type="multiComplex">
+								<fields>
+									<field id="start_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="start_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区左上角的坐标，数据范围是0-1，最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_x" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1，最多2位小数点，相对X轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="end_y" type="input">
+										<rules>
+											<rule name="devTipRule" value="商品外链热区右下角的坐标，数据范围是0-1,最多2位小数点，相对Y轴的偏移百分比" />
+											<rule name="minInputNumRule" value="0" exProperty="include" />
+											<rule name="maxInputNumRule" value="1" exProperty="include" />
+										</rules>
+									</field>
+									<field id="item_id" type="input">
+										<rules>
+											<rule name="devTipRule" value="输入热区关联的商品ID" />
+											<rule name="valueTypeRule" value="long" />
+										</rules>
+									</field>
+								</fields>
+							</field>
+						</fields>
+					</field>
+				</fields>
+			</field>
+			<field id="coupon" name="优惠" type="complex">
+				<rules>
+					<rule name="devTipRule" value="您可以选择下方已经设置好的店铺优惠券模板，也可以去商家中心设置店铺优惠券模板" />
+				</rules>
+				<fields>
+					<field id="coupon_enable" name="是否启用" type="singleCheck">
+						<options>
+							<option displayName="启用" value="true" />
+							<option displayName="不启用" value="false" />
+						</options>
+					</field>
+					<field id="coupon_id" name="选择模板" type="singleCheck">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="coupon_enable" value="true"
+										symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+					</field>
+				</fields>
+			</field>
+			<field id="hot_recommanded" name="同店推荐" type="complex">
+				<rules>
+					<rule name="devTipRule" value="您可以选择下方已经设置好的同店推荐模板，也可以去商家中心设置同店推荐模板" />
+				</rules>
+				<fields>
+					<field id="hot_recommanded_enable" name="是否启用" type="singleCheck">
+						<options>
+							<option displayName="启用" value="true" />
+							<option displayName="不启用" value="false" />
+						</options>
+					</field>
+					<field id="hot_recommanded_id" name="选择模板" type="singleCheck">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="hot_recommanded_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+					</field>
+				</fields>
+			</field>
+			<field id="shop_discount" name="店铺活动" type="complex">
+				<rules>
+					<rule name="devTipRule" value="您可以选择下方已经设置好的店铺活动模板，也可以去商家中心设置店铺活动模板" />
+				</rules>
+				<fields>
+					<field id="shop_discount_enable" name="是否启用" type="singleCheck">
+						<options>
+							<option displayName="启用" value="true" />
+							<option displayName="不启用" value="false" />
+						</options>
+					</field>
+					<field id="shop_discount_id" name="选择模板" type="singleCheck">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="shop_discount_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+					</field>
+				</fields>
+			</field>
+			<field id="user_define" name="自定义" type="complex">
+				<rules>
+					<rule name="devTipRule"
+						value="该模块需要您自己命名，可上传两张图片，图片格式支持png,jpg,jpeg。单个图片建议宽度为750px~1242px，高度≤1546px。" />
+				</rules>
+				<fields>
+					<field id="user_define_enable" name="是否启用" type="singleCheck">
+						<options>
+							<option displayName="启用" value="true" />
+							<option displayName="不启用" value="false" />
+						</options>
+					</field>
+					<field id="user_define_name" type="input">
+						<rules>
+							<rule name="maxValueRule" value="12" exProperty="include" />
+							<rule name="requiredRule" value="true" />
+							<rule name="devTipRule" value="仅支持中文英、数字，长度不可超过12个字符。" />
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="user_define_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+					</field>
+					<field id="user_define_image_0" type="input">
+						<rules>
+							<rule name="valueTypeRule" value="url" />
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="user_define_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+					</field>
+					<field id="user_define_image_1" type="input">
+						<rules>
+							<rule name="valueTypeRule" value="url" />
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="user_define_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+					</field>
+				</fields>
+			</field>
+			<field id="item_text" name="文字说明" type="complex">
+				<rules>
+					<rule name="devTipRule" value="您可以选择下方已经设置好的文字说明模板，也可以去商家中心设置文字说明模板" />
+				</rules>
+				<fields>
+					<field id="item_text_enable" name="是否启用" type="singleCheck">
+						<options>
+							<option displayName="启用" value="true" />
+							<option displayName="不启用" value="false" />
+						</options>
+					</field>
+					<field id="item_text_id" name="选择模板" type="singleCheck">
+						<rules>
+							<rule name="disableRule" value="true">
+								<depend-group operator="and">
+									<depend-express fieldId="item_text_enable"
+										value="true" symbol="!=" />
+								</depend-group>
+							</rule>
+						</rules>
+					</field>
+				</fields>
+			</field>
+		</fields>
+	</field>
+</itemRule>

@@ -1,0 +1,65 @@
+<div class="wrap1200">
+    <div id="seller-content" class="clearfix">
+        <div class="seller-navL">
+            <div class="list">
+                <dl>
+                    <dt><i class="sl-icon icon-order"></i> 订单管理 <i class="sl-icon icon-down"></i></dt>
+                    <dd class="list-c">
+                        <ul class="clearfix">
+                            <li><a href="#">订单查询</a></li>
+                            <li><a href="#">发货管理</a></li>
+                            <li><a href="#">退货退款管理</a></li>
+                            <li><a href="#">线下支付审核</a></li>
+                            <li><a href="#">退货退款管理</a></li>
+                            <li><a href="#">线下支付审核</a></li>
+                            <li><a href="#">退货退款管理</a></li>
+                            <li><a href="#">线下支付审核</a></li>
+                        </ul>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><i class="sl-icon icon-pro"></i> 商品管理 <i class="sl-icon icon-down"></i></dt>
+                    <dd class="list-c">
+                        <ul class="clearfix">
+                            <li><a href="#">出售中的宝贝</a></li>
+                            <li><a href="#">商品录入</a></li>
+                            <li><a href="#">仓库中的宝贝</a></li>
+                            <li><a href="#">运费模板管理</a></li>
+                        </ul>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><i class="sl-icon icon-yh"></i> 优惠券管理 <i class="sl-icon icon-down"></i></dt>
+                    <dd class="list-c">
+                        <ul class="clearfix">
+                            <li><a href="#">订单查询</a></li>
+                            <li><a href="#">订单查询</a></li>
+                            <li><a href="#">订单查询</a></li>
+                            <li><a href="#">订单查询</a></li>
+                        </ul>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><i class="sl-icon icon-cx"></i> 促销管理 <i class="sl-icon icon-down"></i></dt>
+                    <dd class="list-c">
+                        <ul class="clearfix">
+                            <li><a href="#">订单查询</a></li>
+                            <li><a href="#">订单查询</a></li>
+                            <li><a href="#">订单查询</a></li>
+                            <li><a href="#">订单查询</a></li>
+                        </ul>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt><i class="sl-icon icon-pj"></i> 评价管理 <i class="sl-icon icon-down"></i></dt>
+                    <dd class="list-c">
+                        <ul class="clearfix">
+                            <li><a href="#">订单查询</a></li>
+                            <li><a href="#">订单查询</a></li>
+                            <li><a href="#">订单查询</a></li>
+                            <li><a href="#">订单查询</a></li>
+                        </ul>
+                    </dd>
+                </dl>
+            </div>
+        </div>

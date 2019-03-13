@@ -1,0 +1,49 @@
+#parse("/sys/sys_param.vm")
+#if($!showShop == "1")
+ <div class="sl-rtype" >
+	        <input id="isLogin" name="isLogin" value="$!{isLogin}" type="hidden"/>
+	        <input id="isCollect" name="isCollect" value="$!{isCollect}" type="hidden"/>
+                <p class="shop_top"> $!{shopInfoResp.shopName}</p>
+                <p class="text-center store_logo">
+                    <a href="$!{CONTEXT_PATH}/shopIndex/$!shopInfoResp.id"><img src="$!{shopInfoResp.logoPathURL}"></a>
+                </p>
+                    <div class="shop-grade mbom10 ">
+                     <p class="shop-explain">
+                      <a href="$!{CONTEXT_PATH}/shopIndex/$!{shopInfoResp.id}"> $!{shopInfoResp.shopFullName}</a>
+                    </p>
+                    <dl class="mLeft10">
+                         <dd>
+                            <span class="w60">联系人：</span>
+                          <span class="green"> $!{shopInfoResp.linkPerson} </span>
+                        </dd>
+                         <dd>
+                            <span class="w60">联系方式：</span>
+                            <span class="green"> $!{shopInfoResp.linkMobilephone}</span>
+                        </dd>
+                        <dd>
+                            <span class="w60">销量：</span>
+                            <span class="green"> $!{shopInfoResp.saleNum} </span>
+                        </dd>
+                        <dd>
+                            <span class="w60">宝贝：</span>
+                            <span class="green">$!{shopInfoResp.favNum}
+                            </span>
+                        </dd>
+                        <dd>
+                            <span class="w60">好评率：</span>
+                            <span class="green">$!{shopInfoResp.evalRate}%
+                            </span>
+                        </dd>
+                   </dl>
+				   
+				    <div class="text-center">
+                   
+                   #if($isCollect)
+                      <span class="col-btn" id="colShop">取消店铺收藏</span>
+                     #else
+                      <span class="col-btn" id="colShop">收藏店铺</span>
+                   #end
+                   </div>
+</div>
+			</div>
+#end

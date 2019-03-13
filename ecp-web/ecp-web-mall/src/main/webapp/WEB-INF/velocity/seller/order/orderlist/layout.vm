@@ -1,0 +1,4 @@
+#parse("/sys/sys_param.vm")
+<link href="$!{IMAGE_PATH}/favicon.ico" mce_href="$!{IMAGE_PATH}/favicon.ico" rel="bookmark shortcut icon" type="image/x-icon" />
+<title>供应链电商卖家中心</title>
+$screen_content

@@ -1,0 +1,221 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>  
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsProp/prop-edit.js?version=$!{JS_VERSION}" ></script>
+<style type="text/css">
+<!--
+table,th,tr,td {
+	border: 1px solid #ccc;
+}
+td,th{
+width:150px;
+}
+/*a  upload */
+.a-upload {
+    padding: 4px 10px;
+    height: 20px;
+    line-height: 20px;
+    position: relative;
+    cursor: pointer;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+.a-upload  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+.a-upload:hover {
+    color: #444;
+    background: #eee;
+    border-color: #ccc;
+    text-decoration: none
+}
+-->
+</style>
+			<h3 class="heading">属性编辑</h3>
+			<div class="alert alert-error hide formValidateMessages" >
+	
+            </div>
+			<div class="formBox row-fluid">
+				<form id="propInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+				<div class="span8">
+				<input type="hidden" value="$propInfo.id"  id="propId"/>	
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">属性名称：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level required htmlcheck" name="propName" validate="{rangelength:[1,42]}" placeholder="" value="$propInfo.propName" />
+							
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">属性别名：</label>
+							<div class="controls">
+								#if($propInfo.propSname)
+								<input type="text" class="input-block-level" name="propSname"  value="$propInfo.propSname" validate="{rangelength:[1,42]}"/>
+							    #else
+								<input type="text" class="input-block-level" name="propSname"  value="" validate="{rangelength:[1,42]}"/>
+                                #end
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">属性类型：</label>
+							<div class="controls">
+							
+								#select("GDS_PROP_TYPE", "propType" , true, $propInfo.propType)
+							    
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">属性值类型：</label>
+							<div class="controls">
+								#select("GDS_PROP_VALUE_TYPE", "propValueType",true, $propInfo.propValueType)
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">属性排序：</label>
+							<div class="controls">
+								#if($propInfo.sortNo)
+								<input type="text" class='input-block-level  digits' name="sortNo"  max="99999" value="$propInfo.sortNo"/>
+							    #else
+								<input type="text" class='input-block-level  digits' name="sortNo" max="99999" value=""/>		
+								#end	
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					
+						<div class="control-group">
+							<label class="control-label">属性描述：</label>
+							<div class="controls">
+								#if($propInfo.propDesc)
+								<textarea rows="4" class="input-block-level" name="propDesc" validate="{rangelength:[1,80]}">$propInfo.propDesc</textarea>
+							    #else
+								<textarea rows="4" class="input-block-level" name="propDesc" validate="{rangelength:[1,80]}"></textarea>
+		
+								#end	
+							</div>
+						</div>
+					
+				</div>
+				<div class="row-fluid formSep" id="propValTable">
+					<div class="span12">
+					  <div style="margin-left:120px">
+						<table class="table table-bordered seller-dztb">
+				             <thead>
+				              <tr>            
+                               <th style="text-align:center;">属性值名称</th><th style="text-align:center;">属性值图片</th><th style="text-align:center;">属性值排序</th><th style="text-align:center;">操作</th>
+				              </tr>
+				             </thead>
+					    <tbody id = "propValT" delProps="">		
+					    	#set($mark = 0)
+					    						
+						#foreach($propVal in $propValues)
+						<tr valueId="$propVal.id">
+						#set($valName = "propValName" + $mark)	
+						<td style='text-align: center;'><div><input type='text' mark='propValName' name='$valName' style='width:150px' class='input-block-level required'  value="$propVal.propValue" valueId="$propVal.id"/></div></td>
+						
+						<td style='text-align: center;'>
+						<span style='float:right;margin-right:20px;margin-bottom:-10px;width:120px;'>
+						#if($propVal.mediaId)	
+						<img src='$propVal.mediaURL' style='width:20px;height:20px;display:inline;margin-right:4px;margin-bottom:20px' name='$propVal.id'/>
+						#else
+						<img src='$IMAGE_PATH/goods/default.png' style='width:20px;height:20px;display:inline;margin-right:4px;margin-bottom:20px' name='$propVal.id'/>
+	
+						#end	
+						#if($propVal.mediaId)
+						<input type='hidden' value="$propVal.mediaId" id="$!{propVal.id}VfsId"/>
+						#else
+						<input type='hidden' id="$!{propVal.id}VfsId"/>	
+						#end	
+
+						<a href="javascript:;" class="a-upload">
+					    <input type="file" name="$propVal.id" id='$propVal.id'">上传图片</a>
+						
+						
+					    </span></td>
+					    
+					    #set($valSort = "valSortNo" + $mark)	
+					    <td style='text-align: center;'><div><input type='text'mark='valSortNo' name='$valSort' style='width:50px' class='input-block-level  digits' max='99999'  value="$!propVal.sortNo"/></div></td>
+						<td><a name='del' href='#' style='text-align: center;margin-left:60px'>删除</a></td></tr>
+			           #set($mark = $mark + 1)
+			            #end
+                        </tbody>
+						</table>
+						<button type="button" class="btn" id="btn_prop_add"><i class=" icon-plus icon-white"></i>新增属性值</button>
+
+					 </div>	
+					</div>
+				
+				</div>
+				<div class="row-fluid formSep" id="inputValTable">	
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">手动输入类型：</label>
+							<div class="controls">
+							#if($propInfo.propInputType)
+								#select("GDS_PROP_VALUE_INPUT_TYPE", "propInputType" , true, $propInfo.propInputType)
+							#else
+								#select("GDS_PROP_VALUE_INPUT_TYPE", "propInputType" , true, "")
+							#end    
+							</div>
+						</div>
+					</div>
+					
+					#if($propInfo.propInputType == "1")
+					<div class="span6" id="inputValidate">
+						<div class="control-group">
+							<label class="control-label">手动输入校验：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level" name="propInputRule"  value="#escapeHtml($!propInfo.propInputRule)" disabled="true" />
+							</div>
+						</div>
+					</div>
+					#else					
+					<div class="span6" id="inputValidate" style="display:none">
+						<div class="control-group">
+							<label class="control-label">手动输入校验：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level" name="propInputRule"  value="#escapeHtml($!propInfo.propInputRule)" disabled="true"/>
+							</div>
+						</div>
+					</div>
+					#end
+				</div>
+			
+				<div class="fbtn" style="float:left;margin-left:300px;">
+					<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i> 保　存</button>
+					<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i> 返　回</button>
+				</div>
+				</div>
+		
+				<div class="clear"></div>
+				</form>
+			</div>

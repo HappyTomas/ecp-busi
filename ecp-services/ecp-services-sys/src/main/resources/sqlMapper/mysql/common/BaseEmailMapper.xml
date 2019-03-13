@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.sys.dao.mapper.common.BaseEmailMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.sys.dao.model.BaseEmail" >
+    <result column="SMTP_SERVER" property="smtpServer" jdbcType="VARCHAR" />
+    <result column="SMTP_PORT" property="smtpPort" jdbcType="INTEGER" />
+    <result column="SEND_EMAIL" property="sendEmail" jdbcType="VARCHAR" />
+    <result column="SMTP_USER" property="smtpUser" jdbcType="VARCHAR" />
+    <result column="SMTP_PASSWORD" property="smtpPassword" jdbcType="VARCHAR" />
+    <result column="REC_EMAIL" property="recEmail" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SMTP_SERVER, SMTP_PORT, SEND_EMAIL, SMTP_USER, SMTP_PASSWORD, REC_EMAIL
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.sys.dao.model.BaseEmailCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_base_email
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.sys.dao.model.BaseEmailCriteria" >
+    delete from t_base_email
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.sys.dao.model.BaseEmail" >
+    insert into t_base_email (SMTP_SERVER, SMTP_PORT, SEND_EMAIL, 
+      SMTP_USER, SMTP_PASSWORD, REC_EMAIL
+      )
+    values (#{smtpServer,jdbcType=VARCHAR}, #{smtpPort,jdbcType=INTEGER}, #{sendEmail,jdbcType=VARCHAR}, 
+      #{smtpUser,jdbcType=VARCHAR}, #{smtpPassword,jdbcType=VARCHAR}, #{recEmail,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.sys.dao.model.BaseEmail" >
+    insert into t_base_email
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="smtpServer != null" >
+        SMTP_SERVER,
+      </if>
+      <if test="smtpPort != null" >
+        SMTP_PORT,
+      </if>
+      <if test="sendEmail != null" >
+        SEND_EMAIL,
+      </if>
+      <if test="smtpUser != null" >
+        SMTP_USER,
+      </if>
+      <if test="smtpPassword != null" >
+        SMTP_PASSWORD,
+      </if>
+      <if test="recEmail != null" >
+        REC_EMAIL,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="smtpServer != null" >
+        #{smtpServer,jdbcType=VARCHAR},
+      </if>
+      <if test="smtpPort != null" >
+        #{smtpPort,jdbcType=INTEGER},
+      </if>
+      <if test="sendEmail != null" >
+        #{sendEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="smtpUser != null" >
+        #{smtpUser,jdbcType=VARCHAR},
+      </if>
+      <if test="smtpPassword != null" >
+        #{smtpPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="recEmail != null" >
+        #{recEmail,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.sys.dao.model.BaseEmailCriteria" resultType="java.lang.Long" >
+    select count(*) from t_base_email
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_base_email
+    <set >
+      <if test="record.smtpServer != null" >
+        SMTP_SERVER = #{record.smtpServer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smtpPort != null" >
+        SMTP_PORT = #{record.smtpPort,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendEmail != null" >
+        SEND_EMAIL = #{record.sendEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smtpUser != null" >
+        SMTP_USER = #{record.smtpUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.smtpPassword != null" >
+        SMTP_PASSWORD = #{record.smtpPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recEmail != null" >
+        REC_EMAIL = #{record.recEmail,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_base_email
+    set SMTP_SERVER = #{record.smtpServer,jdbcType=VARCHAR},
+      SMTP_PORT = #{record.smtpPort,jdbcType=INTEGER},
+      SEND_EMAIL = #{record.sendEmail,jdbcType=VARCHAR},
+      SMTP_USER = #{record.smtpUser,jdbcType=VARCHAR},
+      SMTP_PASSWORD = #{record.smtpPassword,jdbcType=VARCHAR},
+      REC_EMAIL = #{record.recEmail,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

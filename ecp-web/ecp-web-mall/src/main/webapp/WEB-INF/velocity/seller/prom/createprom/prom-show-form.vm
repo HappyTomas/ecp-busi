@@ -1,0 +1,56 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/createprom/prom-show-form.js?version=$!{JS_VERSION}" ></script>
+      <script>
+            $(function () {
+                $('.explain').popover({trigger: "hover", placement: "top"});
+            })
+        </script>
+        <div class="seller-mainR">
+			 <div class="main">
+				 <div class="hide">
+					 <form action=""  method="post" id="createProm">
+						 <input type="text" name="promTypeCode" id="promTypeCode">
+						 <input type="text" name="shopId" id="shopId">
+					 </form>
+				 </div>
+ 				<ul class="sale-list clearfix">	
+				    #foreach($promType in ${promTypeVOList})
+				       <li class="item">
+                           <span class="type">#escapeHtml( "$!{promType.promTypeName}")</span>
+                           <div class="tt">
+                               <b>#escapeHtml( "$!{promType.promTypeName}")</b>
+                               <div class="pull-right">
+                                   <span class="type-wsq">#if ($promType.shopId) <span >已授权</span>#end #if (!$promType.shopId)  <span>未授权</span>#end</span>
+                                   <span>#if ($promType.promClass==10) 【订单】 #elseif ($promType.promClass==20) 【单品】#else 【外围】 #end</span>
+                               </div>
+                           </div>
+                           <div class="explain" data-original-title="$!{promType.promTypeName}"
+                                 data-content="#escapeHtml( "$!{promType.promTypeDesc}")">#if ($promType.promTypeDesc.length() <=28)  #escapeHtml( "$!{promType.promTypeDesc}")#else $promType.promTypeDesc.substring(0,28)...... #end </div>
+                           <div class="btn-wrap">
+                                <span  class="sbtn sbtn-blue publish" name="$!{shopId}" id="$promType.promTypeCode" code="$promType.promTypeCode">发布促销</span >
+						   </div>
+                       </li>
+                   #end 
+                    </ul>
+                     
+                     #if($null.isNull(${promTypeVOList})|| $promTypeVOList.size()==0) 
+               <div class="main">
+                <div class="seller-box">
+                    <div class="body body-center">
+	 				 	 <div class="jgbg">
+                            <h4>您没有授权的促销类型，请联系平台开通</h4>
+                            <div class="jgbox">
+                                <button class="sbtn jgbtn btnReturn" id="btnReturn">返回 <i class=" icon-angle-right"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                         #else
+	 			     <div class="btn-wrap">
+		 			      <span class="sbtn sbtn-blue btnReturn"  id="btnReturn">返回</span>
+	                </div>
+	 			     #end 
+                    
+            </div>
+        </div>

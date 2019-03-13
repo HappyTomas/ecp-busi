@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.common.DataFieldRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.DataFieldRule" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ITEM_ID" property="itemId" jdbcType="INTEGER" />
+    <result column="AUTH_ID" property="authId" jdbcType="INTEGER" />
+    <result column="VALUE_FORMATE" property="valueFormate" jdbcType="VARCHAR" />
+    <result column="INPUT_VALUE" property="inputValue" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ITEM_ID, AUTH_ID, VALUE_FORMATE, INPUT_VALUE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.DataFieldRuleCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_data_field_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_data_field_rule
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_data_field_rule
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.DataFieldRuleCriteria" >
+    delete from t_data_field_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.DataFieldRule" >
+    insert into t_data_field_rule (ID, ITEM_ID, AUTH_ID, 
+      VALUE_FORMATE, INPUT_VALUE)
+    values (#{id,jdbcType=INTEGER}, #{itemId,jdbcType=INTEGER}, #{authId,jdbcType=INTEGER}, 
+      #{valueFormate,jdbcType=VARCHAR}, #{inputValue,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.DataFieldRule" >
+    insert into t_data_field_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="itemId != null" >
+        ITEM_ID,
+      </if>
+      <if test="authId != null" >
+        AUTH_ID,
+      </if>
+      <if test="valueFormate != null" >
+        VALUE_FORMATE,
+      </if>
+      <if test="inputValue != null" >
+        INPUT_VALUE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="authId != null" >
+        #{authId,jdbcType=INTEGER},
+      </if>
+      <if test="valueFormate != null" >
+        #{valueFormate,jdbcType=VARCHAR},
+      </if>
+      <if test="inputValue != null" >
+        #{inputValue,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.DataFieldRuleCriteria" resultType="java.lang.Long" >
+    select count(*) from t_data_field_rule
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_data_field_rule
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemId != null" >
+        ITEM_ID = #{record.itemId,jdbcType=INTEGER},
+      </if>
+      <if test="record.authId != null" >
+        AUTH_ID = #{record.authId,jdbcType=INTEGER},
+      </if>
+      <if test="record.valueFormate != null" >
+        VALUE_FORMATE = #{record.valueFormate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inputValue != null" >
+        INPUT_VALUE = #{record.inputValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_data_field_rule
+    set ID = #{record.id,jdbcType=INTEGER},
+      ITEM_ID = #{record.itemId,jdbcType=INTEGER},
+      AUTH_ID = #{record.authId,jdbcType=INTEGER},
+      VALUE_FORMATE = #{record.valueFormate,jdbcType=VARCHAR},
+      INPUT_VALUE = #{record.inputValue,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.DataFieldRule" >
+    update t_data_field_rule
+    <set >
+      <if test="itemId != null" >
+        ITEM_ID = #{itemId,jdbcType=INTEGER},
+      </if>
+      <if test="authId != null" >
+        AUTH_ID = #{authId,jdbcType=INTEGER},
+      </if>
+      <if test="valueFormate != null" >
+        VALUE_FORMATE = #{valueFormate,jdbcType=VARCHAR},
+      </if>
+      <if test="inputValue != null" >
+        INPUT_VALUE = #{inputValue,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.DataFieldRule" >
+    update t_data_field_rule
+    set ITEM_ID = #{itemId,jdbcType=INTEGER},
+      AUTH_ID = #{authId,jdbcType=INTEGER},
+      VALUE_FORMATE = #{valueFormate,jdbcType=VARCHAR},
+      INPUT_VALUE = #{inputValue,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

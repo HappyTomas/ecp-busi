@@ -1,0 +1,73 @@
+#parse("/sys/sys_param.vm")
+<link rel="stylesheet" href="$!{CSS_PATH}/shop.css">
+<input type="hidden" value="true" id="searchShopInner"/>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        <div class="search-wrap">
+            <span class="am-icon-search"></span>
+            <input id="needSearch" readonly placeholder="搜索商品" class="ui-input" type="text"/>
+        </div>
+    </div>
+    <div class="am-header-left am-header-nav">
+         <a href="javascript:" onclick="history.go(-1); ">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+
+    <div class="am-header-right">
+          <span class="opt" id="gotocategory">
+             <i class="iconfont icon-cls"></i>
+				分类
+          </span>
+    </div>
+</header>
+<input type="hidden" value="$!{shopInfoResp.id}" id="shopId"/>
+<input type="hidden" value="$!{isCollect}" id="isCollect"/>
+<div class="ui-content">
+    <section class="shop-header">
+        <div class="shop-name">
+            <div class="shop-img">
+                <img src="$!{shopInfoResp.smallLogoPathURL}" alt=""/>
+            </div>
+            <div class="name">$!{shopInfoResp.shopName}</div>
+        </div>
+        <div class="sbtn #if($isCollect)#else sbtn-def#end"><span class="iconfont icon-love"></span>#if($isCollect)<em>已关注</em>#else <em>关注</em>#end</div>
+        <!--已经关注的状态在sbtn后加sbtn-def-->
+    </section>
+    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+        <ul class="am-tabs-nav am-nav am-nav-tabs shop-tab ">
+            <li class="am-active"><a href="javascript: void(0)"><span class="iconfont icon-shop"></span>店铺首页</a></li>
+            <li><a href="javascript: void(0)" id="allGds"><span class="iconfont icon-spro"></span>全部商品</a></li>
+            <li><a href="javascript: void(0)" id="saleGds"><span class="iconfont icon-ssx"></span>促销商品</a></li>
+            <li><a href="javascript: void(0)" id="newGds"><span class="iconfont icon-snew"></span>上架新品</a></li>
+        </ul>
+        <div class="am-tabs-bd">
+            <div class="am-tab-panel am-active">
+                <div class="shop-list clearfix">
+                    <div class="shop-panel" id="hotsaleForm">
+                       #parse("/shop/list/shop-hotsale-list.vm")
+                    </div>
+                </div>
+            </div>
+            <div class="am-tab-panel GdsForm" id="allGdsForm">
+				##全部商品
+				#parse("/shop/shop-main-allgds.vm")
+            </div>
+            <div class="am-tab-panel" id="saleGdsForm">
+				##促销商品
+				#parse("/shop/shop-main-salegds.vm")
+            </div>
+            <div class="am-tab-panel GdsForm" id="newGdsForm">
+				##上架新品
+				#parse("/shop/shop-main-newgds.vm")
+            </div>
+        </div>
+    </div>
+</div>
+##筛选
+#parse("/shop/shop-main-selectprop.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/artTemplate/template-debug.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/autocomplete/autocomplete.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/search/util.js"></script>
+<script src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js"></script>
+<script src="$!{BUSIJS_PATH}/shop/shop-main.js"></script>

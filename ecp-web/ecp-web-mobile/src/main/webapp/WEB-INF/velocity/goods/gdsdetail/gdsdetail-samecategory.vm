@@ -1,0 +1,11 @@
+ <div class="pro-box pro-same">
+    <div class="head">
+        相关推荐
+        <span class="hp" id="samecategoryChange">换一批</span>
+    </div>
+    <div class="body">
+        <div class="am-slider am-slider-default am-slider-carousel am-slider-category" id="sameCategory">
+            
+        </div>
+    </div>
+</div>

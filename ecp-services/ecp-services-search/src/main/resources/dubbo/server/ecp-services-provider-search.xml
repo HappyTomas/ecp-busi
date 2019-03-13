@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     ">  
+   
+     <!--用于定义对外提供的服务 -->
+     <bean id="secConfigRSV" class="com.zengshi.ecp.search.dubbo.impl.SecConfigRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecConfigRSV" ref="secConfigRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secObjectRSV" class="com.zengshi.ecp.search.dubbo.impl.SecObjectRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecObjectRSV" ref="secObjectRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secRedirectRSV" class="com.zengshi.ecp.search.dubbo.impl.SecRedirectRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecRedirectRSV" ref="secRedirectRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secSolrServerRSV" class="com.zengshi.ecp.search.dubbo.impl.SecSolrServerRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecSolrServerRSV" ref="secSolrServerRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secZkRSV" class="com.zengshi.ecp.search.dubbo.impl.SecZkRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecZkRSV" ref="secZkRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secConfigPlanRSV" class="com.zengshi.ecp.search.dubbo.impl.SecConfigPlanRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecConfigPlanRSV" ref="secConfigPlanRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secHotKeywordRSV" class="com.zengshi.ecp.search.dubbo.impl.SecHotKeywordRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecHotKeywordRSV" ref="secHotKeywordRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secArgsRSV" class="com.zengshi.ecp.search.dubbo.impl.SecArgsRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecArgsRSV" ref="secArgsRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secObjectBuildLogRSV" class="com.zengshi.ecp.search.dubbo.impl.SecObjectBuildLogRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecObjectBuildLogRSV" ref="secObjectBuildLogRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secOperLogRSV" class="com.zengshi.ecp.search.dubbo.impl.SecOperLogRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecOperLogRSV" ref="secOperLogRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secFieldProcessorRSV" class="com.zengshi.ecp.search.dubbo.impl.SecFieldProcessorRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecFieldProcessorRSV" ref="secFieldProcessorRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secFieldTypeRSV" class="com.zengshi.ecp.search.dubbo.impl.SecFieldTypeRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecFieldTypeRSV" ref="secFieldTypeRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secObjectProcessorRSV" class="com.zengshi.ecp.search.dubbo.impl.SecObjectProcessorRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecObjectProcessorRSV" ref="secObjectProcessorRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="secDeltaIndexRSV" class="com.zengshi.ecp.search.dubbo.impl.SecDeltaIndexRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.ISecDeltaIndexRSV" ref="secDeltaIndexRSV" provider="${default.dubbo.provider.id}"/>
+
+     <bean id="deltaTransactionMessageRSV" class="com.zengshi.ecp.search.dubbo.impl.DeltaTransactionMessageRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.search.dubbo.interfaces.IDeltaTransactionMessageRSV" ref="deltaTransactionMessageRSV" provider="${default.dubbo.provider.id}"/>
+     
+</beans>  

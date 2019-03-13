@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.cms.dao.mapper.common.CmsChannelMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.cms.dao.model.CmsChannel" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CHANNEL_NAME" property="channelName" jdbcType="VARCHAR" />
+    <result column="CHANNEL_TYPE" property="channelType" jdbcType="VARCHAR" />
+    <result column="CHANNEL_PARENT" property="channelParent" jdbcType="INTEGER" />
+    <result column="CHANNEL_LABEL" property="channelLabel" jdbcType="VARCHAR" />
+    <result column="CHANNEL_URL" property="channelUrl" jdbcType="VARCHAR" />
+    <result column="CHANNEL_TEMPLATE" property="channelTemplate" jdbcType="INTEGER" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="VARCHAR" />
+    <result column="ISRESITEINFO" property="isresiteinfo" jdbcType="VARCHAR" />
+    <result column="SITEINFO_ID" property="siteinfoId" jdbcType="INTEGER" />
+    <result column="IS_OUT_LINK" property="isOutLink" jdbcType="VARCHAR" />
+    <result column="PLATFORM_TYPE" property="platformType" jdbcType="VARCHAR" />
+    <result column="CHANNEL_ICON" property="channelIcon" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CHANNEL_NAME, CHANNEL_TYPE, CHANNEL_PARENT, CHANNEL_LABEL, CHANNEL_URL, CHANNEL_TEMPLATE, 
+    SITE_ID, SORT_NO, STATUS, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, ISRESITEINFO, 
+    SITEINFO_ID, IS_OUT_LINK, PLATFORM_TYPE, CHANNEL_ICON, REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.cms.dao.model.CmsChannelCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_cms_channel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_cms_channel
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_cms_channel
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.cms.dao.model.CmsChannelCriteria" >
+    delete from t_cms_channel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.cms.dao.model.CmsChannel" >
+    insert into t_cms_channel (ID, CHANNEL_NAME, CHANNEL_TYPE, 
+      CHANNEL_PARENT, CHANNEL_LABEL, CHANNEL_URL, 
+      CHANNEL_TEMPLATE, SITE_ID, SORT_NO, 
+      STATUS, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_TIME, UPDATE_STAFF, ISRESITEINFO, 
+      SITEINFO_ID, IS_OUT_LINK, PLATFORM_TYPE, 
+      CHANNEL_ICON, REMARK)
+    values (#{id,jdbcType=INTEGER}, #{channelName,jdbcType=VARCHAR}, #{channelType,jdbcType=VARCHAR}, 
+      #{channelParent,jdbcType=INTEGER}, #{channelLabel,jdbcType=VARCHAR}, #{channelUrl,jdbcType=VARCHAR}, 
+      #{channelTemplate,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER}, #{sortNo,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=VARCHAR}, #{isresiteinfo,jdbcType=VARCHAR}, 
+      #{siteinfoId,jdbcType=INTEGER}, #{isOutLink,jdbcType=VARCHAR}, #{platformType,jdbcType=VARCHAR}, 
+      #{channelIcon,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.cms.dao.model.CmsChannel" >
+    insert into t_cms_channel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="channelName != null" >
+        CHANNEL_NAME,
+      </if>
+      <if test="channelType != null" >
+        CHANNEL_TYPE,
+      </if>
+      <if test="channelParent != null" >
+        CHANNEL_PARENT,
+      </if>
+      <if test="channelLabel != null" >
+        CHANNEL_LABEL,
+      </if>
+      <if test="channelUrl != null" >
+        CHANNEL_URL,
+      </if>
+      <if test="channelTemplate != null" >
+        CHANNEL_TEMPLATE,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="isresiteinfo != null" >
+        ISRESITEINFO,
+      </if>
+      <if test="siteinfoId != null" >
+        SITEINFO_ID,
+      </if>
+      <if test="isOutLink != null" >
+        IS_OUT_LINK,
+      </if>
+      <if test="platformType != null" >
+        PLATFORM_TYPE,
+      </if>
+      <if test="channelIcon != null" >
+        CHANNEL_ICON,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="channelName != null" >
+        #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelType != null" >
+        #{channelType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelParent != null" >
+        #{channelParent,jdbcType=INTEGER},
+      </if>
+      <if test="channelLabel != null" >
+        #{channelLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="channelUrl != null" >
+        #{channelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="channelTemplate != null" >
+        #{channelTemplate,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="isresiteinfo != null" >
+        #{isresiteinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="siteinfoId != null" >
+        #{siteinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="isOutLink != null" >
+        #{isOutLink,jdbcType=VARCHAR},
+      </if>
+      <if test="platformType != null" >
+        #{platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelIcon != null" >
+        #{channelIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.cms.dao.model.CmsChannelCriteria" resultType="java.lang.Long" >
+    select count(*) from t_cms_channel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_cms_channel
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelName != null" >
+        CHANNEL_NAME = #{record.channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelType != null" >
+        CHANNEL_TYPE = #{record.channelType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelParent != null" >
+        CHANNEL_PARENT = #{record.channelParent,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelLabel != null" >
+        CHANNEL_LABEL = #{record.channelLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelUrl != null" >
+        CHANNEL_URL = #{record.channelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelTemplate != null" >
+        CHANNEL_TEMPLATE = #{record.channelTemplate,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sortNo != null" >
+        SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isresiteinfo != null" >
+        ISRESITEINFO = #{record.isresiteinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteinfoId != null" >
+        SITEINFO_ID = #{record.siteinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.isOutLink != null" >
+        IS_OUT_LINK = #{record.isOutLink,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platformType != null" >
+        PLATFORM_TYPE = #{record.platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.channelIcon != null" >
+        CHANNEL_ICON = #{record.channelIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_cms_channel
+    set ID = #{record.id,jdbcType=INTEGER},
+      CHANNEL_NAME = #{record.channelName,jdbcType=VARCHAR},
+      CHANNEL_TYPE = #{record.channelType,jdbcType=VARCHAR},
+      CHANNEL_PARENT = #{record.channelParent,jdbcType=INTEGER},
+      CHANNEL_LABEL = #{record.channelLabel,jdbcType=VARCHAR},
+      CHANNEL_URL = #{record.channelUrl,jdbcType=VARCHAR},
+      CHANNEL_TEMPLATE = #{record.channelTemplate,jdbcType=INTEGER},
+      SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=VARCHAR},
+      ISRESITEINFO = #{record.isresiteinfo,jdbcType=VARCHAR},
+      SITEINFO_ID = #{record.siteinfoId,jdbcType=INTEGER},
+      IS_OUT_LINK = #{record.isOutLink,jdbcType=VARCHAR},
+      PLATFORM_TYPE = #{record.platformType,jdbcType=VARCHAR},
+      CHANNEL_ICON = #{record.channelIcon,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.cms.dao.model.CmsChannel" >
+    update t_cms_channel
+    <set >
+      <if test="channelName != null" >
+        CHANNEL_NAME = #{channelName,jdbcType=VARCHAR},
+      </if>
+      <if test="channelType != null" >
+        CHANNEL_TYPE = #{channelType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelParent != null" >
+        CHANNEL_PARENT = #{channelParent,jdbcType=INTEGER},
+      </if>
+      <if test="channelLabel != null" >
+        CHANNEL_LABEL = #{channelLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="channelUrl != null" >
+        CHANNEL_URL = #{channelUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="channelTemplate != null" >
+        CHANNEL_TEMPLATE = #{channelTemplate,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        SITE_ID = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="isresiteinfo != null" >
+        ISRESITEINFO = #{isresiteinfo,jdbcType=VARCHAR},
+      </if>
+      <if test="siteinfoId != null" >
+        SITEINFO_ID = #{siteinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="isOutLink != null" >
+        IS_OUT_LINK = #{isOutLink,jdbcType=VARCHAR},
+      </if>
+      <if test="platformType != null" >
+        PLATFORM_TYPE = #{platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="channelIcon != null" >
+        CHANNEL_ICON = #{channelIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.cms.dao.model.CmsChannel" >
+    update t_cms_channel
+    set CHANNEL_NAME = #{channelName,jdbcType=VARCHAR},
+      CHANNEL_TYPE = #{channelType,jdbcType=VARCHAR},
+      CHANNEL_PARENT = #{channelParent,jdbcType=INTEGER},
+      CHANNEL_LABEL = #{channelLabel,jdbcType=VARCHAR},
+      CHANNEL_URL = #{channelUrl,jdbcType=VARCHAR},
+      CHANNEL_TEMPLATE = #{channelTemplate,jdbcType=INTEGER},
+      SITE_ID = #{siteId,jdbcType=INTEGER},
+      SORT_NO = #{sortNo,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=VARCHAR},
+      ISRESITEINFO = #{isresiteinfo,jdbcType=VARCHAR},
+      SITEINFO_ID = #{siteinfoId,jdbcType=INTEGER},
+      IS_OUT_LINK = #{isOutLink,jdbcType=VARCHAR},
+      PLATFORM_TYPE = #{platformType,jdbcType=VARCHAR},
+      CHANNEL_ICON = #{channelIcon,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,86 @@
+#parse("sys/sys_param.vm")
+  <div class="nCont" >
+     <div class="navBoxs">
+     #if($catgChild && $catgChild.size() >0 )
+		#foreach(${catgTwo} in $catgChild) 
+		#set($r = $velocityCount % 2)  ##判断基数   采用不同的样式  背景色黑白相间效果
+         <div class="navBox #if($r == 0)gray-bg#end #if(${catgTwo.cmsShowChildCatg} && $catgTwo.cmsShowChildCatg.size() > 0)navBox-hover#end ">
+             <dl>
+                 <dt>
+                     <a target='_blank' href="
+							#if(${catgTwo.catgCode} && $!{catgTwo.catgCode}!='')
+                           		$!{MALL_SITE_URL}/search?category=$!{catgTwo.catgCode} 
+                           	#elseif(${catgTwo.catgUrl} && $!{catgTwo.catgUrl}!='')
+                           		$!{MALL_SITE_URL}/$!{catgTwo.catgUrl} 
+                           	#else
+                           		$!{MALL_SITE_URL}/search?keyword=#stringEncode($!{catgTwo.catgName})
+        					#end
+						">$!{catgTwo.catgName}</a></span>
+                     #if(${catgTwo.cmsShowChildCatg} && $catgTwo.cmsShowChildCatg.size() > 0)
+						<i class="angle-right"></i>
+					 #end
+                 </dt>
+                 <dd>
+					 #foreach(${catgThree} in $catgTwo.cmsChildCatg) 
+						#if($velocityCount >1) | #end
+                     <a target='_blank' href="
+							#if(${catgTwo.catgCode} && $!{catgTwo.catgCode}!='')
+                           		$!{MALL_SITE_URL}/search?category=$!{catgTwo.catgCode} 
+                           	#elseif(${catgTwo.catgUrl} && $!{catgTwo.catgUrl}!='')
+                           		$!{MALL_SITE_URL}/$!{catgTwo.catgUrl} 
+                           	#else
+                           		$!{MALL_SITE_URL}/search?keyword=#stringEncode($!{catgTwo.catgName})
+        					#end
+						">$!{catgThree.catgName}</a>
+					 #end
+				 </dd>
+             </dl>
+			 #if(${catgTwo.cmsShowChildCatg} && $catgTwo.cmsShowChildCatg.size() > 0)
+             <div class="navChild">
+				 #foreach($showCatg in ${catgTwo.cmsShowChildCatg})
+                 <div class="lItem">
+                     <div class="tit">
+						<a target='_blank' href="
+							#if(${showCatg.catgCode} && $!{showCatg.catgCode}!='')
+                           		$!{MALL_SITE_URL}/search?category=$!{showCatg.catgCode} 
+                           	#elseif(${showCatg.catgUrl} && $!{showCatg.catgUrl}!='')
+                           		$!{MALL_SITE_URL}/$!{showCatg.catgUrl} 
+                           	#else
+                           		$!{MALL_SITE_URL}/search?keyword=#stringEncode($!{showCatg.catgName})
+        					#end
+							">
+						$!{showCatg.catgName}
+                        </a>
+                     </div>
+                     <div class="con">
+                         <ul>
+							 #foreach(${showCatgSon} in $showCatg.cmsChildCatg) 
+								#if($velocityCount >1)<li> | </li>#end
+								<li><a target='_blank' href="
+									#if(${showCatgSon.catgCode} && $!{showCatgSon.catgCode}!='')
+                                   		$!{MALL_SITE_URL}/search?category=$!{showCatgSon.catgCode} 
+                                   	#elseif(${showCatgSon.catgUrl} && $!{showCatgSon.catgUrl}!='')
+                                   		$!{MALL_SITE_URL}/$!{showCatgSon.catgUrl} 
+                                   	#else
+                                   		$!{MALL_SITE_URL}/search?keyword=#stringEncode($!{showCatgSon.catgName})
+                					#end
+									">$!{showCatgSon.catgName}</a></li>
+							 #end
+                         </ul>
+                     </div>
+                 </div>
+				 #end
+			 </div>
+			 #end
+		 </div>
+		#end
+	 #else
+	 <div class="nodata">
+	 	<span style="color:red;">
+			#if($errMsg && $errMsg != '')$!errMsg #else 暂无数据！#end
+	    </span>
+	 </div>
+	 #end
+	 </div>
+</div>
+

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean class="com.zengshi.ecp.frame.utils.RuleMap">
+		<constructor-arg>  
+			<map>  
+				<entry key="t_im_ofuser_rel" value-ref="imOfuserRel" />
+				<entry key="t_im_ofuser_rel_idx" value-ref="imOfuserRelIdx" />
+                <entry key="t_im_custserv_satisfy_info" value-ref="imCustservSatisfyInfo" />
+			</map>  
+		</constructor-arg>  
+	</bean> 
+	
+	<bean id="imOfuserRel" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_code" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_im_ofuser_rel_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_code', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_code', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+    <bean id="imOfuserRelIdx" class="com.db.distribute.DistributedTableRule">
+        <property name="distributeKey" value="of_staff_code" />
+        <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+        <property name="tableNamePattern" value="t_im_ofuser_rel_idx_{00}" />
+        <property name="tableNameRule">
+            <value>{keyValue:{keyColumn:'of_staff_code', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+        </property>
+        <property name="logicDBRule">
+            <value>{keyValue:{keyValue:{keyColumn:'of_staff_code', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+        </property>
+        <property name="allowFullTableScan" value="true" />
+        <property name="subTableCount" value="4" />
+    </bean>
+
+    <bean id="imCustservSatisfyInfo" class="com.db.distribute.DistributedTableRule">
+        <property name="distributeKey" value="id" />
+        <property name="logicDBPattern" value="logic_transaction_db_{00}" />
+        <property name="tableNamePattern" value="t_im_custserv_satisfy_info_{00}" />
+        <property name="tableNameRule">
+            <value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+        </property>
+        <property name="logicDBRule">
+            <value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+                operatorValue:1}
+            </value>
+        </property>
+        <property name="allowFullTableScan" value="true" />
+        <property name="subTableCount" value="4" />
+    </bean>
+
+
+</beans>

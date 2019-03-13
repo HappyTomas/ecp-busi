@@ -1,0 +1,62 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<style type="text/css">
+  .dashed{
+      border-bottom: 1px dashed #dddddd;
+
+  }
+    .pad{
+        padding: 10px 0;
+    }
+    .pad img{
+        float: left;
+        margin-right: 10px;
+    }
+
+	.pad .pro-images {
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .pro-images{
+        border: 1px solid #dddddd;
+        padding: 10px;
+        display: block;
+    }
+    .red{
+        color: red;
+    }
+    .error {
+        color: red;
+    }
+</style>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/order/payoffline-open-check.js?version=$!{JS_VERSION}" ></script>
+
+
+    <!-- main content -->
+		<div id="reviewFormDiv" style="padding:10px">
+
+	        <form class="form-horizontal required-validate" id="reviewForm" >
+                <input type="hidden" name="orderId" value="$!{orderId}" id="reivewForm_orderId"></input>
+				<input type="hidden" name="offlineNo" value="$!{offlineResp.offlineNo}" id="reivewForm_offlineNo"></input>
+                <input type="hidden" name="staffId" value="$!{offlineResp.staffId}" id="reivewForm_staffId"></input>
+                <input type="hidden" name="shopId" value="$!{shopId}" id="reivewForm_shopId"></input>
+
+				<div class="control-group">
+                    <div class="controls" style="margin-left:0">
+						<textarea rows="6" class="input-block-level required" name="checkCont" id="checkCont" maxlength="80"></textarea>
+					</div>
+					<span style="color:#0088cc;">
+						审核内容最多不超过80个字
+					</span>
+                </div>
+	        </form>
+			<div class="control-group">
+					<a class="btn btn-primary" id="allow">通过</a>
+	                <div class="controls pull-right">
+	                    
+	                    <a class="btn" id="unallow">不通过</a>
+	                </div>
+			</div>
+		</div>
+    <!-- main content -->

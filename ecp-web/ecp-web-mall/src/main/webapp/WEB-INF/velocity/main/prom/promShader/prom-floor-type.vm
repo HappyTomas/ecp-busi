@@ -1,0 +1,73 @@
+#parse("/sys/sys_param.vm")
+#if($!{floorRespDTO.id})	
+    <!--优惠券 s-->
+    #if($coupList.size() > 0)
+    <aside class="aside-bg">
+        <ul class="coupon-v2">
+    		#foreach($coup in $coupList)
+    			<li>
+                    <div class="price-box clearfix">
+						#if($!{coup.coupValue} <= -1)
+                        <div class="price">
+                            <span class="price-sign">&yen;</span>
+							<span class="price-m">抵用券</span>
+                        </div>
+						#else
+						<div class="price">
+                            <span class="price-sign">&yen;</span>
+							<span class="price-m">#set($coupValue=$!{coup.coupValue} / 100)$coupValue</span>
+                        </div>
+                        <div class="while">
+                            <p class="while-q">优惠券</p>
+                            ##<p>无领取限制</p>
+                        </div>
+						#end
+                    </div>
+                    <div class="receive"><a class="gainCoup" coupId="$!{coup.id}" href="javascript:void(0);">立即领取</a></div>
+                    <p>$!{coup.conditionsShow}</p>
+                </li>
+    		#end
+        </ul>
+    </aside>
+    #end
+    <!--优惠券 e-->
+    <!--楼层 s-->
+    <section>
+        <nav class="nav-tit">
+            <header><h2>$!{floorRespDTO.floorName}</h2></header>
+            <ul class="clearfix">
+    			#if(${floorTabList.size()} > 0)  
+        			#foreach($floorTab in $floorTabList)
+            			<li class="floor-tab" floorId="$!{floorRespDTO.id}" returnUrl="/main/prom/promShader/child/prom-gds-type" tabId="$!{floorTab.id}" isLoad="no">
+        					<a href = "#if($!{floorTab.linkUrl} && $!{floorTab.linkUrl} != '')$!{floorTab.linkUrl}#else javascript:void(0);#end" target = "_blank">
+								$!{floorTab.tabName}
+							</a>
+        				</li> 
+        			#end 
+    			#else
+        			<li class="floor-tab hide" floorId="$!{floorRespDTO.id}" returnUrl="/main/prom/promShader/child/prom-gds-type" isLoad="no">
+    						
+    				</li> 
+    			#end
+            </ul>
+            <!-- 如果有楼层链接  则显示更多按钮 -->
+            #if($!{floorRespDTO.linkUrl} && $!{floorRespDTO.linkUrl} != '')
+            <aside class="more"><a href="$!{floorRespDTO.linkUrl}" target = "_blank">更多></a></aside>
+            #end
+        </nav>
+		#if(${floorTabList.size()} > 0)
+    		#foreach($floorTab in $floorTabList)
+    		<article class="floor-div-gds article-bg" id="floorGdsDIV_$!{floorTab.id}">
+    		
+    		</article>
+    		#end 
+    	#else
+    		<article class = "floor-div-gds article-bg" id="floorGdsDIV_$!{floorRespDTO.id}_noTab">
+            	
+       		</article>
+        #end
+    </section>
+    <!--楼层 e-->
+###else
+	##<div>亲，暂未配置楼层！</div>
+#end

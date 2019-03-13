@@ -1,0 +1,65 @@
+#parse("/sys/sys_param.vm")
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/sh/shCoreDefault.css"/>
+<script src="$!{RESOURCE_PATH}/jquery/artTemplate/template-debug.js"></script>
+<script src="$!{RESOURCE_PATH}/util.js"></script>
+<script src="$!{RESOURCE_PATH}/sh/shCore.js"></script>
+<script src="$!{RESOURCE_PATH}/sh/shBrushXml.js"></script>
+<script src="$!{RESOURCE_PATH}/sh/shBrushJScript.js"></script>
+<div class="page">
+    <header data-am-widget="header" class="am-header am-header-fixed">
+        <h1 class="am-header-title">
+            收支明细
+        </h1>
+        <div class="am-header-left am-header-nav top-left">
+        <a href="$CONTEXT_PATH/score/index">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+    </header>
+
+    <div id="wrapper2" data-am-widget="list_news" class="am-list-news scroll-wrap">
+            <div class="am-list-news-bd scroll">
+                <div class="pull-action loading pull-down">
+                   <span class="pull-label"> 下拉刷新</span>
+                    <span class="am-icon-spinner am-icon-spin"></span>
+                </div>
+                   <ul class="ui-list scrollCont point-list">
+                        <li>
+                            <div class="loading-lo"></div>
+                        </li>
+                    </ul>
+
+                <div class="pull-action pull-up" style="bottom: 0">
+                     <span class=" pull-label"> </span>
+                    <span class="am-icon-spinner am-icon-spin"></span>
+                </div>
+            </div>
+    </div>
+</div>
+<script type="text/x-handlebars-template" id="wrapper2-tpl">
+    {{each values.datas as obj i}}
+    	<li>
+            <div class="cont">
+                <p class="tit">{{obj.scoreTypeName}}</p>
+                {{if obj.orderId}}
+                <p class="tit">{{obj.orderId}}</p>
+                {{/if}}
+                <p class="time">{{obj.createTime}}</p>
+            </div>
+            <div class="pt-num">{{obj.consumeScore}}</div>
+        </li>
+        
+    {{/each}}
+</script>
+<script>
+    $(function() {
+        $('#wrapper2').height($(window).height()-$('.am-header').height());
+        var loadScroll = new LoadScroll("wrapper2", {
+            url: '$CONTEXT_PATH/score/listdata',
+            isAjax:true,
+            params:{
+                
+            }
+        });
+    });
+</script>

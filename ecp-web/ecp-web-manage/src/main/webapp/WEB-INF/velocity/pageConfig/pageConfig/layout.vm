@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>模板配置</title>
+    #parse("/sys/sys_head.vm")
+    <link href="$!{CSS_PATH}/pageConfig/template-public.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="$!{CSS_PATH}/pageConfig/template-prom.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="$!{CSS_PATH}/pageConfig/template-config.css" rel="stylesheet" type="text/css" media="screen"/>
+	<link href="$!{CSS_PATH}/pageConfig/template-shop.css" rel="stylesheet" type="text/css" media="screen"/>
+	<link href="$!{CSS_PATH}/pageConfig/template-mallIndex.css" rel="stylesheet" type="text/css" media="screen"/>
+    <!-- 全局插件   -->
+    <!-- js模板插件   -->
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/artTemplate/template-debug.js?version=$!{JS_VERSION}" ></script>
+	<!-- js拖拽插件   -->
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/jsmartdrag/jquery.jsmartdrag.js?version=$!{JS_VERSION}" ></script>
+	<!-- js取色版插件   -->
+	<link href="$!{BUSIJS_PATH}/pageConfig/public/jpicker-1.1.6/css/jPicker-1.1.6.min.css" rel="stylesheet" type="text/css" media="screen"/>
+	<link href="$!{BUSIJS_PATH}/pageConfig/public/jpicker-1.1.6/jPicker.css" rel="stylesheet" type="text/css" media="screen"/>
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/jpicker-1.1.6/jpicker-1.1.6.min.js?version=$!{JS_VERSION}" ></script>
+	
+	<style>
+		.jPicker td[class="Text"] input {
+		    height: 20px;
+		}
+		.jPicker tr.Hex td.Text input.Hex {
+		    width: 60px;
+		}
+	</style>
+	<style >
+    /* add by gongxq 用于图片上传按钮====start*/
+    .file-wrap {
+      position: relative;
+      display: inline-block;
+      border-radius: 4px;
+      padding: 4px 12px;
+      overflow: hidden;
+      text-decoration: none;
+      text-indent: 0;
+      line-height: 20px;
+    }
+    .file-wrap input {
+      position: absolute;
+      font-size: 100px;
+      right: 0;
+      top: 0;
+      opacity: 0;
+      filter: alpha(opacity=0);
+    }
+    /* add by gongxq 用于图片上传按钮====end*/
+    </style>
+	<!-- js拖拽排序插件 -->
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/dragSort/jquery.dragsort-0.5.2.min.js?version=$!{JS_VERSION}" ></script>
+	<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+</head>
+
+<body>
+$screen_content
+</body>
+</html>
+

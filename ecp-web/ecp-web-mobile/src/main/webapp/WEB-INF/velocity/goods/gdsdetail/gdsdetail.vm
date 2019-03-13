@@ -1,0 +1,111 @@
+#parse("/sys/sys_param.vm")
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        商品详情
+    </div>
+    <div class="am-header-left am-header-nav">
+         <a href="javascript:" onclick="history.go(-1); ">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<input type="hidden" value="1001" id="authorPropId"/>
+<input type="hidden" value="$!{gdsDetailInfo.id}" id="gdsId"/>
+<input type="hidden" value="$!{gdsDetailInfo.ifLadderPrice}" id="ifLadderPrice"/>
+<input type="hidden" value="$!{gdsDetailInfo.gdsName}" id="gdsName"/>
+<input type="hidden" value="$!{gdsDetailInfo.shopId}" id="shopId"/>
+<input type="hidden" value="$!{gdsDetailInfo.skuInfo.id}" id="skuId" autocomplete="off"/>
+<input type="hidden" value="$!{gdsDetailInfo.mainCatgs}" id="mainCatgs"/>
+<input type="hidden" value="$!{gdsDetailInfo.gdsTypeId}" id="gdsTypeId"/>
+<input type="hidden" value="$!{gdsType.ifFree}" id="ifFree"/>
+<input type="hidden" value="$!{gdsType.ifBuyonce}" id="ifBuyonce"/>
+<input type="hidden" value="$!{gdsType.ifNeedstock}" id="ifNeedstock"/>
+<input type="hidden" value="$!{gdsDetailInfo.skuInfo.skuProps}" id="skuProps"/>
+<input type="hidden" value="$!{shopName}" id="shopName"/>
+<input type="hidden" value="$!{gdsDetailInfo.gdsTypeId}" id="gdsTypeId"/>
+<input type="hidden" value="$!{STOCK_LACK_THRESHOLD}" id="STOCK_LACK_THRESHOLD"/>
+<input type="hidden" value="$!{STOCK_HARDTOGET_THRESHOLD}" id="STOCK_HARDTOGET_THRESHOLD"/>
+<input type="hidden" value="$!{gdsDetailInfo.skuInfo.realPrice}" id="price"/>
+<input type="hidden" value="$!{gdsDetailInfo.skuInfo.gdsStatus}" id="gdsStatus"/>
+<input type="hidden" value="$!{gdsDetailInfo.skuInfo.discountPrice}" id="discountPrice"/>
+<input type="hidden" value="$!{gdsDetailInfo.skuInfo.appSpecPrice}" id="appSpecPrice"/>
+<input type="hidden" value="$!{systime}" id="systime"/>
+<input type="hidden" value="$!{firstImgUrl}" id="firstImgUrl"/>
+<input type="hidden" value="$!{staffId}" id="staffId"/>
+<input type="hidden" value="#siteInfo('1')" id="mallSiteUrl"/>
+<input type="hidden" value="$!{gdsDetailInfo.gdsDesc}" id="gdsDesc"/>
+<!--商品详情的微信分享的一些额外信息     start-->
+#parse("/goods/gdsdetail/gdsdetail-shareinfo.vm")
+<!--商品详情的微信分享的一些额外信息      end-->
+<!--商品详情的单品属性规格选择 （放在这个位置是为了后续取单品的属性做准备）start-->
+#parse("/goods/gdsdetail/gdsdetail-skuparam.vm")
+<!--商品详情的单品属性规格选择 （放在这个位置是为了后续取单品的属性做准备）      end-->
+<div class="ui-content-fixBottom">
+	    <div class="scroll-wrap" id="pageScroll">
+        <div class="scroll">
+            <div class="scrollCont">
+    <div class="pro-contanier">
+		<!--商品详情的商品图片 start-->
+        #parse("/goods/gdsdetail/gdsdetail-pictrues.vm")
+		<!--商品详情的商品图片       end-->
+        
+		<!--商品详情的商品基本信息 start-->
+        #parse("/goods/gdsdetail/gdsdetail-gdsinfo.vm")
+		<!--商品详情的商品基本信息       end-->
+		
+		<!--商品详情的优惠套餐 start-->
+        #parse("/goods/gdsdetail/gdsdetail-gdscombine.vm")
+		<!--商品详情的优惠套餐       end-->
+        
+		<!--商品详情的用户评论 start-->
+        #parse("/goods/gdsdetail/gdsdetail-gdseval.vm")
+		<!--商品详情的用户评论       end-->
+		
+		<!--商品详情的同类推荐 start-->
+        #parse("/goods/gdsdetail/gdsdetail-samecategory.vm")
+		<!--商品详情的同类推荐       end-->
+		
+		<!--商品详情的商品介绍（规格参数、售后包装目前暂时不做） start-->
+        #parse("/goods/gdsdetail/gdsdetail-gdsintroduce.vm")
+		<!--商品详情的同类推荐（规格参数、售后包装目前暂时不做）       end-->
+		    </div>
+        </div>
+</div>
+    </div>
+</div>
+<!--商品详情的底部收藏栏 start-->
+#parse("/goods/gdsdetail/gdsdetail-bottominfo.vm")
+<!--商品详情的底部收藏栏      end-->
+
+<!--商品详情的点击更多查促销的时候，更多的促销详情列表 start-->
+#parse("/goods/gdsdetail/gdsdetail-promdetail.vm")
+<!--商品详情的点击更多查促销的时候，更多的促销详情列表      end-->
+<script src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/goods/gdsdetail/gdsdetail.js?version=$!{JS_VERSION}"></script>
+<script src="$!{RESOURCE_PATH}/ui/util.js"></script>
+<script src="$!{RESOURCE_PATH}/jweixin-1.0.0.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/goods/gdsdetail/gdsdetail-share.js"></script>
+<script >
+$(function(){
+	//点更多促销列表的相关事件绑定===start
+	$('#slideButtomBtn').click(function () {
+		if($('#slideButtomBtn li').length>0){
+			$('#slideButtom').offCanvas('open');
+		}
+    });
+    $('.icon-close').click(function () {
+        $('#slideButtom').offCanvas('close');
+    });
+	//点更多促销列表的相关事件绑定===end
+	//点更多促销列表的相关事件绑定===start
+	$('#openSkuParam').click(function () {
+		$('#page-gg').offCanvas('open');
+		$(window).off('resize.offcanvas.amui orientationchange.offcanvas.amui');
+        $('.ggScroll').height($(window).height()-$('.am-header').height()-$('.btn-fix').height());
+    });
+	//点更多促销列表的相关事件绑定===end
+})
+</script>

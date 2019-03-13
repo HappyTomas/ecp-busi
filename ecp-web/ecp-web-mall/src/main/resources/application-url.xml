@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+	<url>
+		<homePage>/homepage</homePage>
+		<loginPage>/login</loginPage><!--登录  -->
+		<logoutPage>/homepage</logoutPage><!--登出  -->
+		<registerPage>/register</registerPage><!--注册  -->
+		<lostpasswordPage>/login</lostpasswordPage><!--忘记密码  -->
+		<updatepasswordPage>/login</updatepasswordPage><!--修改密码  -->
+		<point>http://192.168.1.104:8080/ecp-web-mall-point/homepage</point><!--积分商城链接  -->
+		<notLogin>http://132.37.5.191:14300/izengshi</notLogin>
+		<notPermit>/permission/noPermission</notPermit>
+		<sessionExpired>http://132.37.5.191:14300/izengshi</sessionExpired>
+		<contextPage>http://www.izengshi.cn/izengshi</contextPage>
+	</url>
+	<site>
+		<key>1</key>
+	</site>
+    <!-- <homePageTitle>智慧服务商城</homePageTitle>
+    <testbook>考试书-智慧服务商城</testbook>
+	<sciencebook>科普书-智慧服务商城</sciencebook>
+	<referencebook>参考书-智慧服务商城</referencebook>
+	<paperbook>纸质教材-智慧服务商城</paperbook>
+	<audiobook>音像制品-智慧服务商城</audiobook>
+	<digitalproduct>数字产品-智慧服务商城</digitalproduct>
+	<digitalbook>数字教材-智慧服务商城</digitalbook>
+	<onlinetest>在线考试培训-智慧服务商城</onlinetest>
+	<electronicbook>电子书-智慧服务商城</electronicbook> -->
+	<homePageTitle>智慧服务商城</homePageTitle>
+    <testbook>智慧服务商城</testbook>
+	<sciencebook>智慧服务商城</sciencebook>
+	<referencebook>智慧服务商城</referencebook>
+	<paperbook>智慧服务商城</paperbook>
+	<audiobook>智慧服务商城</audiobook>
+	<digitalproduct>智慧服务商城</digitalproduct>
+	<digitalbook>智慧服务商城</digitalbook>
+	<onlinetest>智慧服务商城</onlinetest>
+	<electronicbook>智慧服务商城</electronicbook>
+	
+	<!-- 行为分析相关参数 -->
+	<xwrankmallcode>100</xwrankmallcode><!-- 行为分析排行榜远程服务请求商城编码 -->
+	<xwrankurl>/service/getGoodsRank</xwrankurl><!-- 行为分析排行榜远程服务请求相对地址 -->
+	<xwrecommendurl>/service/recommendGoods</xwrecommendurl><!-- 行为分析猜你喜欢远程服务请求相对地址 -->
+</application>

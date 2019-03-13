@@ -1,0 +1,64 @@
+#parse("sys/sys_param.vm")
+<script src="$!{RESOURCE_PATH}/jquery/artTemplate/template-debug.js"></script>
+<script src="$!{RESOURCE_PATH}/util.js"></script>
+<header class="am-header am-header-fixed">
+    #parse("/main/info/info-title.vm")
+    <div class="am-header-left am-header-nav">
+        <a href="javascript:" onclick="history.go(-1); " class="">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+    <div class="am-header-right rightIcon" id="hdMore">
+        <i class="icon icon-more"></i>
+    </div>
+</header>
+<div class="ui-content">
+	<div id="wrapper2" data-am-widget="list_news" class="am-list-news scroll-wrap">
+        <div class="am-list-news-bd  scroll">
+            <ul class="kb-list pro-list clearfix scrollCont pro-list-grid">
+                <div class="loading-lo"></div>
+            </ul>
+
+            <div class="pull-action pull-up" style="bottom: 10px">
+                <span class=" pull-label"> 上拉加载更多</span>
+                <span class="am-icon-supinner am-icon-spin"></span>
+			</div>
+        </div>
+	</div>
+</div>
+<script type="text/x-handlebars-template" id="wrapper2-tpl">
+    {{each values.datas as activeItem i}}
+		<li>
+            <div class="cont" onclick="goDetail({{activeItem.id}});"><a >{{activeItem.infoTitle}}</a></div>
+            <span class="time">{{activeItem.pubTime}}</span>
+        </li>
+    {{/each}}
+</script>	
+<script>##用于底部栏目切换
+function goDetail(id){
+	window.location.href=$webroot + "info/infoDetail?id="+id;
+}
+$(function(){
+	$(".am-tabs-nav").height($(window).height() - $(".am-header").outerHeight());
+    $('#hdMore').popover({
+        theme:'black',
+        content: '<ul>' +
+                '<li><a href="$CONTEXT_PATH/msg/index"><i class="icon icon-mg2"></i>消息</a></li>' +
+                '<li><a href="$CONTEXT_PATH/homepage"><i class="icon icon-home2"></i>首页</a></li>' +
+                '<li><a href="$CONTEXT_PATH/search?keyword="><i class="icon icon-ser2"></i>搜索</a></li>' +
+                '<li><a href="#"><i class="icon icon-share2"></i>分享</a></li>' +
+                '<li><a href="$CONTEXT_PATH/favgoods"><i class="icon icon-fav2"></i>我的收藏</a></li>' +
+                '</ul>',
+    })
+	$.cookie('SUPPORT-WEB-COOKIE-MOUDEL', "homepage", {path : '/'});
+	$("#wrapper2").height($(window).height()-$('.am-header').height()-$('.am-navbar-nav').height());
+  	var loadScroll = new LoadScroll("wrapper2", {
+        url: '$CONTEXT_PATH/info/data',
+        isAjax:true,
+        params:{
+            page:1
+        }
+    });
+});
+</script>
+#parse("/main/main-bottom-navbar.vm")

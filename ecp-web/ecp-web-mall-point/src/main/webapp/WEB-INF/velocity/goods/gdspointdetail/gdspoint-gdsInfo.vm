@@ -1,0 +1,23 @@
+<div class="detail">
+    <h3>
+        $!{gdsDetailInfo.gdsName}
+    </h3>
+    <div class="dec">
+        $!{gdsDetailInfo.gdsSubHead}
+    </div>
+	#if($!{gdsDetailInfo.skuInfo.gdsStatus} == '11')
+		 #parse("/goods/gdspointdetail/gdspoint-gdsonsale.vm")
+	#else
+		 #parse("/goods/gdspointdetail/gdspoint-gdsdown.vm")
+	#end
+</div>
+<input type="hidden" value="$!{gdsDetailInfo.id}" id="gdsId"/>
+<input type="hidden" value="$!{gdsDetailInfo.gdsName}" id="gdsName"/>
+<input type="hidden" value="$!{gdsDetailInfo.shopId}" id="shopId"/>
+<input type="hidden" value="$!{gdsDetailInfo.skuInfo.id}" id="skuId"/>
+<input type="hidden" value="$!{gdsDetailInfo.mainCatgs}" id="mainCatgs"/>
+<input type="hidden" value="$!{gdsDetailInfo.gdsTypeId}" id="gdsTypeId"/>
+<input type="hidden" value="$!{gdsDetailInfo.skuInfo.skuProps}" id="skuProps"/>
+<input type="hidden" value="$!{shopName}" id="shopName"/>
+<input type="hidden" value="$!{gdsDetailInfo.gdsTypeId}" id="gdsTypeId"/>
+<input type="hidden" value="$!{STOCK_SCORE_LACK_THRESHOLD}" id="STOCK_LACK_THRESHOLD"/>

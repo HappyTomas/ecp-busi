@@ -1,0 +1,103 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-editor.vm")
+<link href="${CONTEXT_PATH}/css/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gift/gift-edit.js?version=$!{JS_VERSION}" ></script>
+	     <div class="alert alert-error hide formValidateMessages" >
+            </div>
+            <div class="container-fluid">
+                <form id="detailInfoForm" class="form-horizontal required-validate">
+					<input type="hidden" value="$!{gdsGiftInfo.id}" name="giftId" id="giftId"/>
+                    <div class="row-fluid">
+                        <div class="span6">
+							<div class="control-group">
+                               <label for="" class="control-label">店铺名称：</label>
+                               <div class="controls">
+                                 <select class="required" id="shopId" name="shopId" disabled>
+    								#shopStatuslist($!{gdsGiftInfo.shopId},1)
+                                </select>
+                               </div>
+    						</div>
+                            <div class="control-group">
+                                <label for="" class="control-label"><span style="color:red">*</span>关联单品：</label>
+                                <div class="controls">
+									<input type="hidden" value="$!{gdsGiftInfo.gdsId}" name="gdsId" id="gdsId"/>
+									<input type="hidden" value="$!{gdsGiftInfo.skuId}" name="skuId" id="skuId"/>
+									<input type="text" value="$!{gdsGiftInfo.gdsName}" disabled="true" id="skuName" name="skuName" title="$!{gdsGiftInfo.gdsName}"/><a class="btn"  href="javascript:void(0);" id="selectSku"><i class="icon-magic"></i>请选择单品</a>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="" class="control-label">赠品名称：</label>
+                                <div class="controls">
+                                    <input type="text" class="required" value="$!{gdsGiftInfo.giftName}" name="giftName" id="giftName"/>
+                                </div>
+                            </div>
+							<div class="control-group">
+                                       <label for="" class="control-label">赠品类型：</label>
+                                       <div class="controls">
+										  <select class="required" id="giftType" name="giftType">
+											  #listParam("GDS_GIFT_TYPE",$!{gdsGiftInfo.giftType})
+										  </select>
+                                       </div>
+                             </div>
+                            <div class="control-group">
+                                <label for="" class="control-label">赠品价值：</label>
+                                <div class="controls">
+                                    <input type="text" class="required number" value="#moneyNum($!{gdsGiftInfo.giftValue})" name="giftValue" id="giftValue"/>
+                                </div>
+                            </div>
+                           <div class="control-group" style="display:none;">
+                                <label for="" class="control-label">赠品总量：</label>
+                                <div class="controls">
+                                    <input type="text" class="required digits" value="$!{gdsGiftInfo.giftAmount}" name="giftAmount" id="giftAmount"/><input id="giftAmountHide" type="hidden" value="$!{gdsGiftInfo.giftAmount}">
+                                </div>
+								</div>
+							 <div class="control-group">
+                                <label for="" class="control-label">赠品可赠量：</label>
+                                <div class="controls">
+										<input id="giftValidHide" type="hidden" value="$!{gdsGiftInfo.giftValid}"><input id="giftValid" name="giftValid" type="text" value="$!{gdsGiftInfo.giftValid}" disabled="true">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="" class="control-label">赠品库存：</label>
+                                <div class="controls ">
+                                    <label for="" class="radio inline">
+                                        <input type="radio" id="modifyAdd" name="radio" checked/>加
+                                    </label>
+                                    <label for="" class="radio inline">
+                                        <input type="radio" id="modifyDel" name="radio"/>减
+                                    </label>
+                                    <input type="text" class="input-small" id="midofyAmount" onKeyDown="modiAmount();"   onkeyup="modiAmount();"/>
+									</br><span id="erro" style="display:none;"><font color="red">温馨提示：调减的的库存量不能大于历史可赠赠品总量：$!{gdsGiftInfo.giftValid}！</font></span><span id="NUMBERERROR" style="display:none;"><font color="red">温馨提示：调整的的库存量不能小于0或者只能是整数！</font></span>
+                                </div>
+                            </div>
+                            <div class="control-group" style="width:400px;">
+                                <label class="control-label" for="user.remark">备注：</label>
+                                <div class="controls">
+                                    <textarea rows="4" id="giftDesc" class="required" name="giftDesc">$!{gdsGiftInfo.giftDesc}</textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span6">
+                            <div class="imgup-show">
+                                <img id="image" src="$!{gdsGiftInfo.picUrl}" alt=""/>
+                            </div>
+                            <div class="alert rk-alert">
+                                图片格式必须是：png,jpg,jpeg,gif并且小于100k
+                            </div>
+                           <div class="img-input">
+    							<input type="hidden" id="giftPic" name="giftPic" value="$!{gdsGiftInfo.giftPic}"/>
+    							<input type="hidden" id="pictrueName" name="pictrueName" value="$!{gdsGiftInfo.giftName}"/>
+    							<input type="file" class="com_input" id="pictrue" name="pictrue" value=""/>
+						   </div>
+
+                        </div>
+                    </div>
+	</form>
+                    <div class="btn-wrap">
+						<button class="btn btn-info" data-loading-text="保存中..." id="btnFormSave"><i class=" icon-ok-sign icon-white"></i> 保存</button>
+                        <a class="btn" href="javascript:void(0)" id="btnReturn"><i class="icon-reply icon-white"></i> 返回</a>
+						##<input value="返回" type="button" id="btnReturn" class="btn" style="margin-left: 10px"/>
+                    </div>
+                
+            </div>

@@ -1,0 +1,114 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+#parse("sys/sys_param.vm")
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/floor/gds/gds-edit.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<script type="text/javascript">
+ function replaceSpace(obj){
+ obj.value = obj.value.replace(/s/gi,'')
+}
+</script>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+<input type="hidden" id="floorSearchParams" value="$!{floorSearchParams}" />
+
+<div class="alert alert-error hide formValidateMessages" >
+	##showSpringAllError("vo")
+</div>
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/cmsadvertise/saveform">
+		<div class="span8">
+			<input type="hidden" id="id" name="id" value="$!{respDTO.id}" />
+			<input type="hidden" id="placeId" name="placeId" value="$!{floorRespDTO.placeId}" />
+			<input type="hidden" id="siteId" name="siteId" value="$!{floorRespDTO.siteId}" />
+			<input type="hidden" id="floorId" name="floorId" value="$!{floorRespDTO.id}" />
+    		<div class="formSep">
+    			<div class="control-group">
+					<label class="control-label">所属楼层：</label>
+    				<div class="controls">
+						<input type="text" class="input-large" id="floorName" name="floorName" readonly value="#escapeHtml($!{floorRespDTO.floorName})" />
+    					<span class="help-inline">商城页面楼层！</span>
+    				</div>
+    			</div>
+    		</div>
+			#if(${floorTabList} && $floorTabList.size() > 0)
+				<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属页签：</label>
+    				<div class="controls">
+    					<select id="tabId" name="tabId" class="input-large required">
+    						#foreach($floorTab in $floorTabList)
+    							<option value="$!{floorTab.id}" #if($!{respDTO.tabId} == $!{floorTab.id}) selected  #end>#escapeHtml($!{floorTab.tabName})</option>
+        					#end
+    					</select>
+    					<span class="help-inline">如果选择页签，商品配置于该页签！</span>
+    				</div>
+    			</div>
+    		</div>
+			#end
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">选择促销商品：</label>
+    				<div class="controls">
+						<select id="isProm" name="isProm" class="required">
+    						#listParam('PUBLIC_PARAM_ISNOT',$!{respDTO.isProm})
+    					</select>
+						<span class="help-inline"></span>
+    				</div>
+    			</div>
+    		</div>
+    		
+    		<div class="formSep" id="floorGdsDiv">	
+				<div class="control-group">
+    				<label class="control-label" for="name">楼层商品：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large required" id="gdsName" name="gdsName" readonly placeholder="请选择楼层商品" value="#escapeHtml($!{respDTO.gdsName})" />
+						<input type="hidden" id="gdsId" name="gdsId" value="$!{respDTO.gdsId}"/>
+						<input type="hidden" id="promId" name="promId" value="$!{respDTO.promId}"/>
+						<button type="button" class="btn" id="select_link_gds"><i class="icon-magic"></i>选择</button>
+					</div>
+    			</div>
+    		</div>
+		
+			<!--<div class="formSep"><div class="control-group">
+    				<label class="control-label" for="name">楼层商品：</label>
+    				<div class="controls">
+    					<textarea rows="4" class="input-xlarge required" id="gdsIdStrName" name="gdsIdStrName" readonly placeholder="请选择楼层商品" value="$!{respDTO.gdsIdStrName}" />
+						<input type="hidden" id="gdsIdStr" name="gdsIdStr" value="$!{respDTO.gdsIdStr}"/>
+						<button type="button" class="btn" id="select_link_gdsIdStr"><i class="icon-magic"></i>选择</button>
+					</div>
+    			</div>
+    		</div>-->
+			
+			<div class="formSep">
+        		<div class="control-group">
+        			<label class="control-label">排序：</label>
+        			<div class="controls">
+        				<input type="text" id="sortNo" name="sortNo" class="input-large checkInteger" min="1" max="100" placeholder="如果不填，则默认为1。" onBlur="replaceSpace(this)" value="$!{respDTO.sortNo}" />
+        				<span class="help-inline">请填写1-100的整数，值越小，排序越靠前！</span>
+        			</div>
+        		</div>
+        	</div>
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">备注：</label>
+    				<div class="controls">
+    					<textarea rows="4" cols="100" onpropertychange="checkLen(this,'count','250')" oninput="checkLen(this,'count','250')"  class="input-block-level htmlcheck" id="remark" name="remark"  placeholder="请填写备注">#escapeHtml($!{respDTO.remark})</textarea>
+    					<span class="help-inline">您还可以输入<span id="count">250</span>字！</span>
+    				</div>
+    			</div>
+    		</div>
+			<div class="text-center">
+				<button type="button" class="btn btn-info" id="btnFormPubSave"><i class="icon-ok-sign icon-white"></i>发布</button>
+				<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i>保存</button>
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+    		</div>
+        </div>
+		<div class="clear"></div>
+	</form>
+</div>
+	

@@ -1,0 +1,65 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/staff/sub-acct-add.js?version=$!{JS_VERSION}" ></script>
+<div class="seller-well">
+     <div class="alert" style="margin:0 100px 15px">该店铺剩余可新建$!{subCount}个子账号</div>
+    <form class="form-horizontal required-validate" id="subAcctForm">
+        <div class="control-group">
+            <label class="control-label">账号：</label>
+            <div class="controls">
+            	<input type="hidden" id="shopId" name="shopId" value="$!{shopId}" />
+                <input type="text" class="input-large required checkPassword" maxLength="15"  name="staffCode">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">性别：</label>
+            <div class="controls">
+              	<select class="span2" style="width:224px;" name="gender">
+					#listParam('STAFF_CUST_GENDER',$!{custInfo.gender})
+	            </select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">密码：</label>
+            <div class="controls">
+                <input type="password"  class="input-large required checkPassword" maxlength="16" name="staffPwd" id="staffPwd">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">确认密码：</label>
+            <div class="controls">
+                <input type="password"  class="input-large required" maxlength="16" id="staffPwd2" equalTo="#staffPwd" >
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">真实姓名：</label>
+            <div class="controls">
+                <input type="text" class="input-large required" name="custName" maxlength="16">
+                <input type="hidden" name="roleIds" id="roleIds"/>
+            </div>
+        </div>
+        <!--
+        <div class="control-group">
+            <label class="control-label">所属企业：</label>
+            <div class="controls">
+                <select style="width:220px" disabled>
+						#companylist("$!{companySignInfo.parentId}")
+				</select>
+            </div>
+        </div>
+        -->
+        <div class="control-group">
+            <label class="control-label">角色分配：</label>
+            <div class="controls">
+            	#foreach($attr in $rolePage.getResult())
+            		<label class="label-ck"><input type="checkbox" name="role" value="$!{attr.id}"/>$!{attr.roleName}</label>
+            	#end
+            </div>
+        </div>
+        
+    </form>
+    <div class="btn-wrap">
+        <span class="sbtn sbtn-blue" id="btnSave">保存</span>
+        <span class="sbtn" id="backSaveBtn">返回</span>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+#parse("sys/sys_param.vm")
+#parse("module/mod-upload.vm")
+#parse("module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/public/public-js.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/hotImg/hotImg-dialog.js?v=${JS_VERSION}"></script>
+<link href="$!{RESOURCE_PATH}/bootstrap/core/2.3.2/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/pageConfig/public.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="$!{CSS_PATH}/pageConfig/template-config.css" rel="stylesheet" type="text/css" media="screen"/>
+
+
+<div class="dialog-body">
+    <div class="dialog-content">
+		<div class="hide alert error-msg" id="error-msg-hot-img" style="color:red;">
+		                            
+		</div>
+        <form id="saveHotImgForm" class="required-validate form-horizontal templateItemForms"  data-url="$!{CONTEXT_PATH}/modular-dynamic/saveHotImg">
+			<input type="hidden" id="id" name="id" value="$!{resp.id}"/>
+            <input type="hidden" id="pageId" value="$!{pageId}"/>
+            <input type="hidden" id="picId" value="$!{picId}"/>
+            <input type="hidden" id="itemPropId" value="$!{itemPropId}"/>
+            <input type="hidden" id="relativeCoord" value="$!{relative_coord}"/>
+            <div class="row-fluid">
+				<div class="span12">
+                    <div class="control-group">
+                        <label class="control-label">链接地址：</label>
+                        <div class="controls" style="width:280px;">
+                            <input type="text" class="input-block-level" id="urlInfo" name="urlInfo" value="$!{resp.urlInfo}" maxlength="256"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+				<div class="span12">
+                    <div class="control-group">
+                        <label class="control-label">显示标题：</label>
+                        <div class="controls" style="width:280px;">
+                            <input type="text" class="input-block-level" id="showTitle" name="showTitle" value="$!{resp.showTitle}" maxlength="32"/>
+
+                        </div>
+					</div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="text-center">
+        <span id="save" class="btn btn-info"><i class="icon-ok-sign icon-white"></i>确定</span>
+        <span id="btnCancel" class="btn"><i class="icon-reply icon-white"></i>取消</span>
+    </div>
+</div>

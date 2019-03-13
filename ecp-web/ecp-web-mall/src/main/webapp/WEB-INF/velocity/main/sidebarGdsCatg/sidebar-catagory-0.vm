@@ -1,0 +1,95 @@
+#parse("sys/sys_param.vm")
+
+<div class="sidebar-box" style="height: $!{placeHeight}px">
+   #if($catgParent && $catgParent.id && $catgParent.id != '')
+   #foreach(${catgTwo} in $catgChild) 
+    <div class="sidebar #if(${catgTwo.cmsShowChildCatg} && $catgTwo.cmsShowChildCatg.size() > 0)  side-hover #end">
+        #set($r = $velocityCount % 2)  ##判断基数   采用不同的样式  背景色黑白相间效果
+        <dl #if($r == 0) class = "clearfix gray-bg" #end>
+            <dt>
+				   <!-- 二级节点名称 -->
+                   <a target='_blank' href="
+                    #if(${catgTwo.catgCode} && $!{catgTwo.catgCode}!='')
+                   		${CONTEXT_PATH}/search?category=$!{catgTwo.catgCode} 
+                   	#elseif(${catgTwo.catgUrl} && $!{catgTwo.catgUrl}!='')
+                   		${CONTEXT_PATH}/$!{catgTwo.catgUrl} 
+                   	#else
+                   		${CONTEXT_PATH}/search?keyword=#stringEncode($!{catgTwo.catgName})
+					#end
+					">
+					<span class="reference-icon">$!{catgTwo.catgName}</span>
+				   </a>
+				   ##无右测分类   不显示大括号
+                   #if(${catgTwo.cmsShowChildCatg} && $catgTwo.cmsShowChildCatg.size() > 0)
+					<i class="angle-right"></i>
+				   #end
+            </dt>
+            <!--     cms  配置三级节点     start      -->
+            <div class=" clearfix ">
+            #foreach($cmsCatgThree in ${catgTwo.cmsChildCatg})
+                #if($velocityCount != 1)
+                <dd>|</dd>
+				#end	
+                <dd>
+					<a target='_blank' href="
+                	#if(${cmsCatgThree.catgCode} && $!{cmsCatgThree.catgCode}!='')
+                		${CONTEXT_PATH}/search?category=$!{cmsCatgThree.catgCode} 
+                	#elseif(${cmsCatgThree.catgUrl} && $!{cmsCatgThree.catgUrl}!='')
+                		${CONTEXT_PATH}/$!{cmsCatgThree.catgUrl} 
+                	#else
+                		${CONTEXT_PATH}/search?keyword=#stringEncode($!{cmsCatgThree.catgName})
+					#end
+					">
+					$!{cmsCatgThree.catgName}
+					</a>
+				</dd>
+            #end
+            </div>
+        </dl>
+        <div class="spacer01"></div>
+         <div #if(!${catgTwo.cmsShowChildCatg} || $catgTwo.cmsShowChildCatg.size() == 0) #else class="item01 downc" #end>
+            #foreach($cmsShowCatgThree in ${catgTwo.cmsShowChildCatg})
+            <!--     鼠标悬浮 右边分类       三级节点     start -->
+            <div class="item01-h clearfix">
+               <div class="item01-tit">
+				<a target='_blank' href = "
+               	#if(${cmsShowCatgThree.catgCode} && $!{cmsShowCatgThree.catgCode}!='')
+               		${CONTEXT_PATH}/search?category=$!{cmsShowCatgThree.catgCode} 
+              	#elseif(${cmsShowCatgThree.catgUrl} && $!{cmsShowCatgThree.catgUrl}!='')
+               		${CONTEXT_PATH}/$!{cmsShowCatgThree.catgUrl} 
+              	#else
+              		${CONTEXT_PATH}/search?keyword=#stringEncode($!{cmsShowCatgThree.catgName})
+				#end
+				">
+				$!{cmsShowCatgThree.catgName}
+				</a>
+			   </div>
+               <div class="item01-con">
+                    <ul>
+                        #foreach($cmsShowCatgFour in ${cmsShowCatgThree.cmsChildCatg})
+							#if($velocityCount != 1)
+                            <li>|</li>
+							#end
+                            <li>
+								<a target='_blank' href="
+                            	#if(${cmsShowCatgFour.catgCode} && $!{cmsShowCatgFour.catgCode}!='')
+                            		${CONTEXT_PATH}/search?category=$!{cmsShowCatgFour.catgCode} 
+                            	#elseif(${cmsShowCatgFour.catgUrl} && $!{cmsShowCatgFour.catgUrl}!='')
+                            		${CONTEXT_PATH}/$!{cmsShowCatgFour.catgUrl} 
+                            	#else
+                            		${CONTEXT_PATH}/search?keyword=#stringEncode($!{cmsShowCatgFour.catgName})
+								#end
+								">
+								$!{cmsShowCatgFour.catgName}
+								</a>
+							</li>
+						#end
+					</ul>
+                </div>
+            </div>
+            #end
+        </div>
+    </div>
+   #end
+   #end
+</div>

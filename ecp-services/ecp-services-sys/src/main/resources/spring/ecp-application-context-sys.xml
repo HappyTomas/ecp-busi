@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+    <bean id="mcSyncSendRSV" class="com.zengshi.ecp.sys.dubbo.impl.McSyncSendRSVImpl"/>
+	
+    <bean id="msgSendSV" class="com.zengshi.ecp.sys.service.busi.impl.MsgSendSVImpl">
+      <property name="sendOperateMap">
+      <map>
+        <!-- 站内消息处理 -->
+        <entry key="10" value-ref="msgSendOperateByInsite"></entry>
+        <!-- 手机短信发送 -->
+        <entry key="20" value-ref="msgSendOperateBySms"></entry>
+        <!-- 邮件发送 -->
+        <entry key="30" value-ref="msgSendOperateByMail"></entry>
+      </map>
+      </property>
+    </bean>
+    
+    <bean id="msgSendOperateByInsite" class="com.zengshi.ecp.sys.service.busi.impl.MsgSendOperateByInsiteSVImpl"> </bean>
+    
+    <bean id="msgSendOperateByMail" class="com.zengshi.ecp.sys.service.busi.impl.MsgSendOperateByMailSVImpl"> </bean>
+   
+    <bean id="sysCfgSV" class="com.zengshi.ecp.sys.service.common.impl.SysCfgSVImpl"> </bean>
+    
+    
+    <!-- 消息发送的切面；用于拦截 IMsgSendSV 的 sendMsg 方法，对于之前/之后进行处理 -->
+    <bean id="msgSendAspect" class="com.zengshi.ecp.sys.aspect.MsgSendAspect">
+      <property name="msgDetailInfoSV" ref="msgDetailInfoSV"></property>
+    </bean>
+    
+    <aop:config>
+      <aop:pointcut
+      	expression="execution(* com.zengshi.ecp.sys.service.busi.interfaces.IMsgSendSV.sendMsg(..))"
+      	id="msgSendPointCut" />
+      <aop:aspect id ="msgSendAspect-aop" ref="msgSendAspect" order="3">
+        <aop:after-throwing pointcut-ref="msgSendPointCut" method="doWhenSendException" throwing="ex" />
+        <aop:after-returning pointcut-ref="msgSendPointCut" method="doWhenSendSuccess" returning="result" />
+      </aop:aspect>
+    </aop:config>
+    
+    
+    <bean id="gateWayBeanBuilderSV" class="com.zengshi.ecp.sys.sms.impl.GateWayBeanBuilderSV">
+      <property name="builderMap">
+        <map>
+          <entry key="c123" value-ref="c123GateWayBeanBuilderSV"></entry>
+        </map>
+      </property>
+      <!-- 短信操作类 -->
+      <property name="smsOperatorMap" ref="smsOperatorMap"/>
+    </bean>
+    
+    <!-- 短信操作 -->
+    <bean id="smsOperatorMap" class="java.util.HashMap">
+      <constructor-arg>
+        <map>
+          <entry key="c123" value-ref="c123MsgSmsOperateSV"></entry>
+        </map>
+      </constructor-arg>
+    </bean>
+    <!-- app版本服务-->
+     <bean id="appVersionSV" class="com.zengshi.ecp.sys.service.common.impl.AppVersionSVImpl"> </bean>
+
+  <!-- 报表项统计服务-->
+     <bean id="reportItemSV" class="com.zengshi.ecp.sys.service.common.impl.ReportItemSVImpl"> </bean>
+     <!-- 微信菜单 -->
+     <bean id="weixMenuManageSV" class="com.zengshi.ecp.sys.service.common.impl.WeixMenuManageSVImpl"> </bean>
+</beans>

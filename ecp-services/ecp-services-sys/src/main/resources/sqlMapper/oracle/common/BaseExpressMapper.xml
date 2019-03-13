@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.sys.dao.mapper.common.BaseExpressMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.sys.dao.model.BaseExpress" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="EXPRESS_FULL_NAME" property="expressFullName" jdbcType="VARCHAR" />
+    <result column="EXPRESS_NAME" property="expressName" jdbcType="VARCHAR" />
+    <result column="EXPRESS_WEBSITE" property="expressWebsite" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, EXPRESS_FULL_NAME, EXPRESS_NAME, EXPRESS_WEBSITE, STATUS, SORT_NO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.sys.dao.model.BaseExpressCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_base_express
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_base_express
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_base_express
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.sys.dao.model.BaseExpressCriteria" >
+    delete from t_base_express
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.sys.dao.model.BaseExpress" >
+    insert into t_base_express (ID, EXPRESS_FULL_NAME, EXPRESS_NAME, 
+      EXPRESS_WEBSITE, STATUS, SORT_NO
+      )
+    values (#{id,jdbcType=INTEGER}, #{expressFullName,jdbcType=VARCHAR}, #{expressName,jdbcType=VARCHAR}, 
+      #{expressWebsite,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.sys.dao.model.BaseExpress" >
+    insert into t_base_express
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="expressFullName != null" >
+        EXPRESS_FULL_NAME,
+      </if>
+      <if test="expressName != null" >
+        EXPRESS_NAME,
+      </if>
+      <if test="expressWebsite != null" >
+        EXPRESS_WEBSITE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="expressFullName != null" >
+        #{expressFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="expressName != null" >
+        #{expressName,jdbcType=VARCHAR},
+      </if>
+      <if test="expressWebsite != null" >
+        #{expressWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.sys.dao.model.BaseExpressCriteria" resultType="java.lang.Long" >
+    select count(*) from t_base_express
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_base_express
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.expressFullName != null" >
+        EXPRESS_FULL_NAME = #{record.expressFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressName != null" >
+        EXPRESS_NAME = #{record.expressName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressWebsite != null" >
+        EXPRESS_WEBSITE = #{record.expressWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortNo != null" >
+        SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_base_express
+    set ID = #{record.id,jdbcType=INTEGER},
+      EXPRESS_FULL_NAME = #{record.expressFullName,jdbcType=VARCHAR},
+      EXPRESS_NAME = #{record.expressName,jdbcType=VARCHAR},
+      EXPRESS_WEBSITE = #{record.expressWebsite,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      SORT_NO = #{record.sortNo,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.sys.dao.model.BaseExpress" >
+    update t_base_express
+    <set >
+      <if test="expressFullName != null" >
+        EXPRESS_FULL_NAME = #{expressFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="expressName != null" >
+        EXPRESS_NAME = #{expressName,jdbcType=VARCHAR},
+      </if>
+      <if test="expressWebsite != null" >
+        EXPRESS_WEBSITE = #{expressWebsite,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.sys.dao.model.BaseExpress" >
+    update t_base_express
+    set EXPRESS_FULL_NAME = #{expressFullName,jdbcType=VARCHAR},
+      EXPRESS_NAME = #{expressName,jdbcType=VARCHAR},
+      EXPRESS_WEBSITE = #{expressWebsite,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      SORT_NO = #{sortNo,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

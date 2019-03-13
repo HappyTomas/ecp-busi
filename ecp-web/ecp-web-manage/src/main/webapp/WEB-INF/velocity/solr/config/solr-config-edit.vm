@@ -1,0 +1,186 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/solr/solr-config-save.js?version=$!{JS_VERSION}" ></script>
+<h1 ></h1>
+<h2 ></h2>
+<div class="formBox row-fluid">
+	<h3 class="heading" style="margin-top: 0px;">基本信息</h3>
+    <form id="promInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+        <div class="row-fluid">
+        	<div class="span4">
+        		<div class="control-group">
+        			<label class="control-label">配置名称：</label>
+        			<div class="controls">
+        			    <input type="hidden" id="isRead" name="isRead" value="${isRead}">
+        			    <input type="hidden" id="formId" name="id" value="${promVO.id}">
+        				<input type="text" class="input-block-level required" readonly name="configName" id="configName" maxlength="60"  placeholder="配置名称" value="#escapeHtml($promVO.configName)" />
+        				<span class="help-inline">限制120个字符以内</span>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+         <div class="row-fluid">
+        	<div class="span4">
+        		<div class="control-group">
+        			<label class="control-label">索引名称：</label>
+        			<div class="controls">
+        				<input type="text" readonly class="input-block-level required" maxlength="60" name="configCollectionName" value="#escapeHtml($promVO.configCollectionName)"  placeholder="索引名称"/>
+        			    <span class="help-inline">限制120个字符以内。</span>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+        <div class="row-fluid">
+        	<div class="span8">
+        		<div class="control-group">
+        			<label class="control-label">配置描述信息：</label>
+        			<div class="controls">
+        				<textarea rows="4" class="input-block-level" name="configDesc" maxlength="256" placeholder="配置描述信息" >${promVO.configDesc}</textarea>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+        <div class="clear"></div>
+    </form>
+	<h3 class="heading" style="margin-top: 30px;">搜索规则</h3>
+	<form id="promInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+        <div class="row-fluid">
+        	<div class="span4">
+        		<div class="control-group">
+        			<label class="control-label">查询转换模式：</label>
+        			<div class="controls">
+        				  <select class="required" id="shopId" name="configQueryOp" style="width:100%">
+        				   #if($promVO.configQueryOp=='AND')
+								<option selected value="AND">AND</option>
+								<option value="OR">OR</option>
+						   #else
+						     <option value="AND">AND</option>
+						     <option selected value="OR">OR</option>
+						   #end
+                        </select>
+        			</div>
+        		</div>
+        	</div>
+        		<div class="span4" style="margin-left: 10px;margin-top: 5px;"><span>AND是精确查询，OR是模糊查询</span></div>
+        </div>
+         <div class="row-fluid">
+                <div class="span8">
+                    <div class="control-group">
+                        <label class="control-label">扩展参数：</label>
+
+                        <div class="controls">
+                            <input type="text" class="input-block-level required" maxlength="256" value="#escapeHtml($!promVO.configParams)" name="configParams">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span10">
+                    <label class="control-label">
+                        <input id="ifMultilan" type="checkbox" #if($!{promVO.configIfMultilan}== 1) checked #end
+                               name="configIfMultilan" value="0"/>
+                        是否字段多语言（字段级别）
+                    </label>
+
+                    <div class="control-group">
+                        <div style="color:red;padding-left:130px">
+                            当一个字段被配置为多语言时，数据源服务返回的数据中该字段key格式应该为若干个：属性名+"@"+语种名。
+                            如数据对象商品信息主表配置为多语言，语种列表为zh,en,jap。假如name字段配置为多语言，则数据源服务中该字段key格式应该为：name@zh、name@en、name@jap。
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid ifMultilanBlock">
+                <div class="span4 ">
+                    <div class="control-group">
+                        <label class="control-label">语种列表：</label>
+
+                        <div class="controls">
+                            <input value="#escapeHtml($!promVO.lans)" maxlength="64" name="lans"
+                                   class="input-block-level" type="text"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="span4" style="margin:5px">多个语种使用英文逗号分隔开</div>
+            </div>
+        <div class="row-fluid">
+        	<div class="span8">
+        		<div class="control-group">
+					<label class="control-label"></label>
+        			<div class="controls">
+        				<div class="item">
+                        <label class="checkbox">
+	                       #if($promVO.configQueryIfHl=='1')
+								<input type="checkbox" checked value="1" name="configQueryIfHl" id="queryIfHl" />关键字是否高亮
+						   #else
+						     <input type="checkbox" value="0" name="configQueryIfHl" id="queryIfHl" />关键字是否高亮
+						   #end
+                        </label>
+                    </div>
+        			</div>
+        			
+        		</div>
+        	</div>
+        </div>
+         <div class="row-fluid hiblock">
+        	<div class="span4">
+        		<div class="control-group">
+        			<label class="control-label">高亮格式前缀：</label>
+        			<div class="controls">
+        				<input type="text" value="#escapeHtml($!promVO.configQueryHlPre)" name="configQueryHlPre" class="input-block-level" maxlength="32" id="configQueryHlPre"  placeholder="关键字高亮格式前缀"/>
+        			    <span class="help-inline"></span>
+        			</div>
+        		</div>
+        	</div>
+			<div class="span4">
+        		<div class="control-group">
+        			<label class="control-label">高亮格式后缀：</label>
+        			<div class="controls">
+        				<input type="text" class="input-block-level" maxlength="16" name="configQueryHlPost" value="#escapeHtml($!promVO.configQueryHlPost)" id="configCollectionName"  placeholder="关键字高亮格式后缀"/>
+        			    <span class="help-inline"></span>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+		<div class="row-fluid">
+        	<div class="span8">
+        		<div class="control-group">
+					<label class="control-label"></label>
+        			<div class="controls">
+        				<div class="item">
+                        <label  class="checkbox">
+	                        #if($promVO.configQueryIfSpellcheck=='1')
+								<input type="checkbox" value="1" name="configQueryIfSpellcheck" checked id="spellcheck"/>是否开启拼写检查
+						   #else
+						     <input type="checkbox" value="0" name="configQueryIfSpellcheck" id="spellcheck"/>是否开启拼写检查
+						   #end
+                        </label>
+                    </div>
+        			</div>
+        			
+        		</div>
+        	</div>
+        </div>
+        <div class="row-fluid spellcountblock">
+        	<div class="span4">
+        		<div class="control-group">
+        			<label class="control-label">拼写检查提示个数：</label>
+        			<div class="controls">
+        				<input type="text" class="input-block-level digits" maxlength="2" name="configQuerySpellcheckCount" id="promTypeShow"  placeholder="拼音检查提示个数" value="$!{promVO.configQuerySpellcheckCount}"/>
+        			    <span class="help-inline"></span>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+        <div class="clear"></div>
+    </form>
+	<div class="btn-wrap btn-wrap-save fbtn" style="text-align:center">
+		#if ($isRead!='1')
+			<button type="button" class="btn btn-info" data-loading-text="保存中..." id="btnFormSave"><i class=" icon-ok-sign icon-white"></i> 保存</button>
+	    #end
+		<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i> 返回</button>
+    </div>
+</div>
+			   
+			    

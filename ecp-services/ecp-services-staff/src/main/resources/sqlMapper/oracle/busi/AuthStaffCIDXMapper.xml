@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.busi.AuthStaffCIDXMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.AuthStaffCIDX" >
+    <result column="STAFF_CODE" property="staffCode" jdbcType="VARCHAR" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="SERIAL_NUMBER" property="serialNumber" jdbcType="INTEGER" />
+    <result column="COUNTRY_CODE" property="countryCode" jdbcType="VARCHAR" />
+    <result column="PROVINCE_CODE" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="CITY_CODE" property="cityCode" jdbcType="VARCHAR" />
+    <result column="COUNTY_CODE" property="countyCode" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    STAFF_CODE, STAFF_ID, SERIAL_NUMBER, COUNTRY_CODE, PROVINCE_CODE, CITY_CODE, COUNTY_CODE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaffCIDXCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_auth_staff_c_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaffCIDX" >
+    insert into t_auth_staff_c_idx (STAFF_CODE, STAFF_ID, SERIAL_NUMBER, 
+      COUNTRY_CODE, PROVINCE_CODE, CITY_CODE, 
+      COUNTY_CODE)
+    values (#{staffCode,jdbcType=VARCHAR}, #{staffId,jdbcType=INTEGER}, #{serialNumber,jdbcType=INTEGER}, 
+      #{countryCode,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{countyCode,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaffCIDX" >
+    insert into t_auth_staff_c_idx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staffCode != null" >
+        STAFF_CODE,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="serialNumber != null" >
+        SERIAL_NUMBER,
+      </if>
+      <if test="countryCode != null" >
+        COUNTRY_CODE,
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE,
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE,
+      </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staffCode != null" >
+        #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="serialNumber != null" >
+        #{serialNumber,jdbcType=INTEGER},
+      </if>
+      <if test="countryCode != null" >
+        #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaffCIDXCriteria" resultType="java.lang.Long" >
+    select count(*) from t_auth_staff_c_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <insert id="insertBatch" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaffCIDX" >
+    insert into t_auth_staff_c_idx (STAFF_CODE, 
+      STAFF_ID, SERIAL_NUMBER, COUNTRY_CODE, 
+      PROVINCE_CODE, CITY_CODE, COUNTY_CODE
+      )
+    values <foreach collection="list" item="item" index="index" separator="," > (#{item.staffCode,jdbcType=VARCHAR}, 
+      #{item.staffId,jdbcType=INTEGER}, #{item.serialNumber,jdbcType=INTEGER}, #{item.countryCode,jdbcType=VARCHAR}, 
+      #{item.provinceCode,jdbcType=VARCHAR}, #{item.cityCode,jdbcType=VARCHAR}, #{item.countyCode,jdbcType=VARCHAR}
+      )</foreach>
+  </insert>
+  
+  <update id="updateSerialNumberByCode" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaffCIDX" >
+    update t_auth_staff_c_idx
+    <set >
+      <if test="serialNumber != null" >
+        SERIAL_NUMBER = #{serialNumber,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where STAFF_CODE = #{staffCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

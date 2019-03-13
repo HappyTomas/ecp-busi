@@ -1,0 +1,21 @@
+#parse("/sys/sys_param.vm")
+<link rel="stylesheet" type="text/css" href="$CSS_PATH/text.css"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/main/info/info-list.js"></script>
+<!--content-->
+<div id="content" class="clearfix">
+	<input type="hidden" id="placeId" name="placeId" value="$!{placeId}" />
+    <!--文本-->
+    <div class="wrap1200 ">
+        <!--内容-->
+        <div class="t-box clearfix">
+            <h4>
+				#parse("/main/child/info-title.vm")
+			</h4>
+			<span class="pull-right m-tab"></span>
+        </div>
+        <div class="t-content mb20" id="infoList">
+			
+        </div>
+		
+    </div>
+</div>

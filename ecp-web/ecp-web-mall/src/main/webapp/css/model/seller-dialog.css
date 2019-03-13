@@ -1,0 +1,122 @@
+@charset "utf-8";
+/* 重置弹出框 */
+.modal {
+  border-color: #dddddd;
+  border-width: 4px;
+}
+.modal-header {
+  padding: 6px;
+  padding-left: 20px;
+  text-align: left;
+  background-color: #EFF2F9;
+  border: 0;
+}
+.modal-header h3 {
+  font-size: 16px;
+  color: #6d6d6d;
+  font-weight: bold;
+  font-family: '微软雅黑';
+}
+.modal-header .close {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  background-image: url("../images/seller-icon.png");
+  background-position: -3px -93px;
+  color: transparent!important;
+  top: -18px !important;
+  right: -15px !important;
+  position: relative;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  font-size: 0;
+}
+.modal-header .close:hover {
+  background-position: -44px -93px;
+}
+/* 重置确认信息弹窗 */
+.ZebraDialog {
+  border: 3px solid #e1e4eb;
+  border-radius: 6px;
+}
+.ZebraDialog .ZebraDialog_Title {
+  font-size: 16px;
+  color: #6d6d6d;
+  font-weight: bold;
+  font-family: '微软雅黑';
+  padding: 6px 0;
+  text-align: center;
+  background-color: #eff2f9;
+}
+.ZebraDialog .ZebraDialog_Body {
+  padding: 30px 40px 30px 110px;
+}
+.ZebraDialog .ZebraDialog_Icon {
+  color: #6d6d6d;
+  font-size: 18px;
+  font-weight: bold;
+  background-position-y: center;
+  padding-left: 110px;
+}
+.ZebraDialog .ZebraDialog_Information {
+  background-image: url("../images/dialog-info.png");
+}
+.ZebraDialog .ZebraDialog_Error {
+  background-image: url("../images/dialog-error.png");
+}
+.ZebraDialog a.ZebraDialog_Close {
+  float: right;
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  background-image: url("../images/seller-icon.png");
+  background-position: -3px -93px;
+  color: transparent!important;
+  top: -18px !important;
+  right: -15px !important;
+  /*font-size: 20px;
+    font-weight: bold;
+    color: #000000;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.2;
+    filter: alpha(opacity=20);*/
+}
+.ZebraDialog a.ZebraDialog_Close:hover {
+  background-position: -44px -93px;
+}
+.ZebraDialog .ZebraDialog_ButtonsOuter {
+  text-align: center;
+}
+.ZebraDialog .ZebraDialog_Buttons {
+  text-align: center;
+  display: inline-block;
+}
+.ZebraDialog .ZebraDialog_Buttons a {
+  padding: 4px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 20px;
+  color: #666;
+  background-color: #fff;
+  border: 1px solid #d5d9e3;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  font-weight: normal;
+  margin-left: 8px;
+}
+.ZebraDialog .ZebraDialog_Buttons a:last-child {
+  background-color: #027cff;
+  border-color: #027cff;
+  color: #fff;
+}
+.ZebraDialog .ZebraDialog_Buttons a:last-child:hover {
+  background-color: #027cff;
+  border-color: #027cff;
+  color: #fff;
+}
+.ZebraDialog .ZebraDialog_Buttons a:hover {
+  background-color: #fff;
+  color: #666;
+  border-color: #027cff;
+}

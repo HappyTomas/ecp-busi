@@ -1,0 +1,112 @@
+ <div class="filter-content">
+    <div id="wrapper2" data-am-widget="list_news" class="am-list-news scroll-wrap">
+        <div class="am-list-news-bd scroll">
+            <div class="pull-action loading pull-down">
+                <span class="pull-label"> 下拉刷新</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <ul class="scrollCont am-avg-sm-4 point-box p-box-borer">
+                <div class="loading-lo"></div>
+            </ul>
+			<div class="pull-action pull-up" style="bottom: 0">
+                <span class=" pull-label"> 上拉加载更多</span>
+                <span class="am-icon-supinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+ </div>
+#*
+    <div class="pro-list">
+		
+        #if($!{gridResult.list})
+            #foreach($good in ${gridResult.list})
+                <div class="item">
+                    <div class="img-wrap">
+                        <a href="$!{CONTEXT_PATH}/gdsdetail/${good.id}-${good.firstSkuId}" target="_blank" title="$!{good.gdsNameSrc}">
+                            <img src="$good.imageUrl" alt="">
+                        </a>
+                    </div>
+                    <div class="item-cont">
+                        <p class="p-tit">
+                            #if($!{good.promotionType})
+                                <span class="p-color p-color-radius">活动</span>
+                            #end
+
+                            $!{good.gdsName}
+                        </p>
+
+                        <p class="p-tip">包邮</p>
+
+                        <p class="p-ll clearfix">
+                            <span class="p-color">浏览过的书</span></p>
+
+                        <p class="p-line"><span class="c-orange">#money($!{good.discountPrice})</span><span class="pull-right p-font">$!{good.sales}人付款</span>
+                        </p>
+                    </div>
+                </div>
+            #end
+        #end
+
+    </div>*#
+</div>
+
+<script type="text/html" id="wrapper2-tpl">
+{{if values.datas !=null && values.datas.length > 0 }}
+    {{each values.datas as obj i}}
+    <li class="item">
+        <div class="img-wrap">
+			{{if values.adid==null || values.adid==0}}
+            <a href="$!{CONTEXT_PATH}/gdspointdetail/{{obj.id}}-{{obj.firstSkuId}}" target="_self" title="{{obj.gdsNameSrc}}">
+                <img src="{{obj.imageUrl}}" alt="">
+            </a>
+			{{else}}
+			<a href="$!{CONTEXT_PATH}/gdspointdetail/{{obj.id}}-{{obj.firstSkuId}}?linktype=1&adid={{values.adid}}" target="_self" title="{{obj.gdsNameSrc}}">
+                <img src="{{obj.imageUrl}}" alt="">
+            </a>
+			{{/if}}
+        </div>
+        <p class="point-line">{{#obj.gdsName}}</p>
+        
+        <div class="p-point ">
+        	{{if obj.score != 0 }}
+        		{{if obj.defaultPrice == 0}}
+        	 		<span class="p-point-p c-orange">{{obj.score}}<span class="p-point-size">积分</span></span>
+        	 	{{else}}
+        	 		<span class="p-point-p c-orange">{{obj.score}}<span class="p-point-size">积分+￥{{obj.defaultPriceOfYun}}</span></span>
+        	 	{{/if}}
+        	{{else}}
+        	 		<span class="p-point-p c-orange">￥{{obj.defaultPriceOfYun}}</span></span>
+        	{{/if}}
+        	<a class="pbtn" href="$!{CONTEXT_PATH}/gdspointdetail/{{obj.id}}-{{obj.firstSkuId}}" target="_self" >换购</a>
+    	</div>
+    </li>
+    {{/each}}
+    {{else}}
+
+        ##判断是否是刷新到某一页没数据的情况
+        {{if values.total==0}}
+            {{if values.shopId}}
+            <div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$!{IMAGE_PATH}/nodata01.png" alt="">
+                </div>
+                <div class="tip-bold">
+                    很遗憾
+                </div>
+                <div class="tip-txt">
+                    没有相关商品
+                </div>
+                {{if values.category}}
+                <div class="nodata-btn"><a href="$!{CONTEXT_PATH}/category" class="btn btn-bred">查看商品分类</a></div>
+                {{/if}}
+            </div>
+            {{else}}
+            <div class="pro-empty">
+                暂无搜索记录
+            </div>
+            {{/if}}
+        {{/if}}
+
+    {{/if}}
+</script>
+			

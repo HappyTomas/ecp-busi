@@ -1,0 +1,14 @@
+#parse("/sys/sys_param.vm")
+<div class="ui-content">
+    <div class="error-box">
+        <p><img src="$IMAGE_PATH/error01.png" alt=""/></p>
+    </div>
+    <div class="error-box e-font">
+        <p>系统出错，请稍后再试！</p>
+    </div>
+	<div class=" e-btn text-center">
+        <a href="$!{CONTEXT_PATH}/homepage" class="ebtn">
+            <i class="icon icon-sx"></i>返回首页
+        </a>
+    </div>
+</div>

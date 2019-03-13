@@ -1,0 +1,12 @@
+<table>
+    <tbody>
+        #foreach($param in $!{category-relation})
+        	<tr>
+                <td style="width:120px;">$!{param.catgCodeName}</td>
+				<td> < > </td>
+				<td>$!{param.outCatgCodeName}</td>
+                <td class="handle"><a href="javascript:void(0);" onclick="ACTION_RELATION.DELETE('$!{param.id}', 'category')">删除</a> </td>
+            </tr>
+        #end
+    </tbody>
+</table>

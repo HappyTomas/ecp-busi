@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    <bean id="ordOfflineBelongRSVImpl" class="com.zengshi.ecp.order.dubbo.impl.OrdOfflineBelongRSVImpl"></bean>
+	<bean id="ordCartSV" class="com.zengshi.ecp.order.service.busi.impl.OrdCartSVImpl"></bean>
+	<bean id="ordCartItemSV" class="com.zengshi.ecp.order.service.busi.impl.OrdCartItemSVImpl"></bean>
+	<bean id="ordDeliveryBatchSV" class="com.zengshi.ecp.order.service.busi.impl.OrdDeliveryBatchSVImpl"></bean>
+	<bean id="ordDeliveryDetailsSV" class="com.zengshi.ecp.order.service.busi.impl.OrdDeliveryDetailsSVImpl"></bean>
+	<bean id="ordEntityChangeSV" class="com.zengshi.ecp.order.service.busi.impl.OrdEntityChangeSVImpl"></bean>
+	<bean id="ordDeliveryEntitySV" class="com.zengshi.ecp.order.service.busi.impl.OrdDeliveryEntitySVImpl"></bean>
+	<bean id="ordEntityImportSV" class="com.zengshi.ecp.order.service.busi.impl.OrdEntityImportSVImpl"></bean>
+	<bean id="ordFileImportSV" class="com.zengshi.ecp.order.service.busi.impl.OrdFileImportSVImpl"></bean>
+	<bean id="ordMainShopIdxSV" class="com.zengshi.ecp.order.service.busi.impl.OrdMainShopIdxSVImpl"></bean>
+	<bean id="ordMainStaffIdxSV" class="com.zengshi.ecp.order.service.busi.impl.OrdMainStaffIdxSVImpl"></bean>
+	<bean id="ordMainSV" class="com.zengshi.ecp.order.service.busi.impl.OrdMainSVImpl" depends-on="beanDefinitionManager"></bean>
+	<bean id="ordSubSV" class="com.zengshi.ecp.order.service.busi.impl.OrdSubSVImpl"></bean>
+	<bean id="ordTrackSV" class="com.zengshi.ecp.order.service.busi.impl.OrdTrackSVImpl"></bean>
+	<bean id="ordEntityChkSV" class="com.zengshi.ecp.order.service.busi.impl.OrdEntiytChkSVImpl"></bean>
+	<bean id="ordInvoiceGiftSV" class="com.zengshi.ecp.order.service.busi.impl.OrdGiftSVImpl"></bean>
+	<bean id="ordInvoiceCommSV" class="com.zengshi.ecp.order.service.busi.impl.OrdInvoiceCommSVImpl"></bean>
+	<bean id="ordInvoiceTaxSV" class="com.zengshi.ecp.order.service.busi.impl.OrdInvoiceTaxSVImpl"></bean>
+	<bean id="ordPromSV" class="com.zengshi.ecp.order.service.busi.impl.OrdPromSVImpl"></bean>
+	<bean id="ordPresentSV" class="com.zengshi.ecp.order.service.busi.impl.OrdPresentSVImpl"></bean>
+	<bean id="ordDiscountSV" class="com.zengshi.ecp.order.service.busi.impl.OrdDiscountSVImpl"></bean>						
+	<bean id="ordDealFileSV" class="com.zengshi.ecp.order.service.busi.impl.OrdDealFileSVImpl"></bean>
+	<bean id="ordEntityMainSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdEntityMainSVImpl"></bean>
+	<bean id="ordEntitySubSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdEntitySubSVImpl"></bean>
+	<bean id="ordDeliveryMainSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdDeliveryMainSVImpl"></bean>
+	<bean id="ordDeliverySubGdsSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdDeliverySubGdsSVImpl"></bean>
+	<bean id="ordReceiptMainSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdReceiptMainSVImpl"></bean>
+	<bean id="ordReceiptSubGdsSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdReceiptSubGdsSVImpl"></bean>
+	<bean id="ordDeliveryChkSV" class="com.zengshi.ecp.order.service.busi.impl.OrdDeliveryChkSVImpl"></bean>
+	<bean id="ordOfflineSVImpl" class="com.zengshi.ecp.order.service.busi.impl.OrdOfflineSVImpl"></bean>
+	<bean id="ordOfflineChkSVImpl" class="com.zengshi.ecp.order.service.busi.impl.OrdOfflineChkSVImpl"></bean>
+	<bean id="ordOfflinePicSVImpl" class="com.zengshi.ecp.order.service.busi.impl.OrdOfflinePicSVImpl"></bean>
+	<bean id="ordSubShopIdxSV" class="com.zengshi.ecp.order.service.busi.impl.OrdSubShopIdxSVImpl"></bean>
+	<bean id="ordSubStaffIdxSV" class="com.zengshi.ecp.order.service.busi.impl.OrdSubStaffIdxSVImpl"></bean>
+	<!--<bean id="payWaySV" class="com.zengshi.ecp.order.service.busi.impl.pay.PayWaySVImpl"></bean>-->
+	<bean id="payShopCfgSV" class="com.zengshi.ecp.order.service.busi.impl.pay.PayShopCfgSVImpl"></bean>
+	<bean id="payRequestSV" class="com.zengshi.ecp.order.service.busi.impl.pay.PayRequestSVImpl"></bean>
+	<bean id="payIntfReqLogSV" class="com.zengshi.ecp.order.service.busi.impl.pay.PayIntfReqLogSVImpl"></bean>
+	<bean id="payIntfNotifyLogSV" class="com.zengshi.ecp.order.service.busi.impl.pay.PayIntfNotifyLogSVImpl"></bean>
+	<bean id="payBindReqSV" class="com.zengshi.ecp.order.service.busi.impl.pay.PayBindReqSVImpl"></bean>
+	<bean id="payBindSV" class="com.zengshi.ecp.order.service.busi.impl.pay.PayBindSVImpl"></bean>
+	<bean id="payResultSV" class="com.zengshi.ecp.order.service.busi.impl.pay.PayResultSVImpl"></bean>
+	<bean id="payRepeatSV" class="com.zengshi.ecp.order.service.busi.impl.pay.PayRepeatSVImpl"></bean>
+	<bean id="payQuartzInfoSV" class="com.zengshi.ecp.order.service.busi.impl.pay.PayQuartzInfoSVImpl"></bean>
+	<bean id="paymentSV" class="com.zengshi.ecp.order.facade.impl.eventual.PaymentSVImpl"></bean>
+	<bean id="payScoreSV" class="com.zengshi.ecp.order.facade.impl.eventual.PayScoreSVImpl"></bean>
+	<bean id="payCoupSV" class="com.zengshi.ecp.order.facade.impl.eventual.PayCoupSVImpl"></bean>
+	<bean id="ordOfflinePaySV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdOfflinePaySVImpl"></bean>
+	
+	<bean id="defaultPayWay" class="com.zengshi.ecp.order.service.busi.impl.pay.DefaultPayWay"></bean>
+	<bean id="defaultPayPlatform" class="com.zengshi.ecp.order.service.busi.impl.pay.DefaultPayPlatform" parent="defaultPayWay"></bean>
+	<bean id="abcPayWay" class="com.zengshi.ecp.order.service.busi.impl.pay.ABCPayWay" parent="defaultPayWay"></bean>
+	<bean id="hongpayPlatform" class="com.zengshi.ecp.order.service.busi.impl.pay.HongpayPlatform" parent="defaultPayPlatform"></bean>
+	<bean id="alipay" class="com.zengshi.ecp.order.service.busi.impl.pay.Alipay" parent="defaultPayWay"></bean>
+	<bean id="wechatpay" class="com.zengshi.ecp.order.service.busi.impl.pay.WeChatPay" parent="defaultPayWay"></bean>
+	<bean id="weixinpay" class="com.zengshi.ecp.order.service.busi.impl.pay.WeiXinPay" parent="defaultPayWay"></bean>
+	<bean id="weixinapppay" class="com.zengshi.ecp.order.service.busi.impl.pay.WeiXinAppPay" parent="defaultPayWay"></bean>
+	<bean id="goodPayedSV" class="com.zengshi.ecp.order.service.busi.impl.report.GoodPayedSVImpl"></bean>
+	<bean id="goodStaffPayedSV" class="com.zengshi.ecp.order.service.busi.impl.report.GoodStaffPayedSVImpl"></bean>
+	<bean id="ordOperChkSV" class="com.zengshi.ecp.order.service.busi.impl.OrdOperChkSVImpl"></bean>
+	<bean id="thingLockSV" class="com.zengshi.ecp.order.service.busi.impl.ThingLockSVImpl"></bean>
+	<bean id="ordZreoSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdZreoSVImpl"></bean>
+	<bean id="auditDailySumSV" class="com.zengshi.ecp.order.service.busi.impl.pay.audit.AuditDailySumSVImpl"></bean>
+	<bean id="auditFileDealLogSV" class="com.zengshi.ecp.order.service.busi.impl.pay.audit.AuditFileDealLogSVImpl"></bean>
+	<bean id="auditAutoLogSV" class="com.zengshi.ecp.order.service.busi.impl.pay.audit.AuditAutoLogSVImpl"></bean>
+	<bean id="auditTradeCheckSV" class="com.zengshi.ecp.order.service.busi.impl.pay.audit.AuditTradeCheckSVImpl"></bean>
+	<bean id="auditAlipayDetailSV" class="com.zengshi.ecp.order.service.busi.impl.pay.audit.AuditAlipayDetailSVImpl"></bean>
+	<bean id="auditABCPayDetailSV" class="com.zengshi.ecp.order.service.busi.impl.pay.audit.AuditABCPayDetailSVImpl"></bean>
+	<bean id="auditHongpayDetailSV" class="com.zengshi.ecp.order.service.busi.impl.pay.audit.AuditHongpayDetailSVImpl"></bean>
+	<bean id="auditAlipaySV" class="com.zengshi.ecp.order.service.busi.impl.pay.audit.AuditAlipaySVImpl"></bean>
+	<bean id="auditABCPaySV" class="com.zengshi.ecp.order.service.busi.impl.pay.audit.AuditABCPaySVImpl"></bean>
+	<bean id="auditHongpaySV" class="com.zengshi.ecp.order.service.busi.impl.pay.audit.AuditHongpaySVImpl"></bean>
+	<bean id="payRefundResultSV" class="com.zengshi.ecp.order.service.busi.impl.pay.PayRefundResultSVImpl"></bean>
+	<!--<bean id ="ordBackApply" class="com.zengshi.ecp.order.service.busi.impl.OrdBackApplySVImpl"></bean>-->
+	<!--<bean id ="ordBackShopIdx" class="com.zengshi.ecp.order.service.busi.impl.OrdBackShopIdxSVImpl"></bean>-->
+	<bean id ="ordBackStaffIdx" class="com.zengshi.ecp.order.service.busi.impl.OrdBackStaffIdxSVImpl"></bean>
+	<bean id ="ordBackCoupon" class="com.zengshi.ecp.order.service.busi.impl.OrdBackCouponSVImpl"></bean>
+	<bean id ="ordBackDetail" class="com.zengshi.ecp.order.service.busi.impl.OrdBackDetailSVImpl"></bean>
+	<bean id ="ordBackDiscount" class="com.zengshi.ecp.order.service.busi.impl.OrdBackDiscountSVImpl"></bean>
+	<bean id ="ordBackGds" class="com.zengshi.ecp.order.service.busi.impl.OrdBackGdsSVImpl"></bean>
+	<bean id ="ordBackGift" class="com.zengshi.ecp.order.service.busi.impl.OrdBackGiftSVImpl"></bean>
+	<bean id ="ordBackPic" class="com.zengshi.ecp.order.service.busi.impl.OrdBackPicSVImpl"></bean>
+	<bean id ="ordBackTrack" class="com.zengshi.ecp.order.service.busi.impl.OrdBackTrackSVImpl"></bean>
+	<bean id ="ordPayRelSV" class="com.zengshi.ecp.order.service.busi.impl.OrdPayRelSVImpl"></bean>
+	<bean id ="ordCalculateSV" class="com.zengshi.ecp.order.service.busi.impl.OrdCalculateSVImpl"></bean>
+	<!--<bean id="backPayCouponSV" class="com.zengshi.ecp.order.facade.impl.eventual.BackPayCouponSVImpl"></bean>-->
+	<bean id="backPayGoodsSV" class="com.zengshi.ecp.order.facade.impl.eventual.BackPayGoodsSVImpl"></bean>
+	<bean id="backPayOrderSV" class="com.zengshi.ecp.order.facade.impl.eventual.BackPayOrderSVImpl" depends-on="beanDefinitionManager"></bean>
+	<!--<bean id="backPayStaffSV" class="com.zengshi.ecp.order.facade.impl.eventual.BackPayStaffSVImpl"></bean>-->
+	<bean id="backPayPromSV" class="com.zengshi.ecp.order.facade.impl.eventual.BackPayPromSVImpl"></bean>
+	<bean id="ordRemoveOrderSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdRemoveOrderSVImpl"></bean>
+	<bean id="ordRemoveCouponSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdRemoveCouponSVImpl"></bean>
+	<bean id="ordRemoveGoodsSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdRemoveGoodsSVImpl"></bean>
+	<bean id="ordRemovePromSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdRemovePromSVImpl"></bean>
+	<bean id="ordRemoveStaffSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdRemoveStaffSVImpl"></bean>
+    <bean id="ordGdsSaleSV" class="com.zengshi.ecp.order.service.busi.impl.report.OrdGdsSaleSVImpl"></bean>
+	<bean id="orderSubmitGoodsRSV" class="com.zengshi.ecp.order.dubbo.impl.orderSubmit.OrderSubmitGoodsRSVImpl"></bean>
+	<bean id="orderSubmitPromRSV" class="com.zengshi.ecp.order.dubbo.impl.orderSubmit.OrderSubmitPromRSVImpl"></bean>
+	<bean id="orderSubmitStaffRSV" class="com.zengshi.ecp.order.dubbo.impl.orderSubmit.OrderSubmitStaffRSVImpl"></bean>
+	<bean id="orderSubmitCoupRSV" class="com.zengshi.ecp.order.dubbo.impl.orderSubmit.OrderSubmitCoupRSVImpl"></bean>
+	<bean id="orderBackSV" class="com.zengshi.ecp.order.service.busi.impl.OrderBackSVImpl"></bean>
+	<bean id="orderSubmitProInitRSV" class="com.zengshi.ecp.order.dubbo.impl.orderSubmit.OrderSubmitProInitRSVImpl">
+		<property name="orderSubmitProRSVs">
+			<list>
+				<ref bean="orderSubmitGoodsRSV"/>
+				<ref bean="orderSubmitPromRSV"/>
+				<ref bean="orderSubmitStaffRSV"/>
+				<ref bean="orderSubmitCoupRSV" />
+			</list>
+		</property>
+	</bean>
+    <bean id="workbrancOrderMainInfoSV" class="com.zengshi.ecp.order.service.busi.workplat.impl.OrderMainInfoSVImpl"></bean>
+	<bean class="com.zengshi.ecp.frame.bean.BeanSet">
+		<constructor-arg>
+			<set>
+			<!--	<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="interfaceClass" value="com.zengshi.ecp.order.dubbo.interfaces.IOrderSubmitProInitRSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.order.dubbo.impl.orderSubmit.OrderSubmitProInitRSVImpl"></property>
+				</bean>-->
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="interfaceClass" value="com.zengshi.ecp.order.service.busi.interfaces.IOrdExportFileSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.order.service.busi.impl.OrdExportFileSVImpl"></property>
+				</bean>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="interfaceClass" value="com.zengshi.ecp.order.service.busi.interfaces.pay.IPayWaySV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.order.service.busi.impl.pay.PayWaySVImpl"></property>
+				</bean>
+
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="interfaceClass" value="com.zengshi.ecp.order.service.busi.interfaces.IOrdBackShopIdxSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.order.service.busi.impl.OrdBackShopIdxSVImpl"></property>
+				</bean>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="beanName" value="backPayStaffSV"></property>
+					<property name="interfaceClass" value="com.zengshi.ecp.order.facade.interfaces.eventual.IBackPayStaffSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.order.facade.impl.eventual.BackPayStaffSVImpl"></property>
+				</bean>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="beanName" value="backPayCouponSV"></property>
+					<property name="interfaceClass" value="com.zengshi.ecp.order.facade.interfaces.eventual.IBackPayCouponSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.order.facade.impl.eventual.BackPayCouponSVImpl"></property>
+
+				</bean>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="interfaceClass" value="com.zengshi.ecp.order.service.busi.interfaces.pay.IRefundCallbackSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.order.service.busi.impl.pay.RefundCallbackSV"></property>
+				</bean>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="interfaceClass" value="com.zengshi.ecp.order.service.busi.interfaces.IOrdBackApplySV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.order.service.busi.impl.OrdBackApplySVImpl"></property>
+				</bean>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="interfaceClass" value="com.zengshi.ecp.order.service.busi.interfaces.ImOrdBelongService"></property>
+					<property name="beanClass" value="com.zengshi.ecp.order.service.busi.impl.ImOrdBelongServiceImpl"></property>
+				</bean>
+			</set>
+		</constructor-arg>
+	</bean>
+	<bean id="orderWorkPlatSV" class="com.zengshi.ecp.order.service.busi.workplat.impl.OrderWorkPlatSVImpl"></bean>
+	<bean id="ordBackApplyEtSV" class="com.zengshi.ecp.order.service.busi.impl.OrdBackApplyEtSVImpl"></bean>
+	<bean id="orderExpressSV" class="com.zengshi.ecp.order.service.busi.impl.OrderExpressSVImpl"></bean>
+	<bean id="ordExpressReqLogSV" class="com.zengshi.ecp.order.service.busi.impl.OrdExpressReqLogSVImpl"></bean>
+	<bean id="ordDeliverExpressSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdDeliverExpressSVImpl"></bean>
+	<bean id="ordExportSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdExportSVImpl"></bean>
+	<bean id="ordExportSaleDetailSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdExportSaleDetailSVImpl"></bean>
+	<bean id="ordSubShareSV" class="com.zengshi.ecp.order.service.busi.impl.OrdSubShareSVImpl"></bean>
+	<bean id="ordExportOrdSV" class="com.zengshi.ecp.order.facade.impl.eventual.OrdExportOrdSVImpl"></bean>
+	<bean id="ordOfflineBelongSV" class="com.zengshi.ecp.order.service.busi.impl.OrdOfflineBelongSVImpl"></bean>
+</beans>

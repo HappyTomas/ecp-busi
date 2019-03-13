@@ -1,0 +1,58 @@
+#parse("/sys/sys_head.vm")
+#parse("/module/mod-form.vm")
+<style type="text/css">
+	<!--
+	.f_error span.error {
+       color: #C62626;
+    }
+	.f_error input, .f_error select, .f_error textarea {
+        color: #C62626;
+        border-color: #C62626;
+    }
+	-->
+</style>
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsmgr/shiptemp-grid.js?version=$!{JS_VERSION}" ></script>
+<body style="background-color:#FFFFFF">
+<div class="seller-well">
+    <form id="searchForm" action="" class="form-horizontal required-validate">
+		<input type="hidden" value="" id="shopId" name="shopId"/>
+		<input type="hidden" value="" id="gdsId" name="gdsId"/>
+		<input type="hidden" value="" id="catgCode" name="catgCode"/>
+       <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+						<label class="control-label">模板编码：</label>
+						<div class="controls">
+							<input type="text" name="shipTemplateId" class="input-block-level digits" value="" placeholder="输入模板编码">
+						</div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="control-group">
+						<label class="control-label">模板名称：</label>
+						<div class="controls">
+							<input type="text" name="shipTemplateName" class="input-block-level" value="" placeholder="输入模板名称">
+						</div>
+					</div>
+                </div>
+        </div>
+		<div class="sbtn-group">
+			 <div class="btn-wrap btn-w-right">
+                 <span class="sbtn sbtn-blue" id="btnFormSearch">查询</span>
+                 <span class="sbtn" id="btnFormReset">重置</span>
+             </div>
+		</div>
+    </form>
+</div>
+                
+<div class="seller-tab">
+    <div class="tab-content" id="listDiv">
+    </div>
+</div>
+<div class="btn-wrap">
+    <span class="sbtn sbtn-blue" id="saveGdsInfo">保存</span>
+    <span class="sbtn" id="btnReturn">关闭</span>
+</div>
+	</body>

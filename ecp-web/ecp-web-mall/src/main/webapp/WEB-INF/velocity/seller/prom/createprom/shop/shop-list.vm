@@ -1,0 +1,28 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/createprom/shop-list.js?version=$!{JS_VERSION}" ></script>
+	   <table  class="seller-table mt15 table-striped" id="shopTable">
+           <thead>
+		           <tr>
+		                <td style="width:20px">选择</td>
+		                <td style="width:20px">店铺编码</td>
+		                <td style="width:20px">店铺名称</td>
+		            </tr>
+           </thead>
+           <tbody>
+	        	#if(!$shopPage.getResult()||$shopPage.count==0)
+	        		<tr><td colspan='3'>很遗憾，暂无数据。</td><tr>
+	        	#end
+	        	#foreach($attr in $shopPage.getResult())
+	        		<tr>
+	        			<td ><input type="radio" name="shopName"  value="$!{attr.Id}"  /></td>
+		                <td >$!{attr.Id}</td>
+		                <td >#escapeHtml( "$!{attr.shopName}")</td>
+		            </tr>
+				#end
+			</tbody>
+	   </table>
+	   <div class="fav-opt clearfix" style="margin-top: 20px;">
+	        <div class="row-fluid">
+				<div id="pageControlbar" class="ecppage" data-total-page="${shopPage.pageCount}" data-total-row="${shopPage.count}" data-page-size="${shopPage.pageSize}" data-page-number="${shopPage.pageNo}" data-status="begin"></div>
+			</div>
+	   </div>

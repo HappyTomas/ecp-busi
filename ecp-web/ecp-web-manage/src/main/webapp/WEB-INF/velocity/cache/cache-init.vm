@@ -1,0 +1,205 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cache/cache-init.js?version=$!{JS_VERSION}" ></script>
+
+			<h3 class="heading">清理缓存信息</h3>
+		
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理区域缓存信息</label>
+							<span>缓存数据来源：t_base_area_admin ；对该表的缓存信息进行清理</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="AreaAdmin" id="btn-clear-area"><i class="icon-ok"></i>清理区域缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理业务参数缓存信息</label>
+							<span>缓存数据来源：t_base_param_cfg ；对该表的缓存信息进行清理；业务参数缓存定义：t_base_param_cfg ; t_base_param_simple; t_base_param_dynamic</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="BaseParam" id="btn-clear-baseparam"><i class="icon-ok"></i>清理业务参数缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理系统参数缓存信息</label>
+							<span>缓存数据来源：t_base_sys_config ；对该表的缓存信息进行清理；</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="SysParam" id="btn-clear-sysparam"><i class="icon-ok"></i>清理系统参数缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+						
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理店铺参数缓存信息</label>
+							<span>缓存数据来源：t_shop_info ；对该表的缓存信息进行清理；</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="ShopCache" id="btn-clear-sysparam"><i class="icon-ok"></i>清理系统参数缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+						
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理企业参数缓存信息</label>
+							<span>缓存数据来源：t_company_info ；对该表的缓存信息进行清理；</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="CompanyCache" id="btn-clear-sysparam"><i class="icon-ok"></i>清理系统参数缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+					
+					 <div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理促销类型信息参数缓存信息</label>
+							<span>缓存数据来源：t_prom_type；对该表的缓存信息进行清理；</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="PromTypeCache" id="btn-clear-promtypeparam"><i class="icon-ok"></i>清理系统参数缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+					
+					 <div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理促销类型提醒信息参数缓存信息</label>
+							<span>缓存数据来源：t_prom_type_msg ；对该表的缓存信息进行清理；</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="PromTypeMsgCache" id="btn-clear-promtypemsgparam"><i class="icon-ok"></i>清理系统参数缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理优惠券类型缓存信息</label>
+							<span>缓存数据来源：t_coup_type ；对该表的缓存信息进行清理；</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="CoupTypeCache" id="btn-clear-CoupTypeCache"><i class="icon-ok"></i>清理系统参数缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理站点缓存信息</label>
+							<span>缓存数据来源：t_cms_site ；对该表的缓存信息进行清理；</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="CmsSiteCache" id="btn-clear-CmsSiteCache"><i class="icon-ok"></i>清理系统参数缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理积分配置参数缓存信息</label>
+							<span>缓存数据来源：t_score_func_def,t_score_func_para,t_score_action,t_score_type ；对表的缓存信息进行清理；</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="ScoreConfigCache" id="btn-clear-ScoreConfigCache"><i class="icon-ok"></i>清理积分配置参数缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理菜单缓存信息</label>
+							<span>对菜单表的缓存信息进行清理；</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="MenuCache" id="btn-clear-MenuCache"><i class="icon-ok"></i>缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理商品分类缓存信息</label>
+							<span>对商品分类的缓存信息进行清理；</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="GdsCategoryCache" id="btn-clear-MenuCache"><i class="icon-ok"></i>清理分类缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>	
+					
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理商品缓存</label>
+							<span>对输入的对应的单个商品编码的商品缓存信息进行清理；</span>
+							<div class="controls">
+								<input type="text" id="gdsId" name="gdsId" placeholder="输入商品编码"/>
+								<button type="button" class="btn btn-danger" id="btn-clear-singleGds"><i class="icon-ok"></i>清理单个商品缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>	
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理所有商品缓存</label>
+							<span>对所有商品缓存信息进行清理；</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger" id="btn-clear-allGds"><i class="icon-ok"></i>清理所有商品缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+					
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理所有站点与目录关系缓存</label>
+							<span>对所有站点与目录关系缓存进行清理:</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="GdsCatalog2SiteCache" id="btn-clear-GdsCatalog2SiteCache"><i class="icon-ok"></i>清理所有站点与目录关系缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>	
+					
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理所有目录缓存</label>
+							<span>对所有目录缓存进行清理:</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="GdsCatalogCache" id="btn-clear-GdsCatalogCache"><i class="icon-ok"></i>清理所有目录缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">清理所有商品类型缓存</label>
+							<span>对所有商品类型缓存进行清理:</span>
+							<div class="controls">
+								<button type="button" class="btn btn-danger pclear" p-type="GdsTypeCache" id="btn-clear-GdsTypeCache"><i class="icon-ok"></i>清理所有商品类型缓存</button>
+								<br/>
+								<span class="clear-msg"></span>
+							</div>
+						</div>
+					</div>
+					
+					

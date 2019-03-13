@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://code.alibabatech.com/schema/dubbo  
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+	">
+
+    <dubbo:reference id="tokenRSV" interface="com.zengshi.ecp.aip.third.dubbo.interfaces.ITokenRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aipthird.dubbo.group}"/>
+
+   <dubbo:reference id="gdsSendRSV" interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IGdsSendRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aipthird.dubbo.group}"/>
+
+   <dubbo:reference id="ordDetialRSV" interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IOrdDetialRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aipthird.dubbo.group}"/>
+
+   <dubbo:reference id="userPermitRSV" interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IUserPermitRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aipthird.dubbo.group}"/>
+
+   <dubbo:reference id="catgRSV" interface="com.zengshi.ecp.aip.third.dubbo.interfaces.ICatgRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aipthird.dubbo.group}"/>
+
+   <dubbo:reference id="orderShipRSV" interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IOrderShipRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aipthird.dubbo.group}"/>
+
+   <dubbo:reference id="orderLogisticsRSV" interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IOrderLogisticsRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aipthird.dubbo.group}"/>
+
+   <dubbo:reference id="stockRSV" interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IStockRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aipthird.dubbo.group}"/>
+
+   <dubbo:reference id="thirdUploadRSV" interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IThirdUploadRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aipthird.dubbo.group}"/>
+
+   <dubbo:reference id="youzanOrderRSV" interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IYouzanOrderRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aipthird.dubbo.group}"/>
+
+
+</beans>  

@@ -1,0 +1,51 @@
+
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/seller/order/payoffline-checked-list.js?version=$!{JS_VERSION}" ></script>
+
+<div >
+
+                <table class="seller-table">
+                    <thead>
+                    <tr>
+                        <td style="width: 170px">买家账号</td>
+                        <td style="width: 150px">订单编号</td>
+                        <td style="width: 150px">下单时间</td>
+                        <td>金额</td>
+                        <td>支付方式</td>
+						<td>审核状态</td>
+						<td>审核工号</td>
+						<td style="width: 150px">审核意见</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+					#if(!$checkedlistPage.list || $checkedlistPage.list.size() == 0)
+            	       <tr class="fav-opt">
+            			<td colspan="8">
+            			        #if(!$msg)很遗憾，暂无数据#else $!msg #end
+            			</td>
+            		</tr>
+            	    #end
+            		#foreach ($record in $checkedlistPage.list)
+                    <tr>
+                        <td>$!{record.staffName}</td>
+						<td><a href="javascript:void(0);" class="orderId">$!{record.orderId}</a></td>
+                        <td>$date.format('yyyy-MM-dd HH:mm:ss',$!{record.orderTime})</td>
+                        <td>#moneyNum($!{record.realMoney})</td>
+                        <td>#translate('ORD_PAY_TYPE',$!{record.applyType})</td>
+						#if($!{record.status}=='1')
+						<td>已通过</td>
+						#elseif($!{record.status}=='2')
+						<td>未通过</td>
+						#end
+						<td>$!{record.adminName}</td>
+						<td class="td-hhtxt">$!{record.checkCont}</td>
+                    </tr>
+					#end
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="row-fluid">
+                    <div id="pageControlbar" class="ecppage" data-total-page="$!{checkedlistPage.totalPage}" data-total-row="$!{checkedlistPage.totalRow}" data-page-size="$!{checkedlistPage.pageSize}" data-page-number="$!{checkedlistPage.pageNumber}" data-status="begin"></div>
+                </div>
+</div>

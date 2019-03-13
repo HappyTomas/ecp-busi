@@ -1,0 +1,144 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+#parse("/module/mod-editor.vm")
+##parse("/module/mod-upload.vm")
+##parse("/seller/goods/gdsinfoentry/upload-css.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/scrollTo/jquery.scrollTo.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/nav/jquery.nav.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.editor.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsinfoentry/gdsInfoEdit/gdsInfoEdit.js?version=$!{JS_VERSION}" ></script>
+##隐藏域BEGIN
+<input type="hidden" value="$!{copyFlag}" id="copyFlag"/>
+<input type="hidden" value="$!{basics}" id="basics"/>
+<input type="hidden" value="$!{params}" id="params"/>
+<input type="hidden" value="$!{others}" id="others"/>
+<input type="hidden" value="$!{PROP_VALUE_TYPE_1}" id="PROP_VALUE_TYPE_1"/>
+<input type="hidden" value="$!{PROP_VALUE_TYPE_2}" id="PROP_VALUE_TYPE_2"/>
+<input type="hidden" value="$!{PROP_VALUE_TYPE_3}" id="PROP_VALUE_TYPE_3"/>
+<input type="hidden" value="$!{PROP_VALUE_TYPE_4}" id="PROP_VALUE_TYPE_4"/>
+<input type="hidden" value="$!{stock-switch}" id="stock-switch"/>
+<input type="hidden" value="$!{price-switch}" id="price-switch"/>
+<input type="hidden" value="$!{multi-switch}" id="multi-switch"/>
+<input type="hidden" value="$!{skuList}" id="skuList"/>
+<input type="hidden" value="$!{gdsId}" id="gdsId"/>
+<input type="hidden" value="$!{gdsInfo.gdsDesc}" id="GDS_DESC"/>
+<input type="hidden" value="$!{gdsInfo.gdsPartlist}" id="GDS_PARTLIST"/>
+<input type="hidden" value="$!{GDS_CATEGORY_MAX_COUNT}" id="GDS_CATEGORY_MAX_COUNT"/>
+<input type="hidden" value="$!{gdsInfo.mainCategory.catgCode}" id="mainCategory"/>
+##隐藏域END
+<style type="text/css">
+	<!--
+	.f_error span.error {
+       color: #C62626;
+    }
+	.f_error input, .f_error select, .f_error textarea {
+        color: #C62626;
+        border-color: #C62626;
+    }
+	-->
+</style>
+<div class="alert alert-error hide formValidateMessages">
+</div>
+##是否是纸质书
+#set($isDataPaper = 0)
+#foreach($value in $!{gdsInfo.allPropMaps.get('1028').values})
+	#if($!{value.id}=='306')
+		#set($isDataPaper = 1)
+	#end
+#end
+
+
+
+<div id="gds-top"/>
+<form id="baseInfoForm" class="form-horizontal required-validate" method="post">
+	<input type="hidden" value="$!{catgCode}" id="catgCode"/>
+	<!--分类信息-->
+	#parse("/seller/goods/gdsinfoentry/gdsinfoedit/gds-category-edit.vm")
+	<!--基本信息-->    
+	#parse("/seller/goods/gdsinfoentry/gdsinfoedit/gds-baseInfo-edit.vm")
+</form>
+
+<form id="gdsSkuForm" class="form-horizontal required-validate" method="post">
+	<!--单品规格设置-->    
+	#parse("/seller/goods/gdsinfoentry/gdsinfoedit/gds-skuParam-edit.vm")
+</form>
+<form id="priceSettingForm" class="form-horizontal required-validate" method="post">
+	<!--价格设置-->    
+	#parse("/seller/goods/gdsinfoentry/gdsinfoedit/gds-priceSetting-edit.vm")
+</form>
+
+<!--商品图片、视频-->    
+ #parse("/seller/goods/gdsinfoentry/gdsinfoedit/gds-pictrues-edit.vm")
+ 
+<form id="attributeForm" class="form-horizontal required-validate" method="post">
+	<!--参数属性设置-->
+	#parse("/seller/goods/gdsinfoentry/gdsinfoedit/gds-attributes-edit.vm")
+</form>
+
+<form id="settingForm" class="form-horizontal" method="post">
+	<!--高级设置tab页-->
+	#parse("/seller/goods/gdsinfoentry/gdsinfoedit/gds-setting-edit.vm")
+</form>
+
+<form id="decriptionForm" class="form-horizontal required-validate"  method="post">
+	##添加一个导航锚点.
+	#if($!{rspDto.editoParam})
+         <div id="gds-description"/>
+	#end
+	<!--描述信息-->    
+	#parse("/seller/goods/gdsinfoentry/gdsinfoedit/gds-decription-edit.vm")
+</form>
+
+
+##审核部份BEGIN
+#if($!{gdsVerifyFlag}=='1')
+	<input type="hidden" value="$!{gdsVerifyFlag}" id="gdsVerifyFlag"/>
+	<form id="gdsVerify" class="form-horizontal required-validate" style="margin-top: 20px;">
+		<div class="row-fluid">
+            <div class="span12">
+                <div class="control-group">
+                    <label class="control-label">审核意见：</label>
+
+                    <div class="controls">
+						<textarea rows="3" class="span7 required" id="verifyOption"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="btn-wrap" id="gds-bottom">
+            <span class="sbtn sbtn-blue gdsVerify" value="01">审核通过</span>
+            <span class="sbtn gdsVerify" value="02">审核拒绝</span>
+		</div>
+	</form>
+#end
+##审核部份END
+
+## 操作按钮
+<div class="btn-wrap" id="gds-bottom">
+	##if($!{gdsDetailFlag}=='0')
+    ##   <span class="sbtn sbtn-blue" id="saveGdsInfo">保存</span>
+	##end
+    ##<span class="sbtn" id="backGdsManage">返回管理</span>
+    #if($!{gdsDetailFlag}=='0')
+       <button type="button" class="sbtn sbtn-blue" id="saveGdsInfo" data-loading-text="保存中...">保存</button>
+    #end
+    <button type="button" class="sbtn" id="backGdsManage">返回管理</button>
+</div>
+
+<div id="floorNav">
+	<div class="item"><a href="#gds-top">返回顶部</a></div>
+    <div class="item current"><a href="#gds-category">分类信息</a></div>
+    <div class="item"><a href="#gds-baseInfo">基本信息</a></div>
+	##if($!{multi-switch}=='1')
+    ##<div class="item"><a href="#gds-skuParam">规格设置</a></div>
+	##end
+    <div class="item"><a href="#gds-priceSetting">价格设置</a></div>
+    <div class="item"><a href="#gds-pictrues">商品图片</a></div>
+    <div class="item"><a href="#gds-attributes">属性设置</a></div>
+    <div class="item"><a href="#gds-setting">高级设置</a></div>
+	#if($!{rspDto.editoParam})
+         <div class="item"><a href="#gds-description">相关描述</a></div>
+	#end
+    <div class="item"><a href="#gds-bottom">下拉底部</a></div>
+</div>

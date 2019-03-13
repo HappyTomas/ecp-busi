@@ -1,0 +1,23 @@
+#parse("sys/sys_param.vm")
+
+<dl class="itemDl clearfix">
+    <dt><a class="itemDl-tit" href="#">积分不够？</a></dt>
+    <dd>· 现支持加现金兑换，5积分起兑</dd>
+    <dd>· 超值礼品，低至1折起</dd>
+    <ul class="itemDl-img">
+        <li class="p-img">
+            <div class="point-icon point"></div>
+			积分
+		</li>
+        <li>+</li>
+        <li class="p-img">
+            <div class="point-icon money"></div>
+			少许现金
+		</li>
+        <li>=</li>
+        <li class="p-img">
+            <div class="point-icon gift-i"></div>
+			超值礼品
+		</li>
+    </ul>
+</dl>

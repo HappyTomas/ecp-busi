@@ -1,0 +1,63 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+#parse("/module/mod-page.vm")
+#parse("sys/sys_param.vm")
+<link href="${CONTEXT_PATH}/css/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsinfoentry/senior-stock.js?version=$!{JS_VERSION}" ></script>
+    <style>
+        .main_content{
+            padding-top: 20px;
+        }
+        .ck-tb td, .ck-tb th{
+            text-align: center;
+            width: 50%;
+            vertical-align: middle;
+        }
+        .input-small{
+            margin-bottom: 0px!important;
+        }
+        .table-scroll{
+            height: 220px;
+            overflow: auto;
+        }
+    </style>
+ <div class="table-scroll">
+	<form action="" class="form-horizontal" id="seniorStockForm">
+                <table class="table table-bordered ck-tb">
+                    <thead>
+                    <tr>
+                        <th>仓库</th>
+                        <th style="min-width:50px;width:50px;">适用范围</th>
+                        <th>库存</th>
+                    </tr>
+                    </thead>
+                    <tbody id="seniorStockList">
+						#foreach($stock in $!{stockList})
+                            <tr>
+                                <td>$!{stock.repName}</td>
+								<td style="min-width:250px;width:250px;">
+									#set($areaStr = '[')
+									#foreach($area in $!{stock.stockRepAdaptDTOs})
+										#set($areaStr = $areaStr + "{country:'"+ $!{area.adaptCountry}+"',provinceCode:'"+ $!{area.adaptProvince}+"',cityCode:'"+ $!{area.adaptCity}+"'},")
+										#set($a = '，')
+										#if($velocityCount ==  $!{stock.stockRepAdaptDTOs.size()})
+											#set($a = '')
+										#end
+										#if($!{area.adaptCity})#areaName($!{area.adaptCity})#else #areaName($!{area.adaptProvince})#end$a
+									#end 
+									#set($areaStr = $areaStr +']')</td>
+                                <td><input type="text"  class="input-small" id="" repTyep="$!{stock.repType}" repCode="$!{stock.id}" areaStr="$areaStr" name="skuStock" #if($!{editFlag}=='1')disabled#else  #end maxlength="9"></td>
+                            </tr>
+						#end
+                    </tbody>
+                </table>
+				</form>
+            </div>
+<div class="row" style="text-align:center;margin-top:30px;">
+	   <button class="btn btn-primary" style="margin-right:10px;" id="btnFormSave">
+                    确认
+                </button>
+                <button class="btn" id="btnFormCancle">
+                    关闭
+                </button>
+</div>

@@ -1,0 +1,158 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/score/score-detail-grid.js?version=$!{JS_VERSION}" ></script>
+<style type="text/css">
+	table{
+	    table-layout:fixed;/* 只有定义了表格的布局算法为fixed，下面td的定义才能起作用。 */
+	}
+	td{
+	    width:100%;
+	    word-break:keep-all;/* 不换行 */
+	    white-space:nowrap;/* 不换行 */
+	    overflow:hidden;/* 内容超出宽度时隐藏超出部分的内容 */
+	    text-overflow:ellipsis;/* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+	}
+	.well-searchForm {
+	    padding: 0px 0px 10px 0px;} 
+	.btn {
+	    display: inline-block;
+	    padding: 2px 12px;}
+	 .tab-tit{
+	  	font-size:12px;
+	  	border-bottom: 1px solid #ccc; 
+	  	line-height:220%; 
+	  	margin-bottom:10px; 
+	  	padding-left:10px;
+	  	font-weight:bold;
+	  	color:#333;
+	  	background-color:#ebf2f6
+	  }
+	  
+	  .form-horizontal .control-label{
+	  	font-size:12px;
+	  	padding-top:0px;
+	  	margin-top:2px;
+	  }
+	  .main_content .row-fluid + .row-fluid {
+		  margin-top: 5px!important;
+	  }
+	  select,input[type="text"]{
+	  padding:2px}
+</style>
+		<div class="well well-searchForm">
+			<div class="tab-tit">
+				查询条件
+			</div>
+				<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+				<div class="row-fluid">
+					
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">开始时间：</label>
+							<div class="controls">
+								<input type="text" style="width:164px;" class="input-large Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="dateFrom" id="dateFrom" />
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">截止时间：</label>
+							<div class="controls">
+								<input type="text" style="width:164px;" class="input-large Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="dateEnd" id="dateEnd" />
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">积分类型：</label>
+							<div class="controls">
+								<select name="scoreType" enabled style="width:178px;height:26px;">
+									<option value="">--请选择--</option>
+										#listParam('DETAIL_SEL_SCORE_TYPE')
+		                            </select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">订单编码：</label>
+							<div class="controls">
+								<input type="text" name="orderId" style="width:164px;" class="input-medium" id="orderId" maxlength="16"  value="" placeholder="输入订单编码"/>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">会员名：</label>
+							<div class="controls">
+								<input type="text" style="width:164px;" name="staffCode" class="input-medium required" maxlength="16" value="" placeholder="输入会员名"/>
+							</div>
+						</div>
+					</div>
+					<div class="pull-right">
+						<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+						<a class="btn " id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+					</div>
+				</div>
+				</form>
+			
+		</div>
+		<div class="well well-searchForm">
+			<div class="tab-tit">
+				积分汇总
+			</div>
+			<form id="showForm" class="form-horizontal" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">可用积分：</label>
+						<div class="controls">
+							<input type="text" readonly style="width:164px;" id="scoreBalance"  class="input-medium"  value="" />
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">消费积分：</label>
+						<div class="controls">
+							<input type="text" readonly style="width:164px;" id="consumeScore" class="input-medium"  value="" />
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">调增积分：</label>
+						<div class="controls">
+							<input type="text" readonly style="width:164px;" id="modifyAddScore" class="input-medium" value="" />
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div class="row-fluid">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">调减积分：</label>
+						<div class="controls">
+							<input type="text" readonly style="width:164px;" id="modifyReduceScore" class="input-medium"  value="" />
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">已用积分：</label>
+						<div class="controls">
+							<input type="text" readonly style="width:164px;color:red" id="exchangeScore" class="input-medium"  value="" />
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+		
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>

@@ -1,0 +1,50 @@
+#set($itemPromListStyle="display:none;")
+#if($itemProm.promInfoDTOList && $itemProm.promInfoDTOList.size() > 0)
+    #set($itemPromListStyle="")
+#end
+
+#if($item && $item.gdsStatus)
+
+<div id="slideButtom_prom_select_$!{item.id}_$velocityCount" class="am-offcanvas slideButtom" style="display:none">
+    <div class="am-offcanvas-bar">
+        <div class="am-offcanvas-content">
+            <div class="pro-saleList p-reduce">
+                <div class="tit">
+                    促销
+                    <span class="icon icon-close"></span>
+                </div>
+                <ul class="body">
+                    #foreach($promInfo in $itemProm.promInfoDTOList)
+                        <li class="itemPromOption modifyShopItemProm" style="cursor: pointer;">
+                            <input name="prom_$!{item.id}" type="radio" style="display:none" value="$!{promInfo.id}" class="promSelect"/>
+                            <span class="pro-mz">
+                                $!{promInfo.nameShort}
+                            </span>
+                            <div class="mz-txt">
+                                $!{promInfo.promTheme}
+                            </div>
+                            <span class="ui-arrow ui-arrow-right"></span>
+                        </li>
+                    #end
+                    #if($itemProm.promInfoDTO.id == -1)
+                        #set($nochecked = "checked='checked'")
+                    #else
+                        #set($nochecked = "")
+                    #end
+                    <li class="noItemPromOption modifyShopItemProm" style="cursor: pointer;">
+                        <input name="prom_$!{item.id}" type="radio" style="display:none" $!{nochecked} value="-1" class="promSelect"/>
+                        <span class="pro-mz">
+                            无优惠
+                        </span>
+                        <div class="mz-txt">
+                            不使用优惠活动
+                        </div>
+                        <span class="ui-arrow ui-arrow-right"></span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+#end

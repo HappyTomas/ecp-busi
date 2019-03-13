@@ -1,0 +1,47 @@
+	    #if($null.isNull($custList) || $custList.isEmpty())
+		
+	      #else
+	         <div style="margin-left:20px;">
+			     <div class="formSep"></div>
+					  <h4 class="formSep">
+					         已选择客户列表
+					 </h4>
+	          <div class="row-fluid">
+					  <div class="row-fluid" style="margin-bottom: 10px;">
+									<div class="span6">
+										 <a class="btn " id="btn_cust_del_batch" href="javascript:void(0)"><i class="icon-remove icon-white"></i>批量删除</a>
+									</div>
+                             </div> 
+                             <div class="nItem">
+                                <div class="row-fluid" style="margin-top: 20px"> 
+	                          <table id="custTable" class="seller-table coupon-tb" role="grid" aria-describedby="dataGridTable_info">
+	                              <thead>
+	                                  <tr role="row">
+	                                      <th id="custTable_row_1" class="center selectColumn sorting_disabled" rowspan="1" colspan="1" aria-label="选择" align="center" style="width: 35px; vertical-align: middle; text-align: center; padding: 0px;"><input type="checkbox" id="dt_row_all_check" title="全选/全取消" style="margin: 0px;"></th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="会员名" style="width: 60px;">会员名</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="昵称" style="width: 100px;">昵称</th>
+	                                      <th id="custTable_row_12" class="sorting_disabled" rowspan="1" colspan="1" aria-label="操作" style="width: 80px;">操作</th>
+	                                   </tr>
+	                                </thead>
+	                                 <tbody id="custTableTbody">
+	                                  #foreach( $custVO in $custList)
+	                                  <tr id="$!{custVO.id}" role="row" class=odd">
+										     <td name="custTableTbody_td_1" class=" center selectColumn" align="center" style="width: 35px; vertical-align: middle; text-align: center; padding: 0px;">
+											<input type="checkbox" id="$!{custVO.id}"  name="checkboxcust" >
+											</td>
+											<td>#escapeHtml( "$!{custVO.staffCode}")</td>
+											<td>#escapeHtml( "$!{custVO.nickname}")</td>
+											<td name="custTableTbody_td_12"><a class="btn" data="$!{custVO.id}" name="delCustRow" href="javascript:void(0)"><i class="icon-remove icon-white"></i>删除</a></td>
+											</tr>
+	                                   #end
+	                                </tbody>
+	                          </table>
+	                     </div>
+              		 </div> 
+         	     </div>
+               </div> 
+           #end      
+  <div class="row-fluid" >
+                        <div class="span12">
+                         </div>
+                    </div>

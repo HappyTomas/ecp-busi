@@ -1,0 +1,52 @@
+	<!--文本-->
+    <div class="wrap1000">
+        <div class="h-tit">
+            会员权益说明
+        </div>
+        <div class="h-com">
+
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>会员级别</th>
+                    <th>参考书/生活图书/电子音像制品</th>
+                    <th>教材</th>
+                    <th>考试用书</th>
+					<th>教辅</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>普通会员</td>
+                    <td>72折</td>
+                    <td>82折</td>
+                    <td>82折</td>
+					<td>73折</td>
+                </tr>
+                <tr>
+                    <td>银 会 员</td>
+                    <td>70折</td>
+                    <td>80折</td>
+                    <td>80折</td>
+					<td>73折</td>
+                </tr>
+                <tr>
+                    <td>金 会 员</td>
+                    <td>68折</td>
+                    <td>78折</td>
+                    <td>78折</td>
+					<td>73折</td>
+                </tr>
+                <tr>
+                    <td>白金会员</td>
+                    <td>65折</td>
+                    <td>75折</td>
+                    <td>75折</td>
+					<td>73折</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

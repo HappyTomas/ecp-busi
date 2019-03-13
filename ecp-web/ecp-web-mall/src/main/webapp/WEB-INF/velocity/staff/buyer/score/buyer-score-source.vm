@@ -1,0 +1,51 @@
+#parse("sys/sys_param.vm")
+<div class="clearfix">
+                        <form class="form-horizontal mt20" >
+                        <div class="span3">
+                        <div class="control-group">
+                            <label class="control-label">开始日期：</label>
+                            <div class="controls">
+                               <input type="text" class="input-small Wdate"  placeholder="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="beginDate" style="width:130px;"  value="$!date.format('yyyy-MM-dd',$!{beginDate})">
+                            </div>
+                        </div>
+                        </div>
+                        <div class="span3">
+                            <div class="control-group">
+                                <label class="control-label">结束日期：</label>
+                                <div class="controls">
+                                     <input type="text" class="input-small Wdate"  placeholder="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="endDate" style="width:130px;"  value="$!date.format('yyyy-MM-dd',$!{endDate})">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="span3">
+                            <div class="control-group">
+                                <label class="control-label">积分类型：</label>
+                                <div class="controls">
+                                    <select id="scoreType" class="input-block-level " name="scoreType">
+										<option value="">全部</option>
+										#foreach($attr in $scoreTypeList)
+											<option value="$!{attr.scoreType}">$!{attr.scoreTypeName}</option>
+										#end
+										#listParam('SCORE_ADJUST_TYPE','')
+									</select>
+									
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    	<div class="span9" style="text-align:right">
+                            <div class="control-group" >
+                                <div class="controls" >
+                                    <button class="btn" id="sourceQueryBtn"><i class="icon-search"></i> 查询</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="point-tit"><span id="selDateSource">查询日期：$!{beginDate} 至 $!{endDate}</span>
+                        <span class="pull-right">积分合计：<span class="c-red" id="scoreSourceSum">$!{scoreSourceSum}</span></span>
+                    </div>
+				<div class="point-con">
+                    <div id='scoreListDiv'>
+                    	#parse("/staff/buyer/score/source-list.vm")
+                    </div>
+                </div>

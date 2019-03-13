@@ -1,0 +1,15 @@
+				<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/coupinfo/userule/rule-190.js?version=$!{JS_VERSION}" ></script>
+				<form id="useForm190" rule-data="190" class="form-horizontal hide" style="margin-bottom: 0px;" method="post" action=""  >
+				   <div class="hide">
+				   <!--
+							  <input type="text" name="coupInfoVO.ifCode"   value="1" > 
+					-->		  
+				   </div>		  
+				</form>
+			 
+			   
+		    
+			 
+				
+				
+				

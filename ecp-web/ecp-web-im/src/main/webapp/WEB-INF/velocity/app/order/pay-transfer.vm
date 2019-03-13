@@ -1,0 +1,5 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/app/order/pay-transfer.js?version=$!{JS_VERSION}"></script>
+<input type="hidden" name="orderId" id="orderId" value="$!{orderId}">
+<input type="hidden" name="payWay" id="payWay" value="$!{payWay}">
+<form action="" accept-charset="" id="netPayForm" method="" onsubmit=""> </form>

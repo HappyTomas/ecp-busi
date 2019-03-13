@@ -1,0 +1,23 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/userule/rule-170.js?version=$!{JS_VERSION}" ></script>
+				<form id="useForm170" rule-data="170" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action=""  >
+					<div class="row-fluid">
+                        <div class="span12">
+                            <div class="control-group">
+                                <label class="control-label">渠道来源：</label>
+                                <div class="controls channelCls">
+                           		  #set($list = ${paramTools.getParamDTOList('CHANNEL_SOURCE')})
+									  #foreach( $info in $list) 
+									     <label class="control-label" style="width:60px;"><input  type="checkbox" name='useMap["170-channelValue"]' value="$!{info.spCode}" #if ($!{doAction}=='view') disabled #end >$!{info.spValue}</label>
+									 #end
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</form>
+			 
+			   
+		    
+			 
+				
+				
+				

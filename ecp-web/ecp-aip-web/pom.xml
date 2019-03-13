@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>ecp-web</artifactId>
+		<groupId>com.zengshi.ecpcore</groupId>
+		<version>1.22-RELEASE</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<groupId>com.zengshi.ecpcore</groupId>
+	<artifactId>ecp-aip-web</artifactId>
+	<version>1.22-RELEASE</version>
+	<packaging>jar</packaging>
+	<name>ecp-aip-web</name>
+	<url>http://maven.apache.org</url>
+ 
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+
+	</properties>
+	
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zengshi.ecp.aip</groupId>
+			<artifactId>ecp-aip-data</artifactId>
+			<version>${ecp-aip-data.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zengshi.ecp.aip</groupId>
+			<artifactId>ecp-aip-webcore</artifactId>
+			<version>${ecp-aip-webcore.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-aip-client</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+    	<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-unpf-client</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-common-intefaces</artifactId>
+			<version>1.22-RELEASE</version>
+    	</dependency>
+	  <dependency>
+		  <groupId>com.zengshi.dependency.taobao.sdk.auto</groupId>
+		  <artifactId>taobao-sdk-java-auto</artifactId>
+		  <version>1474945688403-20161027</version>
+		</dependency>
+	</dependencies>
+  
+	<build>
+		<finalName>ecp-aip-web</finalName>
+		
+		<plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.2.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-dependencies</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-dependencies</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/lib</outputDirectory>
+							<overWriteReleases>true</overWriteReleases>
+							<overWriteSnapshots>true</overWriteSnapshots>
+							<overWriteIfNewer>true</overWriteIfNewer>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+        </plugins>
+	</build>
+</project>

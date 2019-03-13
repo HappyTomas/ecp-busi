@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.busi.ShopShipperMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.ShopShipper" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="SHIPPER_NAME" property="shipperName" jdbcType="VARCHAR" />
+    <result column="SHIPPER_PHONE" property="shipperPhone" jdbcType="VARCHAR" />
+    <result column="SHIPPER_MOBILE" property="shipperMobile" jdbcType="VARCHAR" />
+    <result column="SHIPPER_ADDRESS" property="shipperAddress" jdbcType="VARCHAR" />
+    <result column="POST_CODE" property="postCode" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="SHIPPER_USING_FLAG" property="shipperUsingFlag" jdbcType="VARCHAR" />
+    <result column="BACK_USING_FLAG" property="backUsingFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SHOP_ID, SHIPPER_NAME, SHIPPER_PHONE, SHIPPER_MOBILE, SHIPPER_ADDRESS, POST_CODE, 
+    REMARK, SHIPPER_USING_FLAG, BACK_USING_FLAG
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.ShopShipperCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_shop_shipper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_shop_shipper
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_shop_shipper
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.ShopShipperCriteria" >
+    delete from t_shop_shipper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.ShopShipper" >
+    insert into t_shop_shipper (ID, SHOP_ID, SHIPPER_NAME, 
+      SHIPPER_PHONE, SHIPPER_MOBILE, SHIPPER_ADDRESS, 
+      POST_CODE, REMARK, SHIPPER_USING_FLAG, 
+      BACK_USING_FLAG)
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{shipperName,jdbcType=VARCHAR}, 
+      #{shipperPhone,jdbcType=VARCHAR}, #{shipperMobile,jdbcType=VARCHAR}, #{shipperAddress,jdbcType=VARCHAR}, 
+      #{postCode,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{shipperUsingFlag,jdbcType=VARCHAR}, 
+      #{backUsingFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.ShopShipper" >
+    insert into t_shop_shipper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="shipperName != null" >
+        SHIPPER_NAME,
+      </if>
+      <if test="shipperPhone != null" >
+        SHIPPER_PHONE,
+      </if>
+      <if test="shipperMobile != null" >
+        SHIPPER_MOBILE,
+      </if>
+      <if test="shipperAddress != null" >
+        SHIPPER_ADDRESS,
+      </if>
+      <if test="postCode != null" >
+        POST_CODE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="shipperUsingFlag != null" >
+        SHIPPER_USING_FLAG,
+      </if>
+      <if test="backUsingFlag != null" >
+        BACK_USING_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="shipperName != null" >
+        #{shipperName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperPhone != null" >
+        #{shipperPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperMobile != null" >
+        #{shipperMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperAddress != null" >
+        #{shipperAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperUsingFlag != null" >
+        #{shipperUsingFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="backUsingFlag != null" >
+        #{backUsingFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.ShopShipperCriteria" resultType="java.lang.Long" >
+    select count(*) from t_shop_shipper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_shop_shipper
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shipperName != null" >
+        SHIPPER_NAME = #{record.shipperName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperPhone != null" >
+        SHIPPER_PHONE = #{record.shipperPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperMobile != null" >
+        SHIPPER_MOBILE = #{record.shipperMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperAddress != null" >
+        SHIPPER_ADDRESS = #{record.shipperAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postCode != null" >
+        POST_CODE = #{record.postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipperUsingFlag != null" >
+        SHIPPER_USING_FLAG = #{record.shipperUsingFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.backUsingFlag != null" >
+        BACK_USING_FLAG = #{record.backUsingFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_shop_shipper
+    set ID = #{record.id,jdbcType=INTEGER},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      SHIPPER_NAME = #{record.shipperName,jdbcType=VARCHAR},
+      SHIPPER_PHONE = #{record.shipperPhone,jdbcType=VARCHAR},
+      SHIPPER_MOBILE = #{record.shipperMobile,jdbcType=VARCHAR},
+      SHIPPER_ADDRESS = #{record.shipperAddress,jdbcType=VARCHAR},
+      POST_CODE = #{record.postCode,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      SHIPPER_USING_FLAG = #{record.shipperUsingFlag,jdbcType=VARCHAR},
+      BACK_USING_FLAG = #{record.backUsingFlag,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.ShopShipper" >
+    update t_shop_shipper
+    <set >
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="shipperName != null" >
+        SHIPPER_NAME = #{shipperName,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperPhone != null" >
+        SHIPPER_PHONE = #{shipperPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperMobile != null" >
+        SHIPPER_MOBILE = #{shipperMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperAddress != null" >
+        SHIPPER_ADDRESS = #{shipperAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        POST_CODE = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="shipperUsingFlag != null" >
+        SHIPPER_USING_FLAG = #{shipperUsingFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="backUsingFlag != null" >
+        BACK_USING_FLAG = #{backUsingFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.ShopShipper" >
+    update t_shop_shipper
+    set SHOP_ID = #{shopId,jdbcType=INTEGER},
+      SHIPPER_NAME = #{shipperName,jdbcType=VARCHAR},
+      SHIPPER_PHONE = #{shipperPhone,jdbcType=VARCHAR},
+      SHIPPER_MOBILE = #{shipperMobile,jdbcType=VARCHAR},
+      SHIPPER_ADDRESS = #{shipperAddress,jdbcType=VARCHAR},
+      POST_CODE = #{postCode,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      SHIPPER_USING_FLAG = #{shipperUsingFlag,jdbcType=VARCHAR},
+      BACK_USING_FLAG = #{backUsingFlag,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

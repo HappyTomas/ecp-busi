@@ -1,0 +1,77 @@
+
+<div id="order_detail_invoice" class="am-offcanvas slidePage">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+        <div class="am-offcanvas-content">
+            <header class="am-header am-header-fixed">
+                <div class="am-header-title">
+                    发票信息
+                </div>
+                <div class="am-header-left am-header-nav top-left">
+                    <a href="javascript:history.go(-1)" class="">
+                        <i class="public-arrowleft"></i>
+                    </a>
+                </div>
+            </header>
+            <div class="ui-content-fixBottom">
+                <div class="odr-box odr-pad ivo-t">
+                    <p class="ft-df">发票类型</p>
+                    <div class="ui-selBox">
+                        #set($list = ${paramTools.getParamDTOList("ORD_INVOICE_TYPE")})
+                        #foreach($attr in $list)
+                            <span #if($attr.spCode==$!{invoiceComm.invoiceType})class = "selected"#end>#escapeHtml($!{attr.spValue})</span>
+                        #end
+                    </div>
+##                    <ul class="ivo-p">
+##                        #set($list = ${paramTools.getParamDTOList("ORD_INVOICE_TYPE")})
+##                        #foreach($attr in $list)
+##                            <li #if($attr.spCode==$!{invoiceComm.invoiceType})class = "active"#end>
+##                                #escapeHtml($!{attr.spValue})
+##                            </li>
+##                        #end
+##                    </ul>
+                </div>
+                <div class="odr-box odr-pad">
+                    <div class="bdr-btn">
+                        <div class="ivo-flex ivo-cc">
+                            <label class="ivo-tit">发票抬头</label>
+                            <div class="ivo-con"><input type="text" class="" value="$!invoiceComm.invoiceTitle"/></div>
+                        </div>
+                    </div>
+                    <div class="bdr-btn">
+                        <div class="ivo-flex ivo-cc">
+                            <label class="ivo-tit">纳税人识别码</label>
+                            <div class="ivo-con"><input type="text" class="" value="$!invoiceComm.taxpayerNo"/></div>
+                        </div>
+                    </div>
+                    <div class="bdr-btn">
+                        <div class="ivo-flex ivo-cc">
+                            <label class="ivo-tit">附加明细</label>
+                            <ul class="ivo-p">
+                                #if($!invoiceComm.detailFlag == "1")
+                                    <li class="active">是</li>
+                                    <li >否</li>
+                                #else
+                                    <li>是</li>
+                                    <li class="active">否</li>
+                                #end
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bdr-btn">
+                        <div class="ivo-flex">
+                            <label class="ivo-tit">发票内容</label>
+                        </div>
+                    </div>
+                    <ul class="ivo-p ivo-cc">
+                        #set($list = ${paramTools.getParamDTOList("ORD_INVOICE_CONTENT")})
+                        #foreach($attr in $list)
+                            <li #if($attr.spValue==$!{invoiceComm.invoiceContent})class = "active"#end>
+                                #escapeHtml($!{attr.spValue})
+                            </li>
+                        #end
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     ">  
+   
+     <!--用于定义对外提供的服务 -->
+     
+     <bean id="baseSysCfgRSV" class="com.zengshi.ecp.sys.dubbo.impl.BaseSysCfgRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.server.front.param.IBaseSysCfgRSV" ref="baseSysCfgRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="baseParamCfgRSV" class="com.zengshi.ecp.sys.dubbo.impl.BaseParamCfgRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.server.front.param.IBaseParamCfgRSV" ref="baseParamCfgRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="baseAreaAdminRSV" class="com.zengshi.ecp.sys.dubbo.impl.BaseAreaAdminRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.server.front.param.IBaseAreaAdminRSV" ref="baseAreaAdminRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="baseExpressRSV" class="com.zengshi.ecp.sys.dubbo.impl.BaseExpressRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.sys.dubbo.interfaces.IBaseExpressRSV" ref="baseExpressRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="msgManageRSV" class="com.zengshi.ecp.sys.dubbo.impl.MsgManageRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.sys.dubbo.interfaces.IMsgManageRSV" ref="msgManageRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="smsActiveRSV" class="com.zengshi.ecp.sys.dubbo.impl.SmsActiveRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.sys.dubbo.interfaces.ISmsActiveRSV" ref="smsActiveRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="mcSyncSendRSV" class="com.zengshi.ecp.sys.dubbo.impl.McSyncSendRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.sys.dubbo.interfaces.IMcSyncSendRSV" ref="mcSyncSendRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <!-- 需要引入别人的McUserRSV的服务 -->
+     <dubbo:reference id="mcUserRsvRef" interface="com.zengshi.ecp.general.sys.mc.interfaces.IMcUserRSV" version="${default.dubbo.version}" group="${default.dubbo.group}" check="false"></dubbo:reference>
+
+    <bean id="sysCfgRSV" class="com.zengshi.ecp.sys.dubbo.impl.SysCfgRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.sys.dubbo.interfaces.ISysCfgRSV" ref="sysCfgRSV" provider="${default.dubbo.provider.id}"/>
+     
+     
+    <bean id="appVersionRSV" class="com.zengshi.ecp.sys.dubbo.impl.AppVersionRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.sys.dubbo.interfaces.IAppVersionRSV" ref="appVersionRSV" provider="${default.dubbo.provider.id}"/>
+
+  
+          <!-- 报表项统计服务 -->
+     <bean id="reportItemRSV" class="com.zengshi.ecp.sys.dubbo.impl.ReportItemRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.sys.dubbo.interfaces.IReportItemRSV" ref="reportItemRSV" provider="${default.dubbo.provider.id}"/>
+
+          <!-- 站内消息 -->
+     <bean id="msgInsiteRSV" class="com.zengshi.ecp.sys.dubbo.impl.MsgInsiteRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.sys.dubbo.interfaces.IMsgInsiteRSV" ref="msgInsiteRSV" provider="${default.dubbo.provider.id}"/> 
+          <!-- 微信菜单 -->
+      <bean id="weixMenuRSV" class="com.zengshi.ecp.sys.dubbo.impl.WeixMenuRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.sys.dubbo.interfaces.IWeixMenuRSV" ref="weixMenuRSV" provider="${default.dubbo.provider.id}"/>
+</beans>  

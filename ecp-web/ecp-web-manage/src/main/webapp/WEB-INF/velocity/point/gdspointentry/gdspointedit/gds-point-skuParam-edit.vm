@@ -1,0 +1,63 @@
+
+<div class="fd-block form-horizontal" id="gds-skuParam" style="display:#if($!{multi-switch}=='1')block#else none#end">
+
+    <div class="well-tit mt10">
+        <span >规格属性</span>
+        <div class="switch-tt pull-right form-inline clearfix switch-button" id="param-senior-button" style="display:#if($!{multi-switch}=='1')block#else none#end">
+            <div class="pull-right" #if($!{copyFlag}!=1)style="display:none"#end>
+                <label for="">多规格：</label>
+                <span data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+                    <button class="btn #if($!{multi-switch}=='1')active#end" value="multi-open">开</button>
+                    <button class="btn #if($!{multi-switch}=='0')active#end" value="multi-close">关</button>
+                </span>
+            </div>
+        </div>
+    </div>
+	<input type="hidden"  id="proSize"  name="propSize" value="$!{rspDto.specs.size()}"/>
+	<div class="well well-searchForm">
+	#foreach($listProp in $!{rspDto.specs})
+		#set($count = $velocityCount)
+		#set($size = $!{rspDto.specs.size()})
+    <div class="gg-sel control-group">
+        <label class="control-label">$!{listProp.propName}：</label>
+        <div class="controls">
+			#foreach($listValue in $!{listProp.values})
+				#if($velocityCount==1)
+					 <input type="hidden" name="propIdCount" id="propId_$count" value="$!{listProp.id}"/>
+					 <input type="hidden"  id="propName_$!{listProp.id}" value="$!{listProp.propName}"/>
+				#end
+			<input type="hidden"  id="propValue_$!{listProp.id}_$!{listValue.id}" value="$!{listValue.propValue}"/>
+			<input type="hidden"  id="count_$!{listProp.id}_$!{listValue.id}" value="$count"/>
+			<input type="hidden"  id="size_$!{listProp.id}_$!{listValue.id}" value="$size"/>
+			<input type="hidden"  id="velocityCount_$!{listProp.id}_$!{listValue.id}" value="$!{velocityCount}"/>
+            <label for="">
+                <input ifHaveto="$!{listProp.ifHaveto}" ifBasic="$!{listProp.ifBasic}" name="gxqUseInParam" id="checkPropValue_$!{listProp.id}_$!{listValue.id}"  value="$!{listValue.id}" class="check_$!{listProp.id}" type="checkbox" i="$!{velocityCount}" count="$count" size="$size" onclick="checkSkuParameter('$!{listProp.id}','$!{listProp.propName}','$!{listValue.id}','$!{listValue.propValue}',$count,$size,this)">#if($!{listValue.mediaId})<img class="cr" src="#genImageUrl($!{listValue.mediaId},'12x12!')"/>#end$!{listValue.propValue}
+            </label>
+			#end
+        </div>
+    </div>
+	#end
+    <div class="gg-sel control-group">
+        <div class="controls">
+            <table class="table table-bordered pmgr-ggtb" id="sku-param-table" style="width:auto">
+                <thead>
+                <tr>
+                    <th style='display:none;' id="getPriceTh">价格</th>
+                    <th style='display:none;' id="realCountTh">库存数量</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr id="esp">
+                    <td id="senior-price">#if($!{price-switch}=='1')<a class="gjpri" href="javascript:void(0)" value="" onclick="openPriceWin(this)">高级价格</a>#else<input type="text" name="price_param"  class="input-small"/>#end</td>
+                    <td id="senior-stock">#if($!{price-switch}=='1')<a class="gjkc" href="javascript:void(0)" value="" onclick="openStockWin(this)">高级库存</a>#else<input type="text" name="stock_param" class="input-small"/>#end</td>
+                    <td><a href="javascript:void(0)" value="[]" onclick='openSkuPictrueWindow(this)'>图片管理</a></td>
+                </tr>
+                </tbody>
+            </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!--规格属性 end-->

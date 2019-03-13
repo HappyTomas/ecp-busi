@@ -1,0 +1,63 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/staff/member-list.js?version=$!{JS_VERSION}" ></script>
+
+				 <table class="seller-table table-striped">
+                   <thead>
+                   <tr>
+                       <td>会员名称</td>
+                       <td>会员级别</td>
+                       <td>交易额</td>
+                       <td>交易次数</td>
+                       <td>平均订单金额</td>
+                       <td>上笔订单交易时间</td>
+                       <td>状态</td>
+                       <td>操作</td>
+                   </tr>
+                   </thead>
+                   <tbody>
+                   #if(!$shopPage.getResult())
+    					<tr><td class="kong" colspan='8'>很遗憾，暂无数据</td></tr>
+    				#end
+    				#foreach( $lst in $shopPage.getResult())
+                   	<tr>
+                       <td>$!{lst.staffCode}</td>
+                       <td>
+                       #if($!{lst.custLevelName})
+                       	$!{lst.custLevelName}
+                       #else
+                       	暂无等级
+                       #end
+                       
+                       </td>
+                       <td>#money($!{lst.payMoney})</td>
+                       <td>$!{lst.tradesNum}</td>
+                       <td>#if($!{lst.tradesNum}==0)
+                       		$!{lst.payMoney}
+                       #else
+                       		#set ( $value = $!{lst.payMoney}/ $!{lst.tradesNum} )
+                      		#money( $number.format("#0.00", $!value) )
+                       #end</td>
+                       <td>
+                        $!date.format('yyyy-MM-dd HH:mm:ss',$!{lst.payDate})
+                       </td>
+                       <td>#if($!{lst.status}=='1')生效
+                       #else 失效
+                       #end</td>
+                       <td class="opt">
+                       #if($!{lst.status}==1)
+                           <a href='javascript:void(0)' onclick="invalid($!{lst.id})" >失效</a> |
+                       #else
+                           <a href='javascript:void(0)' onclick="live($!{lst.id})">生效</a> |
+                       #end
+                       <a href='javascript:void(0)' onclick="deleteReal($!{lst.id})" >删除</a>
+                       </td>
+                   	</tr>
+                    #end
+                   </tbody>
+               </table>
+				<div class="fav-opt clearfix" style="margin-top: 20px;">
+			        <div class="row-fluid">
+						<div id="pageControlbar" class="ecppage" data-total-page="${shopPage.pageCount}" data-total-row="${shopPage.count}" data-page-size="${shopPage.pageSize}" data-page-number="${shopPage.pageNo}" data-status="begin"></div>
+					</div>
+			    </div>

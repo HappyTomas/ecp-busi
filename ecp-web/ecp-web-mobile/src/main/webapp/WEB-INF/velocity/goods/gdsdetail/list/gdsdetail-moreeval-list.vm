@@ -1,0 +1,27 @@
+#parse("/sys/sys_param.vm")
+#foreach($eval in $!{list.list})
+    <div class="pro-ctBox">
+        <div class="head">
+            <div class="hmg">
+                <img src="$!{eval.custPic}" alt=""/>
+            </div>
+            <div class="name">$!{eval.staffName}</div>
+            <span class="time">$!date.format('yyyy-MM-dd HH:mm',$!{eval.evaluationTime})</span>
+        </div>
+        <div class="body">
+            <div class="ctPoint">
+                <i class="eve-star$!{eval.score}"></i>
+            </div>
+            <div class="ctTxt">
+				$!{eval.detail}
+            </div>
+            #*<div class="info">
+                <!--<div>
+                    <label>颜色：</label><span>玫瑰金</span>
+                    <label>型号：</label><span>玫瑰金</span>
+				</div> -->
+                <div><label>购买日期：</label><span>$!date.format('yyyy-MM-dd HH:mm',$!{eval.buyTime})</span></div>
+			</div>*#
+        </div>
+    </div>
+#end

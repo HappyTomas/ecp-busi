@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.im.dao.mapper.busi.ImCustservSatisfyInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.im.dao.model.ImCustservSatisfyInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="OF_STAFF_CODE" property="ofStaffCode" jdbcType="VARCHAR" />
+    <result column="CSA_CODE" property="csaCode" jdbcType="VARCHAR" />
+    <result column="SESSION_ID" property="sessionId" jdbcType="VARCHAR" />
+    <result column="SATISFY_TYPE" property="satisfyType" jdbcType="VARCHAR" />
+    <result column="NOT_SATISFY_TYPE" property="notSatisfyType" jdbcType="VARCHAR" />
+    <result column="NOT_SATISFY_REASON" property="notSatisfyReason" jdbcType="VARCHAR" />
+    <result column="CREATE_DATE" property="createDate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SHOP_ID, OF_STAFF_CODE, CSA_CODE, SESSION_ID, SATISFY_TYPE, NOT_SATISFY_TYPE,
+    NOT_SATISFY_REASON, CREATE_DATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.im.dao.model.ImCustservSatisfyInfoCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_im_custserv_satisfy_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_im_custserv_satisfy_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_im_custserv_satisfy_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.im.dao.model.ImCustservSatisfyInfoCriteria" >
+    delete from t_im_custserv_satisfy_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.im.dao.model.ImCustservSatisfyInfo" >
+    insert into t_im_custserv_satisfy_info (ID, SHOP_ID, OF_STAFF_CODE,
+      CSA_CODE, SESSION_ID, SATISFY_TYPE, 
+      NOT_SATISFY_TYPE, NOT_SATISFY_REASON, CREATE_DATE
+      )
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{ofStaffCode,jdbcType=VARCHAR},
+      #{csaCode,jdbcType=VARCHAR}, #{sessionId,jdbcType=VARCHAR}, #{satisfyType,jdbcType=VARCHAR}, 
+      #{notSatisfyType,jdbcType=VARCHAR}, #{notSatisfyReason,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.im.dao.model.ImCustservSatisfyInfo" >
+    insert into t_im_custserv_satisfy_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="ofStaffCode != null" >
+        OF_STAFF_CODE,
+      </if>
+      <if test="csaCode != null" >
+        CSA_CODE,
+      </if>
+      <if test="sessionId != null" >
+        SESSION_ID,
+      </if>
+      <if test="satisfyType != null" >
+        SATISFY_TYPE,
+      </if>
+      <if test="notSatisfyType != null" >
+        NOT_SATISFY_TYPE,
+      </if>
+      <if test="notSatisfyReason != null" >
+        NOT_SATISFY_REASON,
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="ofStaffCode != null" >
+        #{ofStaffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="csaCode != null" >
+        #{csaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfyType != null" >
+        #{satisfyType,jdbcType=VARCHAR},
+      </if>
+      <if test="notSatisfyType != null" >
+        #{notSatisfyType,jdbcType=VARCHAR},
+      </if>
+      <if test="notSatisfyReason != null" >
+        #{notSatisfyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.im.dao.model.ImCustservSatisfyInfoCriteria" resultType="java.lang.Long" >
+    select count(*) from t_im_custserv_satisfy_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_im_custserv_satisfy_info
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ofStaffCode != null" >
+        OF_STAFF_CODE = #{record.ofStaffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.csaCode != null" >
+        CSA_CODE = #{record.csaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sessionId != null" >
+        SESSION_ID = #{record.sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.satisfyType != null" >
+        SATISFY_TYPE = #{record.satisfyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notSatisfyType != null" >
+        NOT_SATISFY_TYPE = #{record.notSatisfyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.notSatisfyReason != null" >
+        NOT_SATISFY_REASON = #{record.notSatisfyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createDate != null" >
+        CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_im_custserv_satisfy_info
+    set ID = #{record.id,jdbcType=INTEGER},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      OF_STAFF_CODE = #{record.ofStaffCode,jdbcType=VARCHAR},
+      CSA_CODE = #{record.csaCode,jdbcType=VARCHAR},
+      SESSION_ID = #{record.sessionId,jdbcType=VARCHAR},
+      SATISFY_TYPE = #{record.satisfyType,jdbcType=VARCHAR},
+      NOT_SATISFY_TYPE = #{record.notSatisfyType,jdbcType=VARCHAR},
+      NOT_SATISFY_REASON = #{record.notSatisfyReason,jdbcType=VARCHAR},
+      CREATE_DATE = #{record.createDate,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.im.dao.model.ImCustservSatisfyInfo" >
+    update t_im_custserv_satisfy_info
+    <set >
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="ofStaffCode != null" >
+        OF_STAFF_CODE = #{ofStaffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="csaCode != null" >
+        CSA_CODE = #{csaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionId != null" >
+        SESSION_ID = #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="satisfyType != null" >
+        SATISFY_TYPE = #{satisfyType,jdbcType=VARCHAR},
+      </if>
+      <if test="notSatisfyType != null" >
+        NOT_SATISFY_TYPE = #{notSatisfyType,jdbcType=VARCHAR},
+      </if>
+      <if test="notSatisfyReason != null" >
+        NOT_SATISFY_REASON = #{notSatisfyReason,jdbcType=VARCHAR},
+      </if>
+      <if test="createDate != null" >
+        CREATE_DATE = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.im.dao.model.ImCustservSatisfyInfo" >
+    update t_im_custserv_satisfy_info
+    set SHOP_ID = #{shopId,jdbcType=INTEGER},
+      OF_STAFF_CODE = #{ofStaffCode,jdbcType=VARCHAR},
+      CSA_CODE = #{csaCode,jdbcType=VARCHAR},
+      SESSION_ID = #{sessionId,jdbcType=VARCHAR},
+      SATISFY_TYPE = #{satisfyType,jdbcType=VARCHAR},
+      NOT_SATISFY_TYPE = #{notSatisfyType,jdbcType=VARCHAR},
+      NOT_SATISFY_REASON = #{notSatisfyReason,jdbcType=VARCHAR},
+      CREATE_DATE = #{createDate,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,30 @@
+#parse("staff/buyer/comment/menber-import.vm")
+<script type="text/javascript"	src="$!{BUSIJS_PATH}/staff/comment/member-comment.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/comment/member-uneval.js?version=$!{JS_VERSION}"></script>
+<div id="main">
+
+	<!-- 我的订单 begin -->
+	<div class="mbox order-list">
+		<div class="mbox-body">
+			<div class="mt clearfix">
+				<ul class="mt-l" id="teamTab">
+					#if(!$status  || ( ${status} != "uneval" && ${status} != "evaled") )
+					<li class="active" id ="uneval"><a href="#">待评价</a></li>
+					#else
+					<li class="#if(${status} == "uneval")active#end" id ="uneval"><a href="#">待评价</a></li>
+					#end
+					<li class="#if(${status} == "evaled")active#end" id ="evaled"><a href="#">已评价</a></li>
+				</ul>
+			</div>
+			
+			<div class="tab-content" id="teamTabc">
+				
+                    <div class="body" id="dataBody">
+                    #parse("staff/buyer/comment/div/uneval.vm")
+                    </div>
+				
+			</div>
+		</div>
+	</div>
+</div>
+	<input type="hidden" id="status" value="${status}"></input>

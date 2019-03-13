@@ -1,0 +1,31 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/util.js"></script>
+#if($floorRespDto && ${floorRespDto.id})
+<div class="am-tabs tab-silde floor-infos" data-floor-id = "$!{floorRespDto.id}" data-data-source="$!{floorRespDto.dataSource}" data-count-type="$!{floorRespDto.countType}" data-catg-code="$!{floorRespDto.catgCode}">
+    <div class="scroll-wrap" id="tabScroll">
+	    <ul id="digitn" class="am-tabs-nav am-nav am-nav-tabs scroll floor-tabs">
+			#foreach($floorTab in $!{floorTabList})
+				<li #if($velocityCount==1) class="am-active" #end>
+						<a  href="
+	        			#if($!{floorTab.linkUrl} && $!{floorTab.linkUrl}!= '')
+	        				$!{floorTab.linkUrl}" target='_blank'
+	        			#else 
+	        				javascript:void(0);"
+	        			#end data-id="$!{floorTab.id}" isLoad="no" data-catg-code="$!{floorTab.catgCode}">$!{floorTab.tabName}</a>
+				</li>
+			#end
+	    </ul>
+   	</div>
+    <div class="am-tabs-bd floor-body" >
+		#if($!{floorTabList.size()} > 0)
+    		#foreach($floorTab in $!{floorTabList})##有页签
+    		<div class="am-tab-panel #if($velocityCount==1) am-active #end" id = "floor-tab-$!{floorTab.id}">
+    			<div class="loading-lo"></div>
+    		</div>
+    		#end
+		#end
+    </div>
+</div>
+#else
+	<div class='pro-empty'>#if($errMsg && "" != $errMsg)$!errMsg#else暂无数据#end</div>
+#end

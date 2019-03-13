@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>模板配置</title>
+    #parse("/pageConfig/pageConfigWap/sys/sys_head.vm")
+	
+</head>
+
+<body>
+$screen_content
+</body>
+</html>
+

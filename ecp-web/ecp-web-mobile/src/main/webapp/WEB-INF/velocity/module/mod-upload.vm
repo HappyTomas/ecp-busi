@@ -1,0 +1,2 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$RESOURCE_PATH/upload/ajaxfileupload.js"></script>

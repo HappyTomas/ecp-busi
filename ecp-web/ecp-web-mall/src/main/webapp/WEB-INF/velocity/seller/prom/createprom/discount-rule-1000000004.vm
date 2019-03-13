@@ -1,0 +1,28 @@
+			<div class="formBox">
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					    <div class="row-fluid" >
+                                <div class="span8">
+                                    <div class="control-group">
+                                        	<div class="controls">
+                                                <div class="alert sel-alert" style="margin-top: 15px;margin-bottom: 0">
+                                                    <span class="arrow"></span>
+                         					     购买其中任意产品，即可享受百分比折扣价。
+					                                                                       例如: 所有花园式家具 85 折、所有榜单专辑 CD 9 折。
+					                                                                       购物车中每一件符合条件的产品均在原价中减去规定百分比的数额。
+                                                </div>
+                                           </div>
+                                       </div>
+                                    </div>
+                            	</div>
+			      <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">折扣比例：</label>
+							<div class="controls">
+								<input type="text" class="input-large required number " id="discountRate" maxlength="12"  name="discountMap['discountRate']" placeholder="请输入折扣比例 " value="$!{promVO.discountMap.discountRate}"   />
+								<span class="help-inline  alert "><span style="color:red">%</span>每个符合条件商品的折扣比例（例如50% 填写50）。</span>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			   

@@ -1,0 +1,79 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/hotImg/jquery.imagesloaded.min.js?v=${JS_VERSION}"></script>
+#set($picUuid = "")##图片
+#set($text = "")##链接地址
+#set($linkUrl = "")##链接地址
+#set($adid = "")##链接地址
+
+
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+#foreach($prop in $crossItemObj)
+	#if($!{prop.propId}=="1015")
+		##链接地址
+		#set($linkUrl = "$!{prop.propValue}")
+		#set($adid = "$!{prop.id}")
+	#end
+#end
+<div class="phone-modular tpl-slider ecp-component  $!{componentMethod}" data-web-root = '#translate("CMS_SITE_MAPPING","$!{pageInfo.siteId}")' data-is-pub="$!{pagePub}" data-adid="$!{adid}" data-component-method="$!{componentMethod}"  data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}" >
+	#if(!$!{componentMethod} || '' == $!{componentMethod})
+	#parse("/pageConfig/pageConfigWap/edit/nodata/modular-nodata-wap.vm")
+	#else
+    <div class="modular-body">
+       <div class="am-slider am-slider-a1"
+            data-am-slider='{"directionNav":false}'>
+           <ul class="am-slides">
+           		#set($prop ='')
+           		#if($crossItemObj && $crossItemObj.size() > 0)
+           		#set($prop = $crossItemObj.get(0))
+    				#if($!{pagePub})
+                		#set($groupRespDTOList=$prop.itemPropGroupPubRespDTOList)
+                	#else
+                		#set($groupRespDTOList=$prop.itemPropGroupPreRespDTOList)
+                	#end
+           			#if($prop && $groupRespDTOList && $groupRespDTOList.size() > 0)
+                    	#foreach($gropPropList in $groupRespDTOList)
+    				    	#set($picUuid = "")##图片
+    						#set($text = "")##链接地址
+    						#set($linkUrl = "")##链接地址
+    				    	#foreach($controlProp in $gropPropList)
+    							#if($!{controlProp.propId}=="1020")
+    								#set($picUuid = $!{controlProp.propValue})
+    							#end	
+    							#if($!{controlProp.propId}=="1015")
+    								#set($linkUrl = $!{controlProp.propValue})
+    								#set($adid = $!{controlProp.id})
+    							#end	
+    							#if($!{controlProp.propId}=="1023")
+    								#set($text = $!{controlProp.propValue})
+    							#end
+    						#end
+    						#if($picUuid  && $picUuid != '' )
+    						<li>
+    			               <a href="javascript:void(0);" lazy-href="$!{linkUrl}" lazy-adid="$!{adid}" class="link"><img lazy-src="#genImageUrl($!picUuid,'640x320!')" lazy-alt="$!text"/></a>
+    			            </li>
+    		           	    #end
+    					#end
+    				#else
+    				<li>
+    	               <img src="$!IMAGE_PATH/pageConfig/noPictures.png" />
+    	            </li>
+    				#end
+    			#end
+           </ul>
+       </div> 
+    </div>
+    #end
+</div>
+	

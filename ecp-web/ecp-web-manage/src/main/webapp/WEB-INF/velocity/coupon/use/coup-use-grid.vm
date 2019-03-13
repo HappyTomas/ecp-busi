@@ -1,0 +1,78 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/use/coup-use-grid.js?version=$!{JS_VERSION}" ></script>
+
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+			<div class="span4">
+						<div class="control-group">
+							<label class="control-label">站点：</label>
+							<div class="controls">
+								<select id="siteId" name="siteId"  class="input-medium">
+									      #siteList("")
+								 </select>
+							</div>
+						</div>
+				</div>
+				<div class="span4">
+				    		<div class="control-group">
+								<label class="control-label">店铺：</label>
+									<div class="controls">
+										<select name="shopId" id="shopId"  class="input-medium">
+												 #shoplist("","1")
+											</select>
+										</div>
+						</div>
+				</div>
+			</div>
+			<div class="row-fluid">
+		     	<div class="span4">
+							<div class="control-group">
+							<label class="control-label">优惠券编码：</label>
+							<div class="controls">
+								<input type="text" class="input-medium" name="coupNo" id="coupNo"   />
+							</div>
+						</div>
+				</div>
+				<div class="span4">
+				    		<div class="control-group">
+							<label class="control-label">订单编号：</label>
+							<div class="controls">
+								<input type="text" class="input-medium" name="orderId" id="orderId"   />
+							</div>
+						</div>
+				</div>
+			</div>
+			<div class="row-fluid">
+		     	<div class="span4">
+							<div class="control-group">
+							<label class="control-label">使用时间起：</label>
+							<div class="controls">
+								<input type="text" class="input-medium Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="useTimeStart" id="useTimeStart"/>
+							</div>
+						</div>
+				</div>
+				<div class="span4">
+				    		<div class="control-group">
+							<label class="control-label">使用时间止：</label>
+							<div class="controls">
+								<input type="text" class="input-medium Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="useTimeEnd" id="useTimeEnd"/>
+							</div>
+						</div>
+				</div>
+			</div>
+			</form>
+		</div>
+		
+		
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="pull-right">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>

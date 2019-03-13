@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     ">  
+   
+     <!--用于定义对外提供的服务 -->
+     
+     <bean id="aipDemoRSV" class="com.zengshi.ecp.aip.dubbo.impl.AipDemoRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.dubbo.interfaces.IAipDemoRSV" ref="aipDemoRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="orderQueryRSV" class="com.zengshi.ecp.aip.dubbo.impl.OrderQueryRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.dubbo.interfaces.IOrderQueryRSV" ref="orderQueryRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="abcPayRSV" class="com.zengshi.ecp.aip.dubbo.impl.ABCPayRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.dubbo.interfaces.IABCPayRSV" ref="abcPayRSV" provider="${default.dubbo.provider.id}"/>
+     
+      <bean id="expressRSV" class="com.zengshi.ecp.aip.dubbo.impl.ExpressRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.dubbo.interfaces.IExpressRSV" ref="expressRSV" provider="${default.dubbo.provider.id}"/>
+</beans>  

@@ -1,0 +1,33 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/coupinfo/coup-type-form.js?version=$!{JS_VERSION}" ></script>
+			<div>
+				<h3 class="heading"></h3>
+			</div>
+            <div class="row-fluid" style="margin-left: 30px;">
+            	#if($null.isNull($coupTypeRespDTOMap) || $coupTypeRespDTOMap.isEmpty())
+	             #else
+	             	#foreach($param in $coupTypeRespDTOMap)
+	             	
+		             	    #if ( $!{velocityCount}%4==1 )
+					                <div class="span3"  style="margin-left: 0px;margin-bottom: 20px;">	
+					        		
+					        #else
+					        		<div class="span3"  style="margin-bottom: 20px;">
+					        #end
+								       <span class="caption">
+								           <h3 style="margin-top:10px;"><div class=" pop_over" data-content="$param.coupTypeName" data-original-title="$param.coupTypeName" data-placement="top"> #if ($param.coupTypeName.length() <=12)  $!{param.coupTypeName} #else $param.coupTypeName.substring(0,12)...... #end</div> </h3>
+								        <!-- <p style="margin-top:10px;height:75px;width:180px;">#escapeHtml($!{param.useRuleCodeDesc})</p>-->
+								         <p style="margin-top:10px;height:75px;" class=" pop_over" data-content="#escapeHtml($!{param.useRuleCodeDesc})" data-original-title="$!{param.coupTypeName}" data-placement="top"> #if ($!param.useRuleCodeDesc.length() <=50)  $!{param.useRuleCodeDesc} #else $!param.useRuleCodeDesc.substring(0,50)...... #end </p>
+								         #if ($param.typeLimit==1) <span class="label label-info">店铺券</span>#end
+								         #if ($param.typeLimit==0) <span class="label label-important">平台券</span>#end
+								         <div style="margin-top:10px;margin-bottom: 20px;">
+								           <button type="button" class="btn btn-success publish" name="$!{param.id}" id="$!{param.id}" code="$!{param.id}"><i class="icon-plus"></i>创建优惠券</button>
+								         </div>
+							         </span>
+							 </div>
+						 #end
+					#end
+			   </div>
+		   <div class="pull-left">
+					<button type="button" class="btn btn-primary btnReturn" ><i class="icon-reply"></i> 返　回</button>
+			</div>	

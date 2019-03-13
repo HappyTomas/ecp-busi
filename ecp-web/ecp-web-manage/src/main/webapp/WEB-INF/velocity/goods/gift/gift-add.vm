@@ -1,0 +1,90 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-editor.vm")
+<link href="${CONTEXT_PATH}/css/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gift/gift-add.js?version=$!{JS_VERSION}" ></script>
+	     <div class="alert alert-error hide formValidateMessages" style="color:red;">
+			
+            </div>
+		 <div class="container-fluid">
+                       <form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post">
+                            <div class="row-fluid">
+								<div class="span6">
+									<div class="control-group">
+                                       <label for="" class="control-label">店铺名称：</label>
+                                       <div class="controls">
+                                         <select class="required" id="shopId" name="shopId">
+    										#shopStatuslist($!{shopId},1)
+                                        </select>
+                                       </div>
+    								</div>
+						 			<div class="control-group">
+                                        <label for="" class="control-label"><span style="color:red">*</span>关联单品：</label>
+                                        <div class="controls">
+                                          <div style="height: 30px;line-height: 30px;">
+    										<input type="hidden" value="" name="gdsId" id="gdsId"/>
+    										<input type="hidden" value="" name="skuId" id="skuId"/>
+                                             <input value="" disabled="true" id="skuName" name="skuName" title="" type="text"/><a class="btn"  href="javascript:void(0);" id="selectSku"><i class="icon-magic"></i>请选择单品</a>
+                                          </div>
+    									
+                                        </div>
+									</div>
+								<div class="control-group" style="width:400px;">
+                                       <label for="" class="control-label">赠品名称：</label>
+                                       <div class="controls">
+                                           <input class="required" name="giftName" type="text"/>
+                                       </div>
+                                   </div>
+								   
+								   <div class="control-group" style="width:400px;">
+                                       <label for="" class="control-label">赠品类型：</label>
+                                       <div class="controls">
+										  <select class="required" id="giftType" name="giftType">
+											  #listParam("GDS_GIFT_TYPE")
+										  </select>
+                                       </div>
+                                   </div>
+                                   <div class="control-group" style="width:400px;">
+                                       <label for="" class="control-label">赠品价值：</label>
+                                       <div class="controls">
+                                           <input class="required number" name="giftValue" type="text"/>
+                                       </div>
+                                   </div>
+                                   <div class="control-group" style="width:400px;">
+                                       <label for="" class="control-label ">赠品总量：</label>
+                                       <div class="controls">
+                                           <input class="required digits" name="giftAmount" type="text"/>
+                                       </div>
+                                   </div>
+                                   <div class="control-group" style="width:400px;">
+                                       <label for="" class="control-label">赠品描述：</label>
+									   <div class="controls">
+            								<textarea rows="4" name="giftDesc" class="input-block-level required"></textarea>
+            							</div>
+                                   </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="imgup-show">
+                                        <img id="image" src="${aiTool.genImageUrl('','150x150!')}" alt=""/>
+                                    </div>
+                                    <div class="alert rk-alert">
+                                        图片格式必须是：png,jpg,jpeg,gif并且小于5M
+                                    </div>
+                                    <div class="img-input">
+                						<input type="hidden" id="giftPic" name="giftPic"/>
+                						<input type="hidden" id="pictrueName" name="pictrueName"/>   
+                                        <input type="file" class="com_input" id="pictrue" name="pictrue" value=""/>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+						<div class="btn-wrap ">
+							  <button class="btn btn-info" data-loading-text="保存中..." id="btnFormSave"><i class=" icon-ok-sign icon-white"></i> 保存</button>
+
+							##	<button class="btn btn-primary" data-loading-text="保存中..." id="btnFormSave">保存</button>
+                               	<a class="btn btn-primary" style="" href="javascript:void(0)" id="btnReturn"><i class="icon-reply icon-white"></i> 返回</a>
+
+							   ## <input value="返回" type="button" id="btnReturn" class="btn" style="margin-left: 10px"/>
+                            </div>
+                    </div>

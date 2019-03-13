@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.demo.dao.mapper.common.LobMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.demo.dao.model.Lob" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zengshi.ecp.demo.dao.model.LobWithBLOBs" extends="BaseResultMap" >
+    <result column="B_LOB" property="bLob" jdbcType="BLOB" typeHandler="org.apache.ibatis.type.BlobByteObjectArrayTypeHandler"/>
+    <result column="C_LOB" property="cLob" jdbcType="CLOB" typeHandler="org.apache.ibatis.type.ClobTypeHandler"/>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, NAME
+  </sql>
+  <sql id="Blob_Column_List" >
+    B_LOB, C_LOB
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zengshi.ecp.demo.dao.model.LobCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+      select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_lob
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.demo.dao.model.LobCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_lob
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+      limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_lob
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from t_lob
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.demo.dao.model.LobWithBLOBs" >
+    insert into t_lob (ID, NAME, B_LOB, 
+      C_LOB)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{bLob,jdbcType=BLOB}, 
+      #{cLob,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.demo.dao.model.LobWithBLOBs" >
+    insert into t_lob
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="bLob != null" >
+        B_LOB,
+      </if>
+      <if test="cLob != null" >
+        C_LOB,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="bLob != null" >
+        #{bLob,jdbcType=BLOB},
+      </if>
+      <if test="cLob != null" >
+        #{cLob,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.demo.dao.model.LobCriteria" resultType="java.lang.Integer" >
+    select count(*) from t_lob
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.demo.dao.model.LobWithBLOBs" >
+    update t_lob
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="bLob != null" >
+        B_LOB = #{bLob,jdbcType=BLOB},
+      </if>
+      <if test="cLob != null" >
+        C_LOB = #{cLob,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zengshi.ecp.demo.dao.model.LobWithBLOBs" >
+    update t_lob
+    set NAME = #{name,jdbcType=VARCHAR},
+      B_LOB = #{bLob,jdbcType=BLOB},
+      C_LOB = #{cLob,jdbcType=CLOB}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.demo.dao.model.Lob" >
+    update t_lob
+    set NAME = #{name,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertBatch" parameterType="com.zengshi.ecp.demo.dao.model.LobWithBLOBs" >
+    insert into t_lob (ID, 
+      NAME, B_LOB, C_LOB
+      )
+    values <foreach collection="list" item="item" index="index" separator="," > (#{item.id,jdbcType=INTEGER}, 
+      #{item.name,jdbcType=VARCHAR}, #{item.bLob,jdbcType=BLOB}, #{item.cLob,jdbcType=CLOB}
+      )</foreach>
+  </insert>
+</mapper>

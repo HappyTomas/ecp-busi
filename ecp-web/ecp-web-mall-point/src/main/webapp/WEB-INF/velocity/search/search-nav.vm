@@ -1,0 +1,20 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/search/search-rank.js"></script>
+<div id="lnav">
+    <div class="npro-type">
+        <div class="head">
+            <i class="picon"></i>
+            所有礼品
+        </div>
+		<input type="hidden" id="searchCategory" value="$!{extra.searchCategory}"/>
+        <ul class="list">
+            <li id="leafCate" class="item first ecp-component sidebar-catg-shader" data-place-id="703" data-menu-type="1" data-place-height ="301"
+                data-module="ecp-component/sidebar-catg-shader">
+                
+            </li>
+        </ul>
+    </div>
+    <div class="nsolt" id="rank">
+    	
+      </div>
+</div>

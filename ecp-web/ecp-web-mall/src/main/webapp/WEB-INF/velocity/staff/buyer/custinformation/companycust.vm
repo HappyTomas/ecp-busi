@@ -1,0 +1,121 @@
+#parse("sys/sys_param.vm")
+<form id="companycustFrom" name="companycust">
+                        <div class="control-group">
+                            <label class="control-label"><span class="c-red">* </span>企业名称：</label>
+                            <div class="controls">
+                                <input type="text" id="" name="companyName" placeholder="企业名称">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">企业所在地：</label>
+                            <div class="controls">
+                                <select class="jquery-area required" name="provinceCode" id="province_code"  area-type="admin" area-level="province" area-children="city_code" area-defaultvalue="$!{custInfo.provinceCode}"></select>
+                                <select class="jquery-area required"  name="cityCode" id="city_code" area-type="admin" area-level="city" area-children="county_code" area-defaultvalue="$!{custInfo.cityCode}"></select>
+                                <select class="jquery-area required"  name="countyCode" id="county_code" area-type="admin" area-level="county" area-children="" area-defaultvalue="$!{custInfo.countyCode}"></select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">企业地址：</label>
+                            <div class="controls">
+                                <input type="text" placeholder="详细地址" name="companyAdress" class="span5">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">企业行业：</label>
+                            <div class="controls">
+                                <select class="span2" name="trade">
+                                    <option>请选项企业行业</option>
+									#listParam('COMPANY_INFO_TRADE')
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">企业类型：</label>
+                            <div class="controls">
+                                <select class="span2" name="companyType">
+                                    <option>请选择</option>
+									#listParam('COMPANY_INFO_TYPE')
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">企业人数：</label>
+                            <div class="controls">
+                                <select class="span2" name="employeeNum">
+                                    <option>请选择</option>
+									#listParam('COMPANY_INFO_EMPLOYEE')
+                                </select>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">父企业：</label>
+                            <div class="controls">
+                                <select class="span2" name="parentId">
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                        </div>
+                        <legend>企业联系方式</legend>
+                        <div class="control-group">
+                            <label class="control-label">联系人：</label>
+                            <div class="controls">
+                                <input type="text" placeholder="联系人姓名" name="linkPersonMsg">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">联系人手机：</label>
+                            <div class="controls">
+                                <input type="text" placeholder="联系人手机" name="linkPhoneMsg">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">固定电话：</label>
+                            <div class="controls">
+                                <input type="text" placeholder="固定电话" name="linkTelephone">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">联系人身份证号：</label>
+                            <div class="controls">
+                                <input type="text" placeholder="联系人身份证号" name="linkPsnCard">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">企业邮箱：</label>
+                            <div class="controls">
+                                <input type="email" placeholder="企业邮箱" name="companyEmail">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">企业微信：</label>
+                            <div class="controls">
+                                <input type="text" placeholder="企业微信" name="companyWeixin">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">企业QQ号：</label>
+                            <div class="controls">
+                                <input type="text" placeholder="企业QQ号" name="companyQq">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">备注：</label>
+                            <div class="controls">
+                                <textarea rows="3" name="remark"></textarea>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label"><span class="c-red">* </span>验证码：</label>
+                            <div class="controls">
+                                <input type="text" placeholder="验证码" class="span1" name="captchaCode">
+                              <img id="captchaCodeImg" src="$CONTEXT_PATH/captcha/CapthcaImage"/>
+                               <span> <a id="refleshCaptchaCode" href="javascript:void(0);">看不清楚，换一张</a></span>
+                            </div>
+                        </div>
+						</form>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button id="companySumbit" class="btn btn btn-danger">提交申请</button>&nbsp;&nbsp;
+                            </div>
+                        </div>
+							

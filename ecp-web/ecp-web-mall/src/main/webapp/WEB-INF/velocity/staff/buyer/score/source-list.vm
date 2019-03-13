@@ -1,0 +1,43 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/staff/score-source-list.js"></script>
+
+	<input type='hidden' id="scoreSumTemp" value="$!{scoreSourceSum}"/>
+	<table class="">
+    	<thead>
+        <tr>
+        	<th>积分类型</th>
+            <th style="width:80px">获得积分</th>
+            <th>订单编号</th>
+            <th>获得时间</th>
+            <th>到期时间</th>
+            <th>备注</th>
+        </tr>
+        </thead>
+        <tbody>
+        	#if(!$scoreSourcePage.getResult())
+        		<tr><td colspan='6'>没有符合条件的记录。</td><tr>
+        	#end
+        	#foreach($attr in $scoreSourcePage.getResult())
+        		<tr>
+	                <td>$!{attr.scoreTypeName}</td>
+	                <td>$!{attr.score}</td>
+	                #if(${attr.sourceType} == '4001')
+	                	<td>$!{attr.orderId}</td>
+	                #elseif (!${attr.orderId})
+	                	<td>-</td>
+	                #else 
+	                	<td><a href="$CONTEXT_PATH/ord/detail/$!{attr.orderId}" target="_blank">$!{attr.orderId}</a></td>
+	                #end
+	                
+	                <td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.createTime})</td>
+	                <td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.inureTime})</td>
+	                <td>$!{attr.remark}</td>
+	            </tr>
+			#end
+		</tbody>
+	</table>
+    <div class="fav-opt clearfix" style="margin-top: 20px;">
+        <div class="row-fluid">
+			<div id="pageControlbar" class="ecppage" data-total-page="${scoreSourcePage.pageCount}" data-total-row="${scoreSourcePage.count}" data-page-size="${scoreSourcePage.pageSize}" data-page-number="${scoreSourcePage.pageNo}" data-status="begin"></div>
+		</div>
+    </div>

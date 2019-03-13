@@ -1,0 +1,674 @@
+@charset "UTF-8";
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+body {
+  color: #333333;
+  background: #fff;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: courier new, courier, monospace;
+}
+ul,
+ol {
+  list-style: none;
+}
+a {
+  color: #333333;
+  text-decoration: none;
+}
+a:hover {
+  color: #009ae0;
+  text-decoration: none;
+}
+img {
+  border: 0;
+}
+/*重设ie滚动条*/
+@-ms-viewport {
+  width: auto;
+}
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+/*单行文字溢出时出现省略号，需设定宽度*/
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+/*公共框架*/
+.wrap100 {
+  width: 100%;
+  margin: 0 auto;
+}
+.w {
+  width: 1200px;
+  min-width: 1200px;
+  margin: 0 auto;
+}
+.main {
+  padding: 20px;
+}
+/* 按钮定义begin */
+.sbtn {
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  height: 28px;
+  line-height: 28px;
+  border: 1px solid #dddddd;
+  background-color: #fff;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  padding: 0 20px;
+  min-width: 60px;
+  color: #666;
+  margin: 0 5px;
+  display: inline-block;
+  vertical-align: middle;
+  text-decoration: none;
+}
+.sbtn:hover {
+  border-color: #4c6ad4;
+  color: #333;
+  outline: 0 none;
+}
+.sbtn-blue {
+  color: #fff;
+  background-color: #4c6ad4;
+  border-color: #4c6ad4;
+}
+.sbtn-blue:hover {
+  color: #fff;
+}
+.sbtn-org {
+  color: #fff;
+  background-color: #ff6a00;
+  border-color: #ff6a00;
+}
+.sbtn-org:hover {
+  color: #fff;
+  border-color: #ff6a00;
+}
+.sbtn-disable {
+  background-color: #999999;
+  border: 1px solid #999999;
+  cursor: not-allowed;
+  color: #fff;
+}
+/* 按钮定义end */
+/* tab定义 begin */
+.tpl-tab {
+  background-color: #fff;
+  border: 1px solid #dddddd;
+  margin-top: 15px;
+}
+.tpl-tab .tab-nav {
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 1px solid #dddddd;
+}
+.tpl-tab .tab-nav li {
+  float: left;
+  padding: 0 30px;
+  height: 34px;
+  line-height: 34px;
+  cursor: pointer;
+  border-top: 2px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+}
+.tpl-tab .tab-nav .active {
+  border-right-color: #dddddd;
+  border-left-color: #dddddd;
+  border-top-color: #4c6ad4;
+  background-color: #fff;
+  height: 35px;
+}
+.tpl-tab .tab-nav .first {
+  border-left: 1px solid transparent;
+}
+.tpl-tab .tab-content {
+  margin-top: 1px;
+}
+.tpl-tab .tab-content .nItem {
+  padding: 15px;
+}
+/* tab定义 end */
+/* table begin */
+.tpl-table {
+  width: 100%;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.tpl-table caption {
+  background-color: #f1f8ff;
+  text-align: left;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 30px;
+  border: 1px solid #d5d9e3;
+  border-bottom: 0;
+  font-weight: bold;
+}
+.tpl-table [class*=" icon-opt"] {
+  margin: 2px;
+  cursor: pointer;
+}
+.tpl-table td,
+.tpl-table th {
+  padding: 10px;
+  border: 1px solid #dddddd;
+  text-align: center;
+  white-space: nowrap;
+}
+.tpl-table a {
+  color: #4c6ad4;
+}
+.tpl-table thead {
+  background-color: #ebf2f6;
+}
+.tpl-table .img-wrap {
+  width: 60px;
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+}
+.tpl-table .td-hhtxt {
+  text-align: left;
+  white-space: normal;
+}
+/* table end */
+/*字体图标链接 - by tangyk 20160105 add*/
+@font-face {
+  font-family: "iconfont";
+  src: url('iconfont.eot');
+  src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('iconfont.woff') format('woff'), /* chrome、firefox */ url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('iconfont.svg#iconfont') format('svg');
+  
+  /* IE9*/
+  /* iOS 4.1- */
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* 弹框 begin */
+.modal-body {
+  overflow: inherit;
+}
+.modal-header {
+  background: #4C6AD4;
+  color: #fff;
+  font-size: 18px;
+}
+.modal-header .close {
+  margin-top: 2px;
+  font-size: 28px;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  text-shadow: none;
+  color: #fff;
+}
+.modal-backdrop,
+.modal-backdrop.fade.in {
+  opacity: .4;
+  filter: alpha(opacity=40);
+}
+/* 弹框 end */
+.pro-empty {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 15px;
+  color: #333;
+}
+/* 图片 begin */
+.ticon {
+  background-image: url("../../images/pageConfig/tpl-icons.png");
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+  /*向下箭头*/
+  /*向上箭头*/
+}
+.ticon-down {
+  width: 12px;
+  height: 12px;
+  background-position: -30px -17px;
+}
+.ticon-downup {
+  width: 12px;
+  height: 12px;
+  background-position: -57px -17px;
+}
+.ticon-up {
+  width: 12px;
+  height: 12px;
+  background-position: -42px -17px;
+}
+.ticon-udown {
+  width: 12px;
+  height: 12px;
+  background-position: -70px -17px;
+}
+.ticon-havfav {
+  width: 20px;
+  height: 20px;
+  background-position: -176px -60px;
+}
+.ticon-fav {
+  width: 20px;
+  height: 20px;
+  background-position: -35px -60px;
+}
+/* 图片 end */
+/* 分页 */
+.tpage ul {
+  box-shadow: 0 0 0 0;
+}
+.tpage ul > li {
+  margin-right: 10px;
+  display: inline-block;
+  float: left;
+}
+.tpage ul > li > a {
+  border: 1px solid #dddddd;
+}
+.tpage ul > li.active a,
+.tpage ul > li > a:hover {
+  display: inline-block !important;
+  background-color: #ff6a00;
+  border: 1px solid #ff6a00;
+  color: #fff;
+}
+.tpage ul > li.disabled a,
+.tpage ul > li.disabled > a:hover {
+  background-color: #f3f3f3;
+  border: 1px solid #dddddd;
+}
+.tpage .gopage b {
+  width: 40px;
+  display: inline-block;
+  text-align: center;
+}
+.tpage .gopage input[type="text"] {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #dddddd;
+  display: inline-block;
+  padding: 0;
+  margin-bottom: 0;
+  text-align: center;
+  border-radius: 0;
+  margin: 0 5px;
+}
+.tpage .gopage .gobtn {
+  background-color: #f3f3f3;
+  border: 1px solid #dddddd;
+  height: 30px;
+  width: 85px;
+}
+/* 分页 */
+.tpl-red {
+  color: #ff6a00;
+}
+.tpl-gray {
+  color: #999;
+}
+.tbtn {
+  height: 24px;
+  line-height: 24px;
+  display: inline-block;
+  padding: 0 15px;
+  text-align: center;
+  font-size: 12px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  font-weight: bold;
+  vertical-align: middle;
+  cursor: pointer;
+  background-color: #f3f3f3;
+  border: 1px solid #dddddd;
+}
+.tbtn-orange {
+  color: #fff;
+  background-color: #ff6a00;
+  border: 1px solid #ff6a00;
+}
+.tbtn-disable {
+  color: #fff;
+  cursor: not-allowed;
+  background-color: #999999;
+  border: 1px solid #999999;
+}
+/* layout 重新定义 */
+.layout {
+  margin: 0 auto;
+  width: 1200px;
+  position: relative;
+}
+.layout-full {
+  width: 100%!important;
+  overflow: hidden;
+}
+.layout-full .template {
+  width: 100%;
+}
+.layout-full .tItem {
+  width: 100%;
+}
+.layout-full img {
+  /* width: 1920px;
+    position: relative;
+    left: 50%;
+    margin-left: -860px;
+    max-width: none;*/
+}
+.layout-full .hotImg-content {
+  width: 1920px;
+  position: relative;
+  left: 50%;
+  margin-left: -960px;
+  max-width: none;
+  text-align: center;
+}
+.layout-full .modular-mask-icon a {
+  display: inline-block;
+}
+.layout-inner {
+  *zoom: 1;
+  overflow: inherit;
+  margin-left: -10px;
+  width: auto;
+}
+.layout-inner .tItem {
+  margin-right: 0;
+  margin-left: 10px;
+}
+.layout-inner:before,
+.layout-inner:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.layout-inner:after {
+  clear: both;
+}
+.layout-inner .tItem {
+  position: relative;
+  float: left;
+  margin-right: 0;
+  margin-left: 10px;
+  min-height: 120px;
+}
+.modular {
+  margin-bottom: 10px;
+  position: relative;
+}
+.modular-head {
+  padding: 10px;
+  background: #EBEDF3;
+  color: #666;
+}
+/* layout 重新定义 */
+/* 模板 默认展示一行显示4个 begin */
+.template {
+  *zoom: 1;
+  overflow: inherit;
+  width: auto;
+  position: relative;
+}
+.template:before,
+.template:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.template:after {
+  clear: both;
+}
+.template .tItem {
+  border: 0;
+  margin-right: 0;
+  margin-left: 10px;
+}
+.template .tItem .tUl {
+  padding: 15px 15px 5px 15px;
+  border: 0;
+  margin-left: -0.5%;
+}
+.template .tpl-img {
+  text-align: center;
+  display: block;
+}
+.template .tpl-img img {
+  height: 100%;
+}
+.template .tLi {
+  float: left;
+  margin-bottom: 15px;
+  border: 0;
+  height: auto;
+  width: 24.5%;
+  margin-left: 0.5%;
+}
+.template .tLi:hover {
+  border: 0;
+}
+.template-1 .tLi {
+  width: 100%;
+}
+.template-2 .tUl {
+  margin-left: -0.5%;
+}
+.template-2 .tLi {
+  width: 49.5%;
+  margin-left: 0.5%;
+}
+.template-3 .tUl {
+  margin-left: -0.5%;
+}
+.template-3 .tLi {
+  width: 32.8%;
+  margin-left: 0.5%;
+}
+.template-4 .tUl {
+  margin-left: -0.5%;
+}
+.template-4 .tLi {
+  width: 24.5%;
+  margin-left: 0.5%;
+}
+.template-5 .tUl {
+  margin-left: -0.5%;
+}
+.template-5 .tLi {
+  width: 19.5%;
+  margin-left: 0.5%;
+}
+/* 模板 end */
+/* banner begin */
+.tpl-banner {
+  width: 752px;
+  position: relative;
+  padding: 0;
+  height: 315px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+.tpl-banner .slide-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -350px;
+  text-align: center;
+  width: 700px;
+  z-index: 5;
+  overflow: hidden;
+}
+.tpl-banner .slide-pagination ul {
+  display: inline-block;
+}
+.tpl-banner .slide-pagination li {
+  float: left;
+}
+.tpl-banner .slide-pagination a {
+  text-decoration: none;
+  display: inline-block;
+  height: 22px;
+  width: 22px;
+  line-height: 22px;
+  background: #7a7a7c;
+  color: white;
+  margin-right: 7px;
+}
+.tpl-banner .slide-pagination a.current {
+  background: #ff6a00;
+  color: #fff;
+  opacity: 1;
+}
+.tpl-banner .slide-box {
+  width: 100%;
+  height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+.tpl-banner .slide-box li {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  text-align: center;
+  display: none;
+}
+/* banner end */
+.p-mz {
+  background-color: #ff6a00;
+  display: inline-block;
+  padding: 0 10px;
+  height: 20px;
+  line-height: 20px;
+  color: #fff;
+  margin-left: 2px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+}
+/* 楼层 */
+.skipfloor {
+  width: 65px;
+  position: fixed;
+  top: 230px;
+  right: 10px;
+  z-index: 9999;
+}
+.skipfloor h2 img {
+  width: 105px;
+  height: auto;
+}
+.skipfloor .top-img {
+  background-color: #fff;
+}
+.skipfloor .floor-list li,
+.skipfloor .floor-list .toTop {
+  color: #fff;
+  background: #4c6ad4;
+  border-bottom: dotted 1px #ddd;
+}
+.skipfloor .floor-list li a,
+.skipfloor .floor-list .toTop a,
+.skipfloor .floor-list li span,
+.skipfloor .floor-list .toTop span {
+  color: #fff;
+  text-align: center;
+  line-height: 14px;
+  display: block;
+  padding: 8px 0;
+  cursor: pointer;
+}
+.skipfloor:hover .modular-mask {
+  text-align: center;
+  display: block;
+}
+.rightNavSlide {
+  position: fixed;
+  z-index: 2222;
+  top: 200px;
+  right: 20px;
+  width: 30px;
+  height: 18px;
+  cursor: pointer;
+  background: url("../../images/pageConfig/icon.png") no-repeat;
+  background-position: 0 0;
+}
+.rightNavSlide.toLeft {
+  background-position: 0 -18px;
+}
+/* 楼层编辑 beign*/
+.tpl-loading {
+  height: 100px;
+  width: 100%;
+  background: url("../../images/pageConfig/tpl-loading.gif") center center no-repeat;
+}

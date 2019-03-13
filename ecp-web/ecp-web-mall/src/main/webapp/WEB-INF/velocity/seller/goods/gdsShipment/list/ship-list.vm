@@ -1,0 +1,43 @@
+ #parse("/sys/sys_param.vm")
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsShipment/ship-list.js?version=$!{JS_VERSION}" ></script>
+<table class="seller-table" style="margin-top: 15px">
+  <thead>
+    <tr>
+      <td>运费模板编码</td>
+      <td style="width: 200px">运费模板名称</td>
+      <td>计价方式</td>
+      <td>是否免邮</td>
+      <td>是否默认运费模板</td>
+      <td>店铺</td>
+      <td>操作</td>
+    </tr>
+  </thead>
+  <tbody>
+  
+  #if($!{shipPage.getResult().size()} <= 0)
+  <tr>
+    <td colspan='12'>没有符合条件的记录。</td>
+  </tr> 
+  #end
+    #foreach($shipInfo in $shipPage.getResult())
+  <tr>
+    <td>$shipInfo.id</td>
+    <td> #escapeHtml($shipInfo.shipTemplateName)</td>
+    <td>#if($!shipInfo.shipTemplateType == "1")按件#elseif($!shipInfo.shipTemplateType == "2")按重量#elseif($!shipInfo.shipTemplateType == "3")按体积#elseif($!shipInfo.shipTemplateType == "4")按金额#else#end</td>
+	
+    <td>#if($!shipInfo.ifFree == "1")是#elseif($!shipInfo.ifFree == "0")否#end</td>		
+    <td>#if($!shipInfo.ifDefaultTemplate == "1")是#elseif($!shipInfo.ifDefaultTemplate == "0")否#end</td>
+
+    <td> $shipInfo.shopName </td>
+    <td><a href="#" name="del" tempId="$!shipInfo.id">删除</a>|<a href="#" name="edit" tempId="$!shipInfo.id">编辑</a>|<a href="#" name="default" tempId="$!shipInfo.id">设为默认</a></td>
+  </tr>
+  #end
+  </tbody>
+  
+</table>
+<div class="fav-opt clearfix" >
+  <div class="row-fluid">
+    <div id="pageControlbar" class="ecppage" data-total-page="${shipPage.pageCount}" data-total-row="${shipPage.count}" data-page-size="${shipPage.pageSize}" data-page-number="${shipPage.pageNo}" data-status="begin"></div>
+  </div>
+</div>

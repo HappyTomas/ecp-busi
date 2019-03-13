@@ -1,0 +1,34 @@
+#parse("/module/mod-tree.vm")
+#parse("/module/mod-form.vm")
+<link href="$!{CSS_PATH}/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdscategory/category-select.js?version=$!{JS_VERSION}" ></script>
+<!-- main content -->
+<div id="contentwrapper">
+        <div class="rknav dg-tree" style="width:300px;">
+            <div class="rk-search">
+                <input type="text" id="keyword" style="width:285px"/>
+                <i class="icon-search" id="search"></i>
+            </div>
+			<!--zTree-->
+            <div class="tree-w" style="height:350px;overflow:auto;">
+                <ul id="category-tree" class="ztree"></ul>
+            </div>
+        </div>
+        <div class="btn-wrap btn-wrap-save">
+            <button type="button" class="btn btn-info" style="margin-right:10px;" id="confirm">
+                                            <i class=" icon-ok-sign icon-white"></i>确认
+            </button>
+            <button type="button" class="btn" id="close">
+                <i class=" icon-remove-sign icon-white"></i>关闭
+            </button>
+
+        </div>
+</div>
+<input type="hidden" id="catg-type" value="$!{reqVO.catgType}"/>
+#if('1' ==  $!{multi})
+<input type="hidden" id="multi" value="$!{multi}"/>
+#end
+<input type="hidden" id="catlog-id" value="$!{reqVO.catlogId}"/>
+<input type="hidden" id="maxShowNode" value ="$!{maxShowNode}">
+<!-- main content -->
+</div>

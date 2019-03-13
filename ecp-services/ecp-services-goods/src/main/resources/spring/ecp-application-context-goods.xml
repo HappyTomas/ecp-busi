@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+    
+    <aop:aspectj-autoproxy/>
+
+	<!--价格SV. -->
+	<bean class="com.zengshi.ecp.frame.bean.BeanSet">
+		<constructor-arg>
+			<set>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="beanName" value="gdsPriceSV"/>
+					<property name="interfaceClass" value="com.zengshi.ecp.goods.service.busi.interfaces.price.IGdsPriceSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.goods.service.busi.impl.price.GdsPriceSVImpl"></property>
+				</bean>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="beanName" value="gdsExcelImpSV"/>
+					<property name="interfaceClass" value="com.zengshi.ecp.goods.service.busi.interfaces.excelImp.IGdsExcelImpSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.goods.service.busi.impl.excelImp.GdsExcelImpSVImpl"></property>
+				</bean>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine" >
+					<property name="beanName" value="gdsInfoManageSV"/>
+					<property name="interfaceClass" value="com.zengshi.ecp.goods.service.busi.interfaces.gdsinfo.IGdsInfoManageSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.goods.service.busi.impl.gdsinfo.GdsInfoManageSVImpl"></property>
+				</bean>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine" >
+					<property name="beanName" value="gdsShipTempSV"/>
+					<property name="interfaceClass" value="com.zengshi.ecp.goods.service.busi.interfaces.IGdsShipTempSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.goods.service.busi.impl.GdsShipTempSVImpl"></property>
+				</bean>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine" >
+					<property name="beanName" value="gds001ActionExtSV"/>
+					<property name="interfaceClass" value="com.zengshi.ecp.goods.service.busi.interfaces.app.IGds001ActionExtSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.goods.service.busi.impl.app.Gds001ActionExtSVImpl"></property>
+				</bean>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine" >
+					<property name="beanName" value="gdsAppActionExtSV"/>
+					<property name="interfaceClass" value="com.zengshi.ecp.goods.service.busi.interfaces.app.IGdsAppActionExtSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.goods.service.busi.impl.app.GdsAppActionExtSVImpl"></property>
+				</bean>
+			</set>
+		</constructor-arg>
+	</bean>
+
+	<bean id="gdsStockSV" class="com.zengshi.ecp.goods.service.busi.impl.GdsStockSVImpl"></bean>
+
+	<!-- Common模块SV begin. -->
+	<bean id="gdsTypeSV" class="com.zengshi.ecp.goods.service.common.impl.GdsTypeSVImpl" />
+
+	<bean id="gdsCategorySV" class="com.zengshi.ecp.goods.service.common.impl.GdsCategorySVImpl" />
+
+	<bean id="gdsCategorySyncSV"
+		class="com.zengshi.ecp.goods.service.common.impl.GdsCategorySyncSVImpl" />
+
+	<bean id="gdsCatg2PropSV" class="com.zengshi.ecp.goods.service.common.impl.GdsCatg2PropSVImpl" />
+
+	<bean id="gdsType2PropSV" class="com.zengshi.ecp.goods.service.common.impl.GdsType2PropSVImpl" />
+
+	<bean id="gdsPropSV" class="com.zengshi.ecp.goods.service.common.impl.GdsPropSVImpl" />
+
+	<bean id="gdsLabelSV" class="com.zengshi.ecp.goods.service.common.impl.GdsLabelSVImpl" />
+
+	<bean id="gdsPlatRecomSV" class="com.zengshi.ecp.goods.service.common.impl.GdsPlatRecomSVImpl" />
+
+	<bean id="gdsGuessYLSV" class="com.zengshi.ecp.goods.service.common.impl.GdsGuessYLSVImpl" />
+
+	<bean id="gdsProp2GroupSV"
+		class="com.zengshi.ecp.goods.service.common.impl.GdsProp2GroupSVImpl" />
+
+	<bean id="gdsPropGroupSV" class="com.zengshi.ecp.goods.service.common.impl.GdsPropGroupSVImpl" />
+
+	<bean id="gdsPropValueSV" class="com.zengshi.ecp.goods.service.common.impl.GdsPropValueSVImpl" />
+
+	<bean id="gdsCatg2LabelSV"
+		class="com.zengshi.ecp.goods.service.common.impl.GdsCatg2LabelSVImpl" />
+
+	<bean id="gdsMediaCategorySV"
+		class="com.zengshi.ecp.goods.service.common.impl.GdsMediaCategorySVImpl" />
+
+	<bean id="gdsCatg2PGroupSV"
+		class="com.zengshi.ecp.goods.service.common.impl.GdsCatg2PGroupSVImpl" />
+
+	<bean id="gdsGiftSV" class="com.zengshi.ecp.goods.service.busi.impl.GdsGiftSVImpl" />
+	<!-- Common模块SV end. -->
+
+	<!-- 商品信息索引表操作SV. -->
+	<bean id="gdsInfoIDXSV" class="com.zengshi.ecp.goods.service.busi.impl.gdsinfoidx.GdsInfoIDXSVImpl" />
+
+	<!-- 商品信息索引表操作SV. -->
+	<bean id="gdsCollectSV" class="com.zengshi.ecp.goods.service.busi.impl.GdsCollectSVImpl" />
+
+	
+
+	<!-- 商品信息查询SV. -->
+	<bean id="gdsInfoQuerySV"
+		class="com.zengshi.ecp.goods.service.busi.impl.gdsinfo.GdsInfoQuerySVImpl" depends-on = "beanDefinitionManager"/>
+
+	<!-- 单品信息管理操作SV. -->
+	<bean id="gdsSkuInfoManageSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.gdsinfo.GdsSkuInfoManageSVImpl"  depends-on = "beanDefinitionManager"/>
+
+	<!-- 单品信息查询SV. -->
+	<bean id="gdsSkuInfoQuerySV"
+		class="com.zengshi.ecp.goods.service.busi.impl.gdsinfo.GdsSkuInfoQuerySVImpl" depends-on = "beanDefinitionManager"/>
+
+	<!-- 媒体信息SV. -->
+	<bean id="gdsMediaSV" class="com.zengshi.ecp.goods.service.busi.impl.GdsMediaSVImpl" />
+
+	<!-- 阶梯价SV. -->
+	<bean id="gdsPriceLadderStrategySV"
+		class="com.zengshi.ecp.goods.service.busi.impl.price.GdsPriceLadderStrategySVImpl"  depends-on = "beanDefinitionManager"/>
+
+	<!-- 普通价格SV. -->
+	<bean id="gdsPriceOrdinaryStrategySV"
+		class="com.zengshi.ecp.goods.service.busi.impl.price.GdsPriceOrdinaryStrategySVImpl" />
+
+	<!-- 客户定价SV. -->
+	<bean id="gdsPriceCusGroupStrategySV"
+		class="com.zengshi.ecp.goods.service.busi.impl.price.GdsPriceCusGroupStrategySVImpl" depends-on = "beanDefinitionManager"/>
+
+	<!-- 分地区定价SV. -->
+	<bean id="gdsPriceAreaStrategySV"
+		class="com.zengshi.ecp.goods.service.busi.impl.price.GdsPriceAreaStrategySVImpl" depends-on = "beanDefinitionManager"/>
+
+	
+
+	<!--价格关系SV. -->
+	<bean id="gdsPriceTypeSV" class="com.zengshi.ecp.goods.service.common.impl.GdsPriceTypeSVImpl" />
+
+	<!-- 评价与评价回复SV begin. -->
+	<bean id="gdsIDXSV" class="com.zengshi.ecp.goods.service.busi.impl.gdsinfoidx.GdsIDXSVImpl" />
+
+	<bean id="gdsEvalSV" class="com.zengshi.ecp.goods.service.busi.impl.GdsEvalSVImpl" />
+
+	<bean id="gdsEvalReplySV" class="com.zengshi.ecp.goods.service.busi.impl.GdsEvalReplySVImpl" />
+	<!-- 评价与评价回复SV end. -->
+
+	<!-- 商品评价分布式事务SV -->
+	<bean id="gdsEvalMainTransaction"
+		class="com.zengshi.ecp.goods.facade.impl.eventual.GdsEvalMainTransaction" />
+
+	<!-- 商品评价分布式子事务SV -->
+	<bean id="gdsEvalSubTransaction"
+		class="com.zengshi.ecp.goods.facade.impl.eventual.GdsEvalSubTransaction" />
+
+
+	<!-- 商品快照分布式事务SV -->
+	<bean id="gdsSnapMainTransaction"
+		class="com.zengshi.ecp.goods.facade.impl.eventual.GdsSnapMainTransaction" />
+
+	<!-- 商品快照分布式子事务SV -->
+	<bean id="gdsSnapSubTransaction"
+		class="com.zengshi.ecp.goods.facade.impl.eventual.GdsSnapSubTransaction" />
+
+
+
+	<!-- 目录GdsCatlog服务 -->
+	<bean id="gdsCatalogSV" class="com.zengshi.ecp.goods.service.common.impl.GdsCatalogSVImpl" />
+
+	<!-- 到货通知服务 -->
+	<bean id="gdsArrmsgSV" class="com.zengshi.ecp.goods.service.busi.impl.GdsArrmsgSVImpl" />
+
+	<!-- 购买校验服务 -->
+	<bean id="gdsOrdCartsChkSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.validation.GdsOrdCartsChkSVImpl" />
+
+	<!-- 订单校验服务 -->
+	<bean id="gdsOrdSubChkSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.validation.GdsOrdSubChkSVImpl" />
+
+	<!-- 快照保存服务 -->
+	<bean id="gdsSnapSV" class="com.zengshi.ecp.goods.service.busi.impl.GdsSnapSVImpl" />
+
+	<!-- 商品类型服务 -->
+	<bean id="gdsInfoExternalSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.external.GdsInfoExternalSVImpl" />
+
+	<bean id="gTypeOrdinaryProductStrategySV"
+		class="com.zengshi.ecp.goods.service.busi.impl.external.GTypeOrdinaryPStrategySVImpl" />
+
+	<bean id="gTypeVirtualProductStrategySV"
+		class="com.zengshi.ecp.goods.service.busi.impl.external.GTypeVirtualPStrategySVImpl" />
+	<!-- 目录站点关联关系服务 liyong -->
+	<bean id="gdsCatalog2SiteSV"
+		class="com.zengshi.ecp.goods.service.common.impl.GdsCatalog2SiteSVImpl" />
+	<!-- 会员分类折扣商品黑名单 -->
+	<bean id="gdsCatgCustBlacklistSV" class="com.zengshi.ecp.goods.service.busi.impl.GdsCatgCustBlacklistSVImpl" />
+	<!-- 会员分类折扣服务 -->
+	<bean id="gdsCatgCustDiscSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.GdsCatgCustDiscSVImpl" />
+	<bean id="gdsBrowseHisSV" class="com.zengshi.ecp.goods.service.busi.impl.GdsBrowseHisSVImpl" />
+
+	<!-- 队列监听服务对象注入 -->
+	<bean id="gdsListenerServiceStart"
+		class="com.zengshi.ecp.goods.service.listener.GdsBrowseListenerServiceStart"
+		init-method="start"></bean>
+	<bean id="stockCatgChgListenerServiceStart"
+		class="com.zengshi.ecp.goods.service.listener.StockCatgChangeListenerServiceStart"
+		init-method="start"></bean>
+
+
+	<!--单品积分价格服务 -->
+	<bean id="gdsScoreExtSV" class="com.zengshi.ecp.goods.service.busi.impl.GdsScoreExtSVImpl" />
+
+	<!--第三方系统商品和亚信侧电商平台商品编码映射服务 -->
+	<bean id="gdsInterfaceGdsSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.GdsInterfaceGdsSVImpl" />
+
+	<!--分类同步映射服务 -->
+	<bean id="gdsInterfaceCatgSV"
+		class="com.zengshi.ecp.goods.service.common.impl.GdsInterfaceCatgSVImpl" />
+
+	<!-- 收藏量服务 -->
+	<bean id="gdsCollectCntSV" class="com.zengshi.ecp.goods.service.busi.impl.GdsCollectCntSVImpl" />
+
+	<!-- 商品分类关系服务 -->
+	<bean id="gdsInfo2CatgSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.gdsinfores.GdsInfo2CatgSVImpl" />
+	<!-- 商品图片关系服务 -->
+	<bean id="gdsInfo2MediaSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.gdsinfores.GdsInfo2MediaSVImpl" />
+	<!-- 商品属性关系服务 -->
+	<bean id="gdsInfo2PropSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.gdsinfores.GdsInfo2PropSVImpl" />
+	<!-- 单品图片关系服务 -->
+	<bean id="gdsSkuInfo2MediaSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.gdsinfores.GdsSkuInfo2MediaSVImpl" />
+	<!-- 单品属性关系服务 -->
+	<bean id="gdsSkuInfo2PropSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.gdsinfores.GdsSkuInfo2PropSVImpl" />
+		
+	<!-- 商品单品索引查询服务  -->
+	<bean id="gdsInfoQueryIDXSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.gdsinfoidx.GdsInfoQueryIDXSVImpl"/>	
+			
+	<!-- 单品快照服务 -->
+	<bean id="gdsSkuSnapSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.GdsSkuSnapSVImpl"/>
+		
+		
+			<!-- 商品excel导入服务 -->
+
+	<bean id="gdsExcelImpLogSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.excelImp.GdsExcelImpLogSVImpl" />
+	<bean id="gdsExcelImpToolSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.excelImp.GdsExcelImpToolSVImp" />
+	
+	<bean id="gdsLogSV"
+		class="com.zengshi.ecp.goods.service.busi.impl.gdslog.GdsLogSVImpl"/>	
+		
+	
+	<!-- 商品信息操作日志类型计算服务. -->	
+    <bean id="gdsInfoOpeTypeCalSV" class="com.zengshi.ecp.goods.service.busi.impl.gdslog.GdsInfoOpeTypeCalSVImpl"/>
+    <!-- 商品审核操作类型计算服务. -->
+    <bean id="gdsVerifyOpeTypeCalSV" class="com.zengshi.ecp.goods.service.busi.impl.gdslog.GdsVerifyOpeTypeCalSVImpl"/>
+    <!-- 单品信息操作日志类型计算服务 -->
+    <bean id="gdsSkuInfoOpeTypeCalSV" class="com.zengshi.ecp.goods.service.busi.impl.gdslog.GdsSkuInfoOpeTypeCalSVImpl"/>
+	<!-- 单品审核操作类型计算服务. -->
+    <bean id="gdsSkuVerifyOpeTypeCalSV" class="com.zengshi.ecp.goods.service.busi.impl.gdslog.GdsSkuVerifyOpeTypeCalSVImpl"/>
+    
+    <!-- 目录店铺关联关系服务 -->
+    <bean id="gdsCatlog2ShopSV" class="com.zengshi.ecp.goods.service.common.impl.GdsCatlog2ShopSVImpl"/>
+
+	<!-- 属性服务 -->
+	<bean id="gdsPropManageSV" class="com.zengshi.ecp.goods.service.common.impl.GdsPropManageSVImpl"/>
+		
+</beans>

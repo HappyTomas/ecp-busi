@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     ">
+
+    <bean id="unpfOrdMainRSV" class="com.zengshi.ecp.unpf.dubbo.impl.order.UnpfOrdMainRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.order.IUnpfOrdMainRSV" ref="unpfOrdMainRSV" provider="${default.dubbo.provider.id}"/>
+
+    <bean id="unpfOrdDeliverRSV" class="com.zengshi.ecp.unpf.dubbo.impl.order.UnpfOrdDeliverRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.order.IUnpfOrdDeliverRSV" ref="unpfOrdDeliverRSV" provider="${default.dubbo.provider.id}"/>
+	
+    <bean id="unpfShopAuthRSV" class="com.zengshi.ecp.unpf.dubbo.impl.auth.UnpfShopAuthRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.auth.IUnpfShopAuthRSV" ref="unpfShopAuthRSV" provider="${default.dubbo.provider.id}"/>
+    
+     <bean id="unpfTokenRSV" class="com.zengshi.ecp.unpf.dubbo.impl.token.UnpfTokenRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.token.IUnpfTokenRSV" ref="unpfTokenRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="unpfCategoryRSV" class="com.zengshi.ecp.unpf.dubbo.impl.UnpfCategoryRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.IUnpfCategoryRSV" ref="unpfCategoryRSV" provider="${default.dubbo.provider.id}"/>
+
+	<bean id="unpfMsgSycRSV" class="com.zengshi.ecp.unpf.dubbo.impl.msgSyc.UnpfMsgSycRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.msgSyc.IUnpfMsgSycRSV" ref="unpfMsgSycRSV" provider="${default.dubbo.provider.id}"/>
+	  
+	 <bean id="unpfCatgRSV" class="com.zengshi.ecp.unpf.dubbo.impl.catg.UnpfCatgRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.catg.IUnpfCatgRSV" ref="unpfCatgRSV" provider="${default.dubbo.provider.id}"/>
+     
+ 	<bean id="unpfOrdDetialRSV" class="com.zengshi.ecp.unpf.dubbo.impl.order.UnpfOrdDetialRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.order.IUnpfOrdDetialRSV" ref="unpfOrdDetialRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="unpfGoodSendRSV" class="com.zengshi.ecp.unpf.dubbo.impl.gdssend.UnpfGoodSendRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.gdssend.IUnpfGoodSendRSV" ref="unpfGoodSendRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="unpfGdsSendRSV" class="com.zengshi.ecp.unpf.dubbo.impl.gdssend.UnpfGdsSendRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.gdssend.IUnpfGdsSendRSV" ref="unpfGdsSendRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="unpfShopAuthTopicRSV" class="com.zengshi.ecp.unpf.dubbo.impl.gdssend.UnpfShopAuthTopicRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.gdssend.IUnpfShopAuthTopicRSV" ref="unpfShopAuthTopicRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="unpfSendLogRSV" class="com.zengshi.ecp.unpf.dubbo.impl.gdssend.UnpfSendLogRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.gdssend.IUnpfSendLogRSV" ref="unpfSendLogRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="unpfShopLimitRSV" class="com.zengshi.ecp.unpf.dubbo.impl.UnpfShopLimitRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.IUnpfShopLimitRSV" ref="unpfShopLimitRSV" provider="${default.dubbo.provider.id}"/>
+        
+     <bean id="unpfGdsUnsendRSV" class="com.zengshi.ecp.unpf.dubbo.impl.gdssend.UnpfGdsUnsendRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.gdssend.IUnpfGdsUnsendRSV" ref="unpfGdsUnsendRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="unpfGdsUnsendHisRSV" class="com.zengshi.ecp.unpf.dubbo.impl.gdssend.UnpfGdsUnsendHisRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.gdssend.IUnpfGdsUnsendHisRSV" ref="unpfGdsUnsendHisRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="unpfShopExpressRSV" class="com.zengshi.ecp.unpf.dubbo.impl.order.UnpfShopExpressRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.order.IUnpfShopExpressRSV" ref="unpfShopExpressRSV" provider="${default.dubbo.provider.id}"/>
+         
+     <bean id="unpfShopCfgRSV" class="com.zengshi.ecp.unpf.dubbo.impl.UnpfShopCfgRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.IUnpfShopCfgRSV" ref="unpfShopCfgRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="unpfStockRSV" class="com.zengshi.ecp.unpf.dubbo.impl.stock.UnpfStockRSVImpl" />
+     <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.stock.IUnpfStockRSV" ref="unpfStockRSV" provider="${default.dubbo.provider.id}"/>
+
+    <bean id="unpfShopStockLimitRSV" class="com.zengshi.ecp.unpf.dubbo.impl.UnpfShopStockLimitRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.IUnpfShopStockLimitRSV" ref="unpfShopStockLimitRSV" provider="${default.dubbo.provider.id}"/>
+
+    <bean id="youzanSynOrdersRSV" class="com.zengshi.ecp.unpf.dubbo.impl.order.YouzanSynOrdersRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.order.IYouzanSynOrdersRSV" ref="youzanSynOrdersRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <bean id="unpfOrdExportRSV" class="com.zengshi.ecp.unpf.dubbo.impl.order.UnpfOrdExportRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.unpf.dubbo.interfaces.order.IUnpfOrdExportRSV" ref="unpfOrdExportRSV" provider="${default.dubbo.provider.id}"/>
+
+</beans>  

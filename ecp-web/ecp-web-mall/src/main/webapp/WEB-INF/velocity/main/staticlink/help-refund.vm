@@ -1,0 +1,20 @@
+
+    <!--文本-->
+    <div class="wrap1000">
+        <div class="h-tit">
+            退、换货流程
+        </div>
+        <div class="h-com">
+            <p>如收到的图书发生质量问题，请联系我们</p>
+            <br>
+            <p>电话：17310925570 ，17310865575</p>
+             <p>在线客服：
+            #custInfo()
+						<a href="#" class="imUrl" target="_blank">
+									<span class="imInfo" style="display:none">
+										$!{cust.staffCode}#100#1
+									</span>
+									<i class="micon micon-bkf"></i><font color="#ff6a00">售后咨询</font>
+						     	</a></p>
+        </div>
+    </div>

@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.search.dao.mapper.common.SecConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.search.dao.model.SecConfig" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CONFIG_NAME" property="configName" jdbcType="VARCHAR" />
+    <result column="CONFIG_DESC" property="configDesc" jdbcType="VARCHAR" />
+    <result column="CONFIG_COLLECTION_NAME" property="configCollectionName" jdbcType="VARCHAR" />
+    <result column="CONFIG_QUERY_OP" property="configQueryOp" jdbcType="VARCHAR" />
+    <result column="CONFIG_QUERY_IF_HL" property="configQueryIfHl" jdbcType="VARCHAR" />
+    <result column="CONFIG_QUERY_HL_PRE" property="configQueryHlPre" jdbcType="VARCHAR" />
+    <result column="CONFIG_QUERY_HL_POST" property="configQueryHlPost" jdbcType="VARCHAR" />
+    <result column="CONFIG_QUERY_IF_SPELLCHECK" property="configQueryIfSpellcheck" jdbcType="VARCHAR" />
+    <result column="CONFIG_QUERY_SPELLCHECK_COUNT" property="configQuerySpellcheckCount" jdbcType="INTEGER" />
+    <result column="COLLECTION_STATUS" property="collectionStatus" jdbcType="VARCHAR" />
+    <result column="INDEX_STATUS" property="indexStatus" jdbcType="VARCHAR" />
+    <result column="CONFIG_IF_ACTIVE" property="configIfActive" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="CONFIG_IF_MULTILAN" property="configIfMultilan" jdbcType="VARCHAR" />
+    <result column="LANS" property="lans" jdbcType="VARCHAR" />
+    <result column="CONFIG_PARAMS" property="configParams" jdbcType="VARCHAR" />
+    <result column="LAN_FIELD" property="lanField" jdbcType="VARCHAR" />
+    <result column="LAN_FIELD_FIELD_TYPE" property="lanFieldFieldType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CONFIG_NAME, CONFIG_DESC, CONFIG_COLLECTION_NAME, CONFIG_QUERY_OP, CONFIG_QUERY_IF_HL, 
+    CONFIG_QUERY_HL_PRE, CONFIG_QUERY_HL_POST, CONFIG_QUERY_IF_SPELLCHECK, CONFIG_QUERY_SPELLCHECK_COUNT, 
+    COLLECTION_STATUS, INDEX_STATUS, CONFIG_IF_ACTIVE, STATUS, CREATE_STAFF, CREATE_TIME, 
+    UPDATE_STAFF, UPDATE_TIME, CONFIG_IF_MULTILAN, LANS, CONFIG_PARAMS, LAN_FIELD, LAN_FIELD_FIELD_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.search.dao.model.SecConfigCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_sec_config
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sec_config
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_sec_config
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.search.dao.model.SecConfigCriteria" >
+    delete from t_sec_config
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.search.dao.model.SecConfig" >
+    insert into t_sec_config (ID, CONFIG_NAME, CONFIG_DESC, 
+      CONFIG_COLLECTION_NAME, CONFIG_QUERY_OP, CONFIG_QUERY_IF_HL, 
+      CONFIG_QUERY_HL_PRE, CONFIG_QUERY_HL_POST, CONFIG_QUERY_IF_SPELLCHECK, 
+      CONFIG_QUERY_SPELLCHECK_COUNT, COLLECTION_STATUS, 
+      INDEX_STATUS, CONFIG_IF_ACTIVE, STATUS, 
+      CREATE_STAFF, CREATE_TIME, UPDATE_STAFF, 
+      UPDATE_TIME, CONFIG_IF_MULTILAN, LANS, 
+      CONFIG_PARAMS, LAN_FIELD, LAN_FIELD_FIELD_TYPE
+      )
+    values (#{id,jdbcType=INTEGER}, #{configName,jdbcType=VARCHAR}, #{configDesc,jdbcType=VARCHAR}, 
+      #{configCollectionName,jdbcType=VARCHAR}, #{configQueryOp,jdbcType=VARCHAR}, #{configQueryIfHl,jdbcType=VARCHAR}, 
+      #{configQueryHlPre,jdbcType=VARCHAR}, #{configQueryHlPost,jdbcType=VARCHAR}, #{configQueryIfSpellcheck,jdbcType=VARCHAR}, 
+      #{configQuerySpellcheckCount,jdbcType=INTEGER}, #{collectionStatus,jdbcType=VARCHAR}, 
+      #{indexStatus,jdbcType=VARCHAR}, #{configIfActive,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{createStaff,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{configIfMultilan,jdbcType=VARCHAR}, #{lans,jdbcType=VARCHAR}, 
+      #{configParams,jdbcType=VARCHAR}, #{lanField,jdbcType=VARCHAR}, #{lanFieldFieldType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.search.dao.model.SecConfig" >
+    insert into t_sec_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="configName != null" >
+        CONFIG_NAME,
+      </if>
+      <if test="configDesc != null" >
+        CONFIG_DESC,
+      </if>
+      <if test="configCollectionName != null" >
+        CONFIG_COLLECTION_NAME,
+      </if>
+      <if test="configQueryOp != null" >
+        CONFIG_QUERY_OP,
+      </if>
+      <if test="configQueryIfHl != null" >
+        CONFIG_QUERY_IF_HL,
+      </if>
+      <if test="configQueryHlPre != null" >
+        CONFIG_QUERY_HL_PRE,
+      </if>
+      <if test="configQueryHlPost != null" >
+        CONFIG_QUERY_HL_POST,
+      </if>
+      <if test="configQueryIfSpellcheck != null" >
+        CONFIG_QUERY_IF_SPELLCHECK,
+      </if>
+      <if test="configQuerySpellcheckCount != null" >
+        CONFIG_QUERY_SPELLCHECK_COUNT,
+      </if>
+      <if test="collectionStatus != null" >
+        COLLECTION_STATUS,
+      </if>
+      <if test="indexStatus != null" >
+        INDEX_STATUS,
+      </if>
+      <if test="configIfActive != null" >
+        CONFIG_IF_ACTIVE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="configIfMultilan != null" >
+        CONFIG_IF_MULTILAN,
+      </if>
+      <if test="lans != null" >
+        LANS,
+      </if>
+      <if test="configParams != null" >
+        CONFIG_PARAMS,
+      </if>
+      <if test="lanField != null" >
+        LAN_FIELD,
+      </if>
+      <if test="lanFieldFieldType != null" >
+        LAN_FIELD_FIELD_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="configName != null" >
+        #{configName,jdbcType=VARCHAR},
+      </if>
+      <if test="configDesc != null" >
+        #{configDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="configCollectionName != null" >
+        #{configCollectionName,jdbcType=VARCHAR},
+      </if>
+      <if test="configQueryOp != null" >
+        #{configQueryOp,jdbcType=VARCHAR},
+      </if>
+      <if test="configQueryIfHl != null" >
+        #{configQueryIfHl,jdbcType=VARCHAR},
+      </if>
+      <if test="configQueryHlPre != null" >
+        #{configQueryHlPre,jdbcType=VARCHAR},
+      </if>
+      <if test="configQueryHlPost != null" >
+        #{configQueryHlPost,jdbcType=VARCHAR},
+      </if>
+      <if test="configQueryIfSpellcheck != null" >
+        #{configQueryIfSpellcheck,jdbcType=VARCHAR},
+      </if>
+      <if test="configQuerySpellcheckCount != null" >
+        #{configQuerySpellcheckCount,jdbcType=INTEGER},
+      </if>
+      <if test="collectionStatus != null" >
+        #{collectionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="indexStatus != null" >
+        #{indexStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="configIfActive != null" >
+        #{configIfActive,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="configIfMultilan != null" >
+        #{configIfMultilan,jdbcType=VARCHAR},
+      </if>
+      <if test="lans != null" >
+        #{lans,jdbcType=VARCHAR},
+      </if>
+      <if test="configParams != null" >
+        #{configParams,jdbcType=VARCHAR},
+      </if>
+      <if test="lanField != null" >
+        #{lanField,jdbcType=VARCHAR},
+      </if>
+      <if test="lanFieldFieldType != null" >
+        #{lanFieldFieldType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.search.dao.model.SecConfigCriteria" resultType="java.lang.Long" >
+    select count(*) from t_sec_config
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_sec_config
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.configName != null" >
+        CONFIG_NAME = #{record.configName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configDesc != null" >
+        CONFIG_DESC = #{record.configDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configCollectionName != null" >
+        CONFIG_COLLECTION_NAME = #{record.configCollectionName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configQueryOp != null" >
+        CONFIG_QUERY_OP = #{record.configQueryOp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configQueryIfHl != null" >
+        CONFIG_QUERY_IF_HL = #{record.configQueryIfHl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configQueryHlPre != null" >
+        CONFIG_QUERY_HL_PRE = #{record.configQueryHlPre,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configQueryHlPost != null" >
+        CONFIG_QUERY_HL_POST = #{record.configQueryHlPost,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configQueryIfSpellcheck != null" >
+        CONFIG_QUERY_IF_SPELLCHECK = #{record.configQueryIfSpellcheck,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configQuerySpellcheckCount != null" >
+        CONFIG_QUERY_SPELLCHECK_COUNT = #{record.configQuerySpellcheckCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.collectionStatus != null" >
+        COLLECTION_STATUS = #{record.collectionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.indexStatus != null" >
+        INDEX_STATUS = #{record.indexStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configIfActive != null" >
+        CONFIG_IF_ACTIVE = #{record.configIfActive,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.configIfMultilan != null" >
+        CONFIG_IF_MULTILAN = #{record.configIfMultilan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lans != null" >
+        LANS = #{record.lans,jdbcType=VARCHAR},
+      </if>
+      <if test="record.configParams != null" >
+        CONFIG_PARAMS = #{record.configParams,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lanField != null" >
+        LAN_FIELD = #{record.lanField,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lanFieldFieldType != null" >
+        LAN_FIELD_FIELD_TYPE = #{record.lanFieldFieldType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_sec_config
+    set ID = #{record.id,jdbcType=INTEGER},
+      CONFIG_NAME = #{record.configName,jdbcType=VARCHAR},
+      CONFIG_DESC = #{record.configDesc,jdbcType=VARCHAR},
+      CONFIG_COLLECTION_NAME = #{record.configCollectionName,jdbcType=VARCHAR},
+      CONFIG_QUERY_OP = #{record.configQueryOp,jdbcType=VARCHAR},
+      CONFIG_QUERY_IF_HL = #{record.configQueryIfHl,jdbcType=VARCHAR},
+      CONFIG_QUERY_HL_PRE = #{record.configQueryHlPre,jdbcType=VARCHAR},
+      CONFIG_QUERY_HL_POST = #{record.configQueryHlPost,jdbcType=VARCHAR},
+      CONFIG_QUERY_IF_SPELLCHECK = #{record.configQueryIfSpellcheck,jdbcType=VARCHAR},
+      CONFIG_QUERY_SPELLCHECK_COUNT = #{record.configQuerySpellcheckCount,jdbcType=INTEGER},
+      COLLECTION_STATUS = #{record.collectionStatus,jdbcType=VARCHAR},
+      INDEX_STATUS = #{record.indexStatus,jdbcType=VARCHAR},
+      CONFIG_IF_ACTIVE = #{record.configIfActive,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      CONFIG_IF_MULTILAN = #{record.configIfMultilan,jdbcType=VARCHAR},
+      LANS = #{record.lans,jdbcType=VARCHAR},
+      CONFIG_PARAMS = #{record.configParams,jdbcType=VARCHAR},
+      LAN_FIELD = #{record.lanField,jdbcType=VARCHAR},
+      LAN_FIELD_FIELD_TYPE = #{record.lanFieldFieldType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.search.dao.model.SecConfig" >
+    update t_sec_config
+    <set >
+      <if test="configName != null" >
+        CONFIG_NAME = #{configName,jdbcType=VARCHAR},
+      </if>
+      <if test="configDesc != null" >
+        CONFIG_DESC = #{configDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="configCollectionName != null" >
+        CONFIG_COLLECTION_NAME = #{configCollectionName,jdbcType=VARCHAR},
+      </if>
+      <if test="configQueryOp != null" >
+        CONFIG_QUERY_OP = #{configQueryOp,jdbcType=VARCHAR},
+      </if>
+      <if test="configQueryIfHl != null" >
+        CONFIG_QUERY_IF_HL = #{configQueryIfHl,jdbcType=VARCHAR},
+      </if>
+      <if test="configQueryHlPre != null" >
+        CONFIG_QUERY_HL_PRE = #{configQueryHlPre,jdbcType=VARCHAR},
+      </if>
+      <if test="configQueryHlPost != null" >
+        CONFIG_QUERY_HL_POST = #{configQueryHlPost,jdbcType=VARCHAR},
+      </if>
+      <if test="configQueryIfSpellcheck != null" >
+        CONFIG_QUERY_IF_SPELLCHECK = #{configQueryIfSpellcheck,jdbcType=VARCHAR},
+      </if>
+      <if test="configQuerySpellcheckCount != null" >
+        CONFIG_QUERY_SPELLCHECK_COUNT = #{configQuerySpellcheckCount,jdbcType=INTEGER},
+      </if>
+      <if test="collectionStatus != null" >
+        COLLECTION_STATUS = #{collectionStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="indexStatus != null" >
+        INDEX_STATUS = #{indexStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="configIfActive != null" >
+        CONFIG_IF_ACTIVE = #{configIfActive,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="configIfMultilan != null" >
+        CONFIG_IF_MULTILAN = #{configIfMultilan,jdbcType=VARCHAR},
+      </if>
+      <if test="lans != null" >
+        LANS = #{lans,jdbcType=VARCHAR},
+      </if>
+      <if test="configParams != null" >
+        CONFIG_PARAMS = #{configParams,jdbcType=VARCHAR},
+      </if>
+      <if test="lanField != null" >
+        LAN_FIELD = #{lanField,jdbcType=VARCHAR},
+      </if>
+      <if test="lanFieldFieldType != null" >
+        LAN_FIELD_FIELD_TYPE = #{lanFieldFieldType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.search.dao.model.SecConfig" >
+    update t_sec_config
+    set CONFIG_NAME = #{configName,jdbcType=VARCHAR},
+      CONFIG_DESC = #{configDesc,jdbcType=VARCHAR},
+      CONFIG_COLLECTION_NAME = #{configCollectionName,jdbcType=VARCHAR},
+      CONFIG_QUERY_OP = #{configQueryOp,jdbcType=VARCHAR},
+      CONFIG_QUERY_IF_HL = #{configQueryIfHl,jdbcType=VARCHAR},
+      CONFIG_QUERY_HL_PRE = #{configQueryHlPre,jdbcType=VARCHAR},
+      CONFIG_QUERY_HL_POST = #{configQueryHlPost,jdbcType=VARCHAR},
+      CONFIG_QUERY_IF_SPELLCHECK = #{configQueryIfSpellcheck,jdbcType=VARCHAR},
+      CONFIG_QUERY_SPELLCHECK_COUNT = #{configQuerySpellcheckCount,jdbcType=INTEGER},
+      COLLECTION_STATUS = #{collectionStatus,jdbcType=VARCHAR},
+      INDEX_STATUS = #{indexStatus,jdbcType=VARCHAR},
+      CONFIG_IF_ACTIVE = #{configIfActive,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      CONFIG_IF_MULTILAN = #{configIfMultilan,jdbcType=VARCHAR},
+      LANS = #{lans,jdbcType=VARCHAR},
+      CONFIG_PARAMS = #{configParams,jdbcType=VARCHAR},
+      LAN_FIELD = #{lanField,jdbcType=VARCHAR},
+      LAN_FIELD_FIELD_TYPE = #{lanFieldFieldType,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

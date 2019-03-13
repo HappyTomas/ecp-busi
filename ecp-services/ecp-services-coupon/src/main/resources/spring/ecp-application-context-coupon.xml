@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+       
+     <bean id="coupFreezeConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupFreezeConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupFreeze"></property>
+    </bean>
+    <bean id="coupFreezeRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupFreezeRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupFreeze"></property>
+    </bean>
+    
+    
+	<bean id="coupTypeConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupTypeConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupType"></property>
+    </bean>
+    <bean id="coupTypeRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupTypeRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupTypeRespDTO"></property>
+    </bean>
+   <bean id="coupParamConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupParamConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupParam"></property>
+    </bean>
+     <bean id="coupParamRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupParamRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupParamRespDTO"></property>
+    </bean>
+   	<bean id="coupInfoRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupInfoRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupInfoRespDTO"></property>
+    </bean>
+    <bean id="coupInfoConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupInfoConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupInfo"></property>
+    </bean>
+    <bean id="coupInfoLogConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupInfoLogConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupInfoLog"></property>
+    </bean>
+       
+    <bean id="coupBlackLimitRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupBlackLimitRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupBlackLimitRespDTO"></property>
+    </bean>
+    <bean id="coupBlackLimitConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupBlackLimitConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupBlackLimit"></property>
+    </bean>
+    
+    <bean id="coupCatgLimitRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupCatgLimitRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupCatgLimitRespDTO"></property>
+    </bean>
+    <bean id="coupCatgLimitConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupCatgLimitConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupCatgLimit"></property>
+    </bean>
+    
+    <bean id="coupFullLimitRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupFullLimitRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupFullLimitRespDTO"></property>
+    </bean>
+    <bean id="coupFullLimitConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupFullLimitConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupFullLimit"></property>
+    </bean>
+    
+    <bean id="coupGetLimitRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupGetLimitRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupGetLimitRespDTO"></property>
+    </bean>
+    <bean id="coupGetLimitConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupGetLimitConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupGetLimit"></property>
+    </bean>
+    
+    <bean id="coupShopLimitRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupShopLimitRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupShopLimitRespDTO"></property>
+    </bean>
+    <bean id="coupShopLimitConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupShopLimitConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupShopLimit"></property>
+    </bean>
+    
+    <bean id="coupUseLimitRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupUseLimitRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupUseLimitRespDTO"></property>
+    </bean>
+    <bean id="coupUseLimitConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupUseLimitConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupUseLimit"></property>
+    </bean>
+    
+    <bean id="coupVarLimitRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupVarLimitRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupVarLimitRespDTO"></property>
+    </bean>
+    <bean id="coupVarLimitConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupVarLimitConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupVarLimit"></property>
+    </bean>
+    <bean id="coupDetailRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupDetailRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupMeRespDTO"></property>
+    </bean>
+    <bean id="coupDetailIdxConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupDetailIdxConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupDetailIdx"></property>
+    </bean>
+    <bean id="coupDetailConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupDetailConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupDetail"></property>
+    </bean>
+    <bean id="coupDetailLogConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupDetailLogConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupDetailLog"></property>
+    </bean>
+    <bean id="coupDetailCheckDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupDetailCheckDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.general.order.dto.CoupDetailRespDTO"></property>
+    </bean>
+    <bean id="coupMyDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupMyDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.req.CoupDetailReqDTO"></property>
+    </bean>
+    <bean id="coupDetailDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupDetailDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.req.CoupDetailReqDTO"></property>
+    </bean>	
+    <bean id="coupConsumeConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupConsumeConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupConsume"></property>
+    </bean>
+    <bean id="coupConsumeDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupConsumeDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupConsumeRespDTO"></property>
+    </bean>
+    <bean id="coupConsumeIdxConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupConsumeIdxConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupConsumeIdx"></property>
+    </bean>					
+    <bean id="coupPresentConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupPresentConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupPresent"></property>
+    </bean>
+    <bean id="coupDetailPresentConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupDetailPresentConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.req.CoupPresentReqDTO"></property>
+    </bean>
+    <bean id="coupBatchConfConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupBatchConfConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dao.model.CoupBatchConf"></property>
+    </bean>
+    <bean id="coupBatchConfRespDTOConverter" class="com.zengshi.ecp.coupon.dubbo.impl.convert.CoupBatchConfRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.coupon.dubbo.dto.resp.CoupBatchConfRespDTO"></property>
+    </bean>
+    
+    
+    
+    <bean id="coupParamSV"
+		class="com.zengshi.ecp.coupon.service.common.impl.CoupParamSVImpl"></bean>
+	<bean id="coupTypeSV"
+		class="com.zengshi.ecp.coupon.service.common.impl.CoupTypeSVImpl"></bean>
+	<bean id="coupCreateInitSV"
+		class="com.zengshi.ecp.coupon.service.busi.combination.impl.CoupCreateInitSVImpl"></bean>
+	<bean id="coupInfoSV"
+		class="com.zengshi.ecp.coupon.service.busi.coupUse.impl.CoupInfoSVImpl"></bean>
+	<bean id="coupDetailSV"
+		class="com.zengshi.ecp.coupon.service.busi.coupUse.impl.CoupDetailSVImpl"></bean>
+	<bean id="coupBlackLimitSV"
+		class="com.zengshi.ecp.coupon.service.busi.coupUse.impl.CoupBlackLimitSVImpl"></bean>
+	<bean id="coupCatgLimitSV"
+		class="com.zengshi.ecp.coupon.service.busi.coupUse.impl.CoupCatgLimitSVImpl"></bean>
+	<bean id="coupFullLimitSV"
+		class="com.zengshi.ecp.coupon.service.busi.coupUse.impl.CoupFullLimitSVImpl"></bean>
+	<bean id="coupGetLimitSV"
+		class="com.zengshi.ecp.coupon.service.busi.coupUse.impl.CoupGetLimitSVImpl"></bean>
+	<bean id="coupShopLimitSV"
+		class="com.zengshi.ecp.coupon.service.busi.coupUse.impl.CoupShopLimitSVImpl"></bean>
+	<bean id="coupUseLimitSV"
+		class="com.zengshi.ecp.coupon.service.busi.coupUse.impl.CoupUseLimitSVImpl"></bean>
+	<bean id="coupVARLimitSV"
+		class="com.zengshi.ecp.coupon.service.busi.coupUse.impl.CoupVARLimitSVImpl"></bean>
+	<bean id="coupConsumeSV"
+		class="com.zengshi.ecp.coupon.service.busi.coupUse.impl.CoupConsumeSVImpl"></bean>
+	<bean id="coupBatchSV"
+		class="com.zengshi.ecp.coupon.service.busi.coupUse.impl.CoupBatchSVImpl"></bean>
+
+</beans>

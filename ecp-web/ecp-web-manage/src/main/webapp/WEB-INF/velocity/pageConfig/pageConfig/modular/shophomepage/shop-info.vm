@@ -1,0 +1,51 @@
+#parse("pageConfig/pageConfig/modular/common/common-head.vm")
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+<input type="hidden" id="propPreStr" value="$!{propPreStr}"/>
+
+<div class="well-searchForm">
+	##错误提示信息start.需要
+	<div class="hide alert error-msg" id="error-msg">
+	</div>
+	##错误提示信息end.需要
+	<div class="dialog-body">
+        <div class="dialog-content">
+            <form id="paramsSetForm" class="required-validate form-horizontal templateItemForms" data-url="$!{CONTEXT_PATH}/modular-dynamic/commonModularFormSave">
+    			<div class="dynamicFormMainBox">
+    				<input type="hidden" id="modularPageId" value="$!{pageId}"/>
+                	<input type="hidden" id="modularModularId" value="$!{modularId}"/>
+                	<input type="hidden" id="modularItemId" value="$!{itemId}"/>
+    				##店铺信息 ======start
+                    <div class="row-fluid">
+                        <div class="span5 formItem" >
+                            <div class="control-group">
+                                <label class="control-label">$!{attrs.get(1011).propName}：</label>
+                                <div class="controls"  style="margin-top: 5px">
+    								#if($attrs.get(1011).modularPropValRespDTOList && $attrs.get(1011).modularPropValRespDTOList.size() > 0)
+                    					#foreach($prop in $attrs.get(1011).modularPropValRespDTOList)
+    										<label class="lable-ck">
+    											##对于多选的这种情况。这些值的初始化要在modular-common.js里面进行初始化
+    											<input type="hidden" id="propValue" value="">
+                								<input type="hidden" id="propValueId" value="$!{prop.propValue}">
+                								<input type="hidden" id="propId" value="$!{attrs.get(1011).id}">
+    											##对于多选的这种情况。这些值的初始化要在modular-common.js里面进行初始化
+                								<input type="hidden" id="propItemId" value=""/>
+                                                <input type="checkbox" />$!{prop.valueDesc}
+                                            </label>
+    									#end
+                					#end
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+    				##店铺信息 ======end
+                </div>
+            </form>
+        </div>
+	</div>
+    <div class="text-center">
+        <span id="btnSave" class="btn btn-info"><i class="icon-ok-sign icon-white"></i>确定</span>
+        <span id="btnCancel" class="btn"><i class="icon-reply icon-white"></i>取消</span>
+    </div>
+</div>

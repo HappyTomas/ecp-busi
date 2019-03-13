@@ -1,0 +1,12 @@
+#parse("/sys/sys_param.vm")
+
+<link href="$!{RESOURCE_PATH}/jquery/jquery.fine-uploader/fine-uploader-gallery.min.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery.fine-uploader/jquery.fine-uploader.min.js"></script>
+
+
+<script src="$!{RESOURCE_PATH}/framework/website/core/e.upload.js" type="text/javascript"></script>
+
+<!--缩略图预留位置插件-->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/holder/holder.js" ></script>
+<!--上传选择器封装-->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js" ></script>

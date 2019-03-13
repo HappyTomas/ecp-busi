@@ -1,0 +1,98 @@
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/favShops/member-favShops.js?version=$!{JS_VERSION}"></script>
+<div class="mbox mt20 fav-tb">
+    <div class="body">
+    <div class="fav-opt clearfix">
+	    <div class="lt-fy pull-right">
+	        <span class="shuzi"><span class="c-red">${shopPage.pageNo}</span>/${shopPage.pageCount}</span>
+	        <a href="javascript:void(0);" title="上一页" onClick="pageShow('${shopPage.pageNo}','${shopPage.pageCount}','up')"> <i class="mb-icon mb-pre"></i> </a>
+	        <a href="javascript:void(0);" title="下一页" onClick="pageShow('${shopPage.pageNo}','${shopPage.pageCount}','down')"> <i class="mb-icon mb-next"></i></a>
+	    </div>
+	</div>
+    <!-- 未查询到收藏的店铺  -->
+	#if(!$shopPage.getResult())
+		<div class="fav-shops" style="text-align:center">
+			<font size="4px;">您没有收藏店铺。</font>
+		</div>
+	#end
+	#foreach($attr in $shopPage.getResult())
+        <div class="fav-shops">
+            <div class="item fitem">
+                <div class="intro">
+                    <div class="hd">
+                        <!--<input class="icheck icheckbox" type="checkbox"/>-->
+                        <div class="adv">
+                            <img width="32" height="32" src="$!{attr.logoPathURL}" alt=""/>
+                           <!-- <span>京东自营</span> -->
+                            <p>$!{attr.shopName}</p>
+                        </div>
+                    </div>
+                    <div class="bd">
+                        <p>
+                            <span>
+                                关注人气：
+                            </span>
+                              <span>
+                                  $!{attr.collectCount}人
+                              </span>
+                        </p>
+                        <p>
+                         
+                        </p>
+                        <p>
+                            <a class="btn-default goshop" href="javascript:void(0);" onClick="shopDetail($!{attr.id})">
+                                进入店铺
+                            </a>
+                        </p>
+                        <p class="btn-grps">
+                            <a class="btn-default btn-kf" href="javascript:void(0);">
+                                <i class="mb-icon mb-icon-kf"></i>
+                                联系客服
+                            </a>
+                            <a class="btn-default" href="javascript:void(0);" onClick="cancelShop($!{attr.id});">
+                                取消关注
+                            </a>
+                        </p>
+                    </div>
+
+                </div>
+                <div class="pros">
+	                 <ul class="fav-tabt">
+					    <li>
+					        <a class="active" id="hotGoods_$!{attr.id}" name="hotGoods" href="javascript:void(0);" onClick="hotGoods($!{attr.id});">
+					            热销(TOP8)
+					        </a>
+					    </li>
+					    <li>
+					        <a href="javascript:void(0);" id="newGoods_$!{attr.id}" onClick="newGoods($!{attr.id});">
+					            新品(TOP8)
+					        </a>
+					    </li>
+					</ul>
+					<div class="fav-tabc">
+					    <div class="citem active">
+					        <div class="favimg slide jcarousel" id="goodsDiv_$!{attr.id}">
+                   				#parse("staff/buyer/favShops/div/shopGoodsDiv.vm")
+                   			</div>
+				    	</div>
+					    <div class="citem">
+					
+					    </div>
+					</div>
+                </div>
+            </div>
+        </div>
+    #end
+        <div class="fav-opt clearfix" style="margin-top: 20px;">
+        <!--
+        	<div class="f-checkbox pull-left">
+	            <label>
+	                <input class="icheck" type="checkbox"/>
+	                全部
+	            </label>
+	            <a href="#">取消关注</a>
+	        </div>
+	     -->
+        </div>
+    </div>
+</div>

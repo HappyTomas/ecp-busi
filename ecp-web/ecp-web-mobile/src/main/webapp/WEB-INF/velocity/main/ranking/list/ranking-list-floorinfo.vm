@@ -1,0 +1,27 @@
+#parse("sys/sys_param.vm")
+<div id="rank-gds-$!{tabId}" data-am-widget="list_news" class="am-list-news scroll-wrap">
+     <div class="am-list-news-bd scroll">
+		<ul class="ui-list scrollCont">
+			 #if(${gdsList} && $gdsList.size() > 0)
+				#foreach($gds in $!{gdsList})
+					<li>
+		                <a href='#if($!{gds.url} && $!{gds.url} !='')$!CONTEXT_PATH$!{gds.url}' #else javascript:void(0);'#end>
+		                    <div class="img-wrap">
+		                        <img src="$!{gds.mainPic.URL}" alt=""/>
+		                    </div>
+		                    <div class="cont">
+		                        <p class="tit">$!{gds.gdsName}</p>
+		                        <div>
+		                            <span class="pro-pri">#moneyDecimal($!{gds.skuInfo.discountPrice})</span>
+		                            <del class="pro-dis">#moneyDecimal($!{gds.guidePrice})</del>
+		                        </div>
+		                    </div>
+		                </a>
+		            </li>
+				#end
+			#else
+				<div class='pro-empty'>#if(${errMsg} && $!{errMsg} != '')$!{errMsg} #else 亲，暂无数据！#end</div>
+			#end
+		</ul>
+	</div>
+</div>

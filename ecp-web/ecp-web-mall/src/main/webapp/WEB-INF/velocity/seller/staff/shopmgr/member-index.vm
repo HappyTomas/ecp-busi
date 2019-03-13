@@ -1,0 +1,29 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+
+ <script>
+        $(function(){
+            U.tab('#teamTab','#teamTabc');
+        })
+ </script>
+
+    <div class="seller-tab" id="tabHost">
+	    <ul class="tab-nav" id="teamTab">
+	        <li class="active first"><a href="#custlist" class="item">会员列表</a></li>
+	        <li><a href="#gradeSet" class="item">等级设置</a></li>
+	    </ul>
+     	<div class="tab-content" id="teamTabc">
+		    <div class="point-con" id="custlist">
+				#parse("/seller/staff/shopmgr/tab/member-balance.vm")
+				<div class="nItem">
+		
+		        </div>
+		    </div>
+		    <div class="point-con" id="gradeSet">
+				#parse("/seller/staff/shopmgr/tab/grade-set.vm")
+				<div class="nItem">
+		
+		        </div>
+		    </div>
+		 </div>
+   	</div>

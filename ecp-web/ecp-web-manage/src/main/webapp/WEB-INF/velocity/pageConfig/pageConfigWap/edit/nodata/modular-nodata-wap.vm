@@ -1,0 +1,9 @@
+<div class="nodata" style="background-color:#fff;height:90px;text-align:center;padding-top:30px;">
+	<span style="color: #aaa;font-size: 14px;">
+		$!{crossItem.modularRespDTO.modularName}
+       </span>
+	<br>
+	<span style="color:red;">
+		该模块未配置数据，请点击配置数据！
+       </span>
+</div>

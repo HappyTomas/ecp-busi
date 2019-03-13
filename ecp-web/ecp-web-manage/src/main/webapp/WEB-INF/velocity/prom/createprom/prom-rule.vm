@@ -1,0 +1,127 @@
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/prom-rule.js?version=$!{JS_VERSION}" ></script>
+			<div class="alert alert-error hide formValidateMessages" style="color:red;" id="prom-rule-valid">
+				##showSpringAllError("promType4ShopVO")
+            </div>
+		      <div class=" alert-info" style="margin-left:50px;">如果以下页面规则不勾选或不填写，那么默认都可以参加。</div>
+		      <div class="clear"></div>
+				<form id="promRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;margin-left: 50px;" method="post" action=""  >
+				#if($null.isNull($custGrouplList) || $custGrouplList.isEmpty())
+				
+				#else
+						<div class="row-fluid formSep"  >
+						<div class="span12">
+							<div class="control-group" >
+							<label class="control-label" style="width:180px;text-align: left;"><input type="checkbox" id="custGroup" name="promRuleVO.custGroup" value="1"  #if ($!{promVO.promRuleVO.custGroup}=='1') checked #end> &nbsp;是否限制客户分组：</label>
+								<div class="controls">
+									 <label class="control-label" style="text-align: left;"><input type="checkbox" id="custGroupAll"  name="promRuleVO.custGroupValue"  value="" #if ($!{doAction}!='edit' && $!{doAction}!='copy') disabled #end  ><span style="color:red">&nbsp;全部</span></label>
+									#foreach( $info in $custGrouplList) 
+									  <label class="control-label" style="width:200px;text-align: left;"><input type="checkbox" disabled name="promRuleVO.custGroupValue" value="$!{info.id}"   #if (${aiTool.containStr("$!{info.id}","$!{promVO.promRuleVO.custGroupValue}")}) checked #end>&nbsp;$!{info.groupName}</label>
+									 #end
+								</div>
+							</div>
+						</div>
+					</div>
+				 #end
+					<div class="row-fluid formSep" >
+						<div class="control-group">
+						<label class="control-label" style="width:180px;text-align: left;"><input type="checkbox"  id="channel" name="promRuleVO.channel" value="1"  #if ($!{promVO.promRuleVO.channel}=='1') checked #end> &nbsp;是否限制渠道来源：</label>
+							<div class="controls">
+								 <label class="control-label" style="text-align: left;"><input type="checkbox" id="channelAll"  name="promRuleVO.channelValue"  value="" #if ($!{doAction}!='edit' && $!{doAction}!='copy') disabled #end  ><span style="color:red">&nbsp;全部</span></label>
+								#foreach( $info in $channelList) 
+								 <label class="control-label" style="text-align: left;"><input type="checkbox" name="promRuleVO.channelValue" value="$!{info.spCode}" #if ($!{doAction}!='edit' && $!{doAction}!='copy') disabled #end  #if (${aiTool.containStr("$!{info.spCode}","$!{promVO.promRuleVO.channelValue}")}) checked #end>&nbsp;$!{info.spValue}</label>
+								 #end
+							</div>
+					</div>
+				</div>
+					
+					<div class="row-fluid formSep" >
+						<div class="control-group">
+						<label class="control-label" style="width:180px;text-align: left;"><input type="checkbox" id="custLevel" name="promRuleVO.custLevel" value="1"  #if ($!{promVO.promRuleVO.custLevel}=='1') checked #end> &nbsp;是否限制客户等级：</label>
+							<div class="controls">
+							    <label class="control-label" style="text-align: left;"><input type="checkbox" id="custLevelAll"  name="promRuleVO.custLevelValue"  value="" #if ($!{doAction}!='edit' && $!{doAction}!='copy') disabled #end  ><span style="color:red">&nbsp;全部</span></label>
+								#foreach( $info in $custLevelList) 
+								 <label class="control-label" style="width:100px;text-align: left;"><input type="checkbox" name="promRuleVO.custLevelValue" value="$!{info.spCode}" #if ($!{doAction}!='edit' && $!{doAction}!='copy') disabled #end  #if (${aiTool.containStr("$!{info.spCode}","$!{promVO.promRuleVO.custLevelValue}")}) checked #end>&nbsp;$!{info.spValue}</label>
+								 #end
+							</div>
+					</div>
+				 
+				</div>
+					<!--
+					<div class="row-fluid " >
+					<div class="span2">
+						<div class="control-group">
+						<label class="control-label" style="text-align: left;"><input type="checkbox" id="area" name="promRuleVO.area" value="1"  #if ($!{promVO.promRuleVO.area}=='1') checked #end> &nbsp;区域限制：</label>
+							<div class="controls">
+								  <label class="control-label" style="text-align: left;" ><input type="checkbox" id="areaAll"  name="promRuleVO.areaValue" value="" #if ($!{doAction}!='edit' && $!{doAction}!='copy') disabled #end ><span style="color:red">&nbsp;全部</span></label>
+								  <label class="control-label" style="text-align: left;" ><input type="checkbox" id="areaExclude"  name="promRuleVO.areaExclude" value="1" #if ($!{doAction}!='edit' && $!{doAction}!='copy') disabled #end  #if (${aiTool.containStr("1","$!{promVO.promRuleVO.areaExclude}")}) checked #end><span style="color:blue">&nbsp;除选中区域外</span></label>
+							</div>
+						</div>
+						</div>
+							<div class="span8">
+						<div class="control-group">
+							<div class="controls">
+								    #foreach( $info in $provinceList) 
+								          <label class="control-label" style="text-align: left;" ><input   type="checkbox" name="promRuleVO.areaValue" value="$!{info.areaCode}" #if ($!{doAction}!='edit' && $!{doAction}!='copy') disabled #end  #if (${aiTool.containStr("$!{info.areaCode}","$!{promVO.promRuleVO.areaValue}")}) checked #end>&nbsp;$!{info.areaName}</label>
+									 #end
+							</div>
+						</div>
+					</div>
+				 
+				</div>
+				-->
+					
+					<div class="row-fluid formSep">
+					<div class="span12">
+						<div class="control-group">
+							<label class="control-label">购买次数限制：</label>
+							<div class="controls" >
+							     #foreach( $info in $timesList) 
+							       <label class="control-label"  style="text-align:left;width:80px;"><input type="radio" style="margin-left: 0px;" class="limitTimesType" name="promRuleVO.limitTimesType" value="$!{info.spCode}" #if (${aiTool.containStr("$!{info.spCode}","$!{promVO.promRuleVO.limitTimesType}")}) checked #end >&nbsp;$!{info.spValue}</label>
+								 #end
+									 <label class="control-label  limitTimesTypeValueClass  #if (!${promVO.promRuleVO.limitTimesType} || $!{promVO.promRuleVO.limitTimesType}=="0") hide #end" for="name"><span id="limitTimesTypeValueLabel" style="color:red"></span>次数：</label>
+								 	 <input type="text" class="span2 number  limitTimesTypeValueClass #if (!${promVO.promRuleVO.limitTimesType} || $!{promVO.promRuleVO.limitTimesType}=="0") hide #end" placeholder="整数次数"  id="limitTimesTypeValue" maxlength="5" name="promRuleVO.limitTimesTypeValue"  value="$!{promVO.promRuleVO.limitTimesTypeValue}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				 <div class="row-fluid formSep">
+					<div class="span12">
+						<div class="control-group">
+							<label class="control-label" >购买总量限制：</label>
+							<div class="controls">
+							    #foreach( $info in $timesList) 
+							       <label class="control-label" style="text-align:left;width:80px;"><input type="radio" style="margin-left: 0px;" class="limitTotalType" name="promRuleVO.limitTotalType" value="$!{info.spCode}" #if (${aiTool.containStr("$!{info.spCode}","$!{promVO.promRuleVO.limitTotalType}")}) checked #end >&nbsp;$!{info.spValue}</label>
+								 #end
+								  <label class="control-label limitTotalTypeValueClass  #if (!${promVO.promRuleVO.limitTotalType} || $!{promVO.promRuleVO.limitTotalType}=="0") hide #end" for="name"><span id="limitTotalTypeValueLabel" style="color:red"></span>总量：</label>
+								  <input type="text" class="span2 number limitTotalTypeValueClass #if (!${promVO.promRuleVO.limitTotalType} || $!{promVO.promRuleVO.limitTotalType}=="0") hide #end" placeholder="整数总量" id="limitTotalTypeValue" name="promRuleVO.limitTotalTypeValue" maxlength="5" value="$!{promVO.promRuleVO.limitTotalTypeValue}" />
+							</div>
+						</div>
+					</div>
+				</div>
+				 
+				<div class="row-fluid formSep">
+				<div class="span6">
+						<div class="control-group">
+							<label class="control-label" >每次最小购买量：</label>
+							<div class="controls">
+								   <input type="text" class="span6 number" placeholder="最小购买量" maxlength="5" id="minBuyCnt" name="promRuleVO.minBuyCnt"   value="$!{promVO.promRuleVO.minBuyCnt}" />
+								   <span class="help-inline">只能输入正整数</span>
+								</div>
+						</div>
+						</div>
+							<div class="span6">
+						<div class="control-group">
+							<label class="control-label" >每次最大购买量：</label>
+							<div class="controls">
+									  <input type="text" class="span6 number" placeholder="最大购买量"  maxlength="5" id="maxBuyCnt" name="promRuleVO.maxBuyCnt"    value="$!{promVO.promRuleVO.maxBuyCnt}"  />
+								      <span class="help-inline">只能输入正整数</span>
+								</div>
+						</div>
+						</div>
+					</div>
+				</form>
+			 
+			   
+		    

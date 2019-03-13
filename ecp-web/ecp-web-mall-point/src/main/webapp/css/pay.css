@@ -1,0 +1,461 @@
+@charset "utf-8";
+/* 订单结算 begin*/
+#header .paylink {
+  float: left;
+  font-size: 18px;
+  line-height: 45px;
+}
+#header .paylink i {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #999999;
+  border: 1px solid #999999;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+#header .paylink a {
+  color: #666;
+}
+/* 结算页面样式重置 begin*/
+.pay h2 {
+  font-size: 16px;
+  color: #000;
+  font-weight: normal;
+  line-height: 30px;
+}
+.pay .sl-name {
+  color: #000;
+}
+/* 结算页面样式重置 end*/
+/* 结算步骤 begin*/
+.pay-step {
+  width: 450px;
+  float: right;
+}
+.pay-step li {
+  float: left;
+}
+.pay-step .s-txt {
+  color: #dddddd;
+  text-align: center;
+  height: 25px;
+}
+.pay-step .s-num {
+  width: 150px;
+  height: 25px;
+  font-size: 16px;
+  text-align: center;
+  line-height: 25px;
+  font-weight: bold;
+  color: #fff;
+  background: url("../images/pay-step.png") 0 0 no-repeat;
+}
+.pay-step .active .s-num {
+  background-position: -150px 0;
+}
+.pay-step .active .s-txt {
+  color: #ff7003;
+}
+/* 结算步骤 end*/
+.pay-box {
+  padding: 20px 30px;
+  border: 1px solid #dddddd;
+  border-top: 2px solid #999999;
+}
+.pay-box .head {
+  font-size: 14px;
+  color: #000;
+  padding-left: 10px;
+  position: relative;
+}
+.pay-box .head a {
+  color: #0088cc;
+  font-weight: normal;
+  font-size: 12px;
+}
+.pay-box .hright {
+  position: absolute;
+  right: -10px;
+  top: -15px;
+}
+.pay-box .body {
+  border-bottom: 1px dashed #dddddd;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+.pay-box .pay-row {
+  padding: 0 10px;
+}
+.pay-box .lrow .body {
+  border: 0;
+}
+/* 修改地址 */
+.sl-addr {
+  position: relative;
+}
+.sl-addr .addMgr {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #0088cc;
+}
+.sl-addr.hover {
+  background-color: #fff5e3;
+}
+.sl-addr.hover .addMgr {
+  display: block;
+}
+.sl-addr.hover .addMgr span {
+  cursor: pointer;
+  margin-right: 10px;
+}
+/* 更多地址 */
+.addropt {
+  margin: 10px 0;
+  cursor: pointer;
+}
+.addropt i {
+  width: 20px;
+  height: 20px;
+  background-position: -75px 2px;
+}
+/* 购物列表 begin*/
+.pay-list {
+  padding: 0 35px;
+  border: 1px solid #dddddd;
+  margin-bottom: 10px;
+}
+.pay-list .hd {
+  padding: 10px 0;
+}
+.pay-list .hd h4 {
+  margin-bottom: 5px;
+}
+.pay-list .paymz {
+  display: inline-block;
+  width: 50px;
+  height: 20px;
+  line-height: 20px;
+  background-color: #ff0000;
+  border: 1px solid #ff0000;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  color: #fff;
+  text-align: center;
+}
+/* 购物列表 end*/
+/* 购物表格 begin*/
+.paytb td {
+  border-top: 1px dashed #dddddd;
+  padding: 15px 0 15px 20px;
+}
+.paytb .p-img {
+  width: 90px;
+  height: 90px;
+}
+.paytb .p-img img {
+  width: 90px;
+  height: 90px;
+}
+.paytb .p-name {
+  width: 430px;
+}
+.paytb .p-pri {
+  width: 200px;
+  color: #ff0000;
+}
+.paytb .p-num {
+  width: 200px;
+}
+/* 购物表格 end*/
+/* 发票信息 begin*/
+.pay-bill span {
+  margin-right: 40px;
+}
+.pay-bill a {
+  color: #0088cc;
+}
+/* 发票信息 end*/
+/* 购物结算 begin*/
+.pay-count {
+  overflow: hidden;
+}
+.pay-count .cwrap {
+  width: 100%;
+  text-align: right;
+}
+.pay-count label {
+  display: inline-block;
+}
+.pay-count .pitem {
+  margin-bottom: 12px;
+}
+.pay-count .pl {
+  display: inline-block;
+  width: 400px;
+  text-align: right;
+}
+.pay-count .pv {
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+}
+.pay-count b,
+.pay-count .total,
+.pay-count .pv {
+  color: #ff0000;
+  font-weight: bold;
+}
+.pay-count .pzs {
+  text-align: right;
+  border-top: 1px solid #dddddd;
+  padding-top: 20px;
+}
+.pay-count .pzs .total {
+  font-size: 16px;
+}
+.pay-count .pzs .pl {
+  font-size: 16px;
+  width: 200px;
+}
+.pay-count .pzs .total {
+  margin: 0 10px;
+}
+.pay-count .pzs .mbtn {
+  width: 140px;
+  height: 35px;
+  line-height: 35px;
+}
+/* 购物结算 end*/
+/* 自提修改时间*/
+.zt-modtime {
+  line-height: 42px;
+}
+.zt-modtime a {
+  color: #0088cc;
+  margin-left: 10px;
+}
+/* 温馨提示 */
+.box-warm {
+  color: #999999;
+  margin: 10px 0;
+}
+.box-warm dt {
+  font-size: 14px;
+}
+/* 弹出内容 begin*/
+/* 弹出内容 begin*/
+.help-tip {
+  color: #a5a5a5;
+  line-height: 30px;
+}
+.help-explain {
+  background-color: #fffdee;
+  border: 1px solid #fff18c;
+  padding-left: 20px;
+  height: 30px;
+  line-height: 30px;
+}
+.itxt-tip {
+  background-color: #ffebeb;
+  border: 1px solid #ffbdbd;
+  padding: 0 10px;
+  height: 29px;
+  line-height: 29px;
+  display: inline-block;
+  color: #ff0000;
+}
+/* 弹出form重置 begin*/
+.pay-form select {
+  width: 130px;
+}
+.pay-form input {
+  width: 150px;
+}
+.pay-form input,
+.pay-form select {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  margin-right: 10px;
+}
+.pay-form .input-large {
+  width: 310px;
+}
+.pay-form .input-medium {
+  width: 270px;
+}
+.pay-form .form-inline label {
+  width: 100px;
+  text-align: center;
+}
+.pay-form .btn {
+  width: auto;
+  font-weight: bold;
+}
+.pay-form .order-switch a {
+  color: #313131;
+}
+.pay-form .order-switch a.checked,
+.pay-form .order-switch a:hover {
+  border: 2px solid #e63635;
+  padding: 6px 31px;
+}
+.pay-form .order-switch a.checked b {
+  background: url("../images/iconNew.png") -80px -98px;
+}
+.pay-form .billmod {
+  padding: 4px 6px;
+  border: 2px solid #e63635;
+}
+.pay-form .billmod .addr {
+  margin-right: 50px;
+}
+.pay-form .controls a {
+  color: #0088cc;
+  margin-right: 10px;
+}
+.pay-form .billc-swtich a {
+  padding: 6px 12px;
+  color: #313131;
+}
+.pay-form .billc-swtich a.checked,
+.pay-form .billc-swtich a:hover {
+  padding: 5px 11px;
+}
+.pay-form .mbtn-send {
+  display: inline-block;
+}
+.pay-form .mbtn-send .ispan {
+  display: inline-block;
+  border: 1px solid #cccccc;
+  border-right: 0;
+  height: 30px;
+  line-height: 30px;
+  margin: 0;
+  text-indent: 20px;
+  width: 320px;
+}
+.pay-form .mbtn-send .mbtn {
+  height: 30px;
+  line-height: 30px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  color: #fff;
+  background-color: #cac6c1;
+}
+.pay-form .control-check {
+  margin-top: -5px;
+}
+.pay-form .control-check .controls {
+  line-height: 32px;
+  height: 32px;
+  font-size: 14px;
+}
+/* 弹出form重置 end*/
+/* 发票步骤 */
+.bill-step {
+  height: 30px;
+  line-height: 30px;
+  overflow: hidden;
+  *zoom: 1;
+}
+.bill-step li {
+  float: left;
+  padding: 0 40px;
+  border: 1px solid #e5e5e5;
+  border-width: 1px 0 1px 0;
+  background-color: #f4f4f4;
+  height: 28px;
+  line-height: 28px;
+  color: #c3c3c3;
+  position: relative;
+}
+.bill-step li.first {
+  border-left: 1px solid #e5e5e5;
+}
+.bill-step li.doing {
+  background-color: #ebebeb;
+  color: #313131;
+}
+.bill-step li.doing span:before {
+  border-left-color: #ebebeb;
+}
+.bill-step li.undo {
+  background-color: #fff;
+  color: #313131;
+}
+.bill-step li.undo span:before {
+  border-left-color: #fff;
+}
+.bill-step li span {
+  position: absolute;
+  right: -32px;
+  top: -2px;
+  height: 0;
+  border-width: 16px;
+  border-style: solid;
+  z-index: 9;
+  *zoom: 1;
+  border-color: transparent transparent transparent #e5e5e5;
+}
+.bill-step li span:before {
+  content: ".";
+  height: 0;
+  position: absolute;
+  right: -18px;
+  top: 0;
+  margin-top: -15px;
+  border-width: 15px;
+  border-style: solid;
+  z-index: 9;
+  border-color: transparent transparent transparent #f4f4f4;
+}
+/* 自提时间选择 */
+.sl-ztTime li {
+  float: left;
+  color: #333;
+}
+.sl-ztTime li input {
+  display: none;
+}
+.sl-ztTime li label {
+  padding: 5px 15px;
+  border: 1px solid #dddddd;
+  border-left: 0;
+}
+.sl-ztTime li.first label {
+  border: 1px solid #dddddd;
+}
+.sl-ztTime li.selected label {
+  background-color: #ffb702;
+  color: #fff;
+}
+/* 自提列表 */
+.zt-list {
+  display: none;
+  margin-top: 10px;
+}
+.zt-list label {
+  margin-top: 7px;
+}
+.submit-wrap {
+  text-align: center;
+}
+.submit-wrap input {
+  margin-right: 20px;
+}
+.submit-wrap input:last-child {
+  margin-right: 0;
+}
+.dialog-content {
+  padding: 10px 30px;
+}
+/* 订单结算 end*/

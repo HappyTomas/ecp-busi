@@ -1,0 +1,28 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-upload.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/holder/holder.js" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/company/company-add.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+
+ <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#entered" aria-controls="home" role="tab" data-toggle="tab">新增企业</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="entered">
+		#parse("/staff/company/add/entered-add.vm")
+	</div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+	
+	</div>
+  </div>
+
+
+
+
+
+
+		

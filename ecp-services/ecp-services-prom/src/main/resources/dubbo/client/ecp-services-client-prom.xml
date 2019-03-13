@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     "> 
+   
+     <dubbo:reference id="promRSV" interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promAuthRSV" interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromAuthRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promGroupRSV" interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromGroupRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promGroupChkRSV" interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromGroupChkRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promUtilRSV" interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromUtilRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promQueryRSV" interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromQueryRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promCartChkRSV" interface="com.zengshi.ecp.general.order.interfaces.IOrdCartsChkRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promOrdChkRSV" interface="com.zengshi.ecp.general.order.interfaces.IOrderChkRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promShipRSV" interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromShipRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promTypeRSV" interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromTypeRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promMsgRSV" interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromMsgRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promSolrRSV" interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromSolrRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promImportRSV" interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromImportRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promSkuRSV" interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromSkuRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+    <dubbo:reference id="promGdsDataSupportRSV" interface="com.zengshi.ecp.general.solr.interfaces.ISearchDataDupPagerSupport" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="prom"/>
+    <dubbo:reference id="promMsg2SolrRSV" interface="com.zengshi.ecp.general.prom.interfaces.IPromMsg2SolrRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${prom.dubbo.group}"/>
+ 
+</beans>  

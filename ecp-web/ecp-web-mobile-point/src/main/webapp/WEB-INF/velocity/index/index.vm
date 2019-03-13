@@ -1,0 +1,141 @@
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        <div class="search-wrap">
+            <span class="am-icon-search"></span>
+            <input placeholder="搜索商品" class="ui-input" type="text"/>
+        </div>
+
+    </div>
+    <span class="am-header-left"><img class="logo" src="$!IMAGE_PATH/logo.png" alt=""/></span>
+
+    <div class="am-header-right">
+          <span class="opt">
+             <i class="icon icon-msg"></i>
+             信息
+          </span>
+    </div>
+</header>
+<div class="ui-content-fixBottom">
+    <div data-am-widget="slider" class="am-slider am-slider-a1" data-am-slider='{"directionNav":false}'>
+        <ul class="am-slides">
+            <li>
+                <img src="$!IMAGE_PATH/pro/banner01.png"/>
+            </li>
+            <li>
+                <img src="$!IMAGE_PATH/pro/banner01.png"/>
+            </li>
+            <li>
+                <img src="$!IMAGE_PATH/pro/banner01.png"/>
+            </li>
+            <li>
+                <img src="$!IMAGE_PATH/pro/banner01.png"/>
+            </li>
+        </ul>
+    </div>
+    <ul class="am-avg-sm-4 ui-topNav">
+        <li>
+            <a href="#" class="link">
+                <img src="$!IMAGE_PATH/icon-cks.png"/>
+                参考书
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link">
+                <img src="$!IMAGE_PATH/icon-jc.png"/>
+                教材
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link">
+                <img src="$!IMAGE_PATH/icon-ksys.png"/>
+                考试用书
+            </a>
+        </li>
+        <li>
+            <a href="#" class="link">
+                <img src="$!IMAGE_PATH/icon-all.png"/>
+                全部分类
+            </a>
+        </li>
+    </ul>
+    <div class="ui-content-inner" style="padding-top: 0">
+        <div class="box">
+            <div class="box-head">
+                <span class="tit">人卫图书</span>
+                      <span class="pull-right">
+                          <a href="#" class="more">更多</a>
+                      </span>
+            </div>
+            <div class="box-body">
+                <ul class="am-avg-sm-3 ui-proList">
+                    <li class="item">
+                        <a href="#">
+                            <p>医生教您学急救</p>
+
+                            <div class="img-wrap">
+                                <img class="img" src="$!IMAGE_PATH/pro/pro-01.png"/>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <p>医生教您学急救</p>
+
+                            <div class="img-wrap">
+                                <img class="img" src="$!IMAGE_PATH/pro/pro-02.png"/>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <p>医生教您学急救</p>
+
+                            <div class="img-wrap">
+                                <img class="img" src="$!IMAGE_PATH/pro/pro-03.png"/>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="box">
+            <div class="box-head">
+                <span class="tit">人卫数字</span>
+                      <span class="pull-right">
+                          <a href="#" class="more">更多</a>
+                      </span>
+            </div>
+            <div class="box-body">
+                <ul class="am-avg-sm-3 ui-proList">
+                    <li class="item">
+                        <a href="#">
+                            <p>医生教您学急救</p>
+
+                            <div class="img-wrap">
+                                <img class="img" src="$!IMAGE_PATH/pro/pro-01.png"/>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <p>医生教您学急救</p>
+
+                            <div class="img-wrap">
+                                <img class="img" src="$!IMAGE_PATH/pro/pro-02.png"/>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="#">
+                            <p>医生教您学急救</p>
+
+                            <div class="img-wrap">
+                                <img class="img" src="$!IMAGE_PATH/pro/pro-03.png"/>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

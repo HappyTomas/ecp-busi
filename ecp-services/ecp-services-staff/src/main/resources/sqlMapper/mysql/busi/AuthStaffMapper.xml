@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.busi.AuthStaffMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.AuthStaff" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="STAFF_CODE" property="staffCode" jdbcType="VARCHAR" />
+    <result column="STAFF_CLASS" property="staffClass" jdbcType="VARCHAR" />
+    <result column="STAFF_FLAG" property="staffFlag" jdbcType="CHAR" />
+    <result column="STAFF_PASSWD" property="staffPasswd" jdbcType="VARCHAR" />
+    <result column="INVALID_TIME" property="invalidTime" jdbcType="TIMESTAMP" />
+    <result column="START_DATE" property="startDate" jdbcType="TIMESTAMP" />
+    <result column="LAST_LOGIN_TIME" property="lastLoginTime" jdbcType="TIMESTAMP" />
+    <result column="LOGIN_SUCCESS_CNT" property="loginSuccessCnt" jdbcType="INTEGER" />
+    <result column="LOGIN_FAILURE_CNT_TODAY" property="loginFailureCntToday" jdbcType="INTEGER" />
+    <result column="LAST_LOGIN_FAILURE_TIME" property="lastLoginFailureTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_FROM" property="createFrom" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, STAFF_CODE, STAFF_CLASS, STAFF_FLAG, STAFF_PASSWD, INVALID_TIME, START_DATE, 
+    LAST_LOGIN_TIME, LOGIN_SUCCESS_CNT, LOGIN_FAILURE_CNT_TODAY, LAST_LOGIN_FAILURE_TIME, 
+    CREATE_FROM, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaffCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_auth_staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_auth_staff
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_auth_staff
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaffCriteria" >
+    delete from t_auth_staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaff" >
+    insert into t_auth_staff (ID, STAFF_CODE, STAFF_CLASS, 
+      STAFF_FLAG, STAFF_PASSWD, INVALID_TIME, 
+      START_DATE, LAST_LOGIN_TIME, LOGIN_SUCCESS_CNT, 
+      LOGIN_FAILURE_CNT_TODAY, LAST_LOGIN_FAILURE_TIME, 
+      CREATE_FROM, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_TIME, UPDATE_STAFF)
+    values (#{id,jdbcType=INTEGER}, #{staffCode,jdbcType=VARCHAR}, #{staffClass,jdbcType=VARCHAR}, 
+      #{staffFlag,jdbcType=CHAR}, #{staffPasswd,jdbcType=VARCHAR}, #{invalidTime,jdbcType=TIMESTAMP}, 
+      #{startDate,jdbcType=TIMESTAMP}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{loginSuccessCnt,jdbcType=INTEGER}, 
+      #{loginFailureCntToday,jdbcType=INTEGER}, #{lastLoginFailureTime,jdbcType=TIMESTAMP}, 
+      #{createFrom,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaff" >
+    insert into t_auth_staff
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE,
+      </if>
+      <if test="staffClass != null" >
+        STAFF_CLASS,
+      </if>
+      <if test="staffFlag != null" >
+        STAFF_FLAG,
+      </if>
+      <if test="staffPasswd != null" >
+        STAFF_PASSWD,
+      </if>
+      <if test="invalidTime != null" >
+        INVALID_TIME,
+      </if>
+      <if test="startDate != null" >
+        START_DATE,
+      </if>
+      <if test="lastLoginTime != null" >
+        LAST_LOGIN_TIME,
+      </if>
+      <if test="loginSuccessCnt != null" >
+        LOGIN_SUCCESS_CNT,
+      </if>
+      <if test="loginFailureCntToday != null" >
+        LOGIN_FAILURE_CNT_TODAY,
+      </if>
+      <if test="lastLoginFailureTime != null" >
+        LAST_LOGIN_FAILURE_TIME,
+      </if>
+      <if test="createFrom != null" >
+        CREATE_FROM,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="staffCode != null" >
+        #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffClass != null" >
+        #{staffClass,jdbcType=VARCHAR},
+      </if>
+      <if test="staffFlag != null" >
+        #{staffFlag,jdbcType=CHAR},
+      </if>
+      <if test="staffPasswd != null" >
+        #{staffPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidTime != null" >
+        #{invalidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginSuccessCnt != null" >
+        #{loginSuccessCnt,jdbcType=INTEGER},
+      </if>
+      <if test="loginFailureCntToday != null" >
+        #{loginFailureCntToday,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginFailureTime != null" >
+        #{lastLoginFailureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createFrom != null" >
+        #{createFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaffCriteria" resultType="java.lang.Long" >
+    select count(*) from t_auth_staff
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_auth_staff
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffCode != null" >
+        STAFF_CODE = #{record.staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffClass != null" >
+        STAFF_CLASS = #{record.staffClass,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffFlag != null" >
+        STAFF_FLAG = #{record.staffFlag,jdbcType=CHAR},
+      </if>
+      <if test="record.staffPasswd != null" >
+        STAFF_PASSWD = #{record.staffPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invalidTime != null" >
+        INVALID_TIME = #{record.invalidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.startDate != null" >
+        START_DATE = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastLoginTime != null" >
+        LAST_LOGIN_TIME = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.loginSuccessCnt != null" >
+        LOGIN_SUCCESS_CNT = #{record.loginSuccessCnt,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginFailureCntToday != null" >
+        LOGIN_FAILURE_CNT_TODAY = #{record.loginFailureCntToday,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastLoginFailureTime != null" >
+        LAST_LOGIN_FAILURE_TIME = #{record.lastLoginFailureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createFrom != null" >
+        CREATE_FROM = #{record.createFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_auth_staff
+    set ID = #{record.id,jdbcType=INTEGER},
+      STAFF_CODE = #{record.staffCode,jdbcType=VARCHAR},
+      STAFF_CLASS = #{record.staffClass,jdbcType=VARCHAR},
+      STAFF_FLAG = #{record.staffFlag,jdbcType=CHAR},
+      STAFF_PASSWD = #{record.staffPasswd,jdbcType=VARCHAR},
+      INVALID_TIME = #{record.invalidTime,jdbcType=TIMESTAMP},
+      START_DATE = #{record.startDate,jdbcType=TIMESTAMP},
+      LAST_LOGIN_TIME = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      LOGIN_SUCCESS_CNT = #{record.loginSuccessCnt,jdbcType=INTEGER},
+      LOGIN_FAILURE_CNT_TODAY = #{record.loginFailureCntToday,jdbcType=INTEGER},
+      LAST_LOGIN_FAILURE_TIME = #{record.lastLoginFailureTime,jdbcType=TIMESTAMP},
+      CREATE_FROM = #{record.createFrom,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaff" >
+    update t_auth_staff
+    <set >
+      <if test="staffCode != null" >
+        STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffClass != null" >
+        STAFF_CLASS = #{staffClass,jdbcType=VARCHAR},
+      </if>
+      <if test="staffFlag != null" >
+        STAFF_FLAG = #{staffFlag,jdbcType=CHAR},
+      </if>
+      <if test="staffPasswd != null" >
+        STAFF_PASSWD = #{staffPasswd,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidTime != null" >
+        INVALID_TIME = #{invalidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="startDate != null" >
+        START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginTime != null" >
+        LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginSuccessCnt != null" >
+        LOGIN_SUCCESS_CNT = #{loginSuccessCnt,jdbcType=INTEGER},
+      </if>
+      <if test="loginFailureCntToday != null" >
+        LOGIN_FAILURE_CNT_TODAY = #{loginFailureCntToday,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginFailureTime != null" >
+        LAST_LOGIN_FAILURE_TIME = #{lastLoginFailureTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createFrom != null" >
+        CREATE_FROM = #{createFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaff" >
+    update t_auth_staff
+    set STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      STAFF_CLASS = #{staffClass,jdbcType=VARCHAR},
+      STAFF_FLAG = #{staffFlag,jdbcType=CHAR},
+      STAFF_PASSWD = #{staffPasswd,jdbcType=VARCHAR},
+      INVALID_TIME = #{invalidTime,jdbcType=TIMESTAMP},
+      START_DATE = #{startDate,jdbcType=TIMESTAMP},
+      LAST_LOGIN_TIME = #{lastLoginTime,jdbcType=TIMESTAMP},
+      LOGIN_SUCCESS_CNT = #{loginSuccessCnt,jdbcType=INTEGER},
+      LOGIN_FAILURE_CNT_TODAY = #{loginFailureCntToday,jdbcType=INTEGER},
+      LAST_LOGIN_FAILURE_TIME = #{lastLoginFailureTime,jdbcType=TIMESTAMP},
+      CREATE_FROM = #{createFrom,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="insertBatch" parameterType="com.zengshi.ecp.staff.dao.model.AuthStaff" >
+    insert into t_auth_staff (ID, 
+      STAFF_CODE, STAFF_CLASS, STAFF_FLAG, 
+      STAFF_PASSWD, INVALID_TIME, START_DATE, 
+      LAST_LOGIN_TIME, LOGIN_SUCCESS_CNT, 
+      LOGIN_FAILURE_CNT_TODAY, LAST_LOGIN_FAILURE_TIME, 
+      CREATE_FROM, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_TIME, UPDATE_STAFF)
+    values <foreach collection="list" item="item" index="index" separator="," > (#{item.id,jdbcType=INTEGER}, 
+      #{item.staffCode,jdbcType=VARCHAR}, #{item.staffClass,jdbcType=VARCHAR}, #{item.staffFlag,jdbcType=CHAR}, 
+      #{item.staffPasswd,jdbcType=VARCHAR}, #{item.invalidTime,jdbcType=TIMESTAMP}, #{item.startDate,jdbcType=TIMESTAMP}, 
+      #{item.lastLoginTime,jdbcType=TIMESTAMP}, #{item.loginSuccessCnt,jdbcType=INTEGER}, 
+      #{item.loginFailureCntToday,jdbcType=INTEGER}, #{item.lastLoginFailureTime,jdbcType=TIMESTAMP}, 
+      #{item.createFrom,jdbcType=VARCHAR}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.createStaff,jdbcType=INTEGER}, 
+      #{item.updateTime,jdbcType=TIMESTAMP}, #{item.updateStaff,jdbcType=INTEGER})</foreach>
+  </insert>
+</mapper>

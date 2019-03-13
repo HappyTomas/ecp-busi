@@ -1,0 +1,20 @@
+@charset "utf-8";
+/* 布局1024设置 */
+.layout {
+  width: 1024px;
+}
+.template-1 .tpl-img {
+  height: 994px;
+}
+.template-2 .tpl-img {
+  height: 474px;
+}
+.template-3 .tpl-img {
+  height: 307px;
+}
+.template-4 .tpl-img {
+  height: 224px;
+}
+.template-5 .tpl-img {
+  height: 194px;
+}

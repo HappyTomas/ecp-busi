@@ -1,0 +1,59 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/rep/rep-list.js?version=$!{JS_VERSION}" ></script>
+<div class="nItem">
+    <!--div class="sbtn-group" style="margin-left: -5px;margin-bottom: 10px;">
+        <span class="sbtn sbtn-blue" id="btn_code_add">新增分仓</span>
+        <span class="sbtn" id="btn_code_modify">修改</span>
+        <span class="sbtn" id="btn_code_check">查看</span>
+		<span class="sbtn" id="btn_code_del">失效</span>
+    </div-->
+   <div style="overflow-x: auto;">
+       <table class="seller-table">
+         <thead>
+           <tr>
+                <th>选择</th>
+                <th>仓库编码</th>
+                <th>仓库名称</th>
+                <th>仓库类型</th>
+                <th>商品总数</th>
+                <th>状态</th>
+           </tr>
+         </thead>
+        <tbody>
+           #if($!{gridResult.getResult().size()} <= 0)
+    		<tr>
+				<td colspan='6'>
+					没有符合条件仓库信息。
+				</td>
+		    </tr>
+    	   #else
+        	   #foreach($stockRep in $gridResult.getResult())
+        		<tr>
+	                <td>
+					   <input type="radio" name="repId" value="$!{stockRep.id}" shopId="$!{stockRep.shopId}" status="$!{stockRep.status}" repType="$!{stockRep.repType}"/>
+					</td>
+	                <td>
+						$!{stockRep.id}
+					</td>
+	                <td>
+						$!{stockRep.repName}
+					</td>
+	                <td>
+						$!{stockRep.repType}
+					</td>
+	                <td>
+						$!{stockRep.count}
+					</td>
+	                <td>
+						$!{stockRep.status}
+					</td>
+	            </tr>
+			   #end
+		   #end
+         </tbody>
+       </table>
+   </div>
+   <div id="pageControlbar" class="ecppage" data-total-page="$!{gridResult.pageCount}" data-total-row="$!{gridResult.count}" data-page-size="$!{gridResult.pageSize}" data-page-number="$!{gridResult.pageNo}" data-status="begin"></div>
+</div>
+	
+	

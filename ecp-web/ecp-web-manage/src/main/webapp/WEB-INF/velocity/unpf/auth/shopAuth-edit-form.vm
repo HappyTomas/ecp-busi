@@ -1,0 +1,136 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/unpf/auth/shopAuth-edit-form.js?version=$!{JS_VERSION}" ></script>
+<link href="${CONTEXT_PATH}/css/prom/auth/auth-add-form.css" rel="stylesheet" type="text/css" media="screen"/>
+
+			<h3 class="heading #if($!{doAction} == 'sync') hide #end">对接平台-授权店铺</h3>
+		 
+			<div class="formBox">
+				<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+				  <input type="text" class="hide" name="id" id="shopAuthId" value="$!{unpfShopAuthRespDTO.id}">
+				 <div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">对接平台：</label>
+							<div class="controls">
+							    <select id="platType"  class="required" name="platType" value="$!{unpfShopAuthRespDTO.platType}" #if($!{doAction} == "sync") disabled #end >
+						    		#listParam('UNPF_PLAT_TYPE',"$!{unpfShopAuthRespDTO.platType}")
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">店铺名称：</label>
+							<div class="controls">
+							    <select id="shopId"  class="required" name="shopId" value="" #if($!{doAction} == "sync") disabled #end>
+								   #shoplist("$!{unpfShopAuthRespDTO.shopId}")
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span8">
+						<div class="control-group">
+							<label class="control-label">服务地址：</label>
+							<div class="controls">
+							    <input type="text" class="input-block-level required" name="serverUrl"  value="$!{unpfShopAuthRespDTO.serverUrl}">
+							</div>
+						</div>
+					</div>
+					<div class="span4 hide">
+						<div class="control-group">
+							<label class="control-label">授权失效时间：</label>
+							<div class="controls">
+							   <input type="text" class="input-large Wdate" style="width:205px;" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="expiredTime" id="expiredTime" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{unpfShopAuthRespDTO.expiredTime})"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span8">
+						<div class="control-group">
+							<label class="control-label">APP KEY：</label>
+							<div class="controls">
+								<textarea rows="4" class="input-block-level required htmlcheck" name="appkey" maxlength="200" placeholder="" >$!{unpfShopAuthRespDTO.appkey}</textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span8">
+						<div class="control-group">
+							<label class="control-label">APP SECRET：</label>
+							<div class="controls">
+								<textarea rows="4" class="input-block-level required htmlcheck" name="appscret" maxlength="200" placeholder="" >$!{unpfShopAuthRespDTO.appscret}</textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- <div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">平台授权地址：</label>
+							<div class="controls">
+								<input type="text" class="required" style="width:200px;" name="authUrl"  value="$!{unpfShopAuthRespDTO.authUrl}">
+							</div>
+						</div>
+					</div>
+					
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">平台授权回调地址：</label>
+							<div class="controls">
+								 <input type="text" class="" name="redirectUri"  value="$!{unpfShopAuthRespDTO.redirectUri}">
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">报文格式：</label>
+							<div class="controls">
+							   <select id="promTypeCode"  class="" name="format"  value="$!{unpfShopAuthRespDTO.format}">
+								   <option value="json">json</option>
+								   <option value="xml">xml</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">加密格式：</label>
+							<div class="controls">
+							     <select id="promTypeCode"  class="" name="signmethod" value="$!{unpfShopAuthRespDTO.signmethod}">
+								   <option value="MD5">MD5</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">版本：</label>
+							<div class="controls">
+							     <input type="text"  class="" name="version"  value="$!{unpfShopAuthRespDTO.version}">
+							</div>
+						</div>
+					</div>
+				</div> -->
+				<div class="row-fluid">
+				</div>
+					<div class="row-fluid formSep #if($!{doAction} == 'sync') hide #end">
+						<div class="control-group">
+							<div class="controls">
+								<button type="button" class="btn btn-info #if($!{doAction} == 'view') hide #end" id="btnFormSave"><i class="icon-ok-sign icon-white"></i> 保　存</button>
+								<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i> 返　回</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			 
+			</div>
+		 

@@ -1,0 +1,151 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/requirejs/require.js?v=${JS_VERSION}"></script>
+#if($!{pageTypeId}=="2" || $!{pageTypeId}=="4")
+	<link href="$!{CSS_PATH}/pageConfig/layout-1024.css" rel="stylesheet" type="text/css" media="screen"/>
+#end
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/nav/jquery.nav.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/public/public-js.js?v=${JS_VERSION}"></script>
+<!-- 模块化脚本基础库 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/requirejs.common.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/preview/item-render.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/preview/page-preview.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/hotImg/jquery.hotimg.js?v=${JS_VERSION}"></script>
+<style type="text/css">
+##处理背景色
+#if($pageAttr && 
+	$pageAttr.backgroundColor && 
+	$pageAttr.backgroundColor!="" && 
+	$pageAttr.showBackFlag=="1")
+body{background-color: #$!{pageAttr.backgroundColor}}
+#end
+.skipfloor {
+	/* border: 1px solid #AAAAAA; */
+}
+img.imgFullWidth{width: 100%;height: 600px;}
+</style>
+<input type="hidden" id="mainPageId" value="$!{pageId}"/>
+<input type="hidden" id="attr-backgroundPic" value="$!{pageAttr.backgroundPic}">
+<input type="hidden" id="attr-backgroupShowType" value="$!{pageAttr.backgroupShowType}">
+<input type="hidden" id="imgUrlPrefix" value="#genImageUrl('','')"/>
+<!-- 
+布局类型
+01：左右居中
+02：左右全宽
+03：左侧悬浮
+04：右侧悬浮
+-->
+<div class="page-container2">
+	<div class="layoutcontainer previewMainBox">
+        ##布局项目
+        #foreach($!layout in $!pageConfig)
+        	##左、右悬浮
+        	#if($layout.cmsLayoutTypeRespDTO.layoutShowType && 
+        		($layout.cmsLayoutTypeRespDTO.layoutShowType == "03" || $layout.cmsLayoutTypeRespDTO.layoutShowType == "04"))
+        		#set($item = $!layout.layoutItemPreRespDTOList.get(0))
+					#if($item.modularId)
+                		<div class="skipfloor">
+                			<input type="hidden" id="itemId" value="$!{item.id}">
+                			<input type="hidden" id="modularId" value="$!{item.modularId}">
+                			<input type="hidden" id="modularType" value="$!{item.modularRespDTO.modularType}" >
+                			<input type="hidden" id="item_$!{pageId}_$!{item.modularId}_$!{item.id}">
+                		    <h2 class="top-img">
+                		        <img class="nodata" src="$!{IMAGE_PATH}/pageConfig/noPictures.png" alt=""/>
+                		    </h2>
+                		    <div class="floor-list">
+                		        <ul class="navigation"></ul>
+                		        <div class="toTop">
+                		            <span class="backToTop"><i class="iconfont f22"></i></span>
+                		        </div>
+                		    </div>
+                		</div>
+					#end
+        	#else
+	        	#set($fullLayout = "")
+	        	#if($layout.cmsLayoutTypeRespDTO.layoutShowType && $layout.cmsLayoutTypeRespDTO.layoutShowType=="02")
+	        		#set($fullLayout = "layout-full")
+	        	#else
+	        		#set($fullLayout = "")
+	        	#end
+        		<div class="layout $!{fullLayout}" id="layoutFloor_$!{layout.id}">
+        			<input type="hidden" name="layoutId" value="$!{layout.id}">
+        		    <div class="layout-inner">
+        		    	#foreach($!item in $!layout.layoutItemPreRespDTOList)
+        		    		#set($width = "")
+        		    		#if($item && $item.itemSize)
+        		    			#set($width = "width:" + $item.itemSize + "px;")
+        		    		#end
+        		    		#if(!$null.isNull($fullLayout) && $fullLayout!="")
+        		    			#set($width = "width:100%;")
+        		    		#end
+        		    		#if($item && $item.modularId && $item.modularId!="" && $item.id && $item.id!="" && $item.itemPropPreRespDTOList)
+								
+								#set($itemPropPreSize = $item.itemPropPreRespDTOList.size())
+								#if($itemPropPreSize!=0)
+                    		        <div class="tItem" style="$!{width}">
+                    					<div class="modular">
+                        					<div class="template  promTpl-list">
+                            		        	<input type="hidden" id="itemId" value="$!{item.id}">
+                            		        	<input type="hidden" id="modularId" value="$!{item.modularId}">
+                            		        	<input type="hidden" id="modularType" value="$!{item.modularRespDTO.modularType}" >
+                            		        	<input type="hidden" id="item_$!{pageId}_$!{item.modularId}_$!{item.id}">
+                        					</div>
+                    					</div>
+                    		        </div>
+								#else	
+									<div class="tItem" style="$!{width}">
+                						<div class="modular">
+                    						<div class="template" style="$!{width}">
+                            		        	<input type="hidden" id="itemId" value="$!{item.id}">
+                            		        	<input type="hidden" id="pageId" value="$!{item.pageId}">
+                            		        	<input type="hidden" id="modularId" value="$!{item.modularId}">
+                            		        	<input type="hidden" id="modularType" value="$!{item.modularRespDTO.modularType}" >
+                            		            <div class="nodata">
+                									<span style="color:red;">
+                										该模块未配置数据，赶紧去【页面编辑】中配置数据吧！
+                                                    </span>
+                								</div>
+                            		            <div class="modular-mask">
+                            		                <div class="modular-mask-bg" >
+                    								</div>
+                            		                <div class="modular-mask-icon">
+                            		                    <span><b>$!{item.modularRespDTO.modularName}</b> 宽度：$!{item.itemSize}</span>
+                            		                    <!-- <a href="javascript:void(0);" class="ds-bar-link lnkHotSpot"><span>热点</span></a> -->
+                            		                </div>
+                            		            </div>
+                            		        </div>
+                        		        </div>
+            		    			</div>
+								#end
+							#else
+        						<div class="tItem" style="$!{width}">
+            						<div class="modular">
+                						<div class="template" style="$!{width}">
+                        		        	<input type="hidden" id="itemId" value="$!{item.id}">
+                        		        	<input type="hidden" id="pageId" value="$!{item.pageId}">
+                        		        	<input type="hidden" id="modularId" value="$!{item.modularId}">
+                        		        	<input type="hidden" id="modularType" value="$!{item.modularRespDTO.modularType}" >
+                        		            <div class="nodata">
+            									<span style="color:red;">
+            										该布局单元未配置模块，赶紧去【布局管理】中拖入模块吧！
+                                                </span>
+            								</div>
+                        		            <div class="modular-mask">
+                        		                <div class="modular-mask-bg" >
+                								</div>
+                        		                <div class="modular-mask-icon">
+                        		                    <span><b>$!{item.modularRespDTO.modularName}</b> 宽度：$!{item.itemSize}</span>
+                        		                    <!-- <a href="javascript:void(0);" class="ds-bar-link lnkHotSpot"><span>热点</span></a> -->
+                        		                </div>
+                        		            </div>
+                        		        </div>
+                    		        </div>
+        		    			</div>
+        		        	#end
+        		        #end
+        		    </div>
+        		</div>
+        	#end
+		#end
+    </div>
+</div>

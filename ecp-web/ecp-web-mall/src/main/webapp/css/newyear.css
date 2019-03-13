@@ -1,0 +1,143 @@
+@charset "UTF-8";
+.navBg {
+  background: url("../images/newyear/navbg.png") repeat-x left bottom;
+  height: 40px;
+  font-size: 16px;
+  line-height: 40px;
+}
+.navBg .nav-bar li {
+  float: left;
+  background: none;
+  position: relative;
+}
+.navBg .nav-bar a {
+  color: #666666;
+}
+.navBg .nav-bar a:hover,
+.navBg .nav-bar a.active {
+  background-color: transparent;
+  color: #ff3737;
+}
+.navBg .book {
+  background: url("../images/newyear/menu-ad.png") no-repeat;
+  height: 40px;
+}
+.navBg .book-at {
+  width: 68px;
+}
+.navBg .book-kd {
+  width: 68px;
+  background-position: -68px 0;
+}
+.navBg .book-new {
+  width: 85px;
+  background-position: -137px 0;
+}
+#webBody {
+  background: url("../images/newyear/bodybg.png") repeat-x top center;
+  position: relative;
+  overflow: hidden;
+}
+#webBody:before {
+  content: "";
+  background: url("../images/newyear/bodybg02.png") top center no-repeat;
+  height: 696px;
+  display: block;
+  position: absolute;
+  width: 1672px;
+  left: 50%;
+  margin-left: -834px;
+}
+.onebg {
+  background-color: #fff;
+  z-index: 1;
+  position: relative;
+}
+.navBg .sidebar {
+  background: url("../images/newyear/sidebartitbg.jpg") no-repeat;
+}
+.autocomplete-button {
+  background-color: #ff3737;
+}
+#site-search .autocomplete-input {
+  border: 2px solid #ff3737;
+}
+.recom-box .recom-con .recom-btn-red {
+  background-color: #ff3737;
+}
+.dicon {
+  background: url("../images/newyear/icon.png") no-repeat;
+  display: inline-block;
+  float: left;
+  width: 25px;
+  height: 31px;
+}
+.dicon-tit1 {
+  margin-top: 8px;
+}
+.new-box .new-tit-list a:hover,
+.new-box .new-tit-list a.active {
+  border-bottom: 3px solid #ff3737;
+  background: url("../images/newyear/d-top.png") no-repeat bottom center;
+  color: #ff3737;
+}
+.k-icon {
+  background-color: #ff3737;
+}
+.sidebar-box {
+  border: 1px solid #ff3737;
+  position: relative;
+}
+.side-hover:hover {
+  border: 1px solid #ff3737;
+}
+.sidebar .item01 {
+  border: 1px solid #ff3737;
+}
+.sidebar-box:before,
+.sidebar-box:after {
+  width: 188px;
+  height: 31px;
+  position: absolute;
+  left: 0;
+  content: "";
+}
+.sidebar-box:before {
+  background: url("../images/newyear/sidebartopbg.png") no-repeat;
+  top: 0;
+}
+.sidebar-box:after {
+  background: url("../images/newyear/sidebarbottombg.png") no-repeat;
+  bottom: 0;
+}
+.ad-d li a {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+.ad-d li a:before {
+  content: "";
+  background: url("../images/newyear/imgborder.png") no-repeat;
+  /*
+  width: 394px;
+  height: 120px;
+  */
+  display: inline-block;
+  position: absolute;
+}
+#footer {
+  background: #ff3737 url("../images/newyear/footerbg.png") repeat-x bottom;
+  color: #fff;
+  padding-bottom: 100px;
+}
+#footer a {
+  color: #fff;
+}
+.keynode a {
+  color: #ff3737;
+  font-weight: bold;
+}
+.keynode a:hover {
+  color: #DD0908;
+}

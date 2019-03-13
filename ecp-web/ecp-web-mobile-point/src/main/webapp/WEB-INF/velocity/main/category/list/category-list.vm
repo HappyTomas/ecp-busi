@@ -1,0 +1,26 @@
+#parse("sys/sys_param.vm")
+#if($sonNotes && ${sonNotes.size()} > 0)
+<ul class="point-cls">
+	#foreach($sonCatg in $sonNotes)
+    <li>
+    	<a target='_blank' class="itemDl-tit" href="
+		#if(${sonCatg.catgCode} && $!{sonCatg.catgCode}!='')
+			$!{CONTEXT_PATH}/search?category=$!{sonCatg.catgCode} 
+		#else
+			$!{CONTEXT_PATH}/search?keyword=$!{sonCatg.catgName}
+		#end
+		">
+	        <div class="cls-list">
+	            <div class="img-wrap"><img src="#genImageUrl($!{sonCatg.mediaUuid},'72x72!')" alt="$!{sonCatg.catgName}"/></div>
+	           		 $!{sonCatg.catgName}
+	        </div>
+	        <span class="circle-arrow"><i class="arrow-left"></i></span>
+        </a>
+    </li>
+    #end
+</ul>
+#else
+	<div class="pro-empty">
+       	 #if($sonErrMsg && $sonErrMsg != '')$!sonErrMsg #else 暂无分类  #end
+    </div>
+#end

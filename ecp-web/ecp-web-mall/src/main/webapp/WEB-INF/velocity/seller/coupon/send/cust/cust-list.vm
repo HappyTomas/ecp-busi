@@ -1,0 +1,34 @@
+ #parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/send/cust/cust-list.js?version=$!{JS_VERSION}" ></script>
+	<table class="seller-table mt15 table-striped" id="custTable">
+                               <thead>
+	                               <tr>
+	                                    <td ><input type="checkbox" name="checkbox" id="dt_row_all_check" title="全选/全取消" /></td>
+	                                    <td >会员名</td>
+							            <td >等级</td>
+							            <td >下单次数</td>
+										<td >下单金额</td>
+							            <td >注册时间</td>
+	                                </tr>
+                               </thead>
+                              <tbody>
+					        	#if(!$page.getResult() || $page.pageCount <=0)
+					        		<tr><td colspan='8'>很遗憾，暂无数据。</td><tr>
+					        	#end
+					        	#foreach($attr in $page.getResult())
+					        		<tr>
+					        			<td><input type="checkbox" name="checkboxcust"  id="$!{attr.staffId}" value="$!{attr.staffId}"/></td>
+						                <td >#escapeHtml( "$!{attr.staffCode}")</td>
+						                <td >#escapeHtml( "$!{attr.vipLevelName}")</td>
+						                <td >#escapeHtml("$!{attr.tradesNum}")</td>
+										<td >#moneyNum($!{attr.payMoney})</td>
+						                <td >$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.createTime})</td>
+						            </tr>
+								#end
+							</tbody>
+						</table>
+			    <div class="fav-opt clearfix" style="margin-top: 20px;">
+			        <div class="row-fluid">
+						<div id="pageControlbar" class="ecppage" data-total-page="${page.pageCount}" data-total-row="${page.count}" data-page-size="${page.pageSize}" data-page-number="${page.pageNo}" data-status="begin"></div>
+					</div>
+			    </div>

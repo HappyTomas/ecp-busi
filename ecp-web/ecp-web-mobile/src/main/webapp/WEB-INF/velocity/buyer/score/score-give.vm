@@ -1,0 +1,55 @@
+#parse("/sys/sys_param.vm")
+<script src="$!{RESOURCE_PATH}/jquery/artTemplate/template-debug.js"></script>
+<script src="$!{RESOURCE_PATH}/util.js"></script>
+<script src="$BUSIJS_PATH/buyer/score/score-give.js"></script>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        赠积分
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        <a href="$CONTEXT_PATH/member/index">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content-fixBottom">
+            <section class="give-panel">
+                <header class="head"></header>
+                <div class="sign sign-k">
+                    #if($!{scoreNum}==0)
+                    <span id="sign">签到</span>
+                    #else
+                                                  已签到
+                    #end
+                </div>
+                <div class="tip" id='giveDay'>已经连续签到 <span class="c-red">$!{giveDay}</span> 天</div>
+                <div id="scoreNum" class="tip" #if($!{scoreNum}
+                <=0) style="display:none" #end>今日签到获得 <span class="c-red">$!{scoreNum}</span> 积分
+                </div>
+
+        </section>
+		#if($!{advertise.vfsUrl})
+    	    <section class="give-pic">
+    	      <a href='$!{advertise.linkUrl}'><img src="$!{advertise.vfsUrl}" alt=""></a>
+            </section>
+		#end
+        <div class="am-tabs" data-am-tabs="{noSwipe: 1}" id="listTab">
+            <ul class="am-tabs-nav am-nav am-nav-tabs ">
+                <li class="am-active"><a href="javascript: void(0)">积分商城</a></li>
+                <li class=""><a href="javascript: void(0)" class="dhNav">我的兑换记录</a></li>
+            </ul>
+
+            <div class="am-tabs-bd">
+                <div class="am-tab-panel am-active am-in">
+                    <ul class="ui-list" id="pointList">
+						<div class="loading-lo"></div>
+                    </ul>
+                </div>
+                <div class="am-tab-panel">
+                    <ul class="ui-list" id="myChangeList">
+				        <div class="loading-lo"></div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+</div>

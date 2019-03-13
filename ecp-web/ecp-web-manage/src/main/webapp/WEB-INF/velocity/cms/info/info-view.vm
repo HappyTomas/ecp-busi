@@ -1,0 +1,87 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-editor.vm")
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/info/info-view.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal required-validate" style="margin-bottom: 0px;" method="post">
+		<div class="span8">
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label" for="infoTitle">主题：</label>
+					<label class="controls  text_line">
+						#escapeHtml($!{respVO.infoTitle})		
+					</label>
+				</div>
+			</div>
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">信息类型：</label>
+					<label class="controls  text_line">
+						#escapeHtml($!{respVO.typeName})		
+					</label>
+				</div>
+			</div>
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">发布时间：</label>
+					<label class="controls  text_line">
+						$!date.format('yyyy-MM-dd HH:mm:ss',$!{respVO.pubTime})	
+					</label>
+				</div>
+			</div>
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">失效时间：</label>
+					<label class="controls  text_line">
+						$!date.format('yyyy-MM-dd HH:mm:ss',$!{respVO.lostTime})	
+					</label>
+				</div>
+			</div>
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">状态：</label>
+					<label class="controls  text_line">
+						#escapeHtml($!{respVO.statusName})		
+					</label>
+				</div>
+			</div>
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">信息内容：</label>
+					<div class="controls">
+						<input type="hidden" id="staticId" name="staticId" value="$!{respVO.staticId}" />
+						<input type="hidden" id="staticUrl" name="staticUrl" value="$!{respVO.staticUrl}" />
+						<textarea id="editorText" name="editorText" class="bEditor" style="width:100%;height:200px;visibility:hidden;"></textarea>
+					</div>
+				</div>
+			</div>
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">摘要：</label>
+					<div class="controls">
+						<textarea rows="4" cols="100" onkeyup="checkLen(this,'count','250')"  class="input-block-level" id="remark" name="remark" placeholder="请填写摘要">#escapeHtml($!{respVO.remark})</textarea>
+					</div>
+				</div>
+			</div>
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">附件：</label>
+					<div class="controls">
+						#if($!{respVO.vfsUrl})
+                			<a href="$!{respVO.vfsUrl}" alt="">$!{respVO.vfsName}(点击下载)</a>
+                		#end
+					</div>
+				</div>
+			</div>
+			<div class="text-center">
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+			</div>
+        </div>
+	</form>
+</div>

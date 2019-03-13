@@ -1,0 +1,67 @@
+@charset "UTF-8";
+/**
+  * cms页面配置链接小工具样式
+ **/
+.cms-link-input{
+  position: relative;
+}
+.cms-link-input input{
+  padding: 0px 10px;
+  min-height: 35px;
+  width: 100%!important;
+  display: block;
+  margin-bottom: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+ 
+ .cms-link-input .cms-link-add{
+  height: 25px;
+  z-index: 2;
+  line-height: 25px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+ .cms-link-input .cms-ico-link{
+  display: inline-block;
+  min-width: 16px;
+  padding: 1px 5px;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  border: 1px solid #ccc;
+  width: 30px;
+  height: 31px;
+  background: url("../../../images/pageConfig/cfPhone-btn.png") 3px -114px no-repeat #eee;
+  }
+  
+/**
+  * 字数限制样式
+ **/
+ .cms-p-w-limit{
+  position: relative;
+}
+  .cms-p-w-limit .cms-input-w-limit{
+  padding: 0px 10px;
+  min-height: 35px;
+  width: 100%!important;
+  display: block;
+  margin-bottom: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+ .cms-p-w-limit .cms-limit-tip{
+	position: absolute;
+    right: 6px;
+    bottom: 8px;
+    font-size: 12px;
+    z-index: 1;
+    margin: 0px;
+    color: #cccccc;
+}

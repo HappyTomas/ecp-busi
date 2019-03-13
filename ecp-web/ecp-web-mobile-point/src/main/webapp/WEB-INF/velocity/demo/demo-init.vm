@@ -1,0 +1,20 @@
+#parse("/sys/sys_param.vm")
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/demo/demo-init.js"></script>
+
+
+<div style="padding: 5px;">
+	<form action="" class="am-form">
+		<div class="am-form-group am-form-icon">
+			<i class="am-icon-search"></i>
+			<input type="text" class="am-form-field am-round" placeholder="请输入搜索关键字" />
+		</div>
+	</form>
+
+
+
+
+
+	<button type="button" class="am-btn am-btn-warning" id="btnAlert">Alert</button>
+	<button type="button" class="am-btn am-btn-danger" id="btnConfirm">Confirm</button>
+</div>

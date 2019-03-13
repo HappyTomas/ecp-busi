@@ -1,0 +1,27 @@
+#parse("sys/sys_param.vm")
+<div class="box-tit">
+    <span class="font-tit"><i class="renwei-icon"></i>
+		$!{floorRespDTO.floorName}
+	</span>
+    <ul class="nav-two">
+		#foreach($floorTab in $!{floorTabList})
+			<li><a target='_blank' href="$!{floorTab.linkUrl}" #if($velocityCount==1) class="active" #end>$!{floorTab.tabName}</a></li>
+		#end
+    </ul>
+</div>
+<div class="box-con box-two clearfix" >
+    <ul>
+		#foreach($gds in $!{gdsList})
+			<li>
+                <a target='_blank' href='#if($!{gds.url})${CONTEXT_PATH}$!{gds.url}#else javascript:void(0) #end'><img src="${gds.mainPic.URL}"></a>
+                <p class="name"><a target='_blank' href="${CONTEXT_PATH}$!{gds.url}">$!{gds.gdsName}</a></p>
+                #set($authorValue = $!{gds.skuInfo.allPropMaps.get("1001").values[0].propValue})
+                <p class="author">#if($authorValue && $authorValue != '')$!{authorValue} 著 #end</p>
+                <p class="price">
+                    <span class="rob">#money($!{gds.skuInfo.discountPrice})</span>
+                    <span class="price_r">#money($!{gds.guidePrice})</span>
+                </p>
+            </li>
+		#end
+    </ul>
+</div>

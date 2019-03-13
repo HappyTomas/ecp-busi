@@ -1,0 +1,51 @@
+#parse("/sys/sys_param.vm")
+#if(!$gridResult || !$gridResult.getList() || $!{gridResult.getList().size()}<=0)
+<div class = "temp-grid data-empty">
+	暂无模板，敬请期待！
+</div>
+#else
+<input type="hidden" id="list-pageId" value="$!{searchVO.pageId}" />
+<input type="hidden" id="list-siteId" value="$!{searchVO.siteId}" />
+<input type="hidden" id="list-platformType" value="$!{searchVO.platformType}" />
+<input type="hidden" id="list-shopId" value="$!{searchVO.shopId}" />
+<input type="hidden" id="list-pageTypeId" value="$!{searchVO.pageTypeId}" />
+<input type="hidden" id="list-templateType" value="$!{searchVO.templateType}" />
+<div  class="temp-grid clearfix pt20">
+	<ul class="page-al">
+		#foreach($temp in $gridResult.getList())
+	    <li>
+	        <div class="pageliborder">
+	        	#if($!{temp.showPic} )
+	        		<img src="$!{temp.showPic}" alt="$!{temp.templateName}"/>
+	        	#else
+	        		<img src="#genImageUrl($!{temp.showPic},'150x150!')" alt="$!{temp.templateName}"/>
+	        	#end
+	        </div>
+	        <h3 class="temp-name" title="$!{temp.templateName}">
+	       		#set($str=$!temp.templateName)
+	        	
+	        	#if($str.length()>12)
+				    #set($str=$str.substring(0,12))
+				    $str ...
+				#else
+				    $!{temp.templateName}
+				#end
+	        </h3>
+	        <div>
+	        	
+	            <a href="javaScript:void(0);" class="btn to-use-temp"  data-temp-i="$!{temp.id}">使用覆盖</a>
+	            ##<a href="" class="btn">预览预览</a>
+	        </div>
+	    </li>
+	    #end
+	</ul>
+</div>
+#end
+<div class="pagination bPage pagination-right ecppage" id="temp-page-controlbar" 
+	data-total-page="$!{gridResult.totalPage}" 
+	data-total-row="$!{gridResult.totalRow}" 
+	data-page-size="$!{gridResult.pageSize}" 
+	data-page-number="$!{gridResult.pageNumber}" 
+	data-status="begin">
+</div>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageInfo/open/temp-list.js?version=$!{JS_VERSION}"></script>

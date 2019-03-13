@@ -1,0 +1,28 @@
+#parse("sys/sys_param.vm")
+<ul class="new-conlist">
+    #if(${gdsList} && $gdsList.size() > 0)
+	#foreach($gds in $!{gdsList})
+		<li>
+			<!--
+			<div class="hot-big-fd">
+                <div class="hot-big">
+					热销
+                </div>
+            </div>
+			-->
+			<a  href='#if($!{gds.url} && $!{gds.url} !='')${CONTEXT_PATH}$!{gds.url}' target='_blank' #else javascript:void(0);'#end><img src="$!{gds.mainPic.URL}"></a>
+            <p class="name"><a  href="#if($!{gds.url} && $!{gds.url} !='')${CONTEXT_PATH}$!{gds.url}" target='_blank' #else javascript:void(0);"#end>$!{gds.gdsName} </a></p>
+            #set($authorValue = $!{gds.skuInfo.allPropMaps.get("1001").values[0].propValue})
+            <p class="author">#if($authorValue && $authorValue != '')$!{authorValue} 著 #end</p>
+            <p class="price">
+                <span class="rob">#money($!{gds.skuInfo.discountPrice})</span>
+                <span class="price_r">#money($!{gds.guidePrice})</span>
+            </p>
+        </li>
+	#end
+	
+	#else
+	<div class='pro-empty'>#if(${errMsg} && $!{errMsg} != '')$!{errMsg} #else 亲，暂无数据！#end</div>
+	#end
+</ul>
+	

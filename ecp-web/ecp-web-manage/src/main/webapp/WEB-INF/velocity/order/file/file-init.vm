@@ -1,0 +1,39 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+	<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script> 
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/other/order.util.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/file/file-init.js?version=$!{JS_VERSION}" ></script>
+<style type="text/css">  
+.file-wrap {
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file-wrap input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter:alpha(opacity=0);
+} 
+</style>
+		<form id="attributeForm" class="form-horizontal required-validate" style="margin-bottom: 0px;" method="post">
+        <div class="form-horizontal" id="gg-attr">
+			 <div class="control-group">
+				<label class="control-label" id="64">文件：</label>
+                <div class="controls">
+					<input type="text" id="file64" style="width:211px;" class="input-large required  autoParamFile" value="" name="autoParamFile2" ifBasic="0" ifmulti="input" valueId="" propType="2" propId="64" propName="文件"/>
+					<a href="javascript:;" class="btn file-wrap">上传文件
+						<input class="upFileTyle" type="file" name="uploadFileObj" id="uploadFileObj" ifBasic="0" ifmulti="input" valueId="" propType="2" propId="64" propName="文件" value=""/>
+                    </a>
+					<button type="button" onclick="cancelFile(this)" style="display:none;">取消</button>
+                </div>
+			 </div>
+		</div></form>

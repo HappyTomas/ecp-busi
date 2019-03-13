@@ -1,0 +1,27 @@
+#parse("sys/sys_param.vm")
+
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="$!{CSS_PATH}/amazeui.css">
+<link rel="stylesheet" href="$!{CSS_PATH}/public.css">
+<link rel="stylesheet" href="$!{CSS_PATH}/mall.css">
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/flexible/flexible.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/amazeui/jquery.min.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/amazeui/amazeui.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.dialog.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/artTemplate/template-debug.js"></script>
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/sh/shCore.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/sh/shBrushXml.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/sh/shBrushJScript.js"></script>
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/sh/shCoreDefault.css">
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/search/search-result.js"></script>
+<input type="hidden" value="$!{vo.shopId}" id="shopId"/>
+<input type="hidden" value="$!{vo.searchShopInner}" id="searchShopInner"/>
+<input type="hidden" value="$!{vo.category}" id="category">
+<input type="hidden" value="$!{vo.adid}" id="adid">
+#parse("/search/search-box.vm")
+<div class="ui-content">
+    #parse("/search/search-title.vm")
+    #parse("/search/page/search-resultlist.vm")
+</div>

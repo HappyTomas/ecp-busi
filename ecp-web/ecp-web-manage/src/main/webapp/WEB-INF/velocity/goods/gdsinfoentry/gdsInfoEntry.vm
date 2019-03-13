@@ -1,0 +1,100 @@
+<title>商品录入</title>
+#parse("/module/mod-form.vm") 
+#parse("/module/mod-editor.vm")
+<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+<meta http-equiv="description" content="this is my page">
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<link href="${CONTEXT_PATH}/css/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen" />
+<link href="${CSS_PATH}/index.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="${CSS_PATH}/child-reset.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsinfoentry/gdsInfoEntry.js?version=$!{JS_VERSION}"></script>
+
+<body data-spy="scroll" data-target=".quick-menu" id="loadBody">
+    <input type="hidden" value="$!{basics}" id="basics" />
+    <input type="hidden" value="$!{params}" id="params" />
+    <input type="hidden" value="$!{others}" id="others" />
+    <input type="hidden" value="$!{PROP_VALUE_TYPE_1}" id="PROP_VALUE_TYPE_1" />
+    <input type="hidden" value="$!{PROP_VALUE_TYPE_2}" id="PROP_VALUE_TYPE_2" />
+    <input type="hidden" value="$!{PROP_VALUE_TYPE_3}" id="PROP_VALUE_TYPE_3" />
+    <input type="hidden" value="$!{PROP_VALUE_TYPE_4}" id="PROP_VALUE_TYPE_4" />
+    <input type="hidden" value="$!{stock-switch}" id="stock-switch" />
+    <input type="hidden" value="$!{price-switch}" id="price-switch" />
+    <input type="hidden" value="$!{multi-switch}" id="multi-switch" />
+    <input type="hidden" value="$!{GDS_CATEGORY_MAX_COUNT}" id="GDS_CATEGORY_MAX_COUNT" />
+    <div class="alert alert-error hide formValidateMessages">
+    </div>
+    <div class="container-fluid" style="position: relative">
+		<!--保存，返回按钮-->
+        <div class="text-right" style="padding-bottom: 10px">
+            <a class="btn btn-info" id="topSave" href="javascript:void(0);"><i class=" icon-ok-sign icon-white"></i> 保存</a>
+            <a class="btn" href="javascript:void(0);" id="topback"><i class="icon-reply icon-white"></i> 返回</a>
+        </div>
+        <!--浮动导航-->
+        <div class="quick-menu" id="floorNav">
+            <ul class="nav">
+                <li class="active">
+                    <a href="#bas-info">基本信息</a>
+                </li>
+                <li>
+                    <a href="#gds-pictrue">参数属性</a>
+                </li>
+                <li>
+                    <a href="#gg-attr">高级设置</a>
+                </li>
+                <li>
+                    <a href="#dec-info">描述信息</a>
+                </li>
+                <li>
+                    <a href="#down-info">下拉底部</a>
+                </li>
+            </ul>
+        </div>
+		<!--内容-->
+        <div class="tab-content pmgr-in">
+            <div class="active" id="bas-info" style="margin-bottom: 0px;">
+                <form id="baseInfoForm" class="form-horizontal required-validate" style="margin-bottom: 0px;" method="post">
+                    <input type="hidden" value="$!{catgCode}" id="catgCode" />
+                    <!--基本信息tab页-->
+                    <!--分类信息-->
+                    #parse("goods/gdsinfoentry/gds-category.vm")
+                    <!--基本信息-->
+                    #parse("goods/gdsinfoentry/gds-baseInfo.vm")
+                </form>
+                <form id="gdsSkuForm" class="form-horizontal" style="margin-bottom: 0px;" method="post">
+                    <!--单品规格属性-->
+                    #parse("goods/gdsinfoentry/gds-skuParam.vm")
+                </form>
+                <form id="priceSettingForm" class="form-horizontal required-validate" style="margin-bottom: 0px;" method="post">
+                    <!--价格设置-->
+                    #parse("goods/gdsinfoentry/gds-priceSetting.vm")
+                </form>
+                <!--商品图片、视频-->
+                #parse("goods/gdsinfoentry/gds-pictrues.vm")
+            </div>
+            <form id="attributeForm" class="form-horizontal required-validate" style="margin-bottom: 0px;" method="post">
+                <div class="form-horizontal" id="gg-attr">
+                    <!--规格属性tab页-->
+                    #parse("goods/gdsinfoentry/gds-attributes.vm")
+                </div>
+            </form>
+            <form id="settingForm" class="form-horizontal" method="post">
+                <div class="form-horizontal" id="gj-set">
+                    <!--高级设置tab页-->
+                    #parse("goods/gdsinfoentry/gds-setting.vm")
+                </div>
+            </form>
+            <form id="decriptionForm" class="form-horizontal required-validate" style="margin-bottom: 0px;" method="post">
+                <div class="tab-pane" id="dec-info">
+                    <!--描述信息tab页-->
+                    #parse("goods/gdsinfoentry/gds-decription.vm")
+                </div>
+            </form>
+        </div>
+        <div class="btn-wrap" id="down-info">
+            <button class="btn btn-info" data-loading-text="保存中..." id="saveGdsInfo"><i class=" icon-ok-sign icon-white"></i> 保存</button>
+            <a class="btn" href="javascript:void(0)" id="backGdsManage"><i class="icon-reply icon-white"></i> 返回</a>
+        </div>
+    </div>
+</body>

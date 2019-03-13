@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	#parse("/sys/sys_head.vm")
+    <meta charset="UTF-8">
+    <title>电商客服</title>
+	<link rel="stylesheet" href="$!{CSS_PATH}/public.css"/>
+<link rel="stylesheet" href="$!{CSS_PATH}/chat.css"/>
+</head>
+<body>
+	<div>
+		$screen_content
+	</div>
+</body>
+</html>

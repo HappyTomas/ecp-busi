@@ -1,0 +1,73 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/templateConfigWap/sidebarWap.js?version=$!{JS_VERSION}" ></script>
+<style>
+.tpl-sidebar .tab-bar li.disabled {
+	cursor: not-allowed;
+}
+</style>
+<div class="tpl-sidebar">
+	<ul class="tab-bar">
+		<!-- 选择模块 -->
+		<li class="modules selected">
+			<div class="wrap">
+				<div class="left-line"></div>
+				<b class="iconfont">&#xe66f;</b>
+
+				<div>模块</div>
+				<b class="arrow"></b>
+			</div>
+		</li>
+	</ul>
+
+	<dl class="toolbar">
+		<dt></dt>
+		<!-- 选择模块-->
+		<dd class="modules-slide slide selected">
+			<b class="close-icon iconfont">&#xe66c;</b>
+
+			<div class="inside">
+				<p>
+					请选择模块并拖动至相应布局！<a href="javascript:void(0);" class="help-trigger"></a>
+				</p>
+
+				<div class="modules-accordion-box" style="height: 382px;">
+					<div class="modules-wrap modules-wrap-current">
+						<div class="head">
+							<span>基础模块</span> 
+							<b class="dropdown-icon"></b>
+						</div>
+						<ul class="module-list clearfix" style="height: 292px;">
+							<!-- 
+							模块内容
+							 -->
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</dd>
+		<!-- 选择模块 end-->
+	</dl>
+</div>
+
+<!-- js 模板   模块对应模板-->
+<script id="arttemplate-modular-list" type="text/html">
+{{if msg == 1}}
+{{each modulars as modular i}}
+	<li data-id = "{{modular.id}}" data-apply-type="{{modular.modularComponentRespDTO.applyItemSize}}" data-modular-type="{{modular.modularType}}"  data-modular-name="{{modular.modularName}}">
+		<span class="pic">
+			<img src="{{modular.showPic}}" />
+		</span> 
+		<span class="content" title="{{modular.modularName}}">
+			{{if modular.modularName.length>4}}
+				{{modular.modularName.substr(0,3)}}...
+			{{/if}}
+			{{if modular.modularName.length<=4}}
+				{{modular.modularName}}
+			{{/if}}
+		</span>
+	</li>
+{{/each}}
+{{/if}}
+</script>

@@ -1,0 +1,62 @@
+#parse("/sys/sys_param.vm")
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    #parse("/sys/sys_head.vm")
+</head>
+#parse("/module/mod-form.vm")
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+		评价
+    </div>
+     <div class="am-header-left am-header-nav">
+         <a href="javascript:" onclick="history.go(-1);">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content-fixBottom">
+	<form class="form-horizontal" id="evalForm">
+    	<input type="hidden" id="orderId" name="orderId" value="$!{gdsEval.orderId}"/>
+    	<input type="hidden" id="orderSubId" name="orderSubId" value="$!{gdsEval.orderSubId}"/>
+    	<input type="hidden" id="gdsId" name="gdsId"value="$!{gdsEval.gdsId}"/>
+    	<input type="hidden" id="gdsName" name="gdsName"value="$!{gdsEval.gdsName}"/>
+    	<input type="hidden" id="skuId" name="skuId"value="$!{gdsEval.skuId}"/>
+    	<input type="hidden" id="shopId" name="shopId"value="$!{gdsEval.shopId}"/>
+        <div class="eva-st">
+            <ul class="ui-list eva-list">
+                <li>
+                    <div class="img-wrap">
+                        <img src="$!{gdsEval.imgUrl}" alt="">
+                    </div>
+                    <div class="cont">
+                        <p class="tit">$!{gdsEval.gdsName}</p>
+                        <div class="txt-pf">
+							评分：<span class="pfen star5">
+                            <a href="javascript:void(0)"></a>
+                            <a href="javascript:void(0)"></a>
+                            <a href="javascript:void(0)"></a>
+                            <a href="javascript:void(0)"></a>
+                            <a href="javascript:void(0)"></a>
+                        </span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <div class="eva-pl">
+                <textarea class="ui-textarea" placeholder="请输入内容.." maxlength="120" name="detail" id="detail" cols="30" rows="10" onkeyDown="textCounter('detail',120,'remLenHead')" onkeyup="textCounter('detail$!{sortno}',120,'remLenHead$!{sortno}')"></textarea>
+            </div>
+			<div class="inum"><b id="remLenHead">0</b>/120</div>
+        </div>
+        <div class="eva-footer">
+            ##<div>
+                ##<input type="checkbox" class="ui-checkbox" id="cheboxpj"/>
+                ###<label for="cheboxpj" id="nmpj">匿名评价</label>
+            ##</div>
+            <div class="wbtn" id="saveBtn">提交评价</div>
+        </div>
+		<input type="hidden" id="score" name="score" value="5"/>
+	</form>
+</div>
+<script src="$!{RESOURCE_PATH}/ui/util.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/buyer/eval/buyer-toeval.js?version=$!{JS_VERSION}" ></script>

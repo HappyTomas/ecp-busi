@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>#siteName('')</title>
+	#parse("/sys/sys_param.vm")
+	#parse("/sys/sys_head.vm")
+	<link rel="stylesheet" type="text/css" href="$CSS_PATH/index.css"/>
+	<link rel="stylesheet" type="text/css" href="$CSS_PATH/text.css"/>
+	<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+</head>
+<body>
+ <div class="loading" style="display:none"></div>
+ <div class="loading-small" style="display:none"></div>
+
+<!--顶部 begin-->
+#parse("/main/main-site-nav.vm")
+<!--顶部 end-->
+
+<div id="webBody">
+	$screen_content
+</div>
+<!--内容 end-->
+
+
+<!--底部 begin-->
+#parse("/main/main-bottom.vm")
+<!--底部 end-->
+
+   
+</body>
+</html>

@@ -1,0 +1,66 @@
+<style type="text/css">
+<!--
+.selCityArea {
+	display: inline;float:right;text-decoration: none;margin-right:10px;
+}
+
+.localspan {
+ margin-top:10px;
+ margin-left:20px;
+ margin-right:40px;
+ width:200px;
+ height:30px;
+}
+
+#selAdapt .spanlocal {
+	float: left;
+margin-top:10px;
+margin-bottom:10px;
+	margin-left: 10px;
+	width:auto
+}
+
+#selAdapt {
+ border-bottom: 1px dashed #dcdcdc;
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+}
+
+.sl-icon.sl-icon-check {
+  width: 20px;
+  height: 20px;
+  background-position: -58px -62px;
+}
+
+/* 按钮定义begin */
+.sbtn {
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  height: 28px;
+  line-height: 28px;
+  border: 1px solid #d5d9e3;
+  background-color: #fff;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  padding: 0 20px;
+  min-width: 60px;
+  color: #666;
+  margin: 0 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.sbtn:hover {
+  border-color: #027cff;
+}
+.sbtn-blue {
+  color: #fff;
+  background-color: #027cff;
+  border-color: #027cff;
+}
+/*按钮定义结束*/
+
+
+-->
+</style>

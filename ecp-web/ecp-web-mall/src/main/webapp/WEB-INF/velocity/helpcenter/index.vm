@@ -1,0 +1,19 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-page.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/helpcenter/index.js?version=$!{JS_VERSION}"></script>
+<section class="wrap1200">
+    <div class="help-wrapper clearfix" id="help-center" data-init-chan-name="$!{channelName}" data-init-chan="$!{channelId}" data-init-arti="$!{articleId}" data-init-arti-name="$!{articleName}" data-err-msg="$!{errMsg}">
+        <div class="help-bar">
+        	##异步加载栏目边栏
+        </div>
+        <div class="help-con" >
+            <ul class="breadcrumb">
+                <li class = "crumb-home"><i class="icon-home"></i></li>
+            </ul>
+            <div id="help-body" style = "min-height:300px;">
+	           
+            </div>
+        </div>
+    </div>
+</section>

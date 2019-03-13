@@ -1,0 +1,8 @@
+#parse("sys/sys_param.vm")
+#parse("pageConfig/pageConfig/modular/common/common-head.vm")
+<link href="$CSS_PATH/pageConfig/utils/cms-img-upload.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="$CSS_PATH/pageConfig/utils/cms-link-input.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/utils/cmsUploadUtil.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/utils/cmsLinkInputUtil.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/modular/wap/modular-common-wap.js?version=$!{JS_VERSION}" ></script>
+$screen_content

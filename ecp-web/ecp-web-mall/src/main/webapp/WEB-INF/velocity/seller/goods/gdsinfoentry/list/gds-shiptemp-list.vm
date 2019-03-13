@@ -1,0 +1,64 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsinfoentry/gds-shiptemp-list.js?version=$!{JS_VERSION}"></script>
+<div class="nItem">
+   <div>
+       <table class="seller-table">
+         <thead>
+           <tr>
+               <td>
+				模板编码
+			   </td>
+               <td style="width: 200px">
+				模板名称
+			   </td>
+               <td>
+				是否默认运费模板
+			   </td>
+			   <td>
+				操作
+			   </td>
+           </tr>
+         </thead>
+        <tbody>
+               #if(!$gridResult || !${gridResult.getList()} || $!{gridResult.getList().size()}<=0)
+        		<tr>
+    				<td colspan='4'>
+    					没有符合条件模板信息。
+    				</td>
+    		    </tr>
+        	   #else
+            	   #foreach($shiptemplate in $gridResult.getList())
+            		<tr>
+    	                <td>
+    						$!{shiptemplate.id}
+    					</td>
+    	                <td>
+							$!{shiptemplate.shipTemplateName}
+    					</td>
+    	                <td>
+    						#if("1" == $shiptemplate.ifDefaultTemplate)
+								是
+							#else
+								否
+							#end
+    					</td>
+						<td>
+							<a href="javascript:void(0);" onclick="chooseMe(this,${shiptemplate.id},'${shiptemplate.shipTemplateName}')">
+								选择
+							</a>
+                        </td>
+                    </tr>
+					#end
+    		   #end
+         </tbody>
+       </table>
+   </div>
+    <div id="pageControlbar" 
+		class="ecppage" 
+		data-total-page="$!{gridResult.totalPage}" 
+		data-total-row="$!{gridResult.totalRow}" 
+		data-page-size="$!{gridResult.pageSize}" 
+		data-page-number="$!{gridResult.pageNumber}" 
+		data-status="begin">
+	</div>
+</div>

@@ -1,0 +1,38 @@
+#*
+* 店铺首页商品分页中 商品的作者与出版社部分    人卫特有功能
+#if($!{good.author})
+<div class="p-autor">
+	
+	##默认只有显示1个作者信息
+	#if($!{good.author})
+		#if($good.author.size() > 0)
+			#set($i=1)
+			#foreach($value in $good.author)
+				#if($i<=1)
+					#set($author=$value.trim())
+					<span title="$author">$author</span> 
+				#else
+					#break
+				#end
+				#set($i=$i+1)
+
+			#end
+
+		#else
+			<span></span>
+
+		#end
+	#else
+		<span></span>
+	#end
+	 <i class="spit"></i>
+	#if($!{good.publisher})
+		#set($publish=$good.publisher.trim())
+		<span class="cbs" title="$publish">$publish</span>
+	#else
+		<span class="cbs"> </span>
+	#end
+</div>
+#end
+*#
+##核心版本不需要此部分

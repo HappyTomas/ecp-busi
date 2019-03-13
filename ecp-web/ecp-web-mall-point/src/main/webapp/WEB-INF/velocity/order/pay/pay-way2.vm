@@ -1,0 +1,51 @@
+#parse("sys/sys_param.vm")
+	<link href="$!{CSS_PATH}/order.css" type="text/css" rel="stylesheet"/>
+	<link href="$!{CSS_PATH}/reset.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js"></script>
+
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/pay-way.js?version=$!{JS_VERSION}" ></script>
+  
+<div id="content">
+    <div class="wrap1200">
+        <div class="order-sb-state">
+            <div class="sus-tip">
+                <table width="100%" border="0">
+                    <tbody>
+                    <tr>
+                        <td class="mstate-icc">
+                           <i class="mstate"></i>
+                        </td>
+                        <td>
+                            <p class="txt">
+                                <strong style="font-size: 20px;">您的订单已提交成功!</strong>
+                                <strong class="c-gray">
+                                  
+                                </strong>
+                                <strong class="c-gray">
+                                </strong>
+                            </p> 
+                             <!-- <ul class="odetail pway-detail">
+                                <li>
+                                    <label>金额：</label>
+                                    <span class="c-red">3000.00元</span>
+                                </li>
+                                <li>
+                                    <label>订单：</label>
+                                    <span>233444493484848585893</span>
+                                </li> 
+                            </ul>
+                            <!--线上支付-->
+                            <div class="online-way">
+                                <hr>
+                                <h2></h2>
+                                <p></p>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div> 

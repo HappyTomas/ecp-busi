@@ -1,0 +1,153 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/requirejs/require.js?v=${JS_VERSION}"></script>
+<!--商城活动页  || 店铺活动页，则设置为1024 。否则为1200-->
+#if($!{pageTypeId}=="2" || $!{pageTypeId}=="4")
+	<link href="$!{CSS_PATH}/pageConfig/layout-1024.css" rel="stylesheet" type="text/css" media="screen"/>
+	<script type="text/javascript" src="$BUSIJS_PATH/pageConfig/pageConfig/modular/loading/promhomepage/prom-gdspictrues-template.js?version=$!{JS_VERSION}"></script>
+#end
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/public/public-js.js?v=${JS_VERSION}"></script>
+<!-- 模块化脚本基础库 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/requirejs.common.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/preview/item-render.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/page-common-edit.js?v=${JS_VERSION}"></script>
+<style>
+##处理背景色
+#if($!{pageAttr} && 
+	$!{pageAttr.backgroundColor} && 
+	$!{pageAttr.backgroundColor}!="" && 
+	$!{pageAttr.showBackFlag}=="1")
+.page-container2{background-color: #$!{pageAttr.backgroundColor}}
+#end
+img.imgFullWidth{width: 100%;height: 600px;}
+</style>
+<input type="hidden" id="pre-itemIds" value="$!{itemIds}"/>
+<input type="hidden" id="pageTypeId" value="$!{pageTypeId}"/>
+#set($shopId = $!{pageInfo.shopId})
+#set($pageEdit = true)
+<input type="hidden" value="$!{pageInfo.shopId}" id="hiddenShopId"/>
+<input type="hidden" value="#siteInfo('1')" id="mallUrl"/>
+<!-- 
+布局类型
+01：左右居中
+02：左右全宽
+03：左侧悬浮
+04：右侧悬浮
+-->
+<div class="page-container2 page-edit">
+	<div class="layoutcontainer previewMainBox">
+		<small class="layout-prompt">建议提示：页面编辑用google浏览器或ie9以上游览器查看，效果最佳！</small>
+		<!--渲染内容开始 start-->
+        ##布局项目
+        #foreach($!layout in $!pageConfig)
+        	##左、右悬浮
+        	#if($layout.cmsLayoutTypeRespDTO.layoutShowType && 
+        		($layout.cmsLayoutTypeRespDTO.layoutShowType == "03" || $layout.cmsLayoutTypeRespDTO.layoutShowType == "04"))
+				##左右悬浮
+				#set($layOutItemObj = $!layout.layoutItemPreRespDTOMap.entrySet())
+				#foreach($columnItem in $!layOutItemObj)
+					#foreach($crossItem in $!{columnItem.value})
+						#if($crossItem && $crossItem.modularId && $crossItem.modularId!="" && $crossItem.id && $crossItem.id!="")
+						<div class="modular skipfloor">
+							#parse($!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentVmUrl})
+							<!--以下隐藏域用于点击编辑的时候，请求后场获取对应模块的属性的入参  start-->
+							<input type="hidden" id="itemId" value="$!{crossItem.id}">
+	                        <input type="hidden" id="pageId" value="$!{crossItem.pageId}">
+	                        <input type="hidden" id="modularId" value="$!{crossItem.modularId}">
+	                        <input type="hidden" id="modularType" value="$!{crossItem.modularRespDTO.modularType}" >
+	                        <input type="hidden" id="modularName" value="$!{crossItem.modularRespDTO.modularName}" >
+	                        <input type="hidden" id="componentEditUrl" value="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentEditUrl}" >
+	                        <input type="hidden" id="componentVmUrl" value="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentVmUrl}" >
+							<div class="modular-mask">
+					            <div class="modular-mask-bg" style="height: 100%;"></div>
+					            <div class="modular-mask-icon">
+					                <a id="floorEdit" href="javascript:void(0);" class="ds-bar-edit lnkModuleEdit"><span>编辑</span></a>
+					                <a href="javascript:void(0)" class="ds-bar-del lnkModuleDel"><span>删除</span></a>
+					            </div>
+					        </div>
+						</div>
+						#end
+					#end
+				#end
+        		##parse("pageConfig/pageConfig/edit/page-common-floataround.vm")
+        	#else
+	        	#set($fullLayout = "")
+	        	#if($layout.cmsLayoutTypeRespDTO.layoutShowType && $layout.cmsLayoutTypeRespDTO.layoutShowType=="02")##左右全宽
+	        		#set($fullLayout = "layout-full")
+	        	#else
+	        		#set($fullLayout = "")
+				#end
+				<!--一个布局 start-->
+        		<div class="layout $!{fullLayout}">
+					<div class="layout-inner">
+            			<input type="hidden" name="layoutId" value="$!{layout.id}">
+							##循环有多少列start
+							#foreach($columnItem in $!layout.layoutItemPreRespDTOMap.entrySet())
+								##获取布局宽度start
+								#set($layoutIndex = $velocityCount - 1)
+        						#set($width = "0")
+        						#foreach($map in $!{layout.cmsLayoutTypeRespDTO.layoutItemSizeMap.entrySet()})
+        							#if($layoutIndex == $map.key)
+        								#set($width = $!{map.value}+'px')
+										#if(!$null.isNull($fullLayout) && $fullLayout!="")
+											#set($width = '100%')
+                    		    		#end
+        							#end
+        						#end
+								##获取布局宽度end
+								<div class="tItem" style="width:$!{width};">##item 这里表示一列
+									##循环有多少行。既是有多少个纵向的item $!{columnItem.value}为List<CmsLayoutItemPreRespDTO> itemPropPreRespDTOList
+    								#foreach($crossItem in $!{columnItem.value})
+										<div class="modular template">##一个模块start modular类提到这层，模块需把modular类去掉
+										
+										#if($crossItem && $crossItem.modularId && $crossItem.modularId!="" && $crossItem.id && $crossItem.id!="")
+											##这里抽出来成公共的模块，给编辑预览 发布公共调用。以后所有要添加的模块都要到这个vm里面进行逻辑处理
+           									##parse("/pageConfig/pageConfig/modular/common/modular-common-loading.vm")，已改造成获取组件表字段，将VM路径初始化至组件表。
+											#parse($!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentVmUrl})
+    										<!--以下隐藏域用于点击编辑的时候，请求后场获取对应模块的属性的入参  start-->
+											<input type="hidden" id="itemId" value="$!{crossItem.id}">
+                                			<input type="hidden" id="pageId" value="$!{crossItem.pageId}">
+                                			<input type="hidden" id="modularId" value="$!{crossItem.modularId}">
+                                			<input type="hidden" id="modularType" value="$!{crossItem.modularRespDTO.modularType}" >
+                                			<input type="hidden" id="modularName" value="$!{crossItem.modularRespDTO.modularName}" >
+                                			<input type="hidden" id="componentEditUrl" value="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentEditUrl}" >
+                                			<input type="hidden" id="componentVmUrl" value="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentVmUrl}" >
+                                			
+    										##这里判断是否有数据。
+                        					<!--以下隐藏域用于点击编辑的时候，请求后场获取对应模块的属性的入参  end-->
+                        		            <div class="modular-mask">
+                        		                <div class="modular-mask-bg"></div>
+                        		                <div class="modular-mask-icon">
+                        		                    <span><b>$!{crossItem.modularRespDTO.modularName}</b> 宽度：$!{crossItem.itemSize}</span>
+													<a href="javascript:void(0);" class="ds-bar-edit lnkModuleEdit"><span>编辑</span></a>
+                        		                    <a href="javascript:void(0);" class="ds-bar-del lnkModuleDel"><span>删除</span></a>
+													#if($crossItem.modularRespDTO.modularType == '01')##只有专题页头才有 热点 按钮
+                        		                    <a href="javascript:void(0);" class="ds-bar-link lnkHotSpot"><span>热点</span></a>
+                        		                    #end
+                        		                </div>
+                        		            </div>
+										#else
+                        		            <div class="nodata">
+            									<span style="color:red;">
+            										该布局单元未配置模块，赶紧去【布局管理】中拖入模块吧！
+                                                </span>
+            								</div>
+                        		            <div class="modular-mask">
+                        		                <div class="modular-mask-bg" >
+                								</div>
+                        		                <div class="modular-mask-icon">
+                        		                    <span><b>$!{crossItem.modularRespDTO.modularName}</b> 宽度：$!{crossItem.itemSize}</span>
+                        		                </div>
+                        		            </div>
+										#end
+										</div>##一个模块 end
+    								#end
+								</div>
+							#end##循环多少列end
+					</div>
+        		</div>
+				<!--一个布局 end-->
+        	#end
+		#end
+		<!--渲染内容开始 end-->
+    </div>
+</div>

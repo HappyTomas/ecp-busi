@@ -1,0 +1,61 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/hotImg/jquery.imagesloaded.min.js?v=${JS_VERSION}"></script>
+#set($picUrl1 = "")##图片
+#set($linkUrl1 = "")##链接地址
+#set($picUrl2 = "")##图片
+#set($linkUrl2 = "")##链接地址
+
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+
+## class="modular-body ecp-component $!{componentMethod}" data-status="1" data-pagePub="$!{pagePub}" data-hotItemPropId="$hotItemPropId"  data-placeWidth="100%" data-placeHeight="100%" data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}" 
+<div class="phone-modular tpl-imgList ecp-component $!{componentMethod}" data-status="1" data-web-root = '#translate("CMS_SITE_MAPPING","$!{pageInfo.siteId}")' data-is-pub="$!{pagePub}"  data-pc="$!{pc}" data-placeWidth="100%" data-placeHeight="100%" data-component-method="$!{componentMethod}"  data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}"> 
+	#if(!$!{componentMethod} || '' == $!{componentMethod})
+	#parse("/pageConfig/pageConfigWap/edit/nodata/modular-nodata-wap.vm")
+	#else 
+    <div class="modular-body">
+        <div class="tScroll-wrap" id="proList">
+            <div class="tScroll">
+                <ul class="clearfix">
+    				#foreach($prop in $crossItemObj)
+                    	#if($!{pagePub})
+                    		#set($groupRespDTOList=$prop.itemPropGroupPubRespDTOList)
+                    	#else
+                    		#set($groupRespDTOList=$prop.itemPropGroupPreRespDTOList)
+                    	#end
+                    	#foreach($gropPropList in $groupRespDTOList)
+    						#set($picUrl ="")
+    						#set($linkUrl ="")  
+                        	#foreach($controlProp in $gropPropList)
+                    			#if($!{controlProp.propId}=="1020")
+                    				#set($picUrl = $!{controlProp.propValue})
+                    			#elseif($!{controlProp.propId}=="1015")
+                					#set($linkUrl = $!{controlProp.propValue})
+    							#end
+							#end
+							
+    						<li>
+                                <a href="javascript:void(0);" lazy-href="$!{linkUrl}" lazy-adid="$!{controlProp.id}">
+                                    <img src="$IMAGE_PATH/pageConfig/noPictures248_160.png" #if("$!picUrl" != "") lazy-src="#genImageUrl($!picUrl,'248x160!')" #end >
+                                </a>
+                            </li>
+                    	#end	
+                    #end
+                </ul>
+            </div>
+        </div>
+    </div>
+    #end
+</div>
+	

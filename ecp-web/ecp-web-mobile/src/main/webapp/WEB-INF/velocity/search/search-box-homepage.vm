@@ -1,0 +1,26 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/autocomplete/autocomplete.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/search/util.js"></script>
+<input type="hidden" value="#if(!$searchType)1#else$!{searchType}#end" id="searchType"/>
+<input type="hidden" id="SHOP_SHOW_LOCK" value="${paramTools.getSysConfigCode('SHOP_SHOW_LOCK')}"/>
+<header class="am-header am-header-fixed #*header-trans*#">
+    <div class="am-header-title">
+        <div class="search-wrap">
+            <span class="am-icon-search"></span>
+            <input id="needSearch" readonly placeholder="搜索商品" class="ui-input" type="text"/>
+        </div>
+    </div>
+    <span class="am-header-left"><img class="logo" src="$!{IMAGE_PATH}/logo.png" alt=""/></span>
+
+    <div class="am-header-right">
+        <a href="#translate('CMS_SITE_MAPPING','1')msg/index">
+			<span class="opt">
+                <i class="iconfont icon-msg"></i>
+                                               信息
+            </span>
+        </a>
+
+    </div>
+</header>
+

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.OrdBackDiscountMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdBackDiscount" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="BACK_ID" property="backId" jdbcType="INTEGER" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="ORDER_SUB_ID" property="orderSubId" jdbcType="VARCHAR" />
+    <result column="PROC_TYPE" property="procType" jdbcType="VARCHAR" />
+    <result column="DISCOUNT_TYPE" property="discountType" jdbcType="VARCHAR" />
+    <result column="ACCT_TYPE" property="acctType" jdbcType="VARCHAR" />
+    <result column="AMOUNT" property="amount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, BACK_ID, ORDER_ID, ORDER_SUB_ID, PROC_TYPE, DISCOUNT_TYPE, ACCT_TYPE, AMOUNT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.OrdBackDiscountCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_ord_back_discount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ord_back_discount
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_ord_back_discount
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdBackDiscountCriteria" >
+    delete from t_ord_back_discount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.OrdBackDiscount" >
+    insert into t_ord_back_discount (ID, BACK_ID, ORDER_ID, 
+      ORDER_SUB_ID, PROC_TYPE, DISCOUNT_TYPE, 
+      ACCT_TYPE, AMOUNT)
+    values (#{id,jdbcType=INTEGER}, #{backId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, 
+      #{orderSubId,jdbcType=VARCHAR}, #{procType,jdbcType=VARCHAR}, #{discountType,jdbcType=VARCHAR}, 
+      #{acctType,jdbcType=VARCHAR}, #{amount,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.OrdBackDiscount" >
+    insert into t_ord_back_discount
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="backId != null" >
+        BACK_ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="orderSubId != null" >
+        ORDER_SUB_ID,
+      </if>
+      <if test="procType != null" >
+        PROC_TYPE,
+      </if>
+      <if test="discountType != null" >
+        DISCOUNT_TYPE,
+      </if>
+      <if test="acctType != null" >
+        ACCT_TYPE,
+      </if>
+      <if test="amount != null" >
+        AMOUNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="backId != null" >
+        #{backId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSubId != null" >
+        #{orderSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="procType != null" >
+        #{procType,jdbcType=VARCHAR},
+      </if>
+      <if test="discountType != null" >
+        #{discountType,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType != null" >
+        #{acctType,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdBackDiscountCriteria" resultType="java.lang.Long" >
+    select count(*) from t_ord_back_discount
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_ord_back_discount
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.backId != null" >
+        BACK_ID = #{record.backId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderSubId != null" >
+        ORDER_SUB_ID = #{record.orderSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.procType != null" >
+        PROC_TYPE = #{record.procType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discountType != null" >
+        DISCOUNT_TYPE = #{record.discountType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acctType != null" >
+        ACCT_TYPE = #{record.acctType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.amount != null" >
+        AMOUNT = #{record.amount,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_ord_back_discount
+    set ID = #{record.id,jdbcType=INTEGER},
+      BACK_ID = #{record.backId,jdbcType=INTEGER},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      ORDER_SUB_ID = #{record.orderSubId,jdbcType=VARCHAR},
+      PROC_TYPE = #{record.procType,jdbcType=VARCHAR},
+      DISCOUNT_TYPE = #{record.discountType,jdbcType=VARCHAR},
+      ACCT_TYPE = #{record.acctType,jdbcType=VARCHAR},
+      AMOUNT = #{record.amount,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.OrdBackDiscount" >
+    update t_ord_back_discount
+    <set >
+      <if test="backId != null" >
+        BACK_ID = #{backId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSubId != null" >
+        ORDER_SUB_ID = #{orderSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="procType != null" >
+        PROC_TYPE = #{procType,jdbcType=VARCHAR},
+      </if>
+      <if test="discountType != null" >
+        DISCOUNT_TYPE = #{discountType,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType != null" >
+        ACCT_TYPE = #{acctType,jdbcType=VARCHAR},
+      </if>
+      <if test="amount != null" >
+        AMOUNT = #{amount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.OrdBackDiscount" >
+    update t_ord_back_discount
+    set BACK_ID = #{backId,jdbcType=INTEGER},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      ORDER_SUB_ID = #{orderSubId,jdbcType=VARCHAR},
+      PROC_TYPE = #{procType,jdbcType=VARCHAR},
+      DISCOUNT_TYPE = #{discountType,jdbcType=VARCHAR},
+      ACCT_TYPE = #{acctType,jdbcType=VARCHAR},
+      AMOUNT = #{amount,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertBatch" parameterType="com.zengshi.ecp.order.dao.model.OrdBackDiscount" >
+    insert into t_ord_back_discount (ID, 
+      BACK_ID, ORDER_ID, ORDER_SUB_ID, 
+      PROC_TYPE, DISCOUNT_TYPE, ACCT_TYPE, 
+      AMOUNT)
+    values <foreach collection="list" item="item" index="index" separator="," > (#{item.id,jdbcType=INTEGER}, 
+      #{item.backId,jdbcType=INTEGER}, #{item.orderId,jdbcType=VARCHAR}, #{item.orderSubId,jdbcType=VARCHAR}, 
+      #{item.procType,jdbcType=VARCHAR}, #{item.discountType,jdbcType=VARCHAR}, #{item.acctType,jdbcType=VARCHAR}, 
+      #{item.amount,jdbcType=INTEGER})</foreach>
+  </insert>
+</mapper>

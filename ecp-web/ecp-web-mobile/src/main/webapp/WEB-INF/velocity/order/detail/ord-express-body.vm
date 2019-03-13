@@ -1,0 +1,92 @@
+<div class="wl-tab">
+    #if($!ordExpressDetailsResp&&$!ordExpressDetailsResp.size()>1)
+        <div style="overflow-y:auto" id="tabScroll">
+            <ul class="am-nav-tabs scroll clearfix">
+            	#set($i=0)
+            	#foreach($!detail in $!ordExpressDetailsResp)
+            		#set($flag = $i+1)
+            		#if($i==0)            		
+                	<li class="am-active"><a href="javascript:swichtab($i)" id="ta_${i}">包裹$flag</a></li>
+                	#else
+                	<li><a href="javascript:swichtab($i)" id="ta_${i}">包裹$flag</a></li>
+                	#end
+                	#set($i=$i+1)
+                #end
+            </ul>
+        </div>
+    #end
+        #set($k=0)
+        #foreach($!detail in $!ordExpressDetailsResp)
+        #if($k==0)
+        <div class="tab-content" id="tab_${k}">
+        #else
+        <div class="tab-content" style="display:none" id="tab_${k}">
+        #end
+            <div class="wl-state">
+                <p class="state">
+                    <label>物流状态</label>
+                    <span class="c-red">$!{detail.status}</span>
+                </p>
+                <p class="info">
+                    <label>物流公司:</label>
+                    <span>${detail.expressName}</span>
+                    <label class="code-lb">运单号码:</label>
+                    <span>${detail.expressNo}</span>
+                </p>
+            </div>
+            <div class="wl-box">
+                <div class="head">
+                    	物流跟踪
+                </div>
+                <div class="body">
+                    <ul class="wl-list">
+                    	#if($!detail.ordExpressDetailResps && $!detail.ordExpressDetailResps.size()>0)
+                    		#set($j=0)
+	                    	#foreach($!express in $!detail.ordExpressDetailResps)
+		                    	#if($j==0)
+		                        <li class="cur">
+		                        #else
+		                        <li>
+		                        #end
+	                             <p class="info">
+	                            #if($!express.areaName)
+	                            [$!express.areaName]
+	                            #end
+	                            $!express.context</p>
+	                            <p class="time">$!date.format('yyyy-MM-dd HH:mm:ss ',$!express.expressTime)</p>
+	                        </li>
+	                        #set($j = $j+1)
+	                        #end
+                        #else
+	                        <li>
+	                            <p class="info">暂时没有该运单号码的物流信息</p>
+	                        </li>
+                        #end 
+                                               
+                    </ul>
+                </div>
+            </div>
+        </div>
+        #set($k = $k+1)
+		#end
+    </div>
+</div>
+#if($!ordExpressDetailsResp&&$!ordExpressDetailsResp.size()>1)
+<script>
+    $(function () {
+       var w=0;
+        $('#tabScroll li').each(function(){
+            w=w+$(this).width();
+        });
+        $('#tabScroll .scroll').width(w+10);
+        
+    })
+    function swichtab(flag){
+    	$('.tab-content').hide();
+    	$('#tab_'+flag).show(); 
+		$('#ta_'+flag).closest('li').removeClass("am-active");
+		$('#tabScroll>ul>li').removeClass("am-active");
+    	$('#ta_'+flag).parent().attr("class","am-active");   	    	
+    }
+</script>
+#end

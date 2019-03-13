@@ -1,0 +1,11 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/common/prom-check.js?version=$!{JS_VERSION}" ></script>
+			 <div class="alert alert-error hide formValidateMessages" id="prom-info-valid" >
+				##showSpringAllError("promVO")
+             </div>
+           	 <div id="use-rule-all">
+		    	 #foreach($param in ${couponTypeVO.useMap.keySet()})  
+			    	 #if ("1"==${couponTypeVO.useMap.get($param)})
+		                #parse("/seller/coupon/userule/rule-${param}.vm") 
+		             #end
+	        	 #end
+			  </div>

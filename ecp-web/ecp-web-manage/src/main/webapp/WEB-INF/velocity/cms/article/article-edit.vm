@@ -1,0 +1,233 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-editor.vm")
+#parse("/module/mod-upload.vm")
+#parse("sys/sys_param.vm")
+
+<link href="${CONTEXT_PATH}/css/cms/advertise-img.css" rel="stylesheet" type="text/css"/>
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/article/article-edit.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/article/article-plugin.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<script type="text/javascript">
+ function replaceSpace(obj){
+ obj.value = obj.value.replace(/s/gi,'')
+}
+</script>
+
+<style>
+    .form-horizontal .control-label {
+        width: 120px;/* 默认为100px */
+    }
+</style>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+
+<div class="alert alert-error hide formValidateMessages" >
+	##showSpringAllError("vo")
+</div>
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/article/save">
+		<div class="span8">
+			<input type="hidden" id="subSystem" name="subSystem" class="input-medium" value="2000" >
+			<input type="hidden" id="id" name="id" value="$!{respVO.id}" />
+    		<div class="row-fluid formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">文章标题：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large required htmlcheck" maxlength="128" id="articleTitle" name="articleTitle" placeholder="请填写文章标题" value="#escapeHtml($!{respVO.articleTitle})" />
+    					<span class="help-inline">文章标题最大长度不能超过128个字符！</span>
+    				</div>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属站点： </label>
+    				<div class="controls">
+    					<select id="siteId" name="siteId" class="required" value="$!{respVO.siteId}" selected>
+							#foreach($site in $siteList)
+    							<option value="$!{site.id}" #if($!{respVO.siteId} == $!{site.id}) selected  #end >#escapeHtml($!{site.siteName})</option>
+        					#end
+    					</select>
+						<span class="help-inline">请选择所属站点！</span>
+    				</div>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">栏目：</label>
+    				<div class="controls">
+						<input type="text" readonly="readonly" class="input required" id="channelZH" name="channelZH" readonly="readonly" placeholder="请选择栏目" value="#escapeHtml($!{respVO.channelZH})"></textarea>
+						<input type="hidden" id="channelId" name="channelId" value="$!{respVO.channelId}"/>
+						<button type="button" class="btn chooseChannel" id="select_channel"><i class="icon-magic"></i>选择</button>
+    				</div>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label ">是否置顶：</label>
+    				<div class="controls">
+    					<select id="istop" name="istop" class="required">
+    						#listParam('PUBLIC_PARAM_ISNOT',$!{respVO.istop})
+    					</select>
+						<span class="help-inline">请选择是否置顶！</span>
+        			</div>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label ">首页是否显示：</label>
+    				<div class="controls">
+    					<select id="homepageIsShow" name="homepageIsShow" class="required">
+    						#listParam('PUBLIC_PARAM_ISNOT',$!{respVO.homepageIsShow})
+    					</select>
+						<span class="help-inline">请选择首页是否显示！</span>
+        			</div>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">发布时间：</label>
+    				<div class="controls">
+    					<input type="text" id="pubTime" name="pubTime"  class="input-large Wdate  required" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'lostTime\')}'})" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{respVO.pubTime})"/>
+    					<span class="help-inline">格式：yyyy-MM-dd HH:mm:ss</span>
+    				</div>
+    			</div>
+    		</div>
+			##e Wdate date要把校验的date去掉。
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">失效时间：</label>
+    				<div class="controls">
+    					<input type="text" id="lostTime" name="lostTime" class="input-larg Wdate  required" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'pubTime\')}'})" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{respVO.lostTime})"/>
+    					<span class="help-inline">格式：yyyy-MM-dd HH:mm:ss</span>
+    				</div>
+    			</div>
+    		</div>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">信息内容：</label>
+    				<div class="controls">
+						<input type="hidden" id="staticId" name="staticId" value="$!{respVO.staticId}" />
+						<input type="hidden" id="staticUrl" name="staticUrl" value="$!{respVO.staticUrl}" />
+    					<textarea id="editorText" name="editorText" class="bEditor required" style="width:95%;height:200px;visibility:hidden;" >#escapeHtml($!{respVO.editorText})</textarea>
+    				</div>
+    			</div>
+            </div>
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">上传缩略图：</label>
+    				<div class="controls">
+  					    <input type="text" id="thumbnailName" name="thumbnailName" class="input-large " placeholder="请选择图片" value="#escapeHtml($!{respVO.thumbnailName})" readonly="readonly" />
+						<div id="uploadFileObj" class="btn btn-primary" data-place-width="1200" data-place-height="1200" data-place-size="1024"><i class="icon-upload-alt"></i> 上传缩略图</div>
+    					<input type="hidden" id="thumbnail" name="thumbnail" value="$!{respVO.thumbnail}"/>
+    					<button type="button" class="btn" id="clean_image"><i class="icon-remove-sign icon-white"></i> 清空</button>
+    				</div>
+    			</div>
+    		</div>
+			<div class="formSep" id="uploadWarn_div">
+    			<div class="control-group">
+    				<div class="controls">
+                        <span id="uploadWarn" class="help-inline" style="color:#FF0000" >温馨提醒：请上传小于1024k的图片（jpg,png,jpeg,gif,bmp），图片规格建议控制在1200*1200px以内！</span>
+    				</div>
+    			</div>
+    		</div>
+			<div class="row-fluid formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="authorName">作者名称：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large htmlcheck" maxlength="64" id="authorName" name="authorName" placeholder="请填写作者名称" value="#escapeHtml($!{respVO.authorName})" />
+    					<span class="help-inline">作者名称最大长度不能超过64个字符！</span>
+    				</div>
+    			</div>
+    		</div>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="qrCode">上传二维码：</label>
+    				<div class="controls">
+					    <input type="text" id="qrCode" name="qrCode" class="input-large" placeholder="请选择图片" value="#escapeHtml($!{respVO.qrCode})" readonly="readonly" />
+						<div id="uploadQrCodeObj" class="btn btn-primary" data-place-width="280" data-place-height="280" data-place-size="100"><i class="icon-upload-alt"></i> 上传缩略图</div>
+						<button type="button" class="btn" id="clean_qrCode"><i class="icon-remove-sign icon-white"></i>清空</button>
+    				</div>
+    			</div>
+    		</div>
+			<div class="formSep" id="qrCodeWarn_div">
+    			<div class="control-group">
+    				<div class="controls">
+                        <span id="qrCodeWarn" class="help-inline" style="color:#FF0000" >温馨提醒：请上传小于100k的图片（jpg,png,jpeg,gif），图片规格建议控制在280*280px以内！</span>
+    				</div>
+    			</div>
+    		</div>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">摘要：</label>
+    				<div class="controls">
+						##input-block-level
+    					<textarea rows="4" cols="100" onpropertychange="checkLen(this,'count','250')" oninput="checkLen(this,'count','250')" class="input-block-level htmlcheck" style="width:95%;height:150px;" id="articleRemark" name="articleRemark"  placeholder="请填写摘要">#escapeHtml($!{respVO.articleRemark})</textarea>
+						<span class="help-inline">您还可以输入<span id="count">250</span>字！</span>
+    				</div>
+    			</div>
+    		</div>
+			
+			<!--	
+    		<div class="formSep"> 
+    		 <div class="control-group">
+    			<label class="control-label">上传附件：</label>
+    			<div class="controls">
+    					<input type="text" id="vfsName" name="vfsName" class="input-large"  value="$!{respVO.vfsName}" readonly="readonly">
+    					<input type="hidden" id="vfsId" name="vfsId" value="$!{respVO.vfsId}"/>
+    					<input id="attachmentFileInput" type="file" name="dataReportFile" class="pull-left" style="float: left;" />
+    			</div>
+    			<span class="help-inline">请选择附件格式为(.doc,.docx,.pdf,.zip,.rar)</span>
+             </div>
+            </div>
+    		-->	
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">排序：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large checkInteger" id="sortNo" name="sortNo" min="1" max="100" placeholder="如果不填，则默认为1。" onBlur="replaceSpace(this)" value="$!{respVO.sortNo}" />
+    					<span class="help-inline">请填写1-100的整数，值越小，排序越靠前！</span>
+    				</div>
+    			</div>
+    		</div>
+			<div class="text-center">
+				<button type="button" class="btn btn-info" id="btnFormPubSave"><i class="icon-ok-sign icon-white"></i>发布</button>
+				<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i>保存</button>
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+    		</div>
+        </div>
+		<div class="span4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">缩略图预览</h3>
+				</div>
+				<div class="panel-body">
+					<img id="imagePreview" src="#genImageUrl($!{respVO.thumbnail},'290x220!')" width="150" height="150" class="img-polaroid">
+				</div>
+			</div>
+		</div>
+		<input id="emptyImage" type="hidden" value="#genImageUrl('','280x280!')" ></input>
+		<div class="span4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">二维码预览</h3>
+				</div>
+				<div class="panel-body">
+					<img id="qrCodePreview" src="#genImageUrl($!{respVO.qrCode},'280x280!')" width="150" height="150" class="img-polaroid">
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</form>
+</div>
+	

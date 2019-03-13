@@ -1,0 +1,102 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/rep/rep-check.js?version=$!{JS_VERSION}" ></script>
+<style type="text/css">
+<!--
+.selCityArea {
+	display: inline;float:right;text-decoration: none;margin-right:10px;
+}
+
+-->
+</style>
+
+<style type="text/css">
+<!--
+
+.localspan {
+ margin-top:10px;
+  margin-left:20px;
+ margin-right:40px;
+ width:200px;
+ height:30px;
+}
+-->
+</style>
+			<h3 class="heading">仓库查看</h3>
+			
+			<div class="alert alert-error hide formValidateMessages" >
+	
+            </div>
+			<div class="sto-tit">
+                    <p class="c-blue">* 仓库适用范围</p>
+                    <p><img style="width:16px;height:16px; margin-right: 10px;" src="$IMAGE_PATH/goods/checked.jpg">表示该省份已被覆盖（注意：此时库存是省份粒度）</p>
+                    <p><img style="width:16px;height:16px;margin-right: 10px;" src="$IMAGE_PATH/goods/check_sep.jpg">表示该省份下有地市被覆盖（注意：如果该省份下所有地市被选中，而省份没有勾选，此时不等同于该省份被选中，库存是地市粒度）</p>
+                    	<input type="hidden" name="id" value="$id" />
+             </div>
+			<div class="formBox">
+			
+				
+				<form id="repAddForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" >
+                   <div class="row-fluid  formSep">
+                    <div class="span4">
+						<div class="control-group">				
+						    <label class="control-label">店铺名称：</label>
+						     <div class="controls">
+							   <select name="shopId" disabled="true">
+							    #shoplist($shopId)
+							   </select>
+						     </div>
+					    </div>
+					</div>
+
+				    <div class="span4">
+				    	
+						<div class="control-group">
+							<label class="control-label">仓库名称</label>
+							<div class="controls">
+
+								<input type="text" class="input-large required" name="repname"   placeholder="仓库名称" value="$repName" disabled="true"/>
+
+								<input type="hidden" name="shopId"  value="$shopId"/>
+
+							</div>
+						</div>
+					</div>
+				   </div>
+				
+					
+                    <div class="formSep" id="selAdapt">
+                       <div style="margin-left:100px;display:table;margin-right:100px">
+							 #foreach($areaInfo in $areaInfos)
+								 
+							#if($areaInfo.ifHasOver == true)
+							   #if($areaInfo.ifCityLevel == true && $areaInfo.ifCRepHasOver==true)	
+							 <div class="localspan"><div><div ><input type="hidden" citys="" id="$areaInfo.provinceCode"/><input type="checkbox" value="$areaInfo.provinceCode" style="display:none"/><img src="$IMAGE_PATH/goods/check_sep.jpg" style="width:16px;height:16px"/><div style="display: inline">$areaInfo.areaName</div><a class="selCityArea" >设置地市区域</a></div></div></div>
+				               #elseif($areaInfo.ifCityLevel == false &&$areaInfo.ifCRepHasOver==true)
+							 <div class="localspan"><div><div ><input type="hidden" citys="" id="$areaInfo.provinceCode"/><input type="checkbox" value="$areaInfo.provinceCode" checked="checked" disabled="true"/><img src="$IMAGE_PATH/goods/check_sep.jpg" style="width:16px;height:16px;display:none"/><div style="display: inline">$areaInfo.areaName</div><a class="selCityArea" >设置地市区域</a></div></div></div>
+                               #else
+							<div class="localspan"><div><div ><input type="hidden" citys="" id="$areaInfo.provinceCode"/><input type="checkbox" value="$areaInfo.provinceCode" disabled="true"/><img src="$IMAGE_PATH/goods/check_sep.jpg" style="width:16px;height:16px;display:none"/><div style="display: inline">$areaInfo.areaName</div><a class="selCityArea" >设置地市区域</a></div></div></div>
+
+							   #end
+							#else
+							<div class="localspan"><div><div ><input type="hidden" citys="" id="$areaInfo.provinceCode"/><input type="checkbox" value="$areaInfo.provinceCode" disabled="true"/><img src="$IMAGE_PATH/goods/check_sep.jpg" style="width:16px;height:16px;display:none"/><div style="display: inline">$areaInfo.areaName</div><a class="selCityArea" >设置地市区域</a></div></div></div>
+	
+							#end	
+							#end
+                       
+						 </div>
+							
+							
+					</div>
+			
+				
+
+					<div style=" ">
+						<div class="control-group">
+							<div class="controls">
+								<button type="button" class="btn btn-primary" id="btnReturn"><i class="icon-reply"></i> 返　回</button>
+
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>

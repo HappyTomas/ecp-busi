@@ -1,0 +1,161 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-editor.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/appfloor/appfloor-view.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+<style>
+.floorplace-block{
+         border :solid #e9e9e9;
+         margin-bottom:15px;
+}
+.floorplace-block .formSep{
+         border:0 none;
+        
+   }
+</style>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<div class="formBox row-fluid">
+	<form id="detaillinkForm" class="form-horizontal required-validate" style="margin-bottom: 0px;" method="post">
+		<div class="span8">
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">楼层名称： </label>
+					<label class="controls text_line" >
+						#escapeHtml(${respVO.floorName})
+					</label>
+    			</div>
+    		</div>
+		
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属站点： </label>
+					<label class="controls text_line" >
+						#escapeHtml(${respVO.siteName})
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label" for="linkTitle">楼层链接：</label>
+					<label class="controls  text_line">
+						#escapeHtml($!{respVO.linkUrl})		
+					</label>
+				</div>
+			</div>
+			
+			<div class=" formSep">  
+				<div class="control-group">
+    				<label class="control-label" for="name">app楼层模板：</label>
+					<label class="controls  text_line">
+						#escapeHtml($!{respVO.floorTemplateName})
+                    </label>
+    			</div>
+    		</div>
+			
+    		<div class="formSep" >
+    			<div class="control-group">
+    				<label class="control-label" for="name">楼层模板示例：</label>
+   					<div class="controls text_line">
+    					<div class="panel-body" >
+							<img style="max-width:650px;max-height:200px" id="imagePreview" src="#genImageUrl($!{floorTemplate.vfsId},'')" class="img-polaroid">
+						</div>
+    				</div>
+   				 </div>
+			</div>
+			
+			#foreach($floorplace in ${placeList})
+			<div class="floorplace-block ">
+				<div class="formSep" >
+    				<div class="control-group">
+    					<label class="control-label" for="name">图 $!{floorplace.sortNo}：</label>
+   						<div class="controls text_line">
+    						<div class="panel-body">
+								<img class="imagePreview img-polaroid" src="#genImageUrl($!{floorDataMap.get($!{floorplace.id}).vfsId},'130x130!')" width="130" height="130" class="img-polaroid"> 
+							</div>
+    					</div>
+   					</div>
+				</div>
+				<div class="formSep" >
+    				<div class="control-group">
+    					<label class="control-label" for="name">图 $!{floorplace.sortNo} 规格要求：</label>
+   						<div class="controls text_line">
+    						<table class="set-cont">
+                				<tr>
+                    				<th>宽不大于</th>
+                    				<td>$!{floorplace.placeWidth}px, </td>
+                    				<th> 高不大于 </th>
+                    				<td>$!{floorplace.placeHeight}px, </td>
+                    				<th> 大小不大于 </th>
+                    				<td>$!{floorplace.placeSize}k!</td>
+                    			</tr>
+            				</table>
+    					</div>
+   					</div>
+				</div>
+				
+				<div class="formSep">
+					<div class="control-group">
+						<label class="control-label">链接类型：</label>
+						<label class="controls  text_line">
+							#escapeHtml($!{floorDataMap.get($!{floorplace.id}).linkTypeZH}) 		
+						</label>
+					</div>
+				</div>
+				<div class="formSep">
+					<div class="control-group">
+						<label class="control-label">链接名称：</label>
+						<label class="controls  text_line">
+							#escapeHtml($!{floorDataMap.get($!{floorplace.id}).name}) 		
+						</label>
+					</div>
+				</div>
+			</div>
+			<hr size="1" style="border:1px dashed #eaeaea"/>
+			#end
+			
+			
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">排序：</label>
+					<label class="controls  text_line">
+						#escapeHtml($!{respVO.sortNo}) 		
+					</label>
+				</div>
+			</div>
+		
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">状态：</label>
+					<label class="controls  text_line">
+						#escapeHtml($!{respVO.statusZH})		
+					</label>
+				</div>
+			</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label required">创建时间：</label>
+    				<label class="controls  text_line">
+						$!date.format('yyyy-MM-dd',$!{respVO.createTime})
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label required">修改时间：</label>
+    				<label class="controls  text_line">
+						$!date.format('yyyy-MM-dd',$!{respVO.updateTime})
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="text-center">
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+			</div>
+        </div>
+	</form>
+</div>

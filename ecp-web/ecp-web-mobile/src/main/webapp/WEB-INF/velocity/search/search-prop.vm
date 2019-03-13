@@ -1,0 +1,68 @@
+<div id="filterCont" class="am-offcanvas">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+        <div class="am-offcanvas-content pro-ggCont">
+	            <div class="filter-items" id="filter-items">
+	            	<div class="filter-item" id="pmphService">
+		                <p>人卫服务</p>
+		                <div class="ui-selBox" id="serviceGroup">
+		                	<span code="ifAppSpecPrice" class="service-item">手机专享<i class="icon"></i></span>
+		                	<span code="ifStorage" class="service-item">仅看有货<i class="icon"></i> </span>
+		                	<span code="ifPromotion" class="service-item">促销<i class="icon"></i></span>
+		                </div>
+		            </div>
+	                <div class="filter-item" code="priceCode" id="priceCode">
+	                    <p>价格</p>
+	                    <div class="ui-selBox" id="priceGroup">
+	                        <span class="prop-item" code="1">0至89</span>
+	                        <span class="prop-item" code="2">90至199</span>
+	                        <span class="prop-item" code="3">200至299</span>
+	                        <span class="prop-item" code="4">300至399</span>
+	                        <span class="prop-item" code="5">400以上</span>
+	                    </div>
+	                </div>
+	                <div class="filter-item filter-line" id="allType">
+	                   <p>
+	                   	   <input type="hidden" value="" id="catlogId" />
+	                       <span class="" >全部分类</span>
+	                       <span class="pull-right c-red" id="catlogName" >全部<em class="ui-arrow ui-arrow-right"></em>
+	                       </span>
+	                   </p>
+	                </div>
+	            </div>
+            <div class="btn-fix">
+                <span class="wbtn wbtn-default" id="propClearBtn">重置</span>
+                <span class="wbtn" id="propBtn">确定</span>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- 侧边栏内容 -->
+<div id="allTypeCont" class="am-offcanvas">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+        <div class="am-offcanvas-content pro-ggCont">
+            <header class="am-header">
+                <div class="am-header-title">
+                    分类
+                </div>
+                <div class="am-header-left am-header-nav">
+                     <i class="public-arrowleft" id="returnCanvas"></i>
+                </div>
+                <div class="am-header-right">
+                    <span class="otxt" id="catgChoose">确认</span>
+                </div>
+            </header>
+            <div class="ser-height">
+            <div class="ser-aType">
+				<li><div class="loaded selected" id="defaultType">全部分类</div></li>
+            </div>
+            </div>
+            #*
+            <div class="btn-fix">
+                <span class="wbtn" id="saveType">确定</span>
+                <span class="wbtn wbtn-default" id="returnType">返回</span>
+            </div>
+			*#
+        </div>
+    </div>
+</div>

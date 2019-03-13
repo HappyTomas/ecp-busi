@@ -1,0 +1,47 @@
+#if(!$rspDto.editoParam ||  $rspDto.editoParam.size() == 0 )
+<div class="" style="margin-bottom: 30px">
+    <div class="row-fluid">
+        <div class="well-tit">
+            <span>产品详情</span>
+        </div>
+        <div class="span6" style="margin-left:0px;">
+            <textarea id="gdsDesc" name="productDetails" class="bEditor" style="width:180%;height:250px;visibility:hidden;">$!{gdsInfo.gdsDesc}</textarea>
+        </div>
+    </div>
+</div>
+<div class="">
+    <div class="row-fluid">
+        <div class="well-tit">
+            <span>包装清单</span>
+        </div>
+        <div class="span6" style="margin-left:0px;">
+            <textarea id="gdsPartlist" name="packageList" class="bEditor" style="width:180%;height:250px;visibility:hidden;">$!{gdsInfo.gdsPartlist}</textarea>
+        </div>
+    </div>
+</div>
+#end
+#foreach($params in $!{rspDto.editoParam})
+	#set($vals = '')
+	#set($ids = '')
+    #foreach($props in $!{gdsInfo.props})
+        #if($!{params.id} == $!{props.id})
+            #if($!{params.propInputType}=='3')
+				#foreach($value in $!{props.values})
+					#set($vals = $!{value.propValue})
+					#set($ids = $!{value.id})
+				#end
+            #end
+        #end
+	#end
+	<div class="">
+        <div class="row-fluid">
+            <div class="well-tit">
+				<span>$!{params.propName}</span>
+			</div>
+            <div class="span6" style="margin-left:0px;">
+                <textarea id="editor$!{params.id}" ifHavaeto="$!{params.ifHaveto}" gdsValue="$vals" ifBasic="$!{params.ifBasic}" ifmulti="input" valueId="$ids" propType="$!{params.propType}" propId="$!{params.id}" propName="$!{params.propName}" nameValue="editor" name="editor$velocityCount" class="bEditor" style="width:180%;height:250px;visibility:hidden;"></textarea>
+            </div>
+        </div>
+	</div>
+#end
+    

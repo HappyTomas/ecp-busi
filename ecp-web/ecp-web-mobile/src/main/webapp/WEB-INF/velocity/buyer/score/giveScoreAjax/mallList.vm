@@ -1,0 +1,59 @@
+#parse("sys/sys_param.vm")
+#if($!{gdsList} && $!{gdsList.size()} > 0)
+#foreach($gds in $!{gdsList})
+<li>
+        <div class="img-wrap">
+             <a href="#if($!{gds.url} && $!{gds.url} !='')
+				#translate('CMS_SITE_MAPPING','2')/$!{gds.url}" target='_blank'
+    			#else 
+    				javascript:void(0);"
+    			#end><img src="$!{gds.mainPic.URL}" alt="$!{gds.gdsName}"/>
+		   </a>
+        </div>
+        <div class="cont">
+            <p class="tit"> 
+         <a href="#if($!{gds.url} && $!{gds.url} !='')
+        				#translate('CMS_SITE_MAPPING','2')/$!{gds.url}" target='_blank'
+            			#else 
+            				javascript:void(0);"
+            			#end>$!{gds.gdsName} 
+         </a>
+        </p>
+            <div class="c-orange">
+           		#foreach($score in $!{gds.scores})
+					#if($!{score.ifDefault} == '1')
+						#if($!{score.score} && $!{score.score} != '' )
+						<span class="">$!{score.score}积分</span>
+						#end
+						#if($!{score.score} && $!{score.score} != ''  && $!{score.price} && $!{score.price} != '' )
+						+
+						#end
+						#if($!{score.price} && $!{score.price} != '' )
+						<span class=""><em>¥</em>#moneyNum($!{score.price})</span>
+						#end
+					#end
+				#end
+				<a class="buy" href="#if($!{gds.url} && $!{gds.url} !='')
+    				#translate('CMS_SITE_MAPPING','2')/$!{gds.url}" target='_blank'
+    			#else 
+    				javascript:void(0);"
+    			#end>换购</a>
+            </div>
+        </div>
+
+</li>
+#end
+#else
+	<div class="ui-empty">
+          <div class="empty-img">
+              <img src="$!{IMAGE_PATH}/nodata01.png" alt="">
+          </div>
+          <div class="tip-bold">
+                           很遗憾
+          </div>
+          <div class="tip-txt">
+                             还没有积分商城商品
+          </div>
+      </div>
+#end
+

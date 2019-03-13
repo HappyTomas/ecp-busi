@@ -1,0 +1,38 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/order/sended-list.js?version=$!{JS_VERSION}" ></script>
+
+                <table class="seller-table">
+                    <thead>
+                    <tr>
+                        <td style="width: 170px">订单编号</td>
+                        <td style="width: 150px">下单日期</td>
+                        <td style="width: 150px">支付时间</td>
+                        <td>实付金额</td>
+                        <td>联系人</td>
+                        <td>配送方式</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+					#if(!$sendListPage.list || $sendListPage.list.size() == 0)
+            	       <tr class="fav-opt">
+            			<td colspan="6">
+            			        #if(!$msg)很遗憾，暂无数据#else $!msg #end
+            			</td>
+            		</tr>
+            	    #end
+            		#foreach ($record in $sendListPage.list)
+                    <tr>
+                        <td><a href="javascript:void(0);" class="orderId">$!{record.orderId}</a></td>
+						<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{record.orderDate})</td>
+                        <td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{record.payTime})</td>
+                        <td>#moneyNum($!{record.realMoney})</td>
+                        <td>$!{record.contactName}</td>
+                        <td>#translate('STAFF_SHOP_DISTRIBUTION_WAY',$!{record.dispatchType})</td>
+                    </tr>
+					#end
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="row-fluid">
+					<div id="pageControlbar" class="ecppage" data-total-page="$!{sendListPage.totalPage}" data-total-row="$!{sendListPage.totalRow}" data-page-size="$!{sendListPage.pageSize}" data-page-number="$!{sendListPage.pageNumber}" data-status="begin"></div>
+                </div>

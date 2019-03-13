@@ -1,0 +1,13 @@
+<div class="cx-pro">
+    <ul class="clearfix" id="salecheck">
+        <li class="item column-2"><a class="salecheck active" href="javascript:void(0)">全部</a></li>
+		#foreach($list in $!{promTypeList})
+			<li class="item">
+				<a class="salecheck" href="javascript:void(0)"  value="$!{list.promTypeCode}">$!{list.promTypeName}</a>
+			</li>
+		#end
+    </ul>
+</div>
+<div id="saleGdsList">
+	#parse("/shop/list/shop-salegds-list.vm")
+</div>

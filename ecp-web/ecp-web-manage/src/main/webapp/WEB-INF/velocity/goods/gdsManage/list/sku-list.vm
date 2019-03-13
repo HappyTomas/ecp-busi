@@ -1,0 +1,34 @@
+<table id="dataGridTable" class="table table-striped table-bordered dTableR dataTable" style="index-y:1000">
+        <thead>
+            <tr role="row">
+                <th class="center" rowspan="1" colspan="1" aria-label="单品编码" style="width: 80px;text-align:center">单品编码</th>
+                <th class="center" rowspan="1" colspan="1" aria-label="单品属性串" style="width: 80px;text-align:center">单品属性串</th>
+                <th class="center" rowspan="1" colspan="1" aria-label="状态" style="width: 80px;text-align:center">状态</th>
+                <th class="center" tabindex="0" aria-controls="dataGridTable" rowspan="1" colspan="1" aria-label="操作: activate to sort column ascending" style="width: 80px;text-align:center">操作</th>
+        	</tr>
+        </thead>
+        <tbody>
+			#if($!{skuList.size}==0)
+                <tr><td colspan="4">没有数据返回</td></tr>
+			#else
+    			#foreach($list in $!{skuList})
+                    <tr id="20941" role="row" class="odd">
+                        <td class="center" style="text-align:center">$!{list.id}</td>
+    					<td class=" center" style="text-align:center">$!{list.skuProps}</td>
+                        <td class=" center" style="text-align:center">$!{list.gdsStatusName}</td>
+                        <td class=" center" style="text-align:center">
+                        #if($!{list.gdsStatus}=='99')
+							<a href="javascript:void(0)" >-</a>
+						#else
+							<a href="javascript:void(0)" onclick="skuUpDown(this,'$!{list.id}','$!{list.gdsId}','$!{list.shopId}','$!{list.gdsStatus}')">#if($!{list.gdsStatus}=='11')下架#else 上架#end</a>
+							##<a href="javascript:void(0)" onclick="addArrMsg('$!{list.id}')">新增到货通知</a>
+							##<a href="javascript:void(0)" onclick="addCollect('$!{list.id}')">新增收藏</a>
+						#end
+                        
+                        </td>
+                    </tr>
+				#end
+			#end
+        </tbody>
+    </table>
+    

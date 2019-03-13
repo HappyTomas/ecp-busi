@@ -1,0 +1,60 @@
+#parse("pageConfig/pageConfig/modular/common/common-head.vm")
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+<input type="hidden" id="propPreStr" value="$!{propPreStr}"/>
+
+<div class="well-searchForm">
+	##错误提示信息start.需要
+	<div class="hide alert error-msg" id="error-msg">
+	</div>
+	##错误提示信息end.需要
+	<div class="dialog-body">
+        <div class="dialog-content">
+            <form id="paramsSetForm" class="required-validate form-horizontal templateItemForms" data-url="$!{CONTEXT_PATH}/modular-dynamic/commonModularFormSave">
+    			<div class="dynamicFormMainBox">
+    				<input type="hidden" id="modularPageId" value="$!{pageId}"/>
+                	<input type="hidden" id="modularModularId" value="$!{modularId}"/>
+                	<input type="hidden" id="modularItemId" value="$!{itemId}"/>
+    				##上传图片======start
+    			    <div class="row-fluid">
+                        <div class="span5">
+                            <div class="control-group" style="margin-bottom:5px;">
+                                <label class="control-label">$!{attrs.get(1020).propName}：</label>
+                                <div class="controls">
+                                    <div class="upload-block">
+                                        <div class="formItem">
+                                            <div class="img-wrap">
+                                                <img src="$IMAGE_PATH/pageConfig/noPictures.png" alt=""/>
+                                            </div>
+    										<input type="hidden" id="propValue" value="$!{propPre.get(1020).propValue}">
+                    						<input type="hidden" id="propValueId" value="$!{propPre.get(1020).propValueId}">
+                    						<input type="hidden" id="propId" value="$!{attrs.get(1020).id}">
+            								<input type="hidden" id="propItemId" value="$!{propPre.get(1020).id}"/>
+    										<a href="javascript:;" class="btn file-wrap">上传图片
+    											<input id="attachmentFileInput" type="file" name="detailPic" class="pull-left com_input" style="float: left;" />
+                                            </a>	
+    										<input type="hidden" class="uploadImgUrl">
+        								</div>
+                                    </div>
+                                </div>
+                            </div>
+                       </div>
+    			  	</div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <div class="text-error">
+    								温馨提示：为获得更好的热点体验效果，上传图片宽度最好在1024以上，高度在600以上。
+                            </div>
+                        </div>
+                    </div>
+    				##上传图片 ======end
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="text-center">
+        <span id="btnSave" class="btn btn-info"><i class="icon-ok-sign icon-white"></i>确定</span>
+        <span id="btnCancel" class="btn"><i class="icon-reply icon-white"></i>取消</span>
+    </div>
+</div>

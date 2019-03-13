@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     ">  
+   
+     <!--用于定义对外提供的服务 -->
+     
+     <bean id="cmsAdvertiseRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsAdvertiseRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsAdvertiseRSV" ref="cmsAdvertiseRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsPlaceRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsPlaceRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPlaceRSV" ref="cmsPlaceRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsInfoRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsInfoRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsInfoRSV" ref="cmsInfoRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsFloorRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsFloorRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorRSV" ref="cmsFloorRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsFloorTabRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsFloorTabRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorTabRSV" ref="cmsFloorTabRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsFloorLabelRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsFloorLabelRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorLabelRSV" ref="cmsFloorLabelRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsFloorAttrCountRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsFloorAttrCountRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorAttrCountRSV" ref="cmsFloorAttrCountRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsFloorGdsRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsFloorGdsRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorGdsRSV" ref="cmsFloorGdsRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsFloorAdvertiseRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsFloorAdvertiseRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorAdvertiseRSV" ref="cmsFloorAdvertiseRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsComponentRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsComponentRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsComponentRSV" ref="cmsComponentRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsSiteRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsSiteRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsSiteRSV" ref="cmsSiteRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsTemplateRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsTemplateRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsTemplateRSV" ref="cmsTemplateRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsListRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsListRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsListRSV" ref="cmsListRSV" provider="${default.dubbo.provider.id}"/>
+ 	 <bean id="cmsRecommendRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsRecommendRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsRecommendRSV" ref="cmsRecommendRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsHotSearchRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsHotSearchRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsHotSearchRSV" ref="cmsHotSearchRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsPlaceCategoryRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsPlaceCategoryRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPlaceCategoryRSV" ref="cmsPlaceCategoryRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsGdsCategoryRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsGdsCategoryRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsGdsCategoryRSV" ref="cmsGdsCategoryRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsChannelRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsChannelRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsChannelRSV" ref="cmsChannelRSV" provider="${default.dubbo.provider.id}"/>
+ 	 <bean id="cmsArticleRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsArticleRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsArticleRSV" ref="cmsArticleRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsSiteInfoRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsSiteInfoRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsSiteInfoRSV" ref="cmsSiteInfoRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsPlaceChannelRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsPlaceChannelRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPlaceChannelRSV" ref="cmsPlaceChannelRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsLinkRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsLinkRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLinkRSV" ref="cmsLinkRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsFloorCouponRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsFloorCouponRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorCouponRSV" ref="cmsFloorCouponRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsFloorTemplateRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsFloorTemplateRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorTemplateRSV" ref="cmsFloorTemplateRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsFloorPlaceRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsFloorPlaceRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsFloorPlaceRSV" ref="cmsFloorPlaceRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsAppFloorRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsAppFloorRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsAppFloorRSV" ref="cmsAppFloorRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsAppFloorDataRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsAppFloorDataRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsAppFloorDataRSV" ref="cmsAppFloorDataRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsImageSwitcherRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsImageSwitcherRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsImageSwitcherRSV" ref="cmsImageSwitcherRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <!-- 模板化开始 -->
+	 <bean id="cmsPageColorRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsPageColorRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPageColorRSV" ref="cmsPageColorRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsPageInfoRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsPageInfoRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPageInfoRSV" ref="cmsPageInfoRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsPageTypeRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsPageTypeRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPageTypeRSV" ref="cmsPageTypeRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsLayoutTypeRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsLayoutTypeRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutTypeRSV" ref="cmsLayoutTypeRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsPageAttrPreRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsPageAttrPreRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPageAttrPreRSV" ref="cmsPageAttrPreRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsPageAttrPubRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsPageAttrPubRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPageAttrPubRSV" ref="cmsPageAttrPubRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsLayoutPreRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsLayoutPreRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutPreRSV" ref="cmsLayoutPreRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsLayoutPubRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsLayoutPubRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutPubRSV" ref="cmsLayoutPubRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsLayoutAttrPreRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsLayoutAttrPreRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutAttrPreRSV" ref="cmsLayoutAttrPreRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsLayoutAttrPubRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsLayoutAttrPubRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutAttrPubRSV" ref="cmsLayoutAttrPubRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsLayoutItemPreRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsLayoutItemPreRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutItemPreRSV" ref="cmsLayoutItemPreRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsLayoutItemPubRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsLayoutItemPubRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsLayoutItemPubRSV" ref="cmsLayoutItemPubRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsItemPropPreRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsItemPropPreRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsItemPropPreRSV" ref="cmsItemPropPreRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsItemPropPubRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsItemPropPubRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsItemPropPubRSV" ref="cmsItemPropPubRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsPicHotPreRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsPicHotPreRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPicHotPreRSV" ref="cmsPicHotPreRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsPicHotPubRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsPicHotPubRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPicHotPubRSV" ref="cmsPicHotPubRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsModularRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsModularRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsModularRSV" ref="cmsModularRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsModularComponentRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsModularComponentRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsModularComponentRSV" ref="cmsModularComponentRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsModularParaPropRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsModularParaPropRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsModularParaPropRSV" ref="cmsModularParaPropRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsModularPropValRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsModularPropValRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsModularPropValRSV" ref="cmsModularPropValRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsTemplateLibRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsTemplateLibRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsTemplateLibRSV" ref="cmsTemplateLibRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsTemplateLayoutRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsTemplateLayoutRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsTemplateLayoutRSV" ref="cmsTemplateLayoutRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsTemplateLayoutItemRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsTemplateLayoutItemRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsTemplateLayoutItemRSV" ref="cmsTemplateLayoutItemRSV" provider="${default.dubbo.provider.id}"/>
+	 <bean id="cmsPageConfigRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsPageConfigRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsPageConfigRSV" ref="cmsPageConfigRSV" provider="${default.dubbo.provider.id}"/>
+     <bean id="cmsModularPropRSV" class="com.zengshi.ecp.cms.dubbo.impl.CmsModularPropRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.cms.dubbo.interfaces.ICmsModularPropRSV" ref="cmsModularPropRSV" provider="${default.dubbo.provider.id}"/>
+	 <!-- 模板化结束 -->
+     
+</beans>  

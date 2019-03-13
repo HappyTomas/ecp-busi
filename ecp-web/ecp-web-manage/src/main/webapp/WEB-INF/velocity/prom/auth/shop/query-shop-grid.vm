@@ -1,0 +1,46 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/auth/query-shop-grid.js?version=$!{JS_VERSION}" ></script>
+		<div class="well well-searchForm">
+			<form id="searchFormShop" class="form-horizontal" style="margin-bottom: 0px;">
+				<div class="formBox">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">店铺名称：</label>
+						<div class="controls">
+							<input type="text" class="input-medium" value="" placeholder="输入店铺名称" id="shopId" name="shopName"/>
+						</div>
+					</div>
+				</div>
+					<div class="span4 hide">
+					<div class="control-group">
+						<label class="control-label">店铺状态：</label>
+						<div class="controls">
+					        	<select id="status" name="status" >
+										<option value="">全部</option>
+										<option value="1" selected >有效</option>
+										<option value="0">无效</option>
+								</select>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			</form>
+		</div>
+			<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="span6">
+				<button type="button" class="btn" id="btnFormSaveShop"><i class="icon-plus icon-white"></i> 添 加</button>
+				<button type="button" class="btn" id="btnReturnShop"><i class="icon-reply"></i>关 闭</button>
+			</div>
+			<div class="pull-right">
+				<a class="btn btn-info" id="btnFormSearchShop" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn" id="btnFormResetShop" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div> 
+	
+		<div class="row-fluid">
+		    <div style=" height:320px;overflow:auto;">
+			   <table id="dataGridTableShop"></table>
+			</div>
+		</div>

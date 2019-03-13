@@ -1,0 +1,65 @@
+#parse("sys/sys_param.vm")
+<body>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        订单支付
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        <a href="javascript:history.go(-1)" class="">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<input type="hidden" id="orderIds" value="$!{showOrderIds}"/>
+    #if($!{realMoney}!=0)
+    <div class="ui-content-fixBottom">
+        <div class="odr-box odr-pad">
+            <div class="r-address">
+                您的订单已提交成功!
+            </div>
+
+            <div class="r-address">
+                应付金额：<span class="c-orange">#money($!{realMoney})</span>
+            </div>
+        </div>
+        <div class="odr-box">
+            <ul class="o-pay-box">
+                #set($linum = 0)
+                #foreach($param in $!{wayList})
+                    #foreach($item in $!{param.payWayList})
+                        #set($linum = $linum+1)
+                        <li>
+                            <div class="odp-flex clearfix">
+                                <div class="pay-icon"><img src="$!{item.payImage}" alt=""/></div>
+                            </div>
+                            #set($intputId = "checkbox$linum")
+                            <div class="odp-radio"><input type="radio" id="$intputId" class="ui-checkbox" name="strRadio" value="$!{item.id}"/>
+                                <label for="$intputId"></label>
+                            </div>
+                        </li>
+                    #end
+                #end
+            </ul>
+        </div>
+    </div>
+
+    <div class="am-navbar am-cf am-navbar-mall o-pay-bar">
+        <div class="o-pad-box" id="btn_payment">确认支付</div>
+    </div>
+    #else
+    <div class="ui-content-fixBottom">
+        <div class="odr-box odr-pad">
+            <div class="r-address">
+                您的订单已提交成功!
+            </div>
+        </div>
+    </div>
+    <div class="am-navbar am-cf am-navbar-mall o-pay-bar">
+    ##        <a class="o-pad-box" href="#translate('CMS_SITE_MAPPING','2')/point/order/my">我的积分订单</a>
+        <div class="o-pad-box" id="btn_point">我的积分订单</div>
+    </div>
+    #end
+
+<form action="" accept-charset="" id="netPayForm" method="" onsubmit=""> </form>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/pay-way.js?version=$!{JS_VERSION}" ></script>
+</body>

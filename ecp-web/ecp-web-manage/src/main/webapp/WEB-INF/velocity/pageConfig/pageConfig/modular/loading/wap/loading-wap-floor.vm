@@ -1,0 +1,477 @@
+#parse("/sys/sys_param.vm")
+#set($title = "")##标题
+#set($titlePic = "")##标题图片
+#set($moreUrl = "")##更多链接
+#set($floorTemplateId = "")##app 楼层模板id
+#set($floorTemplatePic = "")##app 楼层模板缩略图url
+#set($picUrl1 = "")##图片
+#set($linkUrl1 = "")##链接地址
+#set($picUrl2 = "")##图片
+#set($linkUrl2 = "")##链接地址
+#set($picUrl3 = "")##图片
+#set($linkUrl3 = "")##链接地址
+#set($picUrl4 = "")##图片
+#set($linkUrl4 = "")##链接地址
+#set($picUrl5 = "")##图片
+#set($linkUrl5 = "")##链接地址
+#set($liNum = 0)## li 个数
+
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+#foreach($prop in $crossItemObj)
+	#if($prop.propGroupId != 0)
+		#set($groupRespDTOList = '') ##属性组
+		#if($!{pagePub})
+    		#set($groupRespDTOList=$prop.itemPropGroupPubRespDTOList)
+    	#else
+    		#set($groupRespDTOList=$prop.itemPropGroupPreRespDTOList)
+    	#end
+    	#foreach($gropPropList in $groupRespDTOList)
+        	#foreach($controlProp in $gropPropList)
+    			#if($!{controlProp.propId}=="1020")
+    				#if($controlProp.controlPropId==1)
+    					#set($picUrl1 = $!{controlProp.propValue})
+    				#end
+    				#if($controlProp.controlPropId==2)
+    					#set($picUrl2 = $!{controlProp.propValue})
+    				#end
+    				#if($controlProp.controlPropId==3)
+    					#set($picUrl3 = $!{controlProp.propValue})
+    				#end
+    			#end	
+    			#if($!{controlProp.propId}=="1015")
+    				#if($controlProp.controlPropId==1)
+    					#set($linkUrl1 = $!{controlProp.propValue})
+    				#end
+    				#if($controlProp.controlPropId==2)
+    					#set($linkUrl2 = $!{controlProp.propValue})
+    				#end
+    				#if($controlProp.controlPropId==3)
+    					#set($linkUrl3 = $!{controlProp.propValue})
+    				#end
+    			#end	
+    		#end
+    	#end
+	#else
+		#if($!{prop.propId}=="1000")
+    		##标题
+    		#set($title = "$!{prop.propValue}")
+    	#elseif($!{prop.propId}=="1024")
+    		##更多链接地址
+    		#set($moreUrl = "$!{prop.propValue}")
+    	#elseif($!{prop.propId}=="1025")
+    		##链接地址
+    		#set($floorTemplateId = "$!{prop.propValue}")
+    	#elseif($!{prop.propId}=="1026")
+    		##链接地址
+    		#set($floorTemplatePic = "$!{prop.propValue}")
+    	#elseif($!{prop.propId}=="1031")
+    		##链接地址
+    		#set($titlePic = "$!{prop.propValue}")
+    	#elseif($!{prop.propId}=="1032")
+    		##链接地址
+    		#set($titlePicLink = "$!{prop.propValue}")
+    	#end
+	#end
+#end
+
+##样式 处理
+#set($classStyle = "tpl-floor")##
+#if($!{floorTemplateId}==32)
+	#set($classStyle= "tpl-floor") 
+#elseif($!{floorTemplateId}==10)
+	#set($classStyle= "tpl-ad") 
+#elseif($!{floorTemplateId}==30)
+	#set($classStyle= "tpl-floor2") 
+#elseif($!{floorTemplateId}==31)
+	#set($classStyle= "tpl-floor2") 
+#elseif($!{floorTemplateId}==40)
+	#set($classStyle= "tpl-pro-cell4") 
+#elseif($!{floorTemplateId}==50)
+	#set($classStyle= " promTpl-spl promTpl-head") 
+#else
+	
+#end
+
+<div class="phone-modular $classStyle ecp-component $!{componentMethod}" data-web-root = '#translate("CMS_SITE_MAPPING","$!{pageInfo.siteId}")' data-is-pub="$!{pagePub}" data-floor-template-id="$!{floorTemplateId}" data-component-method="$!{componentMethod}"  data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}">
+	#if(!$!{componentMethod} || '' == $!{componentMethod})
+	#parse("/pageConfig/pageConfigWap/edit/nodata/modular-nodata-wap.vm")
+	#else
+		<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/hotImg/jquery.imagesloaded.min.js?v=${JS_VERSION}"></script>
+		#set($hasHead=0)
+		#if("$!title" != "")
+			#set($hasHead=1)
+		#end
+		#if("$!titlePic" != "")
+			#set($hasHead=1)
+		#end
+			
+		#if($!{hasHead} ==1)
+	    <div class="modular-head">
+			#if("$!titlePic" != "")
+				#if("$!moreUrl" != "")
+					<a href="javascript:void(0);" lazy-href="$!{moreUrl}">
+	    				<img src="#genImageUrl($!titlePic,'640x72!')" >
+	                </a>
+				#else
+					<img src="#genImageUrl($!titlePic,'640x72!')" >
+				#end
+			#else
+				<span class="tit">$!{title}</span>
+	        	#if($!{moreUrl} && $!{moreUrl} != '')
+	        		<a class="more" href="javascript:void(0);" lazy-href="$!{moreUrl}" > 更多</a>
+	        	#end
+			#end
+	    </div>
+		#end
+		##data-picurl1="$!{picUrl1}" data-picurl2="$!{picUrl2}" data-picurl3="$!{picUrl3}"
+	    <div class="modular-body">
+			#if(32==$!{floorTemplateId})
+				<ul class="clearfix">
+				#foreach($prop in $crossItemObj)
+	            	#if($prop.propGroupId != 0)
+	            		#set($groupRespDTOList = '') ##属性组
+	            		#if($!{pagePub})
+	                		#set($groupRespDTOList=$prop.itemPropGroupPubRespDTOList)
+	                	#else
+	                		#set($groupRespDTOList=$prop.itemPropGroupPreRespDTOList)
+	                	#end
+	                	#foreach($gropPropList in $groupRespDTOList)
+	                    	#foreach($controlProp in $gropPropList)
+	                			#if($!{controlProp.propId}=="1020")
+	            					#set($picUrl1 = $!{controlProp.propValue})
+	                			#end	
+	                			#if($!{controlProp.propId}=="1015")
+	            					#set($linkUrl1 = $!{controlProp.propValue})
+								#end
+							#end
+							#set($liNum=$!{velocityCount})
+							<li class="item">
+	                            <a href="javascript:void(0);" lazy-href="$!{linkUrl1}">
+	                                <div class="img-wrap">
+	                                    <img id="floor_image_$!{velocityCount}" #if("$!picUrl1" != "") lazy-src="#genImageUrl($!picUrl1,'214x320!')" #end  src="$IMAGE_PATH/pageConfig/noPictures32.png" alt="">
+	                                </div>
+	                            </a>
+	                        </li>
+	                	#end
+	            	#end
+				#end
+				#if($liNum<3)
+					#set($nowIndex=$liNum+1)
+					#foreach($liIndex in [$nowIndex .. 3])
+						<li class="item">
+	                        <a href="javascript:void(0);" >
+	                            <div class="img-wrap">
+	                                <img src="$IMAGE_PATH/pageConfig/noPictures32.png" alt="">
+	                            </div>
+	                        </a>
+	                    </li>
+					#end
+				#end
+				</ul>
+			#elseif(10==$floorTemplateId)
+				#foreach($prop in $crossItemObj)
+	            	#if($prop.propGroupId != 0)
+	            		#set($groupRespDTOList = '') ##属性组
+	            		#if($!{pagePub})
+	                		#set($groupRespDTOList=$prop.itemPropGroupPubRespDTOList)
+	                	#else
+	                		#set($groupRespDTOList=$prop.itemPropGroupPreRespDTOList)
+	                	#end
+	                	#foreach($gropPropList in $groupRespDTOList)
+	                    	#foreach($controlProp in $gropPropList)
+	                			#if($!{controlProp.propId}=="1020")
+	            					#set($picUrl1 = $!{controlProp.propValue})
+	                			#end	
+	                			#if($!{controlProp.propId}=="1015")
+	            					#set($linkUrl1 = $!{controlProp.propValue})
+								#end
+							#end
+							#set($liNum=$!{velocityCount})
+	                        <div class="img-wrap">
+								<a href="javascript:void(0);" lazy-href="$!{linkUrl1}">
+	                                <img id="floor_image_$!{velocityCount}" #if("$!picUrl1" != "") lazy-src="#genImageUrl($!picUrl1,'640x65!')" #end alt="">
+	                        	</a>
+	                        </div>
+	                	#end
+	            	#end
+				#end
+			#elseif(30==$floorTemplateId)
+				<div class="cont">
+					#foreach($prop in $crossItemObj)
+	                	#if($prop.propGroupId != 0)
+	                		#set($groupRespDTOList = '') ##属性组
+	                		#if($!{pagePub})
+	                    		#set($groupRespDTOList=$prop.itemPropGroupPubRespDTOList)
+	                    	#else
+	                    		#set($groupRespDTOList=$prop.itemPropGroupPreRespDTOList)
+	                    	#end
+	                    	#foreach($gropPropList in $groupRespDTOList)
+	                        	#foreach($controlProp in $gropPropList)
+	                    			#if($!{controlProp.propId}=="1020")
+	                    				#if($controlProp.controlPropId==1)
+	                    					#set($picUrl1 = $!{controlProp.propValue})
+	                    				#end
+	                    				#if($controlProp.controlPropId==2)
+	                    					#set($picUrl2 = $!{controlProp.propValue})
+	                    				#end
+	                    				#if($controlProp.controlPropId==3)
+	                    					#set($picUrl3 = $!{controlProp.propValue})
+	                    				#end
+	                    			#end	
+	                    			#if($!{controlProp.propId}=="1015")
+	                    				#if($controlProp.controlPropId==1)
+	                    					#set($linkUrl1 = $!{controlProp.propValue})
+	                    				#end
+	                    				#if($controlProp.controlPropId==2)
+	                    					#set($linkUrl2 = $!{controlProp.propValue})
+	                    				#end
+	                    				#if($controlProp.controlPropId==3)
+	                    					#set($linkUrl3 = $!{controlProp.propValue})
+	                    				#end
+	                    			#end
+	    						#end
+	                    	#end
+	                	#end
+	    			#end
+	                <div class="cont-main">
+	                    <a href="javascript:void(0);" lazy-href="$!{linkUrl1}">
+	                        <img class="img" src="$IMAGE_PATH/pageConfig/noPictures280_280.png" #if("$!picUrl1" != "") lazy-src="#genImageUrl($!picUrl1,'280x280!')" #end alt="">
+	                    </a>
+	                </div>
+	                <div class="cont-list">
+	                    <ul>
+	                        <li>
+	                            <a href="javascript:void(0);" lazy-href="$!{linkUrl2}">
+	                                <img class="img" src="$IMAGE_PATH/pageConfig/noPictures280_130.png" #if("$!picUrl2" != "") lazy-src="#genImageUrl($!picUrl2,'280x130!')" #end alt="">
+	                            </a>
+	                        </li>
+	                        <li>
+	                            <a href="javascript:void(0);" lazy-href="$!{linkUrl3}">
+	                                <img class="img" src="$IMAGE_PATH/pageConfig/noPictures280_130.png" #if("$!picUrl3" != "") lazy-src="#genImageUrl($!picUrl3,'280x130!')" #end alt="">
+	                            </a>
+	                        </li>
+	                    </ul>
+	                </div>
+	            </div>
+			#elseif(31==$floorTemplateId)
+				<div class="cont mainR">
+					#foreach($prop in $crossItemObj)
+	                	#if($prop.propGroupId != 0)
+	                		#set($groupRespDTOList = '') ##属性组
+	                		#if($!{pagePub})
+	                    		#set($groupRespDTOList=$prop.itemPropGroupPubRespDTOList)
+	                    	#else
+	                    		#set($groupRespDTOList=$prop.itemPropGroupPreRespDTOList)
+	                    	#end
+	                    	#foreach($gropPropList in $groupRespDTOList)
+	                        	#foreach($controlProp in $gropPropList)
+	                    			#if($!{controlProp.propId}=="1020")
+	                    				#if($controlProp.controlPropId==1)
+	                    					#set($picUrl1 = $!{controlProp.propValue})
+	                    				#end
+	                    				#if($controlProp.controlPropId==2)
+	                    					#set($picUrl2 = $!{controlProp.propValue})
+	                    				#end
+	                    				#if($controlProp.controlPropId==3)
+	                    					#set($picUrl3 = $!{controlProp.propValue})
+	                    				#end
+	                    			#end	
+	                    			#if($!{controlProp.propId}=="1015")
+	                    				#if($controlProp.controlPropId==1)
+	                    					#set($linkUrl1 = $!{controlProp.propValue})
+	                    				#end
+	                    				#if($controlProp.controlPropId==2)
+	                    					#set($linkUrl2 = $!{controlProp.propValue})
+	                    				#end
+	                    				#if($controlProp.controlPropId==3)
+	                    					#set($linkUrl3 = $!{controlProp.propValue})
+	                    				#end
+	                    			#end
+	    						#end
+	                    	#end
+	                	#end
+	    			#end
+	                <div class="cont-list">
+	                    <ul>
+	                        <li>
+	                            <a href="javascript:void(0);" lazy-href="$!{linkUrl1}">
+	                                <img class="img" src="$IMAGE_PATH/pageConfig/noPictures280_130.png" #if("$!picUrl1" != "") lazy-src="#genImageUrl($!picUrl1,'280x130!')" #end alt="">
+	                            </a>
+	                        </li>
+	                        <li>
+	                            <a href="javascript:void(0);" lazy-href="$!{linkUrl2}">
+	                                <img class="img" src="$IMAGE_PATH/pageConfig/noPictures280_130.png" #if("$!picUrl2" != "") lazy-src="#genImageUrl($!picUrl2,'280x130!')" #end alt="">
+	                            </a>
+	                        </li>
+	                    </ul>
+	                </div>
+	                <div class="cont-main">
+						<a href="javascript:void(0);" lazy-href="$!{linkUrl3}">
+	                        <img class="img" src="$IMAGE_PATH/pageConfig/noPictures280_280.png" #if("$!picUrl3" != "") lazy-src="#genImageUrl($!picUrl3,'280x280!')" #end alt="">
+	                    </a>
+	                </div>
+	            </div>
+			#elseif(40==$floorTemplateId)
+				#foreach($prop in $crossItemObj)
+	            	#if($prop.propGroupId != 0)
+	            		#set($groupRespDTOList = '') ##属性组
+	            		#if($!{pagePub})
+	                		#set($groupRespDTOList=$prop.itemPropGroupPubRespDTOList)
+	                	#else
+	                		#set($groupRespDTOList=$prop.itemPropGroupPreRespDTOList)
+	                	#end
+	                	#foreach($gropPropList in $groupRespDTOList)
+	                    	#foreach($controlProp in $gropPropList)
+	                			#if($!{controlProp.propId}=="1020")
+	                				#if($controlProp.controlPropId==1)
+	                					#set($picUrl1 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==2)
+	                					#set($picUrl2 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==3)
+	                					#set($picUrl3 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==4)
+	                					#set($picUrl4 = $!{controlProp.propValue})
+	                				#end
+	                			#end	
+	                			#if($!{controlProp.propId}=="1015")
+	                				#if($controlProp.controlPropId==1)
+	                					#set($linkUrl1 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==2)
+	                					#set($linkUrl2 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==3)
+	                					#set($linkUrl3 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==4)
+	                					#set($linkUrl4 = $!{controlProp.propValue})
+	                				#end
+	                			#end
+							#end
+	                	#end
+	            	#end
+				#end
+				<ul class="clearfix">
+	                <li>
+	                    <a href="javascript:void(0);" lazy-href="$!{linkUrl1}">
+	                        <img class="img" src="$IMAGE_PATH/pageConfig/noPictures40.png" #if("$!picUrl1" != "") lazy-src="#genImageUrl($!picUrl1,'140x190!')" #end alt="">
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="javascript:void(0);" lazy-href="$!{linkUrl2}">
+	                        <img class="img" src="$IMAGE_PATH/pageConfig/noPictures40.png" #if("$!picUrl2" != "") lazy-src="#genImageUrl($!picUrl2,'140x190!')" #end alt="">
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="javascript:void(0);" lazy-href="$!{linkUrl3}">
+	                        <img class="img" src="$IMAGE_PATH/pageConfig/noPictures40.png" #if("$!picUrl3" != "") lazy-src="#genImageUrl($!picUrl3,'140x190!')" #end alt="">
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="javascript:void(0);" lazy-href="$!{linkUrl4}">
+	                        <img class="img" src="$IMAGE_PATH/pageConfig/noPictures40.png" #if("$!picUrl4" != "") lazy-src="#genImageUrl($!picUrl4,'140x190!')" #end alt="">
+	                    </a>
+	                </li>
+	            </ul>
+			#elseif(50==$floorTemplateId)
+				#foreach($prop in $crossItemObj)
+	            	#if($prop.propGroupId != 0)
+	            		#set($groupRespDTOList = '') ##属性组
+	            		#if($!{pagePub})
+	                		#set($groupRespDTOList=$prop.itemPropGroupPubRespDTOList)
+	                	#else
+	                		#set($groupRespDTOList=$prop.itemPropGroupPreRespDTOList)
+	                	#end
+	                	#foreach($gropPropList in $groupRespDTOList)
+	                    	#foreach($controlProp in $gropPropList)
+	                			#if($!{controlProp.propId}=="1020")
+	                				#if($controlProp.controlPropId==1)
+	                					#set($picUrl1 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==2)
+	                					#set($picUrl2 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==3)
+	                					#set($picUrl3 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==4)
+	                					#set($picUrl4 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==5)
+	                					#set($picUrl5 = $!{controlProp.propValue})
+	                				#end
+	                			#end	
+	                			#if($!{controlProp.propId}=="1015")
+	                				#if($controlProp.controlPropId==1)
+	                					#set($linkUrl1 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==2)
+	                					#set($linkUrl2 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==3)
+	                					#set($linkUrl3 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==4)
+	                					#set($linkUrl4 = $!{controlProp.propValue})
+	                				#end
+	                				#if($controlProp.controlPropId==5)
+	                					#set($linkUrl5 = $!{controlProp.propValue})
+	                				#end
+	                			#end
+							#end
+	                	#end
+	            	#end
+				#end
+				<div class="list-item">
+	                <ul class="clearfix">
+	                    <li class="item">
+							<a href="javascript:void(0);" lazy-href="$!{linkUrl1}" class="img-pos">
+	                            <img src="$IMAGE_PATH/pageConfig/noPictures203_273.png" #if("$!picUrl1" != "") lazy-src="#genImageUrl($!picUrl1,'203x273!')" #end alt="">
+							</a>
+	                    </li>
+	                    <li class="item">
+	                        <a href="javascript:void(0);" lazy-href="$!{linkUrl2}" class="img-pos">
+	                            <img src="$IMAGE_PATH/pageConfig/noPictures203_273.png" #if("$!picUrl2" != "") lazy-src="#genImageUrl($!picUrl2,'203x273!')" #end alt="">
+							</a>
+	                    </li>
+	                    <li class="item">
+	                        <a href="javascript:void(0);" lazy-href="$!{linkUrl3}" class="img-pos">
+	                            <img src="$IMAGE_PATH/pageConfig/noPictures203_273.png" #if("$!picUrl3" != "") lazy-src="#genImageUrl($!picUrl3,'203x273!')" #end alt="">
+	                       	</a>
+	                    </li>
+	                </ul>
+	            </div>
+				<div class="list-item list-item-2">
+	                <ul class="clearfix">
+	                    <li class="item">
+	                        <a href="javascript:void(0);" lazy-href="$!{linkUrl4}" class="img-pos">
+							    <img src="$IMAGE_PATH/pageConfig/noPictures306_202.png" #if("$!picUrl4" != "") lazy-src="#genImageUrl($!picUrl4,'306x202!')" #end alt="">
+	                    	</a>
+	                    </li>
+	                    <li class="item">
+	                        <a href="javascript:void(0);" lazy-href="$!{linkUrl5}" class="img-pos">
+	                            <img src="$IMAGE_PATH/pageConfig/noPictures306_202.png" #if("$!picUrl5" != "") lazy-src="#genImageUrl($!picUrl5,'306x202!')" #end alt="">
+	                    	</a>
+	                    </li>
+	                </ul>
+	            </div>
+			#end
+	    </div> 
+    #end
+</div> 
+	

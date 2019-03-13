@@ -1,0 +1,36 @@
+ #parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/shop/query-shop-list.js?version=$!{JS_VERSION}" ></script>
+	 <table id="shopTable"class="seller-table table-striped"  >
+                            <thead>
+                            <tr role="row">
+                                <th  ><input type="checkbox" name="checkbox" id="dt_row_all_check" title="全选/全取消" /></th>
+                                <th  >店铺编码</th>
+                                <th  >店铺名称</th>
+                                <th  >状态</th>
+                            </tr>
+                            </thead>
+                               <tbody>
+        	#if(!$page.getResult()||$page.count==0)
+        		<tr><td colspan='4'>没有符合条件的记录。</td><tr>
+        	#end
+        	#foreach($attr in $page.getResult())
+                            <tr id="" role="row" class="odd">
+                                <td><input type="checkbox" name="checkboxshop"  value="$!{attr.id}"/></td>
+                                <td>$!{attr.id}</td>
+                                <td  class="td-hhtxt" > <div>#escapeHtml("$!{attr.shopName}")</div></td>
+                                <td>
+                                #if($!{attr.shopStatus} == '1')
+                                	有效
+                                #else 
+                                	无效
+                                #end
+                                </td>
+                            </tr>
+			#end
+		</tbody>
+	</table>
+    <div class="fav-opt clearfix" style="margin-top: 20px;">
+        <div class="row-fluid">
+		<div id="pageControlbar" class="ecppage" data-total-page="${page.pageCount}" data-total-row="${page.count}" data-page-size="${page.pageSize}" data-page-number="${page.pageNo}" data-status="begin"></div>
+		</div>
+    </div>

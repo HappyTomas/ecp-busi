@@ -1,0 +1,126 @@
+#parse("sys/sys_param.vm")
+#parse("module/mod-upload.vm")
+#parse("module/mod-editor.vm")
+#parse("module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/paramsrender/params-render.js?v=${JS_VERSION}"></script>	
+<style type="text/css">
+.dialog-body .control-group {
+    margin-bottom: 5px;
+}
+form .row-fluid + .row-fluid {
+    margin-top: 5px !important;
+}
+.imgUnUpload {
+	color: #999999;
+}
+.imgUploaded {
+	color: green;
+}
+.imgUploadStatus {
+	float: left;
+	padding-top: 5px;
+}
+.imagePreviewBox {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	border: 1px solid #CCCCCC;
+	padding: 5px;
+	min-height: 20px;
+	background-color: #FFFFE1;
+}
+.imagePreviewBox img {
+	width: 100px;
+	height: 100px;
+	margin-right: 5px;
+	border: 1px solid white;
+}
+.imagePreviewBox img:hover {
+	border: 1px solid #2694F7;
+}
+.imgPreviewArea {
+	display: none;
+}
+</style>
+<input type="hidden" id="pre-itemIds" value="$!{itemIds}"/>
+
+<div class="dynamicFormMainBox">
+	<input type="hidden" id="modularPageId" value="$!{pageId}"/>
+	<input type="hidden" id="modularModularId" value="$!{modularId}"/>
+	<input type="hidden" id="modularItemId" value="$!{itemId}"/>
+#set($manualBuildIndex = 0)
+#foreach($!attr in $!attrs)
+	#if($attr && $attr.status==1)
+	
+		##设置是否必填
+		#set($required = "")
+		#if($attr && $attr.ifHaveto && $attr.ifHaveto == "1")
+			#set($required = "required")
+		#else
+			#set($required = "")
+		#end
+	<div class="row-fluid">
+		<div class="control-group formItem">
+			<label class="control-label" for="name">$!{attr.propName}</label>
+			<div class="controls">
+				<input type="hidden" id="key_$!{pageId}_$!{itemId}_$!{attr.id}" class="rowPropKey">
+				<input type="hidden" id="propItemId" value="">
+				<input type="hidden" id="propId" value="$!{attr.id}">
+				<input type="hidden" id="propName" value="$!{attr.propName}">
+				<input type="hidden" id="ifHaveto" value="$!{attr.ifHaveto}">
+				<input type="hidden" id="propValueType" value="$!{attr.propValueType}">
+				<input type="hidden" id="controlPropId" value="$!{attr.controlPropId}">
+				<!-- 控件组ID，普通控件不需要设置，仅对控件会出现动态增加的 -->
+				<!-- 楼层导航设置中，将该字段用于保存楼层ID，用于定位 -->
+				<input type="hidden" id="propGroupId" value="">
+				<input type="hidden" id="sortNo" value="$!{attr.sortNo}">
+				<input type="hidden" id="propValue" value="">
+				<input type="hidden" id="propValueId" value="">
+				<input type="hidden" id="isAutobuild" value="$!{attr.isAutobuild}">
+				<input type="hidden" id="remark" value="$!{attr.remark}">
+			##自动化构建表单项目
+			#if(!$null.isNull($attr.isAutobuild) && $attr.isAutobuild!="" && $attr.isAutobuild == "1")
+				##单选
+				#if($attr.propValueType && $attr.propValueType == "01")
+				<input type="text" class="input-block-level $!{required}" name="code" placeholder="" value=""  />
+				##多选
+				#elseif($attr.propValueType && $attr.propValueType == "02")
+				##手动输入
+				#elseif($attr.propValueType && $attr.propValueType == "03")
+				<input type="text" class="input-block-level $!{required} dynamicFormItem" data-prop-id="$!{attr.id}" data-prop-name="$!{attr.propName}" placeholder="$!{attr.propDesc}" />
+				##下拉框
+				#elseif($attr.propValueType && $attr.propValueType == "04")
+				<select class="input-large $!{required} dynamicFormItem">
+					#if($attr.modularPropValRespDTOList && $attr.modularPropValRespDTOList.size() > 0)
+					#foreach($prop in $attr.modularPropValRespDTOList)
+					<option value="$!{prop.propValue}">$!{prop.valueDesc}</option>
+					#end
+					#end
+				</select>
+				##图片
+				#elseif($attr.propValueType && $attr.propValueType == "05")
+				<!--<input id="attachmentFileInput" type="file" name="dataReportFile" class="pull-left fileUploadPlugin" style="float: left;" />-->
+                <div class="btn btn-mini pull-left fileUploadPlugin" name="dataReportFile"><i class="icon-upload-alt"></i>文件上传</div>
+				<input type="hidden" class="uploadImgUrl">
+				<span class="imgUploadStatus imgUnUpload">未上传</span>
+				##自定义
+				#elseif($attr.propValueType && $attr.propValueType == "06")
+				<textarea class="bEditor input-block-level $!{required}"></textarea>
+				#end
+			#elseif (!$null.isNull($attr.isAutobuild) && $attr.isAutobuild!="" && $attr.isAutobuild == "0")
+				##手动构建方式，使用该方式时，将该项目的所有属性设置到隐藏域中，方便定制化页面读取信息
+				<input type="hidden" id="manualSet_$!{manualBuildIndex}">
+				##索引号步进
+				#set($manualBuildIndex = $manualBuildIndex + 1)
+			#end
+			</div>
+		</div>
+	</div>
+	#end
+#end
+
+	<div class="row-fluid imgPreviewArea">
+		<span>已上传图片预览</span>
+		<div class="imagePreviewBox"></div>
+	</div>
+</div>

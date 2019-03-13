@@ -1,0 +1,47 @@
+<div class="sl-rtype">
+    <h3 class="head" code="$extra.shopParentCateCode"><a href="$!{CONTEXT_PATH}/search?category=$!{extra.shopParentCateCode}&shopId=$!{shopId}">$!{extra.shopParentCateName}</a></h3>
+	<ul class="list cateList">
+		
+		#if($extra.shopTopCateNameList)
+				
+			#foreach($topCate in $extra.shopTopCateNameList)
+				
+					<li class="item">
+				        <div class="it">
+
+                            <i class="micon"></i>
+                            <span class="tit" title="${topCate}">
+								${topCate}
+                            </span>
+                        </div>
+						
+						#if($extra.shopCateInfoMap.containsKey($topCate))
+							
+							<ul class="child leafCate">
+							
+    						   #foreach($mainCate in $extra.shopCateInfoMap.get($topCate))
+    							
+                					<li class="c-tit" title="${mainCate.value}" code="${mainCate.code}" _value="${mainCate.value}">
+
+										<a href="#">
+									          ${mainCate.value}
+    									
+    									#if(${mainCate.count})
+    									<i class="num">（<span>${mainCate.count}</span>）</i>
+    									#end
+    								   
+    								   </a>
+                                   </li>
+    						   #end
+    						   
+                            </ul>
+							
+						#end
+						
+                    </li>
+			#end
+			
+		#end
+        
+    </ul>
+</div>

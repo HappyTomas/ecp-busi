@@ -1,0 +1,32 @@
+#parse("/sys/sys_param.vm")
+<ul class="am-slides">
+	#if(!$!{commonAuthorList} || $!{commonAuthorList.size()}==0)
+        <p class="pro-emptyTxt">「暂无推荐商品」</p>
+	#else
+    	#foreach($list in $!{commonAuthorList})
+    		<li>
+				<a href="${CONTEXT_PATH}/gdsdetail/$!{list.skuInfo.gdsId}-$!{list.skuInfo.id}">
+					<img class="img" src="${aiTool.genImageUrl($!{list.skuInfo.mainPic.mediaUuid},'85x85!')}"/>
+					#set($gdsNameTemp=$!{list.skuInfo.gdsName})
+					#if($gdsNameTemp.length()>21)
+					    #set($gdsName=$gdsNameTemp.substring(0,21)+"...")
+					#else
+					    #set($gdsName=$!{list.skuInfo.gdsName})
+					#end
+					<span class="p-name">$gdsName</span>
+				</a>
+			</li>
+    	#end
+	#end
+</ul>
+<input type="hidden" value="$!{pageNo}" id="samecategoryPageNo"/>
+<input type="hidden" value="$!{pageSize}" id="samecategoryPageSize"/>
+<script >
+$(function(){
+	$('.am-slider-category').flexslider({
+		itemWidth: 101.5,                   // Integer: slide 宽度，多个同时滚动时设置
+        itemMargin: 5,                  // Integer: slide 间距
+        slideshow: true              // Boolean: 是否自动播放
+	});
+})
+</script>

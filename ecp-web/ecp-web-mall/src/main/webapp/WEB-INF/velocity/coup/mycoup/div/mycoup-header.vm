@@ -1,0 +1,43 @@
+ <script type="text/javascript" src="$BUSIJS_PATH/coup/mycoup/div/mycoup-header.js"></script>
+ <div class="mbox fav-serbox">
+                <ul class="m-tab clearfix" id="teamTab">
+                    <li>
+                        <a href="#" name="tab-num" data="1" class="active">
+                            未使用 (<span class="num1">$!{unUseNum}</span>)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data="2" name="tab-num">
+                            已使用(<span class="num2">$!{useNum}</span>) 
+                        </a>
+                    </li>
+                        <li>
+                        <a href="#" data="3" name="tab-num">
+                            已冻结(<span class="num3">$!{lockNum}</span>)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" data="0" name="tab-num">
+                            已过期(<span class="num0">$!{expireNum}</span>)
+                        </a>
+                    </li>
+                </ul>
+                <ul class="m-tit">
+                    <li class="m-tit-list i-pad ">我的优惠劵<i class="ci-right"><s>◇</s></i>
+                        <ul class="m-list">
+                            <li><a href="#" data="1" name="li-num" >未使用 (<span class="num1">$!{unUseNum}</span>)</a></li>
+                            <li><a href="#" data="2" name="li-num" >已使用 (<span class="num2">$!{useNum})</span>)</a></li>
+                            <li><a href="#" data="3" name="li-num" >已冻结 (<span class="num3">$!{lockNum})</span>)</a></li>
+                            <li><a href="#" data="0" name="li-num" >已过期 (<span class="num0">$!{expireNum})</span>)</a></li>
+                        </ul>
+                    </li>
+                    #foreach($list in ${orderList})
+                             <li class="m-tit-list #if($!{list.spValue}=='0') m-font #end mycoup-sort" id="$!{list.spCode}" data="$!{list.spCode}" sort-value="$!{list.spValue}">$!{list.paramName}<i class="mi#if($!{list.spValue}=='0') mi-down-red#else mi-down#end"></i></li>
+					         <li class=" line"></li>
+					#end 
+                    <!--
+                    <li class="m-tit-list fr"><a href="#"> <i class="mi mi-del"></i>批量删除</a></li>
+                    -->
+                </ul>
+            </div>
+            

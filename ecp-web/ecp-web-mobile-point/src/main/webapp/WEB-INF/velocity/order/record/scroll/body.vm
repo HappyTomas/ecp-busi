@@ -1,0 +1,32 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+
+<input type="hidden" id="status" value="$!status" />
+
+    #if($!empty)
+       #parse("/order/record/scroll/head.vm")
+        <div class="ui-content">
+            <div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$!IMAGE_PATH/odr-nodata.png" alt="">
+                </div>
+                <div class="tip-bold">
+                    很遗憾
+                </div>
+                <div class="tip-txt">
+                    该页面暂无任何订单信息
+                </div>
+            </div>
+
+        </div>
+    #else
+
+        #parse("/order/record/wrapper/page.vm")
+
+        #parse("/order/record/wrapper/handler.vm")
+
+         
+    <input type="hidden" id="pageControll" data-total-page="${resp.pageCount}" data-total-row="${resp.count}" data-page-size="${resp.pageSize}" data-page-number="${resp.pageNo}"/>
+
+
+    #end

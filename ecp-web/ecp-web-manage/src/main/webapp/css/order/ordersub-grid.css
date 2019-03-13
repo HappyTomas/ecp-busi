@@ -1,0 +1,25 @@
+@charset "utf-8";
+
+.count-input {
+  overflow: hidden;
+}
+.count-input a {
+  float: left;
+  border: 1px solid #ddd;
+  width: 26px;
+  height: 22px;
+  text-align: center;
+  line-height: 22px;
+  color: #666;
+  text-decoration: none;
+}
+.count-input input {
+  float: left;
+  width: 50px;
+  height: 22px;
+  line-height: 22px;
+  border-radius: 0;
+  margin-bottom: 0;
+  padding: 0;
+  text-align: center;
+}

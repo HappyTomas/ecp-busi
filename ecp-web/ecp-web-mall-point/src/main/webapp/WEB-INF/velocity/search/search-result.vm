@@ -1,0 +1,66 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-page.vm")
+<link rel="Stylesheet" type="text/css" href="$!RESOURCE_PATH/bootstrap/core/2.3.2/css/bootstrap.css">
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/reset.css">
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/point.css">
+<script type="text/javascript" src="$BUSIJS_PATH/search/search-render-util.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/search/search-result-box.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/search/search-result.js"></script>
+
+<!--内容 begin-->
+<div class="wrap980">
+    <div id="content-c">
+        #parse("/search/search-nav.vm")
+        <div id="main ">
+            <!--banner-->
+            <div class="p-banner ecp-component homepage-ad-left" data-status="1" data-place-size="1" data-place-id="1101"  data-place-width="750" data-place-height="95" data-module="ecp-component/homepage-leaflet-left">
+            </div>
+
+            <!--热兑推荐-->
+			#parse("/search/search-recommend.vm")
+            <input type="hidden" id="searchingTxt" value="$!{extra.keyword}"/>
+            <!--列表搜索-->
+            <div class="p-box">
+                <div class="p-info clearfix">
+                    <div class="p-tab p-tab-top clearfix ">
+                        <div class="p-tab-tit ">
+                            <div class="input-line">
+                                <div class="input-down">
+                                    <input type="text" class="indent input-line-text" placeholder="默认">
+                                    <e class="input-tit">排序:</e>
+                                    <span class="select-icon "></span>
+                                        <div class="i-line score-sort" sort="">
+                                            <p sort="desc">从高到低</p>
+                                            <p sort="asc">从低到高</p>
+                                        </div>
+                                </div>
+                                <div class="input-down">
+                                    <input type="text" class="indent01 input-line-text" placeholder="全部">
+                                    <e class="input-tit input-tit-posi">积分范围:</e>
+                                    <span class="select-icon select-icon-pos"></span>
+                                    <div class="i-line score-range" _type="">
+										<p _type="">全部</p>
+                                        <p _type="1">0~4999积分</p>
+                                        <p _type="2">5000~9999积分</p>
+                                        <p _type="3">10000~14999积分</p>
+										<p _type="4">15000以上积分</p>
+                                    </div>
+                                </div>
+								<div id="serList-search"></div>
+                            </div>
+                            <div class="flr">共 <b class="c-red" id="numFound">${gridResult.totalRow}</b> 件</div>
+                        </div>
+                    </div>
+                    <div id="pageMainBox">
+						#parse("/search/page/search-resultlist.vm")
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--内容 end-->
+
+<!--快速导航-->
+#parse("/main/main-content-bottom.vm")

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.sys.dao.mapper.busi.manual.BusiDynamicSqlMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.server.front.dto.BaseParamDTO" >
+    <result column="CODE" property="spCode" jdbcType="VARCHAR" />
+    <result column="VALUE" property="spValue" jdbcType="VARCHAR" />
+    <result column="SORT" property="spOrder" jdbcType="INTEGER" />
+    <result column="LANG" property="spLang" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <select id="dynamicSqlSelect" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    ${sql}
+  </select>
+  
+</mapper>

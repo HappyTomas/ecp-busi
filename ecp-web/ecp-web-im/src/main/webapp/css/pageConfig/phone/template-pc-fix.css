@@ -1,0 +1,7 @@
+@charset "utf-8";
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}

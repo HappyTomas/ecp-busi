@@ -1,0 +1,29 @@
+#parse("/sys/sys_param.vm")
+<link rel="stylesheet" type="text/css" media="screen" href="$CSS_PATH/member.css"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/msginsite/selmessage-list.js?version=$!{JS_VERSION}"></script>
+<style type="text/css">
+.intro
+{
+color:red;
+}
+</style>
+    <div class="seller-layout">
+        <div class="item-t item-t-min">
+            <div class="pull-left"><span class="ml10"><input type="checkbox" style="margin-top: -1px" id="SelectAll" /> 全选</span>
+            </div>
+            <ul class="gnlist">
+                <li ><a href="javascript:void(0);" id = "all">查看所有</a></li>
+                <li ><a href="javascript:void(0);" id = "unread">查看未读</a></li>
+                <li ><a href="javascript:void(0);" id = "read">查看已读</a></li>
+            </ul>
+            <ul class="pull-right msg-btn">
+                <li id = "upread" onclick="markread()"><a href="#"><i class="shop-cart news"></i>标记已读</a></li>
+                <li id = "del" onclick="batchdel()"><a href="#"><i class="shop-cart newsdel"></i>删除</a></li>
+            </ul>
+        </div>
+        <div class="body" id="dataBody">
+			
+		</div>
+    </div>
+
+

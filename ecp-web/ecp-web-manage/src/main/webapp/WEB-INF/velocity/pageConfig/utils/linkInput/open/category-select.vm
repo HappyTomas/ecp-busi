@@ -1,0 +1,27 @@
+#parse("sys/sys_param.vm")
+<link href="$!{CSS_PATH}/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/utils/linkInput/open/category-select.js?version=$!{JS_VERSION}" ></script>
+<!-- main content -->
+<div id="contentwrapper">
+        <div class="rknav dg-tree" style="width:300px;">
+            <div class="rk-search">
+                <input type="text" id="keyword" style="width:285px"/>
+                <i class="icon-search" id="search"></i>
+            </div>
+			<!--zTree-->
+            <div class="tree-w" style="height:350px;overflow:auto;">
+                <ul id="category-tree" class="ztree"></ul>
+            </div>
+        </div>
+        <div class="text-center">
+            <button type="button" class="btn btn-info" style="margin-right:10px;" id="confirm">
+                 <i class="icon-ok-sign icon-white"></i>确认
+            </button>
+            <button type="button" class="btn" id="close">
+                 <i class="icon-remove-sign icon-white"></i>取消
+            </button>
+        </div>
+</div>
+<input type="hidden" id="siteId" value="$!{reqVO.siteId}"/>
+<!-- main content -->
+</div>

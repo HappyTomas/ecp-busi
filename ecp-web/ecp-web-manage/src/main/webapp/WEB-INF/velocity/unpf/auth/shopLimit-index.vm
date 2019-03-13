@@ -1,0 +1,46 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/unpf/auth/shopLimit-index.js?version=$!{JS_VERSION}" ></script>
+<div class="hide" >
+
+</div>
+ <div class="row-fluid">
+	<div class="span12">
+		<div class="control-group">
+			<div class="controls">
+				<select id="siteId" name="siteId" class="required" disabled="disabled">
+					    #siteList("1")
+				 </select>
+			</div>
+		</div>
+	</div>
+</div>
+
+ <div class="row-fluid view" id="gdsBlackSelectId">
+	<div class="control-group">
+		<div class="controls">
+			<button type="button" class="btn" id="btnCatgBlackOpenWindow"><i class="icon-white"></i>黑名单分类选择</button>
+			<button type="button" class="btn btn-danger" id="btnCatgBlackDelete"><i class="icon-white"></i>批量删除分类</button>
+		</div>
+	</div>
+</div>	
+<div class="clear"></div>
+<div class="row-fluid">
+	<table id="catgDataGridTable"></table>
+</div>
+<div class="row-fluid">
+	<div class="control-group">
+	</div>
+</div>
+ <div class="row-fluid view" id="catgBlackSelectId">
+	<div class="control-group">
+		<div class="controls">
+			<button type="button" class="btn" id="btnGdsBlackOpenWindow"><i class="icon-white"></i>黑名单商品选择</button>
+			<button type="button" class="btn btn-danger" id="btnGdsBlackDelete"><i class="icon-white"></i>批量删除商品</button>
+		</div>
+	</div>
+</div>
+<div class="clear"></div>
+<div class="row-fluid">
+	<table id="gdsDataGridTable"></table>
+</div>

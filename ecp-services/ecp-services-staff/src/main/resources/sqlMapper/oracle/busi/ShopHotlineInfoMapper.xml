@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.busi.ShopHotlineInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.ShopHotlineInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="MODULE_TYPE" property="moduleType" jdbcType="VARCHAR" />
+    <result column="HOTLINE_NO" property="hotlineNo" jdbcType="VARCHAR" />
+    <result column="HOTLINE_PERSON" property="hotlinePerson" jdbcType="VARCHAR" />
+    <result column="HOTLINE_PHONE" property="hotlinePhone" jdbcType="INTEGER" />
+    <result column="HOTLINE_QQ" property="hotlineQq" jdbcType="VARCHAR" />
+    <result column="QQ_TYPE" property="qqType" jdbcType="VARCHAR" />
+    <result column="HOTLINE_WEBXIN" property="hotlineWebxin" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SHOP_ID, MODULE_TYPE, HOTLINE_NO, HOTLINE_PERSON, HOTLINE_PHONE, HOTLINE_QQ, 
+    QQ_TYPE, HOTLINE_WEBXIN, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.ShopHotlineInfoCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_shop_hotline
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_shop_hotline
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_shop_hotline
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.ShopHotlineInfo" >
+    insert into t_shop_hotline (ID, SHOP_ID, MODULE_TYPE, 
+      HOTLINE_NO, HOTLINE_PERSON, HOTLINE_PHONE, 
+      HOTLINE_QQ, QQ_TYPE, HOTLINE_WEBXIN, 
+      CREATE_TIME, CREATE_STAFF, UPDATE_TIME, 
+      UPDATE_STAFF)
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{moduleType,jdbcType=VARCHAR}, 
+      #{hotlineNo,jdbcType=VARCHAR}, #{hotlinePerson,jdbcType=VARCHAR}, #{hotlinePhone,jdbcType=INTEGER}, 
+      #{hotlineQq,jdbcType=VARCHAR}, #{qqType,jdbcType=VARCHAR}, #{hotlineWebxin,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateStaff,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.ShopHotlineInfo" >
+    insert into t_shop_hotline
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="moduleType != null" >
+        MODULE_TYPE,
+      </if>
+      <if test="hotlineNo != null" >
+        HOTLINE_NO,
+      </if>
+      <if test="hotlinePerson != null" >
+        HOTLINE_PERSON,
+      </if>
+      <if test="hotlinePhone != null" >
+        HOTLINE_PHONE,
+      </if>
+      <if test="hotlineQq != null" >
+        HOTLINE_QQ,
+      </if>
+      <if test="qqType != null" >
+        QQ_TYPE,
+      </if>
+      <if test="hotlineWebxin != null" >
+        HOTLINE_WEBXIN,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleType != null" >
+        #{moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="hotlineNo != null" >
+        #{hotlineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hotlinePerson != null" >
+        #{hotlinePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="hotlinePhone != null" >
+        #{hotlinePhone,jdbcType=INTEGER},
+      </if>
+      <if test="hotlineQq != null" >
+        #{hotlineQq,jdbcType=VARCHAR},
+      </if>
+      <if test="qqType != null" >
+        #{qqType,jdbcType=VARCHAR},
+      </if>
+      <if test="hotlineWebxin != null" >
+        #{hotlineWebxin,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.ShopHotlineInfoCriteria" resultType="java.lang.Long" >
+    select count(*) from t_shop_hotline
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.ShopHotlineInfo" >
+    update t_shop_hotline
+    <set >
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="moduleType != null" >
+        MODULE_TYPE = #{moduleType,jdbcType=VARCHAR},
+      </if>
+      <if test="hotlineNo != null" >
+        HOTLINE_NO = #{hotlineNo,jdbcType=VARCHAR},
+      </if>
+      <if test="hotlinePerson != null" >
+        HOTLINE_PERSON = #{hotlinePerson,jdbcType=VARCHAR},
+      </if>
+      <if test="hotlinePhone != null" >
+        HOTLINE_PHONE = #{hotlinePhone,jdbcType=INTEGER},
+      </if>
+      <if test="hotlineQq != null" >
+        HOTLINE_QQ = #{hotlineQq,jdbcType=VARCHAR},
+      </if>
+      <if test="qqType != null" >
+        QQ_TYPE = #{qqType,jdbcType=VARCHAR},
+      </if>
+      <if test="hotlineWebxin != null" >
+        HOTLINE_WEBXIN = #{hotlineWebxin,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.ShopHotlineInfo" >
+    update t_shop_hotline
+    set SHOP_ID = #{shopId,jdbcType=INTEGER},
+      MODULE_TYPE = #{moduleType,jdbcType=VARCHAR},
+      HOTLINE_NO = #{hotlineNo,jdbcType=VARCHAR},
+      HOTLINE_PERSON = #{hotlinePerson,jdbcType=VARCHAR},
+      HOTLINE_PHONE = #{hotlinePhone,jdbcType=INTEGER},
+      HOTLINE_QQ = #{hotlineQq,jdbcType=VARCHAR},
+      QQ_TYPE = #{qqType,jdbcType=VARCHAR},
+      HOTLINE_WEBXIN = #{hotlineWebxin,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

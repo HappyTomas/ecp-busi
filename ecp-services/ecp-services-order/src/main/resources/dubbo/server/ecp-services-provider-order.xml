@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     ">  
+   
+     <!--用于定义对外提供的服务-->
+     <bean id="ordMainRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdMainRSVImpl">
+     	<property name="orderChkRSVs">
+	        <list>
+	        	<!-- <ref bean="gdsOrdSubChkRSV"/>
+	        	<ref bean="staffOrdSubChkRSV"/> 
+	       		<ref bean="promOrdChkRSV"/> -->
+	        </list>
+        </property>
+     </bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdMainRSV" ref="ordMainRSV" provider="${default.dubbo.provider.id}"/> 
+
+	 <bean id="ordDeliveryRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdDeliveryRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdDeliveryRSV" ref="ordDeliveryRSV" provider="${default.dubbo.provider.id}"/> 
+
+	 <bean id="ordEntityAddRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdEntityAddRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdEntityAddRSV" ref="ordEntityAddRSV" provider="${default.dubbo.provider.id}"/> 
+
+	 <bean id="ordEntityChangeRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdEntityChangeRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdEntityChangeRSV" ref="ordEntityChangeRSV" provider="${default.dubbo.provider.id}"/> 
+
+	 <bean id="ordSubRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdSubRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdSubRSV" ref="ordSubRSV" provider="${default.dubbo.provider.id}"/> 
+
+	 <bean id="ordReceiptRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdReceiptRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdReceiptRSV" ref="ordReceiptRSV" provider="${default.dubbo.provider.id}"/> 
+
+	 <bean id="ordManageRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdManageRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdManageRSV" ref="ordManageRSV" provider="${default.dubbo.provider.id}"/> 
+	 
+	 <bean id="ordDetailsRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdDetailsRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdDetailsRSV" ref="ordDetailsRSV" provider="${default.dubbo.provider.id}"/> 
+
+	 <bean id="ordCartRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdCartRSVImpl">
+	 	<property name="ordCartsChkRSVs">
+	        <list>
+	        	 <ref bean="gdsOrdCartsChkRSV"/>
+	        	 <ref bean="scoreOrdCartsChkRSV"/>
+	        	 <ref bean="promCartChkRSV"/>
+	        </list>
+        </property>
+	 </bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdCartRSV" ref="ordCartRSV" provider="${default.dubbo.provider.id}"/> 
+
+	 <bean id="ordCartItemRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdCartItemRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdCartItemRSV" ref="ordCartItemRSV" provider="${default.dubbo.provider.id}"/>	
+     
+     <bean id="ordOfflineRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdOfflineRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdOfflineRSV" ref="ordOfflineRSV" provider="${default.dubbo.provider.id}"/>	
+     
+     <bean id="ordEvaluationRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdEvaluationRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdEvaluationRSV" ref="ordEvaluationRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="paymentRSV" class="com.zengshi.ecp.order.dubbo.impl.pay.PaymentRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.pay.IPaymentRSV" ref="paymentRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="payWayRSV" class="com.zengshi.ecp.order.dubbo.impl.pay.PayWayRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.pay.IPayWayRSV" ref="payWayRSV" provider="${default.dubbo.provider.id}"/>	
+     
+     <bean id="payQuartzInfoRSV" class="com.zengshi.ecp.order.dubbo.impl.pay.PayQuartzInfoRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.general.order.interfaces.IPayQuartzInfoRSV" ref="payQuartzInfoRSV" provider="${default.dubbo.provider.id}"/>
+
+     <bean id="reportGoodPayedRSV" class="com.zengshi.ecp.order.dubbo.impl.ReportGoodPayedRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IReportGoodPayedRSV" ref="reportGoodPayedRSV" provider="${default.dubbo.provider.id}"/> 
+     
+     <bean id="payQuartzInfoForOrderRSV" class="com.zengshi.ecp.order.dubbo.impl.pay.PayQuartzInfoForOrderRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.pay.IPayQuartzInfoForOrderRSV" ref="payQuartzInfoForOrderRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="auditTradeCheckRSV" class="com.zengshi.ecp.order.dubbo.impl.pay.AuditTradeCheckRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.pay.IAuditTradeCheckRSV" ref="auditTradeCheckRSV" provider="${default.dubbo.provider.id}"/>    
+     
+     <bean id="ordBackGdsRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdBackGdsRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdBackGdsRSV" ref="ordBackGdsRSV" provider="${default.dubbo.provider.id}"/>   
+     
+     <bean id="ordBackMoneyRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdBackMoneyRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdBackMoneyRSV" ref="ordBackMoneyRSV" provider="${default.dubbo.provider.id}"/>   
+     
+     <bean id="ordPayRelRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdPayRelRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdPayRelRSV" ref="ordPayRelRSV" provider="${default.dubbo.provider.id}"/>
+
+     <bean id="orderWorkPlatRSV" class="com.zengshi.ecp.order.dubbo.impl.OrderWorkPlatRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrderWorkPlatRSV" ref="orderWorkPlatRSV" provider="${default.dubbo.provider.id}"/>   
+                         
+     <bean id="orderWorkBrancRSV" class="com.zengshi.ecp.order.dubbo.impl.OrderWorkBrancRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrderWorkBrancRSV" ref="orderWorkBrancRSV" provider="${default.dubbo.provider.id}"/>   
+     
+     <bean id="orderBackRSV" class="com.zengshi.ecp.order.dubbo.impl.OrderBackRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrderBackRSV" ref="orderBackRSV" provider="${default.dubbo.provider.id}"/>   
+     
+     <bean id="orderExpressRSV" class="com.zengshi.ecp.order.dubbo.impl.OrderExpressRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrderExpressRSV" ref="orderExpressRSV" provider="${default.dubbo.provider.id}"/>   
+        
+     <bean id="ordExpressReqLogRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdExpressReqLogRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdExpressReqLogRSV" ref="ordExpressReqLogRSV" provider="${default.dubbo.provider.id}"/>
+
+     <bean id="ordExportRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdExportRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdExportRSV" ref="ordExportRSV" provider="${default.dubbo.provider.id}"/>
+
+	 <bean id="ordSubShareRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdSubShareRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdSubShareRSV" ref="ordSubShareRSV" provider="${default.dubbo.provider.id}"/>
+
+     <bean id="ordFileImportRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdFileImportRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdFileImportRSV" ref="ordFileImportRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="ordOfflineBelongRSV" class="com.zengshi.ecp.order.dubbo.impl.OrdOfflineBelongRSVImpl"></bean>
+     <dubbo:service
+	interface="com.zengshi.ecp.order.dubbo.interfaces.IOrdOfflineBelongRSV" ref="ordOfflineBelongRSV"
+	provider="${default.dubbo.provider.id}" />
+
+</beans>  

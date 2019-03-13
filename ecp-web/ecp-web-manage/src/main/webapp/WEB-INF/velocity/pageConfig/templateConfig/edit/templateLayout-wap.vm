@@ -1,0 +1,52 @@
+#foreach($!layout in $layoutList) 
+	<input type="hidden" value="$!{layout.id}" id="layoutId"/>
+	#set($item_index = 0)
+	## 布局循环
+	#if($!layout.templateLayoutItemRespDTOMap)
+    	#foreach($columnItem in $!layout.templateLayoutItemRespDTOMap.entrySet())
+    		#foreach($crossItem in $!{columnItem.value})
+    		#set($item_index = $item_index + 1)
+    			## 布局项
+    			#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+				##
+                <div class="phone-layout #if($item_index==1)active #end " >
+    				<input type="hidden" value="$!{crossItem.id}" id="itemId"/>
+    				<input type="hidden" value="$!{crossItem.modularId}" id="modularId"/>
+    				<input type="hidden" value="$!{crossItem.modularRespDTO.modularType}" id="modularType"/>
+    				<input type="hidden" value="$!{crossItem.rowNo}" id="rowNo"/>
+					#if("$!{reqType}" !="view")
+                    <div class="menu">
+                        <span class="mup"></span>
+                        <span class="mdown"></span>
+                        <span class="mdel"></span>
+                    </div>
+					#end
+						#if(!($!{crossItem.itemPropPreRespDTOList} && $!{crossItem.itemPropPreRespDTOList.size()}>0))
+    						<div class="nodata" style="background-color:#fff;height:90px;text-align:center;padding-top:30px;">
+								<span style="color: #aaa;font-size: 14px;">
+									$!{crossItem.modularRespDTO.modularName}
+                                </span>
+									<br>
+								<span style="color:red;">
+									该模块未配置数据，请点击配置数据！
+                                </span>
+							</div>
+						#else
+							   <style>
+                                    html {
+                                        font-size: 32px;
+                                    }
+                               </style>
+    						#parse("/pageConfig/pageConfig/modular/common/modular-common-loading.vm")
+    					#end
+                </div>
+    		#end
+		#end
+	#else
+		<div class="phone-layout" id="default_layout_item">
+             <div class="module-placeholder">
+				亲，您还未添加任何模块，请将左侧模块拖动到这里开始装修哦~
+             </div>
+        </div>
+	#end
+#end

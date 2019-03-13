@@ -1,0 +1,112 @@
+ #parse("/sys/sys_param.vm")
+ <!--二级页面导航-->
+ <div #if(${placeHeight}) style = "height:$!{placeHeight}px" #end>
+            #if($catgParent && $catgParent.id && $catgParent.id != '')
+            <!--      分类根节点        start    -->
+            <div class="side-position font16 side2-bg">
+                <span class="teaching-icon">$!{catgParent.catgName}</span>
+            </div>
+            <!--      分类根节点        end    -->
+            #foreach(${catgTwo} in $catgChild) 
+            <!--      二级节点      start -->
+            <div class="side-position #if(${catgTwo.cmsShowChildCatg} && $catgTwo.cmsShowChildCatg.size() > 0) sidebardown #end ">
+                #set($r = $velocityCount % 2)  ##判断基数   采用不同的样式  背景色黑白相间效果
+                <dl class="clearfix #if($r == 0) gray-bg #end ">
+                   <!-- 二级节点名称          -->
+                    <dt class="clearfix">
+						<a target='_blank' href="
+                    	#if(${catgTwo.catgCode} && $!{catgTwo.catgCode}!='')
+                    		${CONTEXT_PATH}/search?category=$!{catgTwo.catgCode} 
+                    	#elseif(${catgTwo.catgUrl} && $!{catgTwo.catgUrl}!='')
+                    		${CONTEXT_PATH}/$!{catgTwo.catgUrl} 
+                    	#else
+                    		${CONTEXT_PATH}/search?keyword=#stringEncode($!{catgTwo.catgName})
+						#end
+						">
+						$!{catgTwo.catgName}
+					</a>
+                        ##无右测分类   不显示大括号
+                        #if(${catgTwo.cmsShowChildCatg} && $catgTwo.cmsShowChildCatg.size() > 0)
+							<i class="angle-right"></i>
+						#end
+                    </dt>
+                    
+                    <!--     cms  配置三级节点     start      -->
+                    <div class="edge clearfix">
+                      #foreach($cmsCatgThree in ${catgTwo.cmsChildCatg})
+                      #if($velocityCount != 1)
+                        <dd>|</dd>
+                      #end
+                        <dd>
+							<a target='_blank' href="
+                        	#if(${cmsCatgThree.catgCode} && $!{cmsCatgThree.catgCode}!='')
+                        		${CONTEXT_PATH}/search?category=$!{cmsCatgThree.catgCode} 
+                        	#elseif(${cmsCatgThree.catgUrl} && $!{cmsCatgThree.catgUrl}!='')
+                        		${CONTEXT_PATH}/$!{cmsCatgThree.catgUrl} 
+                        	#else
+                        		${CONTEXT_PATH}/search?keyword=#stringEncode($!{cmsCatgThree.catgName})
+							#end
+							">
+							$!{cmsCatgThree.catgName}
+							</a>
+						</dd>
+                      #end
+                    </div>
+                    <!--     cms  配置三级节点    end     -->
+                </dl>
+                <div class="spacer01"></div>
+                <!--     鼠标悬浮 右边分类       start -->
+                <div #if(!${catgTwo.cmsShowChildCatg} || $catgTwo.cmsShowChildCatg.size() == 0) #else class="item01 downc" #end>
+                #foreach($cmsShowCatgThree  in ${catgTwo.cmsShowChildCatg})
+                 <!--     鼠标悬浮 右边分类       三级节点     start -->
+                    <div class="item01-h clearfix">
+                        <div class="item01-tit">
+							<a target='_blank' href="
+                        	#if(${cmsShowCatgThree.catgCode} && $!{cmsShowCatgThree.catgCode}!='')
+                        		${CONTEXT_PATH}/search?category=$!{cmsShowCatgThree.catgCode} 
+                        	#elseif(${cmsShowCatgThree.catgUrl} && $!{cmsShowCatgThree.catgUrl}!='')
+                        		${CONTEXT_PATH}/$!{cmsShowCatgThree.catgUrl} 
+                        	#else
+                        		${CONTEXT_PATH}/search?keyword=#stringEncode($!{cmsShowCatgThree.catgName})
+							#end
+							">
+							$!{cmsShowCatgThree.catgName}
+							</a>
+						</div>
+                        <!--     鼠标悬浮 右边分类        四级节点     start -->
+                        <div class="item01-con">
+                            <ul>
+                            #foreach($cmsShowCatgFour in ${cmsShowCatgThree.cmsChildCatg})
+                            
+                              #if($velocityCount != 1)
+                                <li>|</li>
+                              #end
+                                <li>
+									<a target='_blank' href="
+                                	#if(${cmsShowCatgFour.catgCode} && $!{cmsShowCatgFour.catgCode}!='')
+                                		${CONTEXT_PATH}/search?category=$!{cmsShowCatgFour.catgCode} 
+                                	#elseif(${cmsShowCatgFour.catgUrl} && $!{cmsShowCatgFour.catgUrl}!='')
+                                		${CONTEXT_PATH}/$!{cmsShowCatgFour.catgUrl} 
+                                	#else
+                                		${CONTEXT_PATH}/search?keyword=#stringEncode($!{cmsShowCatgFour.catgName})
+									#end
+									">
+									$!{cmsShowCatgFour.catgName}
+									</a>
+								</li>
+                            #end
+                            </ul>
+                        </div>
+                        <!--     商品组   商品分类       四级节点     start -->
+                        
+                    </div>
+                    <!--     商品组   商品分类       三级节点     end -->
+                    #end
+                </div>
+                <!--     商品组   商品分类       end -->
+           
+            </div>
+            <!--      二级节点      end -->
+            #end
+            #end
+</div>

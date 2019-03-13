@@ -1,0 +1,41 @@
+##该亲式文件上传控件仿按钮化.
+<style type="text/css">
+<!--
+/*a  upload */
+.a-upload {
+    padding: 0px 20px;
+    height: 28px;
+	text-align: center;
+    line-height: 28px;
+    position: relative;
+    cursor: pointer;
+    color: #888;
+    background: #fff;
+   /* border: 1px solid #ddd;*/
+    border: 1px solid #d5d9e3;
+    border-radius: 2px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+.a-upload  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}
+
+.a-upload:hover {
+    color: #444;
+    /*background: #eee;*/
+    border-color: #027cff;
+    text-decoration: none
+}
+
+-->
+</style>

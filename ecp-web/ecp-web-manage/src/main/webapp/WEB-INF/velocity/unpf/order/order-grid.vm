@@ -1,0 +1,82 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/unpf/order/order-grid.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/other/order.util.js?version=$!{JS_VERSION}" ></script>
+<input type="hidden" id="resetBegDate" value="$!{begDate}" />
+<input type="hidden" id="resetEndDate" value="$!{endDate}" />
+<form id="exportForm" action="$!{CONTEXT_PATH}/unpfOrdExport/exportPageUnpfOrd" target="_blank" method="post" style="display:none">
+    <input type="hidden" name="exportInfo" id="exportInfo" value="0">
+</form>
+<div class="well well-searchForm" id="order">
+	<form id="searchForm" class="form-horizontal required-validate" >
+        <div class="row-fluid">
+            <div class="span4">
+                <label class="control-label">平台类型：</label>
+                <div class="controls">
+                    <select class="input-medium"  id="" name="platType">
+                        <option value="">--请选择--</option>
+						#listParam('UNPF_PLAT_TYPE','')
+                    </select>
+                </div>
+            </div>
+            <div class="span4">
+                <label class="control-label">店铺：</label>
+                <div class="controls">
+                    <select name="shopId" class="input-medium" id="offline_grid_shopId"  >
+						#shopStatuslist('','1')
+                    </select>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <label class="control-label">订单编号：</label>
+                    <div class="controls">
+                        <input type="text" name="outerId" class="input-medium" value="" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+		<div class="row-fluid">
+			<div class="span4">
+				<div class="control-group">
+					<label class="control-label">开始日期：</label>
+					<div class="controls">
+						<input type="text" style="cursor: pointer" class="input-medium required Wdate" id="begDate" placeholder="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'endDate\')}'})" name="begDate" value="$!date.format('yyyy-MM-dd',$!{begDate})">
+					</div>
+				</div>
+			</div>
+			<div class="span4">
+				<div class="control-group">
+					<label class="control-label">结束日期：</label>
+					<div class="controls">
+						<input type="text" style="cursor: pointer" class="input-medium required Wdate" id="endDate" placeholder="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'begDate\')}'})" name="endDate"  value="$!date.format('yyyy-MM-dd',$!{endDate})">
+					</div>
+				</div>
+			</div>
+            <div class="span4">
+                <label class="control-label">订单状态：</label>
+                <div class="controls">
+                    <select class="input-medium"  id="" name="status">
+                        <option value="">--请选择--</option>
+						#listParam('ORD_ORDER_STATUS')
+                    </select>
+                </div>
+            </div>
+			<div class="clear"></div>
+		</div>
+	</form>
+</div>
+<div class="row-fluid" style="margin-bottom: 10px;">
+    <div class="span6">
+        <a class="btn" id="btnFormExport" href="#"><i class="icon-download-alt icon-white"></i> 导出单头</a>
+        <a class="btn" id="barCodeExport" href="#"><i class="icon-download-alt icon-white"></i> 导出明细</a>
+	</div>
+	<div class="pull-right">
+		<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+		<a class="btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+	</div>
+</div>
+<div class="row-fluid">
+	<table id="dataGridTable"></table>
+</div>

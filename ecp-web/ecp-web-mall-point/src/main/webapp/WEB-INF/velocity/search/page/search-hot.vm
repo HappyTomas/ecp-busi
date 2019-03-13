@@ -1,0 +1,36 @@
+ #parse("/sys/sys_param.vm")
+ #if($hotGdsList && $!{hotGdsList.size()} > 0)
+	
+ 	#foreach($hotGds in $hotGdsList)
+            <li>
+                <div class="p-info-border"><a href="$!{CONTEXT_PATH}/gdspointdetail/${hotGds.id}-${hotGds.skuInfo.id}"  target="_blank"><img src="$!{hotGds.mainPic.uRL}"></a></div>
+                <p class="font14"><a href="$!{CONTEXT_PATH}/gdspointdetail/${hotGds.id}-${hotGds.skuInfo.id}" target="_blank"> $!{hotGds.gdsName}</a></p>
+                #if($hotGds.scores)
+                	
+                #foreach($list in $!{hotGds.scores})
+                	
+						#if($!{list.ifDefault}=='1')
+							#if($!{list.score} && $!{list.price})
+								<p><i class="picon m-icon m-icon-t"></i>兑换价： <span>$!{list.score}积分+#money($!{list.price})</span></p>
+							#elseif($!{list.score})
+								<p><i class="picon m-icon m-icon-t"></i>兑换价： <span>$!{list.score}积分</span></p>
+							#elseif($!{list.price})
+								<p><i class="picon m-icon m-icon-t"></i>兑换价： <span>#money($!{list.price})</span></p>
+							#end
+						#end
+					#end
+                	
+                #else
+                <p><i class="picon m-icon m-icon-t"></i>兑换价： <span>0积分</span></p>
+                #end
+                <p><i class="picon b-icon"></i>市场价： <span>#money(${hotGds.guidePrice})</span></p>
+       
+                <p><a href="$!{CONTEXT_PATH}/gdspointdetail/${hotGds.id}-${hotGds.skuInfo.id}" target="_blank" class="red-btn">立即兑换</a></p>
+           </li>
+	#end
+#else
+	<ul class="p-hot">
+		<div class="none-show">抱歉，暂时没有推荐商品...</div>
+    </ul>
+                        
+#end

@@ -1,0 +1,40 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/hotImg/jquery.imagesloaded.min.js?v=${JS_VERSION}"></script>
+#set($pageSize = "6")##每页条数
+#set($placeId = "1703")##多楼层 固定的内容位置id
+
+
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+#foreach($prop in $crossItemObj)
+	#if($prop.propGroupId != 0)
+	#else
+		#if($!{prop.propId}=="1021")
+    		##每页条数
+    		#set($pageSize = "$!{prop.propValue}")
+    	#end
+	#end
+#end
+
+<div class="phone-modular promTpl-tabP-v2 ecp-component $!{componentMethod}" data-page-size="$!{pageSize}" data-staff-id="$!{staffId}" data-place-id="$!{placeId}" data-site-id="$!{pageInfo.siteId}" data-web-root = '#translate("CMS_SITE_MAPPING","$!{pageInfo.siteId}")' data-is-pub="$!{pagePub}" data-is-pc="$!{isPc}" data-component-method="$!{componentMethod}"  data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}"> 
+	#if(!$!{componentMethod} || '' == $!{componentMethod})
+	#parse("/pageConfig/pageConfigWap/edit/nodata/modular-nodata-wap.vm")
+	#else 
+	<div class="modular-head" >
+    </div>
+	<div class="modular-body" >
+    </div>
+    #end
+</div> 
+	

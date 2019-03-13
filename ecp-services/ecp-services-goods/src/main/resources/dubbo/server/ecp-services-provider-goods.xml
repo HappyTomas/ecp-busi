@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xmlns="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://code.alibabatech.com/schema/dubbo  
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!--用于定义对外提供的服务 -->
+	<!-- 商品库存Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsStockRSV"
+		ref="gdsStockRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsStockRSV" class=" com.zengshi.ecp.goods.dubbo.impl.GdsStockRSVImpl" />
+
+	<!-- 商品赠品Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsGiftRSV"
+		ref="gdsGiftRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsGiftRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsGiftRSVImpl" />
+
+	<!-- 商品分类Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCategoryRSV"
+		ref="gdsCategoryRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsCategoryRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsCategoryRSVImpl" />
+	
+	<!-- 媒体分类Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsMediaCategoryRSV"
+		ref="gdsMediaCategoryRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsMediaCategoryRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsMediaCategoryRSVImpl" />
+
+	<!-- 分类映射Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCategorySyncRSV"
+		ref="gdsCategorySyncRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsCategorySyncRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsCategorySyncRSVImpl" />
+
+
+	<!-- 商品类型Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsTypeRSV"
+		ref="gdsTypeRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsTypeRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsTypeRSVImpl" />
+
+	<!-- 运费模板Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsShiptemRSV"
+		ref="gdsShiptempRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsShiptempRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsShiptemRSVImpl" />
+
+	<!-- 商品管理Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsInfoManageRSV"
+		ref="gdsInfoManageRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsInfoManageRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsInfoManageRSVImpl" />
+
+	<!-- 商品查询Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsInfoQueryRSV"
+		ref="gdsInfoQueryRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsInfoQueryRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsInfoQueryRSVImpl" />
+
+	<!-- 单品管理Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsSkuInfoManageRSV"
+		ref="gdsSkuInfoManageRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsSkuInfoManageRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsSkuInfoManageRSVImpl" />
+
+	<!-- 单品查询Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsSkuInfoQueryRSV"
+		ref="gdsSkuInfoQueryRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsSkuInfoQueryRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsSkuInfoQueryRSVImpl" />
+
+	<!-- 价格Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsPriceRSV"
+		ref="gdsPriceRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsPriceRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsPriceRSVImpl" />
+
+	<!-- 媒体Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsMediaRSV"
+		ref="gdsMediaRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsMediaRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsMediaRSVImpl" />
+
+	<!-- 店铺/客户 收藏Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCollectRSV"
+		ref="gdsCollectRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsCollectRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsCollectRSVImpl" />
+
+	<!-- 平台推荐 Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsPlatRecomRSV"
+		ref="gdsPlatRecomRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsPlatRecomRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsPlatRecomRSVImpl" />
+
+	<!-- 猜你喜欢Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsGuessYLRSV"
+		ref="gdsGuessYLRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsGuessYLRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsGuessYLRSVImpl" />
+	
+	<!-- 属性Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsPropRSV"
+		ref="gdsPropRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsPropRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsPropRSVImpl" />
+
+	<!-- 商品数据抽取Dubbo服务 -->
+	<dubbo:service
+		interface="com.zengshi.ecp.general.solr.interfaces.ISearchDataSupport"
+		ref="gdsSearchDataListSupportRSV" provider="${default.dubbo.provider.id}" group="goods" />
+	<bean id="gdsSearchDataListSupportRSV"
+		class="com.zengshi.ecp.goods.dubbo.impl.GdsSearchDataListSupportRSVImpl" />
+
+	<!-- 属性组Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsPropGroupRSV"
+		ref="gdsPropGroupRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsPropGroupRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsPropGroupRSVImpl" />
+	
+	<!-- 商品标签Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsLabelRSV"
+		ref="gdsLabelRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsLabelRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsLabelRSVImpl" />
+	
+	<!-- 商品评价Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsEvalRSV"
+		ref="gdsEvalRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsEvalRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsEvalRSVImpl" />
+	<!-- 目录Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCatalogRSV"
+		ref="gdsCatalogRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsCatalogRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsCatalogRSVImpl" />
+	
+	<!-- 目录Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsArrmsgRSV"
+		ref="gdsArrmsgRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsArrmsgRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsArrmsgRSVImpl" />
+	
+	<!-- 评价回复Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsEvalReplyRSV"
+		ref="gdsEvalReplyRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsEvalReplyRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsEvalReplyRSVImpl" />
+	
+	<!-- 购买校验Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.general.order.interfaces.IOrdCartsChkRSV"
+		ref="gdsOrdCartsChkRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsOrdCartsChkRSV" class="com.zengshi.ecp.goods.dubbo.impl.validation.GdsOrdCartsChkRSVImpl" />
+	
+	<!-- 订单校验Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.general.order.interfaces.IOrderChkRSV"
+		ref="gdsOrdSubChkRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsOrdSubChkRSV" class="com.zengshi.ecp.goods.dubbo.impl.validation.GdsOrdSubChkRSVImpl" />
+
+
+	<!-- 商品类型抽象策略Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsInfoExternalRSV"
+		ref="gdsInfoExternalRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsInfoExternalRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsInfoExternalRSVImpl" />
+	
+	<!-- 目录站点关联关系Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCatalog2SiteRSV"
+		ref="gdsCatalog2SiteRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsCatalog2SiteRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsCatalog2SiteRSVImpl" />
+	<!-- 会员分类折扣Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCatgCustDiscRSV"
+		ref="gdsCatgCustDiscRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsCatgCustDiscRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsCatgCustDiscRSVImpl" />
+	<!-- 会员分类折扣商品黑名单Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCatgCustBlacklistRSV"
+		ref="gdsCatgCustBlacklistRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsCatgCustBlacklistRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsCatgCustBlacklistRSVImpl" />
+	
+		<!-- 商品导入日志Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsExcelImpLogRSV"
+		ref="gdsExcelImpLogRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsExcelImpLogRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsExcelImpLogRSVImpl" />
+		<!-- 商品excel导入Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsExcelImpToolRSV"
+		ref="gdsExcelImpToolRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsExcelImpToolRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsExcelImpToolRSVImpl" />
+	
+			<!-- 商品excel导入明细Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsExcelImpRSV"
+		ref="gdsExcelImpRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsExcelImpRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsExcelImpRSVImpl" />
+	
+	
+	<!-- 商品浏览记录Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsBrowseHisRSV"
+		ref="gdsBrowseHisRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsBrowseHisRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsBrowseHisRSVImpl" />
+	<!-- 积分商品价格记录Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsScoreExtRSV"
+		ref="gdsScoreExtRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsScoreExtRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsScoreExtRSVImpl" />
+	
+	<!--第三方系统商品和亚信侧电商平台商品编码映射服务-->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsInterfaceGdsRSV"
+		ref="gdsInterfaceGdsRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsInterfaceGdsRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsInterfaceGdsRSVImpl" />
+	
+	<!--人卫分类映射服务-->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsInterfaceCatgRSV"
+		ref="gdsInterfaceCatgRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsInterfaceCatgRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsInterfaceCatgRSVImpl" />
+
+	<!-- 目录与店铺关联关系 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCatlog2ShopRSV"
+		ref="gdsCatlog2ShopRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsCatlog2ShopRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsCatlog2ShopRSVImpl" />
+	
+	<!-- 商品收藏总量服务 -->	
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsCollectCntRSV"
+		ref="gdsCollectCntRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsCollectCntRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsCollectCntRSVImpl" />
+	
+	<!-- 类型属性服务 -->	
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsType2PropRSV"
+		ref="gdsType2PropRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsType2PropRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsType2PropRSVImpl" />
+
+	<!-- 属性服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.IGdsPropManageRSV"
+				   ref="gdsPropManageRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsPropManageRSV" class="com.zengshi.ecp.goods.dubbo.impl.GdsPropManageRSVImpl" />
+	
+	
+	<!--Gds001Action扩展Dubbo服务实现 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.app.IGds001ActionExtRSV"
+				   ref="gds001ActionExtRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gds001ActionExtRSV" class="com.zengshi.ecp.goods.dubbo.impl.app.Gds001ActionExtRSVImpl"/>
+	
+	<!--商品域APP扩展Dubbo服务 -->
+	<dubbo:service interface="com.zengshi.ecp.goods.dubbo.interfaces.app.IGdsAppActionExtRSV"
+				   ref="gdsAppActionExtRSV" provider="${default.dubbo.provider.id}" />
+	<bean id="gdsAppActionExtRSV" class="com.zengshi.ecp.goods.dubbo.impl.app.GdsAppActionExtRSVImpl"/>
+
+</beans>  

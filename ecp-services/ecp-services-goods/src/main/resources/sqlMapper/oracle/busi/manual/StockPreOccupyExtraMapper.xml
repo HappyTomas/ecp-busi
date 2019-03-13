@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.busi.manual.StockPreOccupyExtraMapper">
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+
+ <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+
+	<update id="updatePreOccupyBySend" parameterType="com.zengshi.ecp.goods.dao.model.StockPreOccupy" >
+		update t_stock_pre_occupy set count = count - #{record.count},update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+		update_staff = #{record.updateStaff}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	
+
+	 <insert id="insertPreOccupyNotExists" parameterType="com.zengshi.ecp.goods.dao.model.StockPreOccupy" >
+    insert into t_stock_pre_occupy
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="repCode != null" >
+        REP_CODE,
+      </if>
+      <if test="stockId != null" >
+        STOCK_ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="subOrder != null" >
+        SUB_ORDER,
+      </if>
+      <if test="skuId != null" >
+        SKU_ID,
+      </if>
+      <if test="count != null" >
+        COUNT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+     
+        SHOP_ID
+      
+    </trim>
+     SELECT  
+        DISTINCT   
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="repCode != null" >
+        #{repCode,jdbcType=INTEGER},
+      </if>
+      <if test="stockId != null" >
+        #{stockId,jdbcType=INTEGER},
+      </if>
+
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="subOrder != null" >
+        #{subOrder,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+  
+        #{shopId,jdbcType=INTEGER}
+         FROM T_STOCK_PRE_OCCUPY WHERE 
+     NOT EXISTS(
+     SELECT 
+     1
+     FROM 
+     T_STOCK_PRE_OCCUPY
+     WHERE STOCK_ID = #{stockId,jdbcType=INTEGER}
+     AND ORDER_ID = #{orderId,jdbcType=VARCHAR} 
+     AND SUB_ORDER = #{subOrder,jdbcType=VARCHAR}
+     )
+  </insert>
+
+
+</mapper>

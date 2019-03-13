@@ -1,0 +1,138 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/seller/order/pay/bankpay-main.js?version=$!{JS_VERSION}"></script>
+
+	<script>
+        $(function(){
+            U.tab(".seller-tab .tab-nav",".seller-tab .tab-content");
+            $('#delAlert').click(function () {
+                eDialog.confirm("确定要删除信息吗？",{
+                    'title':"提示",
+                    'buttons':  [
+                        {caption: '确定', callback: function() { alert('"Yes" was clicked')}},
+                        {caption: '取消', callback: function() { alert('"No" was clicked')}},
+                    ]
+                });
+            });
+        })
+    </script>
+<div class="seller-mainR">
+    <div class="main">
+        <div class="seller-well">
+            <form id="searchForm"  action="${CONTEXT_PATH}/seller/order/bankpay/exportYhPayExcel" method="POST" class="form-horizontal required-validate" style="margin-bottom: 0px;">
+                <input type="hidden" id="auditType" name="auditType" value="01" />
+                <div class="row-fluid yhDiv">
+                    <div class="span4">
+                        <div class="control-group">
+                            <label class="control-label">订单编号：</label>
+                            <div class="controls">
+                                <input type="text" name="orderId" class="input-block-level"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="control-group">
+                            <label class="control-label">支付通道：</label>
+                            <div class="controls">
+                                <select style="width:160px"  id="payWay" name="payWay">
+                                    <option value="">请选择</option>
+                                    #listParam('ORD_PAY_WAY')
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="span4">
+                        <div class="control-group">
+                            <label class="control-label">对账状态：</label>
+                            <div class="controls">
+                                <select style="width:160px"  id="auditStatus" name="auditStatus">
+                                    <option value="">请选择</option>
+                                    #listParam('ORD_AUDIT_STATUS')
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-fluid yhDiv" >
+                    <div class="span4">
+                        <div class="control-group">
+                            <label class="control-label">用户账号：</label>
+                            <div class="controls">
+                                <input type="text" name="staffCode" class="input-block-level"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="span4">
+                        <div class="control-group">
+                            <label class="control-label">店铺：</label>
+                            <div class="controls">
+                                <select name="shopId" style="width:160px"  id="shopId"  >
+                                    #sellerList()
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row-fluid">
+                    <div class="span6">
+                        <div class="control-group">
+                            <label class="control-label"><span class="yhTypeName">支付</span>时间：</label>
+                            <div class="controls">
+                                <input type="text" class="input-block-level Wdate"
+                                       onclick="WdatePicker({dateFmt:'yyyy-MM-dd',maxDate:'#F{$dp.$D(\'endDate\')}'})" name="startTime"
+                                       value="$!date.format('yyyy-MM-dd',$!{begDate})" id="startTime" style="cursor: pointer; width: 135px">
+                                <input type="hidden" id="begDate" name="begDate" value="$!date.format('yyyy-MM-dd',$!{begDate})" />
+                                       至
+                                <input type="text" class="input-block-level Wdate"
+                                       onclick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'begDate\')}'})" name="endTime"
+                                       value="$!date.format('yyyy-MM-dd',$!{endDate})" id="endTime" style="cursor: pointer;width: 135px">
+                                <input type="hidden" id="endDate" name="endDate" value="$!date.format('yyyy-MM-dd',$!{endDate})" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row-fluid" style="margin-bottom: 10px;">
+            <div class="span6">
+                <a class="sbtn" id="btnFormExport" href="javascript:void(0);"><i class="icon-search icon-download-alt"></i> 导出数据</a>
+            </div>
+            <div class="span2">
+
+            </div>
+			<div class="span4">
+                <div class="control-group">
+                    <div class="controls">
+                        <div class="btn-wrap btn-w-right">
+                            <span class="sbtn sbtn-blue" id="btnFormSearch"><i class="icon-search"></i>查询</span>
+                            <span class="sbtn" id="btnFormReset"><i class="icon-asterisk icon-color"></i>重置</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="alert alert-info yhDiv" style="margin-bottom:10px;">
+			<label class="control-label">订单总笔数<span id="transOrderCounts" class="numberFont"></span>笔,
+                        <span class="yhTypeName">支付</span>成功笔数<span id="successOrderCounts" class="numberFont"></span>笔,
+						交易总金额<span id="transAmounts" class="numberFont"></span>元,
+						<span class="yhTypeName">支付</span>成功总金额<span id="successOrderAmounts" class="numberFont"></span>元
+			</label>
+		</div>
+		<input type="hidden" name="resetBegDate" id="resetBegDate" value="$!date.format('yyyy-MM-dd',$!{begDate})">
+    	<input type="hidden" name="resetEndDate" id="resetEndDate" value="$!date.format('yyyy-MM-dd',$!{endDate})">
+        <div class="seller-tab">
+            <ul class="tab-nav" id="myBackTab">
+                <li id="yhPayTab"><span class="item active first">银行支付账单</span></li>
+                <li id="ptPayTab"><span class="item">支付差异对账单</span></li>
+				<li id="yhBackTab"><span class="item">银行退款账单</span></li>
+				<li id="ptBackTab"><span class="item">退款差异对账单</span></li>
+            </ul>
+            <div class="tab-content">
+                <div class="nItem" id="tabContentDiv">
+    				#parse("/seller/order/pay/tab/yhPayTab.vm")
+                </div>
+            </div>
+        </div>
+    
+    </div>
+</div>

@@ -1,0 +1,220 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/build/bill/bill-info.js"></script>
+
+<body class="">
+    <div class="control-group" style="margin-left: 10px">
+        <div class="order-switch">
+            <a class="pane1 checked" href="javascript:void(0)">
+                <input class="pay1" type="radio">
+                普通发票
+                <b></b>
+            </a>
+            <a class="pane2" href="javascript:void(0)">
+                <input class="pay1" type="radio">
+                增值税发票
+                <b></b>
+            </a>
+        </div>
+    </div>
+    <hr>
+	<form class="pay-form form-horizontal required-validate" id="billForm1">
+        <div id="pane1">
+    		<div class="control-group" style="margin-top: 10px;">
+                <label class="control-label">发票抬头：</label>
+                <div class="controls">
+                    <input type="text" class="input-large required" id="billTitle" value="个人"/>
+                </div>
+            </div> 
+            <div class="control-group">
+                <label class="control-label">发票内容：</label>
+                <div class="controls">
+                    <div class="billc-swtich order-switch">
+                        <a  class="checked" href="javascript:void(0)">
+                            <input class="pay1" type="radio" name="billContent" value="明细" checked="checked">
+                            明细
+                            <b></b>
+                        </a>
+                        <a href="javascript:void(0)">
+                            <input class="pay1" type="radio" name="billContent" value="图书">
+                            图书
+                            <b></b>
+                        </a>
+                        <a href="javascript:void(0)">
+                            <input class="pay1" type="radio" name="billContent" value="教材">
+                            教材
+                            <b></b>
+                        </a>
+                        <a href="javascript:void(0)">
+                            <input class="pay1" type="radio" name="billContent" value="资料费">
+                            资料费
+                            <b></b>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <input type="button" class="btn" id="btnSaveBillInfo" value="保存发票信息"/>
+                    <input type="button" class="btn" id="btnCancel1" value="取消"/>
+                 </div>
+        
+            </div>
+    	</div>
+     </form>
+	 <form class="pay-form form-horizontal required-validate" id="billForm2">
+        <div id="pane2" style="display:none"> 
+                <div class="control-group" style="margin-top: 10px;">
+                    <ul class="bill-step" style="margin-left: 10px">
+                        <li class="doing">
+                            1、填写公司信息
+                              <span>
+                              </span>
+                        </li>
+                        <li class="undo">
+                            2、填写收票人信息
+                            <span>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">单位名称：</label>
+                    <div class="controls">
+                        <input type="text" class="input-large required" id="billInvoiceTitle" name="billInvoiceTitle" value=""/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" style="font-size: 12px;">纳税人识别码：</label>
+                    <div class="controls">
+                        <input type="text" class="input-large required" id="billTaxpayerNo" name="billTaxpayerNo" value=""/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">注册地址：</label>
+                    <div class="controls">
+                        <input type="text" class="input-large required" id="billContactInfo" name="billContactInfo" value=""/>
+                    </div>
+                </div>
+            
+                <div class="control-group">
+                    <label class="control-label"> 注册电话：</label>
+                    <div class="controls">
+                        <input type="text" class="input-large required checkPhone" id="billPhone" name="billPhone" value=""/>
+                    </div>
+                </div>
+            
+            
+                <div class="control-group">
+                    <label class="control-label">开户银行：</label>
+                    <div class="controls">
+                        <input type="text" class="input-large required" id="billBankName" name="billBankName"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">银行账户：</label>
+                    <div class="controls">
+                        <input type="text" class="input-large required" id="billAcctInfo" name="billAcctInfo"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                     <label class="control-label"> 上传税务登记证(副本)：</label>
+					<div class="controls">
+                        <div class="mbtn-send">  
+                            <div class="img-input">
+        						<input type="hidden" id="billPicId" name="billPicId"/>
+        						<input type="hidden" id="billPicName" name="billPicName"/>   
+                                <input type="file" class="com_input" id="pictrue" name="pictrue" value=""/>
+								 <span class="alert rk-alert">
+									图片格式必须是：.jpg,.png,.jpeg,.gif,.bmp
+                                 </span>
+
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+                <div class="control-group mt40">
+                    <div class="controls">
+                        <input type="button" class="btn" id="btnNext" value="下一步"/>
+                        <input type="button" class="btn" id="btnCancel2" value="取消"/>
+                    </div>
+                </div> 
+    	</div>
+     </form>
+	 <form class="pay-form form-horizontal required-validate" id="billForm3">
+        <div id="pane3" style="display:none">
+    		 <div class="control-group" style="margin-top: 10px;">
+                <ul class="bill-step" style="margin-left: 10px">
+                    <li>
+                        1、填写公司信息
+                        <span>
+                        </span>
+                    </li>
+                    <li class="doing">
+                        2、填写收票人信息
+                          <span>
+                          </span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="control-group control-check">
+                <label class="control-label"><input type="checkbox" class="icheck2"/></label>
+				<div class="controls">
+					是否和商品地址一致
+                </div>
+
+            </div>
+            <div class="control-group">
+                <label class="control-label">收票人姓名：</label>
+                <div class="controls">
+                    <input type="text" class="input-large required" id="billTakerName" name="billTakerName" value=""/>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">收票人手机：</label>
+                <div class="controls">
+                    <input type="text" class="input-large required checkPhone" id="billTakerPhone" name="billTakerPhone" value=""/>
+                </div>
+            </div>
+        
+            <div class="control-group">
+                <label class="control-label">收票人省份：</label>
+                <div class="controls">
+                    <select area-defaultvalue="" value="" area-children="billTakerCity" area-level="province" area-type="admin" id="billTakerProvince" name="province" class="jquery-area span2 "><option value="110000">北京</option><option value="120000">天津</option><option value="130000">河北</option><option value="140000">山西</option><option value="150000">内蒙古</option><option value="210000">辽宁</option><option value="220000">吉林</option><option value="230000">黑龙江</option><option value="310000">上海</option><option value="320000">江苏</option><option value="330000">浙江</option><option value="340000">安徽</option><option value="350000">福建</option><option value="360000">江西</option><option value="370000">山东</option><option value="410000">河南</option><option value="420000">湖北</option><option value="430000">湖南</option><option value="440000">广东</option><option value="450000">广西</option><option value="460000">海南</option><option value="500000">重庆</option><option value="510000">四川</option><option value="520000">贵州</option><option value="530000">云南</option><option value="540000">西藏</option><option value="610000">陕西</option><option value="620000">甘肃</option><option value="630000">青海</option><option value="640000">宁夏</option><option value="650000">新疆</option><option value="710000">台湾</option><option value="810000">香港</option><option value="820000">澳门</option></select>
+    				<select area-defaultvalue="" value="" area-children="billTakerCounty" area-level="city" area-type="admin" id="billTakerCity" name="cityCode" class="jquery-area span2 " area-province="110000"><option value="110100">市辖区</option><option value="110200">县</option></select>
+                    <select area-defaultvalue="" value="" area-children="" area-level="county" area-type="admin" id="billTakerCounty" name="countyCode" class="jquery-area span2 " area-city="110100" area-province="110000"><option value="110101">东城区</option><option value="110102">西城区</option><option value="110105">朝阳区</option><option value="110106">丰台区</option><option value="110107">石景山区</option><option value="110108">海淀区</option><option value="110109">门头沟区</option><option value="110111">房山区</option><option value="110112">通州区</option><option value="110113">顺义区</option><option value="110114">昌平区</option><option value="110115">大兴区</option><option value="110116">怀柔区</option><option value="110117">平谷区</option></select>
+                </div>
+            </div>
+        
+        
+            <div class="control-group">
+                <label class="control-label">详细地址：</label>
+                <div class="controls">
+                    <input type="text" class="input-large required" id="billTakerAddress" name="billTakerAddress" />
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label">发票内容：</label>
+                <div class="controls">
+                    <div class="billc-swtich order-switch">
+                        <a  class="checked" href="javascript:void(0)">
+                            <input class="pay1"  name="billInvoiceContent" value="明细" type="radio" checked="checked">
+                            明细
+                            <b></b>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group mt40">
+                <div class="controls">
+                     <input type="button" class="btn" id="btnSaveBillInfo2" value="保存发票信息"/>
+    				<input type="button" class="btn" id="btnCancel3" value="取消"/>
+					<input type="button" class="btn" id="btnUp" value="返回上一步"/>
+                </div>
+        
+            </div> 
+    	</div>
+     </form>
+</body>

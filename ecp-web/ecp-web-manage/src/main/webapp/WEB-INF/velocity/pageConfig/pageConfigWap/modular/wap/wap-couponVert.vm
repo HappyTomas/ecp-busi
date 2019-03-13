@@ -1,0 +1,52 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/modular/wap/modular-edit-menu-tool.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/modular/wap/modular-wap-couponVert.js?version=$!{JS_VERSION}" ></script>
+
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+<input type="hidden" id="propPreStr" value="$!{propPreStr}"/>
+<script>
+</script>
+		
+<form id="paramsSetForm" class="required-validate form-horizontal templateItemForms" data-url="$!{CONTEXT_PATH}/modular-dynamic/commonModularFormSave">
+    <div class="dynamicFormMainBox">
+        	<input type="hidden" id="modularPageId" value="$!{pageId}"/>
+        	<input type="hidden" id="modularModularId" value="$!{modularId}"/>
+        	<input type="hidden" id="modularItemId" value="$!{itemId}"/>	
+        <h3 class="tit" style="color:red">优惠券模块</h3>
+        
+        <div class="edit-tip">
+            <i class="close wap_close_i" id="close_i"></i>
+        
+            <p class="title">模块使用小贴士</p>
+        
+            <div class="content">
+                	此模块用于展示优惠券信息，最多展示3张
+            </div>
+        </div>
+        #set($totalGroupList = [1,2,3])
+        #foreach($i in $totalGroupList)
+        #set($couponCode = '1030_1_' + $velocityCount)
+        <div class="form-group">
+			<div class="menu">
+                <span class="mup"></span>
+                <span class="mdown"></span>
+             </div>
+            <div class="form-block formItem">
+	            <label>$!{attrs.get(1030).propName}</label>
+	            <input type="hidden" id="remark" value="$!{propPre.get($couponCode).remark}"/>
+				<input type="hidden" id="propValue" value="$!{propPre.get($couponCode).propValue}">
+	        	<input type="hidden" id="propValueId" value="$!{propPre.get($couponCode).propValueId}">
+	        	<input type="hidden" id="propId" value="$!{attrs.get(1030).id}">
+	        	<input type="hidden" id="propItemId" value="$!{propPre.get($couponCode).id}"/>
+				<input type="hidden" id="controlPropId" value="$velocityCount"/>
+	        	<input type="hidden" id="propGroupId" value="1"/>
+	            <input type="text" style="width:60%;" id ="coupName" readonly placeholder="请选择优惠券" value="$!{propPre.get($couponCode).remark}" />
+				<button type="button" class="btn select-link-coup">选择</button>
+       		</div>
+        </div>
+        #end
+    </div>
+</form>
+

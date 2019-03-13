@@ -1,0 +1,61 @@
+#parse("/module/mod-grid.vm") 
+#parse("/module/mod-form.vm")
+<script type="text/javascript"
+	src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js"></script>
+<script type="text/javascript"
+	src="$!{BUSIJS_PATH}/goods/gdsEvalAudit/audit-grid.js?version=$!{JS_VERSION}"></script>
+
+
+<div class="well well-searchForm">
+	<form id="searchForm" class="form-horizontal required-validate"
+		style="margin-bottom: 0px;">
+		<div class="row-fluid">
+			<div class="span4">
+				<div class="control-group">
+					<label class="control-label">归属店铺：</label>
+					<div class="controls">
+						<select id="shopId" name="shopId" > 
+						    #shoplist($!{shopId})
+						</select>
+					</div>
+				</div>
+			</div>
+			<div class="span6">
+				<div class="control-group">
+					<label class="control-label">评价时间：</label>
+					<div class="controls">
+						<input type="text" class="input-large Wdate"
+							onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+							id="beginTime" name="beginTime" value="" />
+							至
+						<input type="text" class="input-large Wdate"
+						onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"
+						id="endTime" name="endTime" value="" />
+					</div>
+				</div>
+			</div>
+		</div>
+		
+	</form>
+</div>
+
+<div class="row-fluid" style="margin-bottom: 10px;">
+	<div class="span8">
+		<a class="btn" id="btn_code_pass" href="#"><i class="icon-ok icon-white">批量审核通过</i>  </a>
+		<a class="btn" id="btn_code_nopass" href="#"><i class="icon-remove icon-white"></i> 批量审核不通过</a>
+	</div>
+	<div class="pull-right">
+		<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+		<a class="btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+	</div>
+</div>
+	<div id="gridLoading">
+        	<ul class="nav nav-tabs" id="myTab"> 
+              <li class="active" id="tab1" auditStatus="2"><a href="#">待审核</a></li> 
+              <li id="tab2" auditStatus="1"><a href="#">审核通过</a></li> 
+              <li id="tab3" auditStatus="3"><a href="#">审核拒绝</a></li> 
+            </ul> 
+    		<div class="row-fluid">
+    			<table id="dataGridTable"></table>
+    		</div>
+		</div>

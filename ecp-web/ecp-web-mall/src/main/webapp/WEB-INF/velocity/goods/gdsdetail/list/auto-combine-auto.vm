@@ -1,0 +1,29 @@
+<li class="caroSwitch$count addsymbo">
+    +
+</li>
+<li class="caroSwitch$count">
+    <div class="p-img">
+        <a href="${CONTEXT_PATH}/gdsdetail/$!{info.skuInfo.gdsId}-$!{info.skuInfo.id}">
+            <img width="150" height="150" src="${aiTool.genImageUrl($!{info.skuInfo.mainPic.mediaUuid},'150x150!')}" alt=""/>
+        </a>
+    </div>
+    <p class="p-name">
+        <a href="${CONTEXT_PATH}/gdsdetail/$!{info.skuInfo.gdsId}-$!{info.skuInfo.id}">
+            $!{info.skuInfo.gdsName}
+        </a>
+    </p>
+    <p class="p-actor c-gray">
+		#foreach($value in $!{info.skuInfo.allPropMaps.get('1001').values})
+			$!{value.propValue}
+        #end
+    </p>
+    <p class="p-pri">
+        <input type="checkbox" gdsStatus="$!{info.skuInfo.gdsStatus}" index="$velocityCount" gdsTypeId='$!{info.skuInfo.gdsTypeId}' promId='$!{info.promId}' mainCatgs="$!{info.skuInfo.mainCatgs}" name="combineCheck" gdsName='$!{info.skuInfo.gdsName}' gdsId='$!{info.skuInfo.gdsId}' skuId='$!{info.skuInfo.id}' skuProps='$!{info.skuInfo.skuProps}' class="icheck"/>
+        <b class="c-red">
+				&yen;<font name="combinePriceAfter">#moneyNum($!{info.price})</font>
+        </b>
+		<b class="c-gray t-mline">
+				&yen;<font name="combinePrice">#moneyNum($!{info.skuInfo.realPrice})</font>
+        </b>
+    </p>
+</li>

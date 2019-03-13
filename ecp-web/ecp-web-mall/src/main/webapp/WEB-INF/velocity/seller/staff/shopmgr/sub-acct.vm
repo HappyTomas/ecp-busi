@@ -1,0 +1,109 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/staff/sub-acct.js?version=$!{JS_VERSION}" ></script>
+<div class="seller-well">
+    <form action="" class="form-horizontal required-validate" id="subAcctSearchForm">
+        <div class="row-fluid">
+        	<div class="span4">
+                <div class="control-group">
+                    <label class="control-label">店铺选择：</label>
+                    <div class="controls">
+                    	<input type="hidden" id="defaultShopId" value="$!{defaultShopId}"/>
+                        <select id="shopId" name="shopId" style="width:162px;">
+							  #sellerList($!{shopId})
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <label class="control-label">用户名：</label>
+                    <div class="controls">
+                        <input placeholder="用户名" name="staffCode" id="staffCode" value="$!{staffCode}" type="text" class="input-block-level">
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <label class="control-label">状态：</label>
+                    <div class="controls">
+                        <select name="status" style="width:163px" id="status">
+                        	<option value="">请选择</option>
+                        	<option value="1"
+                        	#if(${status} == '1')
+                        	 selected
+                        	#end;
+                        	>正常</option>
+                        	<option value="3"
+                        	#if(${status} == '3')
+                        	 selected
+                        	#end;
+                        	>失效</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="sbtn-group" >
+    <!--查询，重置移动到这里，添加btn-w-right样式，重置按钮添加icon-color-->
+    <div class="btn-wrap btn-w-right">
+        <span class="sbtn sbtn-blue" id="queryBtn"><i class="icon-search"></i> 查询</span>
+        <span class="sbtn" id="resetBtn"><i class="icon-asterisk icon-color"></i> 重置</span>
+    </div>
+    <!--添加图标-->
+    #if($!{controlSub} > 0)
+    	<span class="sbtn sbtn-blue" id="addBtn"><i class="icon-plus"></i> 新增</span>
+    #end
+    	<span><font size='3px' color='red'>&nbsp;单个店铺可创建最大员工账号数为$!{maxCount}个。</font></span>
+</div>
+<div class="main-inner">
+    <table class="seller-table table-striped">
+    	<thead>
+        <tr>
+        	<th>账户名称</th>
+        	<th>真实姓名</th>
+            <th style="width:80px">账户状态</th>
+            <th>账户角色</th>
+            <th>账户管理</th>
+        </tr>
+        </thead>
+        <tbody>
+        	#if(!$subAcctPage.getResult())
+        		<tr class="odd ">
+                    <td class="kong" colspan="5">很遗憾，暂无数据</td>
+                </tr>
+        	#end
+        	#foreach($attr in $subAcctPage.getResult())
+        		<tr>
+	                <td>$!{attr.staffCode}</td>
+	                <td>$!{attr.custName}</td>
+	                #if(${attr.status} == '1')
+	                	<td>正常</td>
+	                #else 
+	                	<td>失效</td>
+	                #end
+	                <td>
+		                <span title="$!{attr.roleNames}">
+			                #if($!{attr.roleNames.length()} > 20)
+			                	#set($str=$!{attr.roleNames.substring(0,20)})
+	    						$str ...
+			                #else
+			                	$!{attr.roleNames}
+			                #end
+		                </span>
+	                </td>
+	                <td>
+	                	#if(${attr.status} == '1')
+		                	<a href="javascript:void(0);" onclick="statusOpt('disable',$!{attr.id})"  >失效 | </a>
+		                #else 
+		                	<a href="javascript:void(0);" onclick="statusOpt('enable',$!{attr.id})"  >启用 | </a>
+		                #end
+	                	<a href="javascript:void(0);" onclick="statusOpt('del',$!{attr.id})" >删除 | </a>
+	                	<a href="javascript:void(0);" onclick="acctSubEdit($!{attr.id})" >编辑</a>
+	                </td>
+	            </tr>
+			#end
+		</tbody>
+	</table>
+</div>

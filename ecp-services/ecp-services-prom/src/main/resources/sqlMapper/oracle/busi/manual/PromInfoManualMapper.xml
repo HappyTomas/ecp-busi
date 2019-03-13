@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.prom.dao.mapper.busi.manual.PromInfoManualMapper" >
+ <resultMap id="BaseResultMap" type="com.zengshi.ecp.prom.dao.model.PromInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="GROUP_ID" property="groupId" jdbcType="INTEGER" />
+    <result column="PROM_TYPE_CODE" property="promTypeCode" jdbcType="VARCHAR" />
+    <result column="IF_SHOW" property="ifShow" jdbcType="VARCHAR" />
+    <result column="PROM_CLASS" property="promClass" jdbcType="VARCHAR" />
+    <result column="PROM_THEME" property="promTheme" jdbcType="VARCHAR" />
+    <result column="PROM_CONTENT" property="promContent" jdbcType="VARCHAR" />
+    <result column="PROM_TYPE_SHOW" property="promTypeShow" jdbcType="VARCHAR" />
+    <result column="PRIORITY" property="priority" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="SHOW_START_TIME" property="showStartTime" jdbcType="TIMESTAMP" />
+    <result column="SHOW_END_TIME" property="showEndTime" jdbcType="TIMESTAMP" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="PROM_URL" property="promUrl" jdbcType="VARCHAR" />
+    <result column="PROM_IMG" property="promImg" jdbcType="VARCHAR" />
+    <result column="JOIN_RANGE" property="joinRange" jdbcType="VARCHAR" />
+    <result column="IF_MATCH" property="ifMatch" jdbcType="VARCHAR" />
+    <result column="IF_BLACKLIST" property="ifBlacklist" jdbcType="VARCHAR" />
+    <result column="IF_COMPOSIT" property="ifComposit" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, GROUP_ID, PROM_TYPE_CODE, IF_SHOW, PROM_CLASS, PROM_THEME, PROM_CONTENT, PROM_TYPE_SHOW, 
+    PRIORITY, STATUS, START_TIME, END_TIME, SHOW_START_TIME, SHOW_END_TIME, SHOP_ID, 
+    PROM_URL, PROM_IMG, JOIN_RANGE, IF_MATCH, IF_BLACKLIST, CREATE_TIME, CREATE_STAFF, 
+    UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="countShopIdByGoupyId" parameterType="com.zengshi.ecp.prom.dao.model.PromInfoCriteria" resultType="java.lang.Long" >
+    select count(distinct SHOP_ID) from t_prom_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+</mapper>

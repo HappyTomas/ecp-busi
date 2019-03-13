@@ -1,0 +1,112 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+#parse("sys/sys_param.vm")
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/floor/gds/gds-batch-add.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<script type="text/javascript">
+ function replaceSpace(obj){
+ obj.value = obj.value.replace(/s/gi,'')
+}
+</script>
+<style>
+    .table td {
+        border: 1px solid #ddd !important;
+        text-align: center;
+    }
+
+    .table thead {
+        background-color: #ebf2f6;
+    }
+</style>
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+<input type="hidden" id="floorSearchParams" value="$!{floorSearchParams}" />
+
+<div class="alert alert-error hide formValidateMessages" >
+	##showSpringAllError("vo")
+</div>
+
+<div class="form-horizontal" style="width: 90%; margin: 40px auto 10px;">
+	<form id="detailInfoForm" class="required-validate" style="margin-bottom: 0px;" >
+		<div class="">
+			<input type="hidden" id="id" name="id" value="$!{respDTO.id}" />
+			<input type="hidden" id="placeId" name="placeId" value="$!{floorRespDTO.placeId}" />
+			<input type="hidden" id="siteId" name="siteId" value="$!{floorRespDTO.siteId}" />
+			<input type="hidden" id="floorId" name="floorId" value="$!{floorRespDTO.id}" />
+    	    <div class="row-fluid">
+    	       <div class="span5">
+	    			<div class="control-group">
+						<label class="control-label">所属楼层：</label>
+	    				<div class="controls">
+							<input type="text" class="input-large required" id="floorName" name="floorName" readonly value="#escapeHtml($!{floorRespDTO.floorName})" />
+	    				</div>
+	    			</div>
+    		  </div>
+    		    <div class="span7">
+    		    	#if(${floorTabList} && $floorTabList.size() > 0)
+	
+		    			<div class="control-group">
+		    				<label class="control-label">所属页签：</label>
+		    				<div class="controls">
+		    					<select id="tabId" name="tabId" class="input-large required">
+		    						#foreach($floorTab in $floorTabList)
+		    							<option value="$!{floorTab.id}" #if($!{respDTO.tabId} == $!{floorTab.id}) selected  #end>#escapeHtml($!{floorTab.tabName})</option>
+		        					#end
+		    					</select>
+		    					<span class="help-inline">切换页签，会清除选择的数据！</span>
+		    				</div>
+		    			</div>
+			      #end
+    		    </div>
+    	    </div>
+    		
+		
+			<div class="row-fluid">
+			  <div class="span8">
+			     <div class="control-group">
+    				<label class="control-label">选择促销商品：</label>
+    				<div class="controls">
+						<select id="isProm" name="isProm" class="required">
+    						#listParam('PUBLIC_PARAM_ISNOT',$!{respDTO.isProm})
+    					</select>
+    					<button type="button" class="btn" id="select_link_gds"><i class="icon-magic"></i> 选择</button>
+						<span class="help-inline"></span>
+    				</div>
+    			</div>
+			  </div>
+    		</div>
+   
+			<div class="text-center">
+				<button type="button" class="btn btn-info" id="btnFormPubSave"><i class="icon-ok-sign icon-white"></i> 发布</button>
+				<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i> 保存</button>
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i> 返回</button>
+    		</div>
+        </div>
+		<div class="clear"></div>
+	</form>
+	
+	<div class="row-fluid">
+	       <div class="span10">
+	           <div class="control-group">
+	               <div class="controls">
+	                <h4 style="margin:15px 0">已选择商品</h4>
+	                <div id = "selecting-gds-table" >
+	                
+	                </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+##用于生成已选择商品的table列
+<div class="hide">
+	<div id = "batch-tle-item-sortNo">
+		<input type="text" value = "" placeholder="如果不填，则默认为1。" data-prop="sortNo"/>
+	</div>
+	<div id = "batch-tle-item-delete">
+		<a href="javascript:void(0);" class="delRow">删除</a>
+	</div>
+</div>

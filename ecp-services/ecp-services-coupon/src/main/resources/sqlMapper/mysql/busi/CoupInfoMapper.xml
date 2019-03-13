@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.coupon.dao.mapper.busi.CoupInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.coupon.dao.model.CoupInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="COUP_CODE" property="coupCode" jdbcType="VARCHAR" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="COUP_TYPE_ID" property="coupTypeId" jdbcType="INTEGER" />
+    <result column="COUP_NAME" property="coupName" jdbcType="VARCHAR" />
+    <result column="COUP_VALUE" property="coupValue" jdbcType="INTEGER" />
+    <result column="TYPE_LIMIT" property="typeLimit" jdbcType="VARCHAR" />
+    <result column="USE_RULE_CODE" property="useRuleCode" jdbcType="VARCHAR" />
+    <result column="GAIN_RULE_CODE" property="gainRuleCode" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="IF_CODE" property="ifCode" jdbcType="VARCHAR" />
+    <result column="IF_BACK" property="ifBack" jdbcType="VARCHAR" />
+    <result column="COUP_NUM" property="coupNum" jdbcType="INTEGER" />
+    <result column="GET_NUM" property="getNum" jdbcType="INTEGER" />
+    <result column="EFF_TYPE" property="effType" jdbcType="VARCHAR" />
+    <result column="FIXED_TIME" property="fixedTime" jdbcType="INTEGER" />
+    <result column="ACTIVE_TIME" property="activeTime" jdbcType="TIMESTAMP" />
+    <result column="INACTIVE_TIME" property="inactiveTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, COUP_CODE, SITE_ID, COUP_TYPE_ID, COUP_NAME, COUP_VALUE, TYPE_LIMIT, USE_RULE_CODE, 
+    GAIN_RULE_CODE, SHOP_ID, IF_CODE, IF_BACK, COUP_NUM, GET_NUM, EFF_TYPE, FIXED_TIME, 
+    ACTIVE_TIME, INACTIVE_TIME, STATUS, REMARK, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, 
+    UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.coupon.dao.model.CoupInfoCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_coup_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_coup_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_coup_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.coupon.dao.model.CoupInfo" >
+    insert into t_coup_info (ID, COUP_CODE, SITE_ID, 
+      COUP_TYPE_ID, COUP_NAME, COUP_VALUE, 
+      TYPE_LIMIT, USE_RULE_CODE, GAIN_RULE_CODE, 
+      SHOP_ID, IF_CODE, IF_BACK, 
+      COUP_NUM, GET_NUM, EFF_TYPE, 
+      FIXED_TIME, ACTIVE_TIME, INACTIVE_TIME, 
+      STATUS, REMARK, CREATE_TIME, 
+      CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+      )
+    values (#{id,jdbcType=INTEGER}, #{coupCode,jdbcType=VARCHAR}, #{siteId,jdbcType=INTEGER}, 
+      #{coupTypeId,jdbcType=INTEGER}, #{coupName,jdbcType=VARCHAR}, #{coupValue,jdbcType=INTEGER}, 
+      #{typeLimit,jdbcType=VARCHAR}, #{useRuleCode,jdbcType=VARCHAR}, #{gainRuleCode,jdbcType=VARCHAR}, 
+      #{shopId,jdbcType=INTEGER}, #{ifCode,jdbcType=VARCHAR}, #{ifBack,jdbcType=VARCHAR}, 
+      #{coupNum,jdbcType=INTEGER}, #{getNum,jdbcType=INTEGER}, #{effType,jdbcType=VARCHAR}, 
+      #{fixedTime,jdbcType=INTEGER}, #{activeTime,jdbcType=TIMESTAMP}, #{inactiveTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.coupon.dao.model.CoupInfo" >
+    insert into t_coup_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="coupCode != null" >
+        COUP_CODE,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="coupTypeId != null" >
+        COUP_TYPE_ID,
+      </if>
+      <if test="coupName != null" >
+        COUP_NAME,
+      </if>
+      <if test="coupValue != null" >
+        COUP_VALUE,
+      </if>
+      <if test="typeLimit != null" >
+        TYPE_LIMIT,
+      </if>
+      <if test="useRuleCode != null" >
+        USE_RULE_CODE,
+      </if>
+      <if test="gainRuleCode != null" >
+        GAIN_RULE_CODE,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="ifCode != null" >
+        IF_CODE,
+      </if>
+      <if test="ifBack != null" >
+        IF_BACK,
+      </if>
+      <if test="coupNum != null" >
+        COUP_NUM,
+      </if>
+      <if test="getNum != null" >
+        GET_NUM,
+      </if>
+      <if test="effType != null" >
+        EFF_TYPE,
+      </if>
+      <if test="fixedTime != null" >
+        FIXED_TIME,
+      </if>
+      <if test="activeTime != null" >
+        ACTIVE_TIME,
+      </if>
+      <if test="inactiveTime != null" >
+        INACTIVE_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="coupCode != null" >
+        #{coupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="coupTypeId != null" >
+        #{coupTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="coupName != null" >
+        #{coupName,jdbcType=VARCHAR},
+      </if>
+      <if test="coupValue != null" >
+        #{coupValue,jdbcType=INTEGER},
+      </if>
+      <if test="typeLimit != null" >
+        #{typeLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="useRuleCode != null" >
+        #{useRuleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gainRuleCode != null" >
+        #{gainRuleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="ifCode != null" >
+        #{ifCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ifBack != null" >
+        #{ifBack,jdbcType=VARCHAR},
+      </if>
+      <if test="coupNum != null" >
+        #{coupNum,jdbcType=INTEGER},
+      </if>
+      <if test="getNum != null" >
+        #{getNum,jdbcType=INTEGER},
+      </if>
+      <if test="effType != null" >
+        #{effType,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedTime != null" >
+        #{fixedTime,jdbcType=INTEGER},
+      </if>
+      <if test="activeTime != null" >
+        #{activeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inactiveTime != null" >
+        #{inactiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.coupon.dao.model.CoupInfoCriteria" resultType="java.lang.Long" >
+    select count(*) from t_coup_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_coup_info
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.coupCode != null" >
+        COUP_CODE = #{record.coupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.coupTypeId != null" >
+        COUP_TYPE_ID = #{record.coupTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.coupName != null" >
+        COUP_NAME = #{record.coupName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coupValue != null" >
+        COUP_VALUE = #{record.coupValue,jdbcType=INTEGER},
+      </if>
+      <if test="record.typeLimit != null" >
+        TYPE_LIMIT = #{record.typeLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useRuleCode != null" >
+        USE_RULE_CODE = #{record.useRuleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gainRuleCode != null" >
+        GAIN_RULE_CODE = #{record.gainRuleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.ifCode != null" >
+        IF_CODE = #{record.ifCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifBack != null" >
+        IF_BACK = #{record.ifBack,jdbcType=VARCHAR},
+      </if>
+      <if test="record.coupNum != null" >
+        COUP_NUM = #{record.coupNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.getNum != null" >
+        GET_NUM = #{record.getNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.effType != null" >
+        EFF_TYPE = #{record.effType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fixedTime != null" >
+        FIXED_TIME = #{record.fixedTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.activeTime != null" >
+        ACTIVE_TIME = #{record.activeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.inactiveTime != null" >
+        INACTIVE_TIME = #{record.inactiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_coup_info
+    set ID = #{record.id,jdbcType=INTEGER},
+      COUP_CODE = #{record.coupCode,jdbcType=VARCHAR},
+      SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      COUP_TYPE_ID = #{record.coupTypeId,jdbcType=INTEGER},
+      COUP_NAME = #{record.coupName,jdbcType=VARCHAR},
+      COUP_VALUE = #{record.coupValue,jdbcType=INTEGER},
+      TYPE_LIMIT = #{record.typeLimit,jdbcType=VARCHAR},
+      USE_RULE_CODE = #{record.useRuleCode,jdbcType=VARCHAR},
+      GAIN_RULE_CODE = #{record.gainRuleCode,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      IF_CODE = #{record.ifCode,jdbcType=VARCHAR},
+      IF_BACK = #{record.ifBack,jdbcType=VARCHAR},
+      COUP_NUM = #{record.coupNum,jdbcType=INTEGER},
+      GET_NUM = #{record.getNum,jdbcType=INTEGER},
+      EFF_TYPE = #{record.effType,jdbcType=VARCHAR},
+      FIXED_TIME = #{record.fixedTime,jdbcType=INTEGER},
+      ACTIVE_TIME = #{record.activeTime,jdbcType=TIMESTAMP},
+      INACTIVE_TIME = #{record.inactiveTime,jdbcType=TIMESTAMP},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.coupon.dao.model.CoupInfo" >
+    update t_coup_info
+    <set >
+      <if test="coupCode != null" >
+        COUP_CODE = #{coupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        SITE_ID = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="coupTypeId != null" >
+        COUP_TYPE_ID = #{coupTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="coupName != null" >
+        COUP_NAME = #{coupName,jdbcType=VARCHAR},
+      </if>
+      <if test="coupValue != null" >
+        COUP_VALUE = #{coupValue,jdbcType=INTEGER},
+      </if>
+      <if test="typeLimit != null" >
+        TYPE_LIMIT = #{typeLimit,jdbcType=VARCHAR},
+      </if>
+      <if test="useRuleCode != null" >
+        USE_RULE_CODE = #{useRuleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gainRuleCode != null" >
+        GAIN_RULE_CODE = #{gainRuleCode,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="ifCode != null" >
+        IF_CODE = #{ifCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ifBack != null" >
+        IF_BACK = #{ifBack,jdbcType=VARCHAR},
+      </if>
+      <if test="coupNum != null" >
+        COUP_NUM = #{coupNum,jdbcType=INTEGER},
+      </if>
+      <if test="getNum != null" >
+        GET_NUM = #{getNum,jdbcType=INTEGER},
+      </if>
+      <if test="effType != null" >
+        EFF_TYPE = #{effType,jdbcType=VARCHAR},
+      </if>
+      <if test="fixedTime != null" >
+        FIXED_TIME = #{fixedTime,jdbcType=INTEGER},
+      </if>
+      <if test="activeTime != null" >
+        ACTIVE_TIME = #{activeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inactiveTime != null" >
+        INACTIVE_TIME = #{inactiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.coupon.dao.model.CoupInfo" >
+    update t_coup_info
+    set COUP_CODE = #{coupCode,jdbcType=VARCHAR},
+      SITE_ID = #{siteId,jdbcType=INTEGER},
+      COUP_TYPE_ID = #{coupTypeId,jdbcType=INTEGER},
+      COUP_NAME = #{coupName,jdbcType=VARCHAR},
+      COUP_VALUE = #{coupValue,jdbcType=INTEGER},
+      TYPE_LIMIT = #{typeLimit,jdbcType=VARCHAR},
+      USE_RULE_CODE = #{useRuleCode,jdbcType=VARCHAR},
+      GAIN_RULE_CODE = #{gainRuleCode,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      IF_CODE = #{ifCode,jdbcType=VARCHAR},
+      IF_BACK = #{ifBack,jdbcType=VARCHAR},
+      COUP_NUM = #{coupNum,jdbcType=INTEGER},
+      GET_NUM = #{getNum,jdbcType=INTEGER},
+      EFF_TYPE = #{effType,jdbcType=VARCHAR},
+      FIXED_TIME = #{fixedTime,jdbcType=INTEGER},
+      ACTIVE_TIME = #{activeTime,jdbcType=TIMESTAMP},
+      INACTIVE_TIME = #{inactiveTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

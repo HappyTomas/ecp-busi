@@ -1,0 +1,114 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/floor/tab/tab-view.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+<input type="hidden" id="floorSearchParams" value="$!{floorSearchParams}" />
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/cmsadvertise/saveform">
+		<div class="span8">
+			<input type="hidden" id="id" name="id" value="$!{respDTO.id}" />
+			<input type="hidden" id="placeId" name="placeId" value="$!{respDTO.placeId}" />
+			<input type="hidden" id="floorId" name="floorId" value="$!{respDTO.floorId}" />
+    		<div class="row-fluid formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属楼层：</label>
+    				<label class="controls  text_line">
+    				 #escapeHtml($!{respDTO.floorName})	
+					</label>
+    			</div>
+    		</div>
+    		
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">页签名称：</label>
+    				<label class="controls  text_line">
+    				 #escapeHtml($!{respDTO.tabName})	
+					</label>
+    			</div>
+    		</div>
+			
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label required">是否链接：</label>
+    				<label class="controls  text_line">
+    				 #if($!{respDTO.isLink} == "1") 是  #else 否 #end	
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="formSep" id="catgCode_div">
+				<div class="control-group">
+                    <label for="" class="control-label">关联商品分类：</label>
+    				<label class="controls  text_line">
+        			 #escapeHtml($!{respDTO.catgCodeZH})		
+    				</label>
+				</div>
+            </div>
+			
+    		<div id="linkUrl_div"  class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">链接地址：</label>
+    				<label class="controls  text_line">
+    				 #escapeHtml($!{respDTO.linkUrl})	
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">排序：</label>
+    				<label class="controls  text_line">
+    				 #escapeHtml($!{respDTO.sortNo})	
+					</label>
+    			</div>
+    		</div>
+			
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">备注：</label>
+    				<label class="controls  text_line">
+    				 #escapeHtml($!{respDTO.remark})	
+					</label>
+    			</div>
+    		</div>
+		
+		<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">状态：</label>
+					<label class="controls  text_line">
+						$!{respDTO.statusZH}
+					</label>
+				</div>
+		</div>
+			
+    	<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label required">创建时间：</label>
+    				<label class="controls  text_line">
+						$!date.format('yyyy-MM-dd',$!{respDTO.createTime})
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label required">修改时间：</label>
+    				<label class="controls  text_line">
+						$!date.format('yyyy-MM-dd',$!{respDTO.updateTime})
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="text-center">
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+			</div>
+			
+    </div>
+    <div class="clear"></div>
+</form>
+</div>

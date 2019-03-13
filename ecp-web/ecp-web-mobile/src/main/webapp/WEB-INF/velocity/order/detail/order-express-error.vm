@@ -1,0 +1,29 @@
+<div class="wl-tab">     
+    <div class="tab-content" >
+        <div class="wl-state">
+            <p class="state">
+                <label>物流状态</label>
+                <span class="c-red">暂无状态信息</span>
+            </p>
+            <p class="info">
+                <label>物流公司:</label>
+                <span></span>
+                <label class="code-lb">运单号码:</label>
+                <span></span>
+            </p>
+        </div>
+        <div class="wl-box">
+            <div class="head">
+                	物流跟踪
+            </div>
+            <div class="body">
+                <ul class="wl-list">                    	
+                    <li>
+                        <p class="info">暂时没有该运单号码的物流信息</p>
+                    </li>                       
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+

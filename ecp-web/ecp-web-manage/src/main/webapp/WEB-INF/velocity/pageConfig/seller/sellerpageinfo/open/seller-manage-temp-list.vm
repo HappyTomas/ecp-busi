@@ -1,0 +1,46 @@
+#parse("/sys/sys_param.vm")
+#if(!$gridResult || !$gridResult.getList() || $!{gridResult.getList().size()}<=0)
+<div>
+	暂无模板，敬请期待！
+</div>
+#else
+<div  class="clearfix pt20">
+<ul class="page-al">
+	#foreach($temp in $gridResult.getList())
+    <li>
+        <div class="pageliborder">
+        	#if($!{temp.showPic} )
+        		<img src="$!{temp.showPic}" alt="$!{temp.templateName}"/>
+          		##<p><a href="#" class="c-blue">模板缩略图</a></p></p>
+        	#else
+        		<img src="#genImageUrl($!{temp.showPic},'150x150!')" alt="$!{temp.templateName}"/>
+           		##<p><a href="#" class="c-blue">模板缩略图</a></p></p>
+        	#end
+        </div>
+        <h3 title="$!{temp.templateName}">
+       		#set($str=$!temp.templateName)
+        	
+        	#if($str.length()>12)
+			    #set($str=$str.substring(0,12))
+			    $str ...
+			#else
+			    $!{temp.templateName}
+			#end
+        </h3>
+        <div>
+            <a href="javaScript:void(0);" class="btn to-use-temp"  data-temp-i="$!{temp.id}">使用覆盖</a>
+            ##<a href="" class="btn">预览预览</a>
+        </div>
+    </li>
+    #end
+</ul>
+</div>
+#end
+<div class="pagination bPage pagination-right ecppage" id="temp-page-controlbar" 
+	data-total-page="$!{gridResult.totalPage}" 
+	data-total-row="$!{gridResult.totalRow}" 
+	data-page-size="$!{gridResult.pageSize}" 
+	data-page-number="$!{gridResult.pageNumber}" 
+	data-status="begin">
+</div>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/seller/sellerpageinfo/open/seller-manage-temp-list.js?version=$!{JS_VERSION}"></script>

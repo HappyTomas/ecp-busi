@@ -1,0 +1,61 @@
+#parse("sys/sys_param.vm")
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+<input type="hidden" id="propPreStr" value="$!{propPreStr}"/>
+<script>
+</script>
+		
+<form id="paramsSetForm" class="required-validate form-horizontal templateItemForms" data-url="$!{CONTEXT_PATH}/modular-dynamic/commonModularFormSave">
+    <div class="dynamicFormMainBox">
+        	<input type="hidden" id="modularPageId" value="$!{pageId}"/>
+        	<input type="hidden" id="modularModularId" value="$!{modularId}"/>
+        	<input type="hidden" id="modularItemId" value="$!{itemId}"/>	
+        <h3 class="tit" style="color:red">单列图片模块</h3>
+        
+        <div class="edit-tip">
+            <i class="close wap_close_i" id="close_i"></i>
+        
+            <p class="title">模块使用小贴士</p>
+        
+            <div class="content">
+                图片建议尺寸：640*182<br>
+                单列图片模块适用于精美大图展示
+            </div>
+        </div>
+        <div class="form-block formItem">
+            <label>$!{attrs.get(1020).propName}</label>
+        	<input type="hidden" id="propValue" value="$!{propPre.get('1020_0_0').propValue}">
+        	<input type="hidden" id="propValueId" value="$!{propPre.get('1020_0_0').propValueId}">
+        	<input type="hidden" id="propId" value="$!{attrs.get(1020).id}">
+        	<input type="hidden" id="propItemId" value="$!{propPre.get('1020_0_0').id}"/>
+        	<input type="hidden" id="controlPropId" value="0"/>
+        	<input type="hidden" id="propGroupId" value="0"/>
+            <div class="wap_img_upload" file-id="$!{propPre.get('1020_0_0').propValue}" file-url="#genImageUrl($!{propPre.get('1020_0_0').propValue},'')" image-max-width="640" image-max-height="182" >
+            </div>
+        </div>
+        <div class="form-block formItem">
+            <label>$!{attrs.get(1023).propName}</label>
+        	<input type="hidden" id="propValue" value="$!{propPre.get('1023_0_0').propValue}">
+        	<input type="hidden" id="propValueId" value="$!{propPre.get('1023_0_0').propValueId}">
+        	<input type="hidden" id="propId" value="$!{attrs.get(1023).id}">
+        	<input type="hidden" id="propItemId" value="$!{propPre.get('1023_0_0').id}"/>
+			<input type="hidden" id="controlPropId" value="0"/>
+        	<input type="hidden" id="propGroupId" value="0"/>
+            <input type="text" class="input-block-level cms-input-w-limit #if($!{attrs.get(1023).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);"   onkeyup="CommonModular.inputAssignMent(this);" oninput="CommonModular.inputAssignMent(this);" onpropertychange="CommonModular.inputAssignMent(this);" max-length="10" placeholder="请输入文本">
+        </div>
+        <div class="form-block formItem">
+            <label>$!{attrs.get(1015).propName}</label>
+            <div class="input-append">
+            	<input type="hidden" id="propValue" value="$!{propPre.get('1015_0_0').propValue}">
+            	<input type="hidden" id="propValueId" value="$!{propPre.get('1015_0_0').propValueId}">
+            	<input type="hidden" id="propId" value="$!{attrs.get(1015).id}">
+            	<input type="hidden" id="propItemId" value="$!{propPre.get('1015_0_0').id}"/>
+				<input type="hidden" id="controlPropId" value="0"/>
+				<input type="hidden" id="propGroupId" value="0"/>
+                <input type="text" class="input-block-level link-input-tool #if($!{attrs.get(1015).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);"   onkeyup="CommonModular.inputAssignMent(this);" oninput="CommonModular.inputAssignMent(this);" onpropertychange="CommonModular.inputAssignMent(this);" value="$!{propPre.get('1015_0_0').propValue}" placeholder="如果输入绝对路径,请以http://开头!">
+            </div>
+        </div>
+    </div>
+</form>
+

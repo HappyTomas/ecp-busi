@@ -1,0 +1,49 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/coupon/coupon-list.js?version=$!{JS_VERSION}" ></script>
+<div class="nItem">
+ 
+   <div style="overflow-x: auto;">
+       <table class="seller-table table-striped">
+                               <thead>
+                               <tr>
+                                    <td style="width:20px">选择</td>
+                                    <td style="width:20px">站点</td>
+                                    <td style="width:20px">店铺</td>
+						            <td style="width:20px">优惠券名称</td>
+						            <td style="width:20px">优惠券的类型</td>
+						            <td style="width:20px">额度</td>
+						            <td style="width:20px">发型总量</td>
+						            <td style="width:20px">日期类型</td>
+						            <td style="width:20px">生效时间</td>
+						            <td style="width:20px">失效时间</td>
+                                </tr>
+                               </thead>
+                               <tbody>
+						        	#if(!$coupPage.getResult()||$coupPage.count==0)
+						        		<tr><td colspan='10'>很遗憾，暂无数据。</td><tr>
+						        	#else
+						        	
+						        	#foreach($attr in $coupPage.getResult())
+						        		<tr>
+						        			<td style="width:20px"><input type="radio" id="$!{attr.id}" name="radio" coupName="$!{attr.coupName}"  coupValue="$!{attr.coupValue}"/></td>
+							                <td style="width:20px">#escapeHtml( "$!{attr.siteName}")</td>
+							                <td style="width:20px">#escapeHtml( "$!{attr.shopName}")</td>
+							                <td  class="td-hhtxt" > <div>#escapeHtml( "$!{attr.coupName}")</div></td>
+							                <td style="width:20px">#escapeHtml( "$!{attr.coupTypeName}")</td>
+							                <td style="width:20px">#if($!{attr.coupValue}<=0) 抵用券 #else #moneyNum($!{attr.coupValue}) #end</td>
+							                <td style="width:20px">$!{attr.coupNum}</td>
+							                <td style="width:20px">#escapeHtml( "$!{attr.effTypeName}")</td>
+							                <td style="width:20px">$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.activeTime})</td>
+							                <td style="width:20px">$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.inactiveTime})</td>
+							            </tr>
+									#end
+									#end
+								</tbody>
+	     </table>
+	    <div class="fav-opt clearfix" style="margin-top: 20px;">
+	        <div class="row-fluid">
+				<div id="pageControlbar" class="ecppage" data-total-page="${coupPage.pageCount}" data-total-row="${coupPage.count}" data-page-size="${coupPage.pageSize}" data-page-number="${coupPage.pageNo}" data-status="begin"></div>
+			</div>
+	    </div>
+	</div>
+</div>

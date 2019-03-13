@@ -1,0 +1,31 @@
+<div class="line-dash"></div>
+<div class="item">
+	#if($!{gdsDetailInfo.skuInfo.gdsStatus}=='22')
+		<strong>该商品已下架!</strong>
+	#elseif($!{gdsDetailInfo.skuInfo.gdsStatus}=='0')
+		<strong>该商品未上架!</strong>
+	#end
+</div>
+<div class="item mt10">
+    <div class="pro-similar-tit">类似商品</div>
+    <ul class="pro-similar clearfix">
+		#if(!$!{commondCatGds} ||  $!{commondCatGds.size()}==0)
+			<div class="pro-empty">
+				「暂无类似商品」
+			</div>
+		#else
+    		#foreach($list in $!{commondCatGds})
+            <li>
+                <a href="${CONTEXT_PATH}/gdsdetail/$!{list.skuInfo.gdsId}-$!{list.skuInfo.id}">
+                    <img width="118" height="118" src="${aiTool.genImageUrl($!{list.skuInfo.mainPic.mediaUuid},'150x150!')}">
+                        <p class="name">$!{list.gdsName}</p>
+                        <p class="price">
+                            <span class="rob">#money($!{list.skuInfo.realPrice})</span>
+                        </p>
+    			</a>
+    		</li>
+    		#end
+		#end
+		
+</ul>
+</div>

@@ -1,0 +1,38 @@
+#parse("/sys/sys_param.vm")
+#parse("/sys/sys_js_header.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/rep/rep-add-select.js?version=$!{JS_VERSION}" ></script>
+#parse("/seller/goods/rep/rep-custom-css.vm")
+
+	 <div id="selAdaptForm">
+       <div id = "selAdapt" style="margin-left:40px;margin-right:20px;margin-top:30px;display: table;font-size:16px">
+       	#if($cityAreas.size()!=0)
+			#foreach($cityArea in $cityAreas)
+				#if($cityArea.ifHasOver == true)
+				#if($cityArea.ifCRepHasOver == true)				
+			<div class="spanlocal"><div><div><input type="hidden"  ifHasOver="true"/><input type="checkbox" name="$cityArea.cityCode" value="$cityArea.cityCode" checked="checked"/><div style="display: inline;margin-left:5px">$cityArea.areaName</div></div></div></div>
+	            #else			
+			<div class="spanlocal"><div><div><input type="hidden" /><input type="checkbox" name="$cityArea.cityCode" value="$cityArea.cityCode" checked="checked" disabled="true"/><div style="display: inline;margin-left:5px">$cityArea.areaName</div></div></div></div>	
+				#end	
+				#else
+			<div class="spanlocal"><div><div><input type="hidden" /><input type="checkbox" name="$cityArea.cityCode" value="$cityArea.cityCode"/><div style="display: inline;margin-left:5px">$cityArea.areaName</div></div></div></div>
+			
+				#end	
+				#end
+		   </div>	
+	   #end
+	   <div>
+		<div class="control-group">
+			#if($cityAreas.size()!=0)
+				<div class="controls">
+					<div style="margin-left:100px;margin-top:50px">
+						<button type="button" class="sbtn sbtn-blue" id="btnSave"><i class="icon-ok"></i> 保　存</button>
+						<button type="button" class="sbtn" id="btnReturn"><i class="icon-reply"></i> 返　回</button>					
+		            </div>					
+		         </div>
+		     #else
+		     	<font size="3" color="red">没有地市区域 !</font></br></br></br>
+		     	<button type="button" class="sbtn" id="btnReturn"><i class="icon-reply"></i> 返　回</button>		
+		     #end	    
+		</div>
+	   </div>
+	 </div>

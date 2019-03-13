@@ -1,0 +1,51 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/templateConfig/templateConfig-index.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+<!-- 隐藏域    -->
+<input type="hidden" id = "templateId" value= "$!{templateLib.id}" />
+<input type="hidden" id = "templateName" value= "$!{templateLib.templateName}" />
+<input type="hidden" id = "pageTypeId" value= "$!{templateLib.pageTypeId}" />
+<input type="hidden" id="templateType" value="$!{templateLib.templateType}">
+<input type="hidden" id="reqType" name="reqType" value="$!{reqType}" />
+	
+<div id="page">
+    <!--topbar-->
+    #parse("pageConfig/templateConfig/topbar.vm")
+    <!--topbar end-->
+
+    <div class="main-wrapper main-wrapper-design-mode wpst-toolbar-show">
+
+        <!--left-->
+        #parse("pageConfig/templateConfig/sidebar.vm")
+        <!--left end-->
+
+        <!--right-->
+        <div class="tpl-main">
+            <div class="design-navigation-wrap">
+
+                <ul class="design-mode-select div3">
+					#if($!{reqType}  != 'view')
+						<li><a class="active"><span>布局管理</span></a></li>
+					#end
+                </ul>
+				#if($!{reqType}  != 'view')
+                    <div class="page-operation-btns">
+                        <a class="page-publish-btn" data-target="#release" id="lnkTemplatePub" data-toggle="modal">发布</a>
+                    </div>
+				#end
+            </div>
+            <!--配置内容-->
+            <div class="div4" id="tpl-content">
+               
+            </div>
+
+        </div>
+        <!--right end-->
+    </div>
+</div>
+

@@ -1,0 +1,71 @@
+#parse("/module/mod-page.vm")
+#parse("sys/sys_param.vm")
+<style>
+    body{
+    background:#fff;
+    }
+    .page-al li {
+        float: left;
+        width: 18%;
+        text-align: center;
+        margin-left: 1%;
+        margin-top: 1%;
+        margin-right: 1%;
+        position: relative;
+        list-style: none;
+    }
+
+    .page-al li .pageliborder {
+        border: 1px solid #e3e3e4;
+        padding: 20px 0;
+    }
+
+    .pt20 {
+        padding-bottom: 40px;
+    }
+    .c-blue {
+        color: #408ee5;
+    }
+    .useTplBody{
+    position: relative;
+    }
+     .useTplBody .btns{
+     position: absolute;
+     top:0;
+     right:10px;
+     text-algin:right;
+     }
+     .useTplBody .btns .btn{
+     margin-left:10px
+     }
+     .data-empty{
+	    padding: 30px;
+	    color: #666;
+	    font-size: 14px;
+	    text-align: center;
+     }
+
+</style>
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+<input type="hidden" id="mallskintomanage" value="$!{mallskintomanage}" />
+
+<input type="hidden" id="pageId" value="$!{respVO.id}" />
+<input type="hidden" id="siteId" value="$!{respVO.siteId}" />
+<input type="hidden" id="platformType" value="$!{respVO.platformType}" />
+<input type="hidden" id="shopId" value="$!{respVO.shopId}" />
+<input type="hidden" id="pageTypeId" value="$!{respVO.pageTypeId}" />
+<div class="alert" style="font-size:13px;">注意：当前页面为#escapeHtml($!{respVO.pageName})，如果该页面已经编辑过，则应用模板会用模板的布局覆盖掉已编辑的布局！</div>
+<div class="useTplBody">
+    <div class='btns grid-menu'>
+       <a href="javaScript:void(0);" class="btn go-back">返回</a>
+    	<a href="javaScript:void(0);" class="btn go-next">下一步</a>
+    </div>
+	<ul class="nav nav-tabs" id="template-type-tab">
+	    
+	</ul>
+	<div id ="template-lib-list">
+	</div>
+</div>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageInfo/pageInfo-temp-grid.js?version=$!{JS_VERSION}" ></script>

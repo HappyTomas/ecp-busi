@@ -1,0 +1,52 @@
+#parse("sys/sys_param.vm")
+<link rel="stylesheet" type="text/css" media="screen" href="$CSS_PATH/reset.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="$CSS_PATH/member.css"/>
+<script type="text/javascript" src="$BUSIJS_PATH/staff/buyer-score.js?version=$!{JS_VERSION}"></script>
+<!--content-->
+ <div id="main">
+                <!--积分头部-->
+                <div class="point-top">
+                	#if(${scoreInfo.status} && ${scoreInfo.status} != "1")
+                		<p class="pint-tips">温馨提示：由于您的积分账户状态异常，暂时不能进行积分兑换，如有疑问请联系管理员！</p>
+                	#end
+                    <div class="point-head">
+                    	#if(${custPic})
+							<img style="width:100px;height:100px" src="#genImageUrl(${custPic},'220x220')" />
+						#else
+							<img style="width:100px;height:100px" src="../images/mb-defuser.png" />
+						#end
+                        <p class="font16 mt20"><b>您是<span class="c-red">$!{custLevel}</span></b></p>
+                    </div>
+                    <div class="point-right">
+                        <ul class="point-p">
+                            <li class="li-width"><p class="p-font">$!{scoreInfo.scoreBalance}</p>
+                                <p class="font14">我的可用积分</p></li>
+                            <li class="p-f">=</li>
+                            <li class="li-width"><p class="p-font">$!{scoreSourceTotalSum}</p>
+                                <p class="font14">累计积分</p></li>
+                            <li class="p-f">-</li>
+                            <li class="li-width"><p class="p-font">$!{scoreExchangeTotalSum}</p>
+                                <p class="font14">已用积分</p></li>
+                            <li class="p-f">-</li>
+                            <li class="li-width"><p class="p-font">$!{scoreInfo.scoreFrozen}</p>
+                                <p class="font14">冻结积分</p></li>
+                        </ul>
+                    </div>
+                </div>
+                <!--积分明细-->
+                <div class="point-tab clearfix mt10">
+                    <ul id="teamTab">
+                        <li ><a href="javascript:void(0);" id="scoreSource" class="active">积分来源明细</a></li>
+                        <li><a href="javascript:void(0);" id="scoreExchange">积分兑换明细</a></li>
+                        <li><a href="javascript:void(0);" id="scoreRule">积分计算规则</a></li>
+                    </ul>
+                </div>
+                
+                <div class="point-con">
+                	<div id="teamTabc">
+	                    <div id='tabContentDiv'>
+	                    	#parse("/staff/buyer/score/buyer-score-source.vm")
+	                    </div>
+                	</div>
+	            </div>
+            </div>

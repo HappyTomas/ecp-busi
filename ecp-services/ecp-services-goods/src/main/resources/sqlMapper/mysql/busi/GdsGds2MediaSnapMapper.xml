@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.busi.GdsGds2MediaSnapMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsGds2MediaSnap" >
+    <result column="SNAP_ID" property="snapId" jdbcType="INTEGER" />
+    <result column="GDS_ID" property="gdsId" jdbcType="INTEGER" />
+    <result column="MEDIA_UUID" property="mediaUuid" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="MEDIA_ID" property="mediaId" jdbcType="INTEGER" />
+    <result column="MEDIA_TYPE" property="mediaType" jdbcType="VARCHAR" />
+    <result column="MEDIA_RTYPE" property="mediaRtype" jdbcType="VARCHAR" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SNAP_ID, GDS_ID, MEDIA_UUID, SHOP_ID, MEDIA_ID, MEDIA_TYPE, MEDIA_RTYPE, SORT_NO, 
+    STATUS, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsGds2MediaSnapCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_gds_gds2media_snap
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsGds2MediaSnapCriteria" >
+    delete from t_gds_gds2media_snap
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.goods.dao.model.GdsGds2MediaSnap" >
+    insert into t_gds_gds2media_snap (SNAP_ID, GDS_ID, MEDIA_UUID, 
+      SHOP_ID, MEDIA_ID, MEDIA_TYPE, 
+      MEDIA_RTYPE, SORT_NO, STATUS, 
+      CREATE_TIME, CREATE_STAFF, UPDATE_TIME, 
+      UPDATE_STAFF)
+    values (#{snapId,jdbcType=INTEGER}, #{gdsId,jdbcType=INTEGER}, #{mediaUuid,jdbcType=VARCHAR}, 
+      #{shopId,jdbcType=INTEGER}, #{mediaId,jdbcType=INTEGER}, #{mediaType,jdbcType=VARCHAR}, 
+      #{mediaRtype,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateStaff,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsGds2MediaSnap" >
+    insert into t_gds_gds2media_snap
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="snapId != null" >
+        SNAP_ID,
+      </if>
+      <if test="gdsId != null" >
+        GDS_ID,
+      </if>
+      <if test="mediaUuid != null" >
+        MEDIA_UUID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="mediaId != null" >
+        MEDIA_ID,
+      </if>
+      <if test="mediaType != null" >
+        MEDIA_TYPE,
+      </if>
+      <if test="mediaRtype != null" >
+        MEDIA_RTYPE,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="snapId != null" >
+        #{snapId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsId != null" >
+        #{gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="mediaUuid != null" >
+        #{mediaUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="mediaId != null" >
+        #{mediaId,jdbcType=INTEGER},
+      </if>
+      <if test="mediaType != null" >
+        #{mediaType,jdbcType=VARCHAR},
+      </if>
+      <if test="mediaRtype != null" >
+        #{mediaRtype,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsGds2MediaSnapCriteria" resultType="java.lang.Long" >
+    select count(*) from t_gds_gds2media_snap
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_gds_gds2media_snap
+    <set >
+      <if test="record.snapId != null" >
+        SNAP_ID = #{record.snapId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsId != null" >
+        GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mediaUuid != null" >
+        MEDIA_UUID = #{record.mediaUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mediaId != null" >
+        MEDIA_ID = #{record.mediaId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mediaType != null" >
+        MEDIA_TYPE = #{record.mediaType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mediaRtype != null" >
+        MEDIA_RTYPE = #{record.mediaRtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortNo != null" >
+        SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_gds_gds2media_snap
+    set SNAP_ID = #{record.snapId,jdbcType=INTEGER},
+      GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      MEDIA_UUID = #{record.mediaUuid,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      MEDIA_ID = #{record.mediaId,jdbcType=INTEGER},
+      MEDIA_TYPE = #{record.mediaType,jdbcType=VARCHAR},
+      MEDIA_RTYPE = #{record.mediaRtype,jdbcType=VARCHAR},
+      SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

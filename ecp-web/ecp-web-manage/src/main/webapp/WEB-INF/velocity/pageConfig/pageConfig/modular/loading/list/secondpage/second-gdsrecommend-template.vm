@@ -1,0 +1,11 @@
+#if(${floorRespDto.id} && ${floorRespDto.id} != '')
+<ul class="recommend-data-body" floor-id="$!{floorRespDto.id}">
+
+</ul>
+#else
+<div class="nodata">
+	<span>
+	#if($errMsg && $errMsg != '')$!errMsg #else 未配置楼层！#end
+    </span>
+</div>
+#end

@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.busi.ShopInfoLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.ShopInfoLog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="COMPANY_ID" property="companyId" jdbcType="INTEGER" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="SHOP_FULL_NAME" property="shopFullName" jdbcType="VARCHAR" />
+    <result column="SHOP_GRADE" property="shopGrade" jdbcType="VARCHAR" />
+    <result column="SHOP_DESC" property="shopDesc" jdbcType="VARCHAR" />
+    <result column="SHOP_STATUS" property="shopStatus" jdbcType="VARCHAR" />
+    <result column="SHOP_DEAL_TYPE" property="shopDealType" jdbcType="VARCHAR" />
+    <result column="CAUTION_MONEY" property="cautionMoney" jdbcType="INTEGER" />
+    <result column="MICRO_MESSAGE_EXT" property="microMessageExt" jdbcType="VARCHAR" />
+    <result column="HOT_SHOW_SUPPORTED" property="hotShowSupported" jdbcType="VARCHAR" />
+    <result column="HOT_SHOW_SORT" property="hotShowSort" jdbcType="INTEGER" />
+    <result column="LOGO_PATH" property="logoPath" jdbcType="VARCHAR" />
+    <result column="LINK_PERSON" property="linkPerson" jdbcType="VARCHAR" />
+    <result column="LINK_MOBILEPHONE" property="linkMobilephone" jdbcType="VARCHAR" />
+    <result column="LINK_EMAIL" property="linkEmail" jdbcType="VARCHAR" />
+    <result column="DISTRIBUTION" property="distribution" jdbcType="VARCHAR" />
+    <result column="IS_USE_VIP" property="isUseVip" jdbcType="VARCHAR" />
+    <result column="OFFLINE_SUPPORTED" property="offlineSupported" jdbcType="VARCHAR" />
+    <result column="ONLINE_SUPPORTED" property="onlineSupported" jdbcType="VARCHAR" />
+    <result column="IS_WHITE_LIST" property="isWhiteList" jdbcType="VARCHAR" />
+    <result column="IS_BLACK_LIST" property="isBlackList" jdbcType="VARCHAR" />
+    <result column="INVALID_DATE" property="invalidDate" jdbcType="TIMESTAMP" />
+    <result column="INVALID_STAFF" property="invalidStaff" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SHOP_ID, COMPANY_ID, SHOP_NAME, SHOP_FULL_NAME, SHOP_GRADE, SHOP_DESC, SHOP_STATUS, 
+    SHOP_DEAL_TYPE, CAUTION_MONEY, MICRO_MESSAGE_EXT, HOT_SHOW_SUPPORTED, HOT_SHOW_SORT, 
+    LOGO_PATH, LINK_PERSON, LINK_MOBILEPHONE, LINK_EMAIL, DISTRIBUTION, IS_USE_VIP, OFFLINE_SUPPORTED, 
+    ONLINE_SUPPORTED, IS_WHITE_LIST, IS_BLACK_LIST, INVALID_DATE, INVALID_STAFF, CREATE_TIME, 
+    CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.ShopInfoLogCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_shop_info_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_shop_info_log
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_shop_info_log
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.ShopInfoLogCriteria" >
+    delete from t_shop_info_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.ShopInfoLog" >
+    insert into t_shop_info_log (ID, SHOP_ID, COMPANY_ID, 
+      SHOP_NAME, SHOP_FULL_NAME, SHOP_GRADE, 
+      SHOP_DESC, SHOP_STATUS, SHOP_DEAL_TYPE, 
+      CAUTION_MONEY, MICRO_MESSAGE_EXT, HOT_SHOW_SUPPORTED, 
+      HOT_SHOW_SORT, LOGO_PATH, LINK_PERSON, 
+      LINK_MOBILEPHONE, LINK_EMAIL, DISTRIBUTION, 
+      IS_USE_VIP, OFFLINE_SUPPORTED, ONLINE_SUPPORTED, 
+      IS_WHITE_LIST, IS_BLACK_LIST, INVALID_DATE, 
+      INVALID_STAFF, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_TIME, UPDATE_STAFF)
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{companyId,jdbcType=INTEGER}, 
+      #{shopName,jdbcType=VARCHAR}, #{shopFullName,jdbcType=VARCHAR}, #{shopGrade,jdbcType=VARCHAR}, 
+      #{shopDesc,jdbcType=VARCHAR}, #{shopStatus,jdbcType=VARCHAR}, #{shopDealType,jdbcType=VARCHAR}, 
+      #{cautionMoney,jdbcType=INTEGER}, #{microMessageExt,jdbcType=VARCHAR}, #{hotShowSupported,jdbcType=VARCHAR}, 
+      #{hotShowSort,jdbcType=INTEGER}, #{logoPath,jdbcType=VARCHAR}, #{linkPerson,jdbcType=VARCHAR}, 
+      #{linkMobilephone,jdbcType=VARCHAR}, #{linkEmail,jdbcType=VARCHAR}, #{distribution,jdbcType=VARCHAR}, 
+      #{isUseVip,jdbcType=VARCHAR}, #{offlineSupported,jdbcType=VARCHAR}, #{onlineSupported,jdbcType=VARCHAR}, 
+      #{isWhiteList,jdbcType=VARCHAR}, #{isBlackList,jdbcType=VARCHAR}, #{invalidDate,jdbcType=TIMESTAMP}, 
+      #{invalidStaff,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.ShopInfoLog" >
+    insert into t_shop_info_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID,
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME,
+      </if>
+      <if test="shopFullName != null" >
+        SHOP_FULL_NAME,
+      </if>
+      <if test="shopGrade != null" >
+        SHOP_GRADE,
+      </if>
+      <if test="shopDesc != null" >
+        SHOP_DESC,
+      </if>
+      <if test="shopStatus != null" >
+        SHOP_STATUS,
+      </if>
+      <if test="shopDealType != null" >
+        SHOP_DEAL_TYPE,
+      </if>
+      <if test="cautionMoney != null" >
+        CAUTION_MONEY,
+      </if>
+      <if test="microMessageExt != null" >
+        MICRO_MESSAGE_EXT,
+      </if>
+      <if test="hotShowSupported != null" >
+        HOT_SHOW_SUPPORTED,
+      </if>
+      <if test="hotShowSort != null" >
+        HOT_SHOW_SORT,
+      </if>
+      <if test="logoPath != null" >
+        LOGO_PATH,
+      </if>
+      <if test="linkPerson != null" >
+        LINK_PERSON,
+      </if>
+      <if test="linkMobilephone != null" >
+        LINK_MOBILEPHONE,
+      </if>
+      <if test="linkEmail != null" >
+        LINK_EMAIL,
+      </if>
+      <if test="distribution != null" >
+        DISTRIBUTION,
+      </if>
+      <if test="isUseVip != null" >
+        IS_USE_VIP,
+      </if>
+      <if test="offlineSupported != null" >
+        OFFLINE_SUPPORTED,
+      </if>
+      <if test="onlineSupported != null" >
+        ONLINE_SUPPORTED,
+      </if>
+      <if test="isWhiteList != null" >
+        IS_WHITE_LIST,
+      </if>
+      <if test="isBlackList != null" >
+        IS_BLACK_LIST,
+      </if>
+      <if test="invalidDate != null" >
+        INVALID_DATE,
+      </if>
+      <if test="invalidStaff != null" >
+        INVALID_STAFF,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopFullName != null" >
+        #{shopFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopGrade != null" >
+        #{shopGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="shopDesc != null" >
+        #{shopDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="shopStatus != null" >
+        #{shopStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="shopDealType != null" >
+        #{shopDealType,jdbcType=VARCHAR},
+      </if>
+      <if test="cautionMoney != null" >
+        #{cautionMoney,jdbcType=INTEGER},
+      </if>
+      <if test="microMessageExt != null" >
+        #{microMessageExt,jdbcType=VARCHAR},
+      </if>
+      <if test="hotShowSupported != null" >
+        #{hotShowSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="hotShowSort != null" >
+        #{hotShowSort,jdbcType=INTEGER},
+      </if>
+      <if test="logoPath != null" >
+        #{logoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPerson != null" >
+        #{linkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMobilephone != null" >
+        #{linkMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null" >
+        #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="distribution != null" >
+        #{distribution,jdbcType=VARCHAR},
+      </if>
+      <if test="isUseVip != null" >
+        #{isUseVip,jdbcType=VARCHAR},
+      </if>
+      <if test="offlineSupported != null" >
+        #{offlineSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineSupported != null" >
+        #{onlineSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="isWhiteList != null" >
+        #{isWhiteList,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlackList != null" >
+        #{isBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidDate != null" >
+        #{invalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidStaff != null" >
+        #{invalidStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.ShopInfoLogCriteria" resultType="java.lang.Long" >
+    select count(*) from t_shop_info_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_shop_info_log
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyId != null" >
+        COMPANY_ID = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopName != null" >
+        SHOP_NAME = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopFullName != null" >
+        SHOP_FULL_NAME = #{record.shopFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopGrade != null" >
+        SHOP_GRADE = #{record.shopGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopDesc != null" >
+        SHOP_DESC = #{record.shopDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopStatus != null" >
+        SHOP_STATUS = #{record.shopStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopDealType != null" >
+        SHOP_DEAL_TYPE = #{record.shopDealType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cautionMoney != null" >
+        CAUTION_MONEY = #{record.cautionMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.microMessageExt != null" >
+        MICRO_MESSAGE_EXT = #{record.microMessageExt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hotShowSupported != null" >
+        HOT_SHOW_SUPPORTED = #{record.hotShowSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hotShowSort != null" >
+        HOT_SHOW_SORT = #{record.hotShowSort,jdbcType=INTEGER},
+      </if>
+      <if test="record.logoPath != null" >
+        LOGO_PATH = #{record.logoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkPerson != null" >
+        LINK_PERSON = #{record.linkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkMobilephone != null" >
+        LINK_MOBILEPHONE = #{record.linkMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkEmail != null" >
+        LINK_EMAIL = #{record.linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.distribution != null" >
+        DISTRIBUTION = #{record.distribution,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isUseVip != null" >
+        IS_USE_VIP = #{record.isUseVip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.offlineSupported != null" >
+        OFFLINE_SUPPORTED = #{record.offlineSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="record.onlineSupported != null" >
+        ONLINE_SUPPORTED = #{record.onlineSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isWhiteList != null" >
+        IS_WHITE_LIST = #{record.isWhiteList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isBlackList != null" >
+        IS_BLACK_LIST = #{record.isBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invalidDate != null" >
+        INVALID_DATE = #{record.invalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.invalidStaff != null" >
+        INVALID_STAFF = #{record.invalidStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_shop_info_log
+    set ID = #{record.id,jdbcType=INTEGER},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      COMPANY_ID = #{record.companyId,jdbcType=INTEGER},
+      SHOP_NAME = #{record.shopName,jdbcType=VARCHAR},
+      SHOP_FULL_NAME = #{record.shopFullName,jdbcType=VARCHAR},
+      SHOP_GRADE = #{record.shopGrade,jdbcType=VARCHAR},
+      SHOP_DESC = #{record.shopDesc,jdbcType=VARCHAR},
+      SHOP_STATUS = #{record.shopStatus,jdbcType=VARCHAR},
+      SHOP_DEAL_TYPE = #{record.shopDealType,jdbcType=VARCHAR},
+      CAUTION_MONEY = #{record.cautionMoney,jdbcType=INTEGER},
+      MICRO_MESSAGE_EXT = #{record.microMessageExt,jdbcType=VARCHAR},
+      HOT_SHOW_SUPPORTED = #{record.hotShowSupported,jdbcType=VARCHAR},
+      HOT_SHOW_SORT = #{record.hotShowSort,jdbcType=INTEGER},
+      LOGO_PATH = #{record.logoPath,jdbcType=VARCHAR},
+      LINK_PERSON = #{record.linkPerson,jdbcType=VARCHAR},
+      LINK_MOBILEPHONE = #{record.linkMobilephone,jdbcType=VARCHAR},
+      LINK_EMAIL = #{record.linkEmail,jdbcType=VARCHAR},
+      DISTRIBUTION = #{record.distribution,jdbcType=VARCHAR},
+      IS_USE_VIP = #{record.isUseVip,jdbcType=VARCHAR},
+      OFFLINE_SUPPORTED = #{record.offlineSupported,jdbcType=VARCHAR},
+      ONLINE_SUPPORTED = #{record.onlineSupported,jdbcType=VARCHAR},
+      IS_WHITE_LIST = #{record.isWhiteList,jdbcType=VARCHAR},
+      IS_BLACK_LIST = #{record.isBlackList,jdbcType=VARCHAR},
+      INVALID_DATE = #{record.invalidDate,jdbcType=TIMESTAMP},
+      INVALID_STAFF = #{record.invalidStaff,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.ShopInfoLog" >
+    update t_shop_info_log
+    <set >
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopFullName != null" >
+        SHOP_FULL_NAME = #{shopFullName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopGrade != null" >
+        SHOP_GRADE = #{shopGrade,jdbcType=VARCHAR},
+      </if>
+      <if test="shopDesc != null" >
+        SHOP_DESC = #{shopDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="shopStatus != null" >
+        SHOP_STATUS = #{shopStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="shopDealType != null" >
+        SHOP_DEAL_TYPE = #{shopDealType,jdbcType=VARCHAR},
+      </if>
+      <if test="cautionMoney != null" >
+        CAUTION_MONEY = #{cautionMoney,jdbcType=INTEGER},
+      </if>
+      <if test="microMessageExt != null" >
+        MICRO_MESSAGE_EXT = #{microMessageExt,jdbcType=VARCHAR},
+      </if>
+      <if test="hotShowSupported != null" >
+        HOT_SHOW_SUPPORTED = #{hotShowSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="hotShowSort != null" >
+        HOT_SHOW_SORT = #{hotShowSort,jdbcType=INTEGER},
+      </if>
+      <if test="logoPath != null" >
+        LOGO_PATH = #{logoPath,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPerson != null" >
+        LINK_PERSON = #{linkPerson,jdbcType=VARCHAR},
+      </if>
+      <if test="linkMobilephone != null" >
+        LINK_MOBILEPHONE = #{linkMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="linkEmail != null" >
+        LINK_EMAIL = #{linkEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="distribution != null" >
+        DISTRIBUTION = #{distribution,jdbcType=VARCHAR},
+      </if>
+      <if test="isUseVip != null" >
+        IS_USE_VIP = #{isUseVip,jdbcType=VARCHAR},
+      </if>
+      <if test="offlineSupported != null" >
+        OFFLINE_SUPPORTED = #{offlineSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="onlineSupported != null" >
+        ONLINE_SUPPORTED = #{onlineSupported,jdbcType=VARCHAR},
+      </if>
+      <if test="isWhiteList != null" >
+        IS_WHITE_LIST = #{isWhiteList,jdbcType=VARCHAR},
+      </if>
+      <if test="isBlackList != null" >
+        IS_BLACK_LIST = #{isBlackList,jdbcType=VARCHAR},
+      </if>
+      <if test="invalidDate != null" >
+        INVALID_DATE = #{invalidDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidStaff != null" >
+        INVALID_STAFF = #{invalidStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.ShopInfoLog" >
+    update t_shop_info_log
+    set SHOP_ID = #{shopId,jdbcType=INTEGER},
+      COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      SHOP_FULL_NAME = #{shopFullName,jdbcType=VARCHAR},
+      SHOP_GRADE = #{shopGrade,jdbcType=VARCHAR},
+      SHOP_DESC = #{shopDesc,jdbcType=VARCHAR},
+      SHOP_STATUS = #{shopStatus,jdbcType=VARCHAR},
+      SHOP_DEAL_TYPE = #{shopDealType,jdbcType=VARCHAR},
+      CAUTION_MONEY = #{cautionMoney,jdbcType=INTEGER},
+      MICRO_MESSAGE_EXT = #{microMessageExt,jdbcType=VARCHAR},
+      HOT_SHOW_SUPPORTED = #{hotShowSupported,jdbcType=VARCHAR},
+      HOT_SHOW_SORT = #{hotShowSort,jdbcType=INTEGER},
+      LOGO_PATH = #{logoPath,jdbcType=VARCHAR},
+      LINK_PERSON = #{linkPerson,jdbcType=VARCHAR},
+      LINK_MOBILEPHONE = #{linkMobilephone,jdbcType=VARCHAR},
+      LINK_EMAIL = #{linkEmail,jdbcType=VARCHAR},
+      DISTRIBUTION = #{distribution,jdbcType=VARCHAR},
+      IS_USE_VIP = #{isUseVip,jdbcType=VARCHAR},
+      OFFLINE_SUPPORTED = #{offlineSupported,jdbcType=VARCHAR},
+      ONLINE_SUPPORTED = #{onlineSupported,jdbcType=VARCHAR},
+      IS_WHITE_LIST = #{isWhiteList,jdbcType=VARCHAR},
+      IS_BLACK_LIST = #{isBlackList,jdbcType=VARCHAR},
+      INVALID_DATE = #{invalidDate,jdbcType=TIMESTAMP},
+      INVALID_STAFF = #{invalidStaff,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

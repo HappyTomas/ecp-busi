@@ -1,0 +1,143 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/sidebarWap.js?version=$!{JS_VERSION}" ></script>
+<style>
+.tpl-sidebar .tab-bar li.disabled {
+	cursor: not-allowed;
+}
+</style>
+<div class="tpl-sidebar">
+	<ul class="tab-bar">
+		<!-- 选择模块 -->
+		<li class="modules selected">
+			<div class="wrap">
+				<div class="left-line"></div>
+				<b class="iconfont">&#xe66f;</b>
+
+				<div>模块</div>
+				<b class="arrow"></b>
+			</div>
+		</li>
+		<li class="page $!{pageClass}">
+			<div class="wrap ">
+				<div class="left-line"></div>
+				<b class="iconfont">&#xe66b;</b>
+
+				<div>页面</div>
+				<b class="arrow"></b>
+			</div>
+		</li>
+	</ul>
+
+	<dl class="toolbar">
+		<dt></dt>
+		<!-- 选择模块-->
+		<dd class="modules-slide slide selected">
+			<b class="close-icon iconfont">&#xe66c;</b>
+
+			<div class="inside">
+				<p>
+					请选择模块并拖动至相应布局！<a href="javascript:void(0);" class="help-trigger"></a>
+				</p>
+
+				<div class="modules-accordion-box" style="height: 382px;">
+					<div class="modules-wrap modules-wrap-current">
+						<div class="head">
+							<span>基础模块</span> 
+							<b class="dropdown-icon"></b>
+						</div>
+						<ul class="module-list clearfix" style="height: 292px;">
+							<!-- 
+							模块内容
+							 -->
+						</ul>
+					</div>
+
+				</div>
+			</div>
+		</dd>
+		<!-- 选择模块 end-->
+		<!-- 选择页面 -->
+		<!-- attr 开头的id 为页面属性 -->
+		<dd class="page-slide slide page-attribute">
+			<b class="close-icon iconfont">&#xe66c;</b>
+			<div class="page-sidebar">
+				<div class="page-sidebar-wrap" style="height: 400px;">
+					<div class="page-body-bg">
+						<label>页面背景色：</label> 
+							<input type="hidden" id="attr-backgroundColor" value="#if($!{pageAttrPre.backgroundColor})$!{pageAttrPre.backgroundColor} #else ffffff #end" style="background-color: #$!{pageAttrPre.backgroundColor};" /> 
+							<label class="lable-ck onselected"> 
+							<input name="Fruit" type="checkbox" id="attr-showBackFlag" value="$!{pageAttrPre.showBackFlag}" #if($!{pageAttrPre.showBackFlag} == 1)checked="checked" #end/> 
+							<span>显示</span>
+						</label>
+						<div class="tips">若背景色设置不生效可尝试删除背景图</div>
+					</div>
+					
+					<div class="page-body-bgimg clearfix">
+						<div class="item-tt">页面背景图：</div>
+						<div class="fl bgimg">
+							<img id ="background-pic-url" src="#if($!{pageAttrPre.backgroundPic})#genImageUrl($!{pageAttrPre.backgroundPic},'58x58!')#else $!{IMAGE_PATH}/pageConfig/no-pic.gif #end" data-url="#if($!{pageAttrPre.backgroundPic})#genImageUrl($!{pageAttrPre.backgroundPic},'')#end" alt="页面背景图">
+							<input id="attr-backgroundPic"  type="hidden"  value="$!{pageAttrPre.backgroundPic}"> 
+						</div>
+						<div class="fl action">
+
+							<div class="action-btn">
+								<a href="javascript:void(0)" class="g-u ks-uploader-button">
+									<span class="btn-text">更换图片</span>
+
+									<div style="overflow: hidden;">
+										<input type="file" name="uploadFileObj" id="change-bg-img" value="更换图片" class="file-input">
+									</div>
+								</a> <a class="delete" id="delete-bg-img">删除</a>
+							</div>
+
+							<div class="content">
+								<div>文件格式：GIF,JPG,PNG</div>
+								<div>文件大小：1024kB以内,</div>
+								<div>规格：不限宽高,内容排在1200px内。</div>
+							</div>
+						</div>
+					</div>
+					<div class="bg-align">
+						<div class="item-tt">背景显示</div>
+						<input type="hidden" id="attr-backgroupShowType" value="$!{pageAttrPre.backgroupShowType}"> 
+						<table class="type-switch">
+							<tbody>
+								<tr>
+									<td class="layoutBg-repeat #if($!{pageAttrPre.backgroupShowType} == '01')selected #end backgroup-show-type" data-show-type="01">平铺</td>
+									<td class="layoutBg-no-repeat #if($!{pageAttrPre.backgroupShowType} == '02')selected #end backgroup-show-type" data-show-type="02">不平铺</td>
+									<td class="layoutBg-repeat-y #if($!{pageAttrPre.backgroupShowType} == '03')selected #end backgroup-show-type" data-show-type="03">纵向平铺</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</dd>
+		<!-- 选择页面 end-->
+
+
+	</dl>
+
+</div>
+
+<!-- js 模板   模块对应模板-->
+<script id="arttemplate-modular-list" type="text/html">
+{{if msg == 1}}
+{{each modulars as modular i}}
+	<li class="ecp-component" data-id = "{{modular.id}}" data-apply-type="{{modular.modularComponentRespDTO.applyItemSize}}" data-modular-type="{{modular.modularType}}"  data-modular-name="{{modular.modularName}}" data-component-edit-url="{{modular.modularComponentRespDTO.componentRespDTO.componentEditUrl}}" data-component-vm-url="{{modular.modularComponentRespDTO.componentRespDTO.componentVmUrl}}" data-module="{{modular.modularComponentRespDTO.componentRespDTO.componentUrl}}">
+		<span class="pic">
+			<img src="{{modular.showPic}}" />
+		</span> 
+		<span class="content" title="{{modular.modularName}}">
+			{{if modular.modularName.length>4}}
+				{{modular.modularName.substr(0,3)}}...
+			{{/if}}
+			{{if modular.modularName.length<=4}}
+				{{modular.modularName}}
+			{{/if}}
+		</span>
+	</li>
+{{/each}}
+{{/if}}
+</script>

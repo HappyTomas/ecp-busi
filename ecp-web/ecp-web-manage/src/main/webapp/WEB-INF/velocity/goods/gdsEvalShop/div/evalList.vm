@@ -1,0 +1,78 @@
+#parse("/module/mod-page.vm")
+<script type="text/javascript">
+	$(function() {
+		//事件绑定
+		EvalGrid.evalListFn();
+		EvalGrid.textLimit();
+	});
+</script>
+<table class="table table-bordered seller-dztb">
+	<thead>
+		<tr>
+			<!--  <td><input type="checkbox" /></td>-->
+			<th style="width:10%">商品名称</th>
+			<th style="width:12%">订单</th>
+			<th style="width:8%">评价评分</th>
+			<th style="width:40%">评价内容</th>
+			<th style="width:10%">评价标签</th>
+			<th style="width:10%">评价时间</th>
+			<th style="width:10%">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		#if(!$gridResult.list || $gridResult.list.size() == 0)
+		<tr class="fav-opt">
+			<td colspan="10">#if(!$msg)没有数据#else $!msg #end</td>
+		</tr>
+		#else
+    		#foreach ($eval in $gridResult.list)
+    		<tr id="$eval.id" class="evaltr">
+    			<!--  <td><input type="checkbox" /></td>-->
+    			<td  style="word-break:break-all;word-wrap:break-word"><a href="$!{eval.gdsDetailUrl}" target="_blank">#escapeHtml($!{eval.gdsName})</a></td>
+    			<td><a href="${CONTEXT_PATH}/order/orderdetails?orderId=$!{eval.orderId}" target="_blank">$!{eval.orderId}</a></td>
+    			<td>$!{eval.score}</td>
+    			<td style="word-break:break-all;word-wrap:break-word;text-align:left;">#escapeHtml($!{eval.detail})</td>
+    			<td>#escapeHtml($!{eval.labelName})</td>
+    			<td>$!date.format('yyyy-MM-dd HH:mm',$!{eval.evaluationTime})</td>
+    			<td>#if($!{eval.replyCount} != 0) <span class="replynum">
+    					<span class="showreply"> <a href="#none">显示回复($!{eval.replyCount})</a>
+    				</span> <span class="closereply" style="display: none;"> <a href="#none">收起回复</a>
+    				</span>
+    			</span>
+    			</td>
+    		</tr>
+    		#else
+    		<span class="replynum" style="display: none;"> <span class="showreply"> <a href="#none">显示回复(1)</a>
+    		</span> <span class="closereply" style="display: none;"> <a
+    				href="#none">收起回复</a>
+    		</span>
+    		</span>
+    		<span class="rfeval"><a href="#none">回复</a></span>
+    		</td>
+    		</tr>
+    		<tr class="replyeval" style="display: none;">
+    			<td class="toreplytd" colspan="8">
+    				<div class="toreply-box">
+    					<div class="etextwrap">
+    						<div class="reply-arrow"></div>
+    						<textarea class="rtext" cols="50" rows="4"></textarea>
+    						<div class="help-block">
+    							还可以输入<b>120</b>个汉字
+    						</div>
+    						<input type="button" class="btn foreval" id value="发表" />
+    					</div>
+    				</div>
+    			</td>
+    		</tr>
+    		#end 
+    		#end ##end of foreach
+		#end
+	</tbody>
+</table>
+<!--         begin    of    分页                        -->
+<div class="row-fluid">
+	<div id="pageMainBox">
+		<div id="pageControlbar" data-total-page="$!{gridResult.totalPage}" data-total-row="$!{gridResult.totalRow}" data-page-size="$!{gridResult.pageSize}" data-page-number="$!{gridResult.pageNumber}" data-status="begin"></div>
+	</div>
+	<div class="" style="margin-top: 5px;"></div>
+</div> <!--         end    of     分页                           -->

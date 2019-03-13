@@ -1,0 +1,156 @@
+#parse("sys/sys_param.vm")
+#if(${floorTemplate})
+<div class = "floorTemplate-block">
+<!-- 楼层内容位置样式 -->
+<style>
+.floorplace-block{
+         border :solid #e9e9e9;
+         margin-bottom:15px;
+}
+.floorplace-block .formSep{
+         border:0 none;
+}
+
+.template-img-show img{
+		max-width:500px;
+		max-height:200px;
+}
+.template-img-show hr{
+		border:1px dashed #eaeaea;
+}
+.floorplace-block .menu-list{
+	position: absolute;
+    top: 2px;
+    right: 10px;
+    list-style: none;
+}
+.floorplace-block .menu-list li{
+	float: left;
+    margin-right: 10px;
+    color: #12a0ec;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.floorplace-block .img-polaroid{
+	margin-top:5px;
+	width:140px;
+	height:140px;
+	font-size:0;
+}
+.floorplace-block .img-polaroid img{
+	width:140px;
+	margin:auto 0;
+	vertical-align: middle;
+}
+.floorplace-block .img-polaroid i{
+	display:inline-block;
+	height:100%;
+	vertical-align: middle;
+	width: 0;
+}
+
+</style>
+    <!-- 模板示例图 -->
+	<div class="formSep template-img-show">
+ 	   <div class="control-group">
+    		<label class="control-label" for="name">楼层模板示例：</label>
+   			<div class="controls">
+    			<div class="panel-body">
+					<img src="#genImageUrl($!{floorTemplate.vfsId},'')" class="img-polaroid">
+				</div>
+    		</div>
+   	   </div>
+	</div>
+	
+	#if($!{floorTemplate.templateNo} == 200)
+		#set($isSlider = '1')##标注为轮播模板
+	#end
+	<input type="hidden" id="place-ids" data-is-slider="$!{isSlider}" data-total="$!{placeList.size()}"  value="#foreach($floorplace in ${placeList})$!{floorplace.id},#end"/>
+	<!-- 内容位置 -->
+	#foreach($floorplace in ${placeList})
+	#set($floorData = '')
+	#set($floorData = $floorDataMap.get($!{floorplace.id}))
+	#if($isSlider != 1 || $velocityCount == 1 || ( $floorData.id &&  $floorData.id !=''))##轮播模板特殊处理   不是轮播  或者 是轮播的第一条数据  或者是轮播有值的数据
+	<div class = "floorplace-block" floor-place-id="$!{floorplace.id}" style="position: relative;">
+		#if($isSlider == 1)
+		<ul class="menu-list">
+   			 <li class="mup"><i class="icon-arrow-up"></i>上移</li>
+ 			 <li class="mdown"><i class="icon-arrow-down"></i>下移</li>
+ 			 <li class="mdel"><i class="icon-remove"></i>删除</li>
+ 		</ul>
+ 		#end
+		<!-- app楼层数据id -->
+		<input type="hidden" class = "floor-data-id" value="$!{floorData.Id}" />
+		<!-- app楼层数据图片上传 -->
+		<div class="formSep floor-data-img" place_width="$!{floorplace.placeWidth}" place_height="$!{floorplace.placeHeight}" place_size="$!{floorplace.placeSize}">
+			<div class="control-group">
+				<label class="control-label" for="imagePreview">图<span class="place-sort">$!{floorplace.sortNo}</span>：</label>
+				<div class="controls imageUploadForm">
+					<div class="panel-body img-polaroid">
+						<img class="imagePreview" src="#genImageUrl($!{floorData.vfsId},'130x130!')">
+					    <i></i>
+					</div>
+					<input type="hidden" class="vfsId" name="vfsId-$!{floorplace.id}" value="$!{floorData.vfsId}" /> 
+					<div id="uploadFileObj-$!{floorplace.id}" class="btn btn-primary uploadFileObj" style="margin-top:5px;" data-place-width="$!{floorplace.placeWidth}" data-place-height="$!{floorplace.placeHeight}" data-place-size="$!{floorplace.placeSize}"><i class="icon-upload-alt"></i> 上传缩略图</div>
+				</div>
+			</div>
+			<div class="controls">
+				<span class="uploadWarn help-inline" style="color: #FF0000">温馨提醒：请上传小于$!{floorplace.placeSize}k的图片（jpg,png,jpeg,gif,bmp），规格为$!{floorplace.placeWidth}*$!{floorplace.placeHeight}px！</span>
+			</div>
+		</div>
+		
+		<div class="formSep">
+			<div class="control-group">
+				<label class="control-label" for="linkType-$!{floorplace.id}"><span style="color:red">*</span>链接类型：</label>
+				<div class="controls">
+					<select name="linkType-$!{floorplace.id}" class="required linkType">
+					#listParam('CMS_ADVERTISE_LINK_TYPE',$!{floorData.linkType})
+					</select> 
+					<span class="help-inline">请选择链接类型</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="formSep">
+			<div class="control-group">
+				<label class="control-label" for="linkName-$!{floorplace.id}"><span style="color:red">*</span>链接内容：</label>
+				<div class="controls">
+					<input type="text"  name="linkName-$!{floorplace.id}" class="input-large required linkName " placeholder="请选择链接内容" maxlength = "256" value="#escapeHtml($!{floorData.name})" readonly="readonly"/>
+					<button type="button" class="select_link_detail btn"><i class="icon-magic"></i>选择</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="formSep linkUrl-block hide">
+			<div class="control-group">
+				<label class="control-label" for="linkUrl-$!{floorplace.id}"><span style="color:red">*</span>链接地址：</label>
+				<div class="controls">
+					<input type="text" name="linkUrl-$!{floorplace.id}" class="input-large required linkUrl" maxlength = "256" value="#escapeHtml($!{floorData.linkUrl})"/>
+				</div>
+			</div>
+		</div>
+		#*<!--
+		<div class="formSep">
+    		<div class="control-group">
+    			<label class="control-label" for="remark-$!{floorplace.id}">备注：</label>
+    			<div class="controls cms-count">
+    				<textarea style="width:90%" rows="4" cols="100" onkeyup="checkLen(this,'count-$!{floorplace.id}','250')"  class="input-block-level cms-text remark"  name="remark-$!{floorplace.id}"  placeholder="请填写备注">#escapeHtml($!{floorData.remark})</textarea>
+    				<span class="help-inline">您还可以输入<span style="color:red" class="cms-totalNum" id="count-$!{floorplace.id}">250</span>字！</span>
+    			</div>
+    		</div>
+   		</div>
+		-->*#
+	</div>
+	#end
+	#end
+	#if($isSlider == 1)
+	<div class="row-fluid" style="margin-bottom: 10px;">
+		<div class="pull-right">
+			<a class="btn" id="add-place-data" href="javascript:void(0)"><i class="icon-plus icon-white"></i> 添加 <span class="add-btn-tip"></span></a>
+		</div>
+	</div>
+	#end
+	<hr size="1" style="border:1px dashed #eaeaea"/>
+</div>
+#end

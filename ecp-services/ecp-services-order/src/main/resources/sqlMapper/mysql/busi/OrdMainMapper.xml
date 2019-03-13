@@ -1,0 +1,1005 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.OrdMainMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdMain" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ORDER_CODE" property="orderCode" jdbcType="VARCHAR" />
+    <result column="ORDER_AMOUNT" property="orderAmount" jdbcType="INTEGER" />
+    <result column="ORDER_MONEY" property="orderMoney" jdbcType="INTEGER" />
+    <result column="REAL_MONEY" property="realMoney" jdbcType="INTEGER" />
+    <result column="REAL_EXPRESS_FEE" property="realExpressFee" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="PAY_TIME" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="DELIVER_DATE" property="deliverDate" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="ORDER_TWO_STATUS" property="orderTwoStatus" jdbcType="VARCHAR" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+    <result column="PAY_TYPE" property="payType" jdbcType="VARCHAR" />
+    <result column="PAY_FLAG" property="payFlag" jdbcType="VARCHAR" />
+    <result column="DISPATCH_TYPE" property="dispatchType" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="PAY_LOCK" property="payLock" jdbcType="VARCHAR" />
+    <result column="BUYER_MSG" property="buyerMsg" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="SYS_TYPE" property="sysType" jdbcType="VARCHAR" />
+    <result column="PAY_WAY" property="payWay" jdbcType="VARCHAR" />
+    <result column="ORDER_SCORE" property="orderScore" jdbcType="INTEGER" />
+    <result column="INVOICE_TYPE" property="invoiceType" jdbcType="VARCHAR" />
+    <result column="CONTACT_NAME" property="contactName" jdbcType="VARCHAR" />
+    <result column="CONTACT_PHONE" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="CHNL_ADDRESS" property="chnlAddress" jdbcType="VARCHAR" />
+    <result column="POST_CODE" property="postCode" jdbcType="VARCHAR" />
+    <result column="CONTACT_NUMBER" property="contactNumber" jdbcType="VARCHAR" />
+    <result column="PROVINCE" property="province" jdbcType="VARCHAR" />
+    <result column="CITY_CODE" property="cityCode" jdbcType="VARCHAR" />
+    <result column="COUNTY_CODE" property="countyCode" jdbcType="VARCHAR" />
+    <result column="BRING_NAME" property="bringName" jdbcType="VARCHAR" />
+    <result column="CARD_TYPE" property="cardType" jdbcType="VARCHAR" />
+    <result column="CARD_ID" property="cardId" jdbcType="VARCHAR" />
+    <result column="BRING_NUMBER" property="bringNumber" jdbcType="VARCHAR" />
+    <result column="BRING_PHONE" property="bringPhone" jdbcType="VARCHAR" />
+    <result column="BILLING_FLAG" property="billingFlag" jdbcType="VARCHAR" />
+    <result column="SEND_INVOICE_TYPE" property="sendInvoiceType" jdbcType="VARCHAR" />
+    <result column="INVOICE_EXPRESS_NO" property="invoiceExpressNo" jdbcType="VARCHAR" />
+    <result column="BASIC_MONEY" property="basicMoney" jdbcType="INTEGER" />
+    <result column="IS_IN_AUDIT_FILE" property="isInAuditFile" jdbcType="VARCHAR" />
+    <result column="STAFF_CODE" property="staffCode" jdbcType="VARCHAR" />
+    <result column="STAFF_NAME" property="staffName" jdbcType="VARCHAR" />
+    <result column="COMPANY_ID" property="companyId" jdbcType="INTEGER" />
+    <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="PAY_TRAN_NO" property="payTranNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ORDER_CODE, ORDER_AMOUNT, ORDER_MONEY, REAL_MONEY, REAL_EXPRESS_FEE, SHOP_ID, 
+    SHOP_NAME, STAFF_ID, ORDER_TIME, PAY_TIME, DELIVER_DATE, STATUS, ORDER_TWO_STATUS, 
+    ORDER_TYPE, PAY_TYPE, PAY_FLAG, DISPATCH_TYPE, SOURCE, PAY_LOCK, BUYER_MSG, CREATE_TIME, 
+    CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, SITE_ID, SYS_TYPE, PAY_WAY, ORDER_SCORE, 
+    INVOICE_TYPE, CONTACT_NAME, CONTACT_PHONE, CHNL_ADDRESS, POST_CODE, CONTACT_NUMBER, 
+    PROVINCE, CITY_CODE, COUNTY_CODE, BRING_NAME, CARD_TYPE, CARD_ID, BRING_NUMBER, BRING_PHONE, 
+    BILLING_FLAG, SEND_INVOICE_TYPE, INVOICE_EXPRESS_NO, BASIC_MONEY, IS_IN_AUDIT_FILE, 
+    STAFF_CODE, STAFF_NAME, COMPANY_ID, COMPANY_NAME, START_TIME, END_TIME, PAY_TRAN_NO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.OrdMainCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_ord_main
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ord_main
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_ord_main
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdMainCriteria" >
+    delete from t_ord_main
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.OrdMain" >
+    insert into t_ord_main (ID, ORDER_CODE, ORDER_AMOUNT, 
+      ORDER_MONEY, REAL_MONEY, REAL_EXPRESS_FEE, 
+      SHOP_ID, SHOP_NAME, STAFF_ID, 
+      ORDER_TIME, PAY_TIME, DELIVER_DATE, 
+      STATUS, ORDER_TWO_STATUS, ORDER_TYPE, 
+      PAY_TYPE, PAY_FLAG, DISPATCH_TYPE, 
+      SOURCE, PAY_LOCK, BUYER_MSG, 
+      CREATE_TIME, CREATE_STAFF, UPDATE_TIME, 
+      UPDATE_STAFF, SITE_ID, SYS_TYPE, 
+      PAY_WAY, ORDER_SCORE, INVOICE_TYPE, 
+      CONTACT_NAME, CONTACT_PHONE, CHNL_ADDRESS, 
+      POST_CODE, CONTACT_NUMBER, PROVINCE, 
+      CITY_CODE, COUNTY_CODE, BRING_NAME, 
+      CARD_TYPE, CARD_ID, BRING_NUMBER, 
+      BRING_PHONE, BILLING_FLAG, SEND_INVOICE_TYPE, 
+      INVOICE_EXPRESS_NO, BASIC_MONEY, IS_IN_AUDIT_FILE, 
+      STAFF_CODE, STAFF_NAME, COMPANY_ID, 
+      COMPANY_NAME, START_TIME, END_TIME, 
+      PAY_TRAN_NO)
+    values (#{id,jdbcType=VARCHAR}, #{orderCode,jdbcType=VARCHAR}, #{orderAmount,jdbcType=INTEGER}, 
+      #{orderMoney,jdbcType=INTEGER}, #{realMoney,jdbcType=INTEGER}, #{realExpressFee,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{staffId,jdbcType=INTEGER}, 
+      #{orderTime,jdbcType=TIMESTAMP}, #{payTime,jdbcType=TIMESTAMP}, #{deliverDate,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{orderTwoStatus,jdbcType=VARCHAR}, #{orderType,jdbcType=VARCHAR}, 
+      #{payType,jdbcType=VARCHAR}, #{payFlag,jdbcType=VARCHAR}, #{dispatchType,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{payLock,jdbcType=VARCHAR}, #{buyerMsg,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateStaff,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER}, #{sysType,jdbcType=VARCHAR}, 
+      #{payWay,jdbcType=VARCHAR}, #{orderScore,jdbcType=INTEGER}, #{invoiceType,jdbcType=VARCHAR}, 
+      #{contactName,jdbcType=VARCHAR}, #{contactPhone,jdbcType=VARCHAR}, #{chnlAddress,jdbcType=VARCHAR}, 
+      #{postCode,jdbcType=VARCHAR}, #{contactNumber,jdbcType=VARCHAR}, #{province,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, #{bringName,jdbcType=VARCHAR}, 
+      #{cardType,jdbcType=VARCHAR}, #{cardId,jdbcType=VARCHAR}, #{bringNumber,jdbcType=VARCHAR}, 
+      #{bringPhone,jdbcType=VARCHAR}, #{billingFlag,jdbcType=VARCHAR}, #{sendInvoiceType,jdbcType=VARCHAR}, 
+      #{invoiceExpressNo,jdbcType=VARCHAR}, #{basicMoney,jdbcType=INTEGER}, #{isInAuditFile,jdbcType=VARCHAR}, 
+      #{staffCode,jdbcType=VARCHAR}, #{staffName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
+      #{companyName,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{payTranNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.OrdMain" >
+    insert into t_ord_main
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderCode != null" >
+        ORDER_CODE,
+      </if>
+      <if test="orderAmount != null" >
+        ORDER_AMOUNT,
+      </if>
+      <if test="orderMoney != null" >
+        ORDER_MONEY,
+      </if>
+      <if test="realMoney != null" >
+        REAL_MONEY,
+      </if>
+      <if test="realExpressFee != null" >
+        REAL_EXPRESS_FEE,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME,
+      </if>
+      <if test="payTime != null" >
+        PAY_TIME,
+      </if>
+      <if test="deliverDate != null" >
+        DELIVER_DATE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="orderTwoStatus != null" >
+        ORDER_TWO_STATUS,
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE,
+      </if>
+      <if test="payType != null" >
+        PAY_TYPE,
+      </if>
+      <if test="payFlag != null" >
+        PAY_FLAG,
+      </if>
+      <if test="dispatchType != null" >
+        DISPATCH_TYPE,
+      </if>
+      <if test="source != null" >
+        SOURCE,
+      </if>
+      <if test="payLock != null" >
+        PAY_LOCK,
+      </if>
+      <if test="buyerMsg != null" >
+        BUYER_MSG,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="sysType != null" >
+        SYS_TYPE,
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY,
+      </if>
+      <if test="orderScore != null" >
+        ORDER_SCORE,
+      </if>
+      <if test="invoiceType != null" >
+        INVOICE_TYPE,
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME,
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE,
+      </if>
+      <if test="chnlAddress != null" >
+        CHNL_ADDRESS,
+      </if>
+      <if test="postCode != null" >
+        POST_CODE,
+      </if>
+      <if test="contactNumber != null" >
+        CONTACT_NUMBER,
+      </if>
+      <if test="province != null" >
+        PROVINCE,
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE,
+      </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE,
+      </if>
+      <if test="bringName != null" >
+        BRING_NAME,
+      </if>
+      <if test="cardType != null" >
+        CARD_TYPE,
+      </if>
+      <if test="cardId != null" >
+        CARD_ID,
+      </if>
+      <if test="bringNumber != null" >
+        BRING_NUMBER,
+      </if>
+      <if test="bringPhone != null" >
+        BRING_PHONE,
+      </if>
+      <if test="billingFlag != null" >
+        BILLING_FLAG,
+      </if>
+      <if test="sendInvoiceType != null" >
+        SEND_INVOICE_TYPE,
+      </if>
+      <if test="invoiceExpressNo != null" >
+        INVOICE_EXPRESS_NO,
+      </if>
+      <if test="basicMoney != null" >
+        BASIC_MONEY,
+      </if>
+      <if test="isInAuditFile != null" >
+        IS_IN_AUDIT_FILE,
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE,
+      </if>
+      <if test="staffName != null" >
+        STAFF_NAME,
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID,
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+      <if test="payTranNo != null" >
+        PAY_TRAN_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="orderMoney != null" >
+        #{orderMoney,jdbcType=INTEGER},
+      </if>
+      <if test="realMoney != null" >
+        #{realMoney,jdbcType=INTEGER},
+      </if>
+      <if test="realExpressFee != null" >
+        #{realExpressFee,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliverDate != null" >
+        #{deliverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTwoStatus != null" >
+        #{orderTwoStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payFlag != null" >
+        #{payFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatchType != null" >
+        #{dispatchType,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="payLock != null" >
+        #{payLock,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerMsg != null" >
+        #{buyerMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="sysType != null" >
+        #{sysType,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null" >
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="orderScore != null" >
+        #{orderScore,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceType != null" >
+        #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="chnlAddress != null" >
+        #{chnlAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null" >
+        #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bringName != null" >
+        #{bringName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="bringNumber != null" >
+        #{bringNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bringPhone != null" >
+        #{bringPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="billingFlag != null" >
+        #{billingFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="sendInvoiceType != null" >
+        #{sendInvoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceExpressNo != null" >
+        #{invoiceExpressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="basicMoney != null" >
+        #{basicMoney,jdbcType=INTEGER},
+      </if>
+      <if test="isInAuditFile != null" >
+        #{isInAuditFile,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCode != null" >
+        #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffName != null" >
+        #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTranNo != null" >
+        #{payTranNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdMainCriteria" resultType="java.lang.Long" >
+    select count(*) from t_ord_main
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_ord_main
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderCode != null" >
+        ORDER_CODE = #{record.orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderAmount != null" >
+        ORDER_AMOUNT = #{record.orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderMoney != null" >
+        ORDER_MONEY = #{record.orderMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.realMoney != null" >
+        REAL_MONEY = #{record.realMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.realExpressFee != null" >
+        REAL_EXPRESS_FEE = #{record.realExpressFee,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopName != null" >
+        SHOP_NAME = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderTime != null" >
+        ORDER_TIME = #{record.orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.payTime != null" >
+        PAY_TIME = #{record.payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.deliverDate != null" >
+        DELIVER_DATE = #{record.deliverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderTwoStatus != null" >
+        ORDER_TWO_STATUS = #{record.orderTwoStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderType != null" >
+        ORDER_TYPE = #{record.orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payType != null" >
+        PAY_TYPE = #{record.payType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payFlag != null" >
+        PAY_FLAG = #{record.payFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dispatchType != null" >
+        DISPATCH_TYPE = #{record.dispatchType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        SOURCE = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payLock != null" >
+        PAY_LOCK = #{record.payLock,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerMsg != null" >
+        BUYER_MSG = #{record.buyerMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysType != null" >
+        SYS_TYPE = #{record.sysType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payWay != null" >
+        PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderScore != null" >
+        ORDER_SCORE = #{record.orderScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.invoiceType != null" >
+        INVOICE_TYPE = #{record.invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactName != null" >
+        CONTACT_NAME = #{record.contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactPhone != null" >
+        CONTACT_PHONE = #{record.contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.chnlAddress != null" >
+        CHNL_ADDRESS = #{record.chnlAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.postCode != null" >
+        POST_CODE = #{record.postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactNumber != null" >
+        CONTACT_NUMBER = #{record.contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.province != null" >
+        PROVINCE = #{record.province,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        CITY_CODE = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countyCode != null" >
+        COUNTY_CODE = #{record.countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bringName != null" >
+        BRING_NAME = #{record.bringName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardType != null" >
+        CARD_TYPE = #{record.cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cardId != null" >
+        CARD_ID = #{record.cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bringNumber != null" >
+        BRING_NUMBER = #{record.bringNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bringPhone != null" >
+        BRING_PHONE = #{record.bringPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.billingFlag != null" >
+        BILLING_FLAG = #{record.billingFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sendInvoiceType != null" >
+        SEND_INVOICE_TYPE = #{record.sendInvoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.invoiceExpressNo != null" >
+        INVOICE_EXPRESS_NO = #{record.invoiceExpressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.basicMoney != null" >
+        BASIC_MONEY = #{record.basicMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.isInAuditFile != null" >
+        IS_IN_AUDIT_FILE = #{record.isInAuditFile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffCode != null" >
+        STAFF_CODE = #{record.staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffName != null" >
+        STAFF_NAME = #{record.staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        COMPANY_ID = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyName != null" >
+        COMPANY_NAME = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        START_TIME = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        END_TIME = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.payTranNo != null" >
+        PAY_TRAN_NO = #{record.payTranNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_ord_main
+    set ID = #{record.id,jdbcType=VARCHAR},
+      ORDER_CODE = #{record.orderCode,jdbcType=VARCHAR},
+      ORDER_AMOUNT = #{record.orderAmount,jdbcType=INTEGER},
+      ORDER_MONEY = #{record.orderMoney,jdbcType=INTEGER},
+      REAL_MONEY = #{record.realMoney,jdbcType=INTEGER},
+      REAL_EXPRESS_FEE = #{record.realExpressFee,jdbcType=INTEGER},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      SHOP_NAME = #{record.shopName,jdbcType=VARCHAR},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      ORDER_TIME = #{record.orderTime,jdbcType=TIMESTAMP},
+      PAY_TIME = #{record.payTime,jdbcType=TIMESTAMP},
+      DELIVER_DATE = #{record.deliverDate,jdbcType=TIMESTAMP},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      ORDER_TWO_STATUS = #{record.orderTwoStatus,jdbcType=VARCHAR},
+      ORDER_TYPE = #{record.orderType,jdbcType=VARCHAR},
+      PAY_TYPE = #{record.payType,jdbcType=VARCHAR},
+      PAY_FLAG = #{record.payFlag,jdbcType=VARCHAR},
+      DISPATCH_TYPE = #{record.dispatchType,jdbcType=VARCHAR},
+      SOURCE = #{record.source,jdbcType=VARCHAR},
+      PAY_LOCK = #{record.payLock,jdbcType=VARCHAR},
+      BUYER_MSG = #{record.buyerMsg,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      SYS_TYPE = #{record.sysType,jdbcType=VARCHAR},
+      PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      ORDER_SCORE = #{record.orderScore,jdbcType=INTEGER},
+      INVOICE_TYPE = #{record.invoiceType,jdbcType=VARCHAR},
+      CONTACT_NAME = #{record.contactName,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{record.contactPhone,jdbcType=VARCHAR},
+      CHNL_ADDRESS = #{record.chnlAddress,jdbcType=VARCHAR},
+      POST_CODE = #{record.postCode,jdbcType=VARCHAR},
+      CONTACT_NUMBER = #{record.contactNumber,jdbcType=VARCHAR},
+      PROVINCE = #{record.province,jdbcType=VARCHAR},
+      CITY_CODE = #{record.cityCode,jdbcType=VARCHAR},
+      COUNTY_CODE = #{record.countyCode,jdbcType=VARCHAR},
+      BRING_NAME = #{record.bringName,jdbcType=VARCHAR},
+      CARD_TYPE = #{record.cardType,jdbcType=VARCHAR},
+      CARD_ID = #{record.cardId,jdbcType=VARCHAR},
+      BRING_NUMBER = #{record.bringNumber,jdbcType=VARCHAR},
+      BRING_PHONE = #{record.bringPhone,jdbcType=VARCHAR},
+      BILLING_FLAG = #{record.billingFlag,jdbcType=VARCHAR},
+      SEND_INVOICE_TYPE = #{record.sendInvoiceType,jdbcType=VARCHAR},
+      INVOICE_EXPRESS_NO = #{record.invoiceExpressNo,jdbcType=VARCHAR},
+      BASIC_MONEY = #{record.basicMoney,jdbcType=INTEGER},
+      IS_IN_AUDIT_FILE = #{record.isInAuditFile,jdbcType=VARCHAR},
+      STAFF_CODE = #{record.staffCode,jdbcType=VARCHAR},
+      STAFF_NAME = #{record.staffName,jdbcType=VARCHAR},
+      COMPANY_ID = #{record.companyId,jdbcType=INTEGER},
+      COMPANY_NAME = #{record.companyName,jdbcType=VARCHAR},
+      START_TIME = #{record.startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{record.endTime,jdbcType=TIMESTAMP},
+      PAY_TRAN_NO = #{record.payTranNo,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.OrdMain" >
+    update t_ord_main
+    <set >
+      <if test="orderCode != null" >
+        ORDER_CODE = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        ORDER_AMOUNT = #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="orderMoney != null" >
+        ORDER_MONEY = #{orderMoney,jdbcType=INTEGER},
+      </if>
+      <if test="realMoney != null" >
+        REAL_MONEY = #{realMoney,jdbcType=INTEGER},
+      </if>
+      <if test="realExpressFee != null" >
+        REAL_EXPRESS_FEE = #{realExpressFee,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTime != null" >
+        PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deliverDate != null" >
+        DELIVER_DATE = #{deliverDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTwoStatus != null" >
+        ORDER_TWO_STATUS = #{orderTwoStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        PAY_TYPE = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payFlag != null" >
+        PAY_FLAG = #{payFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="dispatchType != null" >
+        DISPATCH_TYPE = #{dispatchType,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="payLock != null" >
+        PAY_LOCK = #{payLock,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerMsg != null" >
+        BUYER_MSG = #{buyerMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        SITE_ID = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="sysType != null" >
+        SYS_TYPE = #{sysType,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="orderScore != null" >
+        ORDER_SCORE = #{orderScore,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceType != null" >
+        INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="contactName != null" >
+        CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="chnlAddress != null" >
+        CHNL_ADDRESS = #{chnlAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="postCode != null" >
+        POST_CODE = #{postCode,jdbcType=VARCHAR},
+      </if>
+      <if test="contactNumber != null" >
+        CONTACT_NUMBER = #{contactNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="province != null" >
+        PROVINCE = #{province,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="bringName != null" >
+        BRING_NAME = #{bringName,jdbcType=VARCHAR},
+      </if>
+      <if test="cardType != null" >
+        CARD_TYPE = #{cardType,jdbcType=VARCHAR},
+      </if>
+      <if test="cardId != null" >
+        CARD_ID = #{cardId,jdbcType=VARCHAR},
+      </if>
+      <if test="bringNumber != null" >
+        BRING_NUMBER = #{bringNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="bringPhone != null" >
+        BRING_PHONE = #{bringPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="billingFlag != null" >
+        BILLING_FLAG = #{billingFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="sendInvoiceType != null" >
+        SEND_INVOICE_TYPE = #{sendInvoiceType,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceExpressNo != null" >
+        INVOICE_EXPRESS_NO = #{invoiceExpressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="basicMoney != null" >
+        BASIC_MONEY = #{basicMoney,jdbcType=INTEGER},
+      </if>
+      <if test="isInAuditFile != null" >
+        IS_IN_AUDIT_FILE = #{isInAuditFile,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffName != null" >
+        STAFF_NAME = #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payTranNo != null" >
+        PAY_TRAN_NO = #{payTranNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.OrdMain" >
+    update t_ord_main
+    set ORDER_CODE = #{orderCode,jdbcType=VARCHAR},
+      ORDER_AMOUNT = #{orderAmount,jdbcType=INTEGER},
+      ORDER_MONEY = #{orderMoney,jdbcType=INTEGER},
+      REAL_MONEY = #{realMoney,jdbcType=INTEGER},
+      REAL_EXPRESS_FEE = #{realExpressFee,jdbcType=INTEGER},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      STAFF_ID = #{staffId,jdbcType=INTEGER},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      PAY_TIME = #{payTime,jdbcType=TIMESTAMP},
+      DELIVER_DATE = #{deliverDate,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      ORDER_TWO_STATUS = #{orderTwoStatus,jdbcType=VARCHAR},
+      ORDER_TYPE = #{orderType,jdbcType=VARCHAR},
+      PAY_TYPE = #{payType,jdbcType=VARCHAR},
+      PAY_FLAG = #{payFlag,jdbcType=VARCHAR},
+      DISPATCH_TYPE = #{dispatchType,jdbcType=VARCHAR},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      PAY_LOCK = #{payLock,jdbcType=VARCHAR},
+      BUYER_MSG = #{buyerMsg,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      SITE_ID = #{siteId,jdbcType=INTEGER},
+      SYS_TYPE = #{sysType,jdbcType=VARCHAR},
+      PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      ORDER_SCORE = #{orderScore,jdbcType=INTEGER},
+      INVOICE_TYPE = #{invoiceType,jdbcType=VARCHAR},
+      CONTACT_NAME = #{contactName,jdbcType=VARCHAR},
+      CONTACT_PHONE = #{contactPhone,jdbcType=VARCHAR},
+      CHNL_ADDRESS = #{chnlAddress,jdbcType=VARCHAR},
+      POST_CODE = #{postCode,jdbcType=VARCHAR},
+      CONTACT_NUMBER = #{contactNumber,jdbcType=VARCHAR},
+      PROVINCE = #{province,jdbcType=VARCHAR},
+      CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      COUNTY_CODE = #{countyCode,jdbcType=VARCHAR},
+      BRING_NAME = #{bringName,jdbcType=VARCHAR},
+      CARD_TYPE = #{cardType,jdbcType=VARCHAR},
+      CARD_ID = #{cardId,jdbcType=VARCHAR},
+      BRING_NUMBER = #{bringNumber,jdbcType=VARCHAR},
+      BRING_PHONE = #{bringPhone,jdbcType=VARCHAR},
+      BILLING_FLAG = #{billingFlag,jdbcType=VARCHAR},
+      SEND_INVOICE_TYPE = #{sendInvoiceType,jdbcType=VARCHAR},
+      INVOICE_EXPRESS_NO = #{invoiceExpressNo,jdbcType=VARCHAR},
+      BASIC_MONEY = #{basicMoney,jdbcType=INTEGER},
+      IS_IN_AUDIT_FILE = #{isInAuditFile,jdbcType=VARCHAR},
+      STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      STAFF_NAME = #{staffName,jdbcType=VARCHAR},
+      COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      PAY_TRAN_NO = #{payTranNo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

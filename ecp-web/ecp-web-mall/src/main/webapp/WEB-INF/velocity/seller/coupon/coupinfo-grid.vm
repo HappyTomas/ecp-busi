@@ -1,0 +1,124 @@
+	#parse("/sys/sys_param.vm")
+<link href="$!{RESOURCE_PATH}/bootstrap/extend/css/bootstrap_page.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/coupinfo-grid.js?version=$!{JS_VERSION}" ></script>
+<div class="seller-mainR">
+            
+            <div class="main">
+                <div class="seller-well">
+                    <form id="searchForm" action=""  class="form-horizontal required-validate">
+			<div class="row-fluid">
+			<div class="span4">
+					<div class="control-group">
+						<label class="control-label">站点：</label>
+						<div class="controls">
+						 		<select id="siteId" name="siteId" class="input-medium" >
+						 		 <option value="">
+										请选择
+                                    </option>
+                                      #siteList("")
+								 </select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">店铺：</label>
+						<div class="controls">
+							<select name="shopId" id="shopId" class="input-medium" >
+									#sellerList('')
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">优惠券类型：</label>
+						<div class="controls">
+						 		<select id="coupTypeId" name="coupTypeId" class="input-medium">
+						 		  <option value="">
+										请选择
+                                    </option>
+								     #couptypelist('COUP_TYPE','')
+								</select>
+						</div>
+					</div>
+				</div>
+			</div>                    	
+                    
+            <div class="row-fluid">
+		     <div class="span4">
+					<div class="control-group">
+						<label class="control-label">优惠券名称：</label>
+						<div class="controls">
+								<input type="text" class="input-medium"   id="coupName" name="coupName" />
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">状态：</label>
+						<div class="controls">
+						 		<select id="status" name="status" class="input-medium">
+						 		  <option value="">
+										请选择
+                                    </option>
+								        #listParam('COUP_INFO_STATUS','1')
+								</select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">日期类型：</label>
+						<div class="controls">
+						 		<select id="effType" name="effType" class="input-medium">
+						 		  <option value="">
+										请选择
+                                    </option>
+								        #listParam('COUP_EFF_TYPE','')
+								</select>
+						</div>
+					</div>
+				</div>
+			</div>        
+             
+             
+             <div class="row-fluid">
+		     <div class="span4 queryDateCls hide">
+					<div class="control-group">
+						<label class="control-label">有效期开始：</label>
+						<div class="controls">
+						  <input type="text" class="input-large Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="activeTime" id="activeTime"/>
+						</div>
+					</div>
+				</div>
+				<div class="span4  queryDateCls hide">
+					<div class="control-group">
+						<label class="control-label">有效期截止：</label>
+						<div class="controls">
+							  <input type="text" class="input-large Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="inactiveTime" id="inactiveTime"/>
+						</div>
+					</div>
+				</div>
+			</div>
+                
+                 </form>
+                 
+                </div>
+                    <!--查询，重置移动到这里，添加btn-w-right样式，重置按钮添加icon-color-->
+                    <div class="btn-wrap btn-w-right">
+                        <span class="sbtn sbtn-blue" id="coupSearchBtn"><i class="icon-search"></i> 查询</span>
+                        <span class="sbtn" id="btnFormReset"><i class="icon-asterisk icon-color"></i> 重置</span>
+                    </div>
+                    <div>
+                    	<span class="sbtn sbtn-blue" id="btn_code_add"><i class="icon-plus"></i>创建</span>
+						<span class="sbtn hidden"  id="btn_code_batch_invalid"><i class="icon-remove icon-color"></i>批量失效</span>
+                    </div>
+                <div class="main-inner">
+                 	<div id='coupListDiv' style="width:100%;margin-top:10px">
+                	  ##parse("/seller/coupon/list/coupinfo-grid-list.vm")
+					</div>
+                </div>
+
+            </div>
+        </div>

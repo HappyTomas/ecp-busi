@@ -1,0 +1,37 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/userule/coup-grid/coupinfo-list.js?version=$!{JS_VERSION}" ></script>
+<div class="nItem">
+ 
+   <div style="overflow-x: auto;">
+       <table class="seller-table table-striped" id="coupTable">
+                               <thead>
+                               <tr>
+                                    <td style="width:20px"><input type="checkbox" name="checkbox" id="dt_row_all_check" title="全选/全取消" /></td>
+						            <td style="width:20px">优惠券名称</td>
+						            <td style="width:20px">优惠券的类型</td>
+						            <td style="width:20px">额度</td>
+						            <td style="width:20px">状态</td>
+                                </tr>
+                               </thead>
+                               <tbody>
+						        	#if(!$coupPage.getResult()||$coupPage.count==0)
+						        		<tr><td colspan='5'>很遗憾，暂无数据。</td><tr>
+						        	#end
+						        	#foreach($attr in $coupPage.getResult())
+						        		<tr>
+						        			<td style="width:20px"><input type="checkbox" name="checkboxcoup"  id="$!{attr.id}" value="$!{attr.id}"/></td>
+							                <td class="td-hhtxt"  > <div>#escapeHtml( "$!{attr.coupName}")</div></td>
+							                <td style="width:20px">#escapeHtml( "$!{attr.coupTypeName}")</td>
+							                <td style="width:20px">#if($!{attr.coupValue}<=0) 抵用券 #else #moneyNum($!{attr.coupValue})#end</td>
+							            	<td style="width:20px">#escapeHtml( "$!{attr.statusName}")</td>
+							            </tr>
+									#end
+								</tbody>
+	     </table>
+	    <div class="fav-opt clearfix" style="margin-top: 20px;">
+	        <div class="row-fluid">
+				<div id="pageControlbar" class="ecppage" data-total-page="${coupPage.pageCount}" data-total-row="${coupPage.count}" data-page-size="${coupPage.pageSize}" data-page-number="${coupPage.pageNo}" data-status="begin"></div>
+			</div>
+	    </div>
+	</div>
+</div>

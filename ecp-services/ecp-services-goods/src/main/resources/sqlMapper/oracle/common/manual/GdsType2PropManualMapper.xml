@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.common.manual.GdsType2PropManualMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsType2Prop" >
+    <result column="TYPE_ID" property="typeId" jdbcType="VARCHAR" />
+    <result column="PROP_ID" property="propId" jdbcType="INTEGER" />
+    <result column="IF_BASIC" property="ifBasic" jdbcType="VARCHAR" />
+    <result column="IF_HAVATO" property="ifHavato" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    TYPE_ID, PROP_ID, IF_BASIC, IF_HAVATO, STATUS, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, 
+    UPDATE_STAFF
+  </sql>
+  
+  
+  <select id="queryConfigedPropIds" resultType="long">
+     SELECT PROP_ID FROM T_GDS_TYPE2PROP
+     <where>
+        <if test="status.length > 0">
+           <choose>
+               <when test="status.length == 1">
+                  STATUS = #{status[0]}
+               </when>
+               <otherwise>
+                   STATUS IN
+		          <foreach collection="status" item="s" open="(" close=")" separator=",">
+		              #{s}
+		          </foreach>
+               </otherwise>
+           </choose>
+        </if>
+        AND TYPE_ID = #{typeId}
+     </where>
+  </select>
+  
+  <select id="queryRelationTypeIdsByExample" resultType="Long" parameterType="com.zengshi.ecp.goods.dao.model.GdsType2PropCriteria">
+     SELECT DISTINCT(TYPE_ID) FROM T_GDS_TYPE2PROP
+     <include refid="Example_Where_Clause"/>
+  </select>
+  
+   
+  <update id="batchDeleteType2Prop">
+      UPDATE T_GDS_TYPE2PROP 
+      SET STATUS = '0',
+      UPDATE_STAFF = #{updateStaff},
+      UPDATE_TIME = #{updateTime}      
+      <where>
+         PROP_ID IN
+         <foreach collection="propIds" item="propId" open="(" close=")" separator=",">
+              #{propId}
+         </foreach>
+         AND STATUS = '1'
+         AND TYPE_ID = #{typeId}
+      </where>
+  </update>
+  
+  <update id="executeIsBasicConfig">
+      UPDATE T_GDS_TYPE2PROP 
+      SET IF_BASIC = #{ifBasic},
+      UPDATE_STAFF = #{updateStaff},
+      UPDATE_TIME = #{updateTime}      
+      <where>
+         STATUS = #{status}
+         AND TYPE_ID = #{typeId}
+         AND PROP_ID = #{propId}
+      </where>
+  </update>
+  
+  <update id="executeIsSearchConfig">
+      UPDATE T_GDS_TYPE2PROP 
+      SET IF_SEARCH = #{ifSearch},
+      UPDATE_STAFF = #{updateStaff},
+      UPDATE_TIME = #{updateTime}      
+      <where>
+         STATUS = #{status}
+         AND TYPE_ID = #{typeId}
+         AND PROP_ID = #{propId}
+      </where>
+  </update>
+  
+  <update id="executeIsRequireConfig">
+      UPDATE T_GDS_TYPE2PROP 
+      SET IF_HAVETO = #{ifHaveto},
+      UPDATE_STAFF = #{updateStaff},
+      UPDATE_TIME = #{updateTime}      
+      <where>
+         STATUS = #{status}
+         AND TYPE_ID = #{typeId}
+         AND PROP_ID = #{propId}
+      </where>
+  </update>
+  
+  
+</mapper>

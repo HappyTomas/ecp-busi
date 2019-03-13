@@ -1,0 +1,61 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/rep/rep-grid.js?version=$!{JS_VERSION}" ></script>
+
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">店铺名称：</label>
+						<div class="controls">
+							<select name="shopId">
+							#shoplist()
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">仓库名称：</label>
+						<div class="controls">
+							<input type="text" name="repName" class="input-medium" value="" placeholder="输入仓库名称">
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">仓库状态：</label>
+						<div class="controls">
+							<select style="width:160px" name="status">
+								<option value="1">有效</option>
+								<option value="0">失效</option>
+							</select>
+						</div>
+					</div>
+				</div>
+		
+				<div class="clear"></div>
+			</div>
+		
+			</form>
+		</div>
+		
+		
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="span6">
+				<a class="btn" id="btn_code_add" href="#"><i class="icon-plus icon-white">新增分仓</i>  </a>
+				<a class="btn" id="btn_code_modify" href="#"><i class="icon-edit icon-white"></i> 修改</a>
+				<a class="btn" id="btn_code_check" href="#"><i class="icon-zoom-in"></i> 查看</a>
+				<a class="btn btn-danger" id="btn_code_del" href="#"><i class="icon-remove-sign  icon-white"></i> 失效</a>				
+			</div>
+			<div class="pull-right">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn " id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+	
+	
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>

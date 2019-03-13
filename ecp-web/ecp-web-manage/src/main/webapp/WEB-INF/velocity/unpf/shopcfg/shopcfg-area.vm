@@ -1,0 +1,21 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+			<div class="row-fluid formSep">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">省份：</label>
+						<div class="controls">
+							    <select class="jquery-area required" name="provinceCode" id="p-code"   area-type="admin" area-level="province" area-children="city-code" area-defaultvalue="$!{unpfShopCfgInfoVO.provinceCode}"></select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label required">城市：</label>
+						<div class="controls">
+							 <select class="jquery-area required"  name="cityCode" id="city-code"  area-type="admin" area-level="city" area-children="county-code" area-defaultvalue="$!{unpfShopCfgInfoVO.cityCode}"></select>
+						</div>
+					</div>
+				</div>
+			</div>
+			

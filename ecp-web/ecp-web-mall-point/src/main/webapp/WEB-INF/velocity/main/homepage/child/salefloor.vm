@@ -1,0 +1,30 @@
+#parse("sys/sys_param.vm")
+
+#if($null.isNull($floorTabList) || $floorTabList.size()==0)
+	<ul class="new-tit-list clearfix" id="teamTab">
+    </ul>
+    <div id="teamTabc">
+    	<div class='pro-empty'>亲，这家伙太懒，暂未配置数据！</div>
+    </div>
+#else 
+	<ul class="new-tit-list clearfix" id="teamTab">
+    	#foreach($floorTab in $!{floorTabList})
+    		<li #if($velocityCount==$!{floorTabList.size()}) style="margin-right: 0" #end>
+				<a  href="
+					#if($!{floorTab.linkUrl} && $!{floorTab.linkUrl} !='')
+						$!{floorTab.linkUrl}" target='_blank'
+					#else 
+						javascript:void(0);"
+					#end
+					 id="$!{floorTab.id}" isLoad="no" floorId="$!{floorRespDTO.id}"  #if($velocityCount==1) class="active" #end >$!{floorTab.tabName}</a>
+			</li>
+    	#end
+    </ul>
+    <div id="teamTabc">
+    	#foreach($floorTab in $!{floorTabList})
+    		<div class="p-info p-info-h223 floor-div-gds #if($velocityCount > 1) hide #end" id="floorGdsDIV_$!{floorTab.id}">
+    			<div class='loading-small'></div>
+    		</div>
+    	#end
+    </div>
+#end

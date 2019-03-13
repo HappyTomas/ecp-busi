@@ -1,0 +1,78 @@
+ <div class="seller-box" style="display:#if($!{multi-switch}=='1')block #else none #end" id="gds-skuParam">
+        <div class="head">
+            <h3>规格设置</h3>
+			<div class="pull-right mr10 switch-button" id="param-senior-button" style="display:#if($!{multi-switch}=='1')block #else none #end">
+    			<div class="pull-right mr10">
+                       <label class="disl c-label">多规格：</label>
+                       <div data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+                            <button class="btn #if($!{multi-switch}=='1')active#end" type="button" value="multi-open">开</button>
+                            <button class="btn #if($!{multi-switch}=='0')active#end" type="button" value="multi-close">关</button>
+                       </div>
+                </div>
+    			
+    			<div class="pull-right mr10" #if($!{price-switch}=='0')style="display:none;"#end>
+                       <label class="disl c-label">高级价格：</label>
+                       <div data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+                            <button class="btn #if($!{price-switch}=='1')active#end" type="button" value="price-open">开</button>
+                            <button class="btn #if($!{price-switch}=='0')active#end" type="button" value="price-close">关</button>
+                       </div>
+                </div>
+    			
+    			<div class="pull-right mr10" #if($!{stock-switch}=='0')style="display:none;"#end>
+                       <label class="disl c-label">高级库存：</label>
+                       <div data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+                            <button class="btn #if($!{stock-switch}=='1')active#end" type="button" value="stock-open">开</button>
+                            <button class="btn #if($!{stock-switch}=='0')active#end" type="button" value="stock-close">关</button>
+                       </div>
+                </div>
+			</div>
+        </div>
+						
+		<input type="hidden"  id="proSize"  name="propSize" value="$!{rspDto.specs.size()}"/>
+						
+		<div class="body">
+			#foreach($listProp in $!{rspDto.specs})
+				#set($count = $velocityCount)
+				#set($size = $!{rspDto.specs.size()})
+				<div class="row-fluid">
+    				<div class="control-group">
+						<label class="control-label">$!{listProp.propName}：</label>
+						<div class="controls">
+							#foreach($listValue in $!{listProp.values})
+								#if($velocityCount==1)
+        							 <input type="hidden" name="propIdCount" id="propId_$count" value="$!{listProp.id}"/>
+        							 <input type="hidden" id="propName_$!{listProp.id}" value="$!{listProp.propName}"/>
+								#end
+								<input type="hidden" id="propValue_$!{listProp.id}_$!{listValue.id}" value="$!{listValue.propValue}"/>
+        						<input type="hidden" id="count_$!{listProp.id}_$!{listValue.id}" value="$count"/>
+        						<input type="hidden" id="size_$!{listProp.id}_$!{listValue.id}" value="$size"/>
+        						<input type="hidden" id="velocityCount_$!{listProp.id}_$!{listValue.id}" value="$!{velocityCount}"/>
+								
+								<label class="checkbox inline c-label">
+    								<input ifHaveto="$!{listProp.ifHaveto}"
+    									   ifBasic="$!{listProp.ifBasic}" 
+    									   name="gxqUseInParam" 
+    									   id="checkPropValue_$!{listProp.id}_$!{listValue.id}"  
+    									   value="$!{listValue.id}" 
+    									   class="check_$!{listProp.id}" 
+    									   type="checkbox" i="$!{velocityCount}" 
+    									   count="$count" size="$size" 
+    									   onclick="checkSkuParameter('$!{listProp.id}','$!{listProp.propName}','$!{listValue.id}','$!{listValue.propValue}',$count,$size,this)"/>
+    								       #if($!{listValue.mediaId})
+    										   <img class="cr" src="#genImageUrl($!{listValue.mediaId},'12x12!')"/>
+    									   #end
+    								 $!{listValue.propValue}
+							    </label>
+							#end
+                        </div>
+                    </div>
+                </div>
+			#end
+			<div class="control-group">
+                    <div class="controls">
+                        <table class="seller-table" id="sku-param-table" style="width:auto">
+                        </table>
+                    </div>
+            </div>
+		</div>
+</div>

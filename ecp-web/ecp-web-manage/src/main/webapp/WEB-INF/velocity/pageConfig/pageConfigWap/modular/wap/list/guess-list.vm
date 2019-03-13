@@ -1,0 +1,36 @@
+#parse("sys/sys_param.vm")
+#if(${gdsInfos.size()} > 0 )
+	#foreach($gds in ${gdsInfos})
+		#if($gds && $gds.id && '$gds.id' !='')
+		<li>
+		    <a href="javascript:void(0);" lazy-href = "$!{gds.url}" class="img-wrap">
+		        <img class="img" src="${gds.mainPic.URL}" alt="$!{gds.gdsName}">
+		    </a>
+		    <div class="p-info">
+		        <p class="p-name"><a href="javascript:void(0);" lazy-href = "$!{gds.url}">$!{gds.gdsName}</a></p>
+		        <div class="p-fd">
+		        	#if($!{gds.skuInfo.discountPrice})
+		            <span class="p-pri">
+		                <em class="yuan">&yen;</em>
+		                #moneyNum($!{gds.skuInfo.discountPrice})
+		            </span>
+		            #end
+		            <div class="handle">
+		            	#if(${gds.mainCatgs} && ${gds.mainCatgs}!= '')
+		            	<a href="javascript:void(0);" lazy-href="/search?category=$!{gds.mainCatgs}">
+		                	<span class="xs">找相似</span>
+		                </a>
+		                #end
+		                
+		                ##处理收藏
+		                #set($collectId = '')
+		                #set($collectId = $collectMap.get(${gds.id}))
+		                <i class="ticon do-collect #if($collectId && $collectId != '')ticon-hfav #else ticon-fav #end" data-sku-id="$!{gds.skuInfo.id}" data-collect-id = "$!{collectId}">
+		                </i>
+		            </div>
+		        </div>
+		    </div>
+		</li>
+		#end
+	#end
+#end

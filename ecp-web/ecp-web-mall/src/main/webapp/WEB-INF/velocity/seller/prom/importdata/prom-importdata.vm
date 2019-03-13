@@ -1,0 +1,21 @@
+ #parse("/sys/sys_param.vm")
+ #parse("/sys/sys_open_head.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/importdata/prom-importdata.js?version=$!{JS_VERSION}" ></script>
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+     		  <div class="row-fluid" id="importdata_id">
+       			 #set($sessionId = $session.getId())
+        		<div class="uploadifyMainBox" style="margin-top: 5px;">
+          		 <input type="hidden" id="pageSessionId" value="$!{sessionId}" >
+               <div id="excelFileInput"  name="excelFile" class="btn btn-primary"><i class="icon-upload-alt">上传</i></div>
+                <div class="hide">
+                    <input id="promId"  name="promId" value="$!{promId}" />
+					<input id="promTypeCode"  name="promTypeCode" value="$!{promTypeCode}" />
+                </div>
+	                <div class="main-inner mt15">
+	                <div>
+                	 <span style="color:red">温馨提示：一次性上传商品数量建议不要超过2000个以上，否则速度偏慢！</span>
+                    <div id="divDataGridTableTemp">
+                    		#parse("/seller/prom/importdata/import-list.vm")
+                   </div>
+				</div>

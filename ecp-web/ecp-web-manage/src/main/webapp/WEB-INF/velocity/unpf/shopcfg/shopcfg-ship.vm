@@ -1,0 +1,67 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/unpf/shopcfg/shopcfg-ship.js?version=$!{JS_VERSION}"></script>
+<div class="formSep row-fluid">
+    <div class="span12">
+        <div class="control-group">
+            <label class="control-label required">邮寄：</label>
+            <div class="controls">
+                <ul class="" style="list-style-type: none">
+                    <li style="float:left;margin-left:5px;">
+                        <label ><input type="radio" id="shipType" class="cost" #if($!{unpfShopCfgInfoVO.shipType}=="2") checked #end name="unpfShopCfgInfoVO.shipType" value="2" >卖家承担运费</label>
+                    </li>
+                    <li style="float:left;margin-left:35px;">
+                        <label ><input type="radio" id="shipType" class="cost" #if($!{unpfShopCfgInfoVO.shipType}=="1") checked #end name="unpfShopCfgInfoVO.shipType" value="1">买家承担运费</label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid hide" id="mould">
+        <div class="span12">
+            <div class="control-group">
+                <label class="control-label "></label>
+                <div class="controls">
+                    <ul id="" class="" style="list-style-type: none">
+                        <li style="float:left;margin-left:5px;">
+                            <label><input type="radio" class="template" id="freight_by_buyer" #if($!{unpfShopCfgInfoVO.freight_by_buyer}== 'postage') checked  #end  name="unpfShopCfgInfoVO.freight_by_buyer" value="postage" >运费模板</label>
+                        </li>
+                        <li style="float:left;margin-left:35px;">
+                            <input type="text" class="required" id="templateId" name="unpfShopCfgInfoVO.templateId" value="$!{unpfShopCfgInfoVO.templateId}" onkeyup="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')" disabled><span style="color:red;margin-top:0px;">注意该模板为第三方平台运费模板id&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid hide" id="costs">
+        <div class="span12">
+            <div class="control-group">
+                <label class="control-label "></label>
+                <div class="controls">
+                    <ul id="" class="" style="list-style-type: none">
+                        <li style="float:left;margin-left:5px;">
+                            <label ><input type="radio" id="freight_by_buyer" #if($!{unpfShopCfgInfoVO.freight_by_buyer}== 'freight_details') checked   #end class="template" name="unpfShopCfgInfoVO.freight_by_buyer" value="freight_details" >运费</label>
+                        </li>
+                        <li style="float:left;margin-left:-10px;">
+                            <label class="control-label">平邮：</label>
+                            <div class="controls">
+                                <input type="text" id="post" class="required" name="unpfShopCfgInfoVO.post" value="$!{unpfShopCfgInfoVO.post}" style="width:80px;" disabled><span style="color:red">&nbsp;&nbsp;元</span>
+                            </div>
+                        </li>
+                        <li style="float:left;margin-left:-10px;">
+                            <label class="control-label">快递：</label>
+                            <div class="controls">
+                                <input type="text" id="express" class="required" name="unpfShopCfgInfoVO.express" value="$!{unpfShopCfgInfoVO.express}" style="width:80px;" disabled><span style="color:red">&nbsp;&nbsp;元</span>
+                            </div>
+                        </li>
+                        <li style="float:left;margin-left:-10px;">
+                            <label class="control-label">EMS：</label>
+                            <div class="controls">
+                                <input type="text" id="ems" class="required" name="unpfShopCfgInfoVO.ems" value="$!{unpfShopCfgInfoVO.ems}" style="width:80px;" disabled><span style="color:red">&nbsp;&nbsp;元</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

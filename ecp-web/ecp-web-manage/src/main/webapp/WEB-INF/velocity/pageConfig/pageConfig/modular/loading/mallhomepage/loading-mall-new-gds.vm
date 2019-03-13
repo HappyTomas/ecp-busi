@@ -1,0 +1,68 @@
+#set($title = "")##标题
+#set($ifShowTitle = "")##是否显示标题
+#set($tabSize = "")##是否展示页签
+#set($icon = "")##图标
+#set($ifShowIcon = "")##是否显示图标
+#set($showAmount = "")##展示数量
+#set($showWay = "4")##展示方式.默认给他展示四个
+#set($placeId = "")##内容位置。用来加载数据的。
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+#foreach($prop in $crossItemObj)
+	#if($!{prop.propId}=="1000")
+		##标题
+		#set($title = "$!{prop.propValue}")
+	#elseif($!{prop.propId}=="1001" && $!{prop.propValue}=="1")
+		##是否展示标题。0表示不展示标题
+		#set($ifShowTitle = "true")
+	#elseif($!{prop.propId} == "1007" && $!{prop.propValue}=="1")
+		##是否展示页签
+		#set($tabSize = "6") ##展示页签的话 页签数量最多6个
+	#elseif($!{prop.propId} == "1008")
+		##图标
+		#set($icon = "$!{prop.propValue}")
+	#elseif($!{prop.propId} == "1009" && $!{prop.propValue}=="1")
+		##是否显示图标
+		#set($ifShowIcon = "true")
+	#elseif($!{prop.propId}=="1004")
+		##展示数量
+		#set($showAmount = $!{prop.propValue})
+	#elseif($!{prop.propId}=="1010")
+		##展示方式
+		#set($showWay = $!{prop.propValue})
+	#elseif($!{prop.propId}=="1006")
+		##内容位置
+		#set($placeId = $!{prop.propValue})
+	#end
+#end
+##1501
+#set($reqAttr ="data-status='1' data-gds-size='$!showAmount'  data-tab-size='$!{tabSize}' data-place-id='$placeId' data-place-width='300' data-place-height='300' data-show-way = '$!{showWay}'")
+<div class="tpl-newTab ecp-component $!{componentMethod}" $reqAttr data-component-method="$!{componentMethod}" data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}">
+	#if(!$!{componentMethod} || '' == $!{componentMethod})
+		##判断是否已经配置了模板相应的属性
+	   	#parse("/pageConfig/pageConfig/edit/nodata/modular-nodata.vm")
+	#else
+		#if($ifShowTitle =="true")
+			<div class="modular-head">
+				#if($ifShowIcon == "true" && $icon && $icon != '')
+					<i class="ficon" style="background:url(${aiTool.genImageUrl($icon,'25x25!')})"></i>
+				#end
+				$!{title}
+			</div>
+		#end
+	     <div class="modular-body">
+	     
+	     </div>
+	#end
+ </div> 

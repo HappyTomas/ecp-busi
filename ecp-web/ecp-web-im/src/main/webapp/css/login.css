@@ -1,0 +1,113 @@
+@charset "utf-8";
+html,
+body {
+  height: 100%;
+}
+.lg-content {
+  background: url("../images/login-bg.png") repeat;
+  position: relative;
+  min-width: 1200px;
+  padding-bottom: 20px;
+}
+.lg-content .copyRight {
+  text-align: center;
+  width: 100%;
+  margin-top: 60px;
+  color: #999;
+}
+.lg-logo {
+  padding-top: 30px;
+}
+.form-block {
+  width: 520px;
+  height: 380px;
+  margin: 80px auto 0;
+  background-color: #fff;
+  border: 1px solid #F8F5F4;
+  -webkit-box-shadow: 0 5px 10px 5px #e0dfdf;
+  -moz-box-shadow: 0 5px 10px 5px #e0dfdf;
+  box-shadow: 0 5px 10px 5px #e0dfdf;
+}
+.form-block .ui-form {
+  width: 330px;
+  margin: 30px auto 0;
+}
+.form-block h2 {
+  font-size: 26px;
+  color: #14a4ff;
+  margin-bottom: 15px;
+  font-weight: normal;
+}
+.form-block .ui-btn {
+  width: 100%;
+  font-size: 14px;
+}
+.ui-form .control-group {
+  margin-bottom: 0;
+}
+.ui-form .controls {
+  position: relative;
+}
+.ui-form .controls .in-bg {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: url("../images/input-bg.png") no-repeat #eaf4f8;
+  position: absolute;
+  z-index: 2;
+  left: 10px;
+  top: 10px;
+}
+.ui-form .ui-input {
+  height: 30px;
+  line-height: 30px;
+  padding: 5px 0;
+  text-indent: 20px;
+  background-color: #eaf4f8;
+  border: 1px solid #eaf4f8;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  width: 100%;
+  outline: 0;
+}
+.ui-form .ui-input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #eaf4f8 inset;
+}
+.ui-form .ui-input:focus:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px #eaf4f8 inset;
+}
+.ui-form .ui-btn {
+  background-color: #14a4ff;
+  height: 45px;
+  line-height: 45px;
+  color: #fff;
+  text-align: center;
+  border: 0;
+  cursor: pointer;
+}
+.ui-form .in-tip {
+  float: right;
+  margin-top: 5px;
+  color: #14a4ff;
+}
+.ui-form .item-ewm .ui-input {
+  width: 160px;
+  margin-right: 20px;
+}
+.ui-form .item-ewm img {
+  margin-top: -10px;
+  cursor: pointer;
+}
+.ui-form .item-user .in-bg {
+  background-position: -2px -4px;
+}
+.ui-form .item-user .ui-input {
+  text-indent: 40px;
+}
+.ui-form .item-pwd .in-bg {
+  background-position: -1px -62px;
+}
+.ui-form .item-pwd .ui-input {
+  text-indent: 40px;
+}

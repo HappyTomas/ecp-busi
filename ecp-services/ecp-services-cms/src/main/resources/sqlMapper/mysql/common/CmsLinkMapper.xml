@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.cms.dao.mapper.common.CmsLinkMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.cms.dao.model.CmsLink" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="LINK_NAME" property="linkName" jdbcType="VARCHAR" />
+    <result column="LINK_URL" property="linkUrl" jdbcType="VARCHAR" />
+    <result column="LINK_TYPE" property="linkType" jdbcType="VARCHAR" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="VARCHAR" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="VARCHAR" />
+    <result column="LINK_PARENT" property="linkParent" jdbcType="BIGINT" />
+    <result column="LINK_LEVEL" property="linkLevel" jdbcType="BIGINT" />
+    <result column="IF_LEAF" property="ifLeaf" jdbcType="BIGINT" />
+    <result column="MEDIA_UUID" property="mediaUuid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, LINK_NAME, LINK_URL, LINK_TYPE, SITE_ID, SORT_NO, STATUS, CREATE_TIME, CREATE_STAFF, 
+    UPDATE_TIME, UPDATE_STAFF, LINK_PARENT, LINK_LEVEL, IF_LEAF, MEDIA_UUID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.cms.dao.model.CmsLinkCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_cms_link
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_cms_link
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_cms_link
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.cms.dao.model.CmsLinkCriteria" >
+    delete from t_cms_link
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.cms.dao.model.CmsLink" >
+    insert into t_cms_link (ID, LINK_NAME, LINK_URL, 
+      LINK_TYPE, SITE_ID, SORT_NO, 
+      STATUS, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_TIME, UPDATE_STAFF, LINK_PARENT, 
+      LINK_LEVEL, IF_LEAF, MEDIA_UUID
+      )
+    values (#{id,jdbcType=INTEGER}, #{linkName,jdbcType=VARCHAR}, #{linkUrl,jdbcType=VARCHAR}, 
+      #{linkType,jdbcType=VARCHAR}, #{siteId,jdbcType=INTEGER}, #{sortNo,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=VARCHAR}, #{linkParent,jdbcType=BIGINT}, 
+      #{linkLevel,jdbcType=BIGINT}, #{ifLeaf,jdbcType=BIGINT}, #{mediaUuid,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.cms.dao.model.CmsLink" >
+    insert into t_cms_link
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="linkName != null" >
+        LINK_NAME,
+      </if>
+      <if test="linkUrl != null" >
+        LINK_URL,
+      </if>
+      <if test="linkType != null" >
+        LINK_TYPE,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="linkParent != null" >
+        LINK_PARENT,
+      </if>
+      <if test="linkLevel != null" >
+        LINK_LEVEL,
+      </if>
+      <if test="ifLeaf != null" >
+        IF_LEAF,
+      </if>
+      <if test="mediaUuid != null" >
+        MEDIA_UUID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="linkName != null" >
+        #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null" >
+        #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="linkType != null" >
+        #{linkType,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="linkParent != null" >
+        #{linkParent,jdbcType=BIGINT},
+      </if>
+      <if test="linkLevel != null" >
+        #{linkLevel,jdbcType=BIGINT},
+      </if>
+      <if test="ifLeaf != null" >
+        #{ifLeaf,jdbcType=BIGINT},
+      </if>
+      <if test="mediaUuid != null" >
+        #{mediaUuid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.cms.dao.model.CmsLinkCriteria" resultType="java.lang.Long" >
+    select count(*) from t_cms_link
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_cms_link
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.linkName != null" >
+        LINK_NAME = #{record.linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkUrl != null" >
+        LINK_URL = #{record.linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkType != null" >
+        LINK_TYPE = #{record.linkType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sortNo != null" >
+        SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkParent != null" >
+        LINK_PARENT = #{record.linkParent,jdbcType=BIGINT},
+      </if>
+      <if test="record.linkLevel != null" >
+        LINK_LEVEL = #{record.linkLevel,jdbcType=BIGINT},
+      </if>
+      <if test="record.ifLeaf != null" >
+        IF_LEAF = #{record.ifLeaf,jdbcType=BIGINT},
+      </if>
+      <if test="record.mediaUuid != null" >
+        MEDIA_UUID = #{record.mediaUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_cms_link
+    set ID = #{record.id,jdbcType=INTEGER},
+      LINK_NAME = #{record.linkName,jdbcType=VARCHAR},
+      LINK_URL = #{record.linkUrl,jdbcType=VARCHAR},
+      LINK_TYPE = #{record.linkType,jdbcType=VARCHAR},
+      SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=VARCHAR},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=VARCHAR},
+      LINK_PARENT = #{record.linkParent,jdbcType=BIGINT},
+      LINK_LEVEL = #{record.linkLevel,jdbcType=BIGINT},
+      IF_LEAF = #{record.ifLeaf,jdbcType=BIGINT},
+      MEDIA_UUID = #{record.mediaUuid,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.cms.dao.model.CmsLink" >
+    update t_cms_link
+    <set >
+      <if test="linkName != null" >
+        LINK_NAME = #{linkName,jdbcType=VARCHAR},
+      </if>
+      <if test="linkUrl != null" >
+        LINK_URL = #{linkUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="linkType != null" >
+        LINK_TYPE = #{linkType,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        SITE_ID = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=VARCHAR},
+      </if>
+      <if test="linkParent != null" >
+        LINK_PARENT = #{linkParent,jdbcType=BIGINT},
+      </if>
+      <if test="linkLevel != null" >
+        LINK_LEVEL = #{linkLevel,jdbcType=BIGINT},
+      </if>
+      <if test="ifLeaf != null" >
+        IF_LEAF = #{ifLeaf,jdbcType=BIGINT},
+      </if>
+      <if test="mediaUuid != null" >
+        MEDIA_UUID = #{mediaUuid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.cms.dao.model.CmsLink" >
+    update t_cms_link
+    set LINK_NAME = #{linkName,jdbcType=VARCHAR},
+      LINK_URL = #{linkUrl,jdbcType=VARCHAR},
+      LINK_TYPE = #{linkType,jdbcType=VARCHAR},
+      SITE_ID = #{siteId,jdbcType=INTEGER},
+      SORT_NO = #{sortNo,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=VARCHAR},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=VARCHAR},
+      LINK_PARENT = #{linkParent,jdbcType=BIGINT},
+      LINK_LEVEL = #{linkLevel,jdbcType=BIGINT},
+      IF_LEAF = #{ifLeaf,jdbcType=BIGINT},
+      MEDIA_UUID = #{mediaUuid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

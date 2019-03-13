@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.OrdExpressReqLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdExpressReqLog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="EXPRESS_CODE" property="expressCode" jdbcType="VARCHAR" />
+    <result column="EXPRESS_NO" property="expressNo" jdbcType="VARCHAR" />
+    <result column="EXPRESS_INTERFACE" property="expressInterface" jdbcType="VARCHAR" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="RESULT" property="result" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zengshi.ecp.order.dao.model.OrdExpressReqLogWithBLOBs" extends="BaseResultMap" >
+    <result column="REQ_PARAM" property="reqParam" jdbcType="BLOB" />
+    <result column="RESP_PARAM" property="respParam" jdbcType="BLOB" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ORDER_ID, SHOP_ID, EXPRESS_CODE, EXPRESS_NO, EXPRESS_INTERFACE, STAFF_ID, RESULT, 
+    CREATE_TIME
+  </sql>
+  <sql id="Blob_Column_List" >
+    REQ_PARAM, RESP_PARAM
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zengshi.ecp.order.dao.model.OrdExpressReqLogCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+      select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_ord_express_req_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.OrdExpressReqLogCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_ord_express_req_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_ord_express_req_log
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_ord_express_req_log
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdExpressReqLogCriteria" >
+    delete from t_ord_express_req_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.OrdExpressReqLogWithBLOBs" >
+    insert into t_ord_express_req_log (ID, ORDER_ID, SHOP_ID, 
+      EXPRESS_CODE, EXPRESS_NO, EXPRESS_INTERFACE, 
+      STAFF_ID, RESULT, CREATE_TIME, 
+      REQ_PARAM, RESP_PARAM)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, 
+      #{expressCode,jdbcType=VARCHAR}, #{expressNo,jdbcType=VARCHAR}, #{expressInterface,jdbcType=VARCHAR}, 
+      #{staffId,jdbcType=INTEGER}, #{result,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{reqParam,jdbcType=BLOB}, #{respParam,jdbcType=BLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.OrdExpressReqLogWithBLOBs" >
+    insert into t_ord_express_req_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="expressCode != null" >
+        EXPRESS_CODE,
+      </if>
+      <if test="expressNo != null" >
+        EXPRESS_NO,
+      </if>
+      <if test="expressInterface != null" >
+        EXPRESS_INTERFACE,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="result != null" >
+        RESULT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="reqParam != null" >
+        REQ_PARAM,
+      </if>
+      <if test="respParam != null" >
+        RESP_PARAM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="expressCode != null" >
+        #{expressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null" >
+        #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="expressInterface != null" >
+        #{expressInterface,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reqParam != null" >
+        #{reqParam,jdbcType=BLOB},
+      </if>
+      <if test="respParam != null" >
+        #{respParam,jdbcType=BLOB},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdExpressReqLogCriteria" resultType="java.lang.Long" >
+    select count(*) from t_ord_express_req_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_ord_express_req_log
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.expressCode != null" >
+        EXPRESS_CODE = #{record.expressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressNo != null" >
+        EXPRESS_NO = #{record.expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.expressInterface != null" >
+        EXPRESS_INTERFACE = #{record.expressInterface,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.result != null" >
+        RESULT = #{record.result,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.reqParam != null" >
+        REQ_PARAM = #{record.reqParam,jdbcType=BLOB},
+      </if>
+      <if test="record.respParam != null" >
+        RESP_PARAM = #{record.respParam,jdbcType=BLOB},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_ord_express_req_log
+    set ID = #{record.id,jdbcType=INTEGER},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      EXPRESS_CODE = #{record.expressCode,jdbcType=VARCHAR},
+      EXPRESS_NO = #{record.expressNo,jdbcType=VARCHAR},
+      EXPRESS_INTERFACE = #{record.expressInterface,jdbcType=VARCHAR},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      RESULT = #{record.result,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      REQ_PARAM = #{record.reqParam,jdbcType=BLOB},
+      RESP_PARAM = #{record.respParam,jdbcType=BLOB}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_ord_express_req_log
+    set ID = #{record.id,jdbcType=INTEGER},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      EXPRESS_CODE = #{record.expressCode,jdbcType=VARCHAR},
+      EXPRESS_NO = #{record.expressNo,jdbcType=VARCHAR},
+      EXPRESS_INTERFACE = #{record.expressInterface,jdbcType=VARCHAR},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      RESULT = #{record.result,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.OrdExpressReqLogWithBLOBs" >
+    update t_ord_express_req_log
+    <set >
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="expressCode != null" >
+        EXPRESS_CODE = #{expressCode,jdbcType=VARCHAR},
+      </if>
+      <if test="expressNo != null" >
+        EXPRESS_NO = #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="expressInterface != null" >
+        EXPRESS_INTERFACE = #{expressInterface,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="result != null" >
+        RESULT = #{result,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reqParam != null" >
+        REQ_PARAM = #{reqParam,jdbcType=BLOB},
+      </if>
+      <if test="respParam != null" >
+        RESP_PARAM = #{respParam,jdbcType=BLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zengshi.ecp.order.dao.model.OrdExpressReqLogWithBLOBs" >
+    update t_ord_express_req_log
+    set ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      EXPRESS_CODE = #{expressCode,jdbcType=VARCHAR},
+      EXPRESS_NO = #{expressNo,jdbcType=VARCHAR},
+      EXPRESS_INTERFACE = #{expressInterface,jdbcType=VARCHAR},
+      STAFF_ID = #{staffId,jdbcType=INTEGER},
+      RESULT = #{result,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      REQ_PARAM = #{reqParam,jdbcType=BLOB},
+      RESP_PARAM = #{respParam,jdbcType=BLOB}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.OrdExpressReqLog" >
+    update t_ord_express_req_log
+    set ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      EXPRESS_CODE = #{expressCode,jdbcType=VARCHAR},
+      EXPRESS_NO = #{expressNo,jdbcType=VARCHAR},
+      EXPRESS_INTERFACE = #{expressInterface,jdbcType=VARCHAR},
+      STAFF_ID = #{staffId,jdbcType=INTEGER},
+      RESULT = #{result,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

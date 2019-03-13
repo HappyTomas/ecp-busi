@@ -1,0 +1,11 @@
+#parse("/sys/sys_param.vm")
+    <!--文本-->
+    <div class="wrap1000">
+        <div class="h-tit">
+            其他方式
+        </div>
+        <div class="h-com">
+            <p>针对于快递，若有特殊需求，请在订单备注中标注，或者联系工作人员取得联系:17310925570 ，17310865575</p>
+        </div>
+    </div>
+

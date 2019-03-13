@@ -1,0 +1,29 @@
+				<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/coupinfo/userule/rule-140.js?version=$!{JS_VERSION}" ></script>
+				<form id="useForm140" rule-data="140" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action=""  >
+						<div class="row-fluid">
+						<div class="span10">
+							<div class="control-group">
+							<label class="control-label">满减限制：</label>
+								<div class="controls">
+								    <div>
+								    <span class="help-inline" ><input type="radio" class="fullLimit-type"  data-id="amount" name='fullLimitVO.type' checked value="1" #if ($!{doAction}=='view') disabled #end > 满 </span>
+								     <input type="text" class="span2 number" placeholder="满多少元"  maxlength="10" id="sumLimit" name="fullLimitVO.sumLimit"    />
+								    <span class="help-inline" >元使用</span>
+								    </div>
+								    <div " style="margin-top: 10px;" >
+								     <span class="help-inline" ><input type="radio"  class="fullLimit-type"  name='fullLimitVO.type' data-id="sumLimit" value="2" #if ($!{doAction}=='view') disabled #end > 满 </span>
+								     <input type="text" class="span2 number" placeholder="满多少数量"  maxlength="10" id="amount" name="fullLimitVO.amount"   />
+								    <span class="help-inline" >量使用</span>
+								     </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+			 
+			   
+		    
+			 
+				
+				
+				

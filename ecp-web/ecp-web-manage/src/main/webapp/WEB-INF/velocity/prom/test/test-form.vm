@@ -1,0 +1,32 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/auth/auth-add-form.js?version=$!{JS_VERSION}" ></script>
+
+			<h3 class="heading">Test</h3>
+			
+			<div class="alert alert-error hide formValidateMessages" >
+				##showSpringAllError("promType4ShopVO")
+            </div>
+		
+			<div class="formBox">
+				<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post"  action="$!{CONTEXT_PATH}/promtest/test">
+				<div class="formSep">
+					<div class="control-group">
+							<label class="control-label">VM 路径</label>
+							<div class="controls">
+						           <input type="text" class="input-large " name="path" placeholder="VM PATH" value="$!{path}"/>
+							</div>
+						</div>
+					</div>
+			  
+					<div class="">
+						<div class="control-group">
+							<div class="controls">
+								<button type="button" class="btn btn-success" id="btnFormAuthSave" onClick="detailInfoForm.submit();"><i class="icon-ok"></i> Test</button>
+							</div>
+						</div>
+					</div>
+			 
+				</form>
+			 
+			</div>
+			    

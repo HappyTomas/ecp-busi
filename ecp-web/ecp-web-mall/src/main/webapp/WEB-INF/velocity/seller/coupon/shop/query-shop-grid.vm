@@ -1,0 +1,47 @@
+ #parse("/sys/sys_param.vm")
+ #parse("/sys/sys_open_head.vm")
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+ <script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/shop/query-shop-grid.js?version=$!{JS_VERSION}" ></script>
+        <div class="seller-mainR">
+            <div class="main">
+                <div class="seller-well">
+                  <input class="hide" id="oldId" value="$!{shopId}" />
+                    <form action="" class="form-horizontal required-validate" id="myShopForm">
+                        <div class="row-fluid">
+	                          <div class="span6">
+                                <div class="control-group">
+                                    <label class="control-label" for="shopId">店铺名称：</label>
+                                    <div class="controls">
+                                        <select name="shopId" id="shopId" class="input-block-level">
+                                             <option value="">--请选择--</option>
+                                   			 #sellerList('')
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                               <div class="span2">
+                               </div>
+                             <div class="span4">
+	                            <div class="control-group control-nobottom">
+	                                <div class=" btn-w-right">
+	                                    <span class="sbtn sbtn-blue"  id="shopQueryBtn"><i class="icon-search"></i> 查询</span>
+	                                    <span class="sbtn" id="btnFormReset"><i class="icon-asterisk icon-color"></i> 重置</span>
+	                                </div>
+	                            </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+	                <div class="main-inner">
+		                 <div class="sbtn-group">
+		                    <!--添加图标-->
+		                    <span class="sbtn sbtn-blue" id="btn_code_add"><i class="icon-plus"></i> 添加</span>
+							<span class="sbtn sbtn-blue" id="btnReturn"><i class="icon-reply"></i> 关闭</span>
+		                </div>
+	               		<div style="overflow-x:auto;margin-top:10px;" id="shopListDiv">
+	                    	##parse("/seller/coupon/shop/query-shop-list.vm")
+		                </div>
+	                </div>
+            </div>
+        </div>

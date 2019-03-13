@@ -1,0 +1,34 @@
+<input type="hidden" value="$!{shopId}" id="hiddenShopId"/>
+<div class="pmrg-tpls">
+    <div class="tpls" >
+        #if($!{list.list.size()}==0)
+            <div style="text-align:center">
+                <b>没有找到相关图片！</b>
+            </div>
+            #else
+                #foreach($a in $!{list.list})
+                    <div class="item dbchoose">
+                        <img src="$!{a.URL}"  alt="" id="$!{a.id}" mediaId="$!{a.mediaUuid}"/>
+                        <div class="dec" mediaId="$!{a.mediaUuid}">
+                            $!{a.mediaName}
+                        </div>
+                    </div>
+                #end
+		#end
+    </div>
+</div>
+<input type="hidden" id="pageSize" value="$!{list.pageSize}"/>
+<input type="hidden" id="totalPage" value="$!{list.totalPage}"/>
+<input type="hidden" id="totalRow" value="$!{list.totalRow}"/>
+<input type="hidden" id="pageNumber" value="$!{list.pageNumber}"/>
+<!--分页-->
+<div class="row-fluid">
+	<div id="pageMainBox">
+		<div id="pageControlbar" class="ecppage" data-total-page="${list.totalPage}" data-total-row="${list.totalRow}"  data-page-size="${list.pageSize}" data-page-number="${list.pageNumber}" data-status="begin"></div>
+	</div>
+    <div class="" style="margin-top: 5px;">
+    </div>
+</div>
+#parse("sys/sys_param.vm")
+#parse("/module/mod-page.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsinfoentry/gds-medialist.js?version=$!{JS_VERSION}" ></script>

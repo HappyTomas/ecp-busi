@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.cms.dao.mapper.common.CmsPageInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.cms.dao.model.CmsPageInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="PAGE_TYPE_ID" property="pageTypeId" jdbcType="INTEGER" />
+    <result column="PAGE_NAME" property="pageName" jdbcType="VARCHAR" />
+    <result column="SITE_URL" property="siteUrl" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="TIMING_TIME" property="timingTime" jdbcType="TIMESTAMP" />
+    <result column="VALID_TIME" property="validTime" jdbcType="TIMESTAMP" />
+    <result column="INVALID_TIME" property="invalidTime" jdbcType="TIMESTAMP" />
+    <result column="IS_USE_TEMPLATE" property="isUseTemplate" jdbcType="VARCHAR" />
+    <result column="TEMPLATE_ID" property="templateId" jdbcType="INTEGER" />
+    <result column="PLATFORM_TYPE" property="platformType" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="QRCODE_PIC" property="qrcodePic" jdbcType="VARCHAR" />
+    <result column="VIEW_QRCODE_PIC" property="viewQrcodePic" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SITE_ID, PAGE_TYPE_ID, PAGE_NAME, SITE_URL, SHOP_ID, TIMING_TIME, VALID_TIME, 
+    INVALID_TIME, IS_USE_TEMPLATE, TEMPLATE_ID, PLATFORM_TYPE, STATUS, CREATE_STAFF, 
+    CREATE_TIME, UPDATE_STAFF, UPDATE_TIME, QRCODE_PIC, VIEW_QRCODE_PIC
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.cms.dao.model.CmsPageInfoCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_cms_page_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_cms_page_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_cms_page_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.cms.dao.model.CmsPageInfoCriteria" >
+    delete from t_cms_page_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.cms.dao.model.CmsPageInfo" >
+    insert into t_cms_page_info (ID, SITE_ID, PAGE_TYPE_ID, 
+      PAGE_NAME, SITE_URL, SHOP_ID, 
+      TIMING_TIME, VALID_TIME, INVALID_TIME, 
+      IS_USE_TEMPLATE, TEMPLATE_ID, PLATFORM_TYPE, 
+      STATUS, CREATE_STAFF, CREATE_TIME, 
+      UPDATE_STAFF, UPDATE_TIME, QRCODE_PIC, 
+      VIEW_QRCODE_PIC)
+    values (#{id,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER}, #{pageTypeId,jdbcType=INTEGER}, 
+      #{pageName,jdbcType=VARCHAR}, #{siteUrl,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, 
+      #{timingTime,jdbcType=TIMESTAMP}, #{validTime,jdbcType=TIMESTAMP}, #{invalidTime,jdbcType=TIMESTAMP}, 
+      #{isUseTemplate,jdbcType=VARCHAR}, #{templateId,jdbcType=INTEGER}, #{platformType,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createStaff,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{qrcodePic,jdbcType=VARCHAR}, 
+      #{viewQrcodePic,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.cms.dao.model.CmsPageInfo" >
+    insert into t_cms_page_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="pageTypeId != null" >
+        PAGE_TYPE_ID,
+      </if>
+      <if test="pageName != null" >
+        PAGE_NAME,
+      </if>
+      <if test="siteUrl != null" >
+        SITE_URL,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="timingTime != null" >
+        TIMING_TIME,
+      </if>
+      <if test="validTime != null" >
+        VALID_TIME,
+      </if>
+      <if test="invalidTime != null" >
+        INVALID_TIME,
+      </if>
+      <if test="isUseTemplate != null" >
+        IS_USE_TEMPLATE,
+      </if>
+      <if test="templateId != null" >
+        TEMPLATE_ID,
+      </if>
+      <if test="platformType != null" >
+        PLATFORM_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="qrcodePic != null" >
+        QRCODE_PIC,
+      </if>
+      <if test="viewQrcodePic != null" >
+        VIEW_QRCODE_PIC,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="pageTypeId != null" >
+        #{pageTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="pageName != null" >
+        #{pageName,jdbcType=VARCHAR},
+      </if>
+      <if test="siteUrl != null" >
+        #{siteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="timingTime != null" >
+        #{timingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validTime != null" >
+        #{validTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidTime != null" >
+        #{invalidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUseTemplate != null" >
+        #{isUseTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null" >
+        #{platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qrcodePic != null" >
+        #{qrcodePic,jdbcType=VARCHAR},
+      </if>
+      <if test="viewQrcodePic != null" >
+        #{viewQrcodePic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.cms.dao.model.CmsPageInfoCriteria" resultType="java.lang.Long" >
+    select count(*) from t_cms_page_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_cms_page_info
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pageTypeId != null" >
+        PAGE_TYPE_ID = #{record.pageTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.pageName != null" >
+        PAGE_NAME = #{record.pageName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteUrl != null" >
+        SITE_URL = #{record.siteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.timingTime != null" >
+        TIMING_TIME = #{record.timingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.validTime != null" >
+        VALID_TIME = #{record.validTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.invalidTime != null" >
+        INVALID_TIME = #{record.invalidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isUseTemplate != null" >
+        IS_USE_TEMPLATE = #{record.isUseTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.templateId != null" >
+        TEMPLATE_ID = #{record.templateId,jdbcType=INTEGER},
+      </if>
+      <if test="record.platformType != null" >
+        PLATFORM_TYPE = #{record.platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.qrcodePic != null" >
+        QRCODE_PIC = #{record.qrcodePic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.viewQrcodePic != null" >
+        VIEW_QRCODE_PIC = #{record.viewQrcodePic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_cms_page_info
+    set ID = #{record.id,jdbcType=INTEGER},
+      SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      PAGE_TYPE_ID = #{record.pageTypeId,jdbcType=INTEGER},
+      PAGE_NAME = #{record.pageName,jdbcType=VARCHAR},
+      SITE_URL = #{record.siteUrl,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      TIMING_TIME = #{record.timingTime,jdbcType=TIMESTAMP},
+      VALID_TIME = #{record.validTime,jdbcType=TIMESTAMP},
+      INVALID_TIME = #{record.invalidTime,jdbcType=TIMESTAMP},
+      IS_USE_TEMPLATE = #{record.isUseTemplate,jdbcType=VARCHAR},
+      TEMPLATE_ID = #{record.templateId,jdbcType=INTEGER},
+      PLATFORM_TYPE = #{record.platformType,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      QRCODE_PIC = #{record.qrcodePic,jdbcType=VARCHAR},
+      VIEW_QRCODE_PIC = #{record.viewQrcodePic,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.cms.dao.model.CmsPageInfo" >
+    update t_cms_page_info
+    <set >
+      <if test="siteId != null" >
+        SITE_ID = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="pageTypeId != null" >
+        PAGE_TYPE_ID = #{pageTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="pageName != null" >
+        PAGE_NAME = #{pageName,jdbcType=VARCHAR},
+      </if>
+      <if test="siteUrl != null" >
+        SITE_URL = #{siteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="timingTime != null" >
+        TIMING_TIME = #{timingTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validTime != null" >
+        VALID_TIME = #{validTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="invalidTime != null" >
+        INVALID_TIME = #{invalidTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isUseTemplate != null" >
+        IS_USE_TEMPLATE = #{isUseTemplate,jdbcType=VARCHAR},
+      </if>
+      <if test="templateId != null" >
+        TEMPLATE_ID = #{templateId,jdbcType=INTEGER},
+      </if>
+      <if test="platformType != null" >
+        PLATFORM_TYPE = #{platformType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="qrcodePic != null" >
+        QRCODE_PIC = #{qrcodePic,jdbcType=VARCHAR},
+      </if>
+      <if test="viewQrcodePic != null" >
+        VIEW_QRCODE_PIC = #{viewQrcodePic,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.cms.dao.model.CmsPageInfo" >
+    update t_cms_page_info
+    set SITE_ID = #{siteId,jdbcType=INTEGER},
+      PAGE_TYPE_ID = #{pageTypeId,jdbcType=INTEGER},
+      PAGE_NAME = #{pageName,jdbcType=VARCHAR},
+      SITE_URL = #{siteUrl,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      TIMING_TIME = #{timingTime,jdbcType=TIMESTAMP},
+      VALID_TIME = #{validTime,jdbcType=TIMESTAMP},
+      INVALID_TIME = #{invalidTime,jdbcType=TIMESTAMP},
+      IS_USE_TEMPLATE = #{isUseTemplate,jdbcType=VARCHAR},
+      TEMPLATE_ID = #{templateId,jdbcType=INTEGER},
+      PLATFORM_TYPE = #{platformType,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      QRCODE_PIC = #{qrcodePic,jdbcType=VARCHAR},
+      VIEW_QRCODE_PIC = #{viewQrcodePic,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,64 @@
+ #parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/myprom/myprom-list.js?version=$!{JS_VERSION}" ></script>
+	 <table id="dataGridTable"class="seller-table table-striped" >
+                            <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" rowspan="1" colspan="1" aria-label="编码" >编码</th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="站点">站点</th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="店铺名称">店铺名称</th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="促销名称">促销名称</th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="促销类型">促销类型</th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="状态">状态 </th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="促销开始时间" >促销开始时间</th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="促销截止时间">促销截止时间</th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="是否免邮">是否免邮</th>
+                                <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="操作"style="width: 100px;">操作</th>
+                            </tr>
+                            </thead>
+                               <tbody>
+        	#if(!$promPage.getResult()||$promPage.count==0)
+        		<tr><td colspan='9'>很遗憾，暂无数据。</td><tr>
+        	#end
+        	#foreach($attr in $promPage.getResult())
+                            <tr id="" role="row" class="odd">
+                                <td class="sorting_1">$!{attr.id}</td>
+                                <td>#escapeHtml( "$!{attr.siteName}")</td>
+                                <td>#escapeHtml( "$!{attr.shopName}") </td>
+                                <td class="td-hhtxt " ><div style="text-align:center;">#escapeHtml( " $!{attr.promTheme}")</div></td>
+                                <td>#escapeHtml( "$!{attr.promTypeName}") </td>
+                                <td>#escapeHtml( "$!{attr.statusName}") </td>
+                                <td >$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.startTime})</td>
+	               				<td >$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.endTime})</td>
+	               				<td>#if ($!{attr.ifFreePost}=='1') 免邮 #else  #end</td>
+                                <td style="text-align:left;"><a  href="javascript:void(0)"  onclick='copy("$!{attr.id}")' >&nbsp;复制 &nbsp;</a>
+                                   | <a  href="javascript:void(0)"  onclick='detail("$!{attr.id}")'>&nbsp;详情 &nbsp;</a>
+                                    	#if(${attr.status}=="10")
+										|<a  href="javascript:void(0)"   onclick='invalid("$!{attr.id}")' >&nbsp;失效 &nbsp;</a>
+										#if(${attr.promTypeCode}!="1000000011"&&${attr.promTypeCode}!="1000000013"&&${attr.promTypeCode}!="1000000014")
+										| <a href='javascript:void(0)'  onclick='importData("$!{attr.id}","$!{attr.promTypeCode}")' >批量导入商品 </a>
+										#end
+										| <a href='javascript:void(0)' onclick='fresh("$!{attr.id}")' >搜索更新 </a>
+                                   		 #end
+                                   		 #if(${attr.status}=="20")
+										| <a href='javascript:void(0)' onclick='fresh("$!{attr.id}")' >搜索更新 </a>
+										#end
+										#if(${attr.status}=="00"|| ${attr.status}=="40")
+										| <a href='javascript:void(0)'  onclick='edit("$!{attr.id}")'>&nbsp;编辑 &nbsp;</a>
+										| <a href='javascript:void(0)'  onclick='del("$!{attr.id}")' >&nbsp;删除 &nbsp;</a>
+										#if(${attr.promTypeCode}!="1000000011"&&${attr.promTypeCode}!="1000000013"&&${attr.promTypeCode}!="1000000014")
+										| <a href='javascript:void(0)'  onclick='importData("$!{attr.id}","$!{attr.promTypeCode}")'>批量导入商品 </a>
+										#end
+										#end
+										#if(${attr.status}=="00")
+	    			 					| <a href='javascript:void(0)'  onclick='publish("$!{attr.id}")'  >&nbsp;发布&nbsp;</a>	
+                           				#end
+                           				</td>
+                            </tr>
+			#end
+		</tbody>
+	</table>
+    <div class="fav-opt clearfix" style="margin-top: 20px;">
+        <div class="row-fluid">
+		<div id="pageControlbar" class="ecppage" data-total-page="${promPage.pageCount}" data-total-row="${promPage.count}" data-page-size="${promPage.pageSize}" data-page-number="${promPage.pageNo}" data-status="begin"></div>
+		</div>
+    </div>

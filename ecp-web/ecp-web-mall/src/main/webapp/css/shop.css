@@ -1,0 +1,373 @@
+@charset "UTF-8";
+/*店铺信息*/
+.shop_top {
+  background: url("../images/shop/store_top.png") repeat-x;
+  height: 37px;
+  line-height: 35px;
+  font-size: 15px;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  font-family: "微软雅黑";
+}
+.shop_top a {
+  color: #fff;
+}
+.store_logo {
+  overflow: hidden;
+  height: 100px;
+  position: relative;
+}
+.shop-explain {
+  padding: 4px 8px;
+  overflow: hidden;
+}
+.col-btn {
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+  height: 20px;
+  line-height: 20px;
+  display: inline-block;
+  cursor: pointer;
+  margin: 10px auto 0;
+}
+.shop-grade {
+  border-top: 1px dotted #ccc;
+  color: #676767;
+}
+.shop-grade dd {
+  position: relative;
+  cursor: pointer;
+}
+.shop-grade dd span b {
+  display: inline-block;
+}
+.shop-grade dd b {
+  width: 16px;
+}
+.shop-grade dd:hover em {
+  display: block;
+}
+.shop-grade em {
+  display: none;
+  position: absolute;
+  z-index: 99999;
+  min-width: 150px;
+  top: 24px;
+  left: 140px;
+  border: 1px solid #d5d5d5;
+  background: #efefef;
+  padding: 2px 3px;
+  font-weight: normal;
+  line-height: 14px;
+  word-break: break-all;
+  word-wrap: break-word;
+  color: #666;
+  cursor: pointer;
+  box-shadow: 0 5px 8px -7px #555555;
+}
+.shop-grade i {
+  font-style: normal;
+}
+.mLeft10 {
+  margin-left: 10px;
+}
+/*图标*/
+.shop-icon {
+  background: url("../images/shop/shop-icon.png") no-repeat;
+  display: inline-block;
+}
+.shop-icon-green {
+  background-position: 0 -24px;
+  width: 14px;
+  height: 14px;
+  margin-top: 3px;
+  float: left;
+  margin-right: 3px;
+}
+.shop-icon-grade {
+  width: 16px;
+  height: 16px;
+  background-position: 0 0;
+  vertical-align: top;
+}
+.shop-icon-find {
+  width: 11px;
+  height: 11px;
+  background-position: 0 -52px;
+  margin-right: 5px;
+}
+.shop-icon-good {
+  width: 14px;
+  height: 14px;
+  background-position: -26px -1px;
+}
+.shop-icon-xh {
+  width: 16px;
+  height: 16px;
+  background-position: -49px -1px;
+  margin-left: 10px;
+}
+.mbom10 {
+  margin-bottom: 10px;
+}
+.mtop10 {
+  margin-bottom: 10px;
+}
+.green {
+  color: #008000;
+}
+.font-def {
+  font-family: monospace;
+}
+.grade_w30 {
+  width: 35px;
+  display: inline-block;
+}
+.w60 {
+  width: 60px;
+}
+.history-nav li p {
+  margin-top: 0;
+}
+.right-box {
+  margin-bottom: 10px;
+}
+/* 图片轮播 begin*/
+.bannerimg {
+  width: 990px;
+  position: relative;
+  padding: 0;
+  height: 396px;
+}
+.bannerimg .slide-box {
+  width: 100%;
+  height: 100%;
+}
+.bannerimg .slide-box li {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  text-align: center;
+  display: none;
+}
+.bannerimg .slide-box img {
+  width: 100%;
+  height: 100%;
+}
+.slide-pagination {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  margin-left: -450px;
+  text-align: center;
+  width: 900px;
+  z-index: 5;
+  overflow: hidden;
+  /* -webkit-transform: translate(-50%, 0);
+   -ms-transform: translate(-50%, 0);
+   transform: translate(-50%, 0);*/
+}
+.slide-pagination ul {
+  display: inline-block;
+}
+.slide-pagination li {
+  float: left;
+}
+.slide-pagination li a {
+  text-decoration: none;
+  display: inline-block;
+  height: 22px;
+  width: 22px;
+  line-height: 22px;
+  background: #7a7a7c;
+  color: white;
+  margin-right: 7px;
+}
+.slide-pagination li a.current {
+  background: #ff6a00;
+  color: #fff;
+  opacity: 1;
+  -webkit-box-shadow: 0 0 2px #F0EFE7;
+  -moz-box-shadow: 0 0 2px #F0EFE7;
+  box-shadow: 0 0 2px #F0EFE7;
+}
+/* 图片轮播 end*/
+#header .search-input .searchConten {
+  position: absolute;
+  right: 110px;
+  top: 9px;
+  z-index: 9;
+}
+/*轮播样式*/
+.fav-shops .item {
+  border-bottom: 1px solid #ddd;
+  height: 200px;
+  padding: 15px 0 15px 420px;
+}
+.fav-shops .fitem {
+  border-top: 1px solid #ddd;
+}
+.fav-shops .intro {
+  margin-left: -420px;
+  width: 420px;
+  float: left;
+  padding-right: 15px;
+}
+.fav-shops .hd {
+  border-bottom: 1px solid #ddd;
+  position: relative;
+  overflow: hidden;
+  *zoom: 1;
+  padding-bottom: 20px;
+}
+.fav-shops .hd .icheckbox {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.fav-shops .hd img {
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+.fav-shops .adv {
+  overflow: hidden;
+  zoom: 1;
+  margin-left: 110px;
+}
+.fav-shops .adv span {
+  font-size: 14px;
+  font-weight: 900;
+}
+.fav-shops .adv .pheight {
+  margin: 5px 0;
+  height: 76px;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.fav-shops .adv a {
+  color: #0063dc;
+}
+.fav-shops .bd {
+  padding-top: 20px;
+}
+.fav-shops .bd p {
+  margin-bottom: 4px;
+}
+.fav-shops .bd .num-b {
+  float: left;
+}
+.fav-shops .bd .btn-grps {
+  font-size: 0;
+}
+.fav-shops .bd .btn-grps .btn-default {
+  padding: 0;
+  width: 78px;
+  height: 25px;
+  line-height: 25px;
+  font-size: 12px;
+}
+.fav-shops .bd .btn-grps .btn-kf {
+  margin-right: 5px;
+  width: 82px;
+}
+.fav-shops .bd .mb-icon-kf {
+  width: 17px;
+  height: 17px;
+  background-position: -60px -26px;
+}
+.fav-shops .pros {
+  float: left;
+  padding-left: 20px;
+  border-left: 1px solid #ddd;
+}
+.fav-shops .favimg .price {
+  margin-top: 5px;
+  color: red;
+  text-align: center;
+  font-weight: bold;
+}
+.fav-shops .favimg .slide-box {
+  width: 620px;
+  padding: 10px 20px 10px 35px;
+  height: 150px;
+}
+.fav-shops .favimg .disabled {
+  display: none;
+}
+.fav-shops .favimg .it {
+  width: 150px;
+  height: 130px;
+  float: left;
+  margin-right: 20px;
+}
+.fav-shops .favimg .it img {
+  width: 150px;
+  height: 130px;
+}
+.fav-shops .goshop {
+  width: 100%;
+  padding: 0;
+  height: 23px;
+  line-height: 23px;
+  margin: 7px 0;
+}
+.fav-shops em {
+  font-weight: 900;
+}
+.fav-shops .info-good {
+  position: relative;
+}
+.fav-shops .info-good i {
+  font-style: normal;
+}
+.fav-tabt {
+  height: 30px;
+  overflow: hidden;
+}
+.fav-tabt li {
+  float: left;
+  margin-right: 10px;
+}
+.fav-tabt .active {
+  color: #ff0000;
+  text-decoration: underline;
+}
+.fav-tabc .citem {
+  display: none;
+}
+.fav-tabc .active {
+  display: block;
+}
+.slide .slide-next:hover {
+  background-position: -133px -196px;
+}
+.slide .slide-prev:hover {
+  background-position: -106px -196px;
+}
+.info-box {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  float: left;
+  position: absolute;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  left: 90px;
+  top: 20px;
+  display: none;
+  z-index: 99;
+}
+.shop-hp {
+  cursor: pointer;
+  z-index: 99;
+}
+.shop-hp:hover .info-box {
+  display: block;
+}

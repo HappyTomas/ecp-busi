@@ -1,0 +1,41 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/prom-show-form.js?version=$!{JS_VERSION}" ></script>
+ 
+ 		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div>
+				<h3 class="heading">促销类型选择</h3>
+			</div>
+			<div class="pull-right">
+					<button type="button" class="btn btnReturn"><i class="icon-reply"></i> 返回</button>
+			</div>
+		</div>
+			 <div class="alert alert-error hide formValidateMessages" style="color:red;" >
+				#showSpringAllError("queryPromType4ShopVO")
+            </div>
+            <div class="row-fluid">
+				    #foreach($promType in ${promTypeVOList})  
+				        #if ( $!{velocityCount}%4==1 )
+				                <div class="span3"  style="margin-left: 0px;margin-bottom: 20px;">	
+				        		
+				        #else
+				        		<div class="span3"  style="margin-bottom: 20px;">
+				        #end
+								      <span>
+								         <img src="$IMAGE_PATH/prom/promImg${promType.promTypeCode}.jpg"
+								         alt="$promType.promTypeName">
+								      </span>
+								       <span class="caption" >
+								           <h3 style="margin-top:10px;"><div class=" pop_over" data-content="$promType.promTypeDesc" data-original-title="$promType.promTypeName" data-placement="top">$promType.promTypeName</div> 
+								              <div>#if ($promType.shopId) <span class="label label-important">已授权</span>#end #if (!$promType.shopId)  <span class="label label-info">未授权</span>#end  #if ($promType.promClass==10) 【订单】 #elseif ($promType.promClass==20) 【单品】#else 【外围】 #end </div>
+								           </h3>
+								           <p style="margin-top:10px;height:75px;" class=" pop_over" data-content="$promType.promTypeDesc" data-original-title="$promType.promTypeName" data-placement="top"> #if ($promType.promTypeDesc.length() <=50)  $promType.promTypeDesc #else $promType.promTypeDesc.substring(0,50)...... #end </p>
+								         <div style="margin-bottom: 20px;">
+								           <button type="button" class="btn publish" name="$!{shopId}" id="$promType.promTypeCode" code="$promType.promTypeCode"><i class="icon-plus"></i>发布促销</button>
+								         </div>
+							         </span>
+								   </div>
+                         #end  
+			   </div>
+		   <div style="text-align:center">
+					<button type="button" class="btn btnReturn" ><i class="icon-reply"></i> 返回</button>
+			</div>	

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">  
+<properties>  
+	<comment>IK Analyzer 扩展配置</comment>
+	<!--扩展词典的统一入口为dic/ext -->
+	<entry key="ext_dict">dic/ext;</entry>
+	
+	<!--扩展停止词字典的统一入口为dic/stopword-->
+	<entry key="ext_stopwords">dic/stopword;</entry>
+	
+</properties>

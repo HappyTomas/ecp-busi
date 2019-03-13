@@ -1,0 +1,182 @@
+#if($ordList)
+	 #foreach($ordItem in $ordList)
+	  #set($sOrderDetailsMain = $!ordItem.getsCustomerOrdMain())
+	  #set($sOrderDetailsSubs = $!ordItem.getsOrderDetailsSubs())
+	<div class="ord-detail">
+        <table class="ord-tb">
+			#if($sOrderDetailsMain)
+            <thead>
+               <tr>
+                   <td colspan="2">
+                       <span class="p-code">
+						
+                                                           订单号: 
+					    #if($joinModel)
+                            <a class='authLink' href="#" data-href="#siteInfo(8)/order/customer/details/" data-ord="${sOrderDetailsMain.id}"  target="_blank"><em>${sOrderDetailsMain.id}</em></a>
+						#else
+							<a href="#siteInfo(1)/ord/detail/${sOrderDetailsMain.id}" target="_blank"><em>${sOrderDetailsMain.id}</em></a>
+						#end
+														   
+                       </span>
+					   <span class="status">#translate('ORD_ORDER_STATUS' $!{sOrderDetailsMain.status})</span>
+					   <a href="javascript:void(0);" class="ui-btn btn-send ordersend"
+							orderId=${sOrderDetailsMain.id}
+							orderPrice=#moneyDecimal($!{sOrderDetailsMain.realMoney})
+							orderTime="$!{date.format('yyyy-MM-dd HH:mm:ss',$sOrderDetailsMain.getOrderTime())}">发送</a>
+                   </td>
+               </tr>
+            </thead>
+            <tbody>
+				#foreach($sOrderDetail in $!{sOrderDetailsSubs})
+					<tr>
+						 #if($joinModel)
+						  <td style="width:65px">
+							 <a href="#siteInfo(1)$!{sOrderDetail.gdsUrl}" target="_blank">
+                             	<img class="p-img" src="#genImageUrl($!sOrderDetail.getPicId(),'52x52!')" alt=""/>
+                             </a>
+                          </td>
+                          <td>
+                             <a class="p-name" href="#siteInfo(1)$!{sOrderDetail.gdsUrl}" target="_blank">$!{gdsUrl}$!{sOrderDetail.gdsName}</a>
+                          </td>
+						#else
+							 <td >
+                              <a href="#siteInfo(1)$!{sOrderDetail.gdsUrl}" target="_blank">
+                                  <img class="p-img" src="#genImageUrl($!sOrderDetail.getPicId(),'52x52!')" alt=""/>
+                              </a>
+                          </td>
+                          <td>
+                              <a class="p-name" href="#siteInfo(1)$!{sOrderDetail.gdsUrl}" target="_blank">$!{gdsUrl}$!{sOrderDetail.gdsName}</a>
+                          </td>
+						 #end
+						
+              		</tr>
+			    #end
+            </tbody>
+            <tfoot>
+              <tr>
+                  <td colspan="2">
+                      <span class="p-pri">
+                                 订单金额: <em>#moneyDecimal($!{sOrderDetailsMain.realMoney})</em>
+                      </span>
+                       <span class="p-time">
+						 $!date.format('yyyy-MM-dd HH:mm:ss',$sOrderDetailsMain.getOrderTime())
+                       </span>
+                  </td>
+              </tr>
+              #if($joinModel)
+              <tr>
+                  <td colspan="2" class="sellerMsgTd">
+                  		<input type="hidden" id="ordId" value="${sOrderDetailsMain.id}">
+                 	 卖家备注:
+                       <span class="p-pri msg_${sOrderDetailsMain.id}" id="sellerMsgSpan" title="${sOrderDetailsMain.sellerMsg}">
+                            #if ($sOrderDetailsMain.sellerMsg.length() <=9)  $!{sOrderDetailsMain.sellerMsg} #else $sOrderDetailsMain.sellerMsg.substring(0,9)...#end
+                       </span>
+                       <a href="javascript:void(0);" class="updateSellerMsg" style="color:blue;margin-right:6px;float:right;">
+						修改
+                       </a>
+                  </td>
+              </tr>
+              #end
+            </tfoot>
+			#else
+				<tr>
+					<td class="block-empty">$!{failMsg}</td>
+			   </tr>
+			#end
+        </table>
+        </div>
+#end
+#else
+	    <input type="hidden" id="noOrder" value="1">
+		<div class="block-empty">暂无订单</div>
+#end
+<input type="hidden" class="pageNumber" value="$!{pageNumber}">
+	<input type="hidden" class="pageCount" value="$!{pageCount}">
+<script>
+    $(function(){
+        $('.authLink').click(function(){
+		   
+            var $this=$(this);
+            var json = "{flag:'"+$('#orderEdit').val()+"',orderId:'"+$(this).data('ord')+"',usercode:'"+$('#staffCode').val()+"',time:"+new Date().getTime()+"}";
+			$.eAjax({
+                url:GLOBAL.WEBROOT + '/mallInfo/encryptCode',
+                data: {jsonStr:json},
+                datatype: 'json',
+                async: false,
+                success: function(data) {
+				 
+				  var href=$('.authLink').data('href')+data.jsonStr;
+				  $this.attr('href',href);
+                },
+				 exception: function() {
+                    eDialog.alert("网络异常");
+                    return;
+                }
+          
+            });
+        });
+        var sellerMsgTpl;
+        $('.updateSellerMsg').die("click").live("click",function(){
+        	 var ordId=$('#ordId',$(this).parents('.sellerMsgTd')).val();
+        	 //var sellerMsg=$('#sellerMsgSpan',$(this).parents('.sellerMsgTd')).attr('title');
+        	 $.eAjax({
+                url:GLOBAL.WEBROOT + '/mallInfo/getSellerMsg',
+                data: {
+    		        	orderId:ordId
+		        	  },
+                datatype: 'json',
+                success: function(data) {
+				  	 var sellerMsg=data.sellerMsg;
+		        	 var sellerMsgTplData = {
+		        			ordId : ordId,
+		        			sellerMsg : sellerMsg
+		        	 };
+		        	 sellerMsgTpl=template('sellerMsgTpl',sellerMsgTplData);
+		     		 bDialog.open({
+		     			    'title' : "修改卖家备注",
+		                     'width' : 550,
+		                     'height' : 250,
+		                     'customClass': 'imDialog'
+		             },sellerMsgTpl);
+                },
+				exception: function() {
+                    eDialog.alert("网络异常");
+                    return;
+                }
+          
+            });
+	    });
+	    $('.saveSellerMsg').die("click").live("click",function(){
+        	 var ordId=$('#ordId',sellerMsgTpl).val();
+        	 var sellerMsg=$('#sellerMsg').val();
+        	 var sellerMsgTplData = {
+        			ordId : ordId,
+        			sellerMsg : sellerMsg
+        	 };
+        	 $.eAjax({
+                url:GLOBAL.WEBROOT + '/mallInfo/updateSellerMsg',
+                data: {
+    		        	orderId:ordId,
+    		        	sellerMsg:sellerMsg
+		        	  },
+                datatype: 'json',
+                success: function(data) {
+				  	var $oldSellerMsg=$('.msg_'+ordId);
+				  	if(""==sellerMsg){sellerMsg="暂无内容";}
+				  	$oldSellerMsg.attr('title',sellerMsg);
+				  	if(sellerMsg.length>9){
+				  		sellerMsg=sellerMsg.substr(0,9)+"...";
+				  	}
+				  	$oldSellerMsg.text(sellerMsg);
+				  	 //关闭弹出框
+                	bDialog.closeCurrent();
+                },
+				exception: function() {
+                    eDialog.alert("网络异常");
+                    return;
+                }
+          
+            });
+	    });
+    });
+</script>

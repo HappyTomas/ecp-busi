@@ -1,0 +1,124 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-upload.vm")
+#parse("sys/sys_param.vm")
+<link href="${CONTEXT_PATH}/css/cms/advertise-img.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/floor/advertise/advertise-edit.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<script type="text/javascript">
+ function replaceSpace(obj){
+ obj.value = obj.value.replace(/s/gi,'')
+}
+</script>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<div class="alert alert-error hide formValidateMessages" >
+	##showSpringAllError("vo")
+</div>
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/flooradvertise/save">
+		<div class="span8">
+			<input type="hidden" id="id" name="id" value="$!{respDTO.id}" />
+			<input type="hidden" id="placeId" name="placeId" value="$!{respDTO.placeId}" />
+			<input type="hidden" id="floorId" name="floorId" value="$!{respDTO.floorId}" />
+			<input type="hidden" id="siteId" name="siteId" value="$!{floorInfo.siteId}" />
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属楼层：</label>
+    				<div class="controls">
+						<input type="text" class="input-large" id="floorName" name="floorName" readonly value="#escapeHtml($!{respDTO.floorName})" />
+    					<span class="help-inline">商城页面楼层！</span>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">广告语：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large required htmlcheck" maxlength="64" id="advertiseTitle" name="advertiseTitle" placeholder="请填写广告语" value="#escapeHtml($!{respDTO.advertiseTitle})" />
+    					<span class="help-inline">广告语最大长度不能超过64个字符！</span>
+					</div>
+    			</div>
+    		</div>
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">上传图片：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large required" id="vfsId"  name="vfsId" readonly value="#escapeHtml($!{respDTO.vfsId})" />
+    					<div id="uploadFileObj" class="btn btn-primary" data-place-width="1024" data-place-height="1024" data-place-size="1000"><i class="icon-upload-alt"></i> 上传图片</div>
+					</div>
+    			</div>
+    		</div>
+    		<div class="formSep" id="uploadWarn_div">
+    			<div class="control-group">
+    				<div class="controls">
+                        <span id="uploadWarn" class="help-inline" style="color:#FF0000" >
+							 温馨提醒：请上传小于1000k的图片（jpg,png,jpeg,gif），规格小于1024*1024px！
+                        </span>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">链接类型：</label>
+    				<div class="controls">
+						<select id="linkType" name="linkType" class="required">
+    						#listParam('CMS_ADVERTISE_LINK_TYPE',"$!{respDTO.linkType}")
+    					</select>
+						<span class="help-inline">请选择链接类型！</span>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">链接内容：</label>
+    				<div class="controls">
+    					<input type="text" id="linkName" name="linkName" class="input-large required" placeholder="请选择链接内容" value="#escapeHtml($!{respDTO.linkName})" readonly="readonly"/>
+						<input type="hidden" id="linkUrl" name="linkUrl" value="#escapeHtml($!{respDTO.linkUrl})"/>
+						<button type="button" class="btn" id="select_link_detail"><i class="icon-magic"></i> 选择</button>
+					</div>
+    			</div>
+    		</div>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">排序：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large checkInteger" min="1" max="100" id="sortNo" name="sortNo" placeholder="如果不填，则默认为1。" onBlur="replaceSpace(this)" value="$!{respDTO.sortNo}" />
+    					<span class="help-inline">请填写1-100的整数，值越小，排序越靠前！</span>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">备注：</label>
+    				<div class="controls">
+    					<textarea rows="4" cols="100" onpropertychange="checkLen(this,'count','250')" oninput="checkLen(this,'count','250')"  class="input-block-level htmlcheck" id="remark" name="remark"  placeholder="请填写备注">#escapeHtml($!{respDTO.remark})</textarea>
+    					<span class="help-inline">您还可以输入<span id="count">250</span>字！</span>
+    				</div>
+    			</div>
+    		</div>
+			<div class="text-center">
+				<button type="button" class="btn btn-info" id="btnFormPubSave"><i class="icon-ok-sign icon-white"></i> 发布</button>
+				<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i> 保存</button>
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i> 返回</button>
+    		</div>
+        </div>
+		<div class="span4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">图片预览</h3>
+				</div>
+				<div class="panel-body">
+					<img id="image-preview" src="#genImageUrl($!{respDTO.vfsId},'290x220!')" width="290" height="220" class="img-polaroid">
+					<input type="hidden" id="emptyImageUrl" value="#genImageUrl('','290x220!')" />
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</form>
+</div>
+	

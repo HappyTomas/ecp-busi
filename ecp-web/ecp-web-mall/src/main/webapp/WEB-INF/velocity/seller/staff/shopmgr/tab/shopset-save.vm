@@ -1,0 +1,152 @@
+			
+				<div class="seller-box">	
+					<div class="body" >
+						<form class="form-horizontal required-validate" id="detailInfoForm">
+                            <div class="row-fluid">
+                                <div class="span6">
+									 <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">店铺选择：</label>
+                                                <div class="controls">
+													<select id="shopId" name="shopId">
+														  #sellerList($!{shopId})
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">店铺全称：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="required" maxLength="64" name="shopFullName" value="$!{shopdto.shopFullName}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">店铺简称：</label>
+                                                <div class="controls">
+                                                    <input type="text" maxLength="64" class="required" name="shopName" value="$!{shopdto.shopName}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">店铺微信推广号：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="" maxLength="30" name="microMessageExt" value="$!{shopdto.microMessageExt}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">店铺联系人：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="required" maxLength="32" name="linkPerson" value="$!{shopdto.linkPerson}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">联系人手机：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="required mobilePhone" name="linkMobilephone" maxLength="11" value="$!{shopdto.linkMobilephone}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">联系人邮件：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="required email" maxLength="32"  name="linkEmail" value="$!{shopdto.linkEmail}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">是否支持店铺VIP：</label>
+                                                <div class="controls">
+                                                #if($!{useVip}==1)
+                                                 	<input type="text" class="required" disabled="disabled" value="是"/>
+                                                #else
+                                                	<input type="text" class="required"  disabled="disabled" value="否"/>
+                                               	#end
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">是否支持线下支付：</label>
+                                                <div class="controls">
+                                                   #select('SHOP_OFFLINE_SUPPORTED','offlineSupported',true,$!{shopdto.offlineSupported})
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  <!--  <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">入店保障金：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="required number" maxlength="10" name="cautionMoney" value="$!{shopdto.cautionMoney}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">店铺简介：</label>
+                                                <div class="controls">
+                                                    <textarea class="input-block-level" name="shopDesc"  maxlength="512" rows="4">$!{shopdto.shopDesc}</textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                	<div class="span4">
+                                    	<div class="panel panel-default">
+											<div class="panel-heading">
+												<h3 class="panel-title">店铺LOGO</h3>
+											</div>
+											<div class="panel-body">
+												<div class="thumbnail">
+													<img data-src="holder.js/300x200?text=图片预览区" alt="" id="imgPreview1" src="$!{shopdto.logoPathURL}">
+						    						<div class="caption">
+						    							<p><a id="shoplogoUpload" href="javascript:void(0);" class="btn ">上传图片</a></p>
+						    						</div>
+												</div>
+											</div>
+											 <p class="c-red"><span class="c-red">*</span>
+	                                           	 仅支持JPG、GIF、PNG、JPEG格式，文件小于4M</p>
+										</div>
+                                	</div>
+                            	</div>
+							<input type="hidden"  name="logoMongodbKey" id="logoMongodbKey" value="$!{shopdto.logoPat}"/>
+                        </form>
+                        <div class="btn-wrap">
+                            <button type="button"  class="sbtn sbtn-blue" id="btnFormSave"><span>确认无误，提交申请</span></button>
+                        </div>
+                    </div>
+                 </div>         
+				 
+				 <form id="shopIdForm" action="$CONTEXT_PATH/seller/shopmgr/shopset" method="post">
+					<input name="shopId" id="shopIds" type="hidden" value=""/>
+                 </form>

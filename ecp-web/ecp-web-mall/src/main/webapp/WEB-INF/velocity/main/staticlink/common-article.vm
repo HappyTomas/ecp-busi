@@ -1,0 +1,43 @@
+#parse("/sys/sys_param.vm")
+<!--文本-->
+<div style="min-height:350px;">
+	<div class="wrap1000" id ='common-article'>
+	    #if($article && ${article.id} && '' != $!{article.id})
+	       <div class="h-tit">
+	          $!{article.articleTitle}
+	       </div>
+	       <div class="h-com" id="arti-content">
+	           <input type="hidden" id="arti-detail-url" value = "$!{article.staticUrl}"/>
+	       </div>
+	       #*获取文章内容 s *#
+		   <script type="text/javascript">
+			$(function() {
+				//根据静态文件路径，填充富文本内容。
+				var artiContent =  $("#arti-content","#common-article");
+				var staticUrl = $("#arti-detail-url",artiContent).val();
+				if(staticUrl){
+					var url = staticUrl;
+					$.ajax({
+						url : url,
+						async : true,
+						type : "get",
+						dataType : 'jsonp',
+						jsonp :'jsonpCallback',//注意此处写死jsonCallback
+						success: function (data) {
+							artiContent.empty();
+							artiContent.html(data.result);
+					    },
+					    error:function(){
+					    	artiContent.html("<div class='pro-empty'>网络错误</div>");
+					    }
+					});
+				}
+				
+			});
+			</script>
+			#*获取文章内容 e *#
+	    #else
+		   <div class="h-tit">#if($errMsg && '' != $!{errMsg})$!{errMsg}#else暂无信息#end</div>
+	    #end
+	</div>
+</div>

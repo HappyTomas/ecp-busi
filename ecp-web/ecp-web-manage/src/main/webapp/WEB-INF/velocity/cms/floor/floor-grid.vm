@@ -1,0 +1,87 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/floor/floor-grid.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<!--搜索区域-->
+<div class="well well-searchForm">
+	<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+	#parse("/cms/common/linkage-grid.vm")
+	<div class="row-fluid">
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">楼层名称：</label>
+				<div class="controls">
+					<input type="text" name="floorName" id="floorName" class="input-medium" value="" placeholder="请输入楼层名称">
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">状态：</label>
+				<div class="controls">
+					<select id="status" name="status" class="input-large">
+						<option value="" selected >--请选择--</option>
+						#listParam('CMS_STATUS',"")
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">数据来源：</label>
+				<div class="controls">
+					<select id="dataSource" name="dataSource" class="input-large">
+						<option value="" selected >--请选择--</option>
+						#listParam('CMS_DATA_SOURCE',"")
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<div class="row-fluid">
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">统计类型：</label>
+				<div class="controls">
+					<select id="countType" name="countType" class="input-large">
+						<option value="" selected >--请选择--</option>
+						#listParam('CMS_COUNT_TYPE',"")
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	</form>
+</div>
+
+<!--操作按钮区域-->
+<div class="row-fluid" style="margin-bottom: 10px;">
+	<div class="span8">
+		<a class="btn" id="btn_code_add" href="javascript:void(0)"><i class="icon-plus icon-white"></i>新增</a>
+		<a class="btn" id="btn_tab_mgr" href="javascript:void(0)"><i class="icon-edit icon-white"></i>页签配置</a>
+		<a class="btn" id="btn_label_mgr" href="javascript:void(0)"><i class="icon-edit icon-white"></i>标签配置</a>
+		<a class="btn" id="btn_gds_mgr" href="javascript:void(0)"><i class="icon-edit icon-white"></i>商品配置</a>
+		<a class="btn" id="btn_coupon_mgr" href="javascript:void(0)"><i class="icon-edit icon-white"></i>优惠券配置</a>
+		<a class="btn" id="btn_ad_mgr" href="javascript:void(0)"><i class="icon-edit icon-white"></i>广告配置</a>
+		<!--
+		<a class="btn" id="btn_attr_mgr" href="javascript:void(0)"><i class="icon-edit icon-white"></i>属性配置</a>
+		-->
+	</div>
+	<div class="pull-right">
+		<a class="btn btn-info" id="btnFormSearch" href="javascript:void(0)"><i class="icon-search icon-white"></i>查询</a>
+		<a class="btn" id="btnFormReset" href="javascript:void(0)"><i class="icon-refresh"></i>重置</a>
+	</div>
+</div>
+
+<!--列表区域-->
+<div class="row-fluid">
+	<table id="dataGridTable"></table>
+</div>

@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.busi.CustInfoLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.CustInfoLog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="STAFF_CODE" property="staffCode" jdbcType="VARCHAR" />
+    <result column="CUST_TYPE" property="custType" jdbcType="VARCHAR" />
+    <result column="CUST_GROW_VALUE" property="custGrowValue" jdbcType="INTEGER" />
+    <result column="CUST_LEVEL_CODE" property="custLevelCode" jdbcType="VARCHAR" />
+    <result column="NICKNAME" property="nickname" jdbcType="VARCHAR" />
+    <result column="CUST_NAME" property="custName" jdbcType="VARCHAR" />
+    <result column="SERIAL_NUMBER" property="serialNumber" jdbcType="VARCHAR" />
+    <result column="CUST_PIC" property="custPic" jdbcType="VARCHAR" />
+    <result column="DENDER" property="dender" jdbcType="CHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="TELEPHONE" property="telephone" jdbcType="VARCHAR" />
+    <result column="COUNTRY_CODE" property="countryCode" jdbcType="VARCHAR" />
+    <result column="PROVINCE_CODE" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="CITY_CODE" property="cityCode" jdbcType="VARCHAR" />
+    <result column="COUNTY_CODE" property="countyCode" jdbcType="VARCHAR" />
+    <result column="CUST_SHOP_FLAG" property="custShopFlag" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="DATAILED_ADDRESS" property="datailedAddress" jdbcType="VARCHAR" />
+    <result column="COMPANY_ID" property="companyId" jdbcType="INTEGER" />
+    <result column="DISTURB_FLAG" property="disturbFlag" jdbcType="CHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="CHECK_STAFF" property="checkStaff" jdbcType="INTEGER" />
+    <result column="CHECK_DATE" property="checkDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="CUST_CARD_ID" property="custCardId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, STAFF_ID, STAFF_CODE, CUST_TYPE, CUST_GROW_VALUE, CUST_LEVEL_CODE, NICKNAME, 
+    CUST_NAME, SERIAL_NUMBER, CUST_PIC, DENDER, EMAIL, TELEPHONE, COUNTRY_CODE, PROVINCE_CODE, 
+    CITY_CODE, COUNTY_CODE, CUST_SHOP_FLAG, SHOP_ID, DATAILED_ADDRESS, COMPANY_ID, DISTURB_FLAG, 
+    STATUS, CHECK_STAFF, CHECK_DATE, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, 
+    CUST_CARD_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.CustInfoLogCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_cust_info_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_cust_info_log
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_cust_info_log
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.CustInfoLog" >
+    insert into t_cust_info_log (ID, STAFF_ID, STAFF_CODE, 
+      CUST_TYPE, CUST_GROW_VALUE, CUST_LEVEL_CODE, 
+      NICKNAME, CUST_NAME, SERIAL_NUMBER, 
+      CUST_PIC, DENDER, EMAIL, 
+      TELEPHONE, COUNTRY_CODE, PROVINCE_CODE, 
+      CITY_CODE, COUNTY_CODE, CUST_SHOP_FLAG, 
+      SHOP_ID, DATAILED_ADDRESS, COMPANY_ID, 
+      DISTURB_FLAG, STATUS, CHECK_STAFF, 
+      CHECK_DATE, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_TIME, UPDATE_STAFF, CUST_CARD_ID
+      )
+    values (#{id,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{staffCode,jdbcType=VARCHAR}, 
+      #{custType,jdbcType=VARCHAR}, #{custGrowValue,jdbcType=INTEGER}, #{custLevelCode,jdbcType=VARCHAR}, 
+      #{nickname,jdbcType=VARCHAR}, #{custName,jdbcType=VARCHAR}, #{serialNumber,jdbcType=VARCHAR}, 
+      #{custPic,jdbcType=VARCHAR}, #{dender,jdbcType=CHAR}, #{email,jdbcType=VARCHAR}, 
+      #{telephone,jdbcType=VARCHAR}, #{countryCode,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, 
+      #{cityCode,jdbcType=VARCHAR}, #{countyCode,jdbcType=VARCHAR}, #{custShopFlag,jdbcType=VARCHAR}, 
+      #{shopId,jdbcType=INTEGER}, #{datailedAddress,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
+      #{disturbFlag,jdbcType=CHAR}, #{status,jdbcType=CHAR}, #{checkStaff,jdbcType=INTEGER}, 
+      #{checkDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, #{custCardId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.CustInfoLog" >
+    insert into t_cust_info_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE,
+      </if>
+      <if test="custType != null" >
+        CUST_TYPE,
+      </if>
+      <if test="custGrowValue != null" >
+        CUST_GROW_VALUE,
+      </if>
+      <if test="custLevelCode != null" >
+        CUST_LEVEL_CODE,
+      </if>
+      <if test="nickname != null" >
+        NICKNAME,
+      </if>
+      <if test="custName != null" >
+        CUST_NAME,
+      </if>
+      <if test="serialNumber != null" >
+        SERIAL_NUMBER,
+      </if>
+      <if test="custPic != null" >
+        CUST_PIC,
+      </if>
+      <if test="dender != null" >
+        DENDER,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE,
+      </if>
+      <if test="countryCode != null" >
+        COUNTRY_CODE,
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE,
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE,
+      </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE,
+      </if>
+      <if test="custShopFlag != null" >
+        CUST_SHOP_FLAG,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="datailedAddress != null" >
+        DATAILED_ADDRESS,
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID,
+      </if>
+      <if test="disturbFlag != null" >
+        DISTURB_FLAG,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="checkStaff != null" >
+        CHECK_STAFF,
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="custCardId != null" >
+        CUST_CARD_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffCode != null" >
+        #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null" >
+        #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="custGrowValue != null" >
+        #{custGrowValue,jdbcType=INTEGER},
+      </if>
+      <if test="custLevelCode != null" >
+        #{custLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNumber != null" >
+        #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="custPic != null" >
+        #{custPic,jdbcType=VARCHAR},
+      </if>
+      <if test="dender != null" >
+        #{dender,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null" >
+        #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custShopFlag != null" >
+        #{custShopFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="datailedAddress != null" >
+        #{datailedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="disturbFlag != null" >
+        #{disturbFlag,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=CHAR},
+      </if>
+      <if test="checkStaff != null" >
+        #{checkStaff,jdbcType=INTEGER},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="custCardId != null" >
+        #{custCardId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.CustInfoLogCriteria" resultType="java.lang.Long" >
+    select count(*) from t_cust_info_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.CustInfoLog" >
+    update t_cust_info_log
+    <set >
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custType != null" >
+        CUST_TYPE = #{custType,jdbcType=VARCHAR},
+      </if>
+      <if test="custGrowValue != null" >
+        CUST_GROW_VALUE = #{custGrowValue,jdbcType=INTEGER},
+      </if>
+      <if test="custLevelCode != null" >
+        CUST_LEVEL_CODE = #{custLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        NICKNAME = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="custName != null" >
+        CUST_NAME = #{custName,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNumber != null" >
+        SERIAL_NUMBER = #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="custPic != null" >
+        CUST_PIC = #{custPic,jdbcType=VARCHAR},
+      </if>
+      <if test="dender != null" >
+        DENDER = #{dender,jdbcType=CHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null" >
+        COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custShopFlag != null" >
+        CUST_SHOP_FLAG = #{custShopFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="datailedAddress != null" >
+        DATAILED_ADDRESS = #{datailedAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="disturbFlag != null" >
+        DISTURB_FLAG = #{disturbFlag,jdbcType=CHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=CHAR},
+      </if>
+      <if test="checkStaff != null" >
+        CHECK_STAFF = #{checkStaff,jdbcType=INTEGER},
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="custCardId != null" >
+        CUST_CARD_ID = #{custCardId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.CustInfoLog" >
+    update t_cust_info_log
+    set STAFF_ID = #{staffId,jdbcType=INTEGER},
+      STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      CUST_TYPE = #{custType,jdbcType=VARCHAR},
+      CUST_GROW_VALUE = #{custGrowValue,jdbcType=INTEGER},
+      CUST_LEVEL_CODE = #{custLevelCode,jdbcType=VARCHAR},
+      NICKNAME = #{nickname,jdbcType=VARCHAR},
+      CUST_NAME = #{custName,jdbcType=VARCHAR},
+      SERIAL_NUMBER = #{serialNumber,jdbcType=VARCHAR},
+      CUST_PIC = #{custPic,jdbcType=VARCHAR},
+      DENDER = #{dender,jdbcType=CHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      TELEPHONE = #{telephone,jdbcType=VARCHAR},
+      COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      COUNTY_CODE = #{countyCode,jdbcType=VARCHAR},
+      CUST_SHOP_FLAG = #{custShopFlag,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      DATAILED_ADDRESS = #{datailedAddress,jdbcType=VARCHAR},
+      COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      DISTURB_FLAG = #{disturbFlag,jdbcType=CHAR},
+      STATUS = #{status,jdbcType=CHAR},
+      CHECK_STAFF = #{checkStaff,jdbcType=INTEGER},
+      CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      CUST_CARD_ID = #{custCardId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

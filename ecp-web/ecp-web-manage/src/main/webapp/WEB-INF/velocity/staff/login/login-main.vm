@@ -1,0 +1,69 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+
+<!--登录页样式-->
+<link href="$CSS_PATH/staff/login.css" type="text/css" rel="stylesheet">
+
+<!-- html body-->
+<div class="wrap100 hbg">
+    <div class="w clearfix">
+        <div class="login-logo">
+            <a href=""><img src="$!{loginLogoImageUrl}" alt=""/></a>
+        </div>
+        <h2><img src="$!{IMAGE_PATH}/staff/login/ds-f.png" alt=""/></h2>
+    </div>
+</div>
+<div class="wrap100 logbox">
+    <div class="w clearfix">
+        <div class="pull-left"><img src="$!{IMAGE_PATH}/staff/login/llimg.png" alt=""/></div>
+	<div class="logbg">
+        <div class="loginbody">
+            <div class="lbox">
+                <div class="ltit">登录</div>
+                <div class="lform">
+                    <form class="form-horizontal form-login" id="loginform">
+                        <div class="control-group">
+                            <label class="control-label" for="usernamediv">用户名：</label>
+                            <div class="controls">
+                                <input type="text" id="usernamediv" name="j_username" class="input-block-level " placeholder="用户名">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="passworddiv">密&nbsp;&nbsp;&nbsp;码：</label>
+
+                            <div class="controls">
+                                <input type="password" id="passworddiv" name="j_password" class="input-block-level " placeholder="密码">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="checkcodediv">验证码：</label>
+
+                            <div class="controls">
+                                <input type="text" class="input-mini" id="checkcodediv" name="j_check_code" placeholder="验证码">
+                                <span class=""><img id="captchaCodeImg" src="${CONTEXT_PATH}/captcha/CapthcaImage" alt="" width="70"/></span>
+                                <span class=""><a class="mta" id="refleshCaptchaCode" href="javascript:void(0);">换一张</a></span>
+                            </div>
+                        </div>
+                        <div class="mt40">
+                            <button type="button" class="lbtn ml50" id="loginsubmit">登录</button>
+                            <span class="pull-right"><button type="button" class="lbtn lbtn-default" id="btnReset">重置</button></span>
+                        </div>
+                    </form>
+		</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="login-footer">
+    <div class="w footer">
+        #siteObj()
+        <p>$!{siteObj.siteAddress}</p>
+        <p>$!{siteObj.caseNo} #if($!{siteObj.copyrightCompany} && $!{siteObj.copyrightCompany} != '')©$!{siteObj.copyrightCompany}#end</p>
+    </div>
+</div>
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/login/login-main.js?version=$!{JS_VERSION}" ></script>

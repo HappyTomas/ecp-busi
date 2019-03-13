@@ -1,0 +1,39 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/buyer/acct/acct-detail.js"></script>
+<table width="100%" class="">
+    <thead>
+        <tr>
+	        <th>账户名称</th>
+	        <th>时间</th>
+	        <th>存入</th>
+	        <th>支出</th>
+	        <th>订单编号</th>
+	        <th>交易类型</th>
+    	</tr>
+    </thead>
+    <tbody>
+    	#if(${gridResult.list.size()} == 0)
+    		<tr><td colspan='6'>没有符合条件的记录。</td><tr>
+    	#end
+        #foreach( $lst in ${gridResult.list})
+            <tr>
+                <td>$!{lst.acctName}</td>
+				<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{lst.createTime})</td>
+				#if($!{lst.debitCredit} == 1)
+				<td>#moneyNum($!{lst.tradeMoney})</td>
+				#else
+				<td>-</td>
+				#end
+				#if($!{lst.debitCredit} == 2)
+				<td>#moneyNum($!{lst.tradeMoney})</td>
+				#else
+				<td>-</td>
+				#end
+				<td><a href="$CONTEXT_PATH/ord/detail/$!{lst.orderId}" target="_blank">$!{lst.orderId}</a></td>
+				<td>$!{lst.tradeType}</td>
+            </tr>
+        #end
+    </tbody>
+</table>
+
+<div id="pageControlbar" class="ecppage" data-total-page="$!{gridResult.totalPage}" data-total-row="$!{gridResult.totalRow}"  data-page-size="$!{gridResult.pageSize}" data-page-number="$!{gridResult.pageNumber}" data-status="begin"></div>

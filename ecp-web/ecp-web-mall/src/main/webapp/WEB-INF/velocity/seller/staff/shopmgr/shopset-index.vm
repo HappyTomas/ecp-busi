@@ -1,0 +1,30 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/holder/holder.js" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/staff/shopset-save.js?version=$!{JS_VERSION}" ></script>
+ <script>
+        $(function(){
+            U.tab('#teamTab','#teamTabc');
+        })
+ </script>
+ <div class="seller-tab" id="tabHost">
+	    <ul class="tab-nav" id="teamTab">
+	        <li class="active first"><a href="#shop" class="item">店铺基本设置</a></li>
+	        <li><a href="#company" class="item">企业信息</a></li>
+	    </ul>
+	    <div class="tab-content" id="teamTabc">
+		    <div class="point-con" id="shop">
+				#parse("/seller/staff/shopmgr/tab/shopset-save.vm")
+				<div class="nItem">
+		        </div>
+		    </div>
+		    <div class="sptj-box information-form clearfix">
+			    <div class="point-con" id="company">
+					#parse("/seller/staff/shopmgr/tab/company-info.vm")
+					<div class="nItem">
+			        </div>
+			    </div>
+			 </div>
+	    </div>
+   	</div>

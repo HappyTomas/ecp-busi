@@ -1,0 +1,42 @@
+ 	#parse("/sys/sys_param.vm")
+ <link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+ <script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsMedia/media-list.js?version=$!{JS_VERSION}" ></script>
+ <table class="seller-table" style="margin-top: 15px" id="mediaForm">
+                       
+                        <thead>
+                        <tr>
+                            <td>图片编码</td>
+                            <td style="width: 200px">图片名称</td>
+                            <td>图片类型</td>
+                            <td>图片排序值</td>                        
+							<td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+            				#if($!{mediaPageInfo.getResult().size()} <= 0)
+                    		<tr><td colspan='12'>没有符合条件的记录。</td></tr>
+							#end
+							 	#foreach($mediaInfo in $mediaPageInfo.getResult())
+							
+                        <tr>
+                            <td>$mediaInfo.id</td>
+                            <td class="td-hhtxt">
+								<div class="img-wrap">
+                                               <img src="$!mediaInfo.uRL" alt="">
+                                           </div>
+                             $mediaInfo.mediaName
+                            </td>
+                            <td> $!mediaInfo.mediaType</td>
+                            <td> $!mediaInfo.sortNo</td>
+                            <td>    <a href="#" name="preView" mediaId="$!mediaInfo.id">预览</a>|<a href="#" name="del" mediaId="$!mediaInfo.id">删除</a>|<a href="#" name="edit"  mediaId="$!mediaInfo.id">编辑</a></td>
+                      
+                        </tr>
+                        #end
+                        </tbody>
+                    </table>
+			
+	<div class="fav-opt clearfix" >
+                        <div class="row-fluid">
+                			<div id="pageControlbar" class="ecppage" data-total-page="${mediaPageInfo.pageCount}" data-total-row="${mediaPageInfo.count}" data-page-size="${mediaPageInfo.pageSize}" data-page-number="${mediaPageInfo.pageNo}" data-status="begin"></div>
+                		</div>
+                    </div>

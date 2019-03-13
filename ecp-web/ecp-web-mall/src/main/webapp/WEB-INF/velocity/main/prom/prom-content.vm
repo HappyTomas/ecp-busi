@@ -1,0 +1,75 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+<!-- 促销顶部广告  begin -->
+<header class="banner">##高度不做限制<!-- data-place-width="1920" data-place-height="420" -->
+	<div class="banner_w1920 hide ecp-component homepage-ad" data-status="1" data-place-size="1" data-place-id="1301" data-is-link="1"  data-module="ecp-component/leaflet/leaflet-slider">
+        <ul class="homepage-ad-img" style="display:block;">
+        </ul>
+    </div>
+</header>
+<!-- 促销顶部广告  end -->
+
+<!-- 楼层1  begin -->
+<div class="w1024">##没有展示数量的限制data-gds-size ="10"
+	<div class ="ecp-component prom-floor-shader" data-place-id="1303" data-coup-size="4"  data-place-width="176" data-place-height="176" data-status="1" data-floor-type="2" data-return-url="/main/prom/promShader/prom-floor-type" data-module="ecp-component/prom/prom-floor-shader">
+    	<div class="floor-content">
+        
+    	</div>
+    </div>
+</div>
+<!-- 楼层1  end -->
+
+<!-- 楼层 2 begin -->
+<div class="w1024">
+	<div class ="ecp-component prom-floor-shader" data-place-id="1304" data-coup-size="4"  data-place-width="176" data-place-height="176" data-status="1" data-floor-type="2" data-return-url="/main/prom/promShader/prom-floor-type" data-module="ecp-component/prom/prom-floor-shader">
+    	<div class="floor-content">
+        
+    	</div>
+    </div>
+</div>
+<!-- 楼层2  end -->
+<!-- 楼层 3 begin -->
+<div class="w1024">
+	<div class ="ecp-component prom-floor-shader" data-place-id="1305" data-coup-size="4" data-place-width="176" data-place-height="176" data-status="1" data-floor-type="2" data-return-url="/main/prom/promShader/prom-floor-type" data-module="ecp-component/prom/prom-floor-shader">
+    	<div class="floor-content">
+        
+    	</div>
+    </div>
+</div>
+<!-- 楼层3  end -->
+<!-- 楼层4 begin -->
+<div class="w1024">
+	<div class ="ecp-component prom-floor-shader" data-place-id="1306" data-coup-size="4" data-place-width="176" data-place-height="176" data-status="1" data-floor-type="2" data-return-url="/main/prom/promShader/prom-floor-type" data-module="ecp-component/prom/prom-floor-shader">
+    	<div class="floor-content">
+        
+    	</div>
+    </div>
+</div>
+<!-- 楼层4  end -->
+<!-- 楼层 5 begin -->
+<div class="w1024">
+	<div class ="ecp-component prom-floor-shader" data-place-id="1307" data-coup-size="4" data-place-width="176" data-place-height="176" data-status="1" data-floor-type="2" data-return-url="/main/prom/promShader/prom-floor-type" data-module="ecp-component/prom/prom-floor-shader">
+    	<div class="floor-content">
+        
+    	</div>
+    </div>
+</div>
+<!-- 楼层5  end -->
+<!-- 楼层 6 begin -->
+<div class="w1024">
+	<div class ="ecp-component prom-floor-shader" data-place-id="1308" data-coup-size="4" data-place-width="176" data-place-height="176" data-status="1" data-floor-type="2" data-return-url="/main/prom/promShader/prom-floor-type" data-module="ecp-component/prom/prom-floor-shader">
+    	<div class="floor-content">
+        
+    	</div>
+    </div>
+</div>
+<!-- 楼层6  end -->
+
+<!-- 促销底部广告  begin -->
+<header class="banner mt20">##高度不做限制 data-place-width="1920" data-place-height="362"
+	<div class="banner_w1920 hide ecp-component homepage-ad" data-status="1" data-place-size="1" data-place-id="1302" data-is-link="1"  data-module="ecp-component/leaflet/leaflet-slider">
+        <ul class="homepage-ad-img" style="display:block;">
+        </ul>
+    </div>
+</header>
+<!-- 促销底部广告  end -->

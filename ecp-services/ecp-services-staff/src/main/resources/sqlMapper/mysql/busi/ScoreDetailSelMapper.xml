@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.busi.ScoreDetailSelMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.ScoreDetailSel" >
+    <result column="ID" property="id" jdbcType="INTEGER" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="SCORE_TYPE_ORIG" property="scoreTypeOrig" jdbcType="VARCHAR" />
+    <result column="SCORE_TYPE" property="scoreType" jdbcType="CHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CONSUME_SCORE" property="consumeScore" jdbcType="INTEGER" />
+    <result column="MODIFY_ADD_SCORE" property="modifyAddScore" jdbcType="INTEGER" />
+    <result column="EXCHANGE_SCORE" property="exchangeScore" jdbcType="INTEGER" />
+    <result column="MODIFY_REDUCE_SCORE" property="modifyReduceScore" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, STAFF_ID, ORDER_ID, SCORE_TYPE_ORIG, SCORE_TYPE, CREATE_TIME, CONSUME_SCORE, 
+    MODIFY_ADD_SCORE, EXCHANGE_SCORE, MODIFY_REDUCE_SCORE, REMARK, SITE_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.ScoreDetailSelCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_score_detail_sel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.ScoreDetailSelCriteria" >
+    delete from t_score_detail_sel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.ScoreDetailSel" >
+    insert into t_score_detail_sel (ID, STAFF_ID, ORDER_ID, 
+      SCORE_TYPE_ORIG, SCORE_TYPE, CREATE_TIME, 
+      CONSUME_SCORE, MODIFY_ADD_SCORE, EXCHANGE_SCORE, 
+      MODIFY_REDUCE_SCORE, REMARK, SITE_ID
+      )
+    values (#{id,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, 
+      #{scoreTypeOrig,jdbcType=VARCHAR}, #{scoreType,jdbcType=CHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{consumeScore,jdbcType=INTEGER}, #{modifyAddScore,jdbcType=INTEGER}, #{exchangeScore,jdbcType=INTEGER}, 
+      #{modifyReduceScore,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{siteId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.ScoreDetailSel" >
+    insert into t_score_detail_sel
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="scoreTypeOrig != null" >
+        SCORE_TYPE_ORIG,
+      </if>
+      <if test="scoreType != null" >
+        SCORE_TYPE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="consumeScore != null" >
+        CONSUME_SCORE,
+      </if>
+      <if test="modifyAddScore != null" >
+        MODIFY_ADD_SCORE,
+      </if>
+      <if test="exchangeScore != null" >
+        EXCHANGE_SCORE,
+      </if>
+      <if test="modifyReduceScore != null" >
+        MODIFY_REDUCE_SCORE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreTypeOrig != null" >
+        #{scoreTypeOrig,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreType != null" >
+        #{scoreType,jdbcType=CHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="consumeScore != null" >
+        #{consumeScore,jdbcType=INTEGER},
+      </if>
+      <if test="modifyAddScore != null" >
+        #{modifyAddScore,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeScore != null" >
+        #{exchangeScore,jdbcType=INTEGER},
+      </if>
+      <if test="modifyReduceScore != null" >
+        #{modifyReduceScore,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.ScoreDetailSelCriteria" resultType="java.lang.Long" >
+    select count(*) from t_score_detail_sel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_score_detail_sel
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scoreTypeOrig != null" >
+        SCORE_TYPE_ORIG = #{record.scoreTypeOrig,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scoreType != null" >
+        SCORE_TYPE = #{record.scoreType,jdbcType=CHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.consumeScore != null" >
+        CONSUME_SCORE = #{record.consumeScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.modifyAddScore != null" >
+        MODIFY_ADD_SCORE = #{record.modifyAddScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.exchangeScore != null" >
+        EXCHANGE_SCORE = #{record.exchangeScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.modifyReduceScore != null" >
+        MODIFY_REDUCE_SCORE = #{record.modifyReduceScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_score_detail_sel
+    set ID = #{record.id,jdbcType=INTEGER},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      SCORE_TYPE_ORIG = #{record.scoreTypeOrig,jdbcType=VARCHAR},
+      SCORE_TYPE = #{record.scoreType,jdbcType=CHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CONSUME_SCORE = #{record.consumeScore,jdbcType=INTEGER},
+      MODIFY_ADD_SCORE = #{record.modifyAddScore,jdbcType=INTEGER},
+      EXCHANGE_SCORE = #{record.exchangeScore,jdbcType=INTEGER},
+      MODIFY_REDUCE_SCORE = #{record.modifyReduceScore,jdbcType=INTEGER},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      SITE_ID = #{record.siteId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  
+  <select id="sumByExample" parameterType="com.zengshi.ecp.staff.dao.model.ScoreDetailSelCriteria" resultMap="BaseResultMap" >
+    select sum(CONSUME_SCORE) AS CONSUME_SCORE,
+    	   sum(MODIFY_ADD_SCORE) AS MODIFY_ADD_SCORE,
+    	   sum(EXCHANGE_SCORE) AS EXCHANGE_SCORE,
+    	   sum(MODIFY_REDUCE_SCORE) AS MODIFY_REDUCE_SCORE
+    	   from t_score_detail_sel
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+</mapper>

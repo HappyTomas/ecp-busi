@@ -1,0 +1,30 @@
+
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        积分明细
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        <a href="javascript:" class="" onclick="history.go(-1); ">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content">
+    <ul class="ui-list point-list">
+        #foreach($attr in $scorePage.getResult())
+        	<li>
+	            <div class="cont">
+	                <p class="tit">$!{attr.scoreTypeName} #if(${attr.orderId})  （订单编号：$!{attr.orderId}）#end</p>
+	                <p class="time">$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.createTime})</p>
+	            </div>
+	            <div class="pt-num">
+	            #if($!{attr.scoreTypeName} == '使用积分') 
+	            -$!{attr.consumeScore}
+	            #else
+	            +$!{attr.consumeScore}
+	            #end
+	            </div>
+	        </li>
+        #end
+    </ul>
+</div>

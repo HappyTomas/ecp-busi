@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>供应链电商</title>
+
+#parse("/sys/sys_head.vm")
+
+</head>
+<body>
+	
+	$screen_content
+	
+	#parse("/main/main-bottom-navbar.vm")
+
+</body>
+</html>

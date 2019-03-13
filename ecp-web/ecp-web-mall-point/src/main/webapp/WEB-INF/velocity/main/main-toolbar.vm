@@ -1,0 +1,256 @@
+<!--右侧工具条 begin-->
+<div id="toolBar" class="clearfix">
+    <div class="mbar">
+        <div class="toolcenter">
+            <a class="qitem" href="javascript:void(0)" id="bycar">
+                <i class="navicon"></i>
+                <div class="txt">
+                    购物车
+                </div>
+                <div class="num">
+                    20
+                </div>
+            </a>
+
+        </div>
+        <div class="toolfoot">
+            <div class="wxss link">
+                <a href="#" target="_blank">
+                    <i class="tab-ico"></i>
+                    <em class="tab-text">微信扫扫</em>
+                </a>
+            </div>
+            <div class="feedback link">
+                <a href="#" target="_blank">
+                    <i class="tab-ico"></i>
+                    <em class="tab-text">反馈</em>
+                </a>
+            </div>
+            <div class="toTop link">
+                <a href="#" target="_blank">
+                    <i class="tab-ico"></i>
+                    <em class="tab-text">回顶部</em>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="mcar">
+        <div class="head">
+            购物车
+        </div>
+        <dl class="body">
+            <dt>
+                丸美旗舰店
+            </dt>
+            <dd>
+                <div class="p-img">
+                    <a href="">
+                        <img src="../images/carimg.jpg" alt=""/>
+                    </a>
+                </div>
+                <div class="p-name">
+                    <a href="#" target="_blank" >
+                        飞利浦(Philips) RQ311 电动剃须刀
+                    </a>
+                </div>
+                <div class="p-price">
+                    <strong>&yen;239.00</strong>
+                    ×1
+                </div>
+                <a class="p-del" href="#none">删除</a>
+            </dd>
+            <dd>
+                <div class="p-img">
+                    <a href="">
+                        <img src="../images/carimg.jpg" alt=""/>
+                    </a>
+                </div>
+                <div class="p-name">
+                    <a href="#" target="_blank" >
+                        飞利浦(Philips) RQ311 电动剃须刀
+                    </a>
+                </div>
+                <div class="p-price">
+                    <strong>&yen;239.00</strong>
+                    ×1
+                </div>
+                <a class="p-del" href="#none">删除</a>
+            </dd>
+            <dd class="ld">
+                <div class="p-img">
+                    <a href="">
+                        <img src="../images/carimg.jpg" alt=""/>
+                    </a>
+                </div>
+                <div class="p-name">
+                    <a href="#" target="_blank" >
+                        飞利浦(Philips) RQ311 电动剃须刀
+                    </a>
+                </div>
+                <div class="p-price">
+                    <strong>&yen;239.00</strong>
+                    ×1
+                </div>
+                <a class="p-del" href="#none">删除</a>
+            </dd>
+            <dt>
+                丸美旗舰店
+            </dt>
+            <dd>
+                <div class="p-img">
+                    <a href="">
+                        <img src="../images/carimg.jpg" alt=""/>
+                    </a>
+                </div>
+                <div class="p-name">
+                    <a href="#" target="_blank" >
+                        飞利浦(Philips) RQ311 电动剃须刀
+                    </a>
+                </div>
+                <div class="p-price">
+                    <strong>&yen;239.00</strong>
+                    ×1
+                </div>
+                <a class="p-del" href="#none">删除</a>
+            </dd>
+            <dt>
+                丸美旗舰店
+            </dt>
+            <dd>
+                <div class="p-img">
+                    <a href="">
+                        <img src="../images/carimg.jpg" alt=""/>
+                    </a>
+                </div>
+                <div class="p-name">
+                    <a href="#" target="_blank" >
+                        飞利浦(Philips) RQ311 电动剃须刀
+                    </a>
+                </div>
+                <div class="p-price">
+                    <strong>&yen;239.00</strong>
+                    ×1
+                </div>
+                <a class="p-del" href="#none">删除</a>
+            </dd>
+            <dt>
+                丸美旗舰店
+            </dt>
+            <dd>
+                <div class="p-img">
+                    <a href="">
+                        <img src="../images/carimg.jpg" alt=""/>
+                    </a>
+                </div>
+                <div class="p-name">
+                    <a href="#" target="_blank" >
+                        飞利浦(Philips) RQ311 电动剃须刀
+                    </a>
+                </div>
+                <div class="p-price">
+                    <strong>&yen;239.00</strong>
+                    ×1
+                </div>
+                <a class="p-del" href="#none">删除</a>
+            </dd>
+            <dt>
+                丸美旗舰店
+            </dt>
+            <dd>
+                <div class="p-img">
+                    <a href="">
+                        <img src="../images/carimg.jpg" alt=""/>
+                    </a>
+                </div>
+                <div class="p-name">
+                    <a href="#" target="_blank" >
+                        飞利浦(Philips) RQ311 电动剃须刀
+                    </a>
+                </div>
+                <div class="p-price">
+                    <strong>&yen;239.00</strong>
+                    ×1
+                </div>
+                <a class="p-del" href="#none">删除</a>
+            </dd>
+            <dt>
+                丸美旗舰店
+            </dt>
+            <dd>
+                <div class="p-img">
+                    <a href="">
+                        <img src="../images/carimg.jpg" alt=""/>
+                    </a>
+                </div>
+                <div class="p-name">
+                    <a href="#" target="_blank" >
+                        飞利浦(Philips) RQ311 电动剃须刀
+                    </a>
+                </div>
+                <div class="p-price">
+                    <strong>&yen;239.00</strong>
+                    ×1
+                </div>
+                <a class="p-del" href="#none">删除</a>
+            </dd>
+            <dt>
+                丸美旗舰店
+            </dt>
+            <dd>
+                <div class="p-img">
+                    <a href="">
+                        <img src="../images/carimg.jpg" alt=""/>
+                    </a>
+                </div>
+                <div class="p-name">
+                    <a href="#" target="_blank" >
+                        飞利浦(Philips) RQ311 电动剃须刀
+                    </a>
+                </div>
+                <div class="p-price">
+                    <strong>&yen;239.00</strong>
+                    ×1
+                </div>
+                <a class="p-del" href="#none">删除</a>
+            </dd>
+            <dt>
+                丸美旗舰店
+            </dt>
+            <dd>
+                <div class="p-img">
+                    <a href="">
+                        <img src="../images/carimg.jpg" alt=""/>
+                    </a>
+                </div>
+                <div class="p-name">
+                    <a href="#" target="_blank" >
+                        飞利浦(Philips) RQ311 电动剃须刀
+                    </a>
+                </div>
+                <div class="p-price">
+                    <strong>&yen;239.00</strong>
+                    ×1
+                </div>
+                <a class="p-del" href="#none">删除</a>
+            </dd>
+        </dl>
+        <div class="foot">
+            <div class="count">
+                 <span class="mny">
+                     共计：
+                       <strong>
+                           33333
+                       </strong>
+                 </span>
+                <strong>
+                    2
+                </strong>
+                件商品
+            </div>
+            <a href="3" class="gocar">
+                去购物车结算
+            </a>
+        </div>
+    </div>
+</div>
+<!--右侧工具条 end-->

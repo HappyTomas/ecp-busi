@@ -1,0 +1,64 @@
+#parse("/module/mod-grid.vm")
+<script type="text/javascript">
+    $(function(){
+        var exportInfo = '${exportInfo}';
+        var p = JSON.parse(exportInfo);
+        $.gridLoading({"message": "正在生成...."});//遮罩
+        $.eAjax({
+            url: GLOBAL.WEBROOT + '/ordExport/exportKeyOrd',
+            data: p,
+            success: function (result) {
+
+                if (result && result.resultFlag == 'ok') {
+                    getProgress(result.key);
+//                    window.location.href = GLOBAL.WEBROOT + '/order/export/'+result.fileId;
+                } else {
+                    eDialog.alert(result.resultMsg);
+                }
+                $.gridUnLoading();
+            },
+            failure: function () {
+                $.gridUnLoading();
+            }
+        });
+    });
+
+    function getProgress(fileKey) {
+        var i = 1;
+        var completeFlag ="0";
+        var wait=setInterval(function(){
+            i++;
+            $.eAjax({
+                url: GLOBAL.WEBROOT + '/ordExport/exportProgress',
+                data: [{name:"key",value:fileKey}],
+                async: false,
+                success: function (result) {
+                    if (result && result.resultFlag == 'ok') {
+//                        console.log("i="+i+" fileKey=" + fileKey+" completeFlag="+ result.completeFlag + " fileId=" + result.fileId);
+                        var n = result.progress;
+                        $("div[class=bar]").css("width", n + "%").html("生成文件进度："+n+"%");
+                        if(result.completeFlag == "1"){
+                            $("div[class=bar]").css("width", 100 + "%").html("生成文件进度："+100+"%");
+                            window.location.href = GLOBAL.WEBROOT + '/order/export/'+result.fileId;
+                            completeFlag = "1";
+                        }
+                    } else {
+                        eDialog.alert(result.resultMsg);
+                    }
+                },
+                exception: function () {
+                    completeFlag = "1";
+                }
+            });
+            if(completeFlag == "1"){
+//                console.log("end");
+                clearInterval(wait);
+                //执行code
+            }
+        },1000);
+    }
+</script>
+
+<div class="progress progress-striped active" style="margin-top: 100px">
+    <div class="bar" style="width: 0%;"></div>
+</div>

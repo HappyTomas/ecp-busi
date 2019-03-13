@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	#parse("/sys/sys_head.vm")
+    <meta charset="UTF-8">
+    <title>电商客服</title>
+    <link href="$RESOURCE_PATH/bootstrap/core/2.3.2/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+
+    <script type="text/javascript" src="$RESOURCE_PATH/jquery/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="$RESOURCE_PATH/bootstrap/core/2.3.2/js/bootstrap.js"></script>
+    <script type="text/javascript" src="$RESOURCE_PATH/jquery/util.js"></script>
+    <script type="text/javascript" src="$RESOURCE_PATH/jquery/artTemplate/template-debug.js"></script>
+    <link href="$RESOURCE_PATH/jquery/mCustomScrollbar/jquery.mCustomScrollbar.css" rel="stylesheet" type="text/css"
+          media="screen"/>
+    <script type="text/javascript" src="$RESOURCE_PATH/jquery/mCustomScrollbar/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="$RESOURCE_PATH/jquery/mCustomScrollbar/jquery.mCustomScrollbar.js"></script>
+
+</head>
+<body>
+	
+	$screen_content
+	
+</body>
+</html>

@@ -1,0 +1,11 @@
+<div class="point-con">
+    <ul class="ruleList">
+        <li>
+            <div class="p-data"><span>01</span></div>
+            <div class="p-rule">
+                <p><strong>购买指定商品送积分</strong></p>
+                <p>购买指定分类的商品赠送积分。</p>
+            </div>
+        </li>
+    </ul>
+</div>

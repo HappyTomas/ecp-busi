@@ -1,0 +1,11 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/search/search-box.js"></script>
+<!--搜索-->
+<div id="nav-search"></div>
+##<div class="p-search">
+    
+    ##<input type="text" placeholder="请输入关键字" id="searchTxt">
+    ##<button class="c-orange" type="button" id = "searchBtn">
+    ##    <i class="picon iicon-search"></i>
+    ##</button>
+##</div>

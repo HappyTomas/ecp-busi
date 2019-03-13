@@ -1,0 +1,42 @@
+<!--      买家我的收藏 页面             create  by zhanbh    2015.9.18        -->
+#parse("sys/sys_param.vm")
+<script type="text/javascript"
+	src="$!{RESOURCE_PATH}/bootstrap/extend/js/b.plugin.js"></script>
+	<script type="text/javascript" src="$RESOURCE_PATH/framework/website/core/e.pagetop.js"></script>
+<script type="text/javascript"
+	src="$!{BUSIJS_PATH}/staff/favGoods/member-favGoods.js?version=$!{JS_VERSION}"></script>
+  <script type="text/javascript"
+	src="$!{RESOURCE_PATH}/jquery/iCheck/icheck.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>	
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/reset.css">
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/member.css"> 
+<!--        begin of main          -->
+<div id="main" class="favShop">
+	<!--        begin of     搜索栏                               -->
+	<div class="mbox fav-serbox">
+		<div class="body">
+				<div class="fav-ser1 clearfix">
+				<div class="pull-left" >
+				   <h3 style="line-height:20px">
+					全部商品：<a class="sernum" href="#"><span id="sernum"></span></a>
+				   </h3>
+				</div>
+				<div class="pull-right fav-search">
+					<input class="itxt" type="text" id="gdsName" value=""
+						placeholder="请输入商品名称"> <input type="submit" value="搜索"
+						onclick="FavGoods.submit()" class="btn-bgray">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--          end of 搜索栏                                     -->
+	<!--          begin of 列表主体                           -->
+	<div class="mbox mt20 fav-tb">
+		<div class="body" id="dataBody">
+			<!--          table            -->
+			#parse("staff/buyer/favGoods/div/favGoodsDiv.vm")
+		</div>
+	</div>
+	<!--          end of 列表主体                           -->
+</div>
+<!--             end  of  main         -->

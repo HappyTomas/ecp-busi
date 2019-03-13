@@ -1,0 +1,67 @@
+ 	#parse("/sys/sys_param.vm")
+<tr class="replytr">
+	<script type="text/javascript">
+	$(function() {
+		//与回复有关的事件绑定
+		textLimit();
+	});
+</script>
+
+
+
+	<td class="replytd" colspan="8">
+	#if(!$repliesInfo ||  $repliesInfo.size() == 0)
+		<div style="width: 200px; margin: 10px auto; text-align: left">
+			#if(!$msg)没有回复数据#else $!msg #end</div> 
+	#else
+		#foreach($reply in $repliesInfo)
+			#if($!{reply.replyType} == 1)
+    		<div id="$!{reply.id}" class="reply-box" style="float:right">
+    			<div class="alert">
+    				<div class="reply-arrow"></div>
+					#if($!{reply.staffName})
+						<span>#escapeHtml($!{reply.staffName})：</span>
+					#else
+						<span>#escapeHtml($!{staff})：</span>
+					#end
+    				<div class="alertc">
+    					<div class="rcomment-s">#escapeHtml($!{reply.detail})</div>
+    					<div class="rtime-s">$!date.format('yyyy-MM-dd HH:mm:ss',$!{reply.replayTime})</div>
+    				##	<div class="rhf">我要回复</div>
+    				</div>
+    			</div>
+    			<div class="etextwrap" >
+    				<div class="reply-arrow"></div>
+    				<textarea class="rtext" cols="50" rows="4"></textarea>
+    				<div class="help-block">
+    					还可以输入<b>120</b>个汉字
+    				</div>
+    				<input type="button" class="btn forreply" data-loading-text="发表中..." value="发表" />
+    			</div>
+    		</div> 
+    		#else
+    		<div id="$!{reply.id}" class="reply-box" style="float:right">
+    			<div class="alert">
+    				<div class="reply-arrow"></div>
+					 #if($!{reply.staffName})
+						<span>#escapeHtml($!{reply.staffName})：</span>
+					#else
+						<span>#escapeHtml($!{staff})：</span>
+					#end
+    				<div class="alertc">
+    				    
+    					<div class="rcomment-s">#escapeHtml($!{reply.detail})</div>
+    					<div class="rtime-s">$!date.format('yyyy-MM-dd HH:mm:ss',$!{reply.replayTime})</div>
+    				</div>
+    			</div>
+    		</div> 
+    		#end 
+		##end of if 
+		#end 
+		##end of foreach 
+	#end
+		
+		<!--  隐藏域    --> 
+		#if(!$msg)<input  class="replyCount" type="hidden" value="$repliesInfo.size()" />#end
+	</td>
+</tr>

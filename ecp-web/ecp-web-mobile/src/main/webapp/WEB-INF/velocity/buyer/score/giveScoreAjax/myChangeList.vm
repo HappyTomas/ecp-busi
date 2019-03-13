@@ -1,0 +1,48 @@
+#parse("sys/sys_param.vm")
+#if($!{recodeList} && $!{recodeList.size()} > 0)
+#foreach($record in $!{recodeList})
+<li>
+                  
+                            <div class="img-wrap">
+                                 <a href="#if($!{record.gdsUrl} && $!{record.gdsUrl} !='')
+                        				#translate('CMS_SITE_MAPPING','2')/$!{record.gdsUrl}" target='_blank'
+                        			#else 
+                        				javascript:void(0);"
+                        			#end><img alt="$!{record.gdsName}" src="$!{record.picUrl}" >
+                               </a>
+                          </div>
+                            <div class="cont">
+                                <p class="tit">
+									 <a href="#if($!{record.gdsUrl} && $!{record.gdsUrl} !='')
+                        				#translate('CMS_SITE_MAPPING','2')/$!{record.gdsUrl}" target='_blank'
+                        			#else 
+                        				javascript:void(0);"
+                        			#end>
+									$!{record.gdsName}
+									</a>
+								</p>
+
+                                <div class="c-orange">
+                                    实付：
+                                    <span class="">$!{record.score}积分</span>+
+                                    <span class=""><em>¥</em>#moneyNum($!{record.discountMoney})</span>
+                                </div>
+                                <time>$!{record.orderTime}</time>
+                            </div>
+                     
+                    </li>
+#end
+#else
+	<div class="ui-empty">
+          <div class="empty-img">
+              <img src="$!{IMAGE_PATH}/nodata01.png" alt="">
+          </div>
+          <div class="tip-bold">
+                           很遗憾
+          </div>
+          <div class="tip-txt">
+             还没有兑换记录
+          </div>
+      </div>
+#end
+

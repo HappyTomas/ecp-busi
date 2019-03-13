@@ -1,0 +1,104 @@
+@charset "utf-8";
+.solr-table {
+    border-collapse: collapse;
+    border-spacing: 0;
+   
+    min-width:100%;
+    width:1800px;
+    font-size: 12px;
+}
+.table-wrap{
+    width: 100%;
+    overflow: scroll;
+}
+.solr-table thead {
+    font-size: 12px;
+    background-color: #EBF2F6
+}
+
+.solr-table thead td {
+    padding: 5px 5px;
+}
+
+.solr-table .iput, .solr-table select {
+    width: 80%;
+    height: 15px;
+    margin: 0;
+}
+
+.solr-table select {
+    height: 25px;
+}
+
+.solr-table td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+}
+
+.solr-table .f_error {
+    position: relative;
+}
+
+.solr-table .error {
+    position: absolute;
+    left: 2px;
+    top: -17px;
+    width: 100px;
+    text-align: left;
+}
+.edit-sel{
+    position: relative;
+    width: 90%;
+    height: 23px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -moz-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.edit-sel .edit-input{
+    width: 75%;
+    position: absolute;
+    left: 0;
+    top: 1px;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    padding-left: 5px;
+}
+.edit-sel select{
+    border: 0;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    height: 100%;
+}
+.edit-sel-block{
+    height: 28px;
+    width: 100%;
+}
+.edit-sel-block .edit-input{
+    top: 0;
+    height: 28px;
+    width: 95%;
+}
+.edit-sel-block.f_error{
+	color: #b94a48;
+    border-color: #b94a48;
+}
+.edit-sel-block.f_error .error{
+	right: -60px;
+    top: 5px;
+    position: absolute;
+}
+.red{
+ color: red;
+}
+.green{
+	color:green;
+}

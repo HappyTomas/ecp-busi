@@ -1,0 +1,40 @@
+#parse("sys/sys_param.vm")
+<ul class="glist clearfix">
+	#if(!$!{commonAuthorList} || $!{commonAuthorList.size()}==0)
+		<div class="pro-empty">
+                           「暂无推荐商品」
+		</div>
+	#else
+    	#foreach($list in $!{commonAuthorList})
+        <li>
+            <div class="p-img">
+                <a href="${CONTEXT_PATH}/gdsdetail/$!{list.skuInfo.gdsId}-$!{list.skuInfo.id}">
+                    <img width="150" height="150" src="${aiTool.genImageUrl($!{list.skuInfo.mainPic.mediaUuid},'150x150!')}" alt="">
+    			</a>
+    		</div>
+            <p class="p-name">
+                <a href="${CONTEXT_PATH}/gdsdetail/$!{list.skuInfo.gdsId}-$!{list.skuInfo.id}">
+    					$!{list.gdsName}
+                </a>
+            </p>
+            <p class="p-actor c-gray">
+    			#foreach($value in $!{list.skuInfo.allPropMaps.get('1001').values})
+    				$!{value.propValue}
+                #end
+            </p>
+            <p class="p-pri">
+            	#if($!{list.skuInfo.discountPrice} && $!{list.skuInfo.discountPrice} != '')
+                <b class="c-red">
+    				#money($!{list.skuInfo.discountPrice})
+                </b>
+                #end
+                <b class="c-gray t-mline">
+                	#if($!{list.guidePrice} && $!{list.guidePrice} != '')
+    					#money($!{list.guidePrice})
+    				#end
+                </b>
+            </p>
+    	</li>
+		#end
+	#end
+</ul>

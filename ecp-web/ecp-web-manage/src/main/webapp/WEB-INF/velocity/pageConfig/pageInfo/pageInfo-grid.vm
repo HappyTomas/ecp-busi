@@ -1,0 +1,184 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageInfo/pageInfo-grid.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<style>
+	
+	.lookEwm{
+	  position:relative;
+	  cursor: pointer;
+	}
+	.lookEwm .cont{
+	  height:200px;
+	  width:300px;
+	  padding:10px;
+	  position:absolute;
+	  left:0;
+	  top:100%;
+	  border:1px solid #ddd;
+	   display:none;
+	   background:#fff;
+	       z-index: 2
+	}
+	.lookEwm .tit{
+	  margin-bottom:10px;
+	}
+	.lookEwm .ewm-wrap{ 
+	  width:180px;
+	  margin:0 auto;
+	  text-align:center;
+	}
+	.lookEwm .ewm{ 
+	  width:150px;
+	  height:150px;
+	}
+	.lookEwm:hover .cont{
+	  display:block;
+	}
+	
+	
+</style>
+
+<!--搜索区域-->
+<div class="well well-searchForm">
+	<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+	<div class="row-fluid">
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">所属站点：</label>
+				<div class="controls">
+					<select id="siteId" name="siteId" class="input-medium ">
+						<option value="" >--请选择--</option>
+						#siteList()
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+    		<div class="control-group">
+                <label class="control-label">平台类型：</label>
+                <div class="controls">
+					<select name="platformType" class="input-medium ">
+						<option value="" >--请选择--</option>
+						#listParam('CMS_PLATFORM_TYPE','')
+                    </select>
+                </div>
+            </div>
+       </div>
+			
+	   <div class="span4">
+    		<div class="control-group">
+    			<label class="control-label">页面类型：</label>
+    			<div class="controls">
+    				<select id="pageTypeId" name="pageTypeId" class="input-medium ">
+    				 	<option value="" >--请选择--</option>
+						#foreach($pageType in $pageTypeList)
+    						<option value="$!{pageType.id}" >#escapeHtml($!{pageType.pageTypeName})</option>
+        				#end
+    				</select>  
+    			</div>
+    		</div>
+    	</div>
+    	<div class="clear"></div>
+    </div>
+    <div class="row-fluid">
+		<div class="span4">
+			<div class="control-group">
+                <label class="control-label">页面名称：</label>
+                <div class="controls">
+                    <input type="text" maxlength="64" name="pageName" id="pageName" placeholder="输入页面名称" class="input-medium "/>
+                </div>
+       	    </div>
+        </div>
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">状态：</label>
+				<div class="controls">
+					<select id="status" name="status" class="input-medium ">
+						<option value="" selected >--请选择--</option>
+						#listParam('CMS_STATUS',"")
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">所属店铺：</label>
+				<div class="controls">
+					<select id="shopId" name="shopId" class="input-medium">
+						<option value="" >--请选择--</option>
+						#shopStatuslist($!{respVO.shopId},'1')
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+    </div>
+	
+	</form>
+</div>
+
+<!--操作按钮区域-->
+<div class="row-fluid" style="margin-bottom: 10px;">
+	<div class="span6">
+		<a class="btn" id="btn_code_add" href="javascript:void(0)"><i class="icon-plus icon-white"></i>新增</a>
+	</div>
+	<div class="pull-right">
+		<a class="btn btn-info" id="btnFormSearch" href="javascript:void(0)"><i class="icon-search icon-white"></i>查询</a>
+		<a class="btn" id="btnFormReset" href="javascript:void(0)"><i class="icon-refresh"></i>重置</a>
+	</div>
+</div>
+
+<!--列表区域-->
+<div class="row-fluid">
+	<table id="dataGridTable"></table>
+</div>
+	
+<div class="hide" id="page_pub_dialog">
+    <div class="dialog-content">
+    	<div class="pubDg-cont" style="text-align: center">
+            <div class="tip">发布成功，链接为：<a href="" id="page_pub_dialog_a" target="_blank"></a></div>
+			<div class="tip"><span>请用手机扫描二维码</span></div>
+            <div class="ewm">
+                <img id="page_pub_dialog_img" src="" alt=""/>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <span class="btn btn-info save"><i class="icon-ok-sign icon-white"></i>查看页面</span>
+        <span class="btn cancel"><i class="icon-reply icon-white"></i>取消</span>
+    </div>
+</div>
+<div class="hide" id="page_pre_dialog">
+    <div class="dialog-content">
+    	<div class="pubDg-cont" style="text-align: center">
+            <div class="tip">发布链接地址：<a href="" id="page_pre_dialog_a" target="_blank"></a></div>
+			<div class="tip"><span>请用手机扫描二维码</span></div>
+            <div class="ewm">
+                <img id="page_pre_dialog_img" src="" alt=""/>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+        <span class="btn cancel"><i class="icon-reply icon-white"></i>确认</span>
+    </div>
+</div>
+<div class="hide" id="page_preview_dialog">
+    <div class="dialog-content">
+    	<div class="pubDg-cont" style="text-align: center">
+            <div class="tip">预览链接地址：<a href="" id="page_preview_dialog_a" target="_blank"></a></div>
+			<div class="tip"><span>请用手机扫描二维码</span></div>
+            <div class="ewm">
+                <img id="page_preview_dialog_img" src="" alt=""/>
+            </div>
+        </div>
+    </div>
+    <div class="text-center">
+	    <span class="btn btn-info save"><i class="icon-ok-sign icon-white"></i>查看页面</span>
+        <span class="btn cancel"><i class="icon-reply icon-white"></i>取消</span>
+    </div>
+</div>

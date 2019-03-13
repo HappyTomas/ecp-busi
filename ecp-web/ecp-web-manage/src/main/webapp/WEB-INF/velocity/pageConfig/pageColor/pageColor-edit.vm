@@ -1,0 +1,84 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-upload.vm")
+#parse("sys/sys_param.vm")
+
+<link href="$!{CSS_PATH}/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageColor/pageColor-edit.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}"></script>
+
+
+<div class="alert alert-error hide formValidateMessages" >
+	##showSpringAllError("vo")
+</div>
+
+<div class="formBox row-fluid">
+    <form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post"
+          action="$!{CONTEXT_PATH}/pageColor/save">
+    	<div class="span8">
+			<input type="hidden" id="id" name="id" value="$!{respVO.id}"/>
+    		<div class="formSep">
+                <div class="control-group">
+                    <label class="control-label">配色名称：</label>
+                    <div class="controls">
+                        <input type="text" class="input-large required" maxlength="16" value="$!{respVO.colorName}" id="colorName" name="colorName">
+                        <span class="help-inline">配色名称最大长度不能超过16个字符！！</span>
+                    </div>
+                </div>
+    		</div>
+    		<div class="formSep">
+                <div class="control-group">
+                    <label class="control-label">配色样式：</label>
+                    <div class="controls">
+                        <select name="colorStyle" class="required">
+                			#listParam('CMS_COLOR_STYLE',$!{respVO.colorStyle})
+                		</select>
+                    </div>
+                </div>
+    		</div>
+        	<div class="formSep">
+        		<div class="control-group">
+        			<label class="control-label" for="name">配色缩略图：</label>
+        			<div class="controls">
+  					    <input type="text" id="showPic" name="showPic" class="input-large" placeholder="请选择图片" value="#escapeHtml($!{respVO.showPic})" readonly="readonly">
+						<div id="showPicUpload" class="btn btn-primary"><i class="icon-upload-alt"></i> 上传缩略图</div>
+    					<button type="button" class="btn" id="showPic_clean_image"><i class="icon-remove-sign icon-white"></i> 清空</button>
+    				</div>
+        		</div>
+        	</div>
+        	<div class="formSep" id="uploadWarn_div">
+        		<div class="control-group">
+        			<div class="controls">
+                        <span id="uploadWarn" class="help-inline" style="color:#FF0000" >温馨提醒：请上传小于100k的图片（jpg格式），规格为60*60px！</span>
+        			</div>
+        		</div>
+        	</div>
+        	<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">描述：</label>
+    				<div class="controls">
+                    <textarea onkeyup="checkLen(this,'count-75','50')"  name="remark" maxlength="50" class="input-block-level" cols="30" rows="3">#escapeHtml($respVO.remark)</textarea>
+	                </div>
+    			</div>
+    		</div>
+            <div class="text-center">
+               #if ($!{isRead}!=1 && $!{respVO.status}!=1 )
+                <span id="btnPublish" class="btn btn-info"><i class="icon-ok-sign icon-white"></i>发布</span>
+                <span id="btnSave" class="btn btn-info"><i class="icon-ok-sign icon-white"></i>保存</span>
+               #end
+                <span id="btnReturn" class="btn"><i class="icon-reply icon-white"></i>返回</span>
+            </div>
+        </div>
+    	<div class="span4">
+    		<div class="panel panel-default">
+    			<div class="panel-heading">
+    				<h3 class="panel-title">图片预览</h3>
+    			</div>
+    			<div class="panel-body">
+    				<img id="imagePreview" src="#genImageUrl($!{respVO.showPic},'50x50!')" width="50" height="50" class="img-polaroid">
+    			</div>
+    		</div>
+    	</div>
+    </form>
+</div>

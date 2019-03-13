@@ -1,0 +1,114 @@
+<!--高级设置 begin-->
+<div class="fd-block">
+	<div class="well-tit">
+        <span>高级设置</span>
+    </div>
+    <!--<div class="control-group">
+        <label class="control-label">自动上架时间：</label>
+        <div class="controls input-cal">
+            <input type="text" class="input-large Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="putonTime" id="putonTime" value="$!date.format('yyyy-MM-dd',$!{demoCfg.createTime})"/>
+        </div>
+    </div>
+    <div class="control-group">
+        <label class="control-label">自动下架时间：</label>
+        <div class="controls input-cal ">
+            <input type="text" class="input-large Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="putoffTime" id="putoffTime" value="$!date.format('yyyy-MM-dd',$!{demoCfg.createTime})"/>
+        </div>
+    </div>-->
+    <!--<div class="control-group">
+        <label class="control-label">实体编码策略：</label>
+        <div class="controls">
+            <select name="" id="ifEntityCode">
+                <option value="1">
+						不需要录入实体
+                </option>
+                <option value="2">
+						需要录入实体   
+                </option>
+                <option value="3">
+						仅在发货时录入实体
+                </option>
+            </select>
+        </div>
+
+    </div>-->
+	<div class="well well-searchForm">
+    <div class="control-group">
+        <div class="controls checkbox-dq clearfix">
+            <div class="pull-left" style="width: 230px">
+                <!--<div class="item">
+                    <label for="" class="checkbox">
+                        <input type="checkbox" id="ifSendscore"/>是否赠送积分
+                    </label>
+                </div>-->
+                <div class="item">
+                    <label for="" class="checkbox">
+                        <input type="checkbox" id="ifRecomm"/>是否推荐商品
+                    </label>
+                </div>
+                <!--<div class="item">
+                    <label for="" class="checkbox">
+                        <input type="checkbox" id="ifFree"/>是否免邮
+                    </label>
+                </div>-->
+
+            </div>
+            <div class="pull-left">
+                <!--<div class="item">
+                    <label for="" class="checkbox">
+                        <input type="checkbox" id="ifSalealone"/>是否单独销售
+                    </label>
+                </div>
+                <div class="item">
+                    <label for="" class="checkbox">
+                        <input type="checkbox" id="ifStocknotice"/>是否启用库存存量过低提醒
+                    </label>
+                </div>-->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!--<div class="fd-block" id="gdsShiptempSetting">
+    <h3 class="heading" style="margin-top: 0px;">运费设置</h3>
+    <div class="control-group">
+        <label class="control-label">运费模板：</label>
+        <div class="controls">
+            <input type="text" id="shipTemplateId" value="" tempId="" disabled="true"/>
+            <input type="button" value="选择运费模板" class="btn btn-primary" id="openGdsShiptemp"/>
+        </div>
+
+    </div>
+</div>-->
+   <!-- <div class="fd-block">
+    <h3 class="heading">标签设置</h3>
+    <div class="alert">
+        温馨提示：每个商品可选择的标签数量不能超过3个
+    </div>
+    <div class="pmgr-bqllist">
+        <div class="clearfix">
+            <span class="pull-right selbq">
+                选择标签
+            </span>
+        </div>
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>标签名称</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>标签1</td>
+                <td><a href="">删除</a></td>
+            </tr>
+            <tr>
+                <td>标签2</td>
+                <td><a href="">删除</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>-->
+<!--高级设置 end-->

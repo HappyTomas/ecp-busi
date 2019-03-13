@@ -1,0 +1,106 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/staff/payway/payway-edit.js?version=$!{JS_VERSION}" ></script>
+<style>
+	.form-horizontal .control-label {
+        width: 120px;/* 默认为100px */
+    }
+	/* add by huangxm9 用于图片上传按钮====start*/
+.file-wrap {
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file-wrap input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter:alpha(opacity=0);
+}
+.error{
+color:red;
+    }
+</style>
+<div class="seller-well">
+                     <div class="alert" style="margin:0 45px 15px">1、一个支付通道只能配置一条记录</div>
+                    <form class="form-horizontal required-validate" id="editForm">
+					
+                        <div class="control-group">
+                            <label class="control-label">店铺商户号：</label>
+                            <div class="controls">
+                                <input type="text" id="mercCode" maxlength='16' name="mercCode" value="$!{dto.mercCode}" class="input-large required">
+                            </div>
+                        </div>
+                    
+                        <div class="control-group">
+                            <label class="control-label">收款人账号：</label>
+                            <div class="controls">
+                                <input type="text" name="payeeAccount" maxlength='32' id="payeeAccount" value="$!{dto.payeeAccount}" class="input-large required numberLetterOnly">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">收款人名称：</label>
+                            <div class="controls">
+                                <input type="text" name="payeeName" maxlength='32' id="payeeName" value="$!{dto.payeeName}" class="input-large">
+                            </div>
+                        </div>
+                            <div class="control-group">
+                            <label class="control-label">商户证书密码：</label>
+                            <div class="controls">
+                                <input type="text" name="cerPassword" maxlength='64' id="cerPassword" class="input-large">
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">商户证书文件：</label>
+                            <div class="controls">
+								<div id="cNamec" #if($!{changeInputCer}=='1') style="display:none;"#end>
+    								<input type="text" id="cName" name="cName" class="input-large" value="$!{CerNameFile}" placeholder="请选择附件" value="" readonly="readonly">
+    								<a href="javascript:;" class="btn file-wrap">上传附件
+    								<input type="file" id="uploadFileObj" name="uploadFileObj"/>
+                                    </a>
+                                    <div class="btn file-wrap" id="cleanCname">清空</div>
+								</div>
+								#if($!{changeInputCer}=='1')
+									<input type="text" name="cnameinput" maxlength="64" id="cnameinput" value="$!{dto.cerName}" class="input-large required">
+									<input type="checkbox" id="changeInputCer" class="input-large" value="" checked/> <span>商户证书切换为输入模式</span>
+								#else
+									<input type="checkbox" id="changeInputCer" class="input-large" value="" /> <span>商户证书切换为输入模式</span>
+								#end
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label">商户秘钥文件：</label>
+                            <div class="controls">
+								<div id="kNamec" #if($!{changeInput}=='1') style="display:none;"#end>
+    								<input type="text" id="kName" name="kName" class="input-large" value="$!{KeyNameFile}" placeholder="请选择附件" value="" readonly="readonly"/>
+    								<a href="javascript:;" class="btn file-wrap">上传附件
+    								<input type="file" id="uploadFileObj2" name="uploadFileObj"/>
+                                    </a>
+                                    <div class="btn file-wrap" id="cleanKname">清空</div>
+                                </div>
+								#if($!{changeInput}=='1')
+								<input type="text" name="knameinput" maxlength="64" id="knameinput" value="$!{dto.keyName}" class="input-large required">
+                                <input type="checkbox" id="changeInput" class="input-large" value="" checked/> <span>商户秘钥切换为输入模式</span>
+								#else
+									 <input type="checkbox" id="changeInput" class="input-large" value="" /> <span>商户秘钥切换为输入模式</span>
+									#end
+								
+                            </div>
+                        </div>
+						<input type="hidden" name="cerName" id="cerName" value="$!{dto.cerName}" class="input-large">
+                        <input type="hidden" name="keyName" id="keyName" value="$!{dto.keyName}" class="input-large">
+                        <input type="hidden" id="shopId" name="shopId" value="$!{dto.shopId}"/>
+						<input type="hidden" id="payWay" name="payWay" value="$!{dto.payWay}"/>
+                        <div class="btn-wrap">
+                            <span class="sbtn sbtn-blue" id="edit">保存</span>
+                        </div>
+                    </form>
+                </div>

@@ -1,0 +1,25 @@
+#parse("/sys/sys_head.vm")
+
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        我的消息
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        <a href="javascript:" class="" onclick="history.go(-1); ">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content">
+    <div class="ui-empty">
+        <div class="empty-img">
+            <img src="$IMAGE_PATH/no-msg.png" alt=""/>
+        </div>
+        <div class="tip-bold">
+            很遗憾
+        </div>
+        <div class="tip-txt">
+            您暂时没有消息哦
+        </div>
+    </div>
+</div>

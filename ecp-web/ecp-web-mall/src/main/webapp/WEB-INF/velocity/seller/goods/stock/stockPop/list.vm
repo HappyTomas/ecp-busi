@@ -1,0 +1,57 @@
+ 	#parse("/sys/sys_param.vm")
+	#parse("/module/mod-form.vm")
+ <link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+ <script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/stock/list.js?version=$!{JS_VERSION}" ></script>
+ <table class="seller-table" style="margin-top: 15px">
+                       
+                        <thead>
+                        <tr>
+                            <td>商品编码</td>
+                            <td>单品编码</td>
+                            <td style="width: 200px">商品名称</td>
+                            <td>商品类型</td>
+                            <td>单品属性串</td>
+                            <td>仓库编码</td>
+                            <td>仓库类型</td>
+							<td>单品库存量</td>
+							<td>单品状态</td>
+							<td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+            				#if($!{stockInfoPage.getList().size()} <= 0)
+                    		<tr><td colspan='12'>没有符合条件的记录。</td></tr>
+							#end
+							 	#foreach($stockInfo in $stockInfoPage.list)
+							
+                        <tr>
+                            <td>$stockInfo.gdsId</td>
+                            <td>$stockInfo.skuId</td>
+                            <td class="td-hhtxt">
+                             $stockInfo.gdsName
+                            </td>
+                     
+							<td> $!stockInfo.typeName</td>
+							<td> $!stockInfo.propStr</td>
+							<td> $!stockInfo.repCode</td>
+							<td> $!stockInfo.repType</td>
+							<td>
+							<div>现有库存量:$!stockInfo.realCount </div>
+							<div>预占库存量:$!stockInfo.preOccupyCount </div>
+							<div>可用库存量:$!stockInfo.availCount </div>
+							<div>已发货库存量:$!stockInfo.sendCount</div>
+							
+							</td>
+							<td> $!stockInfo.skuStatus</td>
+                            <td>   <span><a href='#' name='stockrow' stockid = '$!stockInfo.id ' gdsid ='$!stockInfo.gdsId' shopid = '$!stockInfo.shopId' avaicount = '$!stockInfo.availCount'>调整库存</a> </span></td>
+                      
+                        </tr>
+                        #end
+                        </tbody>
+                    </table>
+			
+	<div class="fav-opt clearfix" >
+                        <div class="row-fluid">
+                			<div id="pageControlbar" class="ecppage" data-total-page="${stockInfoPage.totalPage}" data-total-row="${stockInfoPage.totalRow}" data-page-size="${stockInfoPage.pageSize}" data-page-number="${stockInfoPage.pageNumber}" data-status="begin"></div>
+                		</div>
+                    </div>

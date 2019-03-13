@@ -1,0 +1,48 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/type/gds-type-grid.js?version=$!{JS_VERSION}" ></script>
+
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal required-validate" style="margin-bottom: 0px;" method="post">
+			<div class="row-fluid">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">类型编码：</label>
+						<div class="controls">
+							<input type="text" name="typeCode" id="typeCode" class="input-medium" value="" placeholder="类型编码">
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">类型名称：</label>
+						<div class="controls">
+							<input type="text" name="typeName" id="typeName" class="input-medium" value="" placeholder="类型名称">
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			</form>
+		</div>
+		
+		
+		<div class="row-fluid fbtn" style="margin-bottom: 10px;">
+			<div class="span8">
+				<a class="btn" id="btn_type_add" href="javascript:void(0)" style=""><i class=" icon-plus icon-white"></i> 新增</a>
+				<a class="btn" id="btn_type_prop" href="javascript:void(0)" style=""><i class="icon-edit icon-white"></i> 配置属性</a>
+			</div>
+			<div class="pull-right fbtn">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+		<div id="gridLoading">
+        	<ul class="nav nav-tabs" id="myTab"> 
+              <li class="active" id="tab1"><a href="#">已启用</a></li> 
+              <li id="tab2"><a href="#">已禁用</a></li> 
+            </ul> 
+    		<div class="row-fluid">
+    			<table id="dataGridTable"></table>
+    		</div>
+		</div>

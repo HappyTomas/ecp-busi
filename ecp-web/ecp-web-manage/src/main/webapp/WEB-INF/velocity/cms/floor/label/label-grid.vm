@@ -1,0 +1,56 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/floor/label/label-grid.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="floorSearchParams" value="$!{floorSearchParams}" />
+
+<!--搜索区域-->
+<div class="well well-searchForm">
+	<input type="hidden" id="floorId" name="floorId" value="$!{floorId}"/>
+	<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+	<div class="row-fluid">
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">标签名称：</label>
+				<div class="controls">
+					<input type="text" id="labelName" name="labelName" class="input-medium" value="" placeholder="请输入标签名称">
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">状态：</label>
+				<div class="controls">
+					<select id="status" name="status" style="width:160px" >
+						<option value="" selected >--请选择--</option>
+						#listParam('CMS_STATUS',"")
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	</form>
+</div>
+
+<!--操作按钮区域-->
+<div class="row-fluid" style="margin-bottom: 10px;">
+	<div class="span6">
+		<a class="btn" id="btn_code_add" href="javascript:void(0)"><i class="icon-plus icon-white"></i>新增</a>
+		<a class="btn" id="btn_code_return" href="javascript:void(0)"><i class="icon-reply icon-white"></i>返回楼层</a>
+	</div>
+	<div class="pull-right">
+		<a class="btn btn-info" id="btnFormSearch" href="javascript:void(0)"><i class="icon-search icon-white"></i>查询</a>
+		<a class="btn" id="btnFormReset" href="javascript:void(0)"><i class="icon-refresh"></i>重置</a>
+	</div>
+</div>
+
+<!--列表区域-->
+<div class="row-fluid">
+	<table id="dataGridTable"></table>
+</div>

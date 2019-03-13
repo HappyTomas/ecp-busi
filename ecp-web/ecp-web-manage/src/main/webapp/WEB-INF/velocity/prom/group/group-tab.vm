@@ -1,0 +1,16 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/group/group-tab.js?version=$!{JS_VERSION}" ></script>
+
+    <ul class="nav nav-tabs" id="myTab"> 
+      <li class="active"><a href="#discount-rule">参与促销信息</a></li> 
+	  <li><a href="#prom-info">主题信息</a></li>
+    </ul> 
+      
+    <div class="tab-content">
+	  <div class="tab-pane active" id="discount-rule">
+           #parse("/prom/group/group-shop-details.vm") 
+      </div>  
+      <div class="tab-pane" id="prom-info">
+           #parse("/prom/group/group-details.vm") 
+      </div> 
+    </div>  

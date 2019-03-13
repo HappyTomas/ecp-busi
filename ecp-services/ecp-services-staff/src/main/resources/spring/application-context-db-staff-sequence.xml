@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- 用户序列 -->
+	<bean id="seq_staff_info_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_STAFF_ID"/>
+    </bean>
+    
+      <!-- 用户收货地址ID序列-->
+    <bean id="seq_cust_addr_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CUST_ADDR_ID"/>
+    </bean>
+       
+    <!-- 企业会员申请 -->
+	<bean id="seq_cust_authstr_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CUST_AUTHSTR"/>
+    </bean>
+    
+     <!-- 会员邮箱验证日志 -->
+	<bean id="seq_cust_email_log_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CUST_EMAIL_LOG"/>
+    </bean>
+    
+    <!-- 企业序列 -->
+	<bean id="seq_company_info_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_COMPANY_ID"/>
+    </bean>
+    
+    <!-- 企业日志序列 -->
+	<bean id="seq_company_info_log_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_COMPANY_INFO_LOG"/>
+    </bean>
+    
+    <!-- 企业注册信息表逐渐ID序列 -->
+	<bean id="seq_company_sign_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_COMPANY_SIGN_ID"/>
+    </bean>
+    
+	<!-- 用户积分信息表序列 -->
+	<bean id="seq_score_info" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SCORE_INFO"/>
+    </bean>
+    
+    <!-- 积分来源明细表ID -->
+    <bean id="seq_score_scource_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SCORE_SOURCE_ID"/>
+    </bean>
+    
+    <!-- 积分操作日志ID -->
+    <bean id="seq_score_opt_log" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SCORE_OPT_LOG"/>
+    </bean>
+    
+    <!-- 积分消费ID -->
+    <bean id="seq_score_exchange" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SCORE_EXCHANGE"/>
+    </bean>
+    
+    <bean id="seq_score_consume_rule_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SCORE_CONSUME_RULE_ID"/>
+    </bean>
+    
+    <!-- 店铺ID信息表序列-->
+	<bean id="seq_staff_shop_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_STAFF_SHOP_ID"/>
+    </bean>
+    
+    <!-- 店铺关注表序列 -->
+	<bean id="seq_shop_collect_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SHOP_COLLECT_ID"/>
+    </bean>
+        
+    <!-- 店铺客服信息表序列-->
+	<bean id="seq_shop_hotline" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SHOP_HOTLINE"/>
+    </bean>
+    
+    <!-- 店铺会员等级表序列-->
+	<bean id="seq_shop_vip_level" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SHOP_VIP_LEVEL"/>
+    </bean>
+    
+    <!-- 店铺会员等级关系表序列-->
+	<bean id="seq_shop_vip_real" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SHOP_VIP_REAL"/>
+    </bean>
+    
+    <!-- 资金账户信息 -->
+    <bean id="seq_acct_info_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_ACCT_INFO_ID"/>
+    </bean>
+    <!-- 资金账户交易 -->
+    <bean id="seq_acct_trade_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_ACCT_TRADE_ID"/>
+    </bean>
+    <!-- 资金账户历史快照 -->
+    <bean id="seq_acct_info_his_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_ACCT_INFO_HIS_ID"/>
+    </bean>
+    <!-- T_ACCT_INFO_HIS的店铺索引表(T_ACCT_INFO_HIS_SHOP_IDX) -->
+    <bean id="seq_acct_info_his_shop_idx_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_ACCT_INFO_HIS_SHOP_IDX_ID"/>
+    </bean>
+    <!-- T_ACCT_INFO的店铺索引表(T_ACCT_INFO_SHOP_IDX) -->
+    <bean id="seq_acct_info_shop_idx_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_ACCT_INFO_SHOP_IDX_ID"/>
+    </bean>
+    <!-- T_ACCT_TRADE的店铺索引表(T_ACCT_TRADE_SHOP_IDX) -->
+    <bean id="seq_acct_trade_shop_idx_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_ACCT_TRADE_SHOP_IDX_ID"/>
+    </bean>
+    <!-- 权限表 -->
+    <bean id="seq_auth_privilege_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_AUTH_PRIVILEGE_ID"/>
+    </bean>
+    <!-- 菜单表 -->
+    <bean id="seq_auth_menu_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_AUTH_MENU_ID"/>
+    </bean>
+    <!-- 角色表 -->
+    <bean id="seq_auth_role_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_AUTH_ROLE_ID"/>
+    </bean>
+    <!-- 用户组定义表 -->
+    <bean id="seq_auth_staff_group_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_AUTH_STAFF_GROUP_ID"/>
+    </bean>
+     <!-- 店铺物流关系表-->
+    <bean id="seq_shop_express_rel_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SHOP_EXPRESS_REL_ID"/>
+    </bean>
+     <!-- 店铺发货地址表-->
+    <bean id="seq_shop_shipper_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SHOP_SHIPPER_ID"/>
+    </bean>
+    <!-- 店铺会员分组表 T_SHOP_STAFF_GROUP-->
+    <bean id="seq_shop_staff_group_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SHOP_STAFF_GROUP_ID"/>
+    </bean>
+    <!--客户等级明细 -->
+    <bean id="seq_cust_grow_info_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CUST_GROW_INFO_ID"/>
+    </bean>
+     <!--客户资料日志表 -->
+    <bean id="seq_cust_info_log_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CUST_INFO_LOG_ID"/>
+    </bean>
+      <!--店铺资料日志表 -->
+    <bean id="seq_shop_info_log_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SHOP_INFO_LOG_ID"/>
+    </bean>
+    <!-- 规则项目表 T_DATA_RULE_ITEM -->
+    <bean id="seq_data_rule_item_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_DATA_RULE_ITEM_ID"/>
+    </bean>
+    <!-- 配置规则表 T_DATA_RULE -->
+    <bean id="seq_data_rule_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_DATA_RULE_ID"/>
+    </bean>
+    <!-- 数据权限表 T_DATA_AUTH -->
+    <bean id="seq_data_auth_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_DATA_AUTH_ID"/>
+    </bean>   
+    <!-- 数据功能表 T_DATA_FUNC -->
+    <bean id="seq_data_func_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_DATA_FUNC_ID"/>
+    </bean>  
+    
+    <!-- 数据功能表 T_DATA_FUNC code -->
+    <bean id="seq_data_func_code" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_DATA_FUNC_CODE"/>
+    </bean>
+    
+    <!-- 用户登陆操作日志表  T_LOGIN_ACCESS_LOG-->
+    <bean id="seq_login_access_log_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_LOGIN_ACCESS_LOG_ID"/>
+    </bean>    
+    <!-- 登陆日志表 T_LOGIN_LOG  -->
+    <bean id="seq_login_log_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_LOGIN_LOG_ID"/>
+    </bean>  
+    
+    <!-- 资金账户临时数据表 -->
+    <bean id="seq_acct_info_temp_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_ACCT_INFO_TEMP_ID"/>
+    </bean>
+    
+    <!-- 第三方账号绑定表 -->
+    <bean id="seq_cust_third_code" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CUST_THIRD_CODE"/>
+    </bean>
+    
+    <!-- 第三方账号绑定索引表 -->
+    <bean id="seq_cust_third_idx" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CUST_THIRD_IDX"/>
+    </bean>
+    
+    <!-- 店铺会员规则索引 -->
+    <bean id="seq_shop_vip_rule_idx" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_SHOP_VIP_RULE_IDX"/>
+    </bean>
+    
+    <!-- 数据过滤规则明细 T_DATA_FIELD_RULE -->
+    <bean id="seq_data_field_rule_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_DATA_FIELD_RULE_ID"/>
+    </bean>
+    
+    <!-- 结果集属性表 T_DATA_FIELD_ITEM -->
+    <bean id="seq_data_field_item_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_DATA_FIELD_ITEM_ID"/>
+    </bean>
+    
+    <!-- 订单退款退货查重表 -->
+    <bean id="seq_staff_ord_back_check_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_STAFF_ORD_BACK_CHECK"/>
+    </bean>
+    
+    <!-- 商城用户与微信用户关系表 -->
+    <bean id="seq_cust_wechat_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CUST_WECHAT_ID"/>
+    </bean>
+</beans>

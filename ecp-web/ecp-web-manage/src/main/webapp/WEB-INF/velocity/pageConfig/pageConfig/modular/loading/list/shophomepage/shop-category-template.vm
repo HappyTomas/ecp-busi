@@ -1,0 +1,39 @@
+#parse("/sys/sys_param.vm")
+<script >
+$(function(){
+	 $('ul.list .it').click(function () {
+          $(this).parent().toggleClass('drawdown');
+      });
+})
+</script>
+#if($category.size()>0)
+     <ul class="list">
+     	#foreach($item in $category)
+     	   <li class="item#if($category.size() == $velocityCount) last #end">
+     	      <div class="it">
+               #if($item.children.size()>0) 
+                <i class="ticon"></i>
+               #end
+                <span class="tit" title="$!{item.catgName} ">
+                  <a href="$!{MALL_SITE_URL}/search?category=$!{item.catgCode}&shopId=$!{showParam.shopId}" target="_Blank">$!{item.catgName}</a>
+                </span>
+            </div>
+            #if($item.children.size()>0)
+             <ul class="child">
+               #foreach($child in $item.children)
+                   <li class="c-tit" title="$!{child.catgName}">
+                   <a href="$!{MALL_SITE_URL}/search?category=$!{child.catgCode}&shopId=$!{showParam.shopId}" target="_Blank">$!{child.catgName}</a>
+                 </li>
+               #end
+             </ul>
+            #end
+     	   </li>
+         #end
+     </ul>
+   #else
+     <div class="nodata">
+		<span style="color:red;">
+		暂无数据！
+	    </span>
+	 </div>
+   #end

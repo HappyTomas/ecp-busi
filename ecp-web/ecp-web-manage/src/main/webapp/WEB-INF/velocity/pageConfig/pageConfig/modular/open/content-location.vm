@@ -1,0 +1,68 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/modular/open/content-location.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+<link href="${CONTEXT_PATH}/css/cms/advertise-img.css" rel="stylesheet" type="text/css"/>
+<!--搜索区域-->
+<div class="well well-searchForm">
+	<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+    	<div class="row-fluid">
+			#if(!$!{mallskintomanage})
+        		<div class="span6">
+        			<div class="control-group">
+        				<label class="control-label">所属站点：</label>
+        				<div class="controls">
+        					<select id="siteId" name="siteId" >
+        						<option value="" >--请选择--</option>
+        						#siteList()
+        					</select>
+        				</div>
+        			</div>
+        		</div>
+        		
+        		<div class="span6">
+        			<div class="control-group">
+        				<label class="control-label">所属模板：</label>
+        				<div class="controls">
+        					<select id="templateId" name="templateId" >
+        						<option value="" >--请选择--</option>
+        					</select>   				
+        				</div>
+        			</div>
+        		</div>
+    		#else
+				<input type="hidden" value="1" id="siteId" name="siteId"/>
+				<input type="hidden" value="16" id="templateId" name="templateId"/>
+			#end
+    		<div class="clear"></div>		
+    	</div>
+		<div class="row-fluid">
+    		<div class="span6">
+    			<div class="control-group">
+    				<label class="control-label">位置名称：</label>
+    				<div class="controls">
+    					<input  type="text" name="placeName" id="placeName" class="input-medium"  value="" placeholder="请输入位置名称">
+    				</div>
+    			</div>
+    		</div>
+    		<div class="clear"></div>		
+    	</div>
+	</form>
+</div>
+
+<!--操作按钮区域-->
+<div class="row-fluid" style="margin-bottom: 10px;">
+	<!--<div class="span6">
+	<a class="btn btn-success" id="btn_code_add" href="javascript:void(0)"><i class="icon-plus icon-white"></i>去配置内容位置</a>
+	</div>-->
+	<div class="pull-right">
+		<a class="btn btn-info" id="btnFormSearch" href="javascript:void(0)"><i class="icon-search icon-white"></i>查询</a>
+		<a class="btn" id="btnFormReset" href="javascript:void(0)"><i class="icon-refresh"></i>重置</a>
+	</div>
+</div>
+
+<!--列表区域-->
+<div class="row-fluid">
+	<table id="dataGridTable"></table>
+</div>

@@ -1,0 +1,217 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/companyRegist.js"></script>
+<style >
+	.error{color:red;}
+</style>
+<!--header-->
+<div id="header" class="clearfix">
+    <!--logo-->
+    <div class="wrap960 logoBg">
+        <div class="logo">
+            <a href="$CONTEXT_PATH/homepage"><img src="#siteLogo('','485x130!')" style="float:left"/></a>
+        </div>
+        <div class="paylink">
+                <a href="$CONTEXT_PATH/register">
+                会员注册
+            </a>
+			|
+			<a href="$CONTEXT_PATH/register/company">
+				企业会员注册
+            </a>
+        </div>
+    </div>
+</div>
+
+<!--regist-->
+<div id="content" class="wrap100 clearfix">
+    <div class="wrap960 login pad-tb ">
+        <div class="regist-tit">
+            <h3>企业用户注册</h3><span class="fr mt10 log">我已经注册，<a href="$CONTEXT_PATH/login"> 马上登录</a></span></div>
+        <div class="regist-box">
+           <form class="form-horizontal required-validate regist" id="formRegist">
+                <h3>账户信息</h3>
+
+              <div class="control-group">
+                    <label class="control-label">用户名：</label>
+                    <div class="controls">
+                        <input type="text" name="staffCode" id="staffCode" class="checkStaffCode required">
+                        <span id="isExist"></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">请设置密码：</label>
+                    <div class="controls">
+                        <input type="password" class="required checkPassword" maxLength="16" id="StaffPassword" name="StaffPassword">
+                        <span>6-16位字符，建议由字母，数字和符号两种以上组合</span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">请确认密码：</label>
+                    <div class="controls">
+                        <input type="password" class="required " maxLength="16" equalTo="#StaffPassword" id="StaffPassword2" name="StaffPassword2">
+                        <span>完成验证后，可以用手机号码登录和找回密码</span>
+                    </div>
+                </div>
+                <h3>企业信息</h3>
+
+                <div class="control-group">
+                    <label class="control-label">企业名称：</label>
+
+                    <div class="controls">
+                        <input type="text" name="companyName" id="companyName" class="required">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">企业地址：</label>
+
+                    <div class="controls">
+                        <input type="text" name="companyAdress" id="companyAdress" class="required ">
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">企业所在地：</label>
+
+                    <div class="controls">
+						 <select class="selbox selboxheight jquery-area required" name="provinceCode" id="p-code"  area-type="admin" area-level="province" area-children="city-code" area-defaultvalue="$!{custInfo.provinceCode}"></select>
+                         <select class="selbox selboxheight jquery-area"  name="cityCode" id="city-code" area-type="admin" area-level="city" area-children="county-code" area-defaultvalue="$!{custInfo.cityCode}"></select>
+                         <select class="selbox selboxheight jquery-area"  name="countyCode" id="county-code" area-type="admin" area-level="county" area-children="" area-defaultvalue="$!{custInfo.countyCode}"></select>
+                    </div>
+                </div>
+              
+                <div class="control-group">
+                    <label class="control-label">企业行业：</label>
+
+                    <div class="controls">
+                        <select class="selboxheight" name="trade" id="trade">
+                            <option value="">请选择</option>
+							#listParam('COMPANY_INFO_TRADE')
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">企业类型：</label>
+
+                    <div class="controls">
+                        <select class="selboxheight" name="companyType" id="companyType">
+                            <option value="">请选择</option>
+							#listParam('COMPANY_INFO_TYPE')
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">企业人数：</label>
+
+                    <div class="controls">
+                        <select class="selboxheight" name="employeeNum" id="employeeNum">
+                            <option value="">请选择</option>
+							#listParam('COMPANY_INFO_EMPLOYEE')
+                        </select>
+                    </div>
+                </div>
+                <h3>企业联系方式</h3>
+
+                <div class="control-group">
+                    <label class="control-label">联系人：</label>
+
+                    <div class="controls">
+                        <input type="text" name="linkPersonMsg" id="linkPersonMsg" class="required"/>
+                    </div>
+                </div>
+				#if($!{flag}=='1')
+                <div class="control-group">
+                    <label class="control-label">验证手机：</label>
+                    <div class="controls">
+                        <input type="text" name="linkPhoneMsg" id="linkPhoneMsg" class="required mobilePhone" maxlength="11"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="">短信验证码：</label>
+                    <div class="controls">
+                        <input type="text" class="required input-small required" name="phoneCode" id="phoneCode">
+                        <button type="button" class="verify-bg" id="sms-win-getcode">获取短信验证码</button>
+                    </div>
+                </div>
+				#else
+			    <div class="control-group">
+                    <label class="control-label">手机号码：</label>
+                    <div class="controls">
+                        <input type="text" name="linkPhoneMsg" id="linkPhoneMsg" class="required mobilePhone" maxlength="11"/>
+                    </div>
+                </div>
+					
+					#end
+                <div class="control-group">
+                    <label class="control-label">固定电话：</label>
+
+                    <div class="controls">
+						<input type="hidden"  name="linkTelephone" id="linkTelephone"/>
+                        <input type="text" class="input-mini" id="areaCode" placeholder="区号"/>
+                        <input type="text" class="input-small" id="telephone" placeholder="电话号码"/>
+                        <input type="text" class="input-small" id="extension" placeholder="分机"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">联系人身份证号：</label>
+
+                    <div class="controls">
+                        <input type="text" class="txtIdCard" name="linkPsnCard" id="linkPsnCard"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">企业邮箱：</label>
+
+                    <div class="controls">
+                        <input type="text" class="email" name="companyEmail" id="companyEmail"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">企业微信：</label>
+
+                    <div class="controls">
+                        <input type="text" name="companyWeixin" id="companyWeixin"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">企业QQ号：</label>
+
+                    <div class="controls">
+                        <input type="text" name="companyQq" id="companyQq"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">备注：</label>
+
+                    <div class="controls">
+                        <textarea rows="3" class="tarea" name="remark"></textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">验证码：</label>
+
+                    <div class="controls">
+                       <input type="text" class="required input-small required" name="captchaCode" id="captchaCode">
+                        <img id="captchaCodeImg" src="$!{CONTEXT_PATH}/captcha/CapthcaImage" alt=""/>
+                        <span id="refleshCaptchaCode"><a href="javascript:void(0);">看不清楚，换一张</a></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <!--<label class="checkbox">
+                            <input type="checkbox"> 我已经同意用户注册协议
+                        </label>-->
+                        <input type="button" class="btn-regist" value="立即注册">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<form id="loginform">
+         <input type="hidden" name="j_username" id="j_username" />
+         <input type="hidden" name="j_password" id="j_password" />
+</form>
+<!--footer-->
+<!--底部 begin-->
+#parse("/main/main-bottom.vm")
+<!--底部 end-->

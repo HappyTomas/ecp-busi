@@ -1,0 +1,94 @@
+<script >
+$(function(){
+$('.navlist').each(function(){
+     var a = $(this);
+     var f = a.find('.nav-down');
+     f.on('click',function(){
+       a.find('.nav-bd').toggle('fast');
+     });
+
+    });
+   })
+</script>
+ <div id="nav" >
+            <div class="nav-wrap">
+                <div class="navlist">
+                    <div class="nav-hd">
+                        <h3>我的账户 <i class="nav-down "></i></h3>
+                    </div>
+                    <ul class="nav-bd">
+                       <li>
+                                <a href="$CONTEXT_PATH/information/index">个人资料</a>
+                            </li>
+                            <li>
+                                <a href="">我的积分</a>
+                            </li>
+                            <li>
+                                <a href="">我的优惠</a>
+                            </li>
+                            <li>
+                                <a href="">我的钱包</a>
+                            </li>
+                            <li>
+                                <a href="#">虚拟币</a>
+                            </li>
+                    </ul>
+                </div>
+                <div class="navlist">
+                    <div class="nav-hd">
+                        <h3>我的交易 <i class="nav-down "></i></h3>
+                    </div>
+                    <ul class="nav-bd">
+                       <li>
+                                <a href="#">收货地址</a>
+                            </li>
+							 <li>
+                                <a href="#">我的订单</a>
+                            </li>
+                            <li>
+                                <a href="#">我的会员卡号</a>
+                            </li>
+                    </ul>
+                </div>
+				  <div class="navlist">
+                          <div class="nav-hd">
+                            <h3>
+                                                                                                  我的收藏<i class="nav-down "></i>
+                            </h3>
+                            <i class="mbicon icon-dropup">
+                            </i>
+                        </div>
+						 <ul class="nav-bd">
+                          <!--  <li>
+                                <a href="member-receivingadd.html">店铺收藏</a>
+						  </li>-->
+							 <li>
+                                <a href="member-receivingadd.html">商品收藏</a>
+                            </li>
+                            <li>
+                                <a href="member-receivingadd.html">游览历史</a>
+                            </li>
+                        </ul>
+                    </div>
+						<div class="navlist">
+                          <div class="nav-hd">
+                            <h3>
+                                                                                               客服中心<i class="nav-down "></i>
+                            </h3>
+                            <i class="mbicon icon-dropup">
+                            </i>
+                        </div>
+						 <ul class="nav-bd">
+                            <li>
+                                <a href="member-receivingadd.html">系统消息</a>
+                            </li>
+							 <li>
+                                <a href="member-receivingadd.html">我要投诉</a>
+                            </li>
+                            <li>
+                                <a href="member-receivingadd.html">联系客服</a>
+                            </li>
+                        </ul>
+                    </div>
+            </div>
+        </div>

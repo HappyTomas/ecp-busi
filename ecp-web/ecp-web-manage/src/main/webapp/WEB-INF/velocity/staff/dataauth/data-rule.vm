@@ -1,0 +1,176 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-tree.vm")
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-date.vm")
+
+<link rel="stylesheet" type="text/css" href="$!{RESOURCE_PATH}/jquery/jquery-easyui/themes/bootstrap/easyui.css" />
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery-easyui/jquery.easyui.min.js"></script>
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/dataauth/data-rule.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/dataauth/func-comp-tree.js?version=$!{JS_VERSION}" ></script>
+
+<div class="alert alert-error hide formValidateMessages">
+	
+</div>
+		
+    <form id="detailInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+		<!--hidden prop-->
+        <input type="hidden" id="id" name="id" />
+        <input type="hidden" value="1" id="enabled" name="enabled" />
+		<input type="hidden" id="dataItemList" name="dataItemList" />
+		
+		<!-- 页面内容 -->
+		<div class="row-fluid">
+    		<div class="span12 formSep well well-searchForm">
+    			<div class="control-group pull-left">
+                    <label class="control-label">归属子系统：</label>
+                    <div class="controls">
+                        <select id="sysCode" name="sysCode" style="width: 180px">
+                            #listParam('SYS_SUB_SYSTEM')
+                        </select>
+                    </div>
+    			</div>
+    		</div>
+		</div>
+        <div class="row-fluid">
+		<div class="span3">
+			<label>功能点</label>
+            <div class="well well-searchForm" id style="height:530px;">
+				<ul id="treeFunc" class="ztree" style="height:100%; width: 100%; overflow:auto;"></ul>
+            </div>
+        </div>
+		<div class="span9">
+			<label>规则配置</label>
+			<div class="well well-searchForm" style="min-height:530px;">
+				<div class="row-fluid" style="margin-bottom:10px;">
+					<div class="control-group span4">
+                        <label class="control-label">规则名称：</label>
+                        <div class="controls">
+                            <input type="text" id="name" name="name" style="width:150px;" class="input-block-level htmlcheck" maxlength="64" />
+                        </div>
+                    </div>
+					<div class="control-group span4">
+                        <label class="control-label">规则编码：</label>
+                        <div class="controls">
+                            <input type="text" id="authCode" name="authCode" style="width:150px;" class="input-block-level htmlcheck" maxlength="32" />
+                        </div>
+                    </div>
+                    <div class="control-group span4">
+                        <label class="control-label">规则来源：</label>
+                        <div class="controls">
+                            <select name="authSrc" style="width:120px;">
+                            	<option value="1">行规则</option>
+                            	<option value="2">列规则</option>
+                            </select>
+                        </div>
+                    </div>
+				</div>
+				
+				<div class="row-fluid" style="display:none;">
+					<div class="control-group span6">
+                        <label class="control-label">规则类型：</label>
+                        <div class="controls">
+                            <label class="radio" style="width: 40%;">
+                              <input type="radio" name="authType" id="authType0" value="0" checked>
+								包含
+                            </label>
+                            <label class="radio" style="width: 30%;">
+                              <input type="radio" name="authType" id="authType1" value="1" checked>
+								排他
+                            </label>
+                        </div>
+                    </div>
+					<div class="control-group span6">
+                        <label class="control-label">是否启用：</label>
+                        <div class="controls">
+                            <div id="warning-toggle-button" style="margin-top:6px">
+                                <input id="enabledCB" type="checkbox" checked="checked">
+                            </div>
+                        </div>
+                    </div>
+				</div>
+				<HR style="border:0;border-style: dashed;background-color:#ccc;height:1px;margin:5px 5px 5px 5px;" width="100%" size=1>
+				<div class="row-fluid" style="margin-bottom: 10px;">
+                    <div class="pull-left">
+                		<button type="button" class="btn" id="btnFormAuthAddSubmit"><i class="icon-plus"></i> 新 增</button>
+                		<button type="button" class="btn" id="btnFormAuthUpdateSubmit"><i class="icon-edit"></i> 修 改</button>
+                		<button type="button" class="btn btn-info" id="btnFormAuthConfigSubmit" value="1"><i class="icon-edit"></i>配置明细</button>
+                		<!--
+                		<button type="button" class="btn btn-danger" id="btnFormAuthInvalidSubmit"><i class="icon-ban-circle"></i> 禁 用</button>
+                		<button type="button" class="btn btn-success" id="btnFormAuthActiveSubmit"><i class="icon-ok-circle"></i> 启 用</button>
+                		-->
+                    </div>
+                    <div id="ruleOjbectTableTips" class="pull-left alert sel-tip" style="margin-left:5px;margin-top:-1px;margin-bottom:0;
+                    	padding-top:5px;padding-bottom:5px; display:none">
+                   		 tips: 点击表格单元格可以进行编辑！
+                    </div>
+                    <div class="pull-right">
+                    	<button type="button" class="btn btn-info" id="btnFormAuthSearchSubmit"><i class="icon-search"></i> 查 询</button>
+                    </div>
+                </div>
+				<HR style="border:0;border-style: dashed;background-color:#ccc;height:1px;margin:5px 5px 5px 5px;" width="100%" size=1>
+				<div class="row-fluid" style="overflow: hidden;">
+					<!-- 数据权限 table -->
+					<div class="row-fluid" id="dataAuthDiv">
+						<table id="dataAuthGridTable"></table>
+					</div>
+					<!-- 数据明细 table -->
+					<div class="row-fluid" id="dataRuleDiv" style="word-wrap: break-word;display:none;">
+	                    <table class="table table-bordered table-striped">
+	                        <thead id="dataRuleTableHead">
+	                            <tr>
+									<th style='display:none'>规则id</th>
+									<th style='display:none'>数据项目id</th>
+	                                <th width="20%">项目名称</th>
+	                                <th width="15%">前置符</th>
+	                                <th width="15%">操作符</th>
+	                                <th width="10%">值</th>
+	                                <th width="15%">逻辑符</th>
+	                                <th width="15%">后置符</th>
+	                                <th width="10%">删除</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody id="dataRuleTableBody">
+	                            <tr>
+									<td colspan="7" edittype='uneditable'> 
+	                                    <label class="text-center"><li class="icon-plus-sign"></li>
+	                                    </label>
+	                                </td>
+								</tr>
+	                        </tbody>
+	                    </table>
+                    </div>
+                    <!-- 数据字段明细 table -->
+                    <div class="row-fluid" id="fieldRuleDiv" style="word-wrap: break-word;display:none;">
+                    	<button type="button" class="btn" id="fieldPickAll"><i class="icon-eye-open"></i> 全 选</button>
+                    	<button type="button" class="btn" id="fieldPickOther"><i class="icon-eye-close"></i> 反 选</button>
+                    	<br/>
+                    	<table class="table dataTable table-bordered table-striped" style="margin-top:5px;">
+	                        <thead id="fieldRuleTableHead">
+	                            <tr>
+									<th style='display:none'>明细id</th>
+									<th style='display:none'>属性id</th>
+									<th width="5%">选择</th>
+	                                <th width="20%">属性名称</th>
+	                                <th width="15%">数据类型</th>
+	                                <th width="20%">显示格式</th>
+	                                <th width="20%">默认值</th>
+	                            </tr>
+	                        </thead>
+	                        <tbody id="fieldRuleTableBody">
+	                            <tr>
+									<td colspan="5"> 
+	                                    <label class="text-center">没有任何数据返回</label>
+	                                </td>
+								</tr>
+	                        </tbody>
+	                    </table>
+                    </div>
+                    
+                </div>
+				
+			</div>
+        </div>
+        </div>
+    </form>
+    

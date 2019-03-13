@@ -1,0 +1,674 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.common.AuditAlipayDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.AuditAlipayDetail" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CHECK_DATE" property="checkDate" jdbcType="TIMESTAMP" />
+    <result column="TRANS_OUT_ORDER_NO" property="transOutOrderNo" jdbcType="VARCHAR" />
+    <result column="TRADE_NO" property="tradeNo" jdbcType="VARCHAR" />
+    <result column="PARTNER_ID" property="partnerId" jdbcType="VARCHAR" />
+    <result column="BALANCE" property="balance" jdbcType="VARCHAR" />
+    <result column="BANK_ACCOUNT_NAME" property="bankAccountName" jdbcType="VARCHAR" />
+    <result column="BANK_ACCOUNT_NO" property="bankAccountNo" jdbcType="VARCHAR" />
+    <result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+    <result column="BUYER_ACCOUNT" property="buyerAccount" jdbcType="VARCHAR" />
+    <result column="CURRENCY" property="currency" jdbcType="VARCHAR" />
+    <result column="DEPOSIT_BANK_NO" property="depositBankNo" jdbcType="VARCHAR" />
+    <result column="GOODS_TITLE" property="goodsTitle" jdbcType="VARCHAR" />
+    <result column="INCOME" property="income" jdbcType="VARCHAR" />
+    <result column="IW_ACCOUNT_LOG_ID" property="iwAccountLogId" jdbcType="VARCHAR" />
+    <result column="MEMO" property="memo" jdbcType="VARCHAR" />
+    <result column="MERCHANT_OUT_ORDER_NO" property="merchantOutOrderNo" jdbcType="VARCHAR" />
+    <result column="OTHER_ACCOUNT_EMAIL" property="otherAccountEmail" jdbcType="VARCHAR" />
+    <result column="OTHER_ACCOUNT_FULLNAME" property="otherAccountFullname" jdbcType="VARCHAR" />
+    <result column="OTHER_USER_ID" property="otherUserId" jdbcType="VARCHAR" />
+    <result column="OUTCOME" property="outcome" jdbcType="VARCHAR" />
+    <result column="SELLER_ACCOUNT" property="sellerAccount" jdbcType="VARCHAR" />
+    <result column="SELLER_FULLNAME" property="sellerFullname" jdbcType="VARCHAR" />
+    <result column="SERVICE_FEE" property="serviceFee" jdbcType="VARCHAR" />
+    <result column="SERVICE_FEE_RATIO" property="serviceFeeRatio" jdbcType="VARCHAR" />
+    <result column="TOTAL_FEE" property="totalFee" jdbcType="VARCHAR" />
+    <result column="TRADE_REFUND_AMOUNT" property="tradeRefundAmount" jdbcType="VARCHAR" />
+    <result column="TRANS_ACCOUNT" property="transAccount" jdbcType="VARCHAR" />
+    <result column="TRANS_CODE_MSG" property="transCodeMsg" jdbcType="VARCHAR" />
+    <result column="TRANS_DATE" property="transDate" jdbcType="TIMESTAMP" />
+    <result column="SUB_TRANS_CODE_MSG" property="subTransCodeMsg" jdbcType="VARCHAR" />
+    <result column="SIGN_PRODUCT_NAME" property="signProductName" jdbcType="VARCHAR" />
+    <result column="RATE" property="rate" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, CHECK_DATE, TRANS_OUT_ORDER_NO, TRADE_NO, PARTNER_ID, BALANCE, BANK_ACCOUNT_NAME, 
+    BANK_ACCOUNT_NO, BANK_NAME, BUYER_ACCOUNT, CURRENCY, DEPOSIT_BANK_NO, GOODS_TITLE, 
+    INCOME, IW_ACCOUNT_LOG_ID, MEMO, MERCHANT_OUT_ORDER_NO, OTHER_ACCOUNT_EMAIL, OTHER_ACCOUNT_FULLNAME, 
+    OTHER_USER_ID, OUTCOME, SELLER_ACCOUNT, SELLER_FULLNAME, SERVICE_FEE, SERVICE_FEE_RATIO, 
+    TOTAL_FEE, TRADE_REFUND_AMOUNT, TRANS_ACCOUNT, TRANS_CODE_MSG, TRANS_DATE, SUB_TRANS_CODE_MSG, 
+    SIGN_PRODUCT_NAME, RATE, CREATE_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.AuditAlipayDetailCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_audit_alipay_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_audit_alipay_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_audit_alipay_detail
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.AuditAlipayDetailCriteria" >
+    delete from t_audit_alipay_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.AuditAlipayDetail" >
+    insert into t_audit_alipay_detail (ID, CHECK_DATE, TRANS_OUT_ORDER_NO, 
+      TRADE_NO, PARTNER_ID, BALANCE, 
+      BANK_ACCOUNT_NAME, BANK_ACCOUNT_NO, BANK_NAME, 
+      BUYER_ACCOUNT, CURRENCY, DEPOSIT_BANK_NO, 
+      GOODS_TITLE, INCOME, IW_ACCOUNT_LOG_ID, 
+      MEMO, MERCHANT_OUT_ORDER_NO, OTHER_ACCOUNT_EMAIL, 
+      OTHER_ACCOUNT_FULLNAME, OTHER_USER_ID, OUTCOME, 
+      SELLER_ACCOUNT, SELLER_FULLNAME, SERVICE_FEE, 
+      SERVICE_FEE_RATIO, TOTAL_FEE, TRADE_REFUND_AMOUNT, 
+      TRANS_ACCOUNT, TRANS_CODE_MSG, TRANS_DATE, 
+      SUB_TRANS_CODE_MSG, SIGN_PRODUCT_NAME, RATE, 
+      CREATE_TIME)
+    values (#{id,jdbcType=INTEGER}, #{checkDate,jdbcType=TIMESTAMP}, #{transOutOrderNo,jdbcType=VARCHAR}, 
+      #{tradeNo,jdbcType=VARCHAR}, #{partnerId,jdbcType=VARCHAR}, #{balance,jdbcType=VARCHAR}, 
+      #{bankAccountName,jdbcType=VARCHAR}, #{bankAccountNo,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, 
+      #{buyerAccount,jdbcType=VARCHAR}, #{currency,jdbcType=VARCHAR}, #{depositBankNo,jdbcType=VARCHAR}, 
+      #{goodsTitle,jdbcType=VARCHAR}, #{income,jdbcType=VARCHAR}, #{iwAccountLogId,jdbcType=VARCHAR}, 
+      #{memo,jdbcType=VARCHAR}, #{merchantOutOrderNo,jdbcType=VARCHAR}, #{otherAccountEmail,jdbcType=VARCHAR}, 
+      #{otherAccountFullname,jdbcType=VARCHAR}, #{otherUserId,jdbcType=VARCHAR}, #{outcome,jdbcType=VARCHAR}, 
+      #{sellerAccount,jdbcType=VARCHAR}, #{sellerFullname,jdbcType=VARCHAR}, #{serviceFee,jdbcType=VARCHAR}, 
+      #{serviceFeeRatio,jdbcType=VARCHAR}, #{totalFee,jdbcType=VARCHAR}, #{tradeRefundAmount,jdbcType=VARCHAR}, 
+      #{transAccount,jdbcType=VARCHAR}, #{transCodeMsg,jdbcType=VARCHAR}, #{transDate,jdbcType=TIMESTAMP}, 
+      #{subTransCodeMsg,jdbcType=VARCHAR}, #{signProductName,jdbcType=VARCHAR}, #{rate,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.AuditAlipayDetail" >
+    insert into t_audit_alipay_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE,
+      </if>
+      <if test="transOutOrderNo != null" >
+        TRANS_OUT_ORDER_NO,
+      </if>
+      <if test="tradeNo != null" >
+        TRADE_NO,
+      </if>
+      <if test="partnerId != null" >
+        PARTNER_ID,
+      </if>
+      <if test="balance != null" >
+        BALANCE,
+      </if>
+      <if test="bankAccountName != null" >
+        BANK_ACCOUNT_NAME,
+      </if>
+      <if test="bankAccountNo != null" >
+        BANK_ACCOUNT_NO,
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME,
+      </if>
+      <if test="buyerAccount != null" >
+        BUYER_ACCOUNT,
+      </if>
+      <if test="currency != null" >
+        CURRENCY,
+      </if>
+      <if test="depositBankNo != null" >
+        DEPOSIT_BANK_NO,
+      </if>
+      <if test="goodsTitle != null" >
+        GOODS_TITLE,
+      </if>
+      <if test="income != null" >
+        INCOME,
+      </if>
+      <if test="iwAccountLogId != null" >
+        IW_ACCOUNT_LOG_ID,
+      </if>
+      <if test="memo != null" >
+        MEMO,
+      </if>
+      <if test="merchantOutOrderNo != null" >
+        MERCHANT_OUT_ORDER_NO,
+      </if>
+      <if test="otherAccountEmail != null" >
+        OTHER_ACCOUNT_EMAIL,
+      </if>
+      <if test="otherAccountFullname != null" >
+        OTHER_ACCOUNT_FULLNAME,
+      </if>
+      <if test="otherUserId != null" >
+        OTHER_USER_ID,
+      </if>
+      <if test="outcome != null" >
+        OUTCOME,
+      </if>
+      <if test="sellerAccount != null" >
+        SELLER_ACCOUNT,
+      </if>
+      <if test="sellerFullname != null" >
+        SELLER_FULLNAME,
+      </if>
+      <if test="serviceFee != null" >
+        SERVICE_FEE,
+      </if>
+      <if test="serviceFeeRatio != null" >
+        SERVICE_FEE_RATIO,
+      </if>
+      <if test="totalFee != null" >
+        TOTAL_FEE,
+      </if>
+      <if test="tradeRefundAmount != null" >
+        TRADE_REFUND_AMOUNT,
+      </if>
+      <if test="transAccount != null" >
+        TRANS_ACCOUNT,
+      </if>
+      <if test="transCodeMsg != null" >
+        TRANS_CODE_MSG,
+      </if>
+      <if test="transDate != null" >
+        TRANS_DATE,
+      </if>
+      <if test="subTransCodeMsg != null" >
+        SUB_TRANS_CODE_MSG,
+      </if>
+      <if test="signProductName != null" >
+        SIGN_PRODUCT_NAME,
+      </if>
+      <if test="rate != null" >
+        RATE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transOutOrderNo != null" >
+        #{transOutOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerId != null" >
+        #{partnerId,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountName != null" >
+        #{bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountNo != null" >
+        #{bankAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAccount != null" >
+        #{buyerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="depositBankNo != null" >
+        #{depositBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTitle != null" >
+        #{goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="iwAccountLogId != null" >
+        #{iwAccountLogId,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantOutOrderNo != null" >
+        #{merchantOutOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAccountEmail != null" >
+        #{otherAccountEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAccountFullname != null" >
+        #{otherAccountFullname,jdbcType=VARCHAR},
+      </if>
+      <if test="otherUserId != null" >
+        #{otherUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="outcome != null" >
+        #{outcome,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerAccount != null" >
+        #{sellerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerFullname != null" >
+        #{sellerFullname,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceFee != null" >
+        #{serviceFee,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceFeeRatio != null" >
+        #{serviceFeeRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null" >
+        #{totalFee,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeRefundAmount != null" >
+        #{tradeRefundAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="transAccount != null" >
+        #{transAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="transCodeMsg != null" >
+        #{transCodeMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null" >
+        #{transDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subTransCodeMsg != null" >
+        #{subTransCodeMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="signProductName != null" >
+        #{signProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.AuditAlipayDetailCriteria" resultType="java.lang.Long" >
+    select count(*) from t_audit_alipay_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_audit_alipay_detail
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkDate != null" >
+        CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.transOutOrderNo != null" >
+        TRANS_OUT_ORDER_NO = #{record.transOutOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeNo != null" >
+        TRADE_NO = #{record.tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.partnerId != null" >
+        PARTNER_ID = #{record.partnerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.balance != null" >
+        BALANCE = #{record.balance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccountName != null" >
+        BANK_ACCOUNT_NAME = #{record.bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankAccountNo != null" >
+        BANK_ACCOUNT_NO = #{record.bankAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankName != null" >
+        BANK_NAME = #{record.bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.buyerAccount != null" >
+        BUYER_ACCOUNT = #{record.buyerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currency != null" >
+        CURRENCY = #{record.currency,jdbcType=VARCHAR},
+      </if>
+      <if test="record.depositBankNo != null" >
+        DEPOSIT_BANK_NO = #{record.depositBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.goodsTitle != null" >
+        GOODS_TITLE = #{record.goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.income != null" >
+        INCOME = #{record.income,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iwAccountLogId != null" >
+        IW_ACCOUNT_LOG_ID = #{record.iwAccountLogId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memo != null" >
+        MEMO = #{record.memo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.merchantOutOrderNo != null" >
+        MERCHANT_OUT_ORDER_NO = #{record.merchantOutOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherAccountEmail != null" >
+        OTHER_ACCOUNT_EMAIL = #{record.otherAccountEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherAccountFullname != null" >
+        OTHER_ACCOUNT_FULLNAME = #{record.otherAccountFullname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.otherUserId != null" >
+        OTHER_USER_ID = #{record.otherUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outcome != null" >
+        OUTCOME = #{record.outcome,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerAccount != null" >
+        SELLER_ACCOUNT = #{record.sellerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sellerFullname != null" >
+        SELLER_FULLNAME = #{record.sellerFullname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceFee != null" >
+        SERVICE_FEE = #{record.serviceFee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serviceFeeRatio != null" >
+        SERVICE_FEE_RATIO = #{record.serviceFeeRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="record.totalFee != null" >
+        TOTAL_FEE = #{record.totalFee,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tradeRefundAmount != null" >
+        TRADE_REFUND_AMOUNT = #{record.tradeRefundAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transAccount != null" >
+        TRANS_ACCOUNT = #{record.transAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transCodeMsg != null" >
+        TRANS_CODE_MSG = #{record.transCodeMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.transDate != null" >
+        TRANS_DATE = #{record.transDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.subTransCodeMsg != null" >
+        SUB_TRANS_CODE_MSG = #{record.subTransCodeMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.signProductName != null" >
+        SIGN_PRODUCT_NAME = #{record.signProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.rate != null" >
+        RATE = #{record.rate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_audit_alipay_detail
+    set ID = #{record.id,jdbcType=INTEGER},
+      CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      TRANS_OUT_ORDER_NO = #{record.transOutOrderNo,jdbcType=VARCHAR},
+      TRADE_NO = #{record.tradeNo,jdbcType=VARCHAR},
+      PARTNER_ID = #{record.partnerId,jdbcType=VARCHAR},
+      BALANCE = #{record.balance,jdbcType=VARCHAR},
+      BANK_ACCOUNT_NAME = #{record.bankAccountName,jdbcType=VARCHAR},
+      BANK_ACCOUNT_NO = #{record.bankAccountNo,jdbcType=VARCHAR},
+      BANK_NAME = #{record.bankName,jdbcType=VARCHAR},
+      BUYER_ACCOUNT = #{record.buyerAccount,jdbcType=VARCHAR},
+      CURRENCY = #{record.currency,jdbcType=VARCHAR},
+      DEPOSIT_BANK_NO = #{record.depositBankNo,jdbcType=VARCHAR},
+      GOODS_TITLE = #{record.goodsTitle,jdbcType=VARCHAR},
+      INCOME = #{record.income,jdbcType=VARCHAR},
+      IW_ACCOUNT_LOG_ID = #{record.iwAccountLogId,jdbcType=VARCHAR},
+      MEMO = #{record.memo,jdbcType=VARCHAR},
+      MERCHANT_OUT_ORDER_NO = #{record.merchantOutOrderNo,jdbcType=VARCHAR},
+      OTHER_ACCOUNT_EMAIL = #{record.otherAccountEmail,jdbcType=VARCHAR},
+      OTHER_ACCOUNT_FULLNAME = #{record.otherAccountFullname,jdbcType=VARCHAR},
+      OTHER_USER_ID = #{record.otherUserId,jdbcType=VARCHAR},
+      OUTCOME = #{record.outcome,jdbcType=VARCHAR},
+      SELLER_ACCOUNT = #{record.sellerAccount,jdbcType=VARCHAR},
+      SELLER_FULLNAME = #{record.sellerFullname,jdbcType=VARCHAR},
+      SERVICE_FEE = #{record.serviceFee,jdbcType=VARCHAR},
+      SERVICE_FEE_RATIO = #{record.serviceFeeRatio,jdbcType=VARCHAR},
+      TOTAL_FEE = #{record.totalFee,jdbcType=VARCHAR},
+      TRADE_REFUND_AMOUNT = #{record.tradeRefundAmount,jdbcType=VARCHAR},
+      TRANS_ACCOUNT = #{record.transAccount,jdbcType=VARCHAR},
+      TRANS_CODE_MSG = #{record.transCodeMsg,jdbcType=VARCHAR},
+      TRANS_DATE = #{record.transDate,jdbcType=TIMESTAMP},
+      SUB_TRANS_CODE_MSG = #{record.subTransCodeMsg,jdbcType=VARCHAR},
+      SIGN_PRODUCT_NAME = #{record.signProductName,jdbcType=VARCHAR},
+      RATE = #{record.rate,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.AuditAlipayDetail" >
+    update t_audit_alipay_detail
+    <set >
+      <if test="checkDate != null" >
+        CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="transOutOrderNo != null" >
+        TRANS_OUT_ORDER_NO = #{transOutOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null" >
+        TRADE_NO = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="partnerId != null" >
+        PARTNER_ID = #{partnerId,jdbcType=VARCHAR},
+      </if>
+      <if test="balance != null" >
+        BALANCE = #{balance,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountName != null" >
+        BANK_ACCOUNT_NAME = #{bankAccountName,jdbcType=VARCHAR},
+      </if>
+      <if test="bankAccountNo != null" >
+        BANK_ACCOUNT_NO = #{bankAccountNo,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="buyerAccount != null" >
+        BUYER_ACCOUNT = #{buyerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="currency != null" >
+        CURRENCY = #{currency,jdbcType=VARCHAR},
+      </if>
+      <if test="depositBankNo != null" >
+        DEPOSIT_BANK_NO = #{depositBankNo,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTitle != null" >
+        GOODS_TITLE = #{goodsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="income != null" >
+        INCOME = #{income,jdbcType=VARCHAR},
+      </if>
+      <if test="iwAccountLogId != null" >
+        IW_ACCOUNT_LOG_ID = #{iwAccountLogId,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null" >
+        MEMO = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantOutOrderNo != null" >
+        MERCHANT_OUT_ORDER_NO = #{merchantOutOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAccountEmail != null" >
+        OTHER_ACCOUNT_EMAIL = #{otherAccountEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="otherAccountFullname != null" >
+        OTHER_ACCOUNT_FULLNAME = #{otherAccountFullname,jdbcType=VARCHAR},
+      </if>
+      <if test="otherUserId != null" >
+        OTHER_USER_ID = #{otherUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="outcome != null" >
+        OUTCOME = #{outcome,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerAccount != null" >
+        SELLER_ACCOUNT = #{sellerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="sellerFullname != null" >
+        SELLER_FULLNAME = #{sellerFullname,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceFee != null" >
+        SERVICE_FEE = #{serviceFee,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceFeeRatio != null" >
+        SERVICE_FEE_RATIO = #{serviceFeeRatio,jdbcType=VARCHAR},
+      </if>
+      <if test="totalFee != null" >
+        TOTAL_FEE = #{totalFee,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeRefundAmount != null" >
+        TRADE_REFUND_AMOUNT = #{tradeRefundAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="transAccount != null" >
+        TRANS_ACCOUNT = #{transAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="transCodeMsg != null" >
+        TRANS_CODE_MSG = #{transCodeMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="transDate != null" >
+        TRANS_DATE = #{transDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subTransCodeMsg != null" >
+        SUB_TRANS_CODE_MSG = #{subTransCodeMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="signProductName != null" >
+        SIGN_PRODUCT_NAME = #{signProductName,jdbcType=VARCHAR},
+      </if>
+      <if test="rate != null" >
+        RATE = #{rate,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.AuditAlipayDetail" >
+    update t_audit_alipay_detail
+    set CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      TRANS_OUT_ORDER_NO = #{transOutOrderNo,jdbcType=VARCHAR},
+      TRADE_NO = #{tradeNo,jdbcType=VARCHAR},
+      PARTNER_ID = #{partnerId,jdbcType=VARCHAR},
+      BALANCE = #{balance,jdbcType=VARCHAR},
+      BANK_ACCOUNT_NAME = #{bankAccountName,jdbcType=VARCHAR},
+      BANK_ACCOUNT_NO = #{bankAccountNo,jdbcType=VARCHAR},
+      BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      BUYER_ACCOUNT = #{buyerAccount,jdbcType=VARCHAR},
+      CURRENCY = #{currency,jdbcType=VARCHAR},
+      DEPOSIT_BANK_NO = #{depositBankNo,jdbcType=VARCHAR},
+      GOODS_TITLE = #{goodsTitle,jdbcType=VARCHAR},
+      INCOME = #{income,jdbcType=VARCHAR},
+      IW_ACCOUNT_LOG_ID = #{iwAccountLogId,jdbcType=VARCHAR},
+      MEMO = #{memo,jdbcType=VARCHAR},
+      MERCHANT_OUT_ORDER_NO = #{merchantOutOrderNo,jdbcType=VARCHAR},
+      OTHER_ACCOUNT_EMAIL = #{otherAccountEmail,jdbcType=VARCHAR},
+      OTHER_ACCOUNT_FULLNAME = #{otherAccountFullname,jdbcType=VARCHAR},
+      OTHER_USER_ID = #{otherUserId,jdbcType=VARCHAR},
+      OUTCOME = #{outcome,jdbcType=VARCHAR},
+      SELLER_ACCOUNT = #{sellerAccount,jdbcType=VARCHAR},
+      SELLER_FULLNAME = #{sellerFullname,jdbcType=VARCHAR},
+      SERVICE_FEE = #{serviceFee,jdbcType=VARCHAR},
+      SERVICE_FEE_RATIO = #{serviceFeeRatio,jdbcType=VARCHAR},
+      TOTAL_FEE = #{totalFee,jdbcType=VARCHAR},
+      TRADE_REFUND_AMOUNT = #{tradeRefundAmount,jdbcType=VARCHAR},
+      TRANS_ACCOUNT = #{transAccount,jdbcType=VARCHAR},
+      TRANS_CODE_MSG = #{transCodeMsg,jdbcType=VARCHAR},
+      TRANS_DATE = #{transDate,jdbcType=TIMESTAMP},
+      SUB_TRANS_CODE_MSG = #{subTransCodeMsg,jdbcType=VARCHAR},
+      SIGN_PRODUCT_NAME = #{signProductName,jdbcType=VARCHAR},
+      RATE = #{rate,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

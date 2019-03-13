@@ -1,0 +1,244 @@
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/prom-info.js?version=$!{JS_VERSION}" ></script>
+<link href="${CONTEXT_PATH}/css/prom/createprom/prom-info.css" rel="stylesheet" type="text/css" media="screen"/>
+			<div class="alert alert-error hide formValidateMessages" style="color:red;" id="prom-info-valid" >
+				##showSpringAllError("promVO")
+            </div>
+		
+			<h3 class="heading">促销描述 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$!{promType.promTypeName}</h3>
+		      <div class="alert-info" style="margin-left:50px;">$!{promType.promTypeDesc}</div>
+		      <div class="clear"></div>
+			<div class="formBox row-fluid">
+				<form id="promInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+				    <div class="hide" >
+				       <input type="text" name="promInfoVO.promTypeCode" id="promTypeCode" value="$!{promType.promTypeCode}" >
+				       <input type="text" name="promInfoVO.shopId" id="shopId" value="$!{shopId}" >
+				       <input type="text" name="promInfoVO.id" id="promId" value="$!{promVO.promInfoVO.id}" >
+				       <input type="text" name="promInfoVO.promClass" id="promClass" value="$!{promType.promClass}" >
+				       <input type="text" name="doAction" id="doAction" value="$!{doAction}" >
+				       <input type="text" name="ifCheckGds" id="ifCheckGds" value="$!{ifShowSelect}" >
+				       <input type="text" name="coupCodeFlag" id="coupCodeFlag"  value="$!{coup_code}" > 
+				       
+                    </div>
+		     <div class="row-fluid">
+					<div class="span10">
+						<div class="control-group">
+							<label class="control-label">站点：</label>
+							<div class="controls">
+								<select id="siteId" name="promInfoVO.siteId" class="required span4" value="$!{promVO.promInfoVO.siteId}" onchange="promInfo.onchangeSiteId(this)">
+									    #siteList("$!{promVO.promInfoVO.siteId}")
+								 </select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span10">
+						<div class="control-group">
+							<label class="control-label">促销名称：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level required htmlcheck" name="promInfoVO.promTheme" id="promTheme" maxlength="#if($!promType.promTypeCode==1000000014||$!promType.promTypeCode==1000000013||$!promType.promTypeCode==1000000011) 10 #else 60 #end"  placeholder="促销名称" value="$!{promVO.promInfoVO.promTheme}" />
+								<span class="help-inline">限制#if($!promType.promTypeCode==1000000014||$!promType.promTypeCode==1000000013||$!promType.promTypeCode==1000000011) 10 #else 60 #end个字符以内</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				 <div class="row-fluid">
+					<div class="span10">
+						<div class="control-group">
+							<label class="control-label">搜索关键字：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level  htmlcheck" maxlength="60" name="promInfoVO.keyWord" id="keyWord"  placeholder="搜索关键字" #if (!${promVO.promInfoVO.keyWord}) value="$!{promType.nameShort}" #else value="$!{promVO.promInfoVO.keyWord}" #end/>
+							    <span class="help-inline">限制60个字符以内。各个关键字使用空格隔开。例如：满赠 赠品 折扣</span>
+							</div>
+						</div>
+					</div>
+				</div>
+					<div class="row-fluid">
+					<div class="span10">
+						<div class="control-group">
+							<label class="control-label">展示简称：</label>
+							<div class="controls">
+								<input type="text" class="span4 required htmlcheck" maxlength="4" name="promInfoVO.promTypeShow" id="promTypeShow"  placeholder="展示类型名称" #if (!${promVO.promInfoVO.promTypeShow}) value="$!{promType.nameShort}" #else value="$!{promVO.promInfoVO.promTypeShow}" #end/>
+							    <span class="help-inline">限制4个字符以内。例如：6折 送赠品</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span10">
+						<div class="control-group">
+							<label class="control-label">参加主题促销：</label>
+							<div class="controls">
+								 <input type="text" class="span8" id="groupName" name="promInfoVO.groupName" placeholder="参加主题促销" value="$!{promVO.promInfoVO.groupName}" disabled/>
+								  <div class="hide" >
+				                     <input type="text" name="promInfoVO.groupId" id="groupId" value="$!{promVO.promInfoVO.groupId}">
+                                   </div>
+                                   	<span class="view">
+										<button type="button" class="btn" id="btnSelectGroup"><i class="icon-magic"></i>选择主题</button>
+										<button type="button" class="btn" id="btnClearGroup"><i class="icon-remove-sign"></i>清空</button>
+							        </span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span5">
+						<div class="control-group">
+							<label class="control-label">优先级：</label>
+							<div class="controls">
+								   <input type="text" class="span7 number required" maxlength="5" name="promInfoVO.priority" value="$!{promVO.promInfoVO.priority}"/>
+							</div>
+						</div>
+					</div>
+				<div class="span7  #if($!{ifShowSelect}!=true) #else hide #end">
+							<div class="">
+								<ul id="idlist" style="list-style-type: none">
+										#if ($!{promType.promClass}=='20')
+											<li style="float:left;margin-left:15px;">
+										 <div class="hide" >
+										     <label ><input type="checkbox" name="promInfoVO.joinRange"  value="0"  disabled checked #if ($!{doAction}=='view') disabled #end>部分参与</label>
+										</div>
+										</li>
+										#end
+										#if ($!{promType.promClass}!='20')
+											<li style="float:left;margin-left:15px;">
+										   <label ><input type="radio" class="radioJoinRange" name="promInfoVO.joinRange" value="0"   checked #if ($!{doAction}=='view') disabled #end>部分参与</label>
+										   </li>
+											<li style="float:left;margin-left:15px;">
+										   <label ><input type="radio" class="radioJoinRange" name="promInfoVO.joinRange" value="1"  #if ($!{promVO.promInfoVO.joinRange}=='1') checked #end #if ($!{doAction}=='view') disabled #end>全场参与</label>
+										   </li>
+										   <li style="float:left;margin-left:15px;">
+										   <label  id="ifBlackListLabel" >
+										           <input type="checkbox" id="ifBlackList" name="promInfoVO.ifBlacklist" value="1" #if ($!{promVO.promInfoVO.ifBlacklist}=='1') checked #end #if ($!{doAction}=='view') disabled #end  >黑名单设置
+										   </label>
+										   </li>
+										#end
+								</ul>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span5">
+						<div class="control-group">
+							<label class="control-label">开始时间：</label>
+							<div class="controls">
+							  <input type="text" class="span7 Wdate required" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="promInfoVO.startTime"  value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{promVO.promInfoVO.startTime})"/>
+							</div>
+						</div>
+					</div>
+					<div class="span5">
+						<div class="control-group">
+							<label class="control-label">截止时间：</label>
+							<div class="controls">
+								<input type="text" class="span7 Wdate required" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="promInfoVO.endTime" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{promVO.promInfoVO.endTime})" />
+							</div>
+						</div>
+					</div>
+				</div>
+				#if($!{ifShowShowTime}!=true) 
+				<div class="row-fluid">
+					<div class="span5">
+						<div class="control-group">
+							<label class="control-label" >展示开始时间：</label>
+							<div class="controls">
+							  <input type="text" class="span7 Wdate required" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="promInfoVO.showStartTime" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{promVO.promInfoVO.showStartTime})" />
+							</div>
+						</div>
+					</div>
+					<div class="span5">
+						<div class="control-group">
+							<label class="control-label" >展示截止时间：</label>
+							<div class="controls">
+								<input type="text" class="span7 Wdate required" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="promInfoVO.showEndTime" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{promVO.promInfoVO.showEndTime})" />
+							</div>
+						</div>
+					</div>
+				</div>
+				#end
+				<!--
+				<div class="row-fluid">
+					<div class="span10">
+						<div class="control-group">
+							<label class="control-label">促销附件：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level" name="file" placeholder="上传附件" />
+							</div>
+						</div>
+					</div>
+				</div>
+				-->
+				<div class="row-fluid">
+					<div class="span10">
+						<div class="control-group">
+							<label class="control-label">促销内容：</label>
+							<div class="controls">
+								<textarea rows="4" class="input-block-level required htmlcheck" name="promInfoVO.promContent" maxlength="200" placeholder="促销内容" >$!{promVO.promInfoVO.promContent}</textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+					<div class="span5">
+						<div class="control-group">
+							<label class="control-label">是否免邮：</label>
+							<div class="controls">
+									<select   id="ifFreePost" name="promInfoVO.ifFreePost"  class="span7">
+								  #listParam('IF_FREE_POST',"$!{promVO.promInfoVO.ifFreePost}")
+								  </select>
+							</div>
+						</div>
+					</div>
+				</div>
+			   #if($!{ifShowSelect}!=true)
+				#if($!{promType.promTypeCode}!="1000000019")
+			   <div class="row-fluid view" id="catgSelectId">
+						<div class="control-group">
+							<label class="control-label">分类选择：</label>
+							<div class="controls">
+								<button type="button" class="btn" id="btnCatgOpenWindow"  ><i class="icon-magic"></i>分类选择</button>
+							</div>
+						</div>
+					</div>
+				#end
+					
+				 <div class="row-fluid view" id="gdsSelectId">
+						<div class="control-group">
+							<label class="control-label">商品选择：</label>
+							<div class="controls">
+								<button type="button" class="btn" id="btnGdsOpenWindow"  ><i class="icon-magic"></i>商品选择</button>
+								#if($!{doAction}=="" || $!{doAction}=="create" || !${doAction})
+								<a>如果大批量商品参与促销，请先保存或者提交后，再到我的促销导入批量商品</a>
+								#end
+							</div>
+						</div>
+					</div>
+				#parse("/coupon/coupinfo/userule/rule-120.vm")
+				 <div class="row-fluid view" id="gdsBlackSelectId">
+						<div class="control-group">
+							<label class="control-label">黑名单分类选择：</label>
+							<div class="controls">
+								<button type="button" class="btn" id="btnCatgBlackOpenWindow" disabled ><i class="icon-search icon-white"></i>黑名单分类选择</button>
+							</div>
+						</div>
+					</div>	
+				  <div class="row-fluid view" id="catgBlackSelectId">
+						<div class="control-group">
+							<label class="control-label">黑名单商品选择：</label>
+							<div class="controls">
+								<button type="button" class="btn" id="btnGdsBlackOpenWindow" disabled ><i class="icon-search icon-white"></i>黑名单商品选择</button>
+							</div>
+						</div>
+					</div>
+					
+				  #end
+				  	
+				</div>
+				<div class="clear"></div>
+				</form>
+				 <div id="catgtableId" class="gdsSelectDivClass"></div>
+			    <div id="gdstableId" class="gdsSelectDivClass"></div>
+			    <div id="blackCatgTableId" class="blackGdsTableClass"></div>
+			    <div id="blackGdsTableId" class="blackGdsTableClass"></div>
+			   
+			    

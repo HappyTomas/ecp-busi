@@ -1,0 +1,58 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/article/open/open-article.js?version=$!{JS_VERSION}" ></script>
+
+<!--搜索区域-->
+<div class="well well-searchForm">
+	<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+		<!--
+    	<input type="hidden"  name="status" id="status" class="input-medium" value="1" >
+		-->
+    	<div class="row-fluid">
+    		<div class="span6">
+    			<div class="control-group">
+    				<label class="control-label">所属站点：</label>
+    				<div class="controls">
+    					<select id="siteId" name="siteId"  class="input-medium" disabled>
+    						#siteList($!{siteId})
+    					</select>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="span6">
+				<div class="control-group">
+    				<label class="control-label">所属栏目：</label>
+    				<div class="controls">
+    					<input type="text" id="channelName" name="channelName" class="input-medium" value="" placeholder="请选择所属栏目">
+    					<input type="hidden" id="channelId" name="channelId" class="input-medium" value="">
+    				</div>
+    			</div>
+    		</div>
+    		<div class="clear"></div>
+    	</div>
+		<div class="row-fluid">
+			<div class="span6">
+    			<div class="control-group">
+    				<label class="control-label">标题：</label>
+    				<div class="controls">
+    					<input type="text" id="articleTitle" name="articleTitle" class="input-medium" value="" placeholder="请输入文章语">
+    				</div>
+    			</div>
+    		</div>
+    		<div class="clear"></div>
+    	</div>
+	</form>
+</div>
+
+<!--操作按钮区域-->
+<div class="row-fluid" style="margin-bottom: 10px;">
+	<div class="pull-right">
+		<a class="btn btn-info" id="btnFormSearch" href="javascript:void(0)"><i class="icon-search icon-white"></i> 查询</a>
+		<a class="btn" id="btnFormReset" href="javascript:void(0)"><i class="icon-refresh"></i> 重置</a>
+	</div>
+</div>
+
+<!--列表区域-->
+<div class="row-fluid">
+	<table id="dataGridTable"></table>
+</div>

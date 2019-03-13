@@ -1,0 +1,20 @@
+<script type="text/javascript" src="$BUSIJS_PATH/goods/gdsdetail/gdsdetail-gdsdelete.js"></script>
+<div id="content-c" class="errorTop">
+    <div class="error-icon">
+        <i class="mstate error"></i>
+    </div>
+    <div class="error-notice-text">
+        <div class="error-notice-hd">很抱歉，您查看的宝贝不存在，可能已被转移或删除。</div>
+        <div class="error-notice-info"></div>
+        <div class="error-notice-advice">
+            <span class="you-can">您可以：</span>
+            <ol>
+                <li>该宝贝可能已经下架，您可以联系掌柜找找宝贝。</li>
+                <li>在顶部搜索框重新输入关键词搜索</li>
+                <li>为你推荐一些你可能喜欢的内容，将在<a href="$!{CONTEXT_PATH}/homepage"><span id="J_ShowDiv" style="color:red">15</span></a>
+						秒后自动跳转
+				</li>
+            </ol>
+        </div>
+    </div>
+</div>

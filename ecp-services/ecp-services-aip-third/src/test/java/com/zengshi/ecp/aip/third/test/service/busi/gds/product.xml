@@ -1,0 +1,56 @@
+<itemParam>
+	<field id="product_id" name="产品ID" type="input">
+		<value />
+	</field>
+	<field id="prop_1636953" name="ISBN编号" type="input">
+		<value>9787117214972</value>
+	</field>
+	<field id="cspuList" name="产品规格列表" type="multiComplex" />
+	<field id="prop_122216545" name="是否是套装" type="singleCheck">
+		<value>21959</value>
+	</field>
+	<field id="prop_46602357" name="书名" type="input">
+		<value>[测试商品3]-请勿拍，谢谢</value>
+	</field>
+	<field id="prop_46398806" name="定价" type="input">
+		<value>10000</value>
+	</field>
+	<field id="prop_122216620" name="出版社名称" type="input">
+		<value>人民卫生出版社</value>
+	</field>
+	<field id="prop_2043193" name="出版时间" type="input">
+		<value />
+	</field>
+	<field id="prop_2043189" name="作者" type="input">
+		<value>黄进祥</value>
+	</field>
+	<field id="prop_18821503" name="作者地区" type="singleCheck">
+		<value />
+	</field>
+	<field id="prop_46394856" name="译者" type="input">
+		<value />
+	</field>
+	<field id="prop_46412378" name="编者" type="input">
+		<value />
+	</field>
+	<field id="prop_122216357" name="开本" type="input">
+		<value />
+	</field>
+	<field id="product_images" name="产品图片" type="complex">
+		<complex-values>
+			<field id="product_image_0" type="input">
+				<value>http://img.alicdn.com/imgextra/i2/1125014918/TB2.JNUaUhnpuFjSZFPXXb_4XXa_!!1125014918.jpg
+				</value>
+			</field>
+		</complex-values>
+	</field>
+	<field id="extra_contents" name="目录" type="input">
+		<value />
+	</field>
+	<field id="extra_description" name="内容简介" type="input">
+		<value />
+	</field>
+	<field id="extra_authors" name="作者介绍" type="input">
+		<value />
+	</field>
+</itemParam>

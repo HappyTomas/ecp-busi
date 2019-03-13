@@ -1,0 +1,43 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/giftselect/gift-list.js?version=$!{JS_VERSION}" ></script>
+	 <table  class="seller-table table-striped " id="giftsTable">
+                               <thead>
+                               <tr>
+                                    <td ><input type="checkbox" name="checkbox" id="dt_row_all_check" value="" title="全选/全取消" /></td>
+                                    <td >编码</td>
+                                    <td >赠品名称</td>
+						            <td >赠品价值</td>
+						            <td >赠品状态</td>
+						            <td >赠品总量</td>
+						            <td >赠品类型</td>
+						            <td >已赠量</td>
+						            <td >可赠量</td>
+                                </tr>
+                               </thead>
+                               <tbody>
+						        	#if(!$giftPage.getResult()||$giftPage.count==0)
+						        		<tr><td colspan='9'>很遗憾，暂无数据。</td><tr>
+						        	#end
+						        	#foreach($attr in $giftPage.getResult())
+						        		<tr>
+						        			<td ><input type="checkbox" name="checkboxgifts" value="$!{attr.id}" id="$!{attr.id}"/></td>
+							                <td >$!{attr.id}</td>
+							                <td  class="td-hhtxt" > <div>#escapeHtml( "$!{attr.giftName}")</div></td>
+							                <td > #moneyNum($!{attr.giftValue}) </td>
+							                <td > #if($!attr.giftStatus ==1) 有效
+									               #else 无效
+									               #end
+							                </td>
+							                <td >$!{attr.giftAmount}</td>
+							                <td >$!{attr.giftTypeName}</td>
+							                <td >$!{attr.giftSend}</td>
+							                <td >$!{attr.giftValid}</td>
+							            </tr>
+									#end
+								</tbody>
+	</table>
+    <div class="fav-opt clearfix" style="margin-top: 20px;">
+        <div class="row-fluid">
+			<div id="pageControlbar" class="ecppage" data-total-page="${giftPage.pageCount}" data-total-row="${giftPage.count}" data-page-size="${giftPage.pageSize}" data-page-number="${giftPage.pageNo}" data-status="begin"></div>
+		</div>
+    </div>

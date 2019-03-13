@@ -1,0 +1,116 @@
+#parse("/sys/sys_head.vm")
+#parse("sys/sys_param.vm")
+<script src="$!{RESOURCE_PATH}/jquery/artTemplate/template-debug.js"></script>
+<script src="$!{RESOURCE_PATH}/util.js"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/buyer/member-coupinfo.js"></script>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        优惠劵
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        <a href="$CONTEXT_PATH/member/index">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+    <div class="am-header-right">
+        ##<span class="otxt">使用说明</span>
+    </div>
+</header>
+<input type="hidden" name="dataType" id="dataType" value="1">
+<div class="ui-content-fixBottom">
+    <div class="am-tabs" data-am-tabs="{noSwipe: 1}">
+        <ul class="am-tabs-nav am-nav am-nav-tabs " id="membercoupinfo">
+            <li id="couppage_active" class="am-active" data-type="1"><a href="javascript: void(0)">未使用(#if($!{count_active}>99)99+#else$!{count_active}#end)</a></li>
+            <li id="couppage_past" data-type="0"><a href="javascript: void(0)">已过期(#if($!{count_past}>99)99+#else$!{count_past}#end)</a></li>
+            <li id="couppage_used" data-type="2"><a href="javascript: void(0)">已使用(#if($!{count_used}>99)99+#else$!{count_used}#end)</a></li>
+        </ul>
+		<!--
+        <div class="am-tabs-bd">
+            <div class="am-tab-panel am-active" id="tabContentDiv">
+				##parse("/buyer/couptab/coupinfo-list.vm")
+            </div>
+        </div>
+		-->
+		<div id="wrapper2" data-am-widget="list_news" class="am-list-news scroll-wrap">
+            <div class="am-list-news-bd scroll" style="padding-bottom:50px">
+            <!--
+                <div class="pull-action loading pull-down">
+                   <span class="pull-label"> 下拉刷新</span>
+                    <span class="am-icon-spinner am-icon-spin"></span>
+                </div>
+            -->
+                   <ul class="ui-list scrollCont point-list" style="margin-top: 0;">
+                        <li>
+                            <div class="loading-lo"></div>
+                        </li>
+                    </ul>
+
+                <div class="pull-action pull-up" style="bottom: 8px">
+                     <span class=" pull-label">上拉刷新</span>
+                    <span class="am-icon-spinner am-icon-spin"></span>
+                </div>
+            </div>
+		</div>
+    </div>
+</div>
+
+<script type="text/x-handlebars-template" id="wrapper2-tpl">
+	{{if values.datas}}
+    {{each values.datas as activeItem i}}
+                <li>
+                    <div class="conponbg {{if values.dataType!="1"}} conponbg02 {{/if}}">
+                        <div class="cp-box cp-align">
+							{{if activeItem.coupValue<0 }}
+                                <span class="cp-price">抵用</span>
+                            {{else}}
+									{{if activeItem.discountCoup == '1'}}
+                                <span class="cp-price" style="width:4.1875rem;">{{dealCoupValue(activeItem.coupValue,1000.0)}}
+										折
+									{{else}}
+                                <span class="cp-yan">&yen;</span>
+                                <span class="cp-price">{{dealCoupValue(activeItem.coupValue,100.00)}}
+									{{/if}}
+								</span>
+							{{/if}}
+						</div>
+                        <div class="cp-box cp-con">
+                            <p class="cp-tit">{{activeItem.shopName}}</p>
+                            <p class="cp-tit">{{activeItem.conditions}}</p>
+                            <p class="cp-date">{{activeItem.activeTime}}至{{activeItem.inactiveTime}}</p>
+                        </div>
+                        <div class="{{if values.dataType=="2"}}cpT cpT-b04 {{else if activeItem.coupStatus=="0" }} {{else if activeItem.coupStatus=="1"}} cpT cpT-b01 {{else if activeItem.coupStatus=="2"}}cpT cpT-b02  {{else if activeItem.coupStatus=="3"}}cpT cpT-b03 {{/if}} "></div>
+                    </div>
+                </li>  
+    {{/each}}
+	{{else}}
+	<div class="ui-content">
+        <div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$IMAGE_PATH/nodata02.png" alt="">
+                </div>
+                <div class="tip-bold">
+                    很遗憾
+                </div>
+                <div class="tip-txt">
+                    暂时没有数据
+                </div>
+            </div>
+	</div>
+	{{/if}}
+
+</script>
+<script>
+	$(function(){
+		template.helper("dealCoupValue", function(str,divisor){
+			var value = +str;
+			if(value !== value){
+				return str;
+			}
+			var divi = +divisor;
+			if(divi !== divi || 0 === divi){
+				return str;
+			}
+			return ((value * 1000) / (divi * 1000)).toFixed(1);
+		});
+	});
+</script>

@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="seq_stock_rep" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_REP" />
+	</bean>
+
+	<bean id="seq_stock_rep_his" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_REP_HIS" />
+	</bean>
+
+	<bean id="seq_stock_rep_adapt" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_REP_ADAPT" />
+	</bean>
+
+	<bean id="seq_stock_rep_adapt_his" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_REP_ADAPT_HIS" />
+	</bean>
+
+	<bean id="seq_stock_info" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_INFO" />
+	</bean>
+
+	<bean id="seq_stock_info_his" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_INFO_HIS" />
+	</bean>
+
+	<bean id="seq_stock_opt_record" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_OPT_RECORD" />
+	</bean>
+
+	<bean id="seq_stock_pre_occupy" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_PRE_OCCUPY" />
+	</bean>
+
+	<bean id="seq_stock_info_adapt" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_INFO_ADAPT" />
+	</bean>
+
+	<bean id="seq_stock_sku_entity" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_SKU_ENTITY" />
+	</bean>
+
+	<bean id="seq_stock_in_detail" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_IN_DETAIL" />
+	</bean>
+
+	<bean id="seq_stock_out_detail" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_OUT_DETAIL" />
+	</bean>
+
+	<bean id="seq_stock_sku_entity_his" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_STOCK_SKU_ENTITY_HIS" />
+	</bean>
+
+	<bean id="seq_gds_type" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_TYPE" />
+	</bean>
+
+	<bean id="seq_gds_catlog" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_CATLOG" />
+	</bean>
+
+	<bean id="seq_gds_category" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_CATEGORY" />
+	</bean>
+
+	<bean id="seq_gds_price_type" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_PRICE_TYPE" />
+	</bean>
+
+
+	<bean id="seq_gds_prop_value" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_PROP_VALUE" />
+	</bean>
+
+	<bean id="seq_gds_prop_group" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_PROP_GROUP" />
+	</bean>
+
+	<bean id="seq_gds_prop" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_PROP" />
+	</bean>
+
+
+	<bean id="seq_gds_platrecom" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_PLATRECOM" />
+	</bean>
+
+	<bean id="seq_gds_label" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_LABEL" />
+	</bean>
+
+	<bean id="seq_gds_guessyl" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_GUESSYL" />
+	</bean>
+
+	<bean id="seq_gds_info_snap" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_INFO_SNAP" />
+	</bean>
+
+	<bean id="seq_gds_addon" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_ADDON" />
+	</bean>
+
+	<bean id="seq_gds_info" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_INFO" />
+	</bean>
+
+	<bean id="seq_gds_price" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_PRICE" />
+	</bean>
+
+	<bean id="seq_gds_arrmsg" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_ARRMSG" />
+	</bean>
+
+	<bean id="seq_gds_collect" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_COLLECT" />
+	</bean>
+
+	<bean id="seq_gds_adapt" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_ADAPT" />
+	</bean>
+
+	<bean id="seq_gds_price_ladder" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_PRICE_LADDER" />
+	</bean>
+
+	<bean id="seq_gds_presale" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_PRESALE" />
+	</bean>
+
+	<bean id="seq_gds_media_category" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_MEDIA_CATEGORY" />
+	</bean>
+
+	<bean id="seq_gds_media_lib" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_MEDIA_LIB" />
+	</bean>
+
+	<bean id="seq_gds_media" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_MEDIA" />
+	</bean>
+
+	<bean id="seq_gds_main_sku_comb" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_MAIN_SKU_COMB" />
+	</bean>
+
+	<bean id="seq_gds_eval_reply" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_EVAL_REPLY" />
+	</bean>
+
+	<bean id="seq_gds_eval" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_EVAL" />
+	</bean>
+
+	<bean id="seq_gds_gift" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_GIFT" />
+	</bean>
+
+	<bean id="seq_gds_shiptemp" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_SHIPTEMP" />
+	</bean>
+
+	<bean id="seq_gds_shiptemp_price" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_SHIPTEMP_PRICE" />
+	</bean>
+
+	<bean id="seq_gds_sku_addon" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_SKU_ADDON" />
+	</bean>
+
+	<bean id="seq_gds_sku_info" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_SKU_INFO" />
+	</bean>
+
+
+
+	<bean id="seq_gds_catgcust_blacklist" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_CATGCUST_BLACKLIST" />
+	</bean>
+	
+	<bean id="seq_gds_catgcust_disc" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_CATGCUST_DISC" />
+	</bean>
+
+	<bean id="seq_gds_score_ext" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_SCORE_EXT" />
+	</bean>
+
+	<bean id="seq_gds_browse_his" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_BROWSE_HIS" />
+	</bean>
+
+	<bean id="seq_gds_interface_gdsr" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_INTERFACE_GDSR" />
+	</bean>
+
+	<bean id="seq_gds_interface_catgr" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_INTERFACE_CATGR" />
+	</bean>
+     <bean id="seq_gds_category_sync" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_CATEGORY_SYNC" />
+	</bean>
+
+	  <bean id="seq_gds_sku_snap" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_SKU_SNAP" />
+	</bean>
+	
+	  <bean id="seq_gds_excel_imp_log" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_EXCEL_IMP_LOG" />
+	</bean>
+	
+	<bean id="seq_gds_log" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService" />
+		<property name="sequenceName" value="SEQ_GDS_LOG" />
+	</bean>
+</beans>

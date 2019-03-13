@@ -1,0 +1,121 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/type/form.js?version=$!{JS_VERSION}" ></script>
+<link href="${CONTEXT_PATH}/css/coupon/form.css" rel="stylesheet" type="text/css" media="screen"/>
+			<div class="alert alert-error hide formValidateMessages" >
+				#showSpringAllError("couponTypeVO")
+            </div>
+
+<form id="detailInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;" method="post" action="">
+        <input type="text" class="hide"  id="id" name="id" value="$!{couponTypeVO.id}"/>
+        <input type="text" class="hide"  id="coup_code" name="coup_code" value="$!{coup_code}"/>
+	      <div class="formSep">
+					<div class="control-group">
+							<label class="control-label">类型名称：</label>
+							<div class="controls">
+								 <input type="text" class="span4 required htmlcheck"  placeholder="输入类型名称" maxlength="30" id="coupTypeName" name="coupTypeName" value="$!{couponTypeVO.coupTypeName}"/>
+							</div>
+						</div>
+					</div>
+						<div class="control-group">
+							<label class="control-label"><span style="color:red">*</span>使用级别：</label>
+							<div class="controls">
+							    <label class="control-label" style="width:54px;"><input type="radio" name="typeLimit" id="typeLimitbtn" value="1" checked disabled >店铺券</label>
+							<!--
+								 <label class="control-label"><input type="radio" name="typeLimit" value="1" #if ($!{couponTypeVO.typeLimit}=='1') checked #end >店铺券</label>
+								 <label class="control-label"><input type="radio" name="typeLimit" value="0" #if ($!{couponTypeVO.typeLimit}=='0') checked #end >平台券</label>-->
+							</div>
+						</div>
+				
+<div class="accordion switch-button" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-target="#collapseOne"><i class="icon-edit"></i>
+     优惠券<span style="color:red">使用限制</span>
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">
+          
+	      #foreach( $info in $param1List) 
+				 #set ($arr = $info.spCode.split("-"))
+	            #if ( $arr.get(1)!=1) 
+						<div class="span3 hide">
+        				<div class="control-group">
+        						<label class="control-label">$!{info.spValue}：</label>
+        						<div class="controls">
+        							   <div data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+			                                     <button class="btn #if ($!{couponTypeVO.useMap.get($arr.get(0))}==1)  active btn-primary #end    #if (!${couponTypeVO.useMap.get($arr.get(0))})  #if ($arr.get(2)==1) active btn-primary #end #end "   value="1" name="$arr.get(0)">开</button>
+			                                     <button class="btn #if ($!{couponTypeVO.useMap.get($arr.get(0))}==0)  active btn-primary #end    #if (!${couponTypeVO.useMap.get($arr.get(0))})  #if ($arr.get(2)==0) active btn-primary #end #end "  value="0" name="$arr.get(0)">关</button>
+                                       </div>
+        						</div>
+        					</div>
+        				</div>  
+        		#else
+        			<div class="span3" id="$arr.get(0)">
+        				<div class="control-group">
+        						<label class="control-label">$!{info.spValue}：</label>
+        						<div class="controls">
+        							   <div data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+			                                     <button class="btn #if ($!{couponTypeVO.useMap.get($arr.get(0))}==1)  active btn-primary #end   #if (!${couponTypeVO.useMap.get($arr.get(0))})   #if ($arr.get(2)==1) active btn-primary #end #end"   value="1" name="$arr.get(0)">开</button>
+			                                     <button class="btn #if ($!{couponTypeVO.useMap.get($arr.get(0))}==0)  active btn-primary #end   #if (!${couponTypeVO.useMap.get($arr.get(0))})   #if ($arr.get(2)==0) active btn-primary #end #end "  value="0" name="$arr.get(0)">关</button>
+                                       </div>
+        						</div>
+        					</div>
+        				</div>  		
+        	  #end
+	      #end
+        </div>
+    </div>
+  </div>
+  <div class="accordion-group hide">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="accordion-toggle" data-parent="#accordion2" href="#collapseTwo"><i class="icon-edit"></i>
+		 优惠券<span style="color:green">领取限制</span>
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse in">
+      <div class="accordion-inner">
+      
+	      #foreach( $info in $param2List) 
+	        #set($arr = $info.spCode.split("-"))
+	        #if ($arr.get(1)!=1) 
+						<div class="span3 hide">
+        				<div class="control-group">
+        						<label class="control-label">$!{info.spValue}：</label>
+        						<div class="controls">
+        							   <div data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+			                                     <button class="btn #if ($!{couponTypeVO.receiveMap.get($arr.get(0))}==1)  active btn-primary #end    #if (!${couponTypeVO.receiveMap.get($arr.get(0))})  #if ($arr.get(2)==1) active btn-primary #end #end "   value="1" name="$arr.get(0)">开</button>
+			                                     <button class="btn #if ($!{couponTypeVO.receiveMap.get($arr.get(0))}==0)  active btn-primary #end    #if (!${couponTypeVO.receiveMap.get($arr.get(0))})  #if ($arr.get(2)==0) active btn-primary #end #end "  value="0" name="$arr.get(0)">关</button>
+                                       </div>
+        						</div>
+        					</div>
+        				</div>  
+        		#else
+        			<div class="span3">
+        				<div class="control-group">
+        						<label class="control-label">$!{info.spValue}：</label>
+        						<div class="controls">
+        							   <div data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+			                                     <button class="btn #if ($!{couponTypeVO.receiveMap.get($arr.get(0))}==1)  active btn-primary #end  #if (!${couponTypeVO.receiveMap.get($arr.get(0))})  #if ($arr.get(2)==1) active btn-primary #end #end "   value="1" name="$arr.get(0)">开</button>
+			                                     <button class="btn #if ($!{couponTypeVO.receiveMap.get($arr.get(0))}==0)  active btn-primary #end    #if (!${couponTypeVO.receiveMap.get($arr.get(0))})   #if ($arr.get(2)==0) active btn-primary #end #end "  value="0" name="$arr.get(0)">关</button>
+                                       </div>
+        						</div>
+        					</div>
+        				</div>  		
+        	  #end
+	      #end
+        </div>
+    </div>
+  </div>
+</div>
+	
+</form>
+	<div class="control-group">
+			<div class="controls">
+			   #if($!{couponTypeVO.status}!='1')
+				<a type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i>保 存</a>
+			   #end
+				<a type="button" class="btn" id="btnFormSubmit"><i class="icon-ok-sign icon-white"></i>提 交</a>
+				<a type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i> 返　回</a>
+			</div>
+		</div>

@@ -1,0 +1,252 @@
+#parse("sys/sys_param.vm")
+<dl>
+	<dt></dt>
+
+	<!-- 布局管理 -->
+	<dd style="display: block">
+
+		<div class="page-container" style="width: 100%;">
+			<div class="tpl-container"></div>
+
+			<div class="tpl-layoutAdmin-container">
+				<div class="page-layoutAdmin-edit">
+
+					<div class="layoutAdmin-bd">
+					  #foreach($layout in $layoutList)
+					  <!-- 布局 -->
+					  <div class="layoutAdmin-wrap">
+						 <div class="layoutAdmin hide" data-id ="$!{layout.id}" data-layout-type-id="$!{layout.layoutTypeId}" data-show-order="$!{layout.showOrder}">
+							#if(${reqType} != 'view')
+							<p class="layoutAdmin-cl">
+								<a class="move" title="移动" href="javascript:void(0);"></a> 
+								<a class="edit" title="编辑" href="javascript:void(0);"></a>
+								<a class="del" title="删除" href="javascript:void(0);"></a>
+							</p>
+							#end
+
+							<div class="admin-template">
+								<ul>
+									#foreach($itemRowNo in ${layout.templateLayoutItemRespDTOMap.keySet()})
+									
+									<li class="fl item-list">
+										#set($itemList = $layout.templateLayoutItemRespDTOMap.get($itemRowNo))
+										#foreach($item in $itemList)
+										#set($itemCount = $velocityCount)
+										<div class="emptyp blankp #if(${pageTypeId} != 2 && ${item.modularRespDTO.id} && ${item.modularRespDTO.id} != '') target #end" data-layout-id="$!{item.layoutId}" data-item-size="$!{item.itemSize}" data-item-no="$!{item.itemNo}">##如果布局项是空的  则上下两个布局项种子不具备模块拖入能力
+                                               <i></i>
+                                        </div>
+										<div class="item-admin #if(${item.modularRespDTO.id} && ${item.modularRespDTO.id} != '')tb-module #else emptyp #end target" data-id="$!{item.id}" data-layout-id="$!{item.layoutId}" data-modular-id = "$!{item.modularId}" data-item-size="$!{item.itemSize}" data-item-no="$!{item.itemNo}" data-row-no="$!{item.rowNo}" title="$!{item.itemSize}px">
+											#if(${item.modularRespDTO.modularName})
+												<span class="txt">$!{item.modularRespDTO.modularName}</span> 
+												#if(${reqType} != 'view')
+												<span class="close"></span> 
+												#end
+											#else
+												<span>请拖入模块 </span>
+											#end
+										</div>
+										#if($!{itemCount} == $!{itemList.size()})##最后一个布局项尾部加布局项种子
+										<div class="emptyp blankp  #if(${pageTypeId} != 2 && ${item.modularRespDTO.id} && ${item.modularRespDTO.id} != '') target #end" data-layout-id="$!{item.layoutId}" data-item-size="$!{item.itemSize}" data-item-no="$!{item.itemNo}">
+                                              <i></i>
+                                        </div>
+										#end
+										#end
+									</li>
+									#end
+								</ul>
+							</div>
+						</div>
+					  </div>
+					  #end
+					</div>
+
+					<!-- 左浮动 -->
+					#foreach($leftLayout in ${leftLayoutList})
+                    <div class="layoutAdmin-float layoutAdmin-left" data-id ="$!{leftLayout.id}" data-layout-type-id="$!{leftLayout.layoutTypeId}" data-show-order="$!{leftLayout.showOrder}">
+                        #foreach($itemRowNo in ${leftLayout.templateLayoutItemRespDTOMap.keySet()})
+                        
+                        <div class="item-list" data-only-one="1">
+	                        #set($leftItemList = $leftLayout.templateLayoutItemRespDTOMap.get($itemRowNo))
+							#foreach($leftItem in $leftItemList)
+							#set($leftItemCount = $velocityCount)
+	                		<div class="blankp">
+                                <i></i>
+                            </div>
+	                		<div class="item-admin #if(${leftItem.modularRespDTO.id} && ${leftItem.modularRespDTO.id} != '')tb-module #else emptyp #end target"   data-id="${leftItem.id}" data-layout-id="${leftItem.layoutId}" data-modular-id = "$!{leftItem.modularId}" data-item-size="${leftItem.itemSize}" data-item-no="${leftItem.itemNo}" data-row-no="${leftItem.rowNo}" title="左悬浮">
+	                			#if(${leftItem.modularRespDTO.modularName})
+									<span class="txt">$!{leftItem.modularRespDTO.modularName}</span> 
+									#if(${reqType} != 'view')
+									<span class="close"></span> 
+									#end
+								#else
+									<span>请拖入模块 </span>
+								#end
+	                		</div>
+	                		#if($!{leftItemCount} == $!{leftItemList.size()})##最后一个布局项尾部加布局项种子
+	                		<div class="blankp">
+                                <i></i>
+                            </div>
+                            #end
+	                        #end
+                        </div>
+                        #end
+					   #if(${reqType} != 'view')
+                       <div class="layoutAdmin-float-close">
+                           <p class="layoutAdmin-cl">
+                               <a class="del" title="删除" href="javascript:void(0);"></a>
+                           </p>
+                       </div>
+					   #end
+                    </div>
+                    #end
+                    <!-- 右浮动 -->
+                    #foreach($rightLayout in ${rightLayoutList})
+                    <div class="layoutAdmin-float layoutAdmin-right" data-id ="$!{rightLayout.id}" data-layout-type-id="$!{rightLayout.layoutTypeId}" data-show-order="$!{rightLayout.showOrder}">
+                        #foreach($itemRowNo in ${rightLayout.templateLayoutItemRespDTOMap.keySet()})
+                        <div class="item-list" data-only-one="1">
+	                        #set($rightItemList = $rightLayout.templateLayoutItemRespDTOMap.get($itemRowNo))
+							#foreach($rightItem in $rightItemList)
+							#set($rightItemCount = $velocityCount)
+	                        <div class="blankp">
+                                <i></i>
+                            </div>
+	                 		<div class="item-admin #if(${rightItem.modularRespDTO.id} && ${rightItem.modularRespDTO.id} != '')tb-module #else emptyp #end target"  data-id="${rightItem.id}" data-layout-id="${rightItem.layoutId}" data-modular-id = "$!{rightItem.modularId}" data-item-size="${rightItem.itemSize}" data-item-no="${rightItem.itemNo}" data-row-no="${rightItem.rowNo}"title="右悬浮">
+	                 			#if(${rightItem.modularRespDTO.modularName})
+									<span class="txt">$!{rightItem.modularRespDTO.modularName}</span> 
+									#if(${reqType} != 'view')
+									<span class="close"></span>
+									#end 
+								#else
+									<span>请拖入模块 </span>
+								#end
+	                 		</div>
+	                 		#if($!{rightItemCount} == $!{rightItemList.size()})##最后一个布局项尾部加布局项种子
+	                		<div class="blankp">
+                                <i></i>
+                            </div>
+                            #end
+	                        #end
+                        </div>
+                        #end
+						#if(${reqType} != 'view')
+                        <div class="layoutAdmin-float-close">
+                            <p class="layoutAdmin-cl">
+                               <a class="del" title="删除" href="javascript:void(0);"></a>
+                            </p>
+                        </div>
+						#end
+                    </div>
+                    #end
+					<!-- 添加布局 -->
+					#if(${reqType} != 'view')
+					<div class='layoutAdmin-wrap '>
+						<div class="new-layoutAdmin">
+							<a class="add-layoutAdmin" href="javascript:void(0);" id="addLayout">添加布局单元</a>
+						</div>
+					</div>
+					#end
+				</div>
+			</div>
+		</div>
+	</dd>
+	<!-- 布局管理end-->
+</dl>
+#if(${reqType} != 'view')##如果是查看界面  则不需要
+<div class="hide" id="add-layout-dialog">
+	<div class="tb-dialog-body tb-overlay-body">
+    	<div class="add-layoutAdmin-list">
+        	<span class="extra">单位：像素 </span>
+        	<div class="layout-type-wrap">
+        		 #foreach($leftLayoutType in ${leftLayoutTypeList})
+           		 <div class="layout-type-float layout-left" data-layout-type-id ="$!{leftLayoutType.id}" data-layout-item-size="$!{leftLayoutType.layoutItemSize}" data-layout-show-type = "$!{leftLayoutType.layoutShowType}">
+             		   左悬浮
+           		 </div>
+           		 #end
+           		 
+        		 #foreach($rightLayoutType in ${rightLayoutTypeList})
+            	 <div class="layout-type-float layout-right" data-layout-type-id ="$!{rightLayoutType.id}" data-layout-item-size="$!{rightLayoutType.layoutItemSize}" data-layout-show-type = "$!{rightLayoutType.layoutShowType}">
+              		  右悬浮
+            	 </div>
+            	 #end
+            	 
+				<table class="layout-type-tb">
+					#foreach($layoutTypes in ${layoutTypeList})
+					<tr>
+						<td>
+							#foreach($layoutType in ${layoutTypes})
+							<div class="layout-type" data-layout-type-id ="$!{layoutType.id}" data-layout-item-size="$!{layoutType.layoutItemSize}" data-layout-show-type = "$!{layoutType.layoutShowType}"><!-- selected -->
+								#foreach($item in ${layoutType.layoutItemList})
+								<span class="item #if($velocityCount == ${layoutType.layoutItemList.size()}) last#end"><i>$item</i></span> 
+								#end
+							</div>
+							#end
+						</td>
+					</tr>
+					#end
+				</table>
+            </div>
+		</div>
+   	    <div class="btn-wrap">
+           <span class="btn btn-info save-layout-btn"><i class="icon-ok-sign icon-white"></i>确定</span>
+           <span class="btn cancel-btn"><i class="icon-reply icon-white"></i>取消</span>
+        </div>
+	</div>
+</div>
+#end
+
+<script id="layoutAdmin-template" type="text/html">
+	{{if resultFlag == "ok"}}
+<div class="layoutAdmin-wrap">
+    <div class="layoutAdmin hide" data-id ="{{layout.id}}" data-layout-type-id="{{layout.layoutTypeId}}" data-show-order="{{layout.showOrder}}">
+		<p class="layoutAdmin-cl">
+			<a class="move" title="移动" href="javascript:void(0);"></a> 
+			<a class="edit" title="编辑"  href="javascript:void(0);"></a> 
+			<a class="del" title="删除"  href="javascript:void(0);"></a>
+		</p>
+
+		<div class="admin-template">
+			<ul>
+			{{each layout.templateLayoutItemRespDTOList as item i}}
+				<li class=" fl item-list ">
+					<div class="emptyp blankp" data-layout-id="{{item.layoutId}}" data-item-size="{{item.itemSize}}" data-item-no="{{item.itemNo}}">
+                         <i></i>
+                    </div>
+					<div class="item-admin emptyp target" data-id="{{item.id}}" data-layout-id="{{item.layoutId}}" data-item-size="{{item.itemSize}}" data-item-no="{{item.itemNo}}"data-row-no="{{item.rowNo}}" title="{{item.itemSize}}">
+						<span">请拖入模块</span>
+					</div>
+					<div class="emptyp blankp" data-layout-id="{{item.layoutId}}" data-item-size="{{item.itemSize}}" data-item-no="{{item.itemNo}}">
+                         <i></i>
+                    </div>
+				</li>
+			{{/each}}
+			</ul>
+		</div>
+	</div>
+</div>
+	{{/if}}
+</script>
+<script id="layoutAdmin-template-float" type="text/html">
+	{{if resultFlag == "ok"}}
+		<div class="layoutAdmin-float {{if layout.layoutShowType == "03"}} layoutAdmin-left {{else}} layoutAdmin-right {{/if}}" data-id ="{{layout.id}}" data-layout-type-id="{{layout.layoutTypeId}}" data-show-order="{{layout.showOrder}}">
+            {{each layout.templateLayoutItemRespDTOList as item i}}
+			<div class="item-list" data-only-one="1">
+				<div class="blankp">
+                    <i></i>
+                </div>
+				<div class=" item-admin emptyp target" data-id="{{item.id}}" data-layout-id="{{item.layoutId}}" data-item-size="{{item.itemSize}}" data-item-no="{{item.itemNo}}" data-row-no="{{item.rowNo}}" title="{{if layout.layoutShowType == "03"}} 左浮动 {{else}} 右浮动 {{/if}}">
+                     <span>请拖入模块 </span>
+                </div>
+				<div class="blankp">
+                    <i></i>
+                </div>
+            </div>
+            {{/each}}
+            <div class="layoutAdmin-float-close">
+                <p class="layoutAdmin-cl">
+                   <a class="del" title="删除" href="javascript:void(0);"></a>
+                </p>
+            </div>
+        </div>			
+	{{/if}}
+</script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/templateConfig/edit/templateLayout.js?version=$!{JS_VERSION}" ></script>

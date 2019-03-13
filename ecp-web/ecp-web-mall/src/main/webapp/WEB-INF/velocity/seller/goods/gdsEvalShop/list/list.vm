@@ -1,0 +1,77 @@
+ 	#parse("/sys/sys_param.vm")
+
+ <script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsEval/eval-list.js?version=$!{JS_VERSION}" ></script>
+ <table class="seller-table seller-dztb" >
+                       
+                        <thead>
+                        <tr>
+                            <td>商品名称</td>
+                            <td style="width: 200px">订单</td>
+                            <td>评价评分</td>
+                            <td >评价内容</td>
+                            <td>评价标签</td>
+                            <td>评价时间</td>
+						
+							<td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+            				#if($!{evalList.getResult().size()} <= 0)
+                    		<tr><td colspan='12'>没有符合条件的记录。</td></tr>
+							#end
+							 	#foreach($evalInfo in $evalList.getResult())
+							
+                        <tr id="$evalInfo.id" class="evaltr">
+                            <td style="text-align: center;" class="td-hhtxt"><a href="$evalInfo.gdsDetailUrl" target="_blank">$evalInfo.gdsName</a></td>
+                            <td>
+								<a href="$evalInfo.ordDetailUrl" target="_blank">
+                             $evalInfo.orderId
+								</a>
+                            </td>
+                            <td> $!evalInfo.score</td>
+                            <td class="td-hhtxt"> $!evalInfo.detail</td>
+							
+							<td>$!evalInfo.labelName</td>
+							<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!evalInfo.createTime)</td>
+                           <td>#if($!{evalInfo.replyCount} != 0) <span class="replynum">
+    					<span class="showreply"> <a href="#none">显示回复($!{evalInfo.replyCount})</a>
+    				</span> <span class="closereply" style="display: none;"> <a href="#none">收起回复</a>
+    				</span>
+    			</span>
+    			</td>
+    		</tr>
+    		#else
+    		<span class="replynum" style="display: none;"> <span class="showreply"> <a href="#none">显示回复(1)</a>
+    		</span> <span class="closereply" style="display: none;"> <a
+    				href="#none">收起回复</a>
+    		</span>
+    		</span>
+    		<span class="rfeval"><a href="#none">回复</a></span>
+    		</td>
+    		</tr>
+    		<tr class="replyeval" style="display: none;">
+    			<td class="toreplytd" colspan="8">
+    				<div class="toreply-box" style="float:right">
+    					<div class="etextwrap" >
+    						<div class="reply-arrow"></div>
+    						<textarea class="rtext" cols="50" rows="4"></textarea>
+    						<div class="help-block">
+    							还可以输入<b>120</b>个汉字
+    						</div>
+    						<input type="button" class="btn foreval" data-loading-text="发表中..." value="发表" />
+    					</div>
+    				</div>
+    			</td>
+    		</tr>
+    		#end 
+                      
+                        </tr>
+                        #end
+                        </tbody>
+                    </table>
+			
+	<div class="fav-opt clearfix" >
+                        <div class="row-fluid">
+                			<div id="pageControlbar" class="ecppage" data-total-page="${evalList.pageCount}" data-total-row="${evalList.count}" data-page-size="${evalList.pageSize}" data-page-number="${evalList.pageNo}" data-status="begin"></div>
+                		</div>
+                    </div>

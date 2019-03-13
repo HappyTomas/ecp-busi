@@ -1,0 +1,166 @@
+#parse("/module/mod-form.vm")
+#parse("sys/sys_param.vm")
+
+<script type="text/javascript"
+        src="$!{BUSIJS_PATH}/pageConfig/pageType/pageType-edit.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript"
+        src="$!{BUSIJS_PATH}/pageConfig/public/artTemplate/template-debug.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}"></script>
+<style>
+    .table td {
+        border: 1px solid #ddd !important;
+        text-align: center;
+    }
+
+    .table thead {
+        background-color: #ebf2f6;
+    }
+</style>
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}"/>
+
+<div>
+    <form id="detailInfoForm" class="form-horizontal  required-validate" style="width:90%;margin:40px auto 0"
+          method="post"
+          action="">
+        <div class="row-fluid">
+            <div class="span7">
+                <input type="hidden" id="id" name="id" value="$!{respVO.id}"/>
+                <input type="hidden" id="isRead" name="isRead" value="$!{isRead}"/>
+                <input type="hidden" id="isPubish" name="isPubish" value="$!{respVO.status}"/>
+
+                <div class="control-group">
+                    <label class="control-label">页面类型名称：</label>
+
+                    <div class="controls">
+                        <input type="text" class="input-large required" maxlength="32" name="pageTypeName"
+                               id="pageTypeName" value="$!{respVO.pageTypeName}">
+                        <span class="help-inline">不允许重复且最大长度不能超过32字符！</span>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+		<div class="row-fluid formSep">
+			<div class="span7">
+    			<div class="control-group">
+                    <label class="control-label">平台类型：</label>
+                    <div class="controls">
+    					<select name="platformType" class="input-large required">
+    						#listParam('CMS_PLATFORM_TYPE',$!{respVO.platformType})
+                        </select>
+    					<span class="help-inline">请选择平台类型！</span>
+                    </div>
+                </div>
+            </div>
+			<div class="span5">
+                #if($!{isRead}!=2)
+                <a class="btn" id="layoutAdd"><i class="icon-plus icon-white"></i>新增一行</a>
+                #end
+            </div>
+        </div>
+    </form>
+    <form id="layoutForm" class="form-horizontal  required-validate" style="width:90%;margin:0 auto" method="post"
+          action="">
+        <div class="row-fluid">
+            <div class="span10">
+                <div class="alert alert-info">温馨提示，请配置布局类型,格式为:'900','200-700','200-700-300',<span style="color:red">布局类型名称不允许重复且最大长度不能超过32字符！</span></div>
+                <div id="layouts">
+                    <table class="table" id="layouts-tb">
+                        <thead>
+                        <tr>
+                            <td style="width:150px">布局类型名称</td>
+                            <td style="width:150px">布局项尺寸</td>
+                            <td>布局展示类型</td>
+                            <td style="width:50px">操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        #foreach ($item in $respVO.layoutTypeRespDTOList)
+                        <tr row="row_$velocityCount">
+                            <td>
+                                <input type="hidden" name="id" value="$!{item.id}">
+                                <input type="hidden" name="status" value="$!{item.status}">
+                                <input type="hidden" name="pageTypeId" value="$!{respVO.id}">
+
+                                <div>
+                                  #if($!{item.layoutShowType}== '03' || $!{item.layoutShowType}== '04')
+                                  <input type="text" class="input-large layoutTypeName  required" readonly
+                                           maxlength="32" value="$!{item.layoutTypeName}"
+                                           name="layoutTypeName_$velocityCount">
+                                  #else
+                                   <input type="text" class="input-large layoutTypeName layoutNameFormat required"
+                                           maxlength="32" value="$!{item.layoutTypeName}"
+                                           name="layoutTypeName_$velocityCount">
+                                  #end
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="text" readonly class="input-large layoutItemSize required"
+                                           maxlength="128" value="$!{item.layoutItemSize}"
+                                           name="layoutItemSize_$velocityCount">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <select class="layoutShowType" name="layoutShowType" class="required">
+                                        #listParam('CMS_LAYOUT_SHOW_TYPE',$!{item.layoutShowType})
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                              #if($!{respVO.status}!=1 && $!{isRead}!=2)
+                                <a href="#" class="delRow">删除</a>
+                              #end
+                            </td>
+                        </tr>
+                        #end
+                        </tbody>
+                    </table>
+                    <script id="layouts-tpl" type="text/html">
+                        <tr row="row_{{item}}">
+                            <td>
+                                <input type="hidden" name="id">
+                                <input type="hidden" name="status" value="1">
+                                <input type="hidden" name="pageTypeId" value="$!{respVO.id}">
+
+                                <div>
+                                    <input type="text" class="input-large layoutTypeName layoutNameFormat required"
+                                           placeholder="200-900" maxlength="32" name="layoutTypeName_{{item}}">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input type="text" class="input-large layoutItemSize required" readonly
+                                           placeholder="200|900" maxlength="128" name="layoutItemSize_{{item}}">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <select class="layoutShowType" name="layoutShowType" class="required">
+                                        #listParam('CMS_LAYOUT_SHOW_TYPE',$!{item.layoutShowType})
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="#" class="delRow">删除</a>
+                            </td>
+                        </tr>
+                    </script>
+					<div class="text-center">
+                     #if ($!{isRead}!=2) ##查看
+                        <span id="btnPublish" class="btn btn-info"><i class="icon-ok-sign icon-white"></i>发布</span>
+						#if ($!{isRead}!=1) ##未发布时编辑
+							<span id="btnSave" class="btn btn-info"><i class="icon-ok-sign icon-white"></i>保存</span>
+						#end
+                     #end
+    					<span id="btnReturn" class="btn"><i class="icon-reply icon-white"></i>返回</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+  
+

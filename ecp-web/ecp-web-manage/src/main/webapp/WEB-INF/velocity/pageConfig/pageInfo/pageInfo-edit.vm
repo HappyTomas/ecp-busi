@@ -1,0 +1,131 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-page.vm")
+#parse("sys/sys_param.vm")
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageInfo/pageInfo-edit.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript">
+ function replaceSpace(obj){
+ obj.value = obj.value.replace(/s/gi,'')
+}
+</script>
+
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<div class="alert alert-error hide formValidateMessages" >
+	##showSpringAllError("vo")
+</div>
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/place/save">
+		<div class="span8">
+			<input type="hidden" id="id" name="id" value="$!{respVO.id}" />
+			<input type="hidden"  id="templateId" name="templateId"/>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">页面名称：</label>
+    				<div class="controls">
+    					<input data-name = "页面名称" type="text" class="input-large required" maxlength="32" name="pageName" id="pageName" value="$!{respVO.pageName}" placeholder="输入页面名称" />
+						<span class="help-inline">页面名称最大长度不能超过32个字符！</span>
+					</div>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属站点：</label>
+    				<div class="controls">
+    					<select data-name = "所属站点" id="siteId" name="siteId" class="input-large required" value="$!{respVO.siteId}" selected><!--#if($!{respVO.siteId} == $!{site.id}) selected  #end class="required"-->
+							#siteList($!{respVO.siteId})
+    					</select>
+						<span class="help-inline">请选择所属站点！</span>
+    				</div>
+    			</div>
+    		</div>
+			
+    		<div class="formSep">
+    			<div class="control-group">
+                    <label class="control-label">平台类型：</label>
+                    <div class="controls">
+						<select data-name="平台类型" id="platformType" name="platformType" class="input-large required">
+							#listParam('CMS_PLATFORM_TYPE',$!{respVO.platformType})
+                        </select>
+						<span class="help-inline">请选择平台类型！</span>
+                    </div>
+                </div>
+            </div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">页面类型：</label>
+    				<div class="controls">
+    					<select data-name="页面类型" id="pageTypeId" name="pageTypeId" class="input-large required">
+							#foreach($pageType in $pageTypeList)
+    							<option value="$!{pageType.id}" #if($!{respVO.pageTypeId} == $!{pageType.id}) selected  #end >#escapeHtml($!{pageType.pageTypeName})</option>
+        					#end
+    					</select>  
+						<span class="help-inline">请选择页面类型！</span>
+    				</div>
+    			</div>
+    		</div>
+			
+			<div class="formSep" id="shop_div">
+    			<div class="control-group">
+    				<label class="control-label">所属店铺：</label>
+    				<div class="controls">
+    					<select data-name = "所属店铺" id="shopId" name="shopId" class="input-large required"#if(($!{mallskintomanage}=="true"))disabled="true"#end>
+							#shopStatuslist($!{respVO.shopId},'1')
+    					</select>
+    					<span class="help-inline">请选择所属店铺！</span>
+    				</div>
+    			</div>
+    		</div>
+			
+			#*<!--  
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">生效时间：</label>
+    				<div class="controls">
+						<input type="text" id="validTime" name="validTime"  class="input-large Wdate date " onClick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'%y-%M-%d',maxDate:'#F{$dp.$D(\'invalidTime\')}'})" value="$!date.format('yyyy-MM-dd',$!{respVO.validTime})"/>
+						<span class="help-inline">格式：yyyy-MM-dd</span>
+					</div>
+    			</div>
+    		</div>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">失效时间：</label>
+    				<div class="controls">
+						<input type="text" id="invalidTime" name="invalidTime" class="input-large Wdate date " onClick="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'validTime\')}'})" value="$!date.format('yyyy-MM-dd',$!{respVO.invalidTime})"/>
+						<span class="help-inline">格式：yyyy-MM-dd</span>
+					</div>
+    			</div>
+    		</div>
+			-->*#
+			<div class="text-center">
+				<button type="button" class="btn" id="btnFormNext">下一步</button>
+				#if($!{respVO.id})##编辑页面 才有保存按钮
+				<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i> 保存</button>
+				#end
+				<button type="button" class="btn" id="btnReturn"><i class="icon-remove-sign icon-white"></i> 取消</button>
+    		</div>
+        </div>
+	</form>
+</div>
+##信息弹出框   start
+<div style = "display:none;" id = "info-confirm-dialog">
+	<div class="alert" style="font-size:13px;">以下信息保存后将无法修改，请确认信息准确性。</div>
+    <div class="dialog-content" style="margin-left:15px;font-size:13px;">
+    	
+    </div>
+    <div class="text-center">
+       <span class="btn btn-info"><i class="icon-ok-sign icon-white"></i> 确定</span>
+       <span class="btn cancel-btn"><i class="icon-reply icon-white"></i> 取消</span>
+    </div>
+</div>
+<script type="text/html" id="info-confirm-temp">
+	<div style="margin-bottom:10px;"><span class="name"></span> : <span class="value"></span></div>
+</script>
+##信息弹出框   end

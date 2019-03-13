@@ -1,0 +1,98 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/pageConfig-index.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+<!-- 隐藏域    -->
+<input type="hidden" id="pageId" value="$!{pageInfo.id}" />
+<input type="hidden" id="siteId" value="$!{pageInfo.siteId}" />
+<input type="hidden" id="pageName" value="$!{pageInfo.pageName}" />
+<input type="hidden" id="platformType" value="$!{pageInfo.platformType}" />
+<input type="hidden" id="templateId" value="$!{pageInfo.templateId}" />
+<input type="hidden" id="pageTypeId" value="$!{pageInfo.pageTypeId}" />
+<input type="hidden" id="shopId" value="$!{pageInfo.shopId}" />
+<input type="hidden" id="status" value="$!{pageInfo.status}" />
+<input type="hidden" id="pageAttrPreId" value="$!{pageAttrPre.id}" />
+<input type="hidden" id="pageType" value="$!{pageType}">
+<input type="hidden" id="mallskintomanage" value="$!{mallskintomanage}"/>
+<div id="page">
+    <!--topbar-->
+    #parse("pageConfig/pageConfig/topbar.vm")
+    <!--topbar end-->
+
+    <div class="main-wrapper main-wrapper-design-mode wpst-toolbar-show">
+
+        <!--left-->
+        #parse("pageConfig/pageConfig/sidebar.vm")
+        <!--left end-->
+
+        <!--right-->
+        <div class="tpl-main">
+            <div class="design-navigation-wrap">
+                <ul class="design-mode-select div3">
+                    <li><a class="active"><span>布局管理</span></a></li>
+                    <li><a class="" id="lnkPageEdit"><span>页面编辑</span></a></li>
+                </ul>
+                <div class="page-operation-btns">
+                	<a href="javascript:void(0);" class="page-save-template-btn" style="width: 80px;">保存为模板</a>
+                    <a href="$!{CONTEXT_PATH}/page-pre/init?pageId=$!{pageInfo.id}" target="_blank" class="page-preview-btn">预览</a>
+                    <a class="page-publish-btn" data-target="#release" id="lnkPagePub" data-toggle="modal">发布</a>
+                </div>
+            </div>
+            <!--配置内容-->
+            <div class="div4" id="tpl-content">
+               
+            </div>
+        </div>
+        <!--right end-->
+    </div>
+</div>
+
+<div class="hide" id = "save-template-dialog">
+    <div class="dialog-content">
+    	<div class="hide alert error-msg" style="color:red;">
+		                            
+		</div>
+        <form class="save-template-form form-horizontal required-validate">
+			<input type="hidden" id="platform_type" value="$!{pageInfo.platformType}" />
+            <div class="span8" style="margin-top:20px;">
+            	<div class="row-fluid ">
+                    <div class="control-group">
+                        <label class="control-label">模板名称 : &nbsp;</label>
+                        <div class="controls">
+                            <input type="text" name="template-name" id="template-name" class="input-large required htmlcheck" minlength="2" maxlength="32" placeholder="名称不能超过32个字" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="span12">
+            	<div class="row-fluid">
+                    <div class="control-group">
+		                <label class="control-label">模板缩略图 : </label>
+		                <div class="controls">
+		               		<div class="panel-body">
+								<img class="image-preview img-polaroid" src="">
+								<input type="hidden" class="" name="no-image-preview" value="#genImageUrl('','130x130!')" />
+							</div>
+		                    <a href="javascript:void(0)" class="ks-uploader-button">
+		                        <span class="btn-text">上传图片</span>
+		                        <div style="overflow: hidden;">
+		                            <input type="file" name="uploadFileObj" id="save-template-pic" value="上传图片" class="file-input">
+		                        	<input type="hidden" class="show-pic" id="template-show-pic" name="show-pic" value="" />
+		                        </div>
+		                    </a>
+		                </div>
+		                <div class="text-error" style="margin-left:45px;">图片规格小于280*200px，小于100k，格式仅支持jpg,png,jpeg,gif,bmp。</div>
+		            </div>
+		         </div>
+            </div>
+        </form>
+    </div>
+    <div class="text-center">
+        <span class="btn btn-info save"><i class="icon-ok-sign icon-white"></i>确定</span>
+        <span class="btn cancel"><i class="icon-reply icon-white"></i>取消</span>
+    </div>
+</div>

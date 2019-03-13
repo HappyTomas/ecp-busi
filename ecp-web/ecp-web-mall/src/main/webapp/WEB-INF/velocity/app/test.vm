@@ -1,0 +1,146 @@
+
+<style>
+.div-mbox {
+	margin: 20px;
+}
+
+.body-area {
+	width: 800px
+}
+</style>
+
+<div class="div-mbox">
+	<div class="mbox-head">
+		<h3>信息串：</h3>
+	</div>
+	<div class="mbox-body">
+		<textarea class="body-area" id="srctxt" rows="5" name="reqStrSrc"></textarea>
+		<label for="cookie">登录返回的tocken:</label><input type="text" id="cookie" value="" sytle="width:300px"/>
+		<br /> <input type="button" value="解密" id="req-decrypt"></input> <input
+			type="button" value="加密" id="req-encrypt"></input> <input
+			type="button" value="加密并请求" id="req-encry-post"></input> <input
+			type="button" value="请求" id="req-post"></input>
+	</div>
+	<div id="div-result">
+		<span>加密之后的结果串</span>
+		<span class="encrypt result-msg" style="color: red"></span>
+	</div>
+	
+	<div id="div-result">
+        <span>解密之后的结果串</span>
+        <span class="decrypt result-msg" style="color: red"></span>
+    </div>
+
+	<div id="div-result-post">
+		<span>请求返回的结果串（response）</span>
+		<span class="post result-msg" style="color: red"></span>
+	</div>
+
+</div>
+<br />
+<div>
+	<ul>
+		测试的请求串：
+		<li>{"@class":"com.zengshi.butterfly.app.model.AppDatapackage","header":{"@class":"com.zengshi.butterfly.app.model.AppHeader","bizCode":"demo","identityId":"","respCode":"","respMsg":"","mode":"","sign":""},"body":{"@class":"com.zengshi.ecp.app.req.DemoReq","key":"001"}}</li>
+	</ul>
+
+	<ul>
+		加密后的请求串：
+		<li>H4sIAAAAAAAAABWRSQ4AIQgEv8S+HEXh/08ahsSDCWJ1cbC0OU7UUahSB5lsVHRzzi4skiz3CRZDvZ5PiA1T59F59RRVK1FJMyyp8qUdSgyLi7W1033bPaZtitXgwk1EgnMyvDISpQi2MuRZdTCY3BDm9PDkR+/0yWGbnioH3sEcgldeQ1whvxHaT4RP7FON5YX2NB/S5ZRImCFQNDNRMQm+3dV53/KY9qlX/RJ4iUfnyFyF4HVCjyQgk8eTUI9SdCNC2lOuKKb9SDeSMJ3mki6/BVkpVyr34Jz1sWHTz1psJ1oyRsKRzpFRq+BpAOVnjBdqN9D1hkWSf7R08gGnuHvjBTAXgru566HXLkntcoQtyjCz1l3heDCKHKgpOQNOLfTah1XOUB54mMWXKpAFEvp+22279BACAAA=</li>
+	</ul>
+	
+	<ul>
+	   开发环境登录请求串：
+	   <li>{"@class":"com.zengshi.butterfly.app.model.AppDatapackage","header":{"@class":"com.zengshi.butterfly.app.model.AppHeader","bizCode":"staff001","identityId":"","respCode":"","respMsg":"","mode":"","sign":""},"body":{"@class":"com.zengshi.ecp.app.req.Staff001Req","loginCode":"dddd","password":"123456"}}</li>
+	</ul>
+</div>
+<script language="javascript">
+	$(function() {
+		function cleanResul(){
+			$(".result-msg").empty();
+		}
+		// 解密方法；
+		$("#req-decrypt").click(function() {
+			cleanResul();
+			callEncry($("#srctxt").val(),false);
+		});
+		
+		function callEncry(msg,nextfun){
+			$.eAjax({
+                url : GLOBAL.WEBROOT + '/app/domsg/decrypt',
+                data : {
+                    "msg" : msg
+                },
+                async : true,
+                type : "post",
+                dataType : "json",
+                success : function(data) {
+                    $(".decrypt.result-msg").empty();
+                    $(".decrypt.result-msg").html(data.msg);
+                    
+                    if(nextfun && $.isFunction(nextfun)){
+                    	nextfun(data.msg)
+                    }
+                    
+                }
+            });
+		}
+		// 加密；
+		$("#req-encrypt").click(function() {
+			cleanResul();
+			callDecry($("#srctxt").val(),false);
+		});
+		
+		function callDecry(msg,nextfun){
+			$.eAjax({
+                url : GLOBAL.WEBROOT + '/app/domsg/encrypt',
+                data : {
+                    "msg" : msg
+                },
+                async : true,
+                type : "post",
+                dataType : "json",
+                success : function(data) {
+                    $(".encrypt.result-msg").empty();
+                    $(".encrypt.result-msg").html(data.msg);
+                    if(nextfun && $.isFunction(nextfun)){
+                        nextfun(data.msg)
+                    }
+                }
+            });
+		}
+		
+		///请求；
+		$("#req-post").click(function() {
+			cleanResul();
+			callReq($("#srctxt").val(),callEncry);
+		});
+		
+		function callReq(msg){
+			$.ajax({
+                url : GLOBAL.WEBROOT + '/app/json',
+                data : {
+                    "msg" : msg
+                },
+                async : true,
+                type : "post",
+                dataType : "text",
+                success : function(data) {
+                    $(".result-msg.post").html(data);
+                    //请求之后，对请求的返回结果调用解密
+                    callEncry(data,false);
+                },
+                beforeSend:function(xhr){
+                	console.log($("#cookie").val());
+                	xhr.setRequestHeader("ECP-COOKIE",$("#cookie").val());
+                }
+            });
+		};
+		
+		//加密并请求
+		$("#req-encry-post").click(function(){
+			cleanResul();
+			callDecry($("#srctxt").val(),callReq);
+		})
+	});
+</script>

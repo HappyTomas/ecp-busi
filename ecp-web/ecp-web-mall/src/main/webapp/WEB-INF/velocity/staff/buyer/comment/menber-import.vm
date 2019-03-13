@@ -1,0 +1,10 @@
+#parse("/sys/sys_head.vm")
+
+
+<link href="$!{CSS_PATH}/reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/member.css" type="text/css" rel="stylesheet">
+
+<link href="$!{RESOURCE_PATH}/jquery/qTip2/jquery.qtip.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/autocomplete/autocomplete.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/util.js"></script>
+

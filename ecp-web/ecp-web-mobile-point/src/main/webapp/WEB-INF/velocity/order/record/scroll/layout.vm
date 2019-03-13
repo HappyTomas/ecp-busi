@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+<title>#siteName('')</title>
+##    #parse("sys/sys_head.vm")
+
+#parse("sys/sys_param.vm")
+
+    <script type="text/javascript">
+        //javascript中使用全局URL基础路径
+        //框架插件中使用，业务模块中勿用
+        var $webroot = '${CONTEXT_PATH}/';
+    </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="$!RESOURCE_PATH/ui/amazeui/css/amazeui.css">
+    <link rel="stylesheet" href="$!CSS_PATH/public.css">
+    <link rel="stylesheet" href="$!CSS_PATH/mall.css">
+    <script src="$!RESOURCE_PATH/jquery/flexible/flexible.js"></script>
+    <script src="$!RESOURCE_PATH/amazeui/jquery.min.js"></script>
+    <script src="$!RESOURCE_PATH/amazeui/amazeui.js"></script>
+    <script src="$!RESOURCE_PATH/framework/website/core/e.dialog.js"></script>
+    <script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.core.js"></script>
+    <script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.utils.js"></script>
+    <script src="$!RESOURCE_PATH/jquery/artTemplate/template-debug.js"></script>
+    <script src="$!RESOURCE_PATH/ui/util.js"></script>
+
+    <link rel="stylesheet" href="$!RESOURCE_PATH/sh/shCoreDefault.css"/>
+    <script src="$!RESOURCE_PATH/sh/shCore.js"></script>
+    <script src="$!RESOURCE_PATH/sh/shBrushXml.js"></script>
+    <script src="$!RESOURCE_PATH/sh/shBrushJScript.js"></script>
+    <meta id="global" contextpath="$!{CONTEXT_PATH}" version="$!{JS_VERSION}"></meta>
+    <script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery.metadata.js"></script>
+    <script language="javascript">
+        $.metadata.setType("attr", "validate");
+        GLOBAL = {
+            WEBROOT:$("#global").attr("contextpath"),
+            VERSION:$("#global").attr("version")
+        };
+    </script>
+
+    <script type="text/javascript" src="$!BUSIJS_PATH/order/record/order-list.js?version=$!{JS_VERSION}"></script>
+<style>
+	.examle {
+		padding: 20px;
+	}
+
+	.examle a {
+		color: #008200;
+		font-size: 14px;
+	}
+
+	.red {
+		font-size: 14px;
+		color: red;
+	}
+</style>
+</head>
+<body>
+	
+	$screen_content
+
+</body>
+</html>

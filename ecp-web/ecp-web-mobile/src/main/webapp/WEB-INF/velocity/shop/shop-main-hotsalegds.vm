@@ -1,0 +1,45 @@
+<div class="scroll" id="hotSaleGds">
+	<div class="scroll-wrap">
+		#if(!$!{hotGdsList} || $!{hotGdsList.size()}==0) 
+			<div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$!{IMAGE_PATH}/nodata01.png" alt="">
+                </div>
+                <div class="tip-bold">
+            		很遗憾
+                </div>
+                <div class="tip-txt">
+            		没有相关推荐商品
+                </div>
+            </div>
+		#else
+            <div class="panel-header">
+            	重磅推荐##<span class="ui-arrow ui-arrow-right pull-right"></span>
+            </div>
+            <div class="filter-content">
+				<div class="pro-list pro-list-grid">
+            		#foreach($gds in $!{hotGdsList})
+                    <div class="item">
+                        <div class="img-wrap">
+        					<a href="$!{CONTEXT_PATH}/gdsdetail/$!{gds.id}-$!{gds.firstSkuId}">
+        						<img src="$!{gds.imageUrl}" alt="$!{gds.gdsName}">
+        					</a>
+                        </div>
+                        <div class="item-cont">
+                            <p class="p-tit">
+        						#if($!{gds.promotionType} && $!{gds.promotionType.size()}>0)
+        							<span class="p-color p-color-radius">#foreach($prom in $!{gds.promotionType})$prom#end</span>
+        						#end
+            					$!{gds.gdsName}
+                            </p>
+                            <p class="p-line"><span class="c-orange">#money($!{gds.discountPrice})</span><span
+                                    class="pull-right p-font">$!{gds.sales}人付款</span>
+                            </p>
+                        </div>
+                    </div>
+            		#end
+            	</div>
+            </div>
+			#end
+    </div>
+</div>

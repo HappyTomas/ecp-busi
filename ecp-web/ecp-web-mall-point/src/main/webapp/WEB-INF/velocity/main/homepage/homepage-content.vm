@@ -1,0 +1,47 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+
+<!--内容 begin-->
+<div class="wrap980">
+    <div id="content-c">
+        <div id="lnav">
+			<!--积分兑换-->
+			#parse("main/homepage/child/pointsfor.vm")
+
+			<!--搜索-->
+			#parse("main/homepage/child/search.vm")
+			
+            <!--左侧广告位-->
+            <div class="ad-i ecp-component homepage-ad-left" data-status="1" data-place-size="3" data-place-id="702" data-place-width="220" data-place-height="240" data-module="ecp-component/homepage-leaflet-left">
+            </div>
+        </div>
+		
+        <div id="main">
+			
+            <!--banner-->
+            <div style= "height:340px; width:750px" class="p-banner ecp-component homepage-ad-left" data-status="1" data-place-size="1" data-place-id="701" data-place-width="750" data-place-height="340" data-module="ecp-component/homepage-leaflet-left">
+           
+			</div>
+            <!--限时抢兑 tab-->
+			<div class="p-box ecp-component homepage-floorvm" data-status="1" data-gds-size="4" data-tab-size="3" data-place-id="704" data-place-width="166" data-place-height="166" data-menu-type="salefloor" data-module="ecp-component/homepage-floorvm">
+				
+				<ul class="new-tit-list clearfix" id="teamTab">
+                </ul>
+                <div id="teamTabc" class="floorvm-content">
+                </div>
+				
+			</div>
+            <!--实物礼品-->
+            <div class="p-box ecp-component homepage-floorvm" data-status="1" data-gds-size="8" data-tab-size="5" data-place-id="705" data-place-width="166" data-place-height="166" data-menu-type="giftfloor" data-module="ecp-component/homepage-floorvm">
+            
+				<div class="new-tit-list clearfix ">
+                </div>
+                <div id="teamTabc01" class="floorvm-content">
+                </div>
+				
+			</div>
+			
+        </div>
+    </div>
+</div>
+<!--内容 end-->

@@ -1,0 +1,93 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<link href="${CONTEXT_PATH}/css/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+ <style>
+     .groups .control-group{
+         width: 25%;
+         float: left;
+         margin-right: 3%;
+     }
+     .groups .control-del{
+         width: 10%;
+         float: left;
+         line-height: 30px;
+     }
+     .scroll-wrap{
+         height: 200px;
+         overflow-x: hidden;
+     }
+     .main_content{
+           padding-top: 20px;
+     }
+     .form-horizontal .control-label{
+         width: 70px;
+     }
+     .form-horizontal .controls {
+         margin-left: 85px;
+     }
+
+    </style>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsinfoentry/senior-price.js?version=$!{JS_VERSION}" ></script>
+ <div class="main_content">
+        <form action="" class="form-horizontal" id="seniorPriceForm">
+            <div class="scroll-wrap">
+				<a class="btn btn-success" style="margin-left:500px" id="btn_code_add" href="#"><i class="icon-plus icon-white"></i> 新增价格配置</a>
+                <div class="control-group">
+                    <label for="" class="control-label">
+						<span style="color:red">*</span>
+                        默认价格
+                    </label>
+					
+                    <div class="controls">
+                        <input type="text" class="input-small" name="defaultPrice" id="defaultPrice"/>
+                    </div>
+                </div>
+                <div class="groups clearfix senior_price" id="forCopy">
+                    <div class="control-group">
+                        <label for="" class="control-label">
+                            价格类型
+                        </label>
+                        <div class="controls">
+                            <select class="input-small" name="priceType" onchange="getPriceTarget(this)">
+								<option value="">--请选择--</option>
+								#foreach($list in $!{priceTypeList})
+									<option value="$!{list.priceTypeCode}" id="$!{list.id}">$!{list.priceTypeName}</option>
+								#end
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">
+                            客户分组
+                        </label>
+                        <div class="controls">
+                            <select class="input-small" name="priceTarget">
+                                <option value="">--请选择--</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="" class="control-label">
+                            价格
+                        </label>
+                        <div class="controls">
+                            <input class="input-small" name="skuPrice" id="skuPrice" value="" type="text"/>
+                        </div>
+                    </div>
+					<div class="control-del">
+                        <a href="javascript:void(0)" class="delPrice" onclick="deletePrice(this)">删除</a>
+                    </div>
+                </div>
+				
+            </div>
+            
+        </form>
+      </div>
+<div class="row" style="text-align:center;margin-top:30px;">
+	   <button class="btn btn-primary" style="margin-right:10px;" id="btnFormSave">
+                    确认
+                </button>
+                <button class="btn" id="btnFormCancle">
+                    取消
+                </button>
+</div>

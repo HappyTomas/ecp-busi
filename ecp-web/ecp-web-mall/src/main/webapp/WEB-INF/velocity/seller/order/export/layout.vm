@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    #parse("/sys/sys_head.vm")
+    <title>供应链电商卖家中心</title>
+    $screen_content
+</head>
+<body>
+<input type="hidden" id="exportInfo" value="${exportInfo}"></input>
+<input type="hidden" id="exportType" value="${exportType}"></input>
+</body>
+</html>

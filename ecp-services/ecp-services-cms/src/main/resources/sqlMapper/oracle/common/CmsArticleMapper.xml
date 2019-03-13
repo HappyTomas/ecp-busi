@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.cms.dao.mapper.common.CmsArticleMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.cms.dao.model.CmsArticle" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ARTICLE_TITLE" property="articleTitle" jdbcType="VARCHAR" />
+    <result column="ARTICLE_REMARK" property="articleRemark" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="ISTOP" property="istop" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="PUB_TIME" property="pubTime" jdbcType="TIMESTAMP" />
+    <result column="LOST_TIME" property="lostTime" jdbcType="TIMESTAMP" />
+    <result column="THUMBNAIL_NAME" property="thumbnailName" jdbcType="VARCHAR" />
+    <result column="THUMBNAIL" property="thumbnail" jdbcType="VARCHAR" />
+    <result column="STATIC_ID" property="staticId" jdbcType="VARCHAR" />
+    <result column="VFS_NAME" property="vfsName" jdbcType="VARCHAR" />
+    <result column="VFS_ID" property="vfsId" jdbcType="VARCHAR" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="CHANNEL_ID" property="channelId" jdbcType="INTEGER" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="HOMEPAGE_IS_SHOW" property="homepageIsShow" jdbcType="VARCHAR" />
+    <result column="AUTHOR_NAME" property="authorName" jdbcType="VARCHAR" />
+    <result column="QR_CODE" property="qrCode" jdbcType="VARCHAR" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ARTICLE_TITLE, ARTICLE_REMARK, SOURCE, ISTOP, STATUS, PUB_TIME, LOST_TIME, THUMBNAIL_NAME, 
+    THUMBNAIL, STATIC_ID, VFS_NAME, VFS_ID, SITE_ID, CHANNEL_ID, CREATE_STAFF, CREATE_TIME, 
+    UPDATE_STAFF, UPDATE_TIME, HOMEPAGE_IS_SHOW, AUTHOR_NAME, QR_CODE, SORT_NO
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.cms.dao.model.CmsArticleCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_cms_article
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_cms_article
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_cms_article
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.cms.dao.model.CmsArticleCriteria" >
+    delete from t_cms_article
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.cms.dao.model.CmsArticle" >
+    insert into t_cms_article (ID, ARTICLE_TITLE, ARTICLE_REMARK, 
+      SOURCE, ISTOP, STATUS, 
+      PUB_TIME, LOST_TIME, THUMBNAIL_NAME, 
+      THUMBNAIL, STATIC_ID, VFS_NAME, 
+      VFS_ID, SITE_ID, CHANNEL_ID, 
+      CREATE_STAFF, CREATE_TIME, UPDATE_STAFF, 
+      UPDATE_TIME, HOMEPAGE_IS_SHOW, AUTHOR_NAME, 
+      QR_CODE, SORT_NO)
+    values (#{id,jdbcType=INTEGER}, #{articleTitle,jdbcType=VARCHAR}, #{articleRemark,jdbcType=VARCHAR}, 
+      #{source,jdbcType=VARCHAR}, #{istop,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{pubTime,jdbcType=TIMESTAMP}, #{lostTime,jdbcType=TIMESTAMP}, #{thumbnailName,jdbcType=VARCHAR}, 
+      #{thumbnail,jdbcType=VARCHAR}, #{staticId,jdbcType=VARCHAR}, #{vfsName,jdbcType=VARCHAR}, 
+      #{vfsId,jdbcType=VARCHAR}, #{siteId,jdbcType=INTEGER}, #{channelId,jdbcType=INTEGER}, 
+      #{createStaff,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{homepageIsShow,jdbcType=VARCHAR}, #{authorName,jdbcType=VARCHAR}, 
+      #{qrCode,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.cms.dao.model.CmsArticle" >
+    insert into t_cms_article
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="articleTitle != null" >
+        ARTICLE_TITLE,
+      </if>
+      <if test="articleRemark != null" >
+        ARTICLE_REMARK,
+      </if>
+      <if test="source != null" >
+        SOURCE,
+      </if>
+      <if test="istop != null" >
+        ISTOP,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="pubTime != null" >
+        PUB_TIME,
+      </if>
+      <if test="lostTime != null" >
+        LOST_TIME,
+      </if>
+      <if test="thumbnailName != null" >
+        THUMBNAIL_NAME,
+      </if>
+      <if test="thumbnail != null" >
+        THUMBNAIL,
+      </if>
+      <if test="staticId != null" >
+        STATIC_ID,
+      </if>
+      <if test="vfsName != null" >
+        VFS_NAME,
+      </if>
+      <if test="vfsId != null" >
+        VFS_ID,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="homepageIsShow != null" >
+        HOMEPAGE_IS_SHOW,
+      </if>
+      <if test="authorName != null" >
+        AUTHOR_NAME,
+      </if>
+      <if test="qrCode != null" >
+        QR_CODE,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="articleTitle != null" >
+        #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleRemark != null" >
+        #{articleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="istop != null" >
+        #{istop,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="pubTime != null" >
+        #{pubTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lostTime != null" >
+        #{lostTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thumbnailName != null" >
+        #{thumbnailName,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnail != null" >
+        #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="staticId != null" >
+        #{staticId,jdbcType=VARCHAR},
+      </if>
+      <if test="vfsName != null" >
+        #{vfsName,jdbcType=VARCHAR},
+      </if>
+      <if test="vfsId != null" >
+        #{vfsId,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null" >
+        #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="homepageIsShow != null" >
+        #{homepageIsShow,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null" >
+        #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null" >
+        #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.cms.dao.model.CmsArticleCriteria" resultType="java.lang.Long" >
+    select count(*) from t_cms_article
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_cms_article
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.articleTitle != null" >
+        ARTICLE_TITLE = #{record.articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.articleRemark != null" >
+        ARTICLE_REMARK = #{record.articleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        SOURCE = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.istop != null" >
+        ISTOP = #{record.istop,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pubTime != null" >
+        PUB_TIME = #{record.pubTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lostTime != null" >
+        LOST_TIME = #{record.lostTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.thumbnailName != null" >
+        THUMBNAIL_NAME = #{record.thumbnailName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.thumbnail != null" >
+        THUMBNAIL = #{record.thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staticId != null" >
+        STATIC_ID = #{record.staticId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vfsName != null" >
+        VFS_NAME = #{record.vfsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vfsId != null" >
+        VFS_ID = #{record.vfsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.channelId != null" >
+        CHANNEL_ID = #{record.channelId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.homepageIsShow != null" >
+        HOMEPAGE_IS_SHOW = #{record.homepageIsShow,jdbcType=VARCHAR},
+      </if>
+      <if test="record.authorName != null" >
+        AUTHOR_NAME = #{record.authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.qrCode != null" >
+        QR_CODE = #{record.qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortNo != null" >
+        SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_cms_article
+    set ID = #{record.id,jdbcType=INTEGER},
+      ARTICLE_TITLE = #{record.articleTitle,jdbcType=VARCHAR},
+      ARTICLE_REMARK = #{record.articleRemark,jdbcType=VARCHAR},
+      SOURCE = #{record.source,jdbcType=VARCHAR},
+      ISTOP = #{record.istop,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      PUB_TIME = #{record.pubTime,jdbcType=TIMESTAMP},
+      LOST_TIME = #{record.lostTime,jdbcType=TIMESTAMP},
+      THUMBNAIL_NAME = #{record.thumbnailName,jdbcType=VARCHAR},
+      THUMBNAIL = #{record.thumbnail,jdbcType=VARCHAR},
+      STATIC_ID = #{record.staticId,jdbcType=VARCHAR},
+      VFS_NAME = #{record.vfsName,jdbcType=VARCHAR},
+      VFS_ID = #{record.vfsId,jdbcType=VARCHAR},
+      SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      CHANNEL_ID = #{record.channelId,jdbcType=INTEGER},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      HOMEPAGE_IS_SHOW = #{record.homepageIsShow,jdbcType=VARCHAR},
+      AUTHOR_NAME = #{record.authorName,jdbcType=VARCHAR},
+      QR_CODE = #{record.qrCode,jdbcType=VARCHAR},
+      SORT_NO = #{record.sortNo,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.cms.dao.model.CmsArticle" >
+    update t_cms_article
+    <set >
+      <if test="articleTitle != null" >
+        ARTICLE_TITLE = #{articleTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="articleRemark != null" >
+        ARTICLE_REMARK = #{articleRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="istop != null" >
+        ISTOP = #{istop,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="pubTime != null" >
+        PUB_TIME = #{pubTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lostTime != null" >
+        LOST_TIME = #{lostTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="thumbnailName != null" >
+        THUMBNAIL_NAME = #{thumbnailName,jdbcType=VARCHAR},
+      </if>
+      <if test="thumbnail != null" >
+        THUMBNAIL = #{thumbnail,jdbcType=VARCHAR},
+      </if>
+      <if test="staticId != null" >
+        STATIC_ID = #{staticId,jdbcType=VARCHAR},
+      </if>
+      <if test="vfsName != null" >
+        VFS_NAME = #{vfsName,jdbcType=VARCHAR},
+      </if>
+      <if test="vfsId != null" >
+        VFS_ID = #{vfsId,jdbcType=VARCHAR},
+      </if>
+      <if test="siteId != null" >
+        SITE_ID = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="channelId != null" >
+        CHANNEL_ID = #{channelId,jdbcType=INTEGER},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="homepageIsShow != null" >
+        HOMEPAGE_IS_SHOW = #{homepageIsShow,jdbcType=VARCHAR},
+      </if>
+      <if test="authorName != null" >
+        AUTHOR_NAME = #{authorName,jdbcType=VARCHAR},
+      </if>
+      <if test="qrCode != null" >
+        QR_CODE = #{qrCode,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.cms.dao.model.CmsArticle" >
+    update t_cms_article
+    set ARTICLE_TITLE = #{articleTitle,jdbcType=VARCHAR},
+      ARTICLE_REMARK = #{articleRemark,jdbcType=VARCHAR},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      ISTOP = #{istop,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      PUB_TIME = #{pubTime,jdbcType=TIMESTAMP},
+      LOST_TIME = #{lostTime,jdbcType=TIMESTAMP},
+      THUMBNAIL_NAME = #{thumbnailName,jdbcType=VARCHAR},
+      THUMBNAIL = #{thumbnail,jdbcType=VARCHAR},
+      STATIC_ID = #{staticId,jdbcType=VARCHAR},
+      VFS_NAME = #{vfsName,jdbcType=VARCHAR},
+      VFS_ID = #{vfsId,jdbcType=VARCHAR},
+      SITE_ID = #{siteId,jdbcType=INTEGER},
+      CHANNEL_ID = #{channelId,jdbcType=INTEGER},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      HOMEPAGE_IS_SHOW = #{homepageIsShow,jdbcType=VARCHAR},
+      AUTHOR_NAME = #{authorName,jdbcType=VARCHAR},
+      QR_CODE = #{qrCode,jdbcType=VARCHAR},
+      SORT_NO = #{sortNo,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

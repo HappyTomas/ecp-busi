@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+    <bean id="cmsAdvertiseSV" class="com.zengshi.ecp.cms.service.common.impl.CmsAdvertiseSVImpl"></bean>
+    <bean id="cmsInfoSV" class="com.zengshi.ecp.cms.service.common.impl.CmsInfoSVImpl"></bean>
+    <bean id="cmsPlaceSV" class="com.zengshi.ecp.cms.service.common.impl.CmsPlaceSVImpl"></bean>
+	<bean id="cmsFloorSV" class="com.zengshi.ecp.cms.service.common.impl.CmsFloorSVImpl"></bean>
+    <bean id="cmsFloorTabSV" class="com.zengshi.ecp.cms.service.common.impl.CmsFloorTabSVImpl"></bean>
+    <bean id="cmsFloorLabelSV" class="com.zengshi.ecp.cms.service.common.impl.CmsFloorLabelSVImpl"></bean>
+    <bean id="cmsFloorAttrCountSV" class="com.zengshi.ecp.cms.service.common.impl.CmsFloorAttrCountSVImpl"></bean>
+    <bean id="cmsFloorGdsSV" class="com.zengshi.ecp.cms.service.common.impl.CmsFloorGdsSVImpl"></bean>
+    <bean id="cmsFloorAdvertiseSV" class="com.zengshi.ecp.cms.service.common.impl.CmsFloorAdvertiseSVImpl"></bean>
+    <bean id="cmsFloorCouponSV" class="com.zengshi.ecp.cms.service.common.impl.CmsFloorCouponSVImpl"></bean>
+	<bean id="cmsSiteSV" class="com.zengshi.ecp.cms.service.common.impl.CmsSiteSVImpl"></bean>
+    <bean id="cmsTemplateSV" class="com.zengshi.ecp.cms.service.common.impl.CmsTemplateSVImpl"></bean>
+    <bean id="cmsComponentSV" class="com.zengshi.ecp.cms.service.common.impl.CmsComponentSVImpl"></bean>
+	<bean id="cmsListSV" class="com.zengshi.ecp.cms.service.common.impl.CmsListSVImpl"></bean>
+	<bean id="cmsRecommendSV" class="com.zengshi.ecp.cms.service.common.impl.CmsRecommendSVImpl"></bean>
+	<bean id="cmsHotSearchSV" class="com.zengshi.ecp.cms.service.common.impl.CmsHotSearchSVImpl"></bean>
+	<bean id="cmsPlaceCategorySV" class="com.zengshi.ecp.cms.service.common.impl.CmsPlaceCategorySVImpl"></bean>
+	<bean id="cmsGdsCategorySV" class="com.zengshi.ecp.cms.service.common.impl.CmsGdsCategorySVImpl"></bean>
+	<bean id="cmsArticleSV" class="com.zengshi.ecp.cms.service.common.impl.CmsArticleSVImpl"></bean>
+	<bean id="cmsSiteInfoSV" class="com.zengshi.ecp.cms.service.common.impl.CmsSiteInfoSVImpl"></bean>
+	<bean id="cmsPlaceChannelSV" class="com.zengshi.ecp.cms.service.common.impl.CmsPlaceChannelSVImpl"></bean>
+	<bean id="cmsLinkSV" class="com.zengshi.ecp.cms.service.common.impl.CmsLinkSVImpl"></bean>
+	<bean id="cmsFloorTemplateSV" class="com.zengshi.ecp.cms.service.common.impl.CmsFloorTemplateSVImpl"></bean>
+	<bean id="cmsFloorPlaceSV" class="com.zengshi.ecp.cms.service.common.impl.CmsFloorPlaceSVImpl"></bean>
+	<bean id="cmsAppFloorSV" class="com.zengshi.ecp.cms.service.common.impl.CmsAppFloorSVImpl"></bean>
+	<bean id="cmsAppFloorDataSV" class="com.zengshi.ecp.cms.service.common.impl.CmsAppFloorDataSVImpl"></bean>
+	<bean id="cmsImageSwitcher" class="com.zengshi.ecp.cms.service.common.impl.CmsImageSwitcherSVImpl"></bean>
+	<bean id="cmsWenTempSV" class="com.zengshi.ecp.cms.service.common.impl.CmsWenTempSVImpl"></bean>
+	<!-- 模板化开始 -->
+	<bean id="cmsPageColorSV" class="com.zengshi.ecp.cms.service.common.impl.CmsPageColorSVImpl"></bean>
+	<bean id="cmsPageInfoSV" class="com.zengshi.ecp.cms.service.common.impl.CmsPageInfoSVImpl"></bean>
+	<bean id="cmsPageTypeSV" class="com.zengshi.ecp.cms.service.common.impl.CmsPageTypeSVImpl"></bean>
+	<bean id="cmsLayoutTypeSV" class="com.zengshi.ecp.cms.service.common.impl.CmsLayoutTypeSVImpl"></bean>
+	<bean id="cmsPageAttrPreSV" class="com.zengshi.ecp.cms.service.common.impl.CmsPageAttrPreSVImpl"></bean>
+	<bean id="cmsPageAttrPubSV" class="com.zengshi.ecp.cms.service.common.impl.CmsPageAttrPubSVImpl"></bean>
+	<bean id="cmsLayoutPreSV" class="com.zengshi.ecp.cms.service.common.impl.CmsLayoutPreSVImpl"></bean>
+	<bean id="cmsLayoutPubSV" class="com.zengshi.ecp.cms.service.common.impl.CmsLayoutPubSVImpl"></bean>
+	<bean id="cmsLayoutAttrPreSV" class="com.zengshi.ecp.cms.service.common.impl.CmsLayoutAttrPreSVImpl"></bean>
+	<bean id="cmsLayoutAttrPubSV" class="com.zengshi.ecp.cms.service.common.impl.CmsLayoutAttrPubSVImpl"></bean>
+	<bean id="cmsLayoutItemPreSV" class="com.zengshi.ecp.cms.service.common.impl.CmsLayoutItemPreSVImpl"></bean>
+	<bean id="cmsLayoutItemPubSV" class="com.zengshi.ecp.cms.service.common.impl.CmsLayoutItemPubSVImpl"></bean>
+	<bean id="cmsItemPropPreSV" class="com.zengshi.ecp.cms.service.common.impl.CmsItemPropPreSVImpl"></bean>
+	<bean id="cmsItemPropPubSV" class="com.zengshi.ecp.cms.service.common.impl.CmsItemPropPubSVImpl"></bean>
+	<bean id="cmsPicHotPreSV" class="com.zengshi.ecp.cms.service.common.impl.CmsPicHotPreSVImpl"></bean>
+	<bean id="cmsPicHotPubSV" class="com.zengshi.ecp.cms.service.common.impl.CmsPicHotPubSVImpl"></bean>
+	<bean id="cmsModularSV" class="com.zengshi.ecp.cms.service.common.impl.CmsModularSVImpl"></bean>
+	<bean id="cmsModularComponentSV" class="com.zengshi.ecp.cms.service.common.impl.CmsModularComponentSVImpl"></bean>
+	<bean id="cmsModularParaPropSV" class="com.zengshi.ecp.cms.service.common.impl.CmsModularParaPropSVImpl"></bean>
+	<bean id="cmsModularPropValSV" class="com.zengshi.ecp.cms.service.common.impl.CmsModularPropValSVImpl"></bean>
+	<bean id="cmsTemplateLibSV" class="com.zengshi.ecp.cms.service.common.impl.CmsTemplateLibSVImpl"></bean>
+	<bean id="cmsTemplateLayoutSV" class="com.zengshi.ecp.cms.service.common.impl.CmsTemplateLayoutSVImpl"></bean>
+	<bean id="cmsTemplateLayoutItemSV" class="com.zengshi.ecp.cms.service.common.impl.CmsTemplateLayoutItemSVImpl"></bean>
+	<bean id="cmsPageConfigSV" class="com.zengshi.ecp.cms.service.common.impl.CmsPageConfigSVImpl"></bean>
+	<bean id="cmsModularPropSV" class="com.zengshi.ecp.cms.service.common.impl.CmsModularPropSVImpl"></bean>
+	<!-- 模板化结束 -->
+</beans>

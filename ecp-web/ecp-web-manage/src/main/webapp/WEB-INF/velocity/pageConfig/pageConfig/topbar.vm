@@ -1,0 +1,18 @@
+#parse("sys/sys_param.vm")
+<div class="tpl-navbar clearfix">
+	<div class="tpl-brand">
+		##<a href="javascript:void(0);"> 
+			<img src="#webManageLogo()" style="height: 40px">
+		##</a>
+		<span>页面配置</span>
+	</div>
+
+	<div class="tpl-account">
+		<span class="tpl-account-info"> 
+			<a href="javascript:void(0);" id="goBack">上一步</a>
+			<b class="tpl-dropdown-icon">&nbsp;</b>
+			<a href="javascript:void(0);" id="backtogrid">返回列表</a>
+			<b class="tpl-dropdown-icon">&nbsp;</b>
+		</span>
+	</div>
+</div>

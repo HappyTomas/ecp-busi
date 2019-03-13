@@ -1,0 +1,10 @@
+#parse("/sys/sys_param.vm")
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/search.css">
+<!--content-->
+<div class="wrap1200">
+    <input type="hidden" id = "versionType" value ="$!{versionType}" />
+    <div class="newbook-tit">#parse("/main/newbooksale/newbookshader/info-title.vm")，敬请期待......</div>
+    <div id= "new-book-content">
+    #parse("/main/newbooksale/newbookpage/child/child-list.vm")
+    </div>
+</div>

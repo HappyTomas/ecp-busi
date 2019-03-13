@@ -1,0 +1,62 @@
+#parse("/sys/sys_param.vm")
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        积分
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        <a href="$CONTEXT_PATH/member/index">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content">
+    <div class="point-hd">
+        <p class="num-wrap">
+            <span class="num">$!{scoreBalance}</span>积分
+        </p>
+        <p class="explain">
+            小积分，有大用，多领一些囤起来！
+        </p>
+    </div>
+    
+        
+        #if($scorePage.getResult())
+        <ul class="ui-list point-list">
+    		<li class="hd">
+	            <div class="cont">收支明细</div>
+	            <div class="more"><a href="$CONTEXT_PATH/score/list">更多></a></div>
+	        </li>
+	    
+    	
+        #foreach($attr in $scorePage.getResult())
+        	<li>
+	            <div class="cont">
+	                <p class="tit">$!{attr.scoreTypeName}</p>
+	                #if(${attr.orderId})<p class="tit">订单号：$!{attr.orderId}</p>#end
+	                <p class="time">$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.createTime})</p>
+	            </div>
+	            <div class="pt-num">
+	            #if($!{attr.scoreTypeName} == '使用积分') 
+	            -$!{attr.consumeScore}
+	            #else
+	            +$!{attr.consumeScore}
+	            #end
+	            </div>
+	        </li>
+        #end
+        
+	    </ul>
+	    #else
+	    	<div class="ui-empty">
+		        <div class="empty-img">
+		            <img src="$IMAGE_PATH/point-nodata.png" alt=""/>
+		        </div>
+		        <div class="tip-bold">
+		            很遗憾
+		        </div>
+		        <div class="tip-txt">
+		            您目前还没有积分
+		        </div>
+		    </div>
+	    #end
+</div>

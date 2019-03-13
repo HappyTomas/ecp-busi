@@ -1,0 +1,35 @@
+@charset "utf-8";
+
+ .form-horizontal .control-label {
+        width: 120px;/* 默认为100px */
+    }
+	/* add by huangxm9 用于图片上传按钮====start*/
+.file-wrap {
+    position: relative;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 4px 12px;
+    overflow: hidden;
+    text-decoration: none;
+    text-indent: 0;
+    line-height: 20px;
+}
+.file-wrap input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter:alpha(opacity=0);
+}
+/* add by huangxm9 用于图片上传按钮====end*/
+
+/* 选择商品弹框样式  start */
+.well-searchForm form.form-horizontal .control-label {
+    width: 140px;
+}
+
+table.dataTable tbody tr {
+    word-break: break-all;
+}
+/* 选择商品弹框样式  end */

@@ -1,0 +1,82 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+
+<link href="${CONTEXT_PATH}/css/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="${CSS_PATH}/child-reset.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="${CSS_PATH}/index.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsinfoentry/gds-chooseClassPoint.js?version=$!{JS_VERSION}" ></script>
+	
+<div class="b-white p20">
+    <div class="well well-searchForm">
+        <form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+            <div class="row-fluid">
+                <div class="span4">
+					<div class="control-group">
+                        <label class="control-label" for="gdsType">产品类型：</label>
+
+						<div class="controls">
+                            <select name="gdsType" id="gdsType">
+                				#foreach($list in $!{typeList})
+                					<option value="$!{list.id}">$!{list.typeName}</option>
+                				#end
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#seltype" data-toggle="tab">分类选择</a>
+        </li>
+        ##<li>
+           ## <a href="#commontype" data-toggle="tab">常用分类</a>
+        ##</li>
+    </ul>
+    <div class="tab-content pmgr-lay">
+        <div class="tab-pane active" id="seltype">
+            <div class="type-list-wrap" style="">
+                <div class="type-sel clearfix"  id="me">
+                    <div class="type-list" style="width:210px;">
+                        ##<div class="search">
+                            ##<div class="input-wrap">
+                                ##<input type="text" style="width:148px;" placeholder="输入关键字查找"/><i class="icon-search"></i>
+                            ###</div>
+                        ##</div>
+                        <div class="lay-wrap">
+                            <ul class="lay">
+            					#foreach($list in $!{classList})
+                                <li class="listNode" id="$!{list.catgCode}" catgName="$!{list.catgName}">
+                                    <div class="d-text">
+            							$!{list.catgName}
+                                    </div>
+                                </li>
+            					#end
+            					
+                            </ul>
+                        </div>
+                    </div>
+            		
+                </div>
+            </div>
+        </div>
+        <form method="post" id="catgClassForm" action="gdspointentry/entrybaseinfo">
+        	<input type="hidden" name="catgCode" id="catgCode" value=""/>
+        	<input type="hidden" name="catgName" id="catgName" value=""/>
+        	<input type="hidden" name="gdsTypeId" id="gdsTypeId" value=""/>
+        	<input type="hidden" name="gdsTypeName" id="gdsTypeName" value=""/>
+        	<input type="hidden" name="haveType" id="haveType" value="$!{haveType}"/>
+        	#set($scoreShopId=${paramTools.getSysConfigCode("GDS_SCORE_SHOP_DEFAULT")})
+			<input type="hidden" name="shopIdVal" id="shopIdVal" value="$!{scoreShopId}" />
+            <div class="alert sel-tip">
+        			你选择的分类为：<span class="sel-cont" id="selecEnd" value="" catgName=""></span>
+            </div>
+        </form>
+        <div class="btn-wrap btn-wrap-save">
+            <input type="button" value="下一步" id="btn_next" disabled class="btn"/>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,81 @@
+	    #if($null.isNull($gdsList) || $gdsList.isEmpty())
+		
+	      #else
+	         <div style="margin-left:20px;">
+			     <div class="formSep"></div>
+					  <h4 class="formSep">
+					      已选择促销商品 #if($!{moreShowButton}=='1')<span style="color:blue">(当前页面展示5笔数据，更多请点击参与商品列表)</span> 
+					       <span class="sbtn sbtn-blue"id="manyGds">更多参与商品列表</span>
+					       #end
+					 </h4>
+		     <div class="nItem">
+			     <div style="overflow-x: auto;">
+	              <div class="row-fluid">
+					  <div class="row-fluid" style="margin-bottom: 10px;">
+									<div class="span6">
+										<a class="btn " id="btn_gds_del_batch" href="javascript:void(0)"><i class="icon-remove icon-white"></i>批量删除</a>
+									</div>
+                             </div> 
+                     
+						        <table id="gdsTable" class="seller-table">
+	                              <thead>
+	                                  <tr role="row">
+	                                      <th id="gdsTable_row_1" class="center selectColumn sorting_disabled" rowspan="1" colspan="1" aria-label="选择" align="center" style="width: 35px; vertical-align: middle; text-align: center; padding: 0px;"><input type="checkbox" id="dt_row_all_check" title="全选/全取消" style="margin: 0px;"></th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="分类" style="width: 20px;">分类</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="商品编码" style="width: 40px;">商品编码</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="单品编码" style="width: 40px;">单品编码</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="单品名称" style="width: 40px;">单品名称</th>
+	                                      ##<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="单品属性" style="width: 40px;">单品属性</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="状态" style="width: 60px;">状态</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="参考价格" style="width: 40px;">参考价格</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="价格" style="width: 20px;">价格</th>
+	                                      <!--<th class="sorting_disabled" rowspan="1" colspan="1" aria-label="APP价格" style="width: 40px;">APP价格</th>-->
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="总库存量" style="width: 80px;">总库存量</th>
+	                                      <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="促销量" style="width: 80px;"><span style="color:red">*</span>促销量</th>
+	                       	              #if($!{seckillflag})
+										  <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="价格类型" style="width: 70px;"><span style="color:red">*</span>价格类型</th>											
+										  <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="秒杀价" style="width: 70px;"><span style="color:red">*</span>秒杀价</th>											
+										  #end               
+										  <th id="gdsTable_row_12" class="sorting_disabled" rowspan="1" colspan="1" aria-label="操作" style="width: 80px;">操作</th>
+	                                   </tr>
+	                                </thead>
+	                                 <tbody id="gdsTableTbody">
+	                                  #foreach( $gdsVO in $gdsList)
+	                                  <tr id="$!{gdsVO.skuId}" role="row" class=odd">
+										     <td name="gdsTableTbody_td_1" class=" center selectColumn" align="center" style="width: 35px; vertical-align: middle; text-align: center; padding: 0px;">
+											<input type="checkbox" id="$!{gdsVO.gdsId}-$!{gdsVO.skuId}-$!{gdsVO.gdsTypeId}" skuid="$!{gdsVO.skuId}" name="$!{gdsVO.gdsId}-$!{gdsVO.skuId}"  othername="checkboxgds" >
+											</td>
+											<td>#escapeHtml( "$!{gdsVO.mainCatgName}")</td>
+											<td>$!{gdsVO.gdsId}</td>
+											<td>$!{gdsVO.skuId}</td>
+											 <td  class="td-hhtxt" > <div>#escapeHtml( "$!{gdsVO.gdsName}")</div></td>
+											 ##<td  class="td-hhtxt" > <div>$!{gdsVO.skuProps}</div></td>
+											<td>#escapeHtml( "$!{gdsVO.gdsStatusName}")</td>
+											<td>#moneyNum($!{gdsVO.guidePrice})</td>
+											<td>#moneyNum($!{gdsVO.realPrice})</td>
+											<td name="promStock-$!{gdsVO.gdsId}-$!{gdsVO.skuId}-$!{gdsVO.gdsTypeId}" id="promStock-$!{gdsVO.gdsId}-$!{gdsVO.skuId}-$!{gdsVO.gdsTypeId}">$!{gdsVO.stockCnt}</td>
+											#if($!{gdsVO.isNeedStock}=='false')
+											<td> <input type="text" class="input-block-level stockInput" maxlength="11" name="promCnt-$!{gdsVO.gdsId}-$!{gdsVO.skuId}" id="promCnt-$!{gdsVO.gdsId}-$!{gdsVO.skuId}-$!{gdsVO.gdsTypeId}"  gdsTypeId="$!{gdsVO.gdsTypeId}"  value="虚拟商品" disabled isNeedStock="$!{gdsVO.isNeedStock}"></td>
+											#else
+											<td> <input type="text" class="input-block-level stockInput promCntBlur" maxlength="11" name="promCnt-$!{gdsVO.gdsId}-$!{gdsVO.skuId}" id="promCnt-$!{gdsVO.gdsId}-$!{gdsVO.skuId}-$!{gdsVO.gdsTypeId}"  gdsTypeId="$!{gdsVO.gdsTypeId}" oldValue="$!{gdsVO.promCnt}" value="$!{gdsVO.promCnt}" isNeedStock="$!{gdsVO.isNeedStock}"></td>
+											#end
+											#if($!{seckillflag})
+											<td> 
+												##<input type="text" class="input-block-level  " maxlength="10" name="seckillPriceType-$!{gdsVO.gdsId}-$!{gdsVO.skuId}" id="seckillPriceType-$!{gdsVO.gdsId}-$!{gdsVO.skuId}-$!{gdsVO.gdsTypeId}"  gdsTypeId="$!{gdsVO.gdsTypeId}" oldValue="$!{gdsVO.priceType}" value="$!{gdsVO.priceType}" >
+												<select style="width:80px;" id="seckillPriceType-$!{gdsVO.gdsId}-$!{gdsVO.skuId}-$!{gdsVO.gdsTypeId}"  value="$!{gdsVO.priceType}">
+													<option value="0" #if($!{gdsVO.priceType}=="0")selected #end>折扣率</option>
+													<option value="1" #if($!{gdsVO.priceType}=="1")selected #end>固定价</option>
+                								</select>
+											</td>												
+											<td> <input type="text" class="input-block-level  seckillPriceBlur" maxlength="10" name="seckillPrice-$!{gdsVO.gdsId}-$!{gdsVO.skuId}" id="seckillPrice-$!{gdsVO.gdsId}-$!{gdsVO.skuId}-$!{gdsVO.gdsTypeId}"  gdsTypeId="$!{gdsVO.gdsTypeId}" oldValue="#moneyNum($!{gdsVO.priceValue})" value="#moneyNum($!{gdsVO.priceValue})" ></td>												
+											#end
+											<td name="gdsTableTbody_td_12"><a class="btn" data="$!{gdsVO.skuId}" name="delGdsRow" href="javascript:void(0)"><i class="icon-remove icon-white"></i>删除</a></td>
+											</tr>
+	                                   #end
+	                                </tbody>
+	                            </table>
+	                         </div>
+	                       </div>
+                        </div>
+               </div> 
+           #end      

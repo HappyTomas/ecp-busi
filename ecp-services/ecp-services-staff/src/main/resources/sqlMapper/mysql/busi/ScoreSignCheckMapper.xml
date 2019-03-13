@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.busi.ScoreSignCheckMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.ScoreSignCheck" >
+    <id column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="SIGN_DATE_BEGIN" property="signDateBegin" jdbcType="TIMESTAMP" />
+    <result column="SIGN_DATE_END" property="signDateEnd" jdbcType="TIMESTAMP" />
+    <result column="SIGN_CNT" property="signCnt" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    STAFF_ID, SIGN_DATE_BEGIN, SIGN_DATE_END, SIGN_CNT
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSignCheckCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_score_sign_check
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_score_sign_check
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_score_sign_check
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSignCheckCriteria" >
+    delete from t_score_sign_check
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSignCheck" >
+    insert into t_score_sign_check (STAFF_ID, SIGN_DATE_BEGIN, SIGN_DATE_END, 
+      SIGN_CNT)
+    values (#{staffId,jdbcType=INTEGER}, #{signDateBegin,jdbcType=TIMESTAMP}, #{signDateEnd,jdbcType=TIMESTAMP}, 
+      #{signCnt,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSignCheck" >
+    insert into t_score_sign_check
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="signDateBegin != null" >
+        SIGN_DATE_BEGIN,
+      </if>
+      <if test="signDateEnd != null" >
+        SIGN_DATE_END,
+      </if>
+      <if test="signCnt != null" >
+        SIGN_CNT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="signDateBegin != null" >
+        #{signDateBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signDateEnd != null" >
+        #{signDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signCnt != null" >
+        #{signCnt,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSignCheckCriteria" resultType="java.lang.Long" >
+    select count(*) from t_score_sign_check
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_score_sign_check
+    <set >
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.signDateBegin != null" >
+        SIGN_DATE_BEGIN = #{record.signDateBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.signDateEnd != null" >
+        SIGN_DATE_END = #{record.signDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.signCnt != null" >
+        SIGN_CNT = #{record.signCnt,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_score_sign_check
+    set STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      SIGN_DATE_BEGIN = #{record.signDateBegin,jdbcType=TIMESTAMP},
+      SIGN_DATE_END = #{record.signDateEnd,jdbcType=TIMESTAMP},
+      SIGN_CNT = #{record.signCnt,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSignCheck" >
+    update t_score_sign_check
+    <set >
+      <if test="signDateBegin != null" >
+        SIGN_DATE_BEGIN = #{signDateBegin,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signDateEnd != null" >
+        SIGN_DATE_END = #{signDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="signCnt != null" >
+        SIGN_CNT = #{signCnt,jdbcType=INTEGER},
+      </if>
+    </set>
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.ScoreSignCheck" >
+    update t_score_sign_check
+    set SIGN_DATE_BEGIN = #{signDateBegin,jdbcType=TIMESTAMP},
+      SIGN_DATE_END = #{signDateEnd,jdbcType=TIMESTAMP},
+      SIGN_CNT = #{signCnt,jdbcType=INTEGER}
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+  </update>
+</mapper>

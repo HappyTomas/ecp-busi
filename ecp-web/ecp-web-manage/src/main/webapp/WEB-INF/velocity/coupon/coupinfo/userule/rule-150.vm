@@ -1,0 +1,25 @@
+			<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/coupinfo/userule/rule-150.js?version=$!{JS_VERSION}" ></script>
+				<form id="useForm150" rule-data="150" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action=""  >
+						<div class="row-fluid">
+							<div class="control-group">
+							<label class="control-label">优惠券互斥限制：</label>
+								<div class="controls">
+								        #set($list = ${paramTools.getParamDTOList('COUP_EXCLUDE')})
+							        #foreach( $info in $list) 
+								            <label  style="width:200px;"><input type="radio" class="coupExclude" name="coupInfoVO.coupExclude" #if (!${coupVO.coupInfoVO.coupExclude}) #if ($!{info.spCode} == "0") checked #end #else #if ($!{coupVO.coupInfoVO.coupExclude} == $!{info.spCode}) checked  #end #end #if ($!{doAction} == 'view') disabled #end value="$!{info.spCode}">$!{info.spValue}</label> 
+								     #end
+							     <button type="button" style="margin-top: 10px;display:none" class="btn btnCoupInfo150 delRowTd" id="btnCoupInfoQuery" data-toggle="modal" data-target="#myModal" ><i class="icon-search icon-white"></i> 优惠券查询</button>
+								 
+								  <div id="coup-info-table-id" class="row-fluid btnCoupInfo150" style="margin-top: 10px;"></div>
+							 
+								</div>
+						</div>
+					</div>
+				</form>
+			 
+			   
+		    
+			 
+				
+				
+				

@@ -1,0 +1,44 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.form.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/company/company-grid.js?version=$!{JS_VERSION}" ></script>
+
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">企业名称：</label>
+						<div class="controls">
+							<input type="text" name="companyName" class="input-medium" value="" placeholder="输入企业名称">
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+	
+			</form>
+		</div>
+		
+		
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="span6">
+				<a class="btn" id="btn_code_add" href="#"><i class=" icon-plus "></i> 新增</a>
+				<a class="btn" id="btn_code_edit" href="#"><i class=" icon-edit "></i> 编辑</a>
+				<a class="btn " id="btn_code_valid" href="#"><i class="icon-ok-sign "></i> 生效</a>
+				<a class="btn btn-danger" id="btn_code_invalid" href="#"><i class="icon-remove-sign icon-white"></i> 失效</a>
+			</div>
+			<div class="pull-right">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>
+		<form id="addShopForm" action="${CONTEXT_PATH}/company/addshop" method="POST">
+			<input type="hidden"  name="companyId" id="companyId"/>
+        </form>
+		<form id="editCompanyForm" action="${CONTEXT_PATH}/company/edit" method="POST">
+			<input type="hidden"  name="id" id="ids"/>
+        </form>

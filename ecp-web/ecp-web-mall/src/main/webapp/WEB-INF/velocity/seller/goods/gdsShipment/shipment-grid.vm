@@ -1,0 +1,88 @@
+  #parse("/sys/sys_param.vm")
+  #parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsShipment/ship-grid.js?version=$!{JS_VERSION}" ></script>
+
+
+                <div class="seller-well">
+                    <form action="" class="form-horizontal required-validate" id="shipForm">
+                            <div class="row-fluid">
+                                <div class="span4">
+                                    <div class="control-group">
+                                        <label class="control-label">店铺名称：</label>
+                                        <div class="controls">                                    			
+                                         <select name="shopId" id="shopId"  class="input-block-level">
+                                           #sellerList($!shopId)
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <div class="control-group">
+                                        <label class="control-label">模板编码：</label>
+                                        <div class="controls">
+                                            <input placeholder="输入模板编码" type="text" class="input-block-level" id="shipTemplateId" name="shipTemplateId"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <div class="control-group">
+                                        <label class="control-label">模板名称：</label>
+                                        <div class="controls">
+                                            <input placeholder="输入模板名称" type="text" class="input-block-level" id="shipTemplateName" name="shipTemplateName"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row-fluid">
+                                <div class="span4">
+                                    <div class="control-group">
+                                        <label class="control-label">计价方式：</label>
+                                        <div class="controls">
+                                            <select style="width:160px" name="shipTemplateType" id = "shipTemplateType">
+                								<option value="">全部</option>
+                								#foreach($list in $!{shipTempTypeList})
+                									#if($!{list.spCode}=='2' || $!{list.spCode}=='3')
+                									#else
+                									<option value="$!{list.spCode}">$!{list.spValue}</option>
+                									#end
+                								#end
+                							</select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <div class="control-group">
+                                        <label class="control-label">是否免邮：</label>
+                                        <div class="controls">
+                                            <select style="width:160px" id="ifFree" name="ifFree">
+                								<option value="">全部</option>
+                								<option value="1">是</option>
+                								<option value="0">否</option>
+                							</select>                                        
+										</div>
+                                    </div>
+                                </div>                               
+                            </div>
+                            
+                      
+                        </form>
+                </div>
+				
+				      <div class="sbtn-group">
+                    <!--查询，重置移动到这里，添加btn-w-right样式，重置按钮添加icon-color-->
+                    <div class="btn-wrap btn-w-right">
+                        <span class="sbtn sbtn-blue" id="shipSearchBtn"><i class="icon-search"></i> 查询</span>
+                        <span class="sbtn" id="shipResetBtn"><i class="icon-asterisk icon-color"></i> 重置</span>
+                    </div>
+					 <span class="sbtn sbtn-blue" id="addShipBtn"><i class="icon-plus"></i> 新增运费</span>
+					  </div>
+				
+                <div class="main-inner">
+              
+					
+					<div id='shiptListDiv'>
+						#parse("/seller/goods/gdsShipment/list/ship-list.vm")
+					</div>	
+                                 
+
+                </div>

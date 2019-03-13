@@ -1,0 +1,50 @@
+#parse("/sys/sys_param.vm")
+#parse("/sys/sys_head.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/stock/opt-stock.js?version=$!{JS_VERSION}" ></script>
+		
+			<div class="alert alert-error hide formValidateMessages" >
+	
+            </div>
+		
+			<div class="formBox">
+			
+				
+				<form id="repAddForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;margin-left:0px" >
+
+				    <div class="formSep" >
+						<input name="shopId" value="$shopId" type="hidden"/>
+						<div class="control-group" style="margin-left:50px">
+							<label class="control-label">调整方式：</label>
+							<div class="controls">
+                               
+							<select style="width:100px" name="turnType">
+								<option value="01">调增</option>
+								<option value="02">调减</option>
+							</select>
+						     
+							</div>
+						</div>
+					</div>
+					<div class="formSep" >
+						<div class="control-group" style="margin-left:50px">
+							<label class="control-label">调整数量：</label>
+							<div class="controls">
+								<div style="width:100px">
+                            <input type="text" class="input-large required digits" name="turnCount" placeholder="调整数量" />
+                                </div>
+							</div>						
+						</div>	
+					</div>
+					
+					<div style=" ">
+						<div class="control-group">
+							<div class="controls">
+								<button type="button" class="btn btn-info" id="btnSave"><i class="icon-ok-sign icon-white"></i> 保　存</button>
+								<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i> 返　回</button>
+
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>

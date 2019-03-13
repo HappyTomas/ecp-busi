@@ -1,0 +1,86 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsShiptemp/gds-shiptemp-grid.js?version=$!{JS_VERSION}" ></script>
+
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal required-validate" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">店铺名称：</label>
+						<div class="controls" >
+							<select id="shopId" name="shopId">
+								#shopStatuslist($!{shopId},1)
+                            </select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">模板编码：</label>
+						<div class="controls">
+							<input type="text" name="shipTemplateId" class="input-medium digits" value="" placeholder="输入模板编码">
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">模板名称：</label>
+						<div class="controls">
+							<input type="text" name="shipTemplateName" class="input-medium" value="" placeholder="输入模板名称">
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="row-fluid">
+
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">计价方式：</label>
+						<div class="controls">
+							<select style="width:160px" name="shipTemplateType">
+								<option value="">全部</option>
+								#foreach($list in $!{shipTempTypeList})
+									#if($!{list.spCode}=='2' || $!{list.spCode}=='3')
+									#else
+									<option value="$!{list.spCode}">$!{list.spValue}</option>
+									#end
+								#end
+							</select>
+						</div>
+					</div>
+				</div>
+				
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">是否免邮：</label>
+						<div class="controls">
+							<select style="width:160px" name="ifFree">
+								<option value="">全部</option>
+								<option value="1">是</option>
+								<option value="0">否</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			</form>
+		</div>
+		
+		
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="span8">
+				<a class="btn" id="btn_code_add" href="#"><i class="icon-plus icon-white"></i> 新增运费模板</a>
+			</div>
+			<div class="pull-right">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+	
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<head>
+
+#parse("/sys/sys_head.vm")
+<link rel="stylesheet" href="$!{CSS_PATH}/index.css"/>
+</head>
+
+<body >
+		<div class="open_content">
+	    $screen_content
+	</div>
+	
+</body>

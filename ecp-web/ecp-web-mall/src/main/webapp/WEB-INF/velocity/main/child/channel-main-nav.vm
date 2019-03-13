@@ -1,0 +1,37 @@
+#parse("sys/sys_param.vm")
+<input type="hidden" id="current-page" value="$!{page}"></input>
+<ul>
+    #foreach($channel in $channelsList)
+   		#if($!{channel.id} && $!{channel.id} !='')
+   			#if($!{channel.isOutLink} && $!{channel.isOutLink} == '1')
+   			<li class="oranger"><a href="$!{channel.channelUrl}" target="_blank">$!{channel.channelName}</a>
+            	#if($!{channel.channelLabel} && $!{channel.channelLabel} != '')
+            	<span class="txt-top">$!{channel.channelLabel}</span>
+           	    #end
+            </li>
+   			#else
+   			<li class=" main-mav-item"><a href="$CONTEXT_PATH/$!{channel.channelUrl}" class="" target="_blank" id="nav_$!{channel.id}" url="$!{channel.channelUrl}">$!{channel.channelName}</a>
+   				#if($!{channel.channelLabel} && $!{channel.channelLabel} != '')
+            	<span class="txt-top">$!{channel.channelLabel}</span>
+           	    #end
+   			</li>
+			#end
+		#end
+	#end
+</ul>
+
+
+#*  
+<li><a href="$CONTEXT_PATH/homepage?page=homepage" class="active" target="_blank" id="nav_homepage" url="/homepage/homepage">首页</a></li>
+<li><a href="$CONTEXT_PATH/homepage?page=referencebook" target="_blank" id="nav_referencebook" url="/homepage/referencebook">参考书</a></li>
+<li><a href="$CONTEXT_PATH/homepage?page=paperbook" target="_blank" id="nav_paperbook" url="/homepage/paperbook">教材</a></li>
+<li><a href="$CONTEXT_PATH/homepage?page=testbook" target="_blank" id="nav_testbook" url="/homepage/testbook">考试书</a></li>
+<li><a href="$CONTEXT_PATH/homepage?page=sciencebook" target="_blank" id="nav_sciencebook" url="/homepage/sciencebook">科普书</a></li>
+<li><a href="$CONTEXT_PATH/homepage?page=audiobook" target="_blank" id="nav_audiobook" url="/homepage/audiobook">音像制品</a></li>
+<li><a href="$CONTEXT_PATH/homepage?page=digitalproduct" target="_blank" id="nav_digitalproduct" url="/homepage/digitalproduct">数字产品</a></li>
+<li><a href="$CONTEXT_PATH/homepage?page=digitalbook" url="/homepage/digitalbook">数字教材</a></li>
+<li><a href="$CONTEXT_PATH/homepage?page=onlinetest" url="/homepage/onlinetest">在线考试培训</a></li>
+<li><a href="$CONTEXT_PATH/homepage?page=electronicbook" url="/homepage/electronicbook">电子书</a></li>
+<li><a href="#">网络增值服务</a></li>
+<li class="oranger"><a href="#siteInfo('2')" target="_blank">积分商城</a><i class="hot-icon"></i></li>
+*#

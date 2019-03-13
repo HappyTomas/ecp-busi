@@ -1,0 +1,77 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/group/group-details.js?version=$!{JS_VERSION}" ></script>
+			<div class="formBox">
+				<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+				 <div class="row-fluid">
+				  <div class="formSep">
+					  <div class="control-group">
+							<label class="control-label" for="name">站点：</label>
+							<div class="controls">
+								<select id="siteId" name="siteId" disabled class="span4">
+									<option value="">全部</option>
+    								    #siteList("$!{promGroup.siteId}")
+    							 </select>
+							</div>
+						</div>
+					</div>
+					
+                     <div class="formSep">
+						<div class="control-group">
+							<label class="control-label">状态：</label>
+							<div class="controls">
+								<select id="status" name="status" disabled class="span4" >
+									#foreach($param in $!{statusList})
+										<option value="$!{param.spCode}" #if ($!{param.spCode}=='') selected #end>$!{param.spValue}</option>
+									#end
+									</select>
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">开始时间：</label>
+							<div class="controls">
+								<input type="text" class="input-large Wdate span4" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="showStartTime" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{promGroup.showStartTime})" disabled/>
+							</div>
+						</div>
+					</div>
+						 		
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">结束时间：</label>
+							<div class="controls">
+								<input type="text" class="input-large Wdate span4" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="showEndTime" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{promGroup.showEndTime})" disabled/>
+							</div>
+						</div>
+					</div>
+					
+					<div class="formSep">
+					   <div class="control-group">
+							<label class="control-label" for="name">促销主题：</label>
+							<div class="controls">
+								<input type="text" class="span10" id="name" name="code" placeholder="" value="$!{promGroup.promTheme}"  disabled/>
+								<input type="hidden" id="operation" value="1" />
+								</div>
+						</div>
+					</div>	 
+			
+				 <div class="formSep">
+				   <div class="control-group">
+							<label class="control-label">内容：</label>
+							<div class="controls">
+									<textarea rows="4" class="input-block-level span10" name="promContent" disabled >$!{promGroup.promContent}</textarea>
+						  </div>
+						</div>
+					</div>	 
+					
+					 <div class="formSep">
+						<div class="control-group">
+							<div class="controls">
+								<button type="button" class="btn"><i class="icon-reply"></i> 返　回</button>
+							</div>
+						</div>
+					</div>
+				  </div>	 
+				</form>
+			</div>
+				

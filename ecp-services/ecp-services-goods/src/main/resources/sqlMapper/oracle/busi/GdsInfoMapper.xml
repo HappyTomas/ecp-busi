@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.busi.GdsInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsInfo" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SNAP_ID" property="snapId" jdbcType="INTEGER" />
+    <result column="GDS_NAME" property="gdsName" jdbcType="VARCHAR" />
+    <result column="GDS_SUB_HEAD" property="gdsSubHead" jdbcType="VARCHAR" />
+    <result column="GUIDE_PRICE" property="guidePrice" jdbcType="INTEGER" />
+    <result column="GDS_DESC" property="gdsDesc" jdbcType="VARCHAR" />
+    <result column="GDS_PARTLIST" property="gdsPartlist" jdbcType="VARCHAR" />
+    <result column="GDS_TYPE_ID" property="gdsTypeId" jdbcType="INTEGER" />
+    <result column="GDS_STATUS" property="gdsStatus" jdbcType="VARCHAR" />
+    <result column="GDS_APPROVE" property="gdsApprove" jdbcType="VARCHAR" />
+    <result column="URL" property="url" jdbcType="VARCHAR" />
+    <result column="SORT_NO" property="sortNo" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="TAX_ID" property="taxId" jdbcType="INTEGER" />
+    <result column="GDS_LABEL" property="gdsLabel" jdbcType="VARCHAR" />
+    <result column="PUTON_TIME" property="putonTime" jdbcType="TIMESTAMP" />
+    <result column="PUTOFF_TIME" property="putoffTime" jdbcType="TIMESTAMP" />
+    <result column="POST_TIME" property="postTime" jdbcType="INTEGER" />
+    <result column="IF_SENDSCORE" property="ifSendscore" jdbcType="VARCHAR" />
+    <result column="IF_SALEALONE" property="ifSalealone" jdbcType="VARCHAR" />
+    <result column="IF_RECOMM" property="ifRecomm" jdbcType="VARCHAR" />
+    <result column="IF_NEW" property="ifNew" jdbcType="VARCHAR" />
+    <result column="IF_STOCKNOTICE" property="ifStocknotice" jdbcType="VARCHAR" />
+    <result column="IF_FREE" property="ifFree" jdbcType="VARCHAR" />
+    <result column="IF_DISPERSE_STOCK" property="ifDisperseStock" jdbcType="VARCHAR" />
+    <result column="IF_LADDER_PRICE" property="ifLadderPrice" jdbcType="VARCHAR" />
+    <result column="IF_ENTITY_CODE" property="ifEntityCode" jdbcType="VARCHAR" />
+    <result column="IF_SENIOR_PRICE" property="ifSeniorPrice" jdbcType="VARCHAR" />
+    <result column="IF_SCORE_GDS" property="ifScoreGds" jdbcType="VARCHAR" />
+    <result column="SHIP_TEMPLATE_ID" property="shipTemplateId" jdbcType="INTEGER" />
+    <result column="SUPPLIER_ID" property="supplierId" jdbcType="INTEGER" />
+    <result column="PLAT_CATGS" property="platCatgs" jdbcType="VARCHAR" />
+    <result column="SHOP_CATGS" property="shopCatgs" jdbcType="VARCHAR" />
+    <result column="MAIN_CATGS" property="mainCatgs" jdbcType="VARCHAR" />
+    <result column="CATLOG_ID" property="catlogId" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="CHANGE_PROP_STR" property="changePropStr" jdbcType="VARCHAR" />
+    <result column="ISBN" property="isbn" jdbcType="VARCHAR" />
+    <result column="EXT1" property="ext1" jdbcType="VARCHAR" />
+    <result column="EXT2" property="ext2" jdbcType="VARCHAR" />
+    <result column="EXT3" property="ext3" jdbcType="VARCHAR" />
+    <result column="EXT4" property="ext4" jdbcType="VARCHAR" />
+    <result column="EXT5" property="ext5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SNAP_ID, GDS_NAME, GDS_SUB_HEAD, GUIDE_PRICE, GDS_DESC, GDS_PARTLIST, GDS_TYPE_ID, 
+    GDS_STATUS, GDS_APPROVE, URL, SORT_NO, SHOP_ID, TAX_ID, GDS_LABEL, PUTON_TIME, PUTOFF_TIME, 
+    POST_TIME, IF_SENDSCORE, IF_SALEALONE, IF_RECOMM, IF_NEW, IF_STOCKNOTICE, IF_FREE, 
+    IF_DISPERSE_STOCK, IF_LADDER_PRICE, IF_ENTITY_CODE, IF_SENIOR_PRICE, IF_SCORE_GDS, 
+    SHIP_TEMPLATE_ID, SUPPLIER_ID, PLAT_CATGS, SHOP_CATGS, MAIN_CATGS, CATLOG_ID, CREATE_TIME, 
+    CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, CHANGE_PROP_STR, ISBN, EXT1, EXT2, EXT3, 
+    EXT4, EXT5
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsInfoCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_gds_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_gds_info
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_gds_info
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsInfoCriteria" >
+    delete from t_gds_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.goods.dao.model.GdsInfo" >
+    insert into t_gds_info (ID, SNAP_ID, GDS_NAME, 
+      GDS_SUB_HEAD, GUIDE_PRICE, GDS_DESC, 
+      GDS_PARTLIST, GDS_TYPE_ID, GDS_STATUS, 
+      GDS_APPROVE, URL, SORT_NO, 
+      SHOP_ID, TAX_ID, GDS_LABEL, 
+      PUTON_TIME, PUTOFF_TIME, POST_TIME, 
+      IF_SENDSCORE, IF_SALEALONE, IF_RECOMM, 
+      IF_NEW, IF_STOCKNOTICE, IF_FREE, 
+      IF_DISPERSE_STOCK, IF_LADDER_PRICE, IF_ENTITY_CODE, 
+      IF_SENIOR_PRICE, IF_SCORE_GDS, SHIP_TEMPLATE_ID, 
+      SUPPLIER_ID, PLAT_CATGS, SHOP_CATGS, 
+      MAIN_CATGS, CATLOG_ID, CREATE_TIME, 
+      CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, 
+      CHANGE_PROP_STR, ISBN, EXT1, 
+      EXT2, EXT3, EXT4, EXT5
+      )
+    values (#{id,jdbcType=INTEGER}, #{snapId,jdbcType=INTEGER}, #{gdsName,jdbcType=VARCHAR}, 
+      #{gdsSubHead,jdbcType=VARCHAR}, #{guidePrice,jdbcType=INTEGER}, #{gdsDesc,jdbcType=VARCHAR}, 
+      #{gdsPartlist,jdbcType=VARCHAR}, #{gdsTypeId,jdbcType=INTEGER}, #{gdsStatus,jdbcType=VARCHAR}, 
+      #{gdsApprove,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{sortNo,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=INTEGER}, #{taxId,jdbcType=INTEGER}, #{gdsLabel,jdbcType=VARCHAR}, 
+      #{putonTime,jdbcType=TIMESTAMP}, #{putoffTime,jdbcType=TIMESTAMP}, #{postTime,jdbcType=INTEGER}, 
+      #{ifSendscore,jdbcType=VARCHAR}, #{ifSalealone,jdbcType=VARCHAR}, #{ifRecomm,jdbcType=VARCHAR}, 
+      #{ifNew,jdbcType=VARCHAR}, #{ifStocknotice,jdbcType=VARCHAR}, #{ifFree,jdbcType=VARCHAR}, 
+      #{ifDisperseStock,jdbcType=VARCHAR}, #{ifLadderPrice,jdbcType=VARCHAR}, #{ifEntityCode,jdbcType=VARCHAR}, 
+      #{ifSeniorPrice,jdbcType=VARCHAR}, #{ifScoreGds,jdbcType=VARCHAR}, #{shipTemplateId,jdbcType=INTEGER}, 
+      #{supplierId,jdbcType=INTEGER}, #{platCatgs,jdbcType=VARCHAR}, #{shopCatgs,jdbcType=VARCHAR}, 
+      #{mainCatgs,jdbcType=VARCHAR}, #{catlogId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, 
+      #{changePropStr,jdbcType=VARCHAR}, #{isbn,jdbcType=VARCHAR}, #{ext1,jdbcType=VARCHAR}, 
+      #{ext2,jdbcType=VARCHAR}, #{ext3,jdbcType=VARCHAR}, #{ext4,jdbcType=VARCHAR}, #{ext5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsInfo" >
+    insert into t_gds_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="snapId != null" >
+        SNAP_ID,
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME,
+      </if>
+      <if test="gdsSubHead != null" >
+        GDS_SUB_HEAD,
+      </if>
+      <if test="guidePrice != null" >
+        GUIDE_PRICE,
+      </if>
+      <if test="gdsDesc != null" >
+        GDS_DESC,
+      </if>
+      <if test="gdsPartlist != null" >
+        GDS_PARTLIST,
+      </if>
+      <if test="gdsTypeId != null" >
+        GDS_TYPE_ID,
+      </if>
+      <if test="gdsStatus != null" >
+        GDS_STATUS,
+      </if>
+      <if test="gdsApprove != null" >
+        GDS_APPROVE,
+      </if>
+      <if test="url != null" >
+        URL,
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="taxId != null" >
+        TAX_ID,
+      </if>
+      <if test="gdsLabel != null" >
+        GDS_LABEL,
+      </if>
+      <if test="putonTime != null" >
+        PUTON_TIME,
+      </if>
+      <if test="putoffTime != null" >
+        PUTOFF_TIME,
+      </if>
+      <if test="postTime != null" >
+        POST_TIME,
+      </if>
+      <if test="ifSendscore != null" >
+        IF_SENDSCORE,
+      </if>
+      <if test="ifSalealone != null" >
+        IF_SALEALONE,
+      </if>
+      <if test="ifRecomm != null" >
+        IF_RECOMM,
+      </if>
+      <if test="ifNew != null" >
+        IF_NEW,
+      </if>
+      <if test="ifStocknotice != null" >
+        IF_STOCKNOTICE,
+      </if>
+      <if test="ifFree != null" >
+        IF_FREE,
+      </if>
+      <if test="ifDisperseStock != null" >
+        IF_DISPERSE_STOCK,
+      </if>
+      <if test="ifLadderPrice != null" >
+        IF_LADDER_PRICE,
+      </if>
+      <if test="ifEntityCode != null" >
+        IF_ENTITY_CODE,
+      </if>
+      <if test="ifSeniorPrice != null" >
+        IF_SENIOR_PRICE,
+      </if>
+      <if test="ifScoreGds != null" >
+        IF_SCORE_GDS,
+      </if>
+      <if test="shipTemplateId != null" >
+        SHIP_TEMPLATE_ID,
+      </if>
+      <if test="supplierId != null" >
+        SUPPLIER_ID,
+      </if>
+      <if test="platCatgs != null" >
+        PLAT_CATGS,
+      </if>
+      <if test="shopCatgs != null" >
+        SHOP_CATGS,
+      </if>
+      <if test="mainCatgs != null" >
+        MAIN_CATGS,
+      </if>
+      <if test="catlogId != null" >
+        CATLOG_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="changePropStr != null" >
+        CHANGE_PROP_STR,
+      </if>
+      <if test="isbn != null" >
+        ISBN,
+      </if>
+      <if test="ext1 != null" >
+        EXT1,
+      </if>
+      <if test="ext2 != null" >
+        EXT2,
+      </if>
+      <if test="ext3 != null" >
+        EXT3,
+      </if>
+      <if test="ext4 != null" >
+        EXT4,
+      </if>
+      <if test="ext5 != null" >
+        EXT5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="snapId != null" >
+        #{snapId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsName != null" >
+        #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsSubHead != null" >
+        #{gdsSubHead,jdbcType=VARCHAR},
+      </if>
+      <if test="guidePrice != null" >
+        #{guidePrice,jdbcType=INTEGER},
+      </if>
+      <if test="gdsDesc != null" >
+        #{gdsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsPartlist != null" >
+        #{gdsPartlist,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsTypeId != null" >
+        #{gdsTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsStatus != null" >
+        #{gdsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsApprove != null" >
+        #{gdsApprove,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="taxId != null" >
+        #{taxId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsLabel != null" >
+        #{gdsLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="putonTime != null" >
+        #{putonTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="putoffTime != null" >
+        #{putoffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postTime != null" >
+        #{postTime,jdbcType=INTEGER},
+      </if>
+      <if test="ifSendscore != null" >
+        #{ifSendscore,jdbcType=VARCHAR},
+      </if>
+      <if test="ifSalealone != null" >
+        #{ifSalealone,jdbcType=VARCHAR},
+      </if>
+      <if test="ifRecomm != null" >
+        #{ifRecomm,jdbcType=VARCHAR},
+      </if>
+      <if test="ifNew != null" >
+        #{ifNew,jdbcType=VARCHAR},
+      </if>
+      <if test="ifStocknotice != null" >
+        #{ifStocknotice,jdbcType=VARCHAR},
+      </if>
+      <if test="ifFree != null" >
+        #{ifFree,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDisperseStock != null" >
+        #{ifDisperseStock,jdbcType=VARCHAR},
+      </if>
+      <if test="ifLadderPrice != null" >
+        #{ifLadderPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="ifEntityCode != null" >
+        #{ifEntityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ifSeniorPrice != null" >
+        #{ifSeniorPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="ifScoreGds != null" >
+        #{ifScoreGds,jdbcType=VARCHAR},
+      </if>
+      <if test="shipTemplateId != null" >
+        #{shipTemplateId,jdbcType=INTEGER},
+      </if>
+      <if test="supplierId != null" >
+        #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="platCatgs != null" >
+        #{platCatgs,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCatgs != null" >
+        #{shopCatgs,jdbcType=VARCHAR},
+      </if>
+      <if test="mainCatgs != null" >
+        #{mainCatgs,jdbcType=VARCHAR},
+      </if>
+      <if test="catlogId != null" >
+        #{catlogId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="changePropStr != null" >
+        #{changePropStr,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null" >
+        #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        #{ext3,jdbcType=VARCHAR},
+      </if>
+      <if test="ext4 != null" >
+        #{ext4,jdbcType=VARCHAR},
+      </if>
+      <if test="ext5 != null" >
+        #{ext5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsInfoCriteria" resultType="java.lang.Long" >
+    select count(*) from t_gds_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_gds_info
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.snapId != null" >
+        SNAP_ID = #{record.snapId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsName != null" >
+        GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsSubHead != null" >
+        GDS_SUB_HEAD = #{record.gdsSubHead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.guidePrice != null" >
+        GUIDE_PRICE = #{record.guidePrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsDesc != null" >
+        GDS_DESC = #{record.gdsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsPartlist != null" >
+        GDS_PARTLIST = #{record.gdsPartlist,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsTypeId != null" >
+        GDS_TYPE_ID = #{record.gdsTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsStatus != null" >
+        GDS_STATUS = #{record.gdsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsApprove != null" >
+        GDS_APPROVE = #{record.gdsApprove,jdbcType=VARCHAR},
+      </if>
+      <if test="record.url != null" >
+        URL = #{record.url,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sortNo != null" >
+        SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.taxId != null" >
+        TAX_ID = #{record.taxId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsLabel != null" >
+        GDS_LABEL = #{record.gdsLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.putonTime != null" >
+        PUTON_TIME = #{record.putonTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.putoffTime != null" >
+        PUTOFF_TIME = #{record.putoffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.postTime != null" >
+        POST_TIME = #{record.postTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.ifSendscore != null" >
+        IF_SENDSCORE = #{record.ifSendscore,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifSalealone != null" >
+        IF_SALEALONE = #{record.ifSalealone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifRecomm != null" >
+        IF_RECOMM = #{record.ifRecomm,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifNew != null" >
+        IF_NEW = #{record.ifNew,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifStocknotice != null" >
+        IF_STOCKNOTICE = #{record.ifStocknotice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifFree != null" >
+        IF_FREE = #{record.ifFree,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifDisperseStock != null" >
+        IF_DISPERSE_STOCK = #{record.ifDisperseStock,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifLadderPrice != null" >
+        IF_LADDER_PRICE = #{record.ifLadderPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifEntityCode != null" >
+        IF_ENTITY_CODE = #{record.ifEntityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifSeniorPrice != null" >
+        IF_SENIOR_PRICE = #{record.ifSeniorPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifScoreGds != null" >
+        IF_SCORE_GDS = #{record.ifScoreGds,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shipTemplateId != null" >
+        SHIP_TEMPLATE_ID = #{record.shipTemplateId,jdbcType=INTEGER},
+      </if>
+      <if test="record.supplierId != null" >
+        SUPPLIER_ID = #{record.supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="record.platCatgs != null" >
+        PLAT_CATGS = #{record.platCatgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopCatgs != null" >
+        SHOP_CATGS = #{record.shopCatgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mainCatgs != null" >
+        MAIN_CATGS = #{record.mainCatgs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catlogId != null" >
+        CATLOG_ID = #{record.catlogId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.changePropStr != null" >
+        CHANGE_PROP_STR = #{record.changePropStr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isbn != null" >
+        ISBN = #{record.isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext1 != null" >
+        EXT1 = #{record.ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext2 != null" >
+        EXT2 = #{record.ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext3 != null" >
+        EXT3 = #{record.ext3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext4 != null" >
+        EXT4 = #{record.ext4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ext5 != null" >
+        EXT5 = #{record.ext5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_gds_info
+    set ID = #{record.id,jdbcType=INTEGER},
+      SNAP_ID = #{record.snapId,jdbcType=INTEGER},
+      GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      GDS_SUB_HEAD = #{record.gdsSubHead,jdbcType=VARCHAR},
+      GUIDE_PRICE = #{record.guidePrice,jdbcType=INTEGER},
+      GDS_DESC = #{record.gdsDesc,jdbcType=VARCHAR},
+      GDS_PARTLIST = #{record.gdsPartlist,jdbcType=VARCHAR},
+      GDS_TYPE_ID = #{record.gdsTypeId,jdbcType=INTEGER},
+      GDS_STATUS = #{record.gdsStatus,jdbcType=VARCHAR},
+      GDS_APPROVE = #{record.gdsApprove,jdbcType=VARCHAR},
+      URL = #{record.url,jdbcType=VARCHAR},
+      SORT_NO = #{record.sortNo,jdbcType=INTEGER},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      TAX_ID = #{record.taxId,jdbcType=INTEGER},
+      GDS_LABEL = #{record.gdsLabel,jdbcType=VARCHAR},
+      PUTON_TIME = #{record.putonTime,jdbcType=TIMESTAMP},
+      PUTOFF_TIME = #{record.putoffTime,jdbcType=TIMESTAMP},
+      POST_TIME = #{record.postTime,jdbcType=INTEGER},
+      IF_SENDSCORE = #{record.ifSendscore,jdbcType=VARCHAR},
+      IF_SALEALONE = #{record.ifSalealone,jdbcType=VARCHAR},
+      IF_RECOMM = #{record.ifRecomm,jdbcType=VARCHAR},
+      IF_NEW = #{record.ifNew,jdbcType=VARCHAR},
+      IF_STOCKNOTICE = #{record.ifStocknotice,jdbcType=VARCHAR},
+      IF_FREE = #{record.ifFree,jdbcType=VARCHAR},
+      IF_DISPERSE_STOCK = #{record.ifDisperseStock,jdbcType=VARCHAR},
+      IF_LADDER_PRICE = #{record.ifLadderPrice,jdbcType=VARCHAR},
+      IF_ENTITY_CODE = #{record.ifEntityCode,jdbcType=VARCHAR},
+      IF_SENIOR_PRICE = #{record.ifSeniorPrice,jdbcType=VARCHAR},
+      IF_SCORE_GDS = #{record.ifScoreGds,jdbcType=VARCHAR},
+      SHIP_TEMPLATE_ID = #{record.shipTemplateId,jdbcType=INTEGER},
+      SUPPLIER_ID = #{record.supplierId,jdbcType=INTEGER},
+      PLAT_CATGS = #{record.platCatgs,jdbcType=VARCHAR},
+      SHOP_CATGS = #{record.shopCatgs,jdbcType=VARCHAR},
+      MAIN_CATGS = #{record.mainCatgs,jdbcType=VARCHAR},
+      CATLOG_ID = #{record.catlogId,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      CHANGE_PROP_STR = #{record.changePropStr,jdbcType=VARCHAR},
+      ISBN = #{record.isbn,jdbcType=VARCHAR},
+      EXT1 = #{record.ext1,jdbcType=VARCHAR},
+      EXT2 = #{record.ext2,jdbcType=VARCHAR},
+      EXT3 = #{record.ext3,jdbcType=VARCHAR},
+      EXT4 = #{record.ext4,jdbcType=VARCHAR},
+      EXT5 = #{record.ext5,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsInfo" >
+    update t_gds_info
+    <set >
+      <if test="snapId != null" >
+        SNAP_ID = #{snapId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME = #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsSubHead != null" >
+        GDS_SUB_HEAD = #{gdsSubHead,jdbcType=VARCHAR},
+      </if>
+      <if test="guidePrice != null" >
+        GUIDE_PRICE = #{guidePrice,jdbcType=INTEGER},
+      </if>
+      <if test="gdsDesc != null" >
+        GDS_DESC = #{gdsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsPartlist != null" >
+        GDS_PARTLIST = #{gdsPartlist,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsTypeId != null" >
+        GDS_TYPE_ID = #{gdsTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsStatus != null" >
+        GDS_STATUS = #{gdsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsApprove != null" >
+        GDS_APPROVE = #{gdsApprove,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        URL = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="sortNo != null" >
+        SORT_NO = #{sortNo,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="taxId != null" >
+        TAX_ID = #{taxId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsLabel != null" >
+        GDS_LABEL = #{gdsLabel,jdbcType=VARCHAR},
+      </if>
+      <if test="putonTime != null" >
+        PUTON_TIME = #{putonTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="putoffTime != null" >
+        PUTOFF_TIME = #{putoffTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="postTime != null" >
+        POST_TIME = #{postTime,jdbcType=INTEGER},
+      </if>
+      <if test="ifSendscore != null" >
+        IF_SENDSCORE = #{ifSendscore,jdbcType=VARCHAR},
+      </if>
+      <if test="ifSalealone != null" >
+        IF_SALEALONE = #{ifSalealone,jdbcType=VARCHAR},
+      </if>
+      <if test="ifRecomm != null" >
+        IF_RECOMM = #{ifRecomm,jdbcType=VARCHAR},
+      </if>
+      <if test="ifNew != null" >
+        IF_NEW = #{ifNew,jdbcType=VARCHAR},
+      </if>
+      <if test="ifStocknotice != null" >
+        IF_STOCKNOTICE = #{ifStocknotice,jdbcType=VARCHAR},
+      </if>
+      <if test="ifFree != null" >
+        IF_FREE = #{ifFree,jdbcType=VARCHAR},
+      </if>
+      <if test="ifDisperseStock != null" >
+        IF_DISPERSE_STOCK = #{ifDisperseStock,jdbcType=VARCHAR},
+      </if>
+      <if test="ifLadderPrice != null" >
+        IF_LADDER_PRICE = #{ifLadderPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="ifEntityCode != null" >
+        IF_ENTITY_CODE = #{ifEntityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="ifSeniorPrice != null" >
+        IF_SENIOR_PRICE = #{ifSeniorPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="ifScoreGds != null" >
+        IF_SCORE_GDS = #{ifScoreGds,jdbcType=VARCHAR},
+      </if>
+      <if test="shipTemplateId != null" >
+        SHIP_TEMPLATE_ID = #{shipTemplateId,jdbcType=INTEGER},
+      </if>
+      <if test="supplierId != null" >
+        SUPPLIER_ID = #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="platCatgs != null" >
+        PLAT_CATGS = #{platCatgs,jdbcType=VARCHAR},
+      </if>
+      <if test="shopCatgs != null" >
+        SHOP_CATGS = #{shopCatgs,jdbcType=VARCHAR},
+      </if>
+      <if test="mainCatgs != null" >
+        MAIN_CATGS = #{mainCatgs,jdbcType=VARCHAR},
+      </if>
+      <if test="catlogId != null" >
+        CATLOG_ID = #{catlogId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="changePropStr != null" >
+        CHANGE_PROP_STR = #{changePropStr,jdbcType=VARCHAR},
+      </if>
+      <if test="isbn != null" >
+        ISBN = #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="ext1 != null" >
+        EXT1 = #{ext1,jdbcType=VARCHAR},
+      </if>
+      <if test="ext2 != null" >
+        EXT2 = #{ext2,jdbcType=VARCHAR},
+      </if>
+      <if test="ext3 != null" >
+        EXT3 = #{ext3,jdbcType=VARCHAR},
+      </if>
+      <if test="ext4 != null" >
+        EXT4 = #{ext4,jdbcType=VARCHAR},
+      </if>
+      <if test="ext5 != null" >
+        EXT5 = #{ext5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.goods.dao.model.GdsInfo" >
+    update t_gds_info
+    set SNAP_ID = #{snapId,jdbcType=INTEGER},
+      GDS_NAME = #{gdsName,jdbcType=VARCHAR},
+      GDS_SUB_HEAD = #{gdsSubHead,jdbcType=VARCHAR},
+      GUIDE_PRICE = #{guidePrice,jdbcType=INTEGER},
+      GDS_DESC = #{gdsDesc,jdbcType=VARCHAR},
+      GDS_PARTLIST = #{gdsPartlist,jdbcType=VARCHAR},
+      GDS_TYPE_ID = #{gdsTypeId,jdbcType=INTEGER},
+      GDS_STATUS = #{gdsStatus,jdbcType=VARCHAR},
+      GDS_APPROVE = #{gdsApprove,jdbcType=VARCHAR},
+      URL = #{url,jdbcType=VARCHAR},
+      SORT_NO = #{sortNo,jdbcType=INTEGER},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      TAX_ID = #{taxId,jdbcType=INTEGER},
+      GDS_LABEL = #{gdsLabel,jdbcType=VARCHAR},
+      PUTON_TIME = #{putonTime,jdbcType=TIMESTAMP},
+      PUTOFF_TIME = #{putoffTime,jdbcType=TIMESTAMP},
+      POST_TIME = #{postTime,jdbcType=INTEGER},
+      IF_SENDSCORE = #{ifSendscore,jdbcType=VARCHAR},
+      IF_SALEALONE = #{ifSalealone,jdbcType=VARCHAR},
+      IF_RECOMM = #{ifRecomm,jdbcType=VARCHAR},
+      IF_NEW = #{ifNew,jdbcType=VARCHAR},
+      IF_STOCKNOTICE = #{ifStocknotice,jdbcType=VARCHAR},
+      IF_FREE = #{ifFree,jdbcType=VARCHAR},
+      IF_DISPERSE_STOCK = #{ifDisperseStock,jdbcType=VARCHAR},
+      IF_LADDER_PRICE = #{ifLadderPrice,jdbcType=VARCHAR},
+      IF_ENTITY_CODE = #{ifEntityCode,jdbcType=VARCHAR},
+      IF_SENIOR_PRICE = #{ifSeniorPrice,jdbcType=VARCHAR},
+      IF_SCORE_GDS = #{ifScoreGds,jdbcType=VARCHAR},
+      SHIP_TEMPLATE_ID = #{shipTemplateId,jdbcType=INTEGER},
+      SUPPLIER_ID = #{supplierId,jdbcType=INTEGER},
+      PLAT_CATGS = #{platCatgs,jdbcType=VARCHAR},
+      SHOP_CATGS = #{shopCatgs,jdbcType=VARCHAR},
+      MAIN_CATGS = #{mainCatgs,jdbcType=VARCHAR},
+      CATLOG_ID = #{catlogId,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      CHANGE_PROP_STR = #{changePropStr,jdbcType=VARCHAR},
+      ISBN = #{isbn,jdbcType=VARCHAR},
+      EXT1 = #{ext1,jdbcType=VARCHAR},
+      EXT2 = #{ext2,jdbcType=VARCHAR},
+      EXT3 = #{ext3,jdbcType=VARCHAR},
+      EXT4 = #{ext4,jdbcType=VARCHAR},
+      EXT5 = #{ext5,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

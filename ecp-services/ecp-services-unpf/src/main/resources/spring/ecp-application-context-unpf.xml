@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	<bean id="unpfOrdMainSV" class="com.zengshi.ecp.unpf.service.busi.order.impl.UnpfOrdMainSVImpl"></bean>
+	<bean id="unpfOrdSubSV" class="com.zengshi.ecp.unpf.service.busi.order.impl.UnpfOrdSubSVImpl"></bean>
+	<bean id="unpfOrdDeliverBatchSV" class="com.zengshi.ecp.unpf.service.busi.order.impl.UnpfOrdDeliverBatchSVImpl"></bean>
+	<bean id="unpfOrdDeliverDetailsSV" class="com.zengshi.ecp.unpf.service.busi.order.impl.UnpfOrdDeliverDetailsSVImpl"></bean>
+	<bean id="unpfDeliverSV" class="com.zengshi.ecp.unpf.service.busi.order.impl.UnpfDeliverSVImpl"></bean>
+    <bean id="unpfShopAuthSV" class="com.zengshi.ecp.unpf.service.busi.auth.impl.UnpfShopAuthSVImpl" />
+    <bean id="unpfTokenSV" class="com.zengshi.ecp.unpf.service.busi.token.impl.UnpfTokenSVImpl" />
+    <bean id="unpfCategorySV" class="com.zengshi.ecp.unpf.service.common.impl.UnpfCategorySVImpl" />
+	<bean id="unpfMsgSycSV" class="com.zengshi.ecp.unpf.service.busi.msgSyc.impl.UnpfMsgSycSVImpl" />
+	<bean id="unpfCatgSV" class="com.zengshi.ecp.unpf.service.busi.catg.impl.UnpfCatgSVImpl" />
+	<bean id="unpfGoodSendSV" class="com.zengshi.ecp.unpf.service.busi.good.send.impl.UnpfGoodSendSVImpl" />
+	<bean id="unpfSendLogSV" class="com.zengshi.ecp.unpf.service.busi.good.send.impl.UnpfSendLogSVImpl" />
+	<bean id="unpfShopAuthTopicSV" class="com.zengshi.ecp.unpf.service.busi.good.send.impl.UnpfShopAuthTopicSVImpl" />
+	<bean id="unpfGdsUnsendSV" class="com.zengshi.ecp.unpf.service.busi.good.send.impl.UnpfGdsUnsendSVImpl" />
+	<bean id="unpfGdsUnsendHisSV" class="com.zengshi.ecp.unpf.service.busi.good.send.impl.UnpfGdsUnsendHisSVImpl" />
+	<bean id="unpfShopExpressSV" class="com.zengshi.ecp.unpf.service.busi.order.impl.UnpfShopExpressSVImpl" />
+	<bean class="com.zengshi.ecp.frame.bean.BeanSet">
+		<constructor-arg>
+			<set>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="interfaceClass" value="com.zengshi.ecp.unpf.service.busi.order.interfaces.IUnpfTmOrdMainSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.unpf.service.busi.order.impl.UnpfTmOrdMainSVImpl"></property>
+				</bean>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="interfaceClass" value="com.zengshi.ecp.unpf.service.busi.order.interfaces.IUnpfErpOrderSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.unpf.service.busi.order.impl.UnpfErpOrderSVImpl"></property>
+				</bean>
+			</set>
+		</constructor-arg>
+	</bean>
+	<bean id="unpfShopCfgSV" class="com.zengshi.ecp.unpf.service.common.impl.UnpfShopCfgSVImpl" />
+	<bean id="unpfOrdLogSV" class="com.zengshi.ecp.unpf.service.busi.order.impl.UnpfOrdLogSVImpl" />
+	<bean id="unpfStockCatgSV" class="com.zengshi.ecp.unpf.service.busi.catg.impl.UnpfStockCatgSVImpl" />
+	<bean id="unpfShopStockLimitSV" class="com.zengshi.ecp.unpf.service.busi.catg.impl.UnpfShopStockLimitSVImpl" />
+	<bean id="youzanSynOrdersSV" class="com.zengshi.ecp.unpf.service.busi.order.impl.YouzanSynOrdersSVImpl" />
+	<bean id="unpfThingLockSV" class="com.zengshi.ecp.unpf.service.busi.order.impl.UnpfThingLockSVImpl"></bean>
+	<bean id="unpfOrdExportFileSV" class="com.zengshi.ecp.unpf.service.busi.order.impl.UnpfOrdExportFileSVImpl" />
+	<bean id="unpfOrdExportSV" class="com.zengshi.ecp.unpf.service.busi.order.impl.UnpfOrdExportSVImpl"></bean>	
+	<bean id="unpfOrdExportOrdSV" class="com.zengshi.ecp.unpf.facade.impl.eventual.UnpfOrdExportOrdSVImpl"></bean>	
+	
+</beans>

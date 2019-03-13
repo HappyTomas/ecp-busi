@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+#parse("/sys/sys_head.vm")
+
+</head>
+<body>
+	
+	$screen_content
+	
+	#parse("/main/main-bottom-navbar.vm")
+
+</body>
+</html>

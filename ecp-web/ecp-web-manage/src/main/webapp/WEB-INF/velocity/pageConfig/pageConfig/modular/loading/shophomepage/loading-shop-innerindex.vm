@@ -1,0 +1,66 @@
+#set($ifShowSale = "")##销量
+#set($ifShowprice = "")##价格
+#set($ifShowtime = "")##时间
+#set($showWay = "")##展示方式.默认给他展示四个
+#set($firstSort = "")##默认的第一个排序。这个与属性无关
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+#foreach($prop in $crossItemObj)
+	#if($!{prop.propId}=="1012")##搜索类型
+    	##判断是否是发布页面
+    	#if($!{pagePub})
+    		#set($propObj = $!{prop.itemPropValuePubRespDTOList})
+    	#else
+    		#set($propObj = $!{prop.itemPropValuePreRespDTOList})
+    	#end
+    	#foreach($!{propMulti} in $propObj)
+    		##  true  表示显示 这个propMulti内循环的propValue 1：销量 ，2：价格 3：时间
+    		#if($!{propMulti.propValueId}=="1" && $!{propMulti.propValue}=="1")
+				##销量  
+    			#set($ifShowSale = "true")
+				#if($firstSort == "")
+					#set($firstSort = "sales")
+				#end
+    		#elseif($!{propMulti.propValueId}=="2"  && $!{propMulti.propValue}=="1")
+				##价格
+    			#set($ifShowprice = "true")
+				#if($firstSort == "")
+					#set($firstSort = "discountPrice")
+				#end
+    		#elseif($!{propMulti.propValueId}=="3"  && $!{propMulti.propValue}=="1")
+				##时间
+    			#set($ifShowtime = "true")
+				#if($firstSort == "")
+					#set($firstSort = "newProductTime")
+				#end
+    		#end
+    	#end
+	#elseif($!{prop.propId}=="1010")##展示方式。表示一行展示多少个商品
+		## 1：表示一行展示1个宝贝。
+		## 2：表示一行展示2个宝贝。
+		##     ...
+		## 5：表示一行展示5个宝贝 .
+		#set($showWay = "$!{prop.propValue}")
+	#end
+#end
+##组件请求参数
+#set($reqAttr = "data-firstSort='$firstSort' data-ifShowSale='$ifShowSale' data-ifShowprice='$ifShowprice' data-ifShowtime='$ifShowtime' data-showWay='$showWay'")
+<div class="shopTpl-glist ecp-component $!{componentMethod}" $reqAttr data-shop-id="${pageInfo.shopId}" data-component-method="$!{componentMethod}" data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}">
+	<div class="modular-body">
+	    #if(!$!{componentMethod} || '' == $!{componentMethod})
+			##判断是否已经配置了模板相应的属性
+		   	#parse("/pageConfig/pageConfig/edit/nodata/modular-nodata.vm")
+		#end
+	</div>
+</div>

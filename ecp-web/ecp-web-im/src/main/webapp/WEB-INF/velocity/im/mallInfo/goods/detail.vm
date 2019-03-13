@@ -1,0 +1,42 @@
+  <div class="pro-detail">
+        <div class="pic">
+			  #if($joinModel)
+				<a href="#siteInfo(1)${gdsDetailInfo.url}"  target="_blank">
+			    <img src="#genImageUrl($!{gdsDetailInfo.mainPic.mediaUuid},'160x160!')" alt=""/>
+                </a>
+			  #else
+				 <a href="#siteInfo(1)${gdsDetailInfo.url}"  target="_blank">
+                 <img src="#genImageUrl($!{gdsDetailInfo.mainPic.mediaUuid},'160x160!')" alt=""/>
+			     </a>
+			  #end
+        </div>
+		<div class="item">
+			
+			  #if($joinModel)
+				<a class="name" target="_blank" href="#siteInfo(1)${gdsDetailInfo.url}">
+			     $!{gdsDetailInfo.gdsName}
+                </a>
+			  #else
+				 <a class="name" target="_blank" href="#siteInfo(1)${gdsDetailInfo.url}">
+				  $!{gdsDetailInfo.gdsName}
+                 </a>
+			  #end
+            
+        </div>
+		 <table class="pro-tb">
+		   #if($!{gdsDetailInfo.skuInfo.gdsStatus} == '11')
+			#parse("/im/mallInfo/goods/gdsdetail-gdsonsale.vm")
+		   #else
+			 <tr>
+               <th colspan="2" style="text-align:center">
+                    #if($!{gdsDetailInfo.skuInfo.gdsStatus}=='22')
+                		<strong>该商品已下架!</strong>
+                	#elseif($!{gdsDetailInfo.skuInfo.gdsStatus}=='0')
+                		<strong>该商品未上架!</strong>
+                	#end
+               </th>
+            </tr>
+		
+		#end
+        </table>
+ </div>

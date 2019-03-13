@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>#siteName('')</title>
+	#parse("/sys/sys_param.vm")
+	#parse("/sys/sys_head.vm")
+	<link rel="stylesheet" type="text/css" href="$CSS_PATH/index.css"/>
+	<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+</head>
+<body>
+ <div class="loading" style="display:none"></div>
+ <div class="loading-small" style="display:none"></div>
+<!--右侧的楼层导航-->
+#parse("/main/main-sidebar.vm")
+
+<!--顶部的广告
+<div class="top-ad ecp-component homepage-ad-middle" data-status="1" data-place-size="1" data-place-id="3" data-place-width="1263" data-place-height="78" data-module="ecp-component/image/image-middle">
+    <a href="#"> <img src="../images/top-ad.jpg"></a>
+    <i class="micon ad-close"></i>
+</div>
+-->
+
+<!--顶部 begin-->
+#parse("/main/main-site-nav.vm")
+<!--顶部 end-->
+
+<!--内容 begin
+<div id="content_div" class="clearfix">
+-->
+<div id="webBody">
+	$screen_content
+</div>
+<!--内容 end-->
+
+<!--快速导航 begin-->
+#parse("/main/main-content-bottom.vm")
+<!--快速导航 end-->
+
+<!--底部 begin-->
+#parse("/main/main-bottom.vm")
+<!--底部 end-->
+
+   
+</body>
+</html>

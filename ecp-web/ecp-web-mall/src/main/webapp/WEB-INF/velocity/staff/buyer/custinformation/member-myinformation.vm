@@ -1,0 +1,88 @@
+#parse("sys/sys_param.vm")
+#parse("module/mod-date.vm")
+#parse("/module/mod-form.vm")
+  <script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+  <script type="text/javascript" src="$!{BUSIJS_PATH}/staff/buyer-information.js?version=$!{JS_VERSION}" ></script>
+  <link rel="stylesheet" href="$!{CSS_PATH}/default/staff/information/member.css" />
+      <script>
+        $(function(){
+            U.tab('#teamTab','#teamTabc');
+        })
+    </script>
+	<style >
+	.head-photo {
+        width: 300px;
+        height: 270px;
+        border: 1px solid #ddd;
+        margin-top: 10px;
+        padding: 10px;
+        text-align: center;
+     }
+    </style>
+<!--主要内容 begin-->
+            <div id="main">
+                <!--tab-->
+                <ul class="sptj-tit" id="teamTab">
+                    <li><a href="#information">基本资料</a></li>
+                    #set($ifShopShow=${paramTools.getSysConfigCode("SHOP_SHOW_LOCK")})
+				    #if($ifShopShow==1)
+                    <li><a href="#aptitude">企业资质</a></li>
+                    #end
+                    <li><a href="#grade">我的级别</a></li>
+                    <li><a href="#head">头像照片</a></li>
+                </ul>
+                <div id="teamTabc">
+                <div class="sptj-box information-form clearfix">
+                    <!--基本资料-->
+					<div id="information">
+                    #parse("/staff/buyer/custinformation/custinfo.vm")
+                    </div>
+                </div>
+                #if($ifShopShow==1)
+                <div class="sptj-box information-form clearfix">
+                	<!--企业资质 -->
+              		<div id="aptitude">
+              		#custInfo()
+              		#if($!{cust.custType}=='10' &&((! $!{custAuthstr.staffId}) || $!{custAuthstr.checkStatus}=='3'))
+                  		#parse("/staff/buyer/custinformation/companyinfo.vm")
+                  	#elseif($!{cust.custType}=='10' && $!{custAuthstr.checkStatus}=='1')
+                  		
+                  		#parse("/staff/buyer/custinformation/checkcompanyinfo.vm")
+                  	 #else
+                  	 	#parse("/staff/buyer/custinformation/uncheckcompanyinfo.vm")
+                  	 #end
+                    </div>
+                </div>
+                #end
+                <div class="sptj-box information-form clearfix">
+                	<!--我的级别-->
+                <div class=" " id="grade">
+                 #parse("/staff/buyer/custinformation/custlevel.vm")
+                </div>
+                </div>
+                <div class="sptj-box information-form clearfix">
+                <!--头像照片-->
+                <div class="" id="head">
+					   <div id="uploadFileButton" class="btn btn-primary">
+						<i class="icon-upload-alt">
+                        </i>
+						文件上传
+                     </div>
+                    <div class="head-photo">
+							#custInfo()
+					<input  id="staffId" name="staffId" type="hidden" value="$!{cust.staffId}" />
+						#if(${custInfo.custPic})
+                      
+						<img src="	#genImageUrl(${custInfo.custPic},'220x220')" id="iconimage" style="width:220px;height:220px;"/>
+							#else
+								  <img src="../images/mb-defuser.png" id="iconimage" style="width:220px;height:220px;"/>
+						#end
+						<div id="uploadify-queue">
+                        </div>
+                    </div>
+				  
+                    <!--<button type="button" class="btn mt10" id="saveIcon">上传</button>-->
+                </div>
+                </div>
+                </div>
+            </div>

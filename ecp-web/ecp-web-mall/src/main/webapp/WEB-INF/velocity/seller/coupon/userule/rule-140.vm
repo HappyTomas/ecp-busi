@@ -1,0 +1,37 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/userule/rule-140.js?version=$!{JS_VERSION}" ></script>
+				<form id="useForm140" rule-data="140" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action=""  >
+					 <div class="row-fluid">
+                        <div class="span12">
+                            <div class="control-group">
+                                <label class="control-label">满减限制：</label>
+                                <div class="controls">
+                                    <div>
+                                        <label class="label-ck"><input type="radio" data-id="amount" name='fullLimitVO.type' checked value="1" #if ($!{doAction}=='view') disabled #end/>满</label>
+                                        <input type="text" class="input-large number" placeholder="满多少元"  maxlength="10" id="sumLimit" name="fullLimitVO.sumLimit">
+                                        <span class="help-inline">元使用</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                     <div class="row-fluid">
+                        <div class="span12">
+                            <div class="control-group">
+                                <div class="controls">
+                                  	<div>
+                                        <label class="label-ck"><input type="radio" name='fullLimitVO.type' data-id="sumLimit" value="2" #if ($!{doAction}=='view') disabled #end/>满</label>
+                                        <input type="text" class="input-large number" placeholder="满多少数量"  maxlength="10" id="amount" name="fullLimitVO.amount">
+                                        <span class="help-inline">量使用</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</form>
+			 
+			   
+		    
+			 
+				
+				
+				

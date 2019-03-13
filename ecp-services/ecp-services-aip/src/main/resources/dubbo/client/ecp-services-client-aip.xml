@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://code.alibabatech.com/schema/dubbo  
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+	">  
+
+    <dubbo:reference id="aipDemoRSV" interface="com.zengshi.ecp.aip.dubbo.interfaces.IAipDemoRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aip.dubbo.group}"/>
+	<dubbo:reference id="orderQueryRSV" interface="com.zengshi.ecp.aip.dubbo.interfaces.IOrderQueryRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aip.dubbo.group}"/>
+	<dubbo:reference id="abcPayRSV" interface="com.zengshi.ecp.aip.dubbo.interfaces.IABCPayRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aip.dubbo.group}"/>
+	<dubbo:reference id="expressRSV" interface="com.zengshi.ecp.aip.dubbo.interfaces.IExpressRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${aip.dubbo.group}"/>
+</beans>  

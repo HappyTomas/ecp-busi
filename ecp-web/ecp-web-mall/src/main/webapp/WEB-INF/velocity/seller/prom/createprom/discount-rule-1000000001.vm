@@ -1,0 +1,37 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/createprom/discount-rule-1000000001.js?version=$!{JS_VERSION}" ></script>
+			<div class="formBox">
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					   <div class="row-fluid" >
+                                <div class="span8">
+                                    <div class="control-group">
+                                        	<div class="controls">
+                                                <div class="alert sel-alert" style="margin-top: 15px;margin-bottom: 0">
+                                                    <span class="arrow"></span>
+                                                	 在此处指定用户的购物车中必须存在的项目数量以及其中免费项目的数量。
+                                                  	在典型的“买一送一”促销中，符合条件的数量是 2，而免费数是 1.
+                                                </div>
+                                           </div>
+                                       </div>
+                                    </div>
+                            	</div>
+			       <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">购买数量：</label>
+							<div class="controls">
+								<input type="text"  class="input-large required number " id="buyX" name="discountMap['buyX']" placeholder="请输入购买数量" maxlength="12" value="$!{promVO.discountMap.buyX}"  />
+							<span class="alert sel-alert">要符合此促销的条件，用户的购物车中必须具有的单位数</span>
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">免费数量：</label>
+							<div class="controls">
+								<input type="text"  class="input-large required number  " id="sendY" name="discountMap['sendY']" maxlength="12"   placeholder="请输入免费数量" value="$!{promVO.discountMap.sendY}"/>
+								<span class="alert sel-alert">免费赠送的单位数。该值必须小于符合条件的数量</span>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			   

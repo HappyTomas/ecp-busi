@@ -1,0 +1,41 @@
+#parse("sys/sys_param.vm")
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        #if($!status =="00")
+            全部订单
+        #elseif($!status =="02")
+            待发货
+        #elseif($!status =="03")
+            待收货
+        #elseif($!status =="04")
+            已收货
+        #elseif($!status =="01")
+            待支付 
+        #else
+            其他
+        #end
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        #if($!status =="00")
+            <a href="$!CONTEXT_PATH/member/index" class="">
+                <i class="public-arrowleft"></i>
+            </a>
+        #else
+            <a href="$!CONTEXT_PATH/order/my" class="">
+                <i class="public-arrowleft"></i>
+            </a>
+        #end
+    </div>
+	
+	#if($!status=="00" || $!status=="01")
+		#if($!switchPayMerge == '1')
+           #set($val = ${paramTools.getSysConfigCode("SWITCH_PAY_MERGE")})
+            #if($val=="1") 
+    			 <div class="am-header-right">
+            		##<label><input type="checkbox" id="allChecked"/>全选</label>
+                    <button class="btn btn-hd" id="mergePay">合并付款</button>
+                 </div>
+            #end
+    	#end  
+	#end 
+</header>

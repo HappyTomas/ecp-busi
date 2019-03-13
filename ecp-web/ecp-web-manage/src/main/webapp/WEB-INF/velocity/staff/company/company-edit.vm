@@ -1,0 +1,349 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/holder/holder.js" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/company/company-edit.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+ <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#entered" aria-controls="home" role="tab" data-toggle="tab">编辑企业资料</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="entered">
+			<div class="formBox row-fluid">
+				<form id="detailInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+				<div class="span12">
+				<div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">企业名称：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level htmlcheck required" name="companyName" placeholder="输入企业名称" value="$!{company.companyName}" maxlength="64" />
+								<input type="hidden"  name="companyId" id="companyId" value="$!{companyId}"/>
+							</div>
+						</div>
+					</div>
+			
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">企业详细地址：</label>
+							<div class="controls">
+									<input type="text" class="input-block-level htmlcheck required" name="companyAdress" placeholder="输入企业地址" value="$!{company.companyAdress}" maxlength="128" />
+							</div>
+						</div>
+				</div>
+				</div>
+				
+				
+					<div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">省份：</label>
+							<div class="controls">
+								<select class="input-block-level jquery-area required" name="provinceCode" id="p-code"  area-type="admin" area-level="province" area-children="city-code" area-defaultvalue="$!{company.provinceCode}"></select>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">地市：</label>
+							<div class="controls">
+								<select class="input-block-level jquery-area required"  name="cityCode" id="city-code" area-type="admin" area-level="city" area-children="county-code" area-defaultvalue="$!{company.cityCode}"></select>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">区县：</label>
+							<div class="controls">
+								<select class="input-block-level jquery-area required"  name="countyCode" id="county-code" area-type="admin" area-level="county" area-children="" area-defaultvalue="$!{company.countyCode}"></select>
+							</div>
+						</div>
+					</div>
+                </div>
+				
+					<div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">企业行业：</label>
+							<div class="controls">
+					         #select('COMPANY_INFO_TRADE','trade',false,$!{company.trade})
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">企业类型：</label>
+							<div class="controls">
+							#select('COMPANY_INFO_TYPE','companyType',false,$!{company.companyType})
+							</div>
+						</div>
+					</div>
+                    </div>
+				
+				<div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">企业人数：</label>
+							<div class="controls">
+								<select name="employeeNum" class="input-block-level required">
+									#listParam('COMPANY_INFO_EMPLOYEE',$!{company.employeeNum})
+                                </select>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">父企业：</label>
+							<div class="controls"> 
+							<select name="parentId" class="input-block-level">
+									<option value="">
+										--请选择--
+                                    </option>
+									#companylist("$!{company.parentId}")
+							</select>
+							</div>
+						</div>
+					</div>
+                </div>
+					<h3 class="heading">企业联系方式</h3>
+			
+				<div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">联系人姓名：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level htmlcheck required" name="linkPersonMsg" id="linkPersonMsg" value="$!{company.linkPersonMsg}"/>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">联系人手机：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level checkPhone required" name="linkPhoneMsg" id="linkPhoneMsg" maxlength="11" value="$!{company.linkPhoneMsg}" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">联系人身份证：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level txtIdCard htmlcheck" name="linkPsnCard" id="linkPsnCard" maxlength="20" value="$!{company.linkPsnCard}"/>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">固话：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level phone htmlcheck" name="linkTelephone" id="linkTelephone" maxlength="16" value="$!{company.linkTelephone}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--<div class="row-fluid formSep">
+					<div class="">
+						<div class="control-group">
+							<label class="control-label">备注</label>
+							<div class="controls">
+								<textarea rows="4" class="input-block-level" name="user.remark"  ></textarea>
+							</div>
+						</div>
+					</div>
+				</div>-->
+				<div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">企业邮箱：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level email htmlcheck" name="companyEmail" id="companyEmail" maxlength="30" value="$!{company.companyEmail}"/>
+							</div>
+						</div>
+					</div>
+						<div class="span4">
+						<div class="control-group">
+							<label class="control-label">企业QQ：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level number htmlcheck" name="companyQq" id="companyQq" maxlength="32" value="$!{company.companyQq}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">企业推广微信号：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level htmlcheck" name="companyWeixin" id="companyWeixin"  maxlength="32" value="$!{company.companyWeixin}"/>
+							</div>
+						</div>
+					</div>
+						<div class="span4">
+						<div class="control-group">
+							<label class="control-label">是否入驻企业：</label>
+							<div class="controls">
+								#select('STAFF_COMPANY_ISENTER','isEnter',true,$!{company.isEnter})
+							</div>
+						</div>
+					</div>
+                </div>
+				<div class="row-fluid formSep">
+					<div class="span8">
+						<div class="control-group">
+							<label class="control-label">备注：</label>
+							<div class="controls">
+								<textarea rows="4" class="input-block-level htmlcheck" name="remark"  >$!{company.remark}</textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="ruzhu" style="display:none;">
+					<h3 class="heading">企业资质：</h3>
+						<div class="row-fluid formSep">
+				
+						<div class="span4">
+						<div class="control-group">
+							<label class="control-label">工商执照号：</label>
+							<div class="controls">
+					           <input type="text" class="input-block-level htmlcheck" name="licenceCode" id="licenceCode" maxlength="20" value="$!{company.licenceCode}" />
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">税务登记号：</label>
+							<div class="controls">
+							<input type="text" class="input-block-level htmlcheck" name="taxCode" id="taxCode"  maxlength="64" value="$!{company.taxCode}"/>
+							</div>
+						</div>
+					</div>
+                </div>
+				<div class="row-fluid formSep">
+						<div class="span4">
+						<div class="control-group">
+							<label class="control-label">组织机构形式：</label>
+							<div class="controls">
+							<input type="text" class="input-block-level htmlcheck" name="organizationForm" id="organizationForm"  maxlength="64" value="$!{company.organizationForm}"/>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">注册资金：</label>
+							<div class="controls">
+							<input type="text" class="input-block-level htmlcheck" name="licenceCapital" id="licenceCapital"  maxlength="10" value="$!{company.licenceCapital}"/>
+							</div>
+						</div>
+					</div>
+                </div>
+				<div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">企业法人姓名：</label>
+							<div class="controls">
+							<input type="text" class="input-block-level htmlcheck" name="legalPerson" id="legalPerson" maxlength="20" value="$!{company.legalPerson}" />
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">企业法人身份证号：</label>
+							<div class="controls">
+							<input type="text" class="input-block-level txtIdCard htmlcheck" name="legalCard" id="legalCard" maxlength="18" value="$!{company.legalCard}"/>
+							</div>
+						</div>
+					</div>
+                </div>
+             	<input type="hidden"  name="licencePath" id="licencePath" value="$!{company.licencePath}"/>
+				<input type="hidden"  name="legalPersonImage" id="legalPersonImage" value="$!{company.legalPersonImage}"/>
+				<input type="hidden" name="taxPath" id="taxPath" value="$!{company.taxPath}"/>
+				</form>
+				
+					<h3 class="heading">上传企业附件</h3>
+						<div class="row-fluid formSep">
+						<div class="span3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">上传工商执照图片</h3>
+						</div>
+						<div class="panel-body">
+	            <div class="thumbnail">
+			    <img data-src="holder.js/300x200?text=图片预览区" src="$!{LicencePath}" alt="" id="imgPreview1" style="width:300px;height:200px;">
+			    <div class="caption">
+				<p>
+					<a id="image1Upload" href="javascript:void(0);" class="btn btn-primary">文件上传</a>
+				</p>
+			   </div>
+		            </div>
+		                </div>	
+						</div>
+					</div>
+					
+					<div class="span3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">上传法人证件图片</h3>
+						</div>
+						<div class="panel-body">
+	            <div class="thumbnail">
+			    <img data-src="holder.js/300x200?text=图片预览区" src="$!{LegalPersonImage}" alt="" id="imgPreview2" style="width:300px;height:200px;">
+			    <div class="caption">
+				<p>
+					<a id="image2Upload" href="javascript:void(0);" class="btn btn-primary">文件上传</a>
+				</p>
+			   </div>
+		            </div>
+		                </div>	
+						</div>
+					</div>
+					 <div class="span3">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<h3 class="panel-title">上传税务附件</h3>
+						</div>
+						<div class="panel-body">
+	            <div class="thumbnail">
+				#if($!{company.taxPath})
+					 <a href="$!{taxPath}" id="fileurl">税务附件</a>
+					 #else
+                          <a href="" id="fileurl"></a>
+					#end
+			    <div class="caption">
+				<p>
+					<a id="fileUpload" href="javascript:void(0);" class="btn btn-primary">文件上传</a>
+				</p>
+			   </div>
+		            </div>
+		                </div>	
+						</div>
+					</div>
+				</div>
+					
+					
+					
+				</div>
+				
+                    </div>
+				<div class="pull-left" style="margin-left:45%">
+					<button type="button" class="btn btn-info" id="btnFormSave" ><i class="icon-ok-sign icon-white"></i> 保	存</button>
+					<button type="button" class="btn " id="btnReturn"><i class="icon-reply icon-white"></i> 返	回</button>
+				</div>
+				</div>
+				
+				
+				<div class="clear"></div>
+			
+			</div>
+	</div>
+    <div role="tabpanel" class="tab-pane" id="profile">
+	
+	</div>
+  </div>
+
+		
+		
+		

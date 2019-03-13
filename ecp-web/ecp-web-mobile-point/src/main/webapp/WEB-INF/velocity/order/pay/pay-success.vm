@@ -1,0 +1,46 @@
+#parse("/module/mod-form.vm")
+#parse("sys/sys_param.vm")
+	<link href="$!{CSS_PATH}/order.css" type="text/css" rel="stylesheet"/>
+	<link href="$!{CSS_PATH}/reset.css" type="text/css" rel="stylesheet"/>
+	<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js"></script>
+
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/pay-success.js?version=$!{JS_VERSION}" ></script>
+
+<body>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        交易详情
+    </div>
+    <div class="am-header-left am-header-nav">
+        <a href="" class="">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content odr-content">
+    <div class="odrBox odrBox-hig">
+        <i class="icon icon-pay-sus"></i>支付成功
+    </div>
+    <div class="odr-box mt0 odr-pad">
+        <div class="bdr-btn ">
+            <div class="odr-details">
+                <p class="or-jge">&yen; ${aiNumber.showMoneyByTwoDecimal("$!{realMoney}")}</p></div>
+        </div>
+        <div class="bdr-btn ptb20 ">
+            <div class="t-dls">系统单号<span>$!{orderId}</span></div>
+            <div class="t-dls">交易时间<span>$!date.format('yyyy-MM-dd HH:mm:ss ',$!{payTime})</span></div>
+            <div class="t-dls">支付方式<span>微信支付</span></div>
+        </div>
+        <!--<div class="ptb20 shopBox">-->
+        <!--<div class="sLogo"><img src="../images/shop-logo.png" alt=""/>人卫商城</div>-->
+        <!--<div class="sGz"><input type="checkbox" class="ui-checkbox3" id="checkbox3" checked/>-->
+        <!--<label for="checkbox3">关注</label></div>-->
+        <!--</div>-->
+    </div>
+    <div class="reg-b-50">
+        <a href="$!CONTEXT_PATH/point/order/my" class="wbtn wbtn-radius">我的订单</a>
+    </div>
+    <div class="zf-company"><img src="$!IMAGE_PATH/wxl.png" alt=""/></div>
+</div>
+
+</body>

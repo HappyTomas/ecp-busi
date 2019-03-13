@@ -1,0 +1,87 @@
+#parse("/module/mod-form.vm")
+	<link rel="stylesheet" href="$CSS_PATH/staff/zTreeStyle/zTreeStyle.css" type="text/css">
+	<script type="text/javascript" src="$RESOURCE_PATH/jquery/ztree/js/jquery.ztree.core-3.5.js"></script>
+	<script type="text/javascript" src="$RESOURCE_PATH/jquery/ztree/js/jquery.ztree.excheck-3.5.js"></script>
+	<script type="text/javascript" src="$RESOURCE_PATH/jquery/ztree/js/jquery.ztree.exedit-3.5.js"></script>
+	<script type="text/javascript" src="$RESOURCE_PATH/jquery/ztree/js/jquery.ztree.exhide-3.5.js"></script>
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/channel/open-channel.js?version=$!{JS_VERSION}" ></script>
+    <style>
+		.well-searchForm{
+		  padding:5px 10px;
+		}
+		.well-searchForm form.form-horizontal .site-sel{
+		  width:180px;
+		}
+		.rk-search{
+		 position:relative;
+		}
+		.rk-search .icon-search{
+		    position: absolute;
+            right: 5px;
+            top: 10px;
+		}
+		.rknav{
+		  width:295px;
+		}
+		.rknav .rk-search input{
+		    width: 100%;
+		}
+		
+	</style>
+    <div class="container-fluid">
+		<div class="well well-searchForm" >
+			<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+				<div class="control-group">
+					<label class="control-label">所属站点：</label>
+					<div class="controls" >
+						<select name="sysSiteIdSearch" class='site-sel' id="siteId">
+							#siteList($!{siteId})
+                        </select>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="control-group">
+					<label class="control-label">平台类型：</label>
+					<div class="controls" >
+						<select name="sysPlatformTypeSearch" class='site-sel' id="platformType">
+							#listParam('CMS_PLATFORM_TYPE',$!{platformType})
+                        </select>
+					</div>
+				</div>
+			</div>
+			<div class="row-fluid">
+				<div class="control-group">
+					<label class="control-label">栏目类型：</label>
+					<div class="controls" >
+						<select name="sysChannelTypeSearch" class='site-sel' id="channelType">
+							#listParam('CMS_CHANNEL_TYPE',$!{channelType})
+                        </select>
+					</div>
+				</div>
+			</div>  
+			<div class="clear"></div>
+			</form>
+		</div>
+     </div>	
+        <div class="pmr_rkc clearfix borderb">
+                <div class="rknav pull-left rknav-height" id="das">
+                    <div class="rk-search"   id="zTreeClear">
+                        <input id="searchValue" type="text" value=""/>
+                        <i id="treeSerach" class="icon-search"></i>
+                    </div>
+                    <div class="tree-w" id="menuContent" style="displayx: none;">
+                        <ul id="tree" class="ztree" style="height:250px;width: 259px;overflow:auto;"></ul>
+                    </div>
+                </div>
+		</div>
+		<div class="text-center">
+			<!--<a class="btn btn-success" id="btn_close_channel" href="#"><i class=" "></i> 关闭</a> -->
+			<a class="btn btn-info" id="btn_save_channel" href="javascript:void(0);"><i class="icon-check icon-white"></i>确定</a>
+		</div>
+		<!-- 隐藏域  用于参数传递 -->
+		<input type="hidden" id ="siteUrl" value="$!{siteUrl}" />
+		<input type="hidden" id ="isOutLink" value="$!{isOutLink}" />
+		<input type="hidden" id ="isresiteinfo" value="$!{isresiteinfo}"/>
+		<input type="hidden" id ="siteInfoType" value ="$!{siteInfoType}"/>

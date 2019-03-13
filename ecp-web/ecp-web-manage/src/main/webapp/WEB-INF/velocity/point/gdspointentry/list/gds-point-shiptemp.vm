@@ -1,0 +1,44 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsinfoentry/gds-shiptemp.js?version=$!{JS_VERSION}" ></script>
+
+<input type="hidden" value="" id="gdsId"/>
+<input type="hidden" value="" id="shopId"/>
+<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal required-validate" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+				<div class="span5">
+					<div class="control-group">
+						<label class="control-label">模板编码：</label>
+						<div class="controls">
+							<input type="text" name="shipTemplateId" class="input-medium digits" value="" placeholder="输入模板编码">
+						</div>
+					</div>
+				</div>
+				<div class="span5">
+					<div class="control-group">
+						<label class="control-label">模板名称：</label>
+						<div class="controls">
+							<input type="text" name="shipTemplateName" class="input-medium" value="" placeholder="输入模板名称">
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			</form>
+		</div>
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="pull-right">
+				<a class="btn" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn btn-default" id="btnFormReset" href="#"><i class="icon-asterisk"></i> 重置</a>
+			</div>
+		</div>
+<div class="row-fluid">
+	<table id="dataGridTable"></table>
+</div>
+<dir class="clear">
+</dir>
+<div class="row" style="text-align:center;margin-top:30px;">
+	<button class="btn btn-primary" id="saveGdsInfo">保存</button>
+	<button type="button" class="btn btn-primary" id="btnReturn"><i class="icon-ban-circle"></i> 关闭</button>
+</div>

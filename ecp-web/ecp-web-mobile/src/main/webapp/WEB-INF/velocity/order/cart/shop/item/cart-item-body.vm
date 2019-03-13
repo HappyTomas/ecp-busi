@@ -1,0 +1,88 @@
+
+    #foreach($!item in $!cart.ordCartItemList)
+        #set($itemProm = "")
+        #set($itemProm = $!cartList.cartPromRespDTO.cartPromItemDTOMap.get(${item.id}))
+
+    ##设置赠品信息
+        #set($itemGiftContent = "")
+        #set($itemSplitStr = "")
+        #if($itemProm.promGiftDTOList && $itemProm.promGiftDTOList.size()>0)
+            #foreach($giftInfo in $itemProm.promGiftDTOList)
+                #if($velocityCount > 1)
+                    #set($itemSplitStr = "、")
+                #end
+                #set($itemGiftContent = $itemGiftContent + $itemSplitStr + $giftInfo.giftName + " X " + $giftInfo.everyTimeCnt)
+            #end
+        #end
+
+    ##商品明细优惠ID，若为空则设置为-1
+        #set($itemPromId = "")
+        #if($itemProm && $itemProm.promInfoDTO)
+            #set($itemPromId = $itemProm.promInfoDTO.id)
+        #else
+            #set($itemPromId = $item.promId)
+        #end
+        #if(!$itemPromId || $itemPromId=="")
+            #set($itemPromId = "-1")
+        #end
+
+    ##显示的单价金额
+        #set($showUnitPrice = 0.00)
+        #set($showUnitBasePrice = 0.00)
+        #set($itemBuyPrice = 0.00)
+        #set($itemBasePrice = 0.00)
+        #if($itemProm)
+            #if($itemProm.ifFulfillProm)
+                #set($showUnitPrice = $itemProm.discountFinalPrice)
+                #set($itemBuyPrice = $itemProm.discountFinalPrice)
+                #set($showUnitBasePrice = $itemProm.discountCaclPrice)
+                #set($itemBasePrice = $itemProm.discountCaclPrice)
+            #else
+                #set($showUnitPrice = $item.buyPrice)
+                #set($itemBuyPrice = $item.buyPrice)
+                #set($showUnitBasePrice = $item.basePrice)
+                #set($itemBasePrice = $item.basePrice)
+            #end
+        #end
+
+        #if($showUnitBasePrice == $showUnitPrice)
+            #set($showUnitBasePrice = -1)
+        #end
+
+        <li class="item-body">
+            <div class="cd-checkt">
+                ##if($item && $item.gdsStatus)
+               <input type="checkbox" class="ui-checkbox itemCheck" id="checkbox_$!{item.id}_$velocityCount" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].itemCheck"/>
+               <label for="checkbox_$!{item.id}_$velocityCount"></label>
+## <!--微商改造点-->                <input class="itemCheck" type="checkbox" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].itemCheck" value="checked"/>
+                ##end
+                #if($item && !$item.gdsStatus)
+                    <span class="status">失效</span>
+					#set($showUnitBasePrice = 0.00)
+                    #set($showUnitPrice = 0.00) 
+                #end
+                <!-- 商品基本信息 -->
+                <input type="hidden" id="itemSkuId" value="$!{item.skuId}">
+                <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].promId" id="itemPromId" value="$!{itemPromId}">
+                <input type="hidden" id="itemTempPromId" value="$!{itemPromId}">
+                <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].cartId" id="itemCartId" value="$!{item.cartId}">
+                <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].cartItemId" id="itemId" value="$!{item.id}">
+				<input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].gdsStatus" value="$!{item.gdsStatus}">
+                <input type="hidden" id="itemFreBuyPrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!{item.buyPrice}")}">
+                <input type="hidden" id="itemFreBasePrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!{item.basePrice}")}">
+                <input type="hidden" id="itemBuyPrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!{itemBuyPrice}")}">
+                <input type="hidden" id="itemBasePrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!{itemBasePrice}")}">
+                <!-- 商品优惠相关字段 -->
+                <input type="hidden" class="ifFulfillProm" value="$!{itemProm.ifFulfillProm}">
+                <input type="hidden" class="itemPromDiscountPrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!itemProm.discountPrice")}">
+                <input type="hidden" class="itemPromDiscountFinalPrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!itemProm.discountFinalPrice")}">
+                <input type="hidden" class="itemPromDiscountCaclPrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!itemProm.discountCaclPrice")}">
+                <input type="hidden" class="itemPromDiscountAmount" value="$!{aiNumber.showMoneyByTwoDecimal("$!itemProm.discountAmount")}">
+                <input type="hidden" class="itemPromDiscountMoney" value="$!{aiNumber.showMoneyByTwoDecimal("$!itemProm.discountMoney")}">
+                <input type="hidden" class="itemPromDiscountPriceMoney" value="$!{aiNumber.showMoneyByTwoDecimal("$!itemProm.discountMoney")}">
+                &nbsp;
+
+            </div>
+            #parse("order/cart/shop/item/pro.vm")
+        </li>
+    #end

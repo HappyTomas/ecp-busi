@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.OrdDeliveryEntityMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdDeliveryEntity" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="BATCH_ID" property="batchId" jdbcType="INTEGER" />
+    <result column="DETAILS_ID" property="detailsId" jdbcType="INTEGER" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="ORDER_SUB_ID" property="orderSubId" jdbcType="VARCHAR" />
+    <result column="IMPORT_NO" property="importNo" jdbcType="INTEGER" />
+    <result column="EXPRESS_NO" property="expressNo" jdbcType="VARCHAR" />
+    <result column="CATEGORY_CODE" property="categoryCode" jdbcType="VARCHAR" />
+    <result column="GDS_ID" property="gdsId" jdbcType="INTEGER" />
+    <result column="GDS_NAME" property="gdsName" jdbcType="VARCHAR" />
+    <result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+    <result column="SKU_INFO" property="skuInfo" jdbcType="VARCHAR" />
+    <result column="ENTITY_CODE" property="entityCode" jdbcType="VARCHAR" />
+    <result column="ENTITY_STATUS" property="entityStatus" jdbcType="VARCHAR" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="SEND_DATE" property="sendDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, BATCH_ID, DETAILS_ID, ORDER_ID, ORDER_SUB_ID, IMPORT_NO, EXPRESS_NO, CATEGORY_CODE, 
+    GDS_ID, GDS_NAME, SKU_ID, SKU_INFO, ENTITY_CODE, ENTITY_STATUS, STAFF_ID, SHOP_ID, 
+    SEND_DATE, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.OrdDeliveryEntityCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_ord_delivery_entity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ord_delivery_entity
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_ord_delivery_entity
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdDeliveryEntityCriteria" >
+    delete from t_ord_delivery_entity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.OrdDeliveryEntity" >
+    insert into t_ord_delivery_entity (ID, BATCH_ID, DETAILS_ID, 
+      ORDER_ID, ORDER_SUB_ID, IMPORT_NO, 
+      EXPRESS_NO, CATEGORY_CODE, GDS_ID, 
+      GDS_NAME, SKU_ID, SKU_INFO, 
+      ENTITY_CODE, ENTITY_STATUS, STAFF_ID, 
+      SHOP_ID, SEND_DATE, CREATE_TIME, 
+      CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+      )
+    values (#{id,jdbcType=INTEGER}, #{batchId,jdbcType=INTEGER}, #{detailsId,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=VARCHAR}, #{orderSubId,jdbcType=VARCHAR}, #{importNo,jdbcType=INTEGER}, 
+      #{expressNo,jdbcType=VARCHAR}, #{categoryCode,jdbcType=VARCHAR}, #{gdsId,jdbcType=INTEGER}, 
+      #{gdsName,jdbcType=VARCHAR}, #{skuId,jdbcType=INTEGER}, #{skuInfo,jdbcType=VARCHAR}, 
+      #{entityCode,jdbcType=VARCHAR}, #{entityStatus,jdbcType=VARCHAR}, #{staffId,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=INTEGER}, #{sendDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.OrdDeliveryEntity" >
+    insert into t_ord_delivery_entity
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="batchId != null" >
+        BATCH_ID,
+      </if>
+      <if test="detailsId != null" >
+        DETAILS_ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="orderSubId != null" >
+        ORDER_SUB_ID,
+      </if>
+      <if test="importNo != null" >
+        IMPORT_NO,
+      </if>
+      <if test="expressNo != null" >
+        EXPRESS_NO,
+      </if>
+      <if test="categoryCode != null" >
+        CATEGORY_CODE,
+      </if>
+      <if test="gdsId != null" >
+        GDS_ID,
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME,
+      </if>
+      <if test="skuId != null" >
+        SKU_ID,
+      </if>
+      <if test="skuInfo != null" >
+        SKU_INFO,
+      </if>
+      <if test="entityCode != null" >
+        ENTITY_CODE,
+      </if>
+      <if test="entityStatus != null" >
+        ENTITY_STATUS,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="sendDate != null" >
+        SEND_DATE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="batchId != null" >
+        #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="detailsId != null" >
+        #{detailsId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSubId != null" >
+        #{orderSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="importNo != null" >
+        #{importNo,jdbcType=INTEGER},
+      </if>
+      <if test="expressNo != null" >
+        #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCode != null" >
+        #{categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsId != null" >
+        #{gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsName != null" >
+        #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="skuInfo != null" >
+        #{skuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="entityCode != null" >
+        #{entityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="entityStatus != null" >
+        #{entityStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="sendDate != null" >
+        #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdDeliveryEntityCriteria" resultType="java.lang.Long" >
+    select count(*) from t_ord_delivery_entity
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_ord_delivery_entity
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.batchId != null" >
+        BATCH_ID = #{record.batchId,jdbcType=INTEGER},
+      </if>
+      <if test="record.detailsId != null" >
+        DETAILS_ID = #{record.detailsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderSubId != null" >
+        ORDER_SUB_ID = #{record.orderSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.importNo != null" >
+        IMPORT_NO = #{record.importNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.expressNo != null" >
+        EXPRESS_NO = #{record.expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryCode != null" >
+        CATEGORY_CODE = #{record.categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsId != null" >
+        GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsName != null" >
+        GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skuId != null" >
+        SKU_ID = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuInfo != null" >
+        SKU_INFO = #{record.skuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entityCode != null" >
+        ENTITY_CODE = #{record.entityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.entityStatus != null" >
+        ENTITY_STATUS = #{record.entityStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sendDate != null" >
+        SEND_DATE = #{record.sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_ord_delivery_entity
+    set ID = #{record.id,jdbcType=INTEGER},
+      BATCH_ID = #{record.batchId,jdbcType=INTEGER},
+      DETAILS_ID = #{record.detailsId,jdbcType=INTEGER},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      ORDER_SUB_ID = #{record.orderSubId,jdbcType=VARCHAR},
+      IMPORT_NO = #{record.importNo,jdbcType=INTEGER},
+      EXPRESS_NO = #{record.expressNo,jdbcType=VARCHAR},
+      CATEGORY_CODE = #{record.categoryCode,jdbcType=VARCHAR},
+      GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      SKU_ID = #{record.skuId,jdbcType=INTEGER},
+      SKU_INFO = #{record.skuInfo,jdbcType=VARCHAR},
+      ENTITY_CODE = #{record.entityCode,jdbcType=VARCHAR},
+      ENTITY_STATUS = #{record.entityStatus,jdbcType=VARCHAR},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      SEND_DATE = #{record.sendDate,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.OrdDeliveryEntity" >
+    update t_ord_delivery_entity
+    <set >
+      <if test="batchId != null" >
+        BATCH_ID = #{batchId,jdbcType=INTEGER},
+      </if>
+      <if test="detailsId != null" >
+        DETAILS_ID = #{detailsId,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderSubId != null" >
+        ORDER_SUB_ID = #{orderSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="importNo != null" >
+        IMPORT_NO = #{importNo,jdbcType=INTEGER},
+      </if>
+      <if test="expressNo != null" >
+        EXPRESS_NO = #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCode != null" >
+        CATEGORY_CODE = #{categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsId != null" >
+        GDS_ID = #{gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME = #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        SKU_ID = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="skuInfo != null" >
+        SKU_INFO = #{skuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="entityCode != null" >
+        ENTITY_CODE = #{entityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="entityStatus != null" >
+        ENTITY_STATUS = #{entityStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="sendDate != null" >
+        SEND_DATE = #{sendDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.OrdDeliveryEntity" >
+    update t_ord_delivery_entity
+    set BATCH_ID = #{batchId,jdbcType=INTEGER},
+      DETAILS_ID = #{detailsId,jdbcType=INTEGER},
+      ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      ORDER_SUB_ID = #{orderSubId,jdbcType=VARCHAR},
+      IMPORT_NO = #{importNo,jdbcType=INTEGER},
+      EXPRESS_NO = #{expressNo,jdbcType=VARCHAR},
+      CATEGORY_CODE = #{categoryCode,jdbcType=VARCHAR},
+      GDS_ID = #{gdsId,jdbcType=INTEGER},
+      GDS_NAME = #{gdsName,jdbcType=VARCHAR},
+      SKU_ID = #{skuId,jdbcType=INTEGER},
+      SKU_INFO = #{skuInfo,jdbcType=VARCHAR},
+      ENTITY_CODE = #{entityCode,jdbcType=VARCHAR},
+      ENTITY_STATUS = #{entityStatus,jdbcType=VARCHAR},
+      STAFF_ID = #{staffId,jdbcType=INTEGER},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      SEND_DATE = #{sendDate,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

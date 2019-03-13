@@ -1,0 +1,21 @@
+<div class="filter-head">
+    <div class="column column-2 selected">
+        <span id="sortComprehensive">综合排序</span>
+    </div>
+    <div class="column">
+        <span id="sortSales">销量</span>
+    </div>
+    <div class="column">
+        <span id="sortPrice">价格</span>
+    </div>
+    <div class="column">
+        <span id="sortDate">日期</span>
+    </div>
+    <div class="column" id="filterSel">
+        <span>筛选</span>
+        <i class="icon icon-filter"></i>
+    </div>
+    <div class="column-right" id="showType">
+        <a href="#"><i class="iconfont icon-all"></i></a>
+    </div>
+</div>

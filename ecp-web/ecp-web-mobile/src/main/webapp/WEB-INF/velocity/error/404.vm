@@ -1,0 +1,23 @@
+#parse("/sys/sys_param.vm")
+<div class="ui-content">
+    <div class="error-box">
+        <p><img src="$IMAGE_PATH/error01.png" alt=""/></p>
+    </div>
+    <div class="error-box e-font">
+        <p class="e-c-t">可能原因：</p>
+
+        <p>&middot; 网络信号弱</p>
+
+        <p>&middot; 找不到请求页面</p>
+
+        <p>&middot; 链接网址不正确</p>
+    </div>
+    <div class=" e-btn text-center">
+        <a href="javascritp:void(0)" class="ebtn">
+            <i class="icon icon-sx"></i>刷新页面
+        </a>
+        <a href="javascritp:void(0)" class="ebtn">
+            <i class="icon icon-net"></i>检查网络
+        </a>
+    </div>
+</div>

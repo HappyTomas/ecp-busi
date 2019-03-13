@@ -1,0 +1,47 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/express/express-edit.js?version=$!{JS_VERSION}" ></script>
+			<!--<h3 class="heading">物流信息编辑</h3>-->
+			
+			<div class="alert alert-error hide formValidateMessages" >
+				###showSpringAllError("express")
+            </div>
+		
+			<div class="formBox">
+				<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" >
+					<input type="hidden" id="express-id" name="id" value="$!{express.id}"/>
+					<input type="hidden" id="express-operate" name="operate" value="$!{operate}"/>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="express-fullName" style="width:110px">物流公司全称：</label>
+							<div class="controls">
+								<input type="text" class="input-large required"  style="width:220px" id="express-fullName" name="expressFullName" placeholder="请输入物流公司全称" value="$!{express.expressFullName}"  />
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label" style="width:110px">物流公司简称：</label>
+							<div class="controls">
+								<input type="text" class="input-large required" style="width:220px" id="express-name" name="expressName" placeholder="请输入物流公司简称" value="$!{express.expressName}"/>
+							</div>
+						</div>
+					</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label"style="width:110px">网址：</label>
+							<div class="controls">
+								<input type="text" class="input-large "  style="width:280px" id="express-website" name="expressWebsite" placeholder="请输入物流公司的网站" value="$!{express.expressWebsite}"/>
+							</div>
+						</div>
+					</div>
+					<div class="">
+						<div class="control-group">
+							<div class="controls">
+								<button type="button" class="btn btn-success" id="btnFormSave"><i class="icon-ok"></i> 保　存</button>
+								<button type="button" class="btn btn-primary" id="btnReturn"><i class="icon-reply"></i> 返　回</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+				

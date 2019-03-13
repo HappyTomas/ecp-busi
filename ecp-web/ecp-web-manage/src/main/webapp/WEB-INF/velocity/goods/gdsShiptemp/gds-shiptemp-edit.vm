@@ -1,0 +1,162 @@
+#parse("/module/mod-form.vm")
+  <style type="text/css">
+        body {
+            padding-top: 60px;
+            padding-bottom: 40px;
+        }
+        body .modal{
+            border:none;
+        }
+        body .modal-header{
+         /*padding: 0px;*/
+        }
+    </style>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsShiptemp/gds-shiptemp-edit.js?version=$!{JS_VERSION}" ></script>
+            <form class="form-horizontal" id="editShiptempForm" method="post">
+				<input type="hidden" value="$!{areaJson}" id="areaJson"/>
+				<input type="hidden" value="$!{tempInfo.id}" id="shipTemplateId"/>
+				<input type="hidden" value="$!{tempInfo.shopId}" id="shopId"/>
+					<div class="control-group">
+                    <label class="control-label">店铺名称：</label>
+                    <div class="controls">
+                        <select class="required" disabled="true" id="shopId" name="shopId">
+								#shopStatuslist($!{tempInfo.shopId},1)
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label"><span style="color:red">*</span>模板名称：</label>
+
+                    <div class="controls">
+                        <input type="text" value="#escapeHtml($!{tempInfo.shipTemplateName})" id="shipTemplateName" name="shipTemplateName" maxlength="20"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">是否免邮：</label>
+                    <div class="controls">
+                        <label class="radio" style="width:60px;">
+                            <input type="checkbox" name="ifFree" id="ifFree" #if($!{tempInfo.ifFree}=="1")checked#end/> 免邮
+                        </label>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label">计价方式：</label>
+                    <div class="controls">
+						#foreach($list in $!{shipTempTypeList})
+							#if($!{list.spCode} == '2' || $!{list.spCode} == '3')
+							#else
+							<label class="radio inline" style="margin-right: 20px;">
+								<input type="radio" name="textbox" #if($!{tempInfo.shipTemplateType}==$!{list.spCode})checked#end id="$!{list.spCode}"/>$!{list.spValue}
+							</label>
+							#end
+						#end
+                    </div>
+                </div>
+                
+                #if(!$tempInfo.ifDefaultTemplate || $tempInfo.ifDefaultTemplate == "0")
+				<div class="control-group" id="platCatCode">
+                    <label class="control-label">平台分类：</label>
+
+                    <div class="controls">
+                        <input type="text" catgCode="$!{tempInfo.catgCode}" name="catgCode" id="catgCode" value="$!{tempInfo.catgName}" disabled="true"/><a href="#" id="selectCat">选择分类</a>
+                    	<a href="#" id="cancelSelect" style="color:red">    清除分类</a>
+                    </div>
+                </div>
+                #end
+                <div class="control-group" id="defaultFree" #if($!{tempInfo.ifFree}=="1")style="display:none"#end>
+                    <label class="control-label">默认运费：</label>
+                    <div class="controls">
+                        <table style="clear: none" class="table transtpl-tb table-bordered">
+                            <thead>
+                            <tr>
+                                <th>运费方式</th>
+                                <th>运费（元）</th>
+                                <th id="first">首件（件）</th>
+                                <th id="second">续件（件）</th>
+                                <th id="secondFree">续件运费（元）</th>
+                                <th id="noFree">免邮件量（件）</th>
+                            </tr>
+                            </thead>
+                            <tbody id="defaultPei">
+                            <tr>
+                                <td><select style="min-width:90px;width:90px;" id="pricingMode">
+										##<option value="0" #if($!{tempInfo.defaultPriceRespDTO.pricingMode}=="0")selected#end>平邮</option>
+										<option value="1" #if($!{tempInfo.defaultPriceRespDTO.pricingMode}=="1")selected#end>快递</option>
+										##<option value="2" #if($!{tempInfo.defaultPriceRespDTO.pricingMode}=="2")selected#end>EMS</option></select></td>
+                                <td><font>运费</font><input type="text" value="#moneyNum($!{tempInfo.defaultPriceRespDTO.firstPrice})" onblur="validatorSenior(this,'price')" name="dfree" class="input-mini"></td>
+                                #if($tempInfo.shipTemplateType=="4")
+                                 <td><input type="text" class="input-mini" value="#moneyNum($!{tempInfo.defaultPriceRespDTO.firstAmount})" onblur="validatorSenior(this,'number')" name="dfirst"></td>	
+                                  <td><font>每增加</font><input type="text" value="#moneyNum($!{tempInfo.defaultPriceRespDTO.continueAmount})" onblur="validatorSenior(this,'number')" class="input-mini" name="dsecond"></td>
+                                #else
+                                 <td><input type="text" class="input-mini" value="$!{tempInfo.defaultPriceRespDTO.firstAmount}" onblur="validatorSenior(this,'number')" name="dfirst"></td>	
+                                 <td><font>每增加</font><input type="text" value="$!{tempInfo.defaultPriceRespDTO.continueAmount}" onblur="validatorSenior(this,'number')" class="input-mini" name="dsecond"></td>
+                                #end
+                                <td><font>续费</font><input type="text" value="#moneyNum($!{tempInfo.defaultPriceRespDTO.continuePrice})" onblur="validatorSenior(this,'price')" class="input-mini" name="dsecondFree"></td>
+                                  #if($tempInfo.shipTemplateType=="4")
+                                <td><font>达到</font><input type="text" value="#moneyNum($!{tempInfo.defaultPriceRespDTO.freeAmount})" onblur="validatorSenior(this,'number')" class="input-mini" name="dnoFree"><font id="unit">件</font><font>即可免邮</font></td>
+                                 #else
+                                 <td><font>达到</font><input type="text" value="$!{tempInfo.defaultPriceRespDTO.freeAmount}" onblur="validatorSenior(this,'number')" class="input-mini" name="dnoFree"><font id="unit">件</font><font>即可免邮</font></td>
+                                  #end
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!--<div class="control-group">
+                    <label class="control-label">高级运费：</label>
+                    <div class="controls">
+                        <div data-toggle="buttons-radio" class="btn-group switch-tt clearfix sepH_a">
+                            <button type="button" class="btn active" id="senior_button_open">开</button>
+                            <button type="button" class="btn" id="senior_button_close">关</button>
+                        </div>
+                            <table class="table transtpl-tb table-bordered" id="senior_template_price">
+                                <thead>
+                                <tr>
+                                    <th>运送到</th>
+									<th>运费方式</th>
+									<th>运费（元）</th>
+                                    <th id="senior_first">首件（件）</th>
+                                    <th id="senior_second">续件（件）</th>
+                                    <th id="senior_secondFree">续件运费（元）</th>
+                                    <th id="senior_noFree">免邮件量（件）</th>
+                                    <th>操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="seniorTempList">
+									#foreach($list in $!{tempInfo.gdsShipTempPriceRespDTO})
+										<tr id="$!{list.pricingListId}">
+                                            <td class='pmgr-city' style='max-width:100px;'>
+                                            <span class='pmropt'>
+                                                <input type='hidden' value='' id='area'/>
+                                					<span></span><a href='javascript:void(0)' class='chooseArea'>选择地区</a>
+                                            </span>
+                                	        </td>
+                                            <td><select style="min-width:90px;width:90px;" name="pricingMode">
+													##<option value="0" #if($!{list.pricingMode}=="0")selected#end>平邮</option>
+        											<option value="1" #if($!{list.pricingMode}=="1")selected#end>快递</option>
+        											##<option value="2" #if($!{list.pricingMode}=="2")selected#end>EMS</option></select></td>
+											<td><input type='text' onblur="validatorSenior(this,'price')" value="#moneyNum($!{list.firstPrice})" name='free' class='input-mini'></td>
+                                	        <td><input type='text' onblur="validatorSenior(this,'number')" value="#if($tempInfo.shipTemplateType=="4")#moneyNum($!{list.firstAmount})#else$!{list.firstAmount}#end" name='first' class='input-mini'></td>
+                                	        <td><input type='text' onblur="validatorSenior(this,'number')" value="#if($tempInfo.shipTemplateType=="4")#moneyNum($!{list.continueAmount})#else$!{list.continueAmount}#end" name='second' class='input-mini'></td>
+                                	        <td><input type='text' onblur="validatorSenior(this,'price')" value="#moneyNum($!{list.continuePrice})" name='secondFree' class='input-mini'></td>
+                                	        <td><input type='text' onblur="validatorSenior(this,'number')" value="#if($tempInfo.shipTemplateType=="4")#moneyNum($!{list.freeAmount})#else$!{list.freeAmount}#end" name='noFree' class='input-mini'></td>
+                                	        <td class='text-erro'><a href='javascript:void(0)' onclick='delTemp(this)'>删除</a></td>
+                                	    </tr>
+									#end
+                                </tbody>
+                            </table>
+    						<div class="span2" id="newButton">
+                				<a class="btn" id="newTemplate" href="#"><i class="icon-plus icon-white"></i> 新增运费模板</a>
+                			</div>
+                    </div>
+                </div>-->
+				
+            </form>
+			<div class="btn-wrap btn-wrap-save" style="text-align:center">
+    			<button class="btn btn-info" data-loading-text="保存中..." id="saveGdsInfo"><i class=" icon-ok-sign icon-white"></i> 保存</button>
+    			
+				<a class="btn" href="javascript:void(0)" id="backShiptemp"><i class="icon-reply icon-white"></i> 返回管理</a>
+
+				##<input type="button" class="btn btn-primary " id="backShiptemp" value="返回管理"/>
+			</div>

@@ -1,0 +1,217 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+#parse("/module/mod-upload.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/buyer/infomation.js?version=$!{JS_VERSION}"></script>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        个人信息
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        <a href="$CONTEXT_PATH/member/index" class="">
+	      <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<input type="hidden"  id="signature" value="$!{signature}"/>
+<input type="hidden"  id="timestamp" value="$!{timestamp}"/>
+<input type="hidden"  id="nonce" value="$!{nonce}"/>
+<input type="hidden"  id="echostr" value="$!{echostr}"/>
+<input type="hidden"  id="appid" value="$!{appid}"/>
+<div class="ui-content">
+    <div class="odr-box info-list">
+        <ul class="o-pay-box">
+            <li id="custpic">
+                <div class="info-tit">头像</div>
+                <div class="info-con">
+                    <div class="hTo">
+						#if($!{infomation.custPic})
+							<img src="#genImageUrl($!{infomation.custPic},'43x43!')" alt=""/>
+							#else
+						<img src="$IMAGE_PATH/cur-defHd.png" alt=""/>
+						#end
+					</div>
+                </div>
+            </li>
+            <li>
+                <div class="info-tit">账号</div>
+                <div class="info-con">
+                    $!{infomation.staffCode}
+                    <span class="ui-arrow ui-arrow-right hide-ar"></span>
+                </div>
+            </li>
+            <li id="nickname">
+                <div class="info-tit">昵称</div>
+                <div class="info-con">
+						#if($!{infomation.nickname})
+							$!{infomation.nickname}
+							#else
+								请选择
+								#end
+                    <span class="ui-arrow ui-arrow-right"></span>
+                </div>
+            </li>
+            <li id="birthday">
+                <div class="info-tit">出生日期</div>
+                <div class="info-con">
+					#if($!{infomation.custBirthday})
+						$!date.format('yyyy-MM-dd',$!{infomation.custBirthday})
+						#else
+							请选择
+							#end
+                    <span class="ui-arrow ui-arrow-right"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="odr-box">
+        <ul class="o-pay-box info-list">
+            <li id="genders">
+                <div class="info-tit">性别</div>
+                <div class="info-con">
+					#if($!{infomation.gender})
+                    #translate('STAFF_CUST_GENDER',$!{infomation.gender})
+					#else
+						请选择
+					#end
+                    <span class="ui-arrow ui-arrow-right"></span>
+                </div>
+            </li>
+
+            <li id="custaddr">
+                <div class="info-tit">地址管理</div>
+                <div class="info-con">
+                    请选择
+                    <span class="ui-arrow ui-arrow-right"></span>
+                </div>
+            </li>
+            <li id="pwd">
+                <div class="info-tit">账户安全</div>
+                <div class="info-con">
+                    修改密码
+                    <span class="ui-arrow ui-arrow-right"></span>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="info-list">
+        <div class="reg-b">
+            <button class="wbtn" id="unbind">退出登录</button>
+        </div>
+    </div>
+       <!-- 昵称 -->
+          <div id="nickNameInput" class="am-offcanvas slidePage">
+              <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+                  <div class="am-offcanvas-content">
+                      <header class="am-header am-header-fixed">
+                          <div class="am-header-title">
+                              修改昵称
+                          </div>
+                          <div id="pageReturn" class="am-header-left am-header-nav top-left">
+                              <a href="" class="">
+                                <i class="public-arrowleft"></i>
+                              </a>
+                          </div>
+                      </header>
+
+                      <div class="ui-content">
+                          <p>
+                              <input id="nickName" name="nickName" value="$!{infomation.nickname}" type="text" class="ui-input" style="height:45px" maxlength="16">
+								
+                              <label for="kkk27500" style="margin-top:10px;"></label>
+                          </p>
+						  <p style="position: fixed; bottom: 20px;width:90%;left:5%"><button class="wbtn" id="nsubmit">提交</button></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+		         <!-- 会员生日 -->
+          <div id="birthdayInput" class="am-offcanvas slidePage">
+              <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+                  <div class="am-offcanvas-content">
+                      <header class="am-header am-header-fixed">
+                          <div class="am-header-title">
+                              修改会员生日日期
+                          </div>
+                          <div id="pageReturn" class="am-header-left am-header-nav top-left">
+                              <a href="" class="">
+                               <i class="public-arrowleft"></i>
+                              </a>
+                          </div>
+                      </header>
+
+                      <div class="ui-content">
+                          <p>
+							  <input type="date" icon="refresh" name="custBirthday" id="custBirthday" class="ui-input"  style="height:35px;" placeholder="生日修改" class="field">
+                              <label for="kkk27500" style="margin-top:10px;"></label>
+                          </p>
+                          <p style="position: fixed; bottom: 20px;width:90%;left:5%"> <button class="wbtn" id="bsubmit">提交</button></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+		  
+		  	         <!-- 修改性别 -->
+          <div id="genderInput" class="am-offcanvas slidePage">
+              <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+                  <div class="am-offcanvas-content">
+                      <header class="am-header am-header-fixed">
+                          <div class="am-header-title">
+                                                     修改性别
+                          </div>
+                          <div id="pageReturn" class="am-header-left am-header-nav top-left">
+                              <a href="" class="">
+                                  <i class="public-arrowleft"></i>
+                              </a>
+                          </div>
+                      </header>
+
+                      <div class="ui-content">
+                          <p>
+                              <select name="gender" id="gender" class="ui-input" style="height:45px">
+									#listParam('STAFF_CUST_GENDER')
+                              </select>
+								
+                              <label for="kkk27500" style="margin-top:10px;"></label>
+                          </p>
+						  <p style="position: fixed; bottom: 20px;width:90%;left:5%"><button class="wbtn" id="gsubmit">提交</button></p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+		  
+		    	         <!-- 上传头像 -->
+          <div id="custPicInput" class="am-offcanvas slidePage">
+              <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+                  <div class="am-offcanvas-content">
+                      <header class="am-header am-header-fixed">
+                          <div class="am-header-title">
+                                                     修改会员头像
+                          </div>
+                          <div id="pageReturn" class="am-header-left am-header-nav top-left">
+                              <a href="" class="">
+                                 <i class="public-arrowleft"></i>
+                              </a>
+                          </div>
+                      </header>
+                      
+                      <div class="ui-content">
+						<p>
+							 <label for="kkk27500" style="margin-top:10px;">
+                        <div id="uploadFileButton">
+						<button type="button" class="am-btn am-btn-primary am-round" id="piced">	文件上传</button>
+                        <input class="com_input" type="file" id="image" name="image2" class="am-btn am-btn-primary am-round" style="filter:alpha(opacity=0);-moz-opacity:0;opacity:0"></input>
+						
+                       </div>
+                             </label>
+                        </p>
+						<p>
+					    <img src="$IMAGE_PATH/mb-defuser.png" class="am-img-responsive am-img-thumbnail" style="width:50%" id="pic" alt=""/>
+								</p>
+								<!--<p>
+                              <label for="kkk27500" style="margin-top:10px;"><button class="am-btn am-btn-primary" id="gsubmit">提交</button></label>
+								</p>-->
+                      </div>
+                  </div>
+              </div>
+          </div>
+</div>

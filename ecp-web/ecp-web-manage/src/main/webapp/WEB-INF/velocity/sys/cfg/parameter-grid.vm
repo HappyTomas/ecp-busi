@@ -1,0 +1,58 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/sys/cfg/parameter-grid.js?version=$!{JS_VERSION}" ></script>
+<style>
+	.well-searchForm form.form-horizontal .control-label {
+        width: 120px;/* 默认为80px */
+    }
+</style>
+<!--搜索区域-->
+<div class="well well-searchForm">
+	<form id="searchForm" class="form-horizontal" method="post" style="margin-bottom: 0px;" >
+	<div class="row-fluid">
+			<div class="span4">
+			<div class="control-group">
+				<label class="control-label">参数名：</label>
+				<div class="controls">
+					<input type="text" name="paraCode" id="paraCode" class="input-medium" value="$!{paraCode}" placeholder="请输入参数名">
+				</div>
+			</div>
+		</div>
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label">参数值：</label>
+				<div class="controls">
+					<input type="text" name="paraValue" id="paraValue" class="input-medium" value="$!{paraValue}" placeholder="请输入参数值">
+				</div>
+			</div>
+		</div>
+       <div class="span4">
+			<div class="control-group">
+				<label class="control-label">参数描述：</label>
+				<div class="controls">
+				<input type="text"name="paraDesc" id="paraDesc" class="input-medium" value="$!{paraDesc}" placeholder="请输入参数描述">
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	</form>
+</div>
+
+<!--操作按钮区域-->
+<div class="row-fluid" style="margin-bottom: 10px;">
+	<div class="span6">
+		<a class="btn " id="btn_code_add" href="javascript:void(0)"><i class="icon-plus icon-white"></i> 新增</a>
+		<a class="btn btn-danger" id="btn_code_del" href="#"><i class="icon-trash icon-white"></i> 删除</a>
+	</div>
+	<div class="pull-right">
+		<a class="btn btn-info" id="btnFormSearch" href="javascript:void(0)"><i class="icon-search icon-white"></i> 查询</a>
+		<a class="btn " id="btnFormReset" href="javascript:void(0)"><i class="icon-refresh icon-white"></i> 重置</a>
+	</div>
+</div>
+
+<!--列表区域-->
+<div class="row-fluid">
+	<table id="dataGridTable">
+	</table>
+</div>

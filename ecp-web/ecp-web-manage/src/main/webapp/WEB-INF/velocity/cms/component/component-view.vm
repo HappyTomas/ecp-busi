@@ -1,0 +1,105 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/component/component-view.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<style>
+    .form-horizontal .control-label {
+        width: 140px;/* 默认为100px */
+    }
+</style>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+
+<div class="formBox row-fluid">
+<form class="form-horizontal">
+		<div class="span8">
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label span4" for="name">组件名称：</label>
+    				<label class="controls text_line" >#if(${respVO.componentName})#escapeHtml(${respVO.componentName}) #else 无 #end</label>
+    			</div>
+    		</div>
+			
+			<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">组件分类：</label>
+    				<label class="controls text_line" >#if(${respVO.componentClassZH})#escapeHtml(${respVO.componentClassZH}) #else 无 #end</label>
+    			</div>
+    		</div>
+    		
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">状态：</label>
+    				<label class="controls text_line" >#if(${respVO.statusZH})${respVO.statusZH} #else 无 #end</label>
+    			</div>
+    		</div>
+    		
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">调用方法：</label>
+    				<label class="controls text_line" >#if(${respVO.componentMethod})#escapeHtml(${respVO.componentMethod}) #else 无 #end</label>
+    			</div>
+    		</div>
+			
+			<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">组件JS路径：</label>
+    				<label class="controls text_line" >#if(${respVO.componentUrl})#escapeHtml(${respVO.componentUrl}) #else 无#end</label>
+    			</div>
+    		</div>
+			
+			<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">组件VM路径：</label>
+    				<label class="controls text_line" >#if(${respVO.componentVmUrl})#escapeHtml(${respVO.componentVmUrl}) #else 无#end</label>
+    			</div>
+    		</div>
+			
+			<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">组件编辑路径：</label>
+    				<label class="controls text_line" >#if(${respVO.componentEditUrl})#escapeHtml(${respVO.componentEditUrl}) #else 无#end</label>
+    			</div>
+    		</div>
+    		
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">备注：</label>
+    				<label class="controls text_line" >#if(${respVO.remark})#escapeHtml(${respVO.remark}) #else 无 #end</label>
+    			</div>
+    		</div>
+			
+			<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">创建时间：</label>
+    				<label class="controls text_line" >#if(${respVO.createTime})$!date.format('yyyy-MM-dd',${respVO.createTime}) #else 无 #end</label>
+    			</div>
+    		</div>
+    		
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">更新时间：</label>
+    				<label class="controls text_line">#if(${respVO.updateTime})$!date.format('yyyy-MM-dd',${respVO.updateTime}) #else 无 #end</label>
+    			</div>
+    		</div>
+    	
+			<div class="text-center">
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+    		</div>
+        </div>
+		<div class="span4">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title">图片预览</h3>
+				</div>
+				<div class="panel-body">
+					<img id="imagePreview" src="#genImageUrl($!{respVO.showPic},'260x370!')" width="260" height="370" class="img-polaroid">
+				</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</form>
+</div>
+	

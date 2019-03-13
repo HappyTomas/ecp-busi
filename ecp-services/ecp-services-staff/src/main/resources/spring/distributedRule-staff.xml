@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean class="com.zengshi.ecp.frame.utils.RuleMap">
+		<constructor-arg>  
+			<map>  
+				<entry key="t_auth_staff" value-ref="authStaff" />
+				<entry key="t_auth_staff_2_role" value-ref="authStaff2role" />
+				<entry key="t_auth_staff_2_group" value-ref="authStaff2group" />
+				<entry key="t_auth_staff_c_idx" value-ref="authStaffcIdx" />
+				<entry key="t_auth_staff_m_idx" value-ref="authStaffmIdx" />
+				<entry key="t_auth_staff_e_idx" value-ref="authStaffeIdx" />
+				<entry key="t_auth_staff_n_idx" value-ref="authStaffnIdx" />
+				<entry key="t_score_info" value-ref="scoreInfo" />
+				<entry key="t_score_source" value-ref="scoreSource" />
+				<entry key="t_score_opt_log" value-ref="scoreOptLog" />
+				<entry key="t_score_exchange" value-ref="scoreExchange" />
+				<entry key="t_score_consume_rule" value-ref="scoreConsumeRule" />
+				<entry key="t_cust_addr" value-ref="custAddr" />
+				<entry key="t_cust_info" value-ref="custInfo" />
+				<entry key="t_cust_info_log" value-ref="custInfoLog" />
+				<entry key="t_shop_info" value-ref="shopInfo" />
+				<entry key="t_shop_info_log" value-ref="shopInfoLog" />
+				<entry key="t_shop_name_idx" value-ref="shopNameIDX" />
+				<entry key="t_shop_express_rel" value-ref="shopExpressRel" />
+				<entry key="t_shop_shipper" value-ref="shopShipper" />
+				<entry key="t_company_info" value-ref="companyInfo" />
+				<entry key="t_company_info_log" value-ref="companyInfoLog" />
+				<entry key="t_cust_authstr" value-ref="custAuthstr" />
+				<entry key="t_company_staff_idx" value-ref="companyStaffIDX" />
+				<entry key="t_company_name_idx" value-ref="companyNameIDX" />
+				<entry key="t_company_shop_idx" value-ref="companyShopIDX" />
+				<entry key="t_company_sign" value-ref="companySign" />
+				<entry key="t_acct_info" value-ref="acctInfo" />
+				<entry key="t_acct_trade" value-ref="acctTrade" />
+				<entry key="t_shop_hotline" value-ref="shopHotline"/>
+				<entry key="t_shop_vip_level" value-ref="shopVipLevel"/>
+				<entry key="t_shop_vip_real" value-ref="shopVipReal"/>
+				<entry key="t_acct_info_his" value-ref="acctInfoHis" />
+				<entry key="t_acct_type" value-ref="acctType" />
+				<entry key="t_acct_info_shop_idx" value-ref="acctInfoShopIDX" />
+				<entry key="t_acct_trade_shop_idx" value-ref="acctTradeShopIDX" />
+				<entry key="t_acct_info_his_shop_idx" value-ref="acctInfoHisShopIDX" />
+				<entry key="t_cust_email_log" value-ref="custEmailLog" />
+				<entry key="t_shop_to_staff_idx" value-ref="shopToStaffIDX" />
+				<entry key="t_shop_staff_group" value-ref="shopStaffGroup" />
+				<entry key="t_shop_staff_2_group" value-ref="shopStaff2Group" />
+				<entry key="t_cust_grow_info" value-ref="custGrowInfo" />
+				<entry key="t_cust_sensitive_log" value-ref="custSensitiveLog" />
+				<entry key="t_auth_admin_c_idx" value-ref="authAdminCIDX" />
+				<entry key="t_auth_staff_admin" value-ref="authStaffAdmin" />
+				
+				<entry key="t_acct_info_temp" value-ref="acctInfoTemp" />
+				<entry key="t_score_detail_sel" value-ref="scoreDetailSel" />
+				<entry key="t_cust_third_code" value-ref="custThirdCode" />
+				<entry key="t_cust_third_idx" value-ref="custThirdIdx" />
+				<entry key="t_shop_collect" value-ref="shopCollect" />
+				<entry key="t_pay_shop_cfg" value-ref="payShopCfg" />
+				<entry key="t_shop_vip_rule" value-ref="shopVipRule" />
+				<entry key="t_shop_vip_real_s_idx" value-ref="shopVipRealSIDX"/>
+				<entry key="t_ord_back_check" value-ref="ordBackCheck"/>
+				<entry key="t_cust_wechat_rel" value-ref="custWechatRel"/>
+				<entry key="t_score_sign_check" value-ref="scoreSignCheck"/>
+			</map>  
+		</constructor-arg>  
+	</bean> 
+	<bean id="authStaff" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_auth_staff_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="authStaff2role" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_auth_staff_2_role_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>	
+	
+	<bean id="authStaff2group" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_auth_staff_2_group_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>	
+	<!-- 积分 -->
+	<bean id="scoreInfo" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_score_info_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="scoreSource" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_score_source_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="scoreOptLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_score_opt_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="scoreExchange" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_score_exchange_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="scoreConsumeRule" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="gds_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_score_consume_rule_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'gds_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'gds_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<!-- 账号索引表 -->
+	<bean id="authStaffcIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_code" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_auth_staff_c_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_code', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_code', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+		<bean id="authStaffmIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="serial_number" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_auth_staff_m_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'serial_number', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'serial_number', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+		<bean id="authStaffeIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="email" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_auth_staff_e_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'email', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'email', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="authStaffnIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="nickname" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_auth_staff_n_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'nickname', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'nickname', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 客户收货地址 -->
+	<bean id="custAddr" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_cust_addr_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 客户信息主表 -->
+	<bean id="custInfo" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_cust_info_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 客户信息主表 -->
+	<bean id="custInfoLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_cust_info_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 店铺信息主表 -->
+	<bean id="shopInfo" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_info_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+		<!-- 客户信息主表 -->
+	<bean id="shopInfoLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_info_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 店铺客服信息表 -->
+	<bean id="shopHotline" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_hotline_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 店铺会员等级表 -->
+	<bean id="shopVipLevel" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_vip_level_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 店铺会员等级关系表 -->
+	<bean id="shopVipReal" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_vip_real_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 店铺会员等级关系用户索引表 -->
+	<bean id="shopVipRealSIDX" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_vip_real_s_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 企业信息主表 -->
+	<bean id="companyInfo" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_company_info_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 企业信息日志主表 -->
+	<bean id="companyInfoLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="company_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_company_info_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'company_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'company_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 企业会员审核表 (只在1库一张表01)-->
+	<bean id="custAuthstr" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_cust_authstr_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	
+	<!-- 企业与会员索引表-->
+	<bean id="companyStaffIDX" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="company_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_company_staff_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'company_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'company_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<!-- 企业名称索引表-->
+	<bean id="companyNameIDX" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="company_name" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_company_name_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'company_name', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'company_name', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 企业与店铺索引表-->
+	<bean id="companyShopIDX" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="company_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_company_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'company_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'company_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 店铺名与店铺ID索引表-->
+	<bean id="shopNameIDX" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_name" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_name_idx_{00}" /> 
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_name', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_name', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 入驻企业审核表 (只在1库一张表01)-->
+	<bean id="companySign" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_company_sign_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<!-- 资金账户信息 -->
+	<bean id="acctInfo" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_acct_info_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 资金账户交易 -->
+	<bean id="acctTrade" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_acct_trade_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 资金账户历史快照 -->
+	<bean id="acctInfoHis" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_acct_info_his_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 资金账户类型 -->
+	<bean id="acctType" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_acct_type_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- T_ACCT_INFO的店铺索引表 -->
+	<bean id="acctInfoShopIDX" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_acct_info_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- T_ACCT_TRADE的店铺索引表 -->
+	<bean id="acctTradeShopIDX" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_acct_trade_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- T_ACCT_INFO_HIS的店铺索引表 -->
+	<bean id="acctInfoHisShopIDX" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_acct_info_his_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 会员邮箱验证日志表 -->
+	<bean id="custEmailLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_cust_email_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 店铺与子账号索引表 -->
+	<bean id="shopToStaffIDX" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_to_staff_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 店铺与子账号索引表 -->
+	<bean id="shopExpressRel" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_express_rel_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 店铺会员分组表 -->
+	<bean id="shopStaffGroup" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_staff_group_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 店铺会员分组关系表 -->
+	<bean id="shopStaff2Group" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="group_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_staff_2_group_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'group_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'group_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 会员成长值明细表 -->
+	<bean id="custGrowInfo" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_cust_grow_info_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 店铺收货地址配置表 -->
+	<bean id="shopShipper" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_shipper_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- T_AUTH_STAFF_ADMIN的管理员登录名索引表 -->
+	<bean id="authAdminCIDX" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_code" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_auth_admin_c_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_code', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_code', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<!-- T_AUTH_STAFF_ADMIN -->
+	<bean id="authStaffAdmin" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_auth_staff_admin_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 资金账户临时数据表 -->
+	<bean id="acctInfoTemp" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="create_staff" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_acct_info_temp_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'create_staff', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'create_staff', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<!-- 虚拟一个积分明细查询的表，数据库没有此表 -->
+	<bean id="scoreDetailSel" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_score_detail_sel_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<!-- 第三方账号绑定表 -->
+	<bean id="custThirdCode" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_cust_third_code_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<!-- 第三方账号绑定索引表 -->
+	<bean id="custThirdIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="third_code" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_cust_third_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'third_code', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'third_code', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<!-- 店铺收藏 -->
+	<bean id="shopCollect" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_collect_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>	
+	
+		<!-- 店铺支付通道 -->
+	<bean id="payShopCfg" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_pay_shop_cfg_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>	
+	
+	<!-- 店铺会员规则表 -->
+	<bean id="shopVipRule" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_shop_vip_rule_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 订单退款退货查重表 -->
+	<bean id="ordBackCheck" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="back_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_ord_back_check_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'back_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'back_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<!-- 商城用户与微信用户关系表 -->
+	<bean id="custWechatRel" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="wechat_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_cust_wechat_rel_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'wechat_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'wechat_id', tranferType:'com.db.util.StringHash', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<!-- 连续签到送积分表 -->
+	<bean id="scoreSignCheck" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_score_sign_check_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>	
+		<!-- 敏感客户 -->
+	<bean id="custSensitiveLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_cust_sensitive_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id', tranferType:'java.lang.Long', operator:'%',operatorValue:4},operator:'/', operatorValue:2},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+</beans>

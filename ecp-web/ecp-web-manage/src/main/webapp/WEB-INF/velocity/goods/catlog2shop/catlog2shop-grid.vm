@@ -1,0 +1,36 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/catlog2shop/catlog2shop-grid.js?version=$!{JS_VERSION}" ></script>
+
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+				
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">店铺名称：</label>
+						<div class="controls">
+							<input type="text" name="shopName" class="input-medium" value="" placeholder="输入店铺名称">
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			</form>
+		</div>
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="pull-right fbtn">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+		
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>
+			
+		<!-- 目录浮动div -->
+		<div id="" class="popover bottom" style="display:none; position: absolute;" >
+			<div class="arrow"> </div>
+			<ul id="treeMenu" class="ztree" style="margin-top:0; height:250px;width: 180px;overflow:auto;"></ul>
+		</div>

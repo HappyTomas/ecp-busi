@@ -1,0 +1,158 @@
+#if(${senior})
+<div id="root-nav" style="display:none;">
+#else
+<div id="root-nav" style="display:block;">
+#end
+	<ul class="breadcrumb sl-bread" id="leadCat">
+        <li class="fir"><a style="cursor:default" href="#">全部商品</a> <span class="divider" $style>></span></li>
+       #if(${pathList})
+		#foreach($item in ${pathList})
+			<li>
+                <a href="#" class="firstItem_temp" code="$item.catgCode">$item.catgName</a>
+                <span class="divider">&gt;</span>
+			</li>
+		#end
+		#foreach($item in ${downDataList})
+		#set($itemArry=$item.split("_"))
+			#if($itemArry[2]==$extra.searchCategory)
+		 		#set($name=$itemArry[0])
+		 		#set($code=$itemArry[2])
+		 		#set($num=$itemArry[1])
+		 	#end
+		#end
+			<li>
+			 <div class="dorpdown">
+				 <a href="#" class="secondItem_temp" code="$code" title="$name">$name（$num）
+				 <i class="ci-right"><s>◇</s></i>
+				 </a>
+				 <span class="spacer"></span>
+				 <div class="downc ">
+				#foreach($item in ${downDataList})
+				#set($itemArry=$item.split("_"))
+					#if($itemArry[2]!=$extra.searchCategory)
+				 	<a href="#" class="secondItem"  code="$itemArry[2]">$itemArry[0]（$itemArry[1]）</a>
+				 	#end
+				#end	
+				 </div>
+			 </div>
+			</li>
+		#end	
+    </ul>
+
+    <div class="sl-result">
+        <span>
+            商品搜索
+        </span>
+        <span class="snum">
+            共 <b><span id="numFound">$gridResult.totalRow</span></b>件商品
+        </span>
+    </div>
+	
+</div>
+				
+#if(${senior})			
+<div id="search-xz" class="mb10" style="display:none;">
+#else
+<div id="search-xz" class="mb10" style="display:block;">
+#end	
+##分类属性
+	#set($style="display:none")
+	#if(${proCategorylist} && ${proCategorylist}!="[]")
+	 #set($style="display:block")
+	#end
+	<div class="sl-line" id="slArrow" style="$style">
+        <div class="sl-wrap" >
+            <label class="sl-key" code="priceCode">
+                分类属性：
+            </label>
+
+            <div class="sl-val sl-arrow sl-litem" id="proCategory">
+            #foreach($pro in $proCategorylist)
+            	#set($proArry=$pro.split("_"))
+				<span>
+                    <a href="#" class="proptype_catg" code="$proArry[2]"><i class="s-check"></i>$proArry[0]（$proArry[1]） </a>
+                </span>
+            #end
+            </div>
+            <span class="arrow-bottom">更多</span>
+        </div>
+    </div>
+	#if($extra.propList)
+	
+    	##取属性
+    	#foreach($prop in $extra.propList)
+    		
+    		##属性若没配置属性值，则跳过
+    		#if($prop.values)
+				
+				#set($height=(($prop.values.size()/6)+1)*40)
+				
+    				<div class="sl-line">
+    					<div class="sl-wrap">
+                            <label class="sl-key" code="${prop.id}" style="height:${height}px;">
+                                ${prop.propName}：
+                            </label>
+    
+                            <div class="sl-val">
+				
+				##取属性值
+				#foreach($value in $prop.values)
+					
+        					<span>
+                                <a href="#" class="proptype" code="$value.id"><i class="s-check"></i>$value.propValue</a>
+                            </span>
+					
+				#end
+				
+    						</div>
+                        </div>
+    				</div>
+    			
+    		#end
+    	
+    	#end	
+		
+	#end
+	
+	##价格属性写死，查询范围参数不由页面带入后台
+	<div class="sl-line" id="priceSign">
+        <div class="sl-wrap">
+            <label class="sl-key" code="priceCode">
+                价格：
+            </label>
+
+            <div class="sl-val">
+				<span>
+                    <a href="#" class="proptype priceProp" code="1"><i class="s-check"></i>0-89 </a>
+                </span>
+                <span>
+                    <a href="#" class="proptype priceProp" code="2"><i class="s-check"></i>90-199</a>
+                </span>
+                 <span>
+                    <a href="#" class="proptype priceProp" code="3"><i class="s-check"></i>200-299</a>
+                </span>
+                 <span>
+                    <a href="#" class="proptype priceProp" code="4"><i class="s-check"></i>300-399</a>
+                </span>
+                <span>
+                    <a href="#" class="proptype priceProp" code="5"><i class="s-check"></i>400以上</a>
+                </span>
+            </div>
+            <div class="sl-price">
+                <input class="itxt" title="最低价" maxlength="6" id="priceStart" realPriceStart=""
+                       onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+                <em> - </em>
+                <input class="itxt" title="最高价" maxlength="8" id="priceEnd" realPriceEnd=""
+                       onkeyup="this.value=this.value.replace(/[^0-9]/g,'');">
+                <a class="mbtn" id="priceBtn">确定</a>
+            </div>
+        </div>
+    </div>
+	<input type="hidden" name="adid" id="_adid" value="$!{adid}"/>
+	<input type="hidden"  id="senior_sign" value="$!{senior}"/>
+	<input type="hidden"  id="exaBook" value="$!{exaBook}"/>
+	<input type="hidden"  id="attrCode" value="$extra.searchCategory"/>
+	<input type="hidden"  id="pageUpdate" value="$extra.searchCategory"/>
+</div>
+<!-- 高级搜索 -->
+#parse("/search/search-senior.vm")

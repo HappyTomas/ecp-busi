@@ -1,0 +1,84 @@
+#parse("/sys/sys_head.vm")
+#parse("/module/mod-form.vm")
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsinfoentry/senior-price.js?version=$!{JS_VERSION}" ></script>
+<style type="text/css">
+	<!--
+        body {
+            background-color: #fff;
+        }
+        .groups .control-group {
+            width: 28%;
+            float: left;
+            margin-right: 3%;
+        }
+        .groups .control-del {
+            width: 5%;
+            float: left;
+            line-height: 30px;
+        }
+        .form-horizontal .control-label {
+            width: 70px;
+        }
+        .form-horizontal .controls {
+            margin-left: 85px;
+        }
+-->
+</style>
+<form action="" class="form-horizontal" id="seniorPriceForm">
+        <div class="scroll-wrap">
+            <div class="row-fluid text-right">
+                <a class="btn btn-success" id="btn_code_add" href="#"><i class="icon-plus icon-white"></i> 新增价格配置</a>
+
+            </div>
+            <div class="control-group">
+                <label for="defaultPrice" class="control-label">
+                    <span style="color:red">*</span>
+                    默认价格
+                </label>
+
+                <div class="controls">
+                    <input type="text" class="input-small" name="defaultPrice" id="defaultPrice">
+                </div>
+            </div>
+            <div class="groups clearfix senior_price" id="forCopy">
+                <div class="control-group">
+                    <label for="priceType" class="control-label">
+                        价格类型
+                    </label>
+                    <div class="controls">
+                        <select class="input-small" name="priceType" onchange="getPriceTarget(this)" id="priceType">
+                            <option value="">请选择</option>
+                            <option value="gdsPriceOrdinary" id="1">默认价格</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="priceTarget" class="control-label">
+                        客户分组
+                    </label>
+                    <div class="controls">
+                        <select class="input-small" name="priceTarget" id="priceTarget">
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="skuPrice" class="control-label">
+                        价格
+                    </label>
+                    <div class="controls">
+                        <input class="input-small" name="skuPrice" id="skuPrice" value="" type="text">
+                    </div>
+                </div>
+                <div class="control-del">
+                    <a href="javascript:void(0)" class="delPrice" onclick="deletePrice(this)">删除</a>
+                </div>
+            </div>
+		</div>
+  </form>
+  <div class="row-fluid" style="text-align:center;margin-top:30px;">
+        <span class="sbtn sbtn-blue" id="btnFormSave"> 确认</span>
+        <span class="sbtn cllll" id="btnFormCancle"> 取消</span>
+  </div>

@@ -1,0 +1,49 @@
+#parse("/sys/sys_param.vm")
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        店铺商品分类
+    </div>
+    <div class="am-header-left am-header-nav">
+        <a href="javascript:" onclick="history.go(-1); ">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content">
+    <ul class="ui-list fl-list ">
+		#if(!$!{categoryList} || $!{categoryList.size()}==0)
+			<div class="ui-content">
+              <div class="ui-empty">
+                  <div class="empty-img">
+                      <img src="../images/nodata02.png" alt="">
+                  </div>
+                  <div class="tip-bold">
+					很遗憾
+                  </div>
+				  <div class="tip-txt">
+						本店铺尚未进行商品分类
+                  </div>
+              </div>
+          </div>
+		  #else
+    		#foreach($list in $!{categoryList})
+                <li>
+                    <a href="$!{CONTEXT_PATH}/search?category=$!{list.catgCode}">
+                        <div class="img-wrap">
+                            <img src="$!{list.mediaURL}" alt="$!{list.catgName}"/>
+                        </div>
+                        <div class="cont">
+                            <p class="tit">$!{list.catgName}</p>
+                            <div class="con">
+    							#foreach($chillist in $!{list.children})
+    								$!{chillist.catgName}#if($velocityCount == $!{list.children.size()})#else/#end
+    							#end
+                            </div>
+                        </div>
+                    </a>
+                </li>
+    		#end
+		#end
+		
+    </ul>
+</div>

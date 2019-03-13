@@ -1,0 +1,190 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-page.vm")
+<link rel="Stylesheet" type="text/css" href="$!RESOURCE_PATH/bootstrap/core/2.3.2/css/bootstrap.css">
+<script type="text/javascript" src="$BUSIJS_PATH/shop/shopIndex/shopIndex.js?version=$!{JS_VERSION}"></script>
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/reset.css">
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/search.css">
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/shop.css">
+
+<div class="wrap1200">
+    <div id="content-c" class="search mt10">
+        <div id="ct-nav">
+           <!--店铺信息 begin-->
+            
+            <!--添加店铺信息-->
+            <div class="sl-rtype">
+                <p class="shop_top"> <a href="$!{CONTEXT_PATH}/shopIndex/$!{shopInfoResp.id}">$!{shopInfoResp.shopName}</a></p>
+                <p class="text-center store_logo">
+                    <a href="$!{CONTEXT_PATH}/shopIndex/$!{shopInfoResp.id}"> 
+                    <img src="$!{shopInfoResp.logoPathURL}">
+                    </a>
+                </p>
+                     <div class="shop-grade mbom10 ">
+                    <p class="shop-explain">
+                      <a href="$!{CONTEXT_PATH}/shopIndex/$!{shopInfoResp.id}"> $!{shopInfoResp.shopFullName}</a>
+                    </p>
+                    <dl class="mLeft10">
+                       <!--
+                        <dd>
+                            <span class="w60">等级：</span>
+                          <span class="green"> $!{shopInfoResp.linkPerson} </span>
+                        </dd>
+                       --> 
+                        <dd>
+                            <span class="w60">联系人：</span>
+                          <span class="green"> $!{shopInfoResp.linkPerson} </span>
+                        </dd>
+                         <dd>
+                            <span class="w60">联系方式：</span>
+                            <span class="green"> $!{shopInfoResp.linkMobilephone}</span>
+                        </dd>
+                        <dd>
+                            <span class="w60">销量：</span>
+                            <span class="green"> $!{shopInfoResp.saleNum} </span>
+                        </dd>
+                        <dd>
+                            <span class="w60">宝贝：</span>
+                            <span class="green">$!{shopInfoResp.favNum}
+                            </span>
+                        </dd>
+                        <dd>
+                            <span class="w60">好评率：</span>
+                            <span class="green">$!{shopInfoResp.evalRate}%
+                            </span>
+                        </dd>
+                   </dl>
+                   <div class="text-center">
+                   
+                   #if($isCollect)
+                      <span class="col-btn" id="colShop">取消店铺收藏</span>
+                     #else
+                      <span class="col-btn" id="colShop">收藏店铺</span>
+                   #end
+                   </div>
+                </div>
+               <!--  <div class="shop-grade mbom10 ">
+                    <div class="mLeft10 mbom10 ">
+                        <br>
+                        <span>店铺等级：</span><span>$!{shopInfoResp.shopGrade}<i class="shop-icon shop-icon-grade"></i><i class="shop-icon shop-icon-grade"></i><i class="shop-icon shop-icon-grade"></i></span>
+                    </div>
+                    <dl class="mLeft10">
+                        <dt>店铺服务水平:</dt>
+                        <dd>
+                            <i class="shop-icon shop-icon-green"></i><span class="w60">服务态度：</span><span class="green"><i class="grade_w30">$!{shopInfoResp.logoPath}分</i><b class="green font-def">↑</b>高1.5分 <em>店铺的该项服务指标良好</em></span>
+                        </dd>
+                        <dd>
+                            <i class="shop-icon shop-icon-green"></i><span class="w60">物流服务：</span><span class="green"><i class="grade_w30">4.8分</i><b class="green font-def">↑</b>高1.5分 <em>店铺的该项服务指标良好</em></span>
+                        </dd>
+                        <dd>
+                            <i class="shop-icon shop-icon-green"></i><span class="w60">发货时长：</span><span class="green"><i class="grade_w30">4.8分</i><b class="red font-def">↓</b>高1.5分 <em>店铺的该项服务指标良好</em></span>
+                        </dd>
+                        <dd><i class="shop-icon shop-icon-green"></i><span class="w60">投诉诉率：</span><span class="green"><i class="grade_w30">0.0%</i><b></b>持平
+                            <em>店铺的该项服务指标良好</em></span></dd>
+
+                    </dl>
+                </div>-->
+            </div>
+            <!--店铺信息 end-->
+            <!--商品分类 begin-->
+          <div class="sl-rtype">
+                <h3 class="head">店铺分类</h3>
+               #if($category.size()>0)
+                 <ul class="list">
+                 	#foreach($item in $category)
+                 	   <li class="item#if($category.size() == $velocityCount) last #end">
+                 	      <div class="it">
+                           #if($item.children.size()>0) 
+                            <i class="micon"></i>
+                           #end
+                            <span class="tit" title="$!{item.catgName} ">
+                              <a href="$!{CONTEXT_PATH}/search?category=$!{item.catgCode}&shopId=$!{shopInfoResp.id}" target="_Blank">$!{item.catgName}</a>
+                            </span>
+                        </div>
+                        #if($item.children.size()>0)
+                         <ul class="child">
+                           #foreach($child in $item.children)
+                               <li class="c-tit" title="$!{child.catgName}">
+                               <a href="$!{CONTEXT_PATH}/search?category=$!{child.catgCode}&shopId=$!{shopInfoResp.id}" target="_Blank">$!{child.catgName}</a>
+                             </li>
+                           #end
+                         </ul>
+                        #end
+                 	   </li>
+                     #end
+                 </ul>
+               #else
+                 <div class="pro-empty">暂无数据</div>
+               #end
+            </div>
+            <!--商品分类 end-->
+           <!--热卖商品 begin-->
+            <div class="history-nav">
+			        <div class="nav-inner ecp-component shopIndex-gds-hot" data-gds-size="5" data-place-width="100" data-place-height="100" data-count="5" data-shop-id="$!{shopInfoResp.id}" data-module="ecp-component/shop/shopIndex-gds-hot">
+			            <h3 class="floor-name">
+			            热卖商品
+			            </h3>
+			            <ul class = "floor-gds-data">
+			                
+			            </ul>
+			        </div>
+			 </div>
+           <!--热卖商品 end-->
+        </div>
+		<input type="hidden" id="searchingTxt" value="$!{extra.keyword}"/>
+        <input id="isLogin" name="isLogin" value="$!{isLogin}" type="hidden"/>
+        <input id="isCollect" name="isCollect" value="$!{isCollect}" type="hidden"/>
+		
+		
+        <div id="main">
+            <!--banner begin-->
+           <div class="right-box">
+			   <div class="bannerimg slide ecp-component homepage-ad" data-status="1" data-place-size="100" data-shop-id="$!{shopInfoResp.id}" data-place-id="1501" data-place-width="990" data-place-height="396" data-module="ecp-component/leaflet/leaflet-slider">
+					    <div id="banner-page" class="slide-pagination">
+					    	<ul class="homepage-ad-num">
+					       
+					    	</ul>
+					    </div>
+					    <ul class="slide-box homepage-ad-img" style="display:block;">
+					        
+					    </ul>
+			   </div>
+			</div>
+			 <!--banner end-->
+			<div class="sl-head mb10">
+				
+				<!--包含默认排序规则设置-->
+                <ul class="sl-order" id="sl-order">
+                    <li id="sales" class="first selected">
+                        销量
+                        <i class="micon micon-down"></i>
+                    </li>
+                    <li id="discountPrice">
+                        价格
+                        <i class="micon micon-downup"></i>
+                    </li>
+					<!--<li class="first selected" id="newProductTime">-->
+                    <li id="newProductTime">
+                        时间
+						<i class="micon micon-down"></i>
+                    </li>
+                </ul>
+              <!--
+              <div class="sl-hcz sl-hcz-shop">
+                    <input type="text" class="itxt" id="searchInResultTxt" placeholder="在结果中搜索"/>
+					<input type="hidden" id="searchingInResultTxt" value=""/>
+                    <span class="mbtn mbtn-orange" id="searchInResultBtn">确定</span>
+                </div>
+              -->  
+            </div>
+            
+			<div class="sl-main" id="pageMainBox">
+                #parse("/shop/shopIndex/page/shopIndex-page.vm")
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<!--快速导航-->
+#parse("/main/main-content-bottom.vm")

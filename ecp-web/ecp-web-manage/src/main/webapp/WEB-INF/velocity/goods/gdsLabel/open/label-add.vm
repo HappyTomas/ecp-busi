@@ -1,0 +1,50 @@
+#parse("/module/mod-form.vm") #parse("/module/mod-editor.vm")
+<link href="${CONTEXT_PATH}/css/goods/product-mgr.css" rel="stylesheet"
+	type="text/css" label="screen" />
+<script type="text/javascript"
+	src="$!{BUSIJS_PATH}/goods/gdsLabel/label-add.js?version=$!{JS_VERSION}"></script>
+<div class="alert alert-error hide formValidateMessages"></div>
+<div class="rk-editc pull-left">
+
+	<form id="detailInfoForm" class="form-horizontal  required-validate"
+		style="margin-bottom: 0px;" method="post">
+		<div class="row-fluid">
+			<div class="span4">
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label">标签名称：</label>
+					<div class="controls">
+						<input class="required" name="labelTitle" type="text"
+							placeholder="不多于32个汉字" />
+					</div>
+				</div>
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label">标签排序：</label>
+					<div class="controls">
+						<input class="required digits" maxlength="5" name="sortNo"
+							type="text" placeholder="必须为整数" />
+					</div>
+				</div>
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label ">标签类型：</label>
+					<div class="controls">#select("GDS_LABEL_TYPE", "labelType" ,
+						true, "")</div>
+				</div>
+				<div class="control-group" style="width: 400px;">
+					<label for="" class="control-label ">标签描述：</label>
+					<div class="controls">
+						<textarea rows="4" class="input-block-level required" name="labelDesc"
+							placeholder="不多于64个汉字"></textarea>
+					</div>
+				</div>
+			</div>
+			<!-- end of div span4 -->
+
+		</div>
+		<!-- end of div row-fluid-->
+		<div class="fbtn" style="text-align: center;margin-top:30px">
+			<button type="button" class="btn btn-info" style="margin-right:10px" id="btnFormSave"><i class=" icon-ok-sign icon-white"></i> 保　存</button>
+			<button type="button" class="btn" id="btnReturn"><i class="icon-remove-sign icon-white"></i> 取　消</button>
+		</div>
+	</form>
+
+</div>

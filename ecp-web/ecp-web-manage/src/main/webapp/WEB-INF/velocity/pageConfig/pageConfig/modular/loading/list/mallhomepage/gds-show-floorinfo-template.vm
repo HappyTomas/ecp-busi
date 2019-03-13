@@ -1,0 +1,19 @@
+#parse("sys/sys_param.vm")
+<ul class="tpl-books">
+	  #if(${gdsList} && $gdsList.size() > 0)
+		#foreach($gds in $!{gdsList})
+        <li>
+            <div class="li-inner">
+                <a class="img-wrap" href='javascript:void(0);' lazy-href="$!{gds.url}"><img src="$!{gds.mainPic.URL}"></a>
+                <p class="name"><a href='javascript:void(0);' lazy-href="$!{gds.url}">$!{gds.gdsName}</a></p>
+				 #set($authorValue = $!{gds.skuInfo.allPropMaps.get("1001").values[0].propValue})
+                <p class="author">#if($authorValue && $authorValue != '')$!{authorValue} 著 #end</p>
+                <p class="price"><span class="rob">#money($!{gds.skuInfo.discountPrice})</span><span class="price_r">#money($!{gds.guidePrice})</span></p>
+
+            </div>
+        </li>
+		#end
+	#else
+		<div class='pro-empty'>#if(${errMsg} && $!{errMsg} != '')$!{errMsg} #else 亲，暂无数据！#end</div>
+	#end
+</ul>

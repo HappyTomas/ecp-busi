@@ -1,0 +1,59 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsPropGroup/propgroup-grid.js?version=$!{JS_VERSION}" ></script>
+
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal required-validate" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label" style="width:100px;">属性组编码：</label>
+						<div class="controls">
+							<input type="text" name="id" class="input-medium digits" value="" placeholder="输入属性组编码">
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label" style="width:100px;">属性组名称：</label>
+						<div class="controls">
+							<input type="text" name="groupName" class="input-medium" value="" placeholder="输入属性组名称">
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="row-fluid">
+
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label" style="padding-top:13px;padding-left:5px;">状态：</label>
+						<div class="controls" style="margin-top:7px;padding-left:5px;">
+							<select name="status" id="status" style=" width: 194px;">
+								<option value="1">启用</option>
+								<option value="0">禁用</option>
+							</select>
+							##<input type="radio" name="shut" class="input-medium" checked value="1">启用
+							##<input type="radio" name="shut" class="input-medium" value="0">禁用
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			</form>
+		</div>
+		
+		
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="span8">
+				<a class="btn" id="btn_code_add" href="#"><i class="icon-plus icon-white"></i> 新增属性组</a>
+			</div>
+			<div class="pull-right fbtn">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search"></i> 查询</a>
+				<a class="btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>

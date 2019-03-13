@@ -1,0 +1,76 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/type/type-grid.js?version=$!{JS_VERSION}" ></script>
+
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+			
+			<div class="row-fluid">
+			<div class="span4">
+					<div class="control-group">
+						<label class="control-label">类型名称：</label>
+						<div class="controls">
+						 	<input type="text" class="input-medium" value="" placeholder="输入类型名称" id="coupTypeName" name="coupTypeName" />
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">状态：</label>
+						<div class="controls">
+								<select style="width:160px" id="status" name="status">
+									<option value="">--请选择--</option>
+									   #listParam('COUP_TYPE_STATUS','1')
+								</select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">类别：</label>
+						<div class="controls">
+						
+							<select name="typeLimit" id="typeLimit" class="input-medium" >
+								<option value="">--请选择--</option>
+								   #listParam('COUP_TYPE_LIMIT','')
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row-fluid">
+			<div class="span4">
+					<div class="control-group">
+						<label class="control-label">创建时间：</label>
+						<div class="controls">
+						  <input type="text" class="input-large Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="createTimeStart"/>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">至：</label>
+						<div class="controls">
+							  <input type="text" class="input-large Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="createTimeEnd"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+		
+		
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="span6">
+				<a class="btn" id="btn_code_add" href="#"><i class="icon-plus icon-white"></i> 新增类型</a>
+			</div>
+			<div class="pull-right">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>

@@ -1,0 +1,43 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/ebc.check.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/createprom/prom-tab.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/common/prom-check.js?version=$!{JS_VERSION}" ></script>
+
+<div class="main main-rela">
+    <div class="seller-tab">
+        <ul class="tab-nav" id="myTab"> 
+			  <li class="active"><a href="#prom-info" class="item">促销基本信息</a></li> 
+        	  #if($!{promType.promTypeCode}!="1000000019")
+              <li><a href="#discount-rule">优惠规则</a></li> 
+        	  #end					      	 
+			  #if($!{ifShowPromRuleTab}!=true)
+			  <li><a href="#prom-rule" class="item">促销规则</a></li> 
+		      #end
+		      <div class="pull-right class="btn-wrap-fixr">
+       	            #if($!{doAction}=='view')
+       	                <span   class="sbtn" id="btnReturnTab" shopId="$!{shopId}">返　回</span>
+       	            #else
+						<button type="button"  class="sbtn sbtn-blue" id="btnFormSave"  > 保存草稿</button>
+						<button type="button"   class="sbtn sbtn-blue" id="btnFormSubmit">提    交</button>
+						<span   class="sbtn " id="btnReturnTab" shopId="$!{shopId}">返　回</span>
+					#end
+		
+              </div>	
+	   </ul> 
+    
+       <div class="tab-content" style="width:100%;"> 
+		   <div class="tab-pane active" id="prom-info">
+		  		  #parse("/seller/prom/createprom/prom-info.vm") 
+		    </div> 
+        	 #if($!{promType.promTypeCode}!="1000000019")
+             <div class="tab-pane" id="discount-rule">
+                  #parse("/seller/prom/createprom/discount-rule-default.vm") 
+              </div> 
+			 #end
+			 #if($!{ifShowPromRuleTab}!=true)
+			<div class="tab-pane" id="prom-rule">
+   			      #parse("/seller/prom/createprom/prom-rule.vm") 
+		    </div> 
+			#end
+      </div> 
+</div>

@@ -1,0 +1,162 @@
+#parse("/sys/sys_head.vm")
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/sh/shCoreDefault.css"/>
+<script src="$!{RESOURCE_PATH}/jquery/artTemplate/template-debug.js"></script>
+<script src="$!{RESOURCE_PATH}/util.js"></script>
+<script src="$!{RESOURCE_PATH}/sh/shCore.js"></script>
+<script src="$!{RESOURCE_PATH}/sh/shBrushXml.js"></script>
+<script src="$!{RESOURCE_PATH}/sh/shBrushJScript.js"></script>
+
+<style>
+    .examle {
+        padding: 20px;
+    }
+
+    .examle a {
+        color: #008200;
+        font-size: 14px;
+    }
+
+    .red {
+        font-size: 14px;
+        color: red;
+    }
+</style>
+<header class="am-header am-header-fixed">
+	<div class="am-header-title">
+        我的收藏
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        <a href="$CONTEXT_PATH/member/index">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content">
+<div class="am-tabs" data-am-tabs>
+	<input type="hidden" value="$!{showWhat}" id="showWhat"/>
+    <ul class="am-tabs-nav am-nav am-nav-tabs">
+        <li class="am-active" onclick="changeTab('gds')"><a href="[data-tab-panel-0]" id="gdsTab">商品</a></li>
+       ## <li class="" onclick="changeTab('shop')"><a href="[data-tab-panel-1]" id="shopTab">店铺</a></li>
+    </ul>
+    <div class="am-tabs-bd">
+       <div data-tab-panel-0 class="am-tab-panel am-active am-list-news scroll-wrap" id="wrapper1" data-am-widget="list_news">
+            <div class=" am-list-news-bd scroll">
+           
+            	<div class="pull-action loading pull-down">
+                   <span class="pull-label"> 下拉刷新</span>
+                    <span class="am-icon-spinner am-icon-spin"></span>
+                </div>
+              
+                <ul class="ui-list eva-list scrollCont">
+	                <div class="loading-lo"></div>
+	            </ul>
+	            <div class="pull-action pull-up" style="bottom: 0">
+                     <span class=" pull-label"> 上拉加载更多</span>
+                    <span class="am-icon-spinner am-icon-spin"></span>
+                </div>
+            </div>
+        </div>	
+        <div data-tab-panel-1 class="am-tab-panel am-active am-list-news scroll-wrap" id="wrapper2" data-am-widget="list_news">
+            <div class=" am-list-news-bd scroll">
+            
+
+            	<div class="pull-action loading pull-down">
+                   <span class="pull-label"> 下拉刷新</span>
+                    <span class="am-icon-spinner am-icon-spin"></span>
+                </div>
+              
+                <ul class="ui-list fav-list scrollCont">
+
+	                <div class="loading-lo"></div>
+
+
+	            </ul>
+	            <div class="pull-action pull-up" style="bottom: 0">
+                     <span class=" pull-label"> 上拉加载更多</span>
+                    <span class="am-icon-spinner am-icon-spin"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script type="text/x-handlebars-template" id="wrapper1-tpl">
+	{{if values.datas ==null || values.datas.length == 0}}
+		<div data-tab-panel-0 class="am-tab-panel am-active">
+            <div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$IMAGE_PATH/shop-nodata.png" alt="">
+                </div>
+                <div class="tip-bold">
+						很遗憾
+                </div>
+                <div class="tip-txt">
+						您还没有收藏商品
+                </div>
+            </div>
+        </div>
+	{{/if}}
+    {{each values.datas as obj i}}
+		<li>
+            <div class="img-wrap">
+                <a href="$!{CONTEXT_PATH}{{obj.gdsUrl}}"><img src="{{obj.skuMainPic}}" alt=""/></a>
+            </div>
+            <div class="cont">
+                <a href="$!{CONTEXT_PATH}{{obj.gdsUrl}}"><p class="tit">{{obj.gdsName}}</p></a>
+                <div class="c-orange">
+                   	 &yen;{{obj.nowPriceYun}}
+            </div>
+            <div class="txt-btn">
+                    <a href="#" class="btn btn-def" onclick="FavGoods.deleteOne({{obj.id}})">取消收藏</a>
+					{{if obj.stockInfo=='无货' || obj.gdsStatus=='22'}}
+						<a href="#" class="btn btn-def" >加入购物车</a></div>
+					{{/if}}
+					
+					{{if obj.stockInfo!='无货' && obj.gdsStatus=='11'}}
+                    	<a href="#" class="btn btn-gw" onclick="FavGoods.addToCart({{obj.skuId}},this,{{obj.gdsTypeId}})">加入购物车</a></div>
+					{{/if}}
+            </div>
+        </li>
+    {{/each}}
+</script>
+<script type="text/x-handlebars-template" id="wrapper2-tpl">
+	{{if values.datas ==null || values.datas.length == 0}}
+		<div data-tab-panel-0 class="am-tab-panel am-active">
+            <div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$IMAGE_PATH/shop-nodata.png" alt="">
+                </div>
+                <div class="tip-bold">
+						很遗憾
+                </div>
+                <div class="tip-txt">
+						您还没有收藏店铺
+                </div>
+            </div>
+        </div>
+	{{/if}}
+    {{each values.datas as obj i}}
+    	<li>
+            <div class="img-wrap">
+                <img src="{{obj.logoPathURL}}" alt=""/>
+            </div>
+            <div class="cont">
+                <p class="name">
+                   	{{obj.shopName}}
+                </p>
+                <p class="sale">
+                    销量：<em class="num">{{obj.saleGdsCnt}}</em>
+                </p>
+                <p class="count">
+                    共<em>{{obj.gdsCnt}}</em>件宝贝
+                </p>
+            </div>
+            <div class="opt">
+                <a href="$CONTEXT_PATH/shopmain/{{obj.id}}" class="btn btn-bred">进入店铺</a>
+                <a href="#" class="btn btn-bdis" onClick="FavGoods.cancelShop({{obj.id}})"  >取消关注</a>
+            </div>
+       </li>
+    {{/each}}
+</script>
+<script src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/buyer/mycollect/fav-mycollect.js?version=$!{JS_VERSION}" ></script>

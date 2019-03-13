@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://code.alibabatech.com/schema/dubbo  
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+	">  
+	
+	<!-- 域内测试关闭，客户端打包需开启-->
+	<dubbo:reference id="secConfigRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecConfigRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+	
+	<dubbo:reference id="secObjectRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecObjectRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+	
+	<dubbo:reference id="secRedirectRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecRedirectRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+	
+	<dubbo:reference id="secSolrServerRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecSolrServerRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+	
+	<dubbo:reference id="secZkRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecZkRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+	
+	<dubbo:reference id="secConfigPlanRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecConfigPlanRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+	
+	<dubbo:reference id="secHotKeywordRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecHotKeywordRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+	
+	<dubbo:reference id="secArgsRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecArgsRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+	
+	<dubbo:reference id="secObjectBuildLogRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecObjectBuildLogRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+	
+	<dubbo:reference id="secOperLogRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecOperLogRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+	
+	<dubbo:reference id="secFieldProcessorRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecFieldProcessorRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+	
+	<dubbo:reference id="secFieldTypeRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecFieldTypeRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+	
+	<dubbo:reference id="secObjectProcessorRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecObjectProcessorRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+      
+    <dubbo:reference id="secDeltaIndexRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.ISecDeltaIndexRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+
+	<dubbo:reference id="deltaTransactionMessageRSV" interface="com.zengshi.ecp.search.dubbo.interfaces.IDeltaTransactionMessageRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${search.dubbo.group}"/>
+    
+</beans>  

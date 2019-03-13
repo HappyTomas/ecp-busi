@@ -1,0 +1,75 @@
+#set($title = "")##标题
+#set($ifShowTitle = "")##是否显示标题
+#set($ifTitleCenter = "")##是否居中显示标题
+#set($icon = "")##图标
+#set($ifShowIcon = "")##是否显示图标
+#set($showAmount = "8")##展示数量
+#set($showWay = "2")##展示方式.默认给他展示2个
+#set($showMore = "")##是否展示更多
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+#foreach($prop in $crossItemObj)
+	#if($!{prop.propId}=="1000")
+		##标题
+		#set($title = "$!{prop.propValue}")
+	#elseif($!{prop.propId}=="1001" && $!{prop.propValue}=="1")
+		##是否展示标题。0表示不展示标题
+		#set($ifShowTitle = "true")
+	#elseif($!{prop.propId}=="1002" && $!{prop.propValue}=="1")
+		##是否居中展示标题。1表示居中展示标题
+		#set($ifTitleCenter = "true")
+	#elseif($!{prop.propId} == "1008")
+		##图标
+		#set($icon = "$!{prop.propValue}")
+	#elseif($!{prop.propId} == "1009" && $!{prop.propValue}=="1")
+		##是否显示图标
+		#set($ifShowIcon = "true")
+	#elseif($!{prop.propId}=="1004")
+		##展示数量
+		#set($showAmount = $!{prop.propValue})
+	#elseif($!{prop.propId}=="1021")
+		##展示方式
+		#set($showWay = $!{prop.propValue})
+	#elseif($!{prop.propId}=="1017" && $!{prop.propValue}=="1")
+		##显示更多
+		#set($showMore = "true")
+	#elseif($!{prop.propId}=="1002")
+		##标题是否居中显示
+		#if($!{prop.propValue}=="1")
+			#set($showCenter = "style='text-align:center'")
+		#end
+	#end
+#end
+
+<div class="ecp-component $!{componentMethod}" data-status="1" data-showAmount="$showAmount" data-showWay="$showWay" data-component-method="$!{componentMethod}" data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}" style="width:236px">
+	#if(!$!{componentMethod} || '' == $!{componentMethod})
+		##判断是否已经配置了模板相应的属性
+	   	#parse("/pageConfig/pageConfig/edit/nodata/modular-nodata.vm")
+	#else
+		<div class="mallTpl-preSale">
+			#if($ifShowTitle =="true" || $!{showMore}=="true")
+		    <div class="modular-head" $!{showCenter}>
+	    		#if($ifShowIcon == "true" && $icon && $icon != '')
+					<i class="ficon" style="background:url(${aiTool.genImageUrl($!{icon},'25x25!')})"></i>
+				#end
+		    	#if($!{ifShowTitle} == "true") $!{title} #end
+		    	#if($!{showMore}=="true") <a target='_blank' href = "$!{MALL_SITE_URL}/newbook/newbookpageinit?placeWidth=200&placeHeight=200&pageSize=20&versionType=0" class="hright">更多&gt;&gt;</a> #end
+		    </div>
+		    #end
+			<div class="modular-body" id="modular-body">
+				<div class='tpl-loading'></div>
+			</div>
+	    </div>
+	#end    
+</div>

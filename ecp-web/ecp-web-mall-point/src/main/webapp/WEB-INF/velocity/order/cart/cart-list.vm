@@ -1,0 +1,161 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/cart/cart-list.js?version=$!{JS_VERSION}"></script>
+<style>
+.nullList{
+	background-color: #F0F0F0;
+	text-align: center;
+	padding: 10px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+}
+.car .p-name {
+    width: 200px;
+}
+</style>
+  
+<!--内容 begin-->
+<div id="content">
+    <div class="wrap1000 car">
+		 <form action="$!{CONTEXT_PATH}/order/build/create" id="cartForm" method="post">
+             <input type="text" id="disableEnter" style="display:none"></input>
+			 <input type="hidden" id="carNum" value="$!{carNum}"></input>
+         <h2>
+             购物车
+         </h2>
+         <div style="display:none;">
+			<input class="" type="checkbox" id="selectAllItem">
+		 </div>
+         <!-- 数据来源字段，0为WEB端，1为APP端 -->
+                    <input type="hidden" name="source" id="websiteSource" value="0">
+                    <input type="hidden" name="staffId" id="staffId" value="$!{cartList.staffId}">
+        <!--购物列表 star-->
+        <div class="carc">
+            <div class="car-head">
+                <div class="cell p-goods">商品名称</div>
+                <div class="cell p-point">兑换积分</div>
+                <div class="cell p-num">数量</div>
+                <div class="cell p-sum">小计</div>
+                <div class="cell p-act">操作</div>
+            </div>
+            <div class="car-list" id="cartList">
+                <div class="nullList" id="nullList" style="display: none;">
+					购物车中无商品
+            	</div>
+				#foreach($!cart in $!cartList.ordCartList)
+        		#set($cartIndex = $velocityCount - 1)
+        		#set($shopProm = $!cartList.cartPromRespDTO.cartPromDTOMap.get(${cart.id}))
+        		##处理优惠ID，若为空则设置为-1
+        		#set($shopPromId = "")
+               	#if($shopProm && $shopProm.promInfoDTO)
+               		#set($shopPromId = $shopProm.promInfoDTO.id)
+               	#else
+               		#set($shopPromId = $cart.promId)
+               	#end
+               	#if(!$shopPromId || $shopPromId=="")
+               		#set($shopPromId = "-1")
+               	#end
+				<div class="car-item">
+					 <input type="hidden" name="carList[$!{cartIndex}].staffId" id="shopStaffId" value="$!{cart.staffId}">
+                    <input type="hidden" name="carList[$!{cartIndex}].cartId" id="shopCartId" value="$!{cart.id}">
+                    <input type="hidden" name="carList[$!{cartIndex}].promId" id="shopPromId" value="$!{shopPromId}">
+                    <input type="hidden" id="shopTempPromId" value="$!{shopPromId}">
+					#foreach($!item in $!cart.ordCartItemList)
+                	#set($itemIndex = $velocityCount - 1)
+                	#set($itemProm = $!cartList.cartPromRespDTO.cartPromItemDTOMap.get(${item.id}))
+                	#set($itemGiftContent = "")
+                	#if($itemProm.promGiftDTOList && $itemProm.promGiftDTOList.size()>0)
+                		#foreach($giftInfo in $itemProm.promGiftDTOList)
+                			#set($itemGiftContent = $itemGiftContent + $giftInfo.giftName + " X " + $giftInfo.everyTimeCnt + "；")
+                		#end
+                	#end
+                	##商品明细优惠ID，若为空则设置为-1
+                	#set($itemPromId = "")
+                	#if($itemProm && $itemProm.promInfoDTO)
+                		#set($itemPromId = $itemProm.promInfoDTO.id)
+                	#else
+                		#set($itemPromId = $item.promId)
+                	#end
+					#if(!$itemPromId || $itemPromId=="")
+	               		#set($itemPromId = "-1")
+	               	#end
+                    <div class="item-list">
+                        <div class="item-body" #if(!$item.gdsStatus) style="background-color:#F0F0F0; color:#ccc" #end>
+                            <div style="display:none;">
+								<input class=" itemCheck" type="checkbox" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].itemCheck" #if($item.gdsStatus) checked #end  value="checked"/>
+							</div>
+                           <!-- 商品基本信息 -->
+                            <input type="hidden" id="itemSkuId" value="$!{item.skuId}">
+					        <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].promId" id="itemPromId" value="$!{itemPromId}">
+					        <input type="hidden" id="itemTempPromId" value="$!{itemPromId}">
+					        <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].cartId" id="itemCartId" value="$!{item.cartId}">
+	                        <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].cartItemId" id="itemId" value="$!{item.id}">
+							<div class="cell p-goods">
+                                <div class="p-img">
+                                    <a href="$!{CONTEXT_PATH}$!{item.gdsUrl}" target="_blank">
+                                        <img width="120" height="110px" src="#genImageUrl($!item.getPicId(),'200x200!')" alt="$!{CONTEXT_PATH}$!{item.gdsUrl}"/>
+                                    </a>
+                                </div> 
+                               <div class="p-name">
+		                        <a href="$!{CONTEXT_PATH}$!{item.gdsUrl}" target="_blank">
+		                            $!{item.gdsName}
+		                        </a> 
+                                <br>
+								#if(!$item.gdsStatus) 
+									<sapn style="color:red">(该商品已下架)</sapn>
+								#end 
+                                </div>
+                            </div>
+                            <div class="cell p-point">
+                               <span class="score"> $!{item.score}</span>积分+&yen;
+							   <span class="basePrice">$!{aiNumber.showMoneyByTwoDecimal("$item.basePrice")}</span>
+                            </div>
+                            <div class="cell p-num">
+                                #if(!$item.gdsStatus)
+                                    &nbsp;$!{item.orderAmount}
+                                #else
+                                <div class="count-input">  
+									
+									#if($!{item.gdsType}=='2')#else<a href="javascript:void(0)" class="btn minus itemNumberMinus" >-</a>#end
+									<input name="" type="text" maxlength="9" gdsTypeId="$!{item.gdsType}" class="itxt itemNumber purchaseAmount" value="#if($!{item.gdsType}=='2')1#else$!{item.orderAmount}#end" style="">
+    	                            #if($!{item.gdsType}=='2')#else<a href="javascript:void(0)" class="btn add itemNumberAdd">+</a>#end
+                                </div>
+                                #end
+                                <span class="spacer"></span>
+                            </div>
+                            <div class="cell p-sum">
+                                <span class="itemScoreCount"></span>积分+&yen; <span class="itemBasePriceCount"></span>
+                            </div> 
+                            <div class="cell p-act">
+                                <a href="javascript:void(0)" class="deleteCurrentItem">
+                                    删除
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                     #end
+                </div>
+				  #end
+            </div>
+            <div class="car-head pro-total">
+                <div class="total-box">
+                     <span class="tsl">
+                          已选择 <b class="c-red" id="selectItemCount">0</b>件商品</span>
+                      </span>
+                      <span class="tl">
+                          总价：
+                      </span>
+                      <span class="tv"> 
+						    <span class="c-red" id="cartScoreConut"></span>
+							积分<b>+</b>&yen;
+							<span class="c-red" id="cartBaseAmoutConut"></span>
+                      </span>
+					  <a class="gobtn" href="javascript:void(0);" id="goCheck">去结算</a>
+                </div>
+            </div>
+        </div>
+        <!--购物列表 end-->
+                            </form>
+    </div>
+</div>
+<!--内容 end-->

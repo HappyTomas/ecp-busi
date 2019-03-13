@@ -1,0 +1,17 @@
+#parse("/sys/sys_param.vm")
+##<script type="text/javascript" src="$!{BUSIJS_PATH}/main/main-site-column.js?version=$!{JS_VERSION}" ></script>
+
+<!--导航 begin-->
+<div id="pt-nav">
+    <div class="wrap1000">
+        ##更改logo图片取站点    2016.6.21 zhanbh
+		#parse("/main/main-site-logo.vm")
+		
+		<div class="nav-bar ecp-component channel-main-nav" data-path="main-nav" data-nav-type="$!{nav_type}"
+             data-module="ecp-component/channel/main-nav-shader">
+            
+        </div>
+
+    </div>
+</div>
+<!--导航 end-->

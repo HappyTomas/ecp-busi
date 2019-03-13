@@ -1,0 +1,77 @@
+#parse("/module/mod-form.vm")
+<style type="text/css">
+  .dashed{
+      border-bottom: 1px dashed #dddddd;
+
+  }
+    .pad{
+        padding: 10px 0;
+    }
+    .pad img{
+        float: left;
+        margin-right: 10px;
+    }
+
+	.pad .pro-images {
+        float: left;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+    .pro-images{
+        border: 1px solid #dddddd;
+        padding: 10px;
+        display: block;
+    }
+    .red{
+        color: red;
+    }
+</style>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/offline-review.js?version=$!{JS_VERSION}" ></script>
+
+
+    <!-- main content -->
+    	<div id="contentwrapper">
+    	<!--   <div class="control-group alert">
+
+                    <div class="controls">
+						
+                         <div class="pad clearfix">
+							#foreach($picUrl in $!{picUrls})
+								<img src="$!picUrl" class="pro-images">
+							#end
+						 </div>
+                    </div>
+				</div>-->
+
+
+            <div class="alert ">
+                <div class="pad dashed ">$!{custName}<span class="pull-right">$!date.format('yyyy-MM-dd',$!{resp.createTime})</span></div>
+                <div class="pad">$!{resp.remark}</div>
+            </div>
+
+            
+            <form class="form-horizontal required-validate" id="reviewForm" style="margin:0">
+                <input name="offlineNo" value="$!{offlineResp.offlineNo}" type="hidden"></input>
+                <input name="orderId" value="$!{offlineResp.orderId}" type="hidden"></input>
+                <input name="staffId" value="$!{offlineResp.staffId}" type="hidden"></input>
+                <input name="status" value="0" type="hidden"></input>
+                <div class="control-group">
+                    <label class="control-label">
+                        审核意见：</label>
+                    <div class="controls">
+                        <textarea rows="3" class="input-block-level" name="checkCont"></textarea>
+                    </div>
+                </div>
+                <div class="control-group">
+
+                    <div class="controls pull-right">
+                        <a class="btn btn-info" id="allow"><i class=" icon-ok-sign icon-white"></i> 通过</a>
+                        <a class="btn" id="unallow"><i class=" icon-remove-sign icon-white"></i> 不通过</a>
+                        <a class="btn" id="back"><i class="icon-reply icon-white"></i> 返回</a>
+                    </div>
+				</div>
+
+            </form>
+
+		</div>
+    <!-- main content -->

@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.cms.dao.mapper.common.CmsSiteMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.cms.dao.model.CmsSite" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SITE_NAME" property="siteName" jdbcType="VARCHAR" />
+    <result column="SITE_URL" property="siteUrl" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="ISDEFAULT" property="isdefault" jdbcType="VARCHAR" />
+    <result column="SITE_LOGO" property="siteLogo" jdbcType="VARCHAR" />
+    <result column="CASE_NO" property="caseNo" jdbcType="VARCHAR" />
+    <result column="SITE_ADDRESS" property="siteAddress" jdbcType="VARCHAR" />
+    <result column="COPYRIGHT_COMPANY" property="copyrightCompany" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SITE_NAME, SITE_URL, STATUS, CREATE_STAFF, CREATE_TIME, UPDATE_STAFF, UPDATE_TIME, 
+    ISDEFAULT, SITE_LOGO, CASE_NO, SITE_ADDRESS, COPYRIGHT_COMPANY
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.cms.dao.model.CmsSiteCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_cms_site
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_cms_site
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_cms_site
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.cms.dao.model.CmsSiteCriteria" >
+    delete from t_cms_site
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.cms.dao.model.CmsSite" >
+    insert into t_cms_site (ID, SITE_NAME, SITE_URL, 
+      STATUS, CREATE_STAFF, CREATE_TIME, 
+      UPDATE_STAFF, UPDATE_TIME, ISDEFAULT, 
+      SITE_LOGO, CASE_NO, SITE_ADDRESS, 
+      COPYRIGHT_COMPANY)
+    values (#{id,jdbcType=INTEGER}, #{siteName,jdbcType=VARCHAR}, #{siteUrl,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createStaff,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{isdefault,jdbcType=VARCHAR}, 
+      #{siteLogo,jdbcType=VARCHAR}, #{caseNo,jdbcType=VARCHAR}, #{siteAddress,jdbcType=VARCHAR}, 
+      #{copyrightCompany,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.cms.dao.model.CmsSite" >
+    insert into t_cms_site
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="siteName != null" >
+        SITE_NAME,
+      </if>
+      <if test="siteUrl != null" >
+        SITE_URL,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="isdefault != null" >
+        ISDEFAULT,
+      </if>
+      <if test="siteLogo != null" >
+        SITE_LOGO,
+      </if>
+      <if test="caseNo != null" >
+        CASE_NO,
+      </if>
+      <if test="siteAddress != null" >
+        SITE_ADDRESS,
+      </if>
+      <if test="copyrightCompany != null" >
+        COPYRIGHT_COMPANY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="siteName != null" >
+        #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="siteUrl != null" >
+        #{siteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdefault != null" >
+        #{isdefault,jdbcType=VARCHAR},
+      </if>
+      <if test="siteLogo != null" >
+        #{siteLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="caseNo != null" >
+        #{caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="siteAddress != null" >
+        #{siteAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="copyrightCompany != null" >
+        #{copyrightCompany,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.cms.dao.model.CmsSiteCriteria" resultType="java.lang.Long" >
+    select count(*) from t_cms_site
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_cms_site
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteName != null" >
+        SITE_NAME = #{record.siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteUrl != null" >
+        SITE_URL = #{record.siteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.isdefault != null" >
+        ISDEFAULT = #{record.isdefault,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteLogo != null" >
+        SITE_LOGO = #{record.siteLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.caseNo != null" >
+        CASE_NO = #{record.caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.siteAddress != null" >
+        SITE_ADDRESS = #{record.siteAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.copyrightCompany != null" >
+        COPYRIGHT_COMPANY = #{record.copyrightCompany,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_cms_site
+    set ID = #{record.id,jdbcType=INTEGER},
+      SITE_NAME = #{record.siteName,jdbcType=VARCHAR},
+      SITE_URL = #{record.siteUrl,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      ISDEFAULT = #{record.isdefault,jdbcType=VARCHAR},
+      SITE_LOGO = #{record.siteLogo,jdbcType=VARCHAR},
+      CASE_NO = #{record.caseNo,jdbcType=VARCHAR},
+      SITE_ADDRESS = #{record.siteAddress,jdbcType=VARCHAR},
+      COPYRIGHT_COMPANY = #{record.copyrightCompany,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.cms.dao.model.CmsSite" >
+    update t_cms_site
+    <set >
+      <if test="siteName != null" >
+        SITE_NAME = #{siteName,jdbcType=VARCHAR},
+      </if>
+      <if test="siteUrl != null" >
+        SITE_URL = #{siteUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdefault != null" >
+        ISDEFAULT = #{isdefault,jdbcType=VARCHAR},
+      </if>
+      <if test="siteLogo != null" >
+        SITE_LOGO = #{siteLogo,jdbcType=VARCHAR},
+      </if>
+      <if test="caseNo != null" >
+        CASE_NO = #{caseNo,jdbcType=VARCHAR},
+      </if>
+      <if test="siteAddress != null" >
+        SITE_ADDRESS = #{siteAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="copyrightCompany != null" >
+        COPYRIGHT_COMPANY = #{copyrightCompany,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.cms.dao.model.CmsSite" >
+    update t_cms_site
+    set SITE_NAME = #{siteName,jdbcType=VARCHAR},
+      SITE_URL = #{siteUrl,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      ISDEFAULT = #{isdefault,jdbcType=VARCHAR},
+      SITE_LOGO = #{siteLogo,jdbcType=VARCHAR},
+      CASE_NO = #{caseNo,jdbcType=VARCHAR},
+      SITE_ADDRESS = #{siteAddress,jdbcType=VARCHAR},
+      COPYRIGHT_COMPANY = #{copyrightCompany,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

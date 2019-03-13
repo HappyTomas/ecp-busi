@@ -1,0 +1,76 @@
+#parse("/sys/sys_param.vm")
+<meta charset="UTF-8">
+<title>回复</title>
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<script src="$!{RESOURCE_PATH}/ui/amazeui/handlebars.min.js"></script>
+<script src="$!{RESOURCE_PATH}/ui/util.js"></script>
+<script src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js"></script>
+<header class="am-header am-header-fixed">
+
+    <div class="am-header-title">
+        回复
+    </div>
+	<div class="am-header-left am-header-nav">
+         <a href="$!{CONTEXT_PATH}/gdsdetail/tomoregdseval?gdsId=$!{gdsId}&skuId=$!{skuId}">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<script>
+   /*  $(function () {
+        $('#replyList').height($(window).height() - $('.am-header').height()-$('.reply-ip-box').height());
+        var loadScroll = new LoadScroll("replyList");
+        loadScroll.init();
+    }); */
+</script>
+<input value="$!{gdsId}" id="gdsId"/>
+<input value="$!{skuId}" id="skuId"/>
+<input value="$!{evalId}" id="evalId"/>
+<div class="ui-content">
+	
+	<div class="scroll-wrap" id="replyList" style="height: 633px;">
+    #set($num=0)
+	#foreach($value in $!{evalList})
+		#set($num=$num+1)
+		#set($staffId=$value.staffId)
+		#set($pic="")
+	    #foreach($item in $!{custList})
+			#if($!{staffId}==$item.id)
+			 #set($pic=$item.custPic)
+			#end
+		#end
+	        <div class="scroll">
+	            <div class="ui-box reply-box">
+	                <div class="head">
+	                       <span class="himg">
+	                          	<img src="$pic" alt=""/>
+	                       </span>
+	                    #set($!name=$value.staffName)
+	                    $!name
+	                    <span class="pull-right">#$num</span>
+	                </div>
+	                <div class="body">
+	                    <ul class="ui-list">
+	                        <li>
+	                            <div class="cont">
+	                                <p class="tit">$value.detail</p>
+	                            </div>
+	                        </li>
+	                    </ul>
+	                </div>
+	                <div class="footer">
+	                    <span class="time">$value.replayTime</span>
+	                    <span class="btn btn-bred" onclick="sendMes('$value.staffName','$value.replyId')">回复</span>
+	                </div>
+	            </div>
+	           </div>
+	 #end
+	</div>
+    <div class="reply-ip-box">
+    	<input hidden="true"  value="" id="replyid"/>
+    	<input hidden="true"  value="" id="touser"/>
+        <input type="text" class="ui-input" id="content" value="说点什么吧!"/>
+        <span class="wbtn wbtn-radius" id="sendMes">发送</span>
+    </div>
+</div>
+<script type="text/javascript" src="$BUSIJS_PATH/goods/gdsdetail/gdsdetail-userseval.js?version=$!{JS_VERSION}"></script>

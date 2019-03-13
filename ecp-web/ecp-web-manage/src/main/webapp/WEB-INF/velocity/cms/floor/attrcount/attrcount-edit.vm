@@ -1,0 +1,71 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+#parse("sys/sys_param.vm")
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/floor/attrcount/attrcount-edit.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<script type="text/javascript">
+ function replaceSpace(obj){
+ obj.value = obj.value.replace(/s/gi,'')
+}
+</script>
+
+#if($!{respDTO.id})##非空
+	<h3 class="heading">楼层属性编辑</h3>
+#else##为空
+	<h3 class="heading">楼层属性新增</h3>
+#end
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<div class="alert alert-error hide formValidateMessages" >
+	##showSpringAllError("vo")
+</div>
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/floorattrcount/save">
+		<div class="span8">
+			<input type="hidden" id="id" name="id" value="$!{respDTO.id}" />
+			<input type="hidden" id="placeId" name="placeId" value="$!{respDTO.placeId}" />
+			<input type="hidden" id="floorId" name="floorId" value="$!{respDTO.floorId}" />
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属楼层：</label>
+    				<div class="controls">
+						<input type="text" class="input-large" id="floorName" name="floorName" readonly value="#escapeHtml($!{respDTO.floorName})" />
+    					<span class="help-inline">商城首页的楼层！</span>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">楼层属性：</label>
+    				<div class="controls">
+    					<select id="floorAttr" name="floorAttr" class="required" style="width:160px">
+							<option  value="">--请选择--</option>
+    						#listParam('CMS_FLOOR_ATTR',"$!{respDTO.floorAttr}")
+    					</select>
+    				</div>
+    			</div>
+    		</div>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">显示数量：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large required checkInteger" id="showCount" onkeypress="javascript:return ebcUtils.checkNum(event,this);" name="showCount" min="1" max="100" placeholder="请填写数量" onBlur="replaceSpace(this)" value="$!{respDTO.showCount}" />
+    					<span class="help-inline">请填写1-100的整数！</span>
+    				</div>
+    			</div>
+    		</div>
+			<div class="pull-middle">
+				<button type="button" class="btn btn-info" id="btnFormPubSave"><i class="icon-ok-sign icon-white"></i>发布</button>
+				<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i>保存</button>
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+    		</div>
+        </div>
+		<div class="clear"></div>
+	</form>
+</div>
+	

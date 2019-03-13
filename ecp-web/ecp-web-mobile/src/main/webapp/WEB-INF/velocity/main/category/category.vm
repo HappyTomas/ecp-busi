@@ -1,0 +1,100 @@
+#parse("sys/sys_param.vm")
+<style>
+    html,body {
+        background-color: #fff;
+    }
+</style>
+
+<script>
+    $(function () {
+        $(".am-tabs-nav").height($(window).height() - $(".am-header").outerHeight());
+        $('.mall-cls .handle-more').click(function(){
+            $(this).parents('li').toggleClass('active');
+        })
+    })
+</script>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        全部分类
+    </div>
+    <div class="am-header-left am-header-nav">
+		<a href="javascript:" onclick="history.go(-1); ">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content ">
+    <div data-am-widget="tabs"
+         class="am-tabs am-tabs-default mall-tab clearfix ">
+        <ul class="am-tabs-nav am-cf">
+			#foreach($pCate in $catgParent.cmsChildCatg)
+				#if($!{velocityCount} ==1)
+					<li class="am-active"><a href="[data-tab-panel-$!{pCate.id}]">$!{pCate.catgName}</a></li>
+				#else
+					<li><a href="[data-tab-panel-$!{pCate.id}]">$!{pCate.catgName}</a></li>
+				#end
+			#end
+        </ul>
+        <div class="am-tabs-bd">
+			#foreach($pCate in $catgParent.cmsChildCatg)
+				#set($pClassStyle="")
+				#if($!{velocityCount} ==1)
+					#set($pClassStyle="am-tab-panel am-active")
+				#else
+					#set($pClassStyle="am-tab-panel")
+				#end
+            <div data-tab-panel-$!{pCate.id} class="$!{pClassStyle}">
+                <div class="cls-banner">
+                    <img src="#genImageUrl($!{pCate.mediaUuid},'291x179!')"  alt=""/>
+                </div>
+                <ul class="mall-cls">
+					#foreach($twoCate in $pCate.cmsChildCatg)
+                    <li>
+						<div style="width:85%">
+						<a href="
+							#if(${twoCate.catgCode} && $!{twoCate.catgCode}!='')
+                           		$!CONTEXT_PATH/search?category=$!{twoCate.catgCode} 
+                           	#else
+                           		$!CONTEXT_PATH/search?keyword=$!{twoCate.catgName}
+							#end
+							">
+						<div class="cls-list">
+							<div class="img-wrap"><img src="#genImageUrl($!{twoCate.mediaUuid},'49x49!')" alt=""/></div>
+							$!{twoCate.catgName}
+                        </div>
+                       	</a>
+                        </div>
+                        <span class="handle-more"></span>
+						#if($!twoCate.cmsChildCatg)
+							<div class="cls-cont">
+                                <ul class="clearfix">
+									#foreach($threeCate in $twoCate.cmsChildCatg)
+                                    <li><a href="
+											#if(${threeCate.catgCode} && $!{threeCate.catgCode}!='')
+                                           		$!CONTEXT_PATH/search?category=$!{threeCate.catgCode} 
+                                           	#else
+                                           		$!CONTEXT_PATH/search?keyword=$!{threeCate.catgName}
+                							#end
+											">$!{threeCate.catgName}</a></li>
+									#end
+                                </ul>
+                            </div>
+						#end
+                    </li>
+					#end
+                </ul>
+            </div>
+			#end
+
+        </div>
+    </div>
+
+
+</div>
+
+<script> ##用于底部栏目切换
+$(function(){
+	$.cookie('SUPPORT-WEB-COOKIE-MOUDEL', "category", {path : '/'});
+});
+</script>
+#parse("/main/main-bottom-navbar.vm")

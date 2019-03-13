@@ -1,0 +1,78 @@
+#parse("sys/sys_param.vm")
+
+ <div class="tab-content">
+       <div class="nItem">
+    	 <form action="" class="form-horizontal required-validate" id="shopInformation">
+               <div class="row-fluid">
+                   <div class="span4">
+	                    <div class="control-group">
+	                        <label class="control-label">店铺名称：</label>
+	                        <div class="controls">
+	                            <select name="shopId" onChange="shopChange();" id="shopId" class="input-block-level">
+									#sellerList()
+	                            </select>
+	                        </div>
+	                    </div>
+                   </div>
+                   <div class="span4">
+                       <div class="control-group">
+                           <label class="control-label">会员级别：</label>
+                           <div class="controls">
+                              <select style="width:160px" name="custLevelCode" id="custLevelCode">
+									<option value="">
+										请选择
+                                    </option>
+                                    #foreach( $list in $levPage.getResult())
+                                    	<option value="$!{list.vipLevelCode}">$!{list.vipLevelName}</option>
+                                    #end
+							</select>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="span4">
+                       <div class="control-group">
+                           <label class="control-label">会员名称：</label>
+                           <div class="controls">
+                               <input placeholder="" type="text" class="input-block-level" name="staffCode" id="staffCode">
+                           </div>
+                       </div>
+                   </div>
+               </div>
+               <div class="row-fluid">
+                   <div class="span4">
+                      <div class="control-group">
+                           <label class="control-label">交易额：</label>
+                           <div class="controls">
+                               <input type="text" class="input-mini"/ name="payMoneyFrom">
+                                -
+                               <input type="text" class="input-mini"/ name="payMoneyEnd">
+                           </div>
+                       </div>
+                   </div>
+                   <div class="span4">
+                    <div class="control-group">
+                           <label class="control-label">交易次数：</label>
+                           <div class="controls">
+                               <input type="text" class="input-mini"/ name="tradesNumFrom">
+                               -
+                               <input type="text" class="input-mini"/ name="tradesNumEnd">
+                           </div>
+                       </div>
+                   </div>
+                   <div class="span4">
+                       <div class="control-group">
+                           <div class="controls">
+                               <div class="btn-wrap btn-w-left" >
+                                   <span class="sbtn sbtn-blue" id="queryCommitBtn"><i class="icon-search"></i> 查询</span>
+                                   <span class="sbtn" id="btnFormReset"><i class="icon-asterisk icon-color"></i> 重置</span>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </form>
+			    <div id="pageMainBox">
+			    	#parse("/seller/staff/shopmgr/tab/page/member2-list.vm")
+			    </div>
+	</div>
+</div>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.search.dao.mapper.common.SecArgsMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.search.dao.model.SecArgs" >
+    <id column="ARGS_KEY" property="argsKey" jdbcType="VARCHAR" />
+    <result column="ARGS_NAME" property="argsName" jdbcType="VARCHAR" />
+    <result column="ARGS_VALUE" property="argsValue" jdbcType="VARCHAR" />
+    <result column="ARGS_DESC" property="argsDesc" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ARGS_KEY, ARGS_NAME, ARGS_VALUE, ARGS_DESC, STATUS
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.search.dao.model.SecArgsCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_sec_args
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sec_args
+    where ARGS_KEY = #{argsKey,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_sec_args
+    where ARGS_KEY = #{argsKey,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.search.dao.model.SecArgsCriteria" >
+    delete from t_sec_args
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.search.dao.model.SecArgs" >
+    insert into t_sec_args (ARGS_KEY, ARGS_NAME, ARGS_VALUE, 
+      ARGS_DESC, STATUS)
+    values (#{argsKey,jdbcType=VARCHAR}, #{argsName,jdbcType=VARCHAR}, #{argsValue,jdbcType=VARCHAR}, 
+      #{argsDesc,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.search.dao.model.SecArgs" >
+    insert into t_sec_args
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="argsKey != null" >
+        ARGS_KEY,
+      </if>
+      <if test="argsName != null" >
+        ARGS_NAME,
+      </if>
+      <if test="argsValue != null" >
+        ARGS_VALUE,
+      </if>
+      <if test="argsDesc != null" >
+        ARGS_DESC,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="argsKey != null" >
+        #{argsKey,jdbcType=VARCHAR},
+      </if>
+      <if test="argsName != null" >
+        #{argsName,jdbcType=VARCHAR},
+      </if>
+      <if test="argsValue != null" >
+        #{argsValue,jdbcType=VARCHAR},
+      </if>
+      <if test="argsDesc != null" >
+        #{argsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.search.dao.model.SecArgsCriteria" resultType="java.lang.Long" >
+    select count(*) from t_sec_args
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_sec_args
+    <set >
+      <if test="record.argsKey != null" >
+        ARGS_KEY = #{record.argsKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.argsName != null" >
+        ARGS_NAME = #{record.argsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.argsValue != null" >
+        ARGS_VALUE = #{record.argsValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.argsDesc != null" >
+        ARGS_DESC = #{record.argsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_sec_args
+    set ARGS_KEY = #{record.argsKey,jdbcType=VARCHAR},
+      ARGS_NAME = #{record.argsName,jdbcType=VARCHAR},
+      ARGS_VALUE = #{record.argsValue,jdbcType=VARCHAR},
+      ARGS_DESC = #{record.argsDesc,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.search.dao.model.SecArgs" >
+    update t_sec_args
+    <set >
+      <if test="argsName != null" >
+        ARGS_NAME = #{argsName,jdbcType=VARCHAR},
+      </if>
+      <if test="argsValue != null" >
+        ARGS_VALUE = #{argsValue,jdbcType=VARCHAR},
+      </if>
+      <if test="argsDesc != null" >
+        ARGS_DESC = #{argsDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ARGS_KEY = #{argsKey,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.search.dao.model.SecArgs" >
+    update t_sec_args
+    set ARGS_NAME = #{argsName,jdbcType=VARCHAR},
+      ARGS_VALUE = #{argsValue,jdbcType=VARCHAR},
+      ARGS_DESC = #{argsDesc,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR}
+    where ARGS_KEY = #{argsKey,jdbcType=VARCHAR}
+  </update>
+</mapper>

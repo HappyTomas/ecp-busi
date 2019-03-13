@@ -1,0 +1,53 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/search/search-init.js?version=$!{JS_VERSION}" ></script>
+
+<h3 class="heading">索引配置缓存管理</h3>
+<div class="formSep">
+	<div class="control-group">
+		<label class="control-label">清空缓存</label>
+		<span>清空索引配置缓存</span>
+		<div class="controls">
+			<button type="button" class="btn btn-danger pclear" siteId="1" _status="0" id="btn-clear-area"><i class="icon-ok"></i>清空缓存</button>
+			<br/>
+			<span class="clear-msg"></span>
+		</div>
+	</div>
+</div>
+
+<h3 class="heading">#siteName('1')索引管理</h3>
+<div class="formSep">
+	<div class="control-group">
+		<label class="control-label">索引重建</label>
+		<span>全量刷新索引数据【商品】</span>
+		<div class="controls">
+			<button type="button" class="btn btn-danger pindex" operType="reFullImportIndex" siteId="1" configId="1" _status="0" id="btn-clear-area"><i class="icon-ok"></i>索引重建</button>
+			<br/>
+			<span class="clear-msg"></span>
+		</div>
+		
+		<span>全量刷新索引数据【促销】</span>
+		<div class="controls">
+			<button type="button" class="btn btn-danger pindex" operType="reFullImportIndex" siteId="1" configId="4" _status="0" id="btn-clear-area"><i class="icon-ok"></i>索引重建</button>
+			<br/>
+			<span class="clear-msg"></span>
+		</div>
+	</div>
+</div>
+
+
+<h3 class="heading">积分商城索引管理</h3>
+<div class="formSep">
+	<div class="control-group">
+		<label class="control-label">索引重建</label>
+		<span>全量刷新索引数据【商品】</span>
+		<div class="controls">
+			<button type="button" class="btn btn-danger pindex" operType="reFullImportIndex" siteId="2" configId="2" _status="0" id="btn-clear-area"><i class="icon-ok"></i>索引重建</button>
+			<br/>
+			<span class="clear-msg"></span>
+		</div>
+	</div>
+</div>
+
+
+					
+					

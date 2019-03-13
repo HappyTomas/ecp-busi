@@ -1,0 +1,28 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/bootstrap/extend/js/b.plugin.js"></script>
+<script type="text/javascript" src="$RESOURCE_PATH/framework/website/core/e.pagetop.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/iCheck/icheck.js"></script>
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/reset.css">
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/member.css"> 
+<!--        begin of main          -->
+<div id="main" class="favShop">
+	<div class="mbox fav-serbox">
+		<div class="body">
+				<div class="fav-ser1 clearfix">
+				<div class="pull-left" >
+				   <h3 style="line-height:20px">
+					全部店铺：&nbsp;<span id="shopNum"><font color="bule">${shopPage.count}</font></span>
+				   </h3>
+				</div>
+				<div class="pull-right fav-search">
+					<input class="itxt" type="text" id="shopName" value="$!{shopName}" maxlength="30"
+						placeholder="请输入店铺名称"> <input type="button" value="搜索"
+						id="searchShop" class="btn-bgray">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="body" id="dataBody">
+		#parse("staff/buyer/favShops/div/favShopsDiv.vm")
+	</div>
+</div>

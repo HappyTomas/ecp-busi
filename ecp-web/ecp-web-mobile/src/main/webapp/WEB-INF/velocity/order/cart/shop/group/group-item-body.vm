@@ -1,0 +1,82 @@
+##组合套餐
+#foreach($!group in $!cart.groupLists)
+    #set($groupIndex = $velocityCount - 1)
+
+##默认读取商品列表中的第一个商品来获取数量
+    #set($groupAmount = 0)
+    #if($group && $group.size() > 0)
+        #set($groupAmount = $group.get(0).getOrderAmount())
+    #end
+
+##查询组合商品中是否有失效商品
+    #set($invalidGroupAmount = 0)
+    #foreach($!tmpGroupItem in $!group)
+        #if($tmpGroupItem && !$tmpGroupItem.gdsStatus)
+            #set($invalidGroupAmount = $invalidGroupAmount + 1)
+        #end
+    #end
+
+<li class="item-group">
+    <div class="cd-checkt cd-ctop ">
+        <input type="checkbox" class="ui-checkbox groupCheck itemCheck" name id="checkbox_group_$velocityCount"/>
+        <label for="checkbox_group_$velocityCount"></label>
+    </div>
+    <div>
+        <div class="cd-xj cd-zh item-body item-body-tit item-body-border">
+            <div class="cx-cont">
+                <div class="cx-box cx-box-flex">
+                    <span class="ft26">【组合套装】</span>
+                            <span class="cd-jj">
+                                <span class="input-f">
+                                    <a class="cd-btn minus groupAmountMinus" href="javascript:void(0)">-</a>
+                                    <input type="text" value="$groupAmount" class="itxt groupAmounts itemNumber">
+                                    <a class="cd-btn add groupAmountAdd" href="javascript:void(0)">+</a>
+                                </span>
+
+                                <span class="c-orange ft26">
+                                    &yen;：<span class="itemPriceCount">0.00</span>
+                                </span>
+                        </span>
+                </div>
+                <span class="cb-btn cb-btn-del group-del deleteGroup" title="删除组合商品" style="display:none">删除</span>
+            </div>
+        </div>
+        #foreach($!groupItem in $!group)
+            #set($groupItemProm = $!cartList.cartPromRespDTO.cartPromItemDTOMap.get(${groupItem.id}))
+        ##商品明细优惠ID，若为空则设置为-1
+            #set($groupItemPromId = "")
+            #if(!$groupItem.promId || $groupItem.promId=="")
+                #set($groupItemPromId = "-1")
+            #else
+                #set($groupItemPromId = $groupItem.promId)
+            #end
+
+        ##显示的单价金额
+            #set($groupUnitPrice = 0.00)
+            #set($groupUnitBasePrice = 0.00)
+            #if($groupItemProm)
+                #if($groupItemProm.ifFulfillProm)
+                    #set($groupUnitPrice = $groupItemProm.discountFinalPrice)
+                    #set($groupUnitBasePrice = $groupItemProm.discountCaclPrice)
+                #else
+                    #set($groupUnitPrice = $groupItem.buyPrice)
+                    #set($groupUnitBasePrice = $groupItem.basePrice)
+                #end
+            #end
+
+            #if($groupUnitBasePrice == $groupUnitPrice)
+                #set($groupUnitBasePrice = -1)
+            #end
+
+        ##设置最后一条记录不增加底部虚线的样式
+            #set($borderClass = "item-body-border")
+            #if($group.size() == $velocityCount)
+                #set($borderClass = "")
+            #end
+            #parse("order/cart/shop/group/pro.vm")
+        #end
+
+    </div>
+</li>
+##组合套餐
+#end

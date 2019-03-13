@@ -1,0 +1,40 @@
+#parse("/sys/sys_param.vm")
+
+    <!--文本-->
+    <div class="wrap1000">
+        <div class="h-tit">
+            联系我们
+        </div>
+        <div class="h-com">
+            <p>地　址：北京市朝阳区潘家园南里19号人民卫生出版社有限公司</p>
+            <!--p>联系人： 范瑞一</p-->
+            <!--p>电　话： (010) 59787584</p-->
+            <p>电　话： 17310925570 ，17310865575</p>
+            <!--p>邮　箱： yougoubu@163.com</p-->
+            <!--p>Q   Q ： 3090494419</p-->
+            <p>在线客服：
+            #custInfo()
+            <a href="#" class="imUrl" target="_blank">
+									<span class="imInfo" style="display:none">
+										$!{cust.staffCode}#100#2
+									</span>
+									 <i class="micon micon-rkf"></i> <font color="#ff6a00">售前咨询</font>
+						     	</a>
+						<a href="#" class="imUrl" target="_blank">
+									<span class="imInfo" style="display:none">
+										$!{cust.staffCode}#100#1
+									</span>
+									<i class="micon micon-bkf"></i><font color="#ff6a00">售后咨询</font>
+						     	</a></p>
+            <br>
+            <p><b>人民卫生出版社乘车路线：</b></p>
+            <p>乘37、51、122、434、特3、特12 到“肿瘤医院”下车，路东即到。</p>
+            <p>乘34（孛罗营 → 虎坊桥 方向）、36到“潘家园路西口” 下车，向西行约200米路南即到。</p>
+            <p>乘34（虎坊桥 → 孛罗营 方向）到“华威西里” 下车，向西行约600米路南即到。</p>
+            <br>
+            <p>地铁十号线潘家园站，A口出，乘坐36到“潘家园路西口”下车，向西行约200米路南即到。乘34到“潘家园路西口”下车，向西行约600米路南即到。</p>
+            <br>
+            <p><img src="$IMAGE_PATH/dz-img.jpg" alt=""/></p>
+        </div>
+    </div>
+</div>

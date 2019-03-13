@@ -1,0 +1,97 @@
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>  
+				<form class="form-horizontal required-validate" id="actionForm" style="margin-top:20px;">
+					<!--main content-->
+					<div class="row-fluid">
+                        <div class="span6">
+							<div class="control-group" id="catgCode" style="display:none;">
+                                <label for="" class="control-label">分类编码：</label>
+                                <div class="controls">
+                                    <input class="input-block-level" type="text" readonly="readonly" name="catgCode" value="" readonly />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="" class="control-label">名称：</label>
+                                <div class="controls">
+                                    <input type="text" name="catgName" id="catg-name" class="required htmlcheck input-block-level" value="" validate="{rangelength:[1,32]}"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="" class="control-label">上级分类：</label>
+                                <div class="controls">
+                                    <input class="input-block-level" type="text" type="text" disabled="disabled" id="parent-name"/>
+									<input type="hidden" name="catgParent" id="catg-parent" value=""/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="" class="control-label">排序：</label>
+                                <div class="controls">
+                                    <input type="text" name="sortNo" id="sort-no" class='digits input-block-level' min="1" max="99999" value=""/>
+                                </div>
+                            </div>
+							
+							<div class="control-group">
+                                <label for="" class="control-label">店铺：</label>
+                                <div class="controls">
+                                    <select name="shopId" id="shop-id" class='digits input-block-level'>
+										#sellerList($!{reqVO.shopId})
+                                    </select>
+                                </div>
+                            </div>
+							
+							<!--
+							<div class="control-group">
+                                <label for="" class="control-label">归属目录：</label>
+                                <div class="controls">
+									<select name="catlogId" id="catlog-id" class="required input-block-level">
+										<option value="">-请选择-</option>
+										#catlogList($!{reqVO.catlogId},'1')
+                                    </select>
+                                </div>
+                            </div>
+							
+                            <div class="control-group">
+                                <label for="" class="control-label">URL：</label>
+                                <div class="controls">
+                                    <input class="input-block-level" type="text" name="catgUrl" value="" class="url" validate="{maxlength:128}"/>
+                                </div>
+                            </div>
+							
+                            <div class="control-group">
+                                <label for="" class="control-label">在首页展示：</label>
+                                <div class="controls">
+                                    <label class="radio inline sType-check">
+                                        <input type="radio" name="ifShow" value="1" #if(${actionType}!='' || '1' == ${reqVO.ifShow}) checked #end/>
+                                        是
+                                    </label>
+                                    <label class="radio inline sType-check">
+                                        <input type="radio" name="ifShow" value="0"	#if('0' == ${reqVO.ifShow}) checked #end/>
+                                        否
+                                    </label>
+                                </div>
+                            </div>
+							-->
+                        </div>
+						
+                        <div class="span6 sType-upload">
+                            <div class="img-wrap">
+								 <img src="$!{IMAGE_PATH}/seller-def.png" alt="" id="form-imgPreviewHold"/>
+								 <img src="$!{IMAGE_PATH}/seller-def.png" alt="" id="form-imgPreview" style="display:none;"/>
+                            </div>
+                            <div class="sType-info">
+                                图片格式必须是：jpg,png,jpeg,gif,bmp,并且小于100k
+                            </div>
+							##<span id="imgUpload" class="sbtn">图片上传</span>
+							<a href="javascript:;" class="a-upload">
+								<input type="file" name="imgUpload" id="imgUpload">上传图片
+							</a>
+							<input type="hidden" id="mediaUuid" name="mediaUuid" value=""/>
+                        </div>
+                    </div>
+					<input type="hidden" name="catgType" id="catg-type" value="$!{reqVO.catgType}"/>
+                    <div class="btn-wrap">
+						<button  type="button" class="sbtn sbtn-blue" id="btnUpdate" style="display:none;">更新</button>
+						<button  type="button" class="sbtn sbtn-blue" id="btnSave" style="display:none;">保存</button>
+                        <button  type="button" class="sbtn" style="margin-left: 10px" id="btnCancel">取消</button>
+                    </div>
+                </form>
+                <!-- main content -->

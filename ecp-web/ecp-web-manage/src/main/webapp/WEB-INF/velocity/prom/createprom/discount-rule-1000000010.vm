@@ -1,0 +1,113 @@
+			<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/discount-rule-1000000010.js?version=$!{JS_VERSION}" ></script>
+			<div class="formBox">
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					  <div class="formSep" >
+					       <div  class=" alert-info" style="margin-left:50px;">
+					                 购买特定数量的商品可享受固定的套餐价，购买更大数量的此类商品可享受更多的价格优惠。
+                                                                      例如: 购买 3 件只需 &yen;30.00、购买 4 件只需 &yen;35.00 或购买 6 件只需 &yen;50.00。
+						      商品必须都来自规定的产品范围。
+					     </div>
+					  </div>
+			 <div class="row-fluid">
+					<div class="span6">
+						<div class="control-group">
+						    <label class="control-label" for="name">购买数量1：</label>
+							<div class="controls">
+								<input type="text" class="span8 required number" maxlength="12"  id="buyAmount1" name="discountMap['buyAmount1']" placeholder="请输入购买数量 " value="$!{promVO.discountMap.buyAmount1}"   />
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							 <label class="control-label" for="name">购买金额1：</label>
+							<div class="controls">
+								<input type="text" class="span8 required number" maxlength="12"  id="buyMoney1" name="discountMap['buyMoney1']" placeholder="请输入购买金额 " value="#moneyNum($!{promVO.discountMap.buyMoney1})"   />
+							</div>
+						</div>
+					</div>
+				</div>
+		  <div class="row-fluid" id="div2">
+					<div class="span6">
+						<div class="control-group">
+						    <label class="control-label" for="name">购买数量2：</label>
+							<div class="controls">
+								<input type="text" class="span8  number" maxlength="12"  id="buyAmount2" name="discountMap['buyAmount2']" placeholder="请输入购买数量 " value="$!{promVO.discountMap.buyAmount2}"   />
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							 <label class="control-label" for="name">购买金额2：</label>
+							<div class="controls">
+								<input type="text" class="span8  number" maxlength="12" id="buyMoney2" name="discountMap['buyMoney2']" placeholder="请输入购买金额 " value="#moneyNum($!{promVO.discountMap.buyMoney2})"   />
+							      <!--
+							   <span class="help-inline"><button type="button" class="btn btnMultBuyDel" id='3'  ><i class="icon-del icon-white"></i>删除</button></span>
+							   -->
+							</div>
+						</div>
+					</div>
+				</div>
+			  <div class="row-fluid" id="div3">
+					<div class="span6">
+						<div class="control-group">
+						    <label class="control-label" for="name">购买数量3：</label>
+							<div class="controls">
+								<input type="text" class="span8  number" maxlength="12" id="buyAmount3" name="discountMap['buyAmount3']" placeholder="请输入购买数量 " value="$!{promVO.discountMap.buyAmount3}"   />
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							 <label class="control-label" for="name">购买金额3：</label>
+							<div class="controls">
+								<input type="text" class="span8  number" maxlength="12" id="buyMoney3" name="discountMap['buyMoney3']" placeholder="请输入购买金额 " value="#moneyNum($!{promVO.discountMap.buyMoney3})"   />
+							</div>
+						</div>
+					</div>
+				</div>
+				   #set($index =3)
+				   #foreach($map in ${promVO.discountMap.keySet()})  
+				      #set($str=$map.substring(0,9))
+				      #set($lastStr=$map.substring(9,$map.length()))
+					     #if ($str=='buyAmount')
+						     #if( $map!='buyAmount1' && $map!='buyAmount2' &&  $map!='buyAmount3' &&  $map!='buyMoney1' &&  $map!='buyMoney2' &&  $map!='buyMoney3'   )
+									  #set($index =$index +1)
+									  #set($newkey ='buyMoney'+$lastStr)
+									
+									  <div class="row-fluid" id="div$index">
+										<div class="span6">
+											<div class="control-group">
+											    <label class="control-label" for="name">购买数量$index：</label>
+												<div class="controls">
+												   <span class="hide divCalNum" data="$lastStr">$lastStr</span>
+													<input type="text" class="span8  number" id="$map" maxlength="12" name="discountMap['$map']" placeholder="请输入购买数量 " value="$!{promVO.discountMap.get($map)}"   />
+												</div>
+											</div>
+										</div>
+										<div class="span6">
+											<div class="control-group">
+												 <label class="control-label" for="name">购买金额$index：</label>
+												<div class="controls">
+													<input type="text" class="span8  number" maxlength="12"  id="$newkey" name="discountMap['$newkey']" placeholder="请输入购买金额 " value="#moneyNum($!{promVO.discountMap.get($newkey)})"   />
+												   <span class="help-inline"><button type="button" class="btn btnMultBuyDel" id='$index'  ><i class="icon-del icon-white"></i>删除</button></span>
+												</div>
+											</div>
+										</div>
+									</div>
+						        #end  
+					       #end  
+				     #end  
+			    <div class="row-fluid multiBuyClass" id="multBuyAdd" >
+						<div class="control-group">
+							<label class="control-label"></label>
+							<div class="controls">
+								<button type="button" class="btn multiBuyClass" id="btnMultBuyAdd"  ><i class="icon-plus icon-white"></i>追加</button>
+							</div>
+						</div>
+					</div>
+				</form>
+				    <div class="hide" >
+				       <input type="text" name="index_1000000010" id="index_1000000010" >
+                    </div>
+			</div>
+			   

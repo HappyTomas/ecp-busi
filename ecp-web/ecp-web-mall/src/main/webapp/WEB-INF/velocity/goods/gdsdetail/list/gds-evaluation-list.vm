@@ -1,0 +1,99 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-page.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/goods/gdsdetail/gds-evaluation-list.js"></script>
+<table class="table elist " style="margin-top: -37px;" >
+	<thead style="height:35px;">
+       <tr>
+           <th>评论者</th>
+           <th>评价心得</th>           
+           <th>评价时间</th>
+           <th>评分</th>
+       </tr>
+    </thead>
+    <tbody >
+        #if($!{list.list.size()}==0)
+            <tr>
+                <td colspan="3" style="text-align:center;height:57px;line-height:57px;overflow: hidden;font-size:14px;">「暂无评价」</td>
+            </tr>
+            #else
+                #foreach($eval in $!{list.list})
+                    <tr>
+                        <td class="euser">
+                            <p class="ename">$!{eval.staffName}
+                                <div class="elevel">
+                                    <label>会员等级：</label>
+                                    <span>$!{eval.staffLevelName}</span>
+                                    <i class="icon-rank rank$!{eval.staffLevelCode}"></i>
+                                </div>
+						</td>
+                        <td class="edec">
+                            <div>$!{eval.detail}</div>
+							#foreach($reply in $!{eval.evalReplyRespDTOs})
+                            <div class="add">
+								#if($!{reply.replyType}==2)
+                                    <span class="add-color">[掌柜评论]</span>
+								#else
+                                    <span class="add-color">$!{reply.staffName}</span>
+								#end
+								$!{reply.detail}
+							</div>
+							#end
+                        </td>
+                        <td class="etime">
+                            <span>$!date.format('yyyy-MM-dd HH:mm',$!{eval.evaluationTime})</span>
+                        </td>
+                        
+                        <td style="word-break: break-all" class="com-i-column ">
+							<p>
+								#if($!{eval.intScore}== 1)
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x-01.png" />
+									<img src="$!{IMAGE_PATH}/x-01.png" />
+									<img src="$!{IMAGE_PATH}/x-01.png" />
+									<img src="$!{IMAGE_PATH}/x-01.png" />
+								#elseif($!{eval.intScore}== 2)
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x-01.png" />
+									<img src="$!{IMAGE_PATH}/x-01.png" />
+									<img src="$!{IMAGE_PATH}/x-01.png" />
+								#elseif($!{eval.intScore}== 3)
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x-01.png" />
+									<img src="$!{IMAGE_PATH}/x-01.png" />
+								#elseif($!{eval.intScore}== 4)
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x-01.png" />
+								#elseif($!{eval.intScore}== 5)
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x.png" />
+									<img src="$!{IMAGE_PATH}/x.png" />
+								
+								#end
+							</p>
+						
+						</td>
+					</tr>
+				#end
+		#end
+</tbody>
+
+    #if($!{list.list.size()}>0)
+		<tfoot>
+        <tr>
+            <td colspan="4">
+                <div id="pageMainBox">
+                    <div id="pageControlbar" class="ecppage" data-total-page="${list.totalPage}" data-total-row="${list.totalRow}"  data-page-size="${list.pageSize}" data-page-number="${list.pageNumber}" data-status="begin"></div>
+                </div>
+            </td>
+        </tr>
+		</tfoot>
+    #end
+</table>

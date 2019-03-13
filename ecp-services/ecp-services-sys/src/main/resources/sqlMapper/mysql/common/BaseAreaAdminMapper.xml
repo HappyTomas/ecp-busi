@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.sys.dao.mapper.common.BaseAreaAdminMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.sys.dao.model.BaseAreaAdmin" >
+    <id column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+    <result column="AREA_NAME" property="areaName" jdbcType="VARCHAR" />
+    <result column="PARENT_AREA_CODE" property="parentAreaCode" jdbcType="VARCHAR" />
+    <result column="AREA_CODE_SHORT" property="areaCodeShort" jdbcType="VARCHAR" />
+    <result column="AREA_LEVEL" property="areaLevel" jdbcType="VARCHAR" />
+    <result column="AREA_ORDER" property="areaOrder" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CENTER_FLAG" property="centerFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    AREA_CODE, AREA_NAME, PARENT_AREA_CODE, AREA_CODE_SHORT, AREA_LEVEL, AREA_ORDER, 
+    STATUS, CENTER_FLAG
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.sys.dao.model.BaseAreaAdminCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_base_area_admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_base_area_admin
+    where AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_base_area_admin
+    where AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.sys.dao.model.BaseAreaAdminCriteria" >
+    delete from t_base_area_admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.sys.dao.model.BaseAreaAdmin" >
+    insert into t_base_area_admin (AREA_CODE, AREA_NAME, PARENT_AREA_CODE, 
+      AREA_CODE_SHORT, AREA_LEVEL, AREA_ORDER, 
+      STATUS, CENTER_FLAG)
+    values (#{areaCode,jdbcType=VARCHAR}, #{areaName,jdbcType=VARCHAR}, #{parentAreaCode,jdbcType=VARCHAR}, 
+      #{areaCodeShort,jdbcType=VARCHAR}, #{areaLevel,jdbcType=VARCHAR}, #{areaOrder,jdbcType=INTEGER}, 
+      #{status,jdbcType=VARCHAR}, #{centerFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.sys.dao.model.BaseAreaAdmin" >
+    insert into t_base_area_admin
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="areaCode != null" >
+        AREA_CODE,
+      </if>
+      <if test="areaName != null" >
+        AREA_NAME,
+      </if>
+      <if test="parentAreaCode != null" >
+        PARENT_AREA_CODE,
+      </if>
+      <if test="areaCodeShort != null" >
+        AREA_CODE_SHORT,
+      </if>
+      <if test="areaLevel != null" >
+        AREA_LEVEL,
+      </if>
+      <if test="areaOrder != null" >
+        AREA_ORDER,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="centerFlag != null" >
+        CENTER_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentAreaCode != null" >
+        #{parentAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCodeShort != null" >
+        #{areaCodeShort,jdbcType=VARCHAR},
+      </if>
+      <if test="areaLevel != null" >
+        #{areaLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="areaOrder != null" >
+        #{areaOrder,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="centerFlag != null" >
+        #{centerFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.sys.dao.model.BaseAreaAdminCriteria" resultType="java.lang.Long" >
+    select count(*) from t_base_area_admin
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_base_area_admin
+    <set >
+      <if test="record.areaCode != null" >
+        AREA_CODE = #{record.areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaName != null" >
+        AREA_NAME = #{record.areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentAreaCode != null" >
+        PARENT_AREA_CODE = #{record.parentAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaCodeShort != null" >
+        AREA_CODE_SHORT = #{record.areaCodeShort,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaLevel != null" >
+        AREA_LEVEL = #{record.areaLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaOrder != null" >
+        AREA_ORDER = #{record.areaOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.centerFlag != null" >
+        CENTER_FLAG = #{record.centerFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_base_area_admin
+    set AREA_CODE = #{record.areaCode,jdbcType=VARCHAR},
+      AREA_NAME = #{record.areaName,jdbcType=VARCHAR},
+      PARENT_AREA_CODE = #{record.parentAreaCode,jdbcType=VARCHAR},
+      AREA_CODE_SHORT = #{record.areaCodeShort,jdbcType=VARCHAR},
+      AREA_LEVEL = #{record.areaLevel,jdbcType=VARCHAR},
+      AREA_ORDER = #{record.areaOrder,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CENTER_FLAG = #{record.centerFlag,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.sys.dao.model.BaseAreaAdmin" >
+    update t_base_area_admin
+    <set >
+      <if test="areaName != null" >
+        AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentAreaCode != null" >
+        PARENT_AREA_CODE = #{parentAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCodeShort != null" >
+        AREA_CODE_SHORT = #{areaCodeShort,jdbcType=VARCHAR},
+      </if>
+      <if test="areaLevel != null" >
+        AREA_LEVEL = #{areaLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="areaOrder != null" >
+        AREA_ORDER = #{areaOrder,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="centerFlag != null" >
+        CENTER_FLAG = #{centerFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.sys.dao.model.BaseAreaAdmin" >
+    update t_base_area_admin
+    set AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      PARENT_AREA_CODE = #{parentAreaCode,jdbcType=VARCHAR},
+      AREA_CODE_SHORT = #{areaCodeShort,jdbcType=VARCHAR},
+      AREA_LEVEL = #{areaLevel,jdbcType=VARCHAR},
+      AREA_ORDER = #{areaOrder,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CENTER_FLAG = #{centerFlag,jdbcType=VARCHAR}
+    where AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

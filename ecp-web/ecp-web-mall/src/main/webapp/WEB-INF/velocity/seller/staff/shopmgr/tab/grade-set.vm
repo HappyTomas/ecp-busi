@@ -1,0 +1,43 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-date.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/staff/grade-set.js?version=$!{JS_VERSION}" ></script>
+<div class="row-fluid" id="dataRuleDiv">
+<div class="nItem">
+   	<form action="" class="form-horizontal required-validate" id="">
+		<div class="row-fluid">
+	       <div class="span6">
+	            <div class="control-group">
+	                <label class="control-label">店铺名称：</label>
+	                <div class="controls">
+	                    <select name="shopId"  id="shopIdForSet" class="input-block-level" style="width:156px">
+							#sellerList()
+	                    </select>
+	                </div>
+	            </div>
+	       </div>
+		</div>	
+	</form>
+</div>
+	<table class="seller-table table-striped">
+        <thead id="dataRuleTableHead">
+            <tr>
+                <th width="22%">会员等级名称</th>
+                <th width="22%">交易额</th>
+                <th width="22%">交易次数</th>
+                <th width="22%">折扣率</th>
+                <th width="12%">删除</th>
+            </tr>
+        </thead>
+        <tbody id="dataRuleTableBody">
+            <tr>
+				<td colspan="5" edittype='uneditable'> 
+                    <label class="text-center"><li class="icon-plus-sign"></li>
+                    </label>
+                </td>
+			</tr>
+        </tbody>
+    </table>
+    <div class="btn-wrap">
+        <span class="sbtn sbtn-blue" id="btnSave">保存</span>
+    </div
+</div>

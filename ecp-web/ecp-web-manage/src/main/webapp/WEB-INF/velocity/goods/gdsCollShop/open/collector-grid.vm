@@ -1,0 +1,11 @@
+#parse("/sys/sys_head.vm") #parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript"
+	src="$!{BUSIJS_PATH}/goods/gdsCollShop/collector-grid.js?version=$!{JS_VERSION}"></script>
+<!-- 卖家收藏用户列表页面     create by  zhanbh    2015.10.9   -->
+<div class="row-fluid">
+	<table id="collectorList"></table>
+</div>
+<!--    隐藏框     -->
+<input type="hidden" id="gdsId" value="$!{gdsInfo.gdsId}" />
+<input type="hidden" id="skuId" value="$!{gdsInfo.skuId}" />

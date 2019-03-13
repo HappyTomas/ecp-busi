@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+#parse("/sys/sys_head.vm")
+
+</head>
+<body>
+
+
+<div id="maincontainer" class="clearfix">
+	<!-- main content -->
+	<div id="contentwrapper">
+	    <div class="main_content">
+	    	$screen_content
+    	</div>
+	</div>
+	<!-- main content -->
+</div>
+
+</body>
+</html>

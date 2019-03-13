@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.common.LoginLogInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.LoginLogInfo" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="STAFF_LOGIN_NAME" property="staffLoginName" jdbcType="VARCHAR" />
+    <result column="IN_TIME" property="inTime" jdbcType="TIMESTAMP" />
+    <result column="OUT_TIME" property="outTime" jdbcType="TIMESTAMP" />
+    <result column="IN_IP" property="inIp" jdbcType="VARCHAR" />
+    <result column="LOGIN_FROM" property="loginFrom" jdbcType="VARCHAR" />
+    <result column="APP_KEY" property="appKey" jdbcType="VARCHAR" />
+    <result column="SESSION_ID" property="sessionId" jdbcType="VARCHAR" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, STAFF_ID, STAFF_LOGIN_NAME, IN_TIME, OUT_TIME, IN_IP, LOGIN_FROM, APP_KEY, SESSION_ID, 
+    REMARK
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.LoginLogInfoCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_login_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_login_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_login_log
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.LoginLogInfoCriteria" >
+    delete from t_login_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.LoginLogInfo" >
+    insert into t_login_log (ID, STAFF_ID, STAFF_LOGIN_NAME, 
+      IN_TIME, OUT_TIME, IN_IP, 
+      LOGIN_FROM, APP_KEY, SESSION_ID, 
+      REMARK)
+    values (#{id,jdbcType=VARCHAR}, #{staffId,jdbcType=INTEGER}, #{staffLoginName,jdbcType=VARCHAR}, 
+      #{inTime,jdbcType=TIMESTAMP}, #{outTime,jdbcType=TIMESTAMP}, #{inIp,jdbcType=VARCHAR}, 
+      #{loginFrom,jdbcType=VARCHAR}, #{appKey,jdbcType=VARCHAR}, #{sessionId,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.LoginLogInfo" >
+    insert into t_login_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="staffLoginName != null" >
+        STAFF_LOGIN_NAME,
+      </if>
+      <if test="inTime != null" >
+        IN_TIME,
+      </if>
+      <if test="outTime != null" >
+        OUT_TIME,
+      </if>
+      <if test="inIp != null" >
+        IN_IP,
+      </if>
+      <if test="loginFrom != null" >
+        LOGIN_FROM,
+      </if>
+      <if test="appKey != null" >
+        APP_KEY,
+      </if>
+      <if test="sessionId != null" >
+        SESSION_ID,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffLoginName != null" >
+        #{staffLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="inTime != null" >
+        #{inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outTime != null" >
+        #{outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inIp != null" >
+        #{inIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginFrom != null" >
+        #{loginFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="appKey != null" >
+        #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionId != null" >
+        #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.LoginLogInfoCriteria" resultType="java.lang.Long" >
+    select count(*) from t_login_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_login_log
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffLoginName != null" >
+        STAFF_LOGIN_NAME = #{record.staffLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.inTime != null" >
+        IN_TIME = #{record.inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.outTime != null" >
+        OUT_TIME = #{record.outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.inIp != null" >
+        IN_IP = #{record.inIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginFrom != null" >
+        LOGIN_FROM = #{record.loginFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="record.appKey != null" >
+        APP_KEY = #{record.appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sessionId != null" >
+        SESSION_ID = #{record.sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_login_log
+    set ID = #{record.id,jdbcType=VARCHAR},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      STAFF_LOGIN_NAME = #{record.staffLoginName,jdbcType=VARCHAR},
+      IN_TIME = #{record.inTime,jdbcType=TIMESTAMP},
+      OUT_TIME = #{record.outTime,jdbcType=TIMESTAMP},
+      IN_IP = #{record.inIp,jdbcType=VARCHAR},
+      LOGIN_FROM = #{record.loginFrom,jdbcType=VARCHAR},
+      APP_KEY = #{record.appKey,jdbcType=VARCHAR},
+      SESSION_ID = #{record.sessionId,jdbcType=VARCHAR},
+      REMARK = #{record.remark,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.LoginLogInfo" >
+    update t_login_log
+    <set >
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffLoginName != null" >
+        STAFF_LOGIN_NAME = #{staffLoginName,jdbcType=VARCHAR},
+      </if>
+      <if test="inTime != null" >
+        IN_TIME = #{inTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outTime != null" >
+        OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="inIp != null" >
+        IN_IP = #{inIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginFrom != null" >
+        LOGIN_FROM = #{loginFrom,jdbcType=VARCHAR},
+      </if>
+      <if test="appKey != null" >
+        APP_KEY = #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="sessionId != null" >
+        SESSION_ID = #{sessionId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.LoginLogInfo" >
+    update t_login_log
+    set STAFF_ID = #{staffId,jdbcType=INTEGER},
+      STAFF_LOGIN_NAME = #{staffLoginName,jdbcType=VARCHAR},
+      IN_TIME = #{inTime,jdbcType=TIMESTAMP},
+      OUT_TIME = #{outTime,jdbcType=TIMESTAMP},
+      IN_IP = #{inIp,jdbcType=VARCHAR},
+      LOGIN_FROM = #{loginFrom,jdbcType=VARCHAR},
+      APP_KEY = #{appKey,jdbcType=VARCHAR},
+      SESSION_ID = #{sessionId,jdbcType=VARCHAR},
+      REMARK = #{remark,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

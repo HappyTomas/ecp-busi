@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+#parse("/sys/sys_head.vm")
+<link href="$!{CSS_PATH}/amazeui.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="$!{CSS_PATH}/public.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="$!{CSS_PATH}/mall.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/requirejs/require.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/requirejs.common.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+
+</head>
+<body>
+	
+	
+	$screen_content
+	
+	
+</body>
+</html>

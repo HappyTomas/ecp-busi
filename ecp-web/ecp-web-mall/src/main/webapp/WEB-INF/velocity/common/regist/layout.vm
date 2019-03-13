@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>商城注册</title>
+    <link href="$CSS_PATH/reset.css" type="text/css" rel="stylesheet">
+    <link href="$CSS_PATH/login.css" type="text/css" rel="stylesheet">
+    #parse("/sys/sys_head.vm")
+    <script type="text/javascript" src="$!{BUSIJS_PATH}/staff/smsUtil.js"></script>
+</head>
+<body>
+	    $screen_content
+
+</body>
+</html>

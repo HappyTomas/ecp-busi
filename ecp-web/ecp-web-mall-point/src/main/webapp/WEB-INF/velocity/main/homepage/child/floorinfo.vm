@@ -1,0 +1,44 @@
+#parse("sys/sys_param.vm")
+
+<ul class="info-list">
+    #if($!{gdsList} && $!{gdsList.size()} > 0)
+	#foreach($gds in $!{gdsList})
+        <li>
+            <p class="p-info-border">
+				<a  href="
+					#if($!{gds.url} && $!{gds.url} !='')
+						${CONTEXT_PATH}$!{gds.url}" target='_blank'
+					#else 
+						javascript:void(0);"
+					#end
+					><img src="$!{gds.mainPic.URL}"></a>
+			</p>
+            <p class="p-info-tit"><a href="
+                    #if($!{gds.url} && $!{gds.url} !='')
+						${CONTEXT_PATH}$!{gds.url}" target='_blank' 
+					#else 
+						javascript:void(0);"
+					#end>$!{gds.gdsName}</a></p>
+            <p><i class="picon m-icon"></i> 
+				#foreach($score in $!{gds.scores})
+					#if($!{score.ifDefault} == '1')
+						#if($!{score.score} && $!{score.price})
+    						<span>$!{score.score}积分+#money($!{score.price})</span>
+    					#elseif($!{score.score})
+							<span>$!{score.score}积分</span>
+    					#elseif($!{score.price})
+							<span>#money($!{score.price})</span>
+    					#else
+    					    <span>0积分</span>
+    					#end
+    					#break
+					#end
+				#end
+			</p>
+            <!-- <span class="cx-icon"></span> -->
+        </li>
+	#end
+	#else
+	<div class='pro-empty'>亲，暂无数据！</div>
+	#end
+</ul>

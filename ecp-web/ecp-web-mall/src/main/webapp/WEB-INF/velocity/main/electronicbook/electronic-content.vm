@@ -1,0 +1,172 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/main/main-cart-coll.js"></script>
+<!--content-->
+<div id="content" class="clearfix">
+    <div class="wrap1200 clearfix">
+        <!--左侧栏-->
+        <!--电子书二级页面导航-->
+        <div class="sidebar-nav2 ecp-component sidebar-catg-shader" data-place-id="809" data-place-height ="639"
+             data-module="ecp-component/sidebar-catg-shader">
+        </div>
+
+        <!--右推荐-->
+        <div class="hot-recommend clearfix mt10">
+            <!--banner-热推-->
+            <div class="banner-hot">
+                <div class="recommend-left ">
+					<!--电子书轮播广告 s-->
+                     <div class="bannerimg slider ecp-component homepage-ad" data-status="1" data-place-size="8" data-place-id="801" data-place-width="752" data-place-height="315" data-module="ecp-component/leaflet/leaflet-slider">
+                       <div class="slide-pagination">
+                       		<ul class="homepage-ad-num">
+                       		</ul>
+                       </div>
+                       <ul class="slide-box homepage-ad-img" style="display:block;">
+                       </ul>
+                    </div>
+					<!--电子书轮播广告 e-->
+                </div>
+                <div class="recommend-right">
+					<!--行业资讯 s-->
+                    <div class="box ecp-component homepage-info" data-status="1" data-place-size="3" data-place-id="810" data-module="ecp-component/info/homepage-info">
+                        <div class="box-tit b-top " >
+                            <span class="font-tit">
+								#parse("/main/child/info-title.vm")
+							</span>
+							<span class="pull-right"><a href="${CONTEXT_PATH}/info/infolist?placeId=810"> 更多</a></span>
+                        </div>
+                        <div class="box-con border-box box-pro01 homepage-info-slides" style="height:80px">
+                        </div>
+                    </div>
+					<!--行业资讯 e-->
+                    <div class="box">
+                        <div class="box-tit">
+                            <span class="font-tit">客户端下载</span>
+                        </div>
+                        <div class="box-con box-pro ele-box clearfix" style="height: 482px" >
+                            <div class="ele-ewm clearfix">
+                                <img src="$IMAGE_PATH/electronic-ewm.png">
+                            </div>
+                            <ul class="ele-download">
+                                <li class="e-green">
+									<a href='http://books.ipmph.com/books/Appdownload.zaction?type=ANDROID&SiteID=34'>
+										<span class="i-android"></span>Android  下载
+                                    </a>
+								</li>
+                                <li class="e-blue">
+									<a href='https://itunes.apple.com/us/app/ren-wei-shu-cheng/id1023186781?mt=8'>
+										<span class="i-ipad"></span>ipad  下载
+                                    </a>
+								</li>
+                                <li class="e-blue01">
+									<a href='https://itunes.apple.com/us/app/ren-wei-shu-cheng-for-iphone/id1023570366?l=zh&ls=1&mt=8'>
+										<span class="i-iphone"></span>iphone  下载
+									</a>
+								</li>
+                                <li class="e-gray">
+									<a href='http://books.ipmph.com/books/Appdownload.zaction?type=PC&SiteID=34'>
+										<span class="i-windous"></span>Windows  下载
+                                    </a>
+								</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <!--新书推荐-->
+            <div class="banner-hot clearfix">
+                <div class="recommend-left" >
+                    <div class="box ecp-component homepage-jcarousel" data-status="1" data-gds-size="8" data-tab-size="" data-place-id="803" data-place-width="150" data-place-height="150" data-module="ecp-component/floor/homepage-jcarousel">
+                        <div class="box-tit homepage-jc-tt">
+                            <span class="font-tit floor-name hide"><i class="newbook-icon"></i></span>
+                        </div>
+                         <div class="box-con box-two homepage-jc-body" style="height: 266px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wrap1200 clearfix" >
+
+        <div class="rwbox-left">
+            <!--商品推荐-->
+            <div class="rwbox-left ecp-component homepage-gds-tj" data-status="1" data-gds-size="2" data-tab-size="" data-place-id="804" data-place-width="150" data-place-height="150"  data-menu-type='0' data-module="ecp-component/floor/homepage-gds-tj">
+                <div class="box-tit homepage-gds-tjtt">
+                  
+                </div>
+                <div class="box-con ele-border box-btj homepage-gds-tjcc" style="height: 220px;">
+                 
+                </div>
+         
+	            <!--首页中部广告 s-->
+				<div class="ad-place clearfix ecp-component homepage-ad-middle" data-status="1" data-place-size="1" data-place-id="802" data-place-width="950" data-place-height="131" data-module="ecp-component/leaflet/leaflet-middle">
+			     	<ul class="ad-d clearfix ad-middle-list">
+              	    </ul>
+				</div>         
+          </div>
+           
+            <!--参考书 s-->
+            <div class="rwbox-left">
+                <div class="box ecp-component homepage-floor"  data-status="1" data-gds-size="5" data-tab-size="" data-place-id="805" data-place-width="150" data-place-height="150"  data-module="ecp-component/floor/homepage-floor">
+			        <div class="box-tit homepage-floor-tab">
+			        	<span class="font-tit hide floor-name"><i class="rebook-icon"></i></span>
+			        </div>
+			        <div class="box-con box-two clearfix homepage-floor-gds" style="height: 256px;">
+			         
+			        </div>
+                </div>
+            </div>
+            <!--参考书 e-->
+            	
+            <!--英文版中医走出去 s-->
+            <div class="rwbox-left">
+                <div class="box ecp-component homepage-floor"  data-status="1" data-gds-size="5" data-tab-size="" data-place-id="806" data-place-width="150" data-place-height="150"  data-module="ecp-component/floor/homepage-floor">
+			        <div class="box-tit homepage-floor-tab">
+			           <span class="font-tit hide floor-name"><i class="english-icon"></i></span>
+			        </div>
+			        <div class="box-con box-two clearfix homepage-floor-gds" style="height: 256px;">
+			         
+			        </div>
+                </div>
+            </div>
+            <!--英文版中医走出去 e-->
+        </div>
+    
+        <div class="recommend-right">
+          <!--电子书销售榜-->
+            <div class="box box-order ecp-component sidebar-gds-ranking" 
+                data-status="1" data-gds-size="9" data-tab-size="" data-place-id="807" data-place-width="80" data-place-height="80"
+                data-module="ecp-component/ranking/sidebar-gds-ranking">
+                    <div class="box-tit">
+                        <span class="font-tit floor-name"></span>
+                    </div>
+                    <div class="box-con">
+                        <div class="box-content border-box clearfix gds-info" style="height: 534px;">
+                            
+                        </div>
+                    </div>
+                </div>
+            <!--电子书销售榜 e-->
+            
+            <!--关注排行榜 s-->
+            <div class="box box-order ecp-component sidebar-gds-ranking" 
+                data-status="1" data-gds-size="6" data-tab-size="" data-place-id="808" data-place-width="80" data-place-height="80"
+                data-module="ecp-component/ranking/sidebar-gds-ranking">
+                    <div class="box-tit">
+                        <span class="font-tit floor-name"></span>
+                    </div>
+                    <div class="box-con">
+                        <div class="box-content border-box clearfix gds-info" style="height: 381px;">
+                        </div>
+                    </div>
+                </div>
+            <!--关注排行榜 e-->
+        </div>
+    </div>
+
+	<!--楼层导航 s
+	<div class="quick-menu ecp-component homepage-elevator" data-status="1" data-place-Type="04" data-template-id="9" data-module="ecp-component/homepage-elevator">
+	</div>
+	-->
+	<!--楼层导航 e-->

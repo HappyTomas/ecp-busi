@@ -1,0 +1,27 @@
+#parse("/sys/sys_param.vm")
+#if(${floorRespDTO.id})
+<ul class="coupon clearfix">
+        #if(${coupList.size()} > 0 )
+        	#foreach($coup in $coupList)
+       		<li class="couponbg conpon_position">
+        	    <div class="coupon_left">
+              	  <p class="coupon_money">&yen;
+                   	 <span>#set($coupValue=$!{coup.coupValue} / 100)$coupValue</span>
+                  </p>
+				  <p class="coupon_term">$!{coup.conditionsShow}</p>
+           	    </div>
+                <div class="coupon_right">
+                   <p class="coupon_q">优惠券</p>
+                   <p class="coupon_a">
+                       <a class="gainCoup" coupId = "$!{coup.id}" href="javascript:">领取></a>
+                   </p>
+               </div>
+           </li>
+           #end
+        ##else
+           ##<div>亲，暂无优惠券</div>
+        #end
+    </ul>
+##else
+##<div>亲，暂未配置楼层！</div>
+#end

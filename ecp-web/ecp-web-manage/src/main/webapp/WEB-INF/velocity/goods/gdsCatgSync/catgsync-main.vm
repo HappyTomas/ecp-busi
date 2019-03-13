@@ -1,0 +1,75 @@
+#parse("/module/mod-tree.vm")
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-upload.vm")
+<link href="$!{CSS_PATH}/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsCatgSync/category-sync-main.js?version=$!{JS_VERSION}" ></script>
+<!-- main content -->
+<div class="well well-searchForm">
+ <form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+	<div class="row-fluid">
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label" style="width:100px">原始分类来源：</label>
+				<div class="controls">
+					<select style="width:160px" name="srcSystem" id = "srcSystem">	
+						#listParam("GDS_SRC_SYSTEM")			   
+					</select>
+				</div>
+			</div>
+		</div>
+		
+		<div class="span4">
+			<div class="control-group">
+				<label class="control-label" style="width:100px">原始分类名称：</label>
+				<div class="controls">
+					<input type="text" name="catgName" id="catgName"class="input-medium" value="" placeholder="" >
+				</div>
+			</div>
+		</div>
+				
+	
+				<div class="clear"></div>
+			</div>
+		
+			</form>
+		</div>
+		
+		
+		<div class="row-fluid" style="margin-bottom: 10px;">
+	
+			<div class="pull-right">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+			</div>
+		</div>
+            <div class="container-fluid">
+               
+				<div class="pmr_rkc clearfix">
+					<!--左侧分类树-->
+                    <div class="rknav pull-left">
+				
+						<!--树数据展示-->
+                        <div class="tree-w" style="height:350px;overflow:auto;">
+                            <ul id="categoryTree" class="ztree"></ul>
+                        </div>
+                    </div>
+
+					<!--错误信息显示-->
+                    <div class="alert alert-error hide formValidateMessages" >
+                    </div>
+					
+					
+					<!--详情显示层-->
+                    <div class="rk-editc pull-left" id='viewContent' style="">
+						#parse("/goods/gdsCatgSync/map-catgview.vm")  
+                    </div>
+					
+
+					
+                 </div>
+              </div>
+           <!-- </div> -->
+       ## </div>
+<!-- main content -->
+<input type="hidden" id="maxLevel" value="$!{maxLevel}"/>
+<input type="hidden" id="param-catlogId" value="$!{reqVO.catlogId}"/>

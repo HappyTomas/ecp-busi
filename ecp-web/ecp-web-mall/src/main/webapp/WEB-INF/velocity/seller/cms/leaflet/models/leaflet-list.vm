@@ -1,0 +1,77 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/cms/leaflet/models/leaflet-list.js?version=$!{JS_VERSION}"></script>
+<div style="overflow-x:auto;" >
+	<table id="dataGridTable" class="seller-table table-striped" role="grid"
+	       aria-describedby="dataGridTable_info" style="width: 1107px;">
+         <thead>
+           <tr>
+               <td style="display:none;">
+				广告ID
+			   </td>
+               <td style="width: 200px">
+				广告语
+			   </td>
+               <td>
+				图片
+			   </td>
+               <td>
+				所属站点
+			   </td>
+               <td>
+				所属模板
+			   </td>
+               <td>
+				内容位置
+			   </td>
+               <td>
+				链接类型
+			   </td>
+			   <td>
+				状态
+			   </td>
+               <td style="width: 125px">
+				操作
+			   </td>
+           </tr>
+         </thead>
+        <tbody>
+               #if(!$gridResult || !$gridResult.getList() || $!{gridResult.getList().size()}<=0)
+        		<tr>
+    				<td colspan='8'>
+    					没有符合条件的广告。
+    				</td>
+    		    </tr>
+        	   #else
+            	   #foreach($leaflet in $gridResult.getList())
+            		<tr class="seller-leaflet">
+    	                <td class="leaflet-id" style = "display:none;">$!{leaflet.id}</td>
+    	                <td>$!{leaflet.advertiseTitle}</td>
+    	                <td><img src="$!{leaflet.vfsUrl}"/></td>
+    	                <td>$!{leaflet.siteName}</td>
+    	                <td>$!{leaflet.templateName}</td>
+						<td>$!{leaflet.placeName}</td>
+						<td>$!{leaflet.linkTypeZH}</td>
+                        <td class="leaflet-status">$!{leaflet.statusZH}</td>
+                        <td style="text-align:left;" class="operation-bar">
+							<a href='javascript:void(0)' class="show-seller-leaflet">查看</a>
+							#if($!{leaflet.status} == 0 ) ## 发布状态
+							| <a href='javascript:void(0)' class="pub-seller-leaflet">发布</a>
+							| <a href='javascript:void(0)' class="edit-seller-leaflet">编辑</a>
+							| <a href='javascript:void(0)' class="del-seller-leaflet">使失效</a>
+							#elseif($!{leaflet.status} == 1)
+							| <a href='javascript:void(0)' class="off-seller-leaflet">撤销</a>
+							#end
+                   		</td>
+    	            </tr>
+    			   #end
+    		   #end
+         </tbody>
+     </table>
+</div>
+<div class="pagination bPage pagination-right ecppage" id="pageControlbar" 
+	data-total-page="$!{gridResult.totalPage}" 
+	data-total-row="$!{gridResult.totalRow}" 
+	data-page-size="$!{gridResult.pageSize}" 
+	data-page-number="$!{gridResult.pageNumber}" 
+	data-status="begin">
+</div>

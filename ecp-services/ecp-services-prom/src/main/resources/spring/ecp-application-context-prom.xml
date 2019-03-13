@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+	 <bean id="commPromTypeDTOHashMap" class="java.util.HashMap">
+		<constructor-arg>
+			 <map>
+                <entry key="buyXSendYDTO">
+                      <ref bean="buyXSendYDTO"/>
+                </entry>
+                 <entry key="bindDTO">
+                      <ref bean="bindDTO"/>
+                </entry>
+                 <entry key="discountRateDTO">
+                      <ref bean="discountRateDTO"/>
+                </entry>
+                  <entry key="fixedDTO">
+                      <ref bean="fixedDTO"/>
+                </entry>
+                 <entry key="fixedRateDTO">
+                      <ref bean="fixedRateDTO"/>
+                </entry>
+                <entry key="ordFixedDiscountDTO">
+                      <ref bean="ordFixedDiscountDTO"/>
+                </entry>
+                 <entry key="ordSendCoupDTO">
+                      <ref bean="ordSendCoupDTO"/>
+                </entry>
+                 <entry key="ordSendGiftDiscountDTO">
+                      <ref bean="ordSendGiftDiscountDTO"/>
+                </entry>
+                 <entry key="ordSendPointsDTO">
+                      <ref bean="ordSendPointsDTO"/>
+                </entry>
+                <entry key="multiBuyDTO">
+                      <ref bean="multiBuyDTO"/>
+                </entry>
+            <!--       <entry key="commPromTypeDTO">
+                      <ref bean="commPromTypeDTO"/>
+                </entry> -->
+                  <entry key="catgSendPointsDTO">
+                      <ref bean="catgSendPointsDTO"/>
+                </entry>
+                  <entry key="ordPostDTO">
+                      <ref bean="ordPostDTO"/>
+                </entry>
+                <entry key="ordSendDiscountDTO">
+                      <ref bean="ordSendDiscountDTO"/>
+                </entry>
+                <entry key="seckillDiscountDTO">
+                      <ref bean="seckillDiscountDTO"/>
+                </entry>
+              </map>
+		</constructor-arg>
+	</bean>
+	
+    <bean id="commPromTypeDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.CommPromTypeDTO">
+		 <property name="promTypeMap" ref="commPromTypeDTOHashMap">
+		</property> 
+	</bean>
+	
+	 <bean id="buyXSendYDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.BuyXSendYDTO">
+	</bean>
+	 <bean id="bindDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.BindDTO">
+	</bean>
+	 <bean id="discountRateDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.DiscountRateDTO">
+	</bean>
+	 <bean id="fixedDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.FixedDTO">
+	</bean>
+	 <bean id="fixedRateDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.FixedRateDTO">
+	</bean>
+	
+	 <bean id="ordFixedDiscountDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.OrdFixedDiscountDTO">
+	</bean>
+	 <bean id="ordSendCoupDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.OrdSendCoupDTO">
+	</bean>
+	 <bean id="ordSendGiftDiscountDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.OrdSendGiftDiscountDTO">
+	</bean>
+	<bean id="gdsSendGiftDiscountDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.GdsSendGiftDiscountDTO">
+	</bean>
+	 <bean id="ordSendPointsDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.OrdSendPointsDTO">
+	</bean>
+	 <bean id="multiBuyDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.MultiBuyDTO">
+	</bean>
+	
+	 <bean id="catgSendPointsDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.CatgSendPointsDTO">
+	</bean>
+	
+	 <bean id="ordPostDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.OrdPostDTO">
+	</bean>
+	 <bean id="ordSendDiscountDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.OrdSendDiscountDTO">
+	</bean>
+	 <bean id="seckillDiscountDTO"
+		class="com.zengshi.ecp.prom.dubbo.dto.SeckillDiscountDTO">
+	</bean>	
+	
+	
+	<bean id="promInfoValidSV"
+		class="com.zengshi.ecp.prom.service.busi.valid.impl.PromInfoValidSVImpl">
+		<property name="needToVerified" value="true" />
+	</bean>
+
+	<bean id="promDiscountValidSV"
+		class="com.zengshi.ecp.prom.service.busi.valid.impl.PromDiscountValidSVImpl">
+		<property name="needToVerified" value="true" />
+	</bean>
+
+	<bean id="promConstraintValidSV"
+		class="com.zengshi.ecp.prom.service.busi.valid.impl.PromConstraintValidSVImpl">
+		<property name="needToVerified" value="true" />
+	</bean>
+
+	<bean id="defaultPromValidSV"
+		class="com.zengshi.ecp.prom.service.busi.valid.impl.DefaultPromValidSVImpl"></bean>
+
+	<bean id="promInfoCheckSV"
+		class="com.zengshi.ecp.prom.service.busi.prom.impl.PromInfoCheckSVImpl"></bean>
+	<bean id="promMsgSV" class="com.zengshi.ecp.prom.service.common.msg.impl.PromMsgSVImpl"></bean>
+	<bean id="skuJoinCheckSV"
+		class="com.zengshi.ecp.prom.service.busi.sku.impl.SkuJoinCheckSVImpl">
+	  <property name="ifcheck">
+	        <value>true</value>
+	     </property>		
+	</bean>
+	<bean id="skuBuyStockCheckSV"
+		class="com.zengshi.ecp.prom.service.busi.sku.impl.SkuBuyStockCheckSVImpl">
+	  <property name="ifcheck">
+	        <value>true</value>
+	     </property>		
+	</bean>
+	<bean id="skuBlackCheckSV"
+		class="com.zengshi.ecp.prom.service.busi.sku.impl.SkuBlackCheckSVImpl">
+		  <property name="ifcheck">
+	        <value>true</value>
+	     </property>	
+	</bean>
+   <bean id="catgBlackCheckSV"
+		class="com.zengshi.ecp.prom.service.busi.sku.impl.CatgBlackCheckSVImpl">
+		  <property name="ifcheck">
+	        <value>true</value>
+	     </property>	
+	</bean>
+	<bean id="defaultSkuCheckSV"
+		class="com.zengshi.ecp.prom.service.busi.sku.impl.DefaultSkuCheckSVImpl"></bean>
+
+	<bean id="skuCheckSV" class="com.zengshi.ecp.prom.service.busi.sku.impl.SkuCheckSVImpl"></bean>
+	<bean id="sendCoupDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.SendCoupDiscountRuleSVImpl"></bean>
+
+
+	<bean id="fixedDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.FixedDiscountRuleSVImpl"></bean>
+	<bean id="defaultPromDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.DefaultPromDiscountRuleSVImpl"></bean>
+	<bean id="buyXSendYDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.BuyXSendYDiscountRuleSVImpl"></bean>
+	<bean id="bindDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.BindDiscountRuleSVImpl"></bean>
+
+      <bean id="discountRateDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.DiscountRateDiscountRuleSVImpl"></bean>
+		
+	 <bean id="extendDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.ExtendDiscountRuleSVImpl"></bean>
+	
+	 <bean id="fixedRateDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.FixedRateDiscountRuleSVImpl"></bean>
+		
+	<bean id="ordFixedDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.OrdFixedDiscountRuleSVImpl"></bean>
+		
+	<bean id="ordSendGiftDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.OrdSendGiftDiscountRuleSVImpl"></bean>
+	<bean id="gdsSendGiftDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.GdsSendGiftDiscountRuleSVImpl"></bean>
+				
+	<bean id="sendPointsDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.SendPointsDiscountRuleSVImpl"></bean>
+	
+    <bean id="mulitBuyDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.MulitBuyDiscountRuleSVImpl">
+		  <property name="ifOnlyChkSku">
+	        <value>true</value>
+	     </property>	
+    </bean>
+    
+	<bean id="freeMatchDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.FreeMatchDiscountRuleSVImpl"></bean>
+		
+   <bean id="freeMatchBDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.FreeMatchBDiscountRuleSVImpl"></bean>
+   <bean id="fixedMatchDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.FixedMatchDiscountRuleSVImpl"></bean>
+		
+  <bean id="catgPointsDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.CatgPointsDiscountRuleSVImpl"></bean>		
+		
+   <bean id="postDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.PostDiscountRuleSVImpl"></bean>
+	
+	<bean id="ordSendDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.OrdSendDiscountRuleSVImpl"></bean>
+		
+	<bean id="seckillDiscountRuleSV"
+		class="com.zengshi.ecp.prom.service.busi.discountRule.impl.SeckillDiscountRuleSVImpl"></bean>
+				
+	<bean id="promConstraintSV"
+		class="com.zengshi.ecp.prom.service.busi.constraint.impl.PromConstraintSVImpl"></bean>
+		
+        <bean id="limitTotalCheckSV" class="com.zengshi.ecp.prom.service.busi.constraint.impl.LimitTotalCheckSVImpl"></bean> 
+		<bean id="limitAmountCheckSV" class="com.zengshi.ecp.prom.service.busi.constraint.impl.LimitAmountCheckSVImpl"></bean> 
+		<bean id="custLevelCheckSV" class="com.zengshi.ecp.prom.service.busi.constraint.impl.CustLevelCheckSVImpl"></bean> 
+		<bean id="custGroupCheckSV" class="com.zengshi.ecp.prom.service.busi.constraint.impl.CustGroupCheckSVImpl"></bean> 
+		<bean id="channelCheckSV" class="com.zengshi.ecp.prom.service.busi.constraint.impl.ChannelCheckSVImpl"></bean> 
+		<bean id="buyTimesCheckSV" class="com.zengshi.ecp.prom.service.busi.constraint.impl.BuyTimesCheckSVImpl"></bean> 
+		<bean id="areaCheckSV" class="com.zengshi.ecp.prom.service.busi.constraint.impl.AreaCheckSVImpl"></bean> 
+		
+	<bean id="defaultCheckSV"
+		class="com.zengshi.ecp.prom.service.busi.constraint.impl.DefaultCheckSVImpl"></bean>
+		
+	<bean id="iPromCheckSVSolrList" class="java.util.ArrayList">
+	 
+	 	<constructor-arg>
+			<list>
+				<ref bean="channelCheckSV" /> 
+				<ref bean="custLevelCheckSV" />
+			</list>
+		</constructor-arg>
+		
+	</bean>
+
+	<bean id="iPromCheckSVList" class="java.util.ArrayList">
+	 
+	 	<constructor-arg>
+			<list>
+				<ref bean="areaCheckSV" />
+				<!-- <ref bean="channelCheckSV" /> -->
+				<ref bean="custLevelCheckSV" />
+				<ref bean="custGroupCheckSV" />
+				<ref bean="buyTimesCheckSV" />
+				<ref bean="limitAmountCheckSV" />
+				<ref bean="limitTotalCheckSV" />
+				
+			</list>
+		</constructor-arg>
+		
+	</bean>
+	<bean id="ipromValidSVList" class="java.util.ArrayList">
+		<constructor-arg>
+			<list>
+				<ref bean="promInfoValidSV" />
+				<ref bean="promDiscountValidSV" />
+				<ref bean="promConstraintValidSV" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="promSV" class="com.zengshi.ecp.prom.service.busi.impl.PromSVImpl">
+	</bean>
+	
+    <bean id="promTypeResponseDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromTypeResponseDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromTypeResponseDTO"></property>
+    </bean>
+	
+	<bean id="promTypeSV" class="com.zengshi.ecp.prom.service.common.impl.PromTypeSVImpl">
+	 <!-- <property name="converter" ref="promTypeResponseDTOConverter"></property> -->
+	</bean> 
+
+ <!--   <bean id="abstractpopulatorList" class="com.zengshi.ecp.prom.dubbo.impl.populator.impl.DefaultPopulatorList"    abstract="true"/>	
+
+		<bean id="defaultPointOfServiceModelToSiteMapUrlDataConverter"
+	      parent="abstractpopulatorList">
+		<property name="populators">
+			<list>
+			</list>
+		</property>
+	</bean>
+	 -->
+	  <bean id="promInfoConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromInfoConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.PromInfo"></property>
+    </bean>
+	 <bean id="promSkuConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromSkuConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.PromSku"></property>
+    </bean>
+    <bean id="promSkuLimitConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromSkuLimitConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.PromSkuLimit"></property>
+    </bean>
+      <bean id="promConstraintConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromConstraintConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.PromConstraint"></property>
+    </bean>
+      <bean id="promInfoSV" class="com.zengshi.ecp.prom.service.busi.impl.PromInfoSVImpl" >
+    </bean>
+    
+    <bean id="promGroupSV" class="com.zengshi.ecp.prom.service.busi.group.impl.PromGroupSVImpl" >
+    </bean>
+     <bean id="promGroupChkSV" class="com.zengshi.ecp.prom.service.busi.group.impl.PromGroupChkSVImpl" >
+    </bean>
+     <bean id="promType4ShopSV" class="com.zengshi.ecp.prom.service.busi.auth.impl.PromType4ShopSVImpl" >
+    </bean>
+      <bean id="promTypeMsgResponseDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromTypeMsgResponseDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromTypeMsgResponseDTO"></property>
+    </bean>
+     <bean id="promGroupConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromGroupConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.PromGroup"></property>
+     </bean>
+     <bean id="promInfoResponseDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromInfoResponseDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromInfoResponseDTO"></property>
+     </bean>
+     <bean id="promGroupResponseDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromGroupResponseDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromGroupResponseDTO"></property>
+     </bean>
+      <bean id="promChkConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromChkConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.PromChk"></property>
+     </bean>
+       <bean id="promChkResponseDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromChkResponseDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromChkResponseDTO"></property>
+     </bean>
+        <bean id="promType4ShopResponseDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromType4ShopResponseDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromType4ShopResponseDTO"></property>
+     </bean>
+        <bean id="promType4ShopConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromType4ShopConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.PromType4Shop"></property>
+     </bean>
+     <bean id="promMatchSkuDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromMatchSkuDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromMatchSkuDTO"></property>
+     </bean>
+      <bean id="promInfoDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromInfoDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromInfoDTO"></property>
+     </bean>
+     <bean id="promConstraintDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromConstraintDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromConstraintDTO"></property>
+    </bean>
+    <bean id="promCalRuleDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromCalRuleDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromCalRuleDTO"></property>
+    </bean>
+       <bean id="promGiftDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromGiftDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromGiftDTO"></property>
+    </bean>
+    
+    <bean id="promQuerySV" class="com.zengshi.ecp.prom.service.busi.impl.PromQuerySVImpl" >
+        <property name="noCheckPriceList">
+                    <list>
+                        <value>1000000011</value>
+                        <value>1000000013</value>
+                        <value>1000000014</value>
+                        <value>1000000018</value>
+                    </list>
+        </property> 
+    </bean>
+    
+     <bean id="promSkuDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromSkuDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromSkuDTO"></property>
+    </bean>
+    <bean id="promSkuLimitDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromSkuLimitDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromSkuLimitDTO"></property>
+    </bean>
+    <bean id="promStockLimitDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromStockLimitDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromStockLimitDTO"></property>
+    </bean>
+      <bean id="promStockLimitConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromStockLimitConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.PromStockLimit"></property>
+    </bean>
+     <bean id="promUserLimitDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromUserLimitDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromUserLimitDTO"></property>
+    </bean>
+     <bean id="promUserLimitSV" class="com.zengshi.ecp.prom.service.busi.constraint.impl.PromUserLimitSVImpl" >
+    </bean>
+    
+     <bean id="promUserLimitConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromUserLimitConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.PromUserLimit"></property>
+    </bean>
+      <bean id="promGiftConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromGiftConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.PromGift"></property>
+    </bean>
+     <bean id="promMatchSkuConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromMatchSkuConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.PromMatchSku"></property>
+    </bean>
+      <bean id="promMatchSkuRespDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromMatchSkuRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromMatchSkuRespDTO"></property>
+    </bean>
+      <bean id="promMatchSV" class="com.zengshi.ecp.prom.service.busi.impl.PromMatchSVImpl" >
+    </bean>
+     <bean id="gdsCatgSV" class="com.zengshi.ecp.prom.service.busi.sku.impl.GdsCatgSVImpl" >
+    </bean>
+    <bean id="promShipSV" class="com.zengshi.ecp.prom.service.busi.impl.PromShipSVImpl" >
+    </bean>
+     <bean id="prom2SolrConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.Prom2SolrConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.Prom2Solr"></property>
+    </bean>
+    <bean id="prom2SolrRespDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.Prom2SolrRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.Prom2SolrRespDTO"></property>
+    </bean>
+   <bean id="prom2SolrReqDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.Prom2SolrReqDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.Prom2SolrReqDTO"></property>
+    </bean> 
+    <bean id="prom2SolrSV" class="com.zengshi.ecp.prom.service.busi.prom2solr.impl.Prom2SolrSVImpl" >
+    </bean>
+    <bean id="promSolrSV" class="com.zengshi.ecp.prom.service.busi.prom2solr.impl.PromSolrSVImpl" >
+    </bean>
+     <bean id="promImportConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromImportConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dao.model.PromImport"></property>
+    </bean>
+    <bean id="promImportRespDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromImportRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromImportRespDTO"></property>
+    </bean>
+     <bean id="promImportSV" class="com.zengshi.ecp.prom.service.busi.importdata.impl.PromImportSVImpl" >
+    </bean>
+      <bean id="promSkuRespDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromSkuRespDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.PromSkuRespDTO"></property>
+    </bean>
+     <bean id="promImportFileSV" class="com.zengshi.ecp.prom.service.busi.importdata.impl.PromImportFileSVImpl" >
+    </bean>
+     <bean id="promSkuSV" class="com.zengshi.ecp.prom.service.busi.sku.impl.PromSkuSVImpl" >
+    </bean>
+     <bean id="promCmsSV" class="com.zengshi.ecp.prom.service.busi.impl.PromCmsSVImpl" >
+    </bean>
+     <bean id="promKillGdsInfoDTOConverter" class="com.zengshi.ecp.prom.dubbo.impl.convert.PromKillGdsInfoDTOConverter" >
+          <property name="targetClass" value="com.zengshi.ecp.prom.dubbo.dto.KillGdsInfoDTO"></property>
+    </bean>
+    <bean id="skuInfoSwitchSV" class="com.zengshi.ecp.prom.service.busi.importdata.impl.SkuInfoSwitchSVImpl" ></bean>
+	<bean class="com.zengshi.ecp.frame.bean.BeanSet">
+		<constructor-arg>
+			<set>
+				<bean class="com.zengshi.ecp.frame.bean.BeanDefine">
+					<property name="interfaceClass" value="com.zengshi.ecp.prom.service.busi.importdata.interfaces.ISkuInfoSwitchExSV"></property>
+					<property name="beanClass" value="com.zengshi.ecp.prom.service.busi.importdata.impl.SkuInfoSwitchExSVImpl"></property>
+				</bean>
+			</set>
+		</constructor-arg>
+	</bean>
+</beans>

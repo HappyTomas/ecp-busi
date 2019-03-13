@@ -1,0 +1,14 @@
+<div id="slideButtom" class="am-offcanvas slideButtom">
+    <div class="am-offcanvas-bar">
+        <div class="am-offcanvas-content">
+            <div class="pro-saleList">
+                <div class="tit">
+						促销
+                    <span class="icon icon-close"></span>
+                </div>
+                <ul id="promDetail">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

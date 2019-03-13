@@ -1,0 +1,69 @@
+#parse("sys/sys_param.vm")
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+			我的钱包
+    </div>
+    <div class="am-header-left am-header-nav">
+		<a href="$!{CONTEXT_PATH}/member/index">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content">
+	 <div id="wrapper1" data-am-widget="list_news" class="am-list-news scroll-wrap">
+       <div class=" am-list-news-bd scroll">
+			<div class="pull-action loading pull-down">
+               <span class="pull-label"> 下拉刷新</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <ul class="ui-list wallet-list scrollCont">
+                <div class="loading-lo"></div>
+            </ul>
+            <div class="pull-action pull-up" style="bottom: 0">
+                 <span class=" pull-label"> 上拉加载更多</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+</div>
+##侧边栏，我的钱包明细
+#parse("/staff/wallet/wallet-detail.vm")
+<script type="text/x-handlebars-template" id="wrapper1-tpl">
+	{{if values.datas ==null || values.datas.length == 0}}
+		<div data-tab-panel-0 class="am-tab-panel am-active">
+            <div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$IMAGE_PATH/shop-nodata.png" alt="">
+                </div>
+                <div class="tip-bold">
+						很遗憾
+                </div>
+                <div class="tip-txt">
+						没有查到任何数据
+                </div>
+            </div>
+        </div>
+	{{/if}}
+    {{each values.datas as obj i}}
+		<li>
+			<input type="hidden" value="{{obj.createTimeStr}}" id="createTime"/>
+			<input type="hidden" value="{{obj.acctTypeName}}" id="acctTypeName"/>
+			<input type="hidden" value="{{obj.balance}}" id="balance"/>
+            <div class="img-wrap">
+                <img src="{{obj.logoPath}}" style="height:45px;width:45px;" alt="{{obj.shopName}}"/>
+            </div>
+            <div class="cont">
+                <p class="name">{{obj.shopName}}</p>
+                <p class="discount">{{obj.acctTypeName}}</p>
+            </div>
+            <div class="price"><em>¥</em>{{obj.balanceYun}}</div>
+			<span class="ui-arrow ui-arrow-right"></span>
+        </li>
+    {{/each}}
+</script>
+<script src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js"></script>
+<script src="$!{RESOURCE_PATH}/jquery/artTemplate/template-debug.js"></script>
+<script src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js"></script>
+<script src="$!{RESOURCE_PATH}/ui/amazeui/handlebars.min.js"></script>
+<script src="$!{RESOURCE_PATH}/util.js"></script>
+<script src="$!{BUSIJS_PATH}/staff/wallet/wallet.js"></script>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context-3.0.xsd
+       http://www.springframework.org/schema/tx 
+       http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+       http://www.springframework.org/schema/aop 
+       http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+
+    <!-- 会员管理-->
+    <bean id="registerSV" class="com.zengshi.ecp.staff.service.busi.register.impl.RegisterSVImpl"></bean>
+    <bean id="custAddrSV" class="com.zengshi.ecp.staff.service.busi.custaddr.impl.CustAddrSVImpl"></bean>
+    <bean id="custManageSV" class="com.zengshi.ecp.staff.service.busi.manage.impl.CustManageSVImpl"></bean>
+    
+    <!-- 客户审核管理 -->
+    <bean id="custCheckSV" class="com.zengshi.ecp.staff.service.busi.manage.impl.CustCheckSVImpl"></bean>
+    
+     <!-- 企业审核管理 -->
+    <bean id="companyCheckSV" class="com.zengshi.ecp.staff.service.busi.manage.impl.CompanyCheckSVImpl"></bean>
+    <bean id="companySignSV" class="com.zengshi.ecp.staff.service.busi.company.impl.CompanySignSVImpl"></bean>
+  
+    <!-- 企业店铺及会员管理sv -->
+    <bean id="companyManageSV" class="com.zengshi.ecp.staff.service.busi.manage.impl.CompanyManageSVImpl"></bean>
+    
+    <!-- 积分服务 -->
+    <bean id="scoreInfoSV" class="com.zengshi.ecp.staff.service.busi.score.impl.ScoreInfoSVImpl"></bean>
+    <!-- 积分类型服务 -->
+    <bean id="scoreTypeSV" class="com.zengshi.ecp.staff.service.common.score.impl.ScoreTypeSVImpl"></bean>
+    
+    <!-- 积分规则服务 -->
+    <bean id="scoreConsumeRuleSV" class="com.zengshi.ecp.staff.service.busi.score.impl.ScoreConsumeRuleSVImpl"></bean>
+    
+    <!-- 积分提供给订单的服务 -->
+    <bean id="scoreToOrderSV" class="com.zengshi.ecp.staff.service.busi.score.impl.ScoreToOrderSVImpl"></bean>
+    <!-- 积分提供给订单的服务 2016-08-08改造版，主要为了支持订单域的子订单部分退货 -->
+    <bean id="scoreToOrderOtherSV" class="com.zengshi.ecp.staff.service.busi.score.impl.ScoreToOrderOtherSVImpl"></bean>
+    
+    <!-- 登录管理 -->
+    <bean id="managerLoginSV" class="com.zengshi.ecp.staff.service.busi.manage.impl.ManagerLoginSVImpl"></bean>
+    <bean id="authLoginSV" class="com.zengshi.ecp.staff.service.busi.login.impl.AuthLoginSVImpl"></bean>
+    
+    <!-- 店铺信息管理 -->
+    <bean id="shopMgrSV" class="com.zengshi.ecp.staff.service.busi.manage.impl.ShopMgrSVImpl"></bean>
+    <bean id="shopCollectSV" class="com.zengshi.ecp.staff.service.busi.shop.impl.ShopCollectSVImpl"></bean>
+    <bean id="shopExpressSV" class="com.zengshi.ecp.staff.service.busi.shop.impl.ShopExpressSVImpl"></bean>
+    <bean id="shopAddrSV" class="com.zengshi.ecp.staff.service.busi.shop.impl.ShopAddrSVImpl"></bean>
+    
+    <!-- 店铺会员分组 -->
+    <bean id="shopStaffGroupSV" class="com.zengshi.ecp.staff.service.busi.shop.impl.ShopStaffGroupSVImpl"></bean>
+    <!-- 店铺子账户管理 -->
+    <bean id="shopSubAuthStaffSV" class="com.zengshi.ecp.staff.service.busi.shop.impl.ShopSubAuthStaffSVImpl"></bean>
+        
+    <!-- 店铺会员、客服管理 -->
+    <bean id="shopManageSV" class="com.zengshi.ecp.staff.service.busi.manage.impl.ShopManageSVImpl"></bean>
+
+    <!-- 资金账户信息服务 -->
+    <bean id="acctInfoSV" class="com.zengshi.ecp.staff.service.busi.acct.impl.AcctInfoSVImpl"></bean>
+    <!-- 资金账户交易服务 -->
+    <bean id="acctTradeSV" class="com.zengshi.ecp.staff.service.busi.acct.impl.AcctTradeSVImpl"></bean>
+    <!-- 会员等级 -->
+    <bean id="custVipSV" class="com.zengshi.ecp.staff.service.common.vip.impl.CustVipSVImpl"></bean>
+    <!-- 会员信息服务-->
+    <bean id="custInfoSV" class="com.zengshi.ecp.staff.service.busi.custinfo.impl.CustInfoSVImpl"></bean>
+    <!-- 加密 -->
+    <bean id="passwordUtils" class="com.zengshi.ecp.server.front.util.PasswordUtils">
+    <property name="encryAlgorithm" value="MD5-SALT"></property>
+    </bean>
+    
+    <!-- 积分来源计算 -->
+    <bean id="scoreCaclSV" class="com.zengshi.ecp.staff.service.busi.score.impl.ScoreCaclSVImpl" init-method='init'></bean> 
+	
+	<!-- 用户权限管理 -->
+	<bean id="authManageSV" class="com.zengshi.ecp.staff.service.busi.auth.impl.AuthManageSVImpl"></bean>
+	
+	<!-- 用户权限关系管理 -->
+	<bean id="authRelManageSV" class="com.zengshi.ecp.staff.service.busi.auth.impl.AuthRelManageSVImpl"></bean>
+	
+	<!-- 权限资源 --> 
+	<bean id="privlgManageSV" class="com.zengshi.ecp.staff.service.common.privilege.impl.PrivlgManageSVImpl"></bean>
+	<!-- 菜单管理 -->
+	<bean id="menuManageSV" class="com.zengshi.ecp.staff.service.common.privilege.impl.MenuManageSVImpl"></bean>
+	<!-- 角色管理 -->
+	<bean id="roleManageSV" class="com.zengshi.ecp.staff.service.common.privilege.impl.RoleManageSVImpl"></bean>
+	<!-- 用户组管理 -->
+	<bean id="staffGroupManageSV" class="com.zengshi.ecp.staff.service.common.privilege.impl.StaffGroupManageSVImpl"></bean>
+	
+	<!-- 店铺缓存 -->
+	<bean id="shopCacheSV" class="com.zengshi.ecp.staff.service.cache.impl.ShopCacheSVImpl"></bean>
+	 
+	<!--企业刷新缓存配置  -->
+    <bean id="companyCacheSV" class="com.zengshi.ecp.staff.service.cache.impl.CompanyCacheSVImpl"></bean>
+    
+    <!--菜单缓存  -->
+    <bean id="menuCacheSV" class="com.zengshi.ecp.staff.service.cache.impl.MenuCacheSVImpl"></bean>
+    
+    <!-- 系统用户管理 -->
+    <bean id="authStaffSV" class="com.zengshi.ecp.staff.service.busi.manage.impl.AuthStaffManageSVImpl"></bean>
+    
+    <!-- 会员等级明细 -->
+    <bean id="custGrowInfoSV" class="com.zengshi.ecp.staff.service.busi.custinfo.impl.CustGrowInfoSVImpl"></bean>
+    
+    <bean id="adminManageSV" class="com.zengshi.ecp.staff.service.busi.manage.impl.AdminManageSVImpl"></bean>
+    
+    <bean id="logInfoSV" class="com.zengshi.ecp.staff.service.busi.log.impl.LogInfoSVImpl"></bean>
+    
+    <!-- 数据权限管理 -->
+    <bean id="dataAuthManageSV" class="com.zengshi.ecp.staff.service.common.privilege.impl.DataAuthManageSVImpl"></bean>
+    
+    <!-- 数据权限规则服务 //TODO ID"SV" 
+    <bean id="ruleOfDataAuth" class="com.zengshi.ecp.staff.service.common.privilege.impl.DataAuthControlSVImpl"></bean>
+    -->
+    <!-- 用户域  订单服务统一接口 -->
+    <bean id="staffUnionSV" class="com.zengshi.ecp.staff.service.busi.union.impl.StaffUnionSVImpl"></bean>
+    
+    <!-- 客户等级实时计算 -->
+    <bean id="custGrowRuleBySaleSV" class="com.zengshi.ecp.staff.service.busi.custinfo.impl.CustGrowRuleBySaleSVImpl"></bean>
+    
+    <!-- 资金帐户提供给订单的服务 -->
+    <bean id="acctToOrderSV" class="com.zengshi.ecp.staff.service.busi.acct.impl.AcctToOrderSVImpl"></bean>
+    
+    <!-- sso登录数据同步接口 -->
+    <bean id="ssoUserImportSV" class="com.zengshi.ecp.staff.service.busi.sso.impl.SsoUserImportSVImpl"></bean>
+    
+    <!-- 资金帐户助手服务 -->
+    <bean id="acctInfoAideSV" class="com.zengshi.ecp.staff.service.busi.acct.impl.AcctInfoAideSVImpl"></bean>
+    
+      <!-- 第三方账号服务 -->
+    <bean id="custThirdSV" class="com.zengshi.ecp.staff.service.busi.custinfo.impl.CustThirdSVImpl"></bean>
+    <!-- 积分规则缓存服务 -->
+    <bean id="scoreCacheSV" class="com.zengshi.ecp.staff.service.cache.impl.ScoreCacheSVImpl"></bean>
+    <!-- 商品分类之积分赠送比例配置服务 -->
+    <bean id="scoreCategoryRatioSV" class="com.zengshi.ecp.staff.service.common.score.impl.ScoreCategoryRatioSVImpl"></bean>
+    <!-- 店铺支付类型 -->
+    <bean id="shopPayWaySV" class="com.zengshi.ecp.staff.service.common.pay.impl.ShopPayWaySVImpl"></bean>
+    <!-- 店铺支付通道 -->
+    <bean id="shopPayWayCfgSV" class="com.zengshi.ecp.staff.service.busi.shop.impl.ShopPayWayCfgSVImpl"></bean>
+    
+    <!-- 积分计算实现类 START -->
+    <bean id="caclScoreByLogin" class="com.zengshi.ecp.staff.service.busi.score.cacl.impl.caclScoreByLogin"></bean>
+    <bean id="caclScoreByShopAccess" class="com.zengshi.ecp.staff.service.busi.score.cacl.impl.caclScoreByShopAccess"></bean>
+    <bean id="caclScoreByShopping" class="com.zengshi.ecp.staff.service.busi.score.cacl.impl.caclScoreByShopping"></bean>
+    <bean id="caclScoreBySign" class="com.zengshi.ecp.staff.service.busi.score.cacl.impl.caclScoreBySign"></bean>
+    <bean id="caclScoreByShareGds" class="com.zengshi.ecp.staff.service.busi.score.cacl.impl.caclScoreByShareGds"></bean>
+    <!-- 积分计算实现类 END -->
+    
+    <!-- 订单退款退货查重表服务 -->
+    <bean id="ordBackCheckSV" class="com.zengshi.ecp.staff.service.busi.union.impl.OrdBackCheckSVImpl"></bean>
+    
+    <!-- 商城用户与微信用户关系服务 -->
+    <bean id="custWechatRelSV" class="com.zengshi.ecp.staff.service.busi.wechat.impl.CustWechatRelSVImpl"></bean>
+    
+    <!-- 积分退款退货改造服务 -->
+    <bean id="staffUnionCoreRWSV" class="com.zengshi.ecp.staff.service.busi.union.impl.StaffUnionRWSVImpl"></bean>
+    <!-- 积分退款退货改造服务 -->
+    <bean id="scoreToOrderCoreRWSV" class="com.zengshi.ecp.staff.service.busi.score.impl.ScoreToOrderRWSVImpl"></bean>
+</beans>

@@ -1,0 +1,31 @@
+#parse("/sys/sys_param.vm")
+<dt>
+	<a target='_blank' class="itemDl-tit" href="
+		#if(${catgParent.catgCode} && $!{catgParent.catgCode}!='')
+			${CONTEXT_PATH}/search?category=$!{catgParent.catgCode} 
+		#elseif(${catgParent.catgUrl} && $!{catgParent.catgUrl}!='')
+			${CONTEXT_PATH}/$!{catgParent.catgUrl} 
+		#else
+			${CONTEXT_PATH}/search?keyword=#stringEncode($!{catgParent.catgName})
+		#end
+		">
+		$!{catgParent.catgName}
+	</a>
+</dt>
+<div class="itemDl-list">
+	#foreach(${catgTwo} in $catgChild) 
+		<dd>
+			<a target='_blank' href="
+				#if(${catgTwo.catgCode} && $!{catgTwo.catgCode}!='')
+					${CONTEXT_PATH}/search?category=$!{catgTwo.catgCode} 
+				#elseif(${catgTwo.catgUrl} && $!{catgTwo.catgUrl}!='')
+					${CONTEXT_PATH}/$!{catgTwo.catgUrl} 
+				#else
+					${CONTEXT_PATH}/search?keyword=#stringEncode($!{catgTwo.catgName})
+				#end
+				">
+				$!{catgTwo.catgName}
+			</a>
+		</dd>
+	#end
+</div>

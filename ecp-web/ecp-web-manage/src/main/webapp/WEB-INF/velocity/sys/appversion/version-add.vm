@@ -1,0 +1,107 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/sys/appversion/version-add.js?version=$!{JS_VERSION}" ></script>
+
+<h3 class="heading">新增APP版本</h3>
+			
+	<div class="alert alert-error hide formValidateMessages" >
+
+    </div>
+			<div class="formBox">
+				<form id="verAddForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" >
+             <div class="span9">
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">				
+						    <label class="control-label">版本归属项目：</label>
+						     <div class="controls">
+        							<select style="width:160px" name="verProgram">	
+										#listParam('APP_VER_PROGRAM',$!appVersion.verProgram)
+        							</select>
+						     </div>
+					    </div>
+					</div>
+					<div class="span6">
+						<div class="control-group">				
+						    <label class="control-label">版本系统：</label>
+						     <div class="controls">
+                					<select style="width:160px" name="verOs">								
+        						      <!-- #listParam('APP_VER_OS',$!appVersion.verOs) -->
+        						      <option value="01" selected>ANDROID</option>
+        							</select>
+						     </div>
+					    </div>
+					</div>
+				</div>	
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">适配系统版本：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level required htmlcheck" name="verAdaptOs"   placeholder="版本适配系统版本" value="$!appVersion.verAdaptOs"/>
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">下载地址：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level required htmlcheck" name="verUrl"   placeholder="下载地址" value="$!appVersion.verUrl"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">发布版本号：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level required htmlcheck" name="verPublishNo"   placeholder="发布版本号" value="$!appVersion.verPublishNo"/>
+							</div>
+						</div>
+					</div>
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">内部版本号：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level required digits " name="verNo"   placeholder="内部版本号" value="$!appVersion.verNo"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			<div class="row-fluid formSep">
+					<div class="span6">
+						<div class="control-group">
+							<label class="control-label">是否强制更新：</label>
+							<div class="controls">
+									<select style="width:160px" name="ifForce">	
+									   <option value="0" selected="#if($!appVersion.ifForce=='1')selected#end">否</option>	
+        							   <option value="1" selected="#if($!appVersion.ifForce=='1')selected#end">是</option>		      							  
+        							</select>
+							</div>
+						</div>
+					</div>
+				</div>	
+			 
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label">版本更新内容：</label>
+							<div class="controls">
+                               <div class="span6" style="margin-left:2px;">
+	                             <textarea id="verDetail" name="verDetail" style="width:120%;height:250px;"></textarea>
+                                </div>							
+							</div>
+						</div>
+					</div>
+			
+					<div style=" ">
+						<div class="control-group">
+							<div class="controls">
+								<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign"></i> 保　存</button>
+								<button type="button" class="btn" id="btnReturn"><i class="icon-reply"></i> 返　回</button>
+
+							</div>
+						</div>
+					</div>
+				</div>
+                </form>
+			</div>

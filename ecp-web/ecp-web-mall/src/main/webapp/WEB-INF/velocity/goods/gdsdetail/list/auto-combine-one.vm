@@ -1,0 +1,41 @@
+<li>
+    <div class="p-img">
+        <a href="${CONTEXT_PATH}/gdsdetail/$!{info.skuInfo.gdsId}-$!{info.skuInfo.id}">
+            <img width="150" height="150" src="${aiTool.genImageUrl($!{info.skuInfo.mainPic.mediaUuid},'150x150!')}" alt=""/>
+        </a>
+    </div>
+    <p class="p-name">
+        <a href="${CONTEXT_PATH}/gdsdetail/$!{info.skuInfo.gdsId}-$!{info.skuInfo.id}">
+            $!{info.skuInfo.gdsName}
+        </a>
+    </p>
+    <p class="p-actor c-gray">
+        #foreach($value in $!{info.skuInfo.allPropMaps.get('1001').values})
+			$!{value.propValue}
+        #end
+    </p>
+    <input type="hidden" value="$!{info.skuInfo.id}" id="fixedSkuId"/>
+    <input type="hidden" value="$!{info.skuInfo.skuProps}" id="fixedSkuProps"/>
+	<input type="hidden" value="$!{info.skuInfo.gdsName}" id="fixedGdsName"/>
+	<input type="hidden" value="$!{info.skuInfo.GdsId}" id="fixedGdsId"/>
+	<input type="hidden" value="$!{info.shopId}" id="fixedShopId"/>
+	<input type="hidden" value="$!{info.ShopName}" id="fixedShopName"/>
+	<input type="hidden" value="$!{info.skuInfo.mainCatgs}" id="fixedMainCatgs"/>
+	<input type="hidden" value="$!{info.promId}" id="fixedPromId"/>
+	<input type="hidden" value="$!{info.skuInfo.gdsTypeId}" id="fixedGdsTypeId"/>
+	<!--循环里的标识符，用来进行groupDetail的单品排序用（顺序按照后场取回来的数据的顺序不变）-->
+	<input type="hidden" value="$velocityCount" id="fixedIndex"/>
+	<input type="hidden" value="$!{info.skuInfo.gdsStatus}" id="fixedGdsStatus"/>
+    </i>
+    <p class="p-pri">
+        <b class="c-red" name="combinePrice">
+				&yen;<font id="fixedGdsPriceAfter">#moneyNum($!{info.price})</font>
+        </b>
+        <b class="c-gray t-mline">
+				&yen;<font id="fixedGdsPrice">#moneyNum($!{info.skuInfo.realPrice})</font>
+        </b>
+    </p>
+</li>
+#set($yuanprice = $!{info.skuInfo.realPrice})
+#set($buyprice = $!{info.price})
+#set($cutprice = ($!{info.skuInfo.realPrice} - $!{info.price}))

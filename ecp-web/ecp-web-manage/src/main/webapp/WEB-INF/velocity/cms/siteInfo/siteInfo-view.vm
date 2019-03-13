@@ -1,0 +1,86 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-editor.vm")
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/siteInfo/siteInfo-view.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal required-validate" style="margin-bottom: 0px;" method="post">
+		<div class="span8">
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属站点： </label>
+						<label class="controls text_line" >#if(${respVO.siteZH})#escapeHtml(${respVO.siteZH}) #else 无 #end
+						</label>
+    			</div>
+    		</div>
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label" for="infoTitle">网站信息名称：</label>
+					<label class="controls  text_line">
+						#escapeHtml($!{respVO.siteInfoName})		
+					</label>
+				</div>
+			</div>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">父级信息：</label>
+    				<label class="controls  text_line">
+    					#escapeHtml($!{respVO.parentName})
+                    </label>
+    			</div>
+    		</div> 
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">网站信息类型：</label>
+    				<label class="controls  text_line">
+    					#escapeHtml($!{respVO.siteInfoTypeZH})
+                    </label>
+    			</div>
+    		</div> 
+			#if(${respVO.siteInfoType} == "01")
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">信息内容：</label>
+					<div class="controls">
+						<input type="hidden" id="staticId" name="staticId" value="$!{respVO.staticId}" />
+						<input type="hidden" id="staticUrl" name="staticUrl" value="$!{respVO.staticUrl}" />
+						<textarea id="editorText" name="editorText" class="bEditor" style="width:100%;height:200px;visibility:hidden;"></textarea>
+					</div>
+				</div>
+			</div>
+			#end
+			<!--	
+			<div class="formSep">  
+				<div class="control-group">
+    				<label class="control-label" for="name">链接地址：</label>
+					<a class="controls  text_line" href="$!{respVO.siteInfoUrl}">#escapeHtml($!{respVO.siteInfoUrl})</a>
+    			</div>
+    		</div>-->
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">排序：</label>
+					<label class="controls  text_line">
+						#escapeHtml($!{respVO.sortNo}) 		
+					</label>
+				</div>
+			</div>
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">状态：</label>
+					<label class="controls  text_line">
+						#escapeHtml($!{respVO.statusZH})		
+					</label>
+				</div>
+			</div>
+			<div class="text-center">
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+			</div>
+        </div>
+	</form>
+</div>

@@ -1,0 +1,48 @@
+#parse("/sys/sys_head.vm")
+
+<header class="am-header am-header-fixed">
+	<div class="am-header-title">
+        我的收藏
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        <a href="javascript:" class="" onclick="history.go(-1); ">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content">
+    <div class="am-tabs" data-am-tabs>
+        <ul class="am-tabs-nav am-nav am-nav-tabs">
+            <li class=""><a href="[data-tab-panel-0]">商品</a></li>
+            <li class="am-active"><a href="[data-tab-panel-1]">店铺</a></li>
+        </ul>
+        <div class="am-tabs-bd">
+            <div data-tab-panel-0 class="am-tab-panel ">
+                <div class="ui-empty">
+                    <div class="empty-img">
+                        <img src="../images/shop-nodata.png" alt="">
+                    </div>
+                    <div class="tip-bold">
+                        很遗憾
+                    </div>
+                    <div class="tip-txt">
+                        您还没有收藏的店铺
+                    </div>
+                </div>
+            </div>
+            <div data-tab-panel-1 class="am-tab-panel am-active">
+                <div class="ui-empty">
+                    <div class="empty-img">
+                        <img src="$IMAGE_PATH/shop-nodata.png" alt="">
+                    </div>
+                    <div class="tip-bold">
+                        很遗憾
+                    </div>
+                    <div class="tip-txt">
+                        您还没有收藏的店铺
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,174 @@
+@charset "UTF-8";
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+body {
+  color: #666;
+}
+body,
+button,
+input,
+select,
+textarea {
+  font: 12px/1.5 tahoma, arial, "Microsoft Yahei", '\5b8b\4f53', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: courier new, courier, monospace;
+}
+ul,
+ol {
+  list-style: none;
+}
+a {
+  color: #333333;
+  text-decoration: none;
+}
+a:hover {
+  color: #009ae0;
+  text-decoration: none;
+}
+img {
+  border: 0;
+}
+/*重设ie滚动条*/
+@-ms-viewport {
+  width: auto;
+}
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+/*单行文字溢出时出现省略号，需设定宽度*/
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+/*公共框架*/
+.w {
+  margin: 0 auto;
+  position: relative;
+}
+.micon {
+  background-image: url("../images/icons.png");
+  background-repeat: no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+}
+.micon-help {
+  width: 20px;
+  height: 20px;
+  background-position: -174px -136px;
+}
+/*新的500页面*/
+.ui-error {
+  background: url("../images/error.jpg") center center;
+  height: 655px;
+  position: relative;
+}
+.ui-error .logo {
+  margin-top: 15px;
+}
+.ui-error .error-txt {
+  position: absolute;
+  top: 530px;
+  left: 50%;
+  color: #a28887;
+  font-size: 18px;
+  font-weight: 900;
+  margin-left: -235px;
+}
+.ui-error .error-btn {
+  position: absolute;
+  background: url("../images/error-go.png") no-repeat;
+  width: 70px;
+  height: 70px;
+  border: 0;
+  top: 570px;
+  left: 50%;
+  margin-left: -35px;
+}
+.mCustomScrollBox .mCSB_container {
+  margin-right: 10px;
+}
+.imDialog .modal-header {
+  background: #ecf5ff;
+  text-align: center;
+  padding: 0;
+  height: 50px;
+  line-height: 50px;
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  border-top-left-radius: 20px;
+  -webkit-border-top-right-radius: 20px;
+  -moz-border-radius-topright: 20px;
+  border-top-right-radius: 20px;
+}
+.imDialog .modal-header h3 {
+  line-height: 50px;
+  font-size: 18px;
+  color: #3a9aff;
+}
+.imDialog .modal-header .close {
+  width: 30px;
+  height: 30px;
+  background: url(../images/icons.png) 0 -194px no-repeat;
+  font-size: 0!important;
+  position: absolute;
+  right: -15px;
+  opacity: 100;
+  top: -15px;
+}
+.imDialog .modal-body {
+  padding: 15px 15px 0;
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     ">  
+   
+     
+     <!--用于openfire用户的服务 -->
+     <bean id="ofuserRSV" class="com.zengshi.ecp.im.dubbo.impl.OfuserRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.im.dubbo.interfaces.IOfuserRSV" ref="ofuserRSV" provider="${default.dubbo.provider.id}"/>
+     
+      <!--用于openfire用户的服务 -->
+     <bean id="imAuthRSV" class="com.zengshi.ecp.im.dubbo.impl.ImAuthRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.im.dubbo.interfaces.IimAuthRSV" ref="imAuthRSV" provider="${default.dubbo.provider.id}"/>
+     
+      <!--客服openfire服务 -->
+    <bean id="staffHotlineRSV" class="com.zengshi.ecp.im.dubbo.impl.StaffHotlineRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.im.dubbo.interfaces.IStaffHotlineRSV" ref="staffHotlineRSV" provider="${default.dubbo.provider.id}"/>
+
+    <!--用于买家会员和客服人员的队列管理的服务 -->
+    <bean id="custServiceMgrRSV" class="com.zengshi.ecp.im.dubbo.impl.CustServiceMgrRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.im.dubbo.interfaces.ICustServiceMgrRSV" ref="custServiceMgrRSV" provider="${default.dubbo.provider.id}"/>
+
+    <!--客服人员满意度的评价服务 -->
+    <bean id="satisfyEvaluateRSV" class="com.zengshi.ecp.im.dubbo.impl.SatisfyEvaluateRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.im.dubbo.interfaces.ISatisfyEvaluateRSV" ref="satisfyEvaluateRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <!--常用语分组 -->
+    <bean id="phrasebookGroupRSV" class="com.zengshi.ecp.im.dubbo.impl.PhrasebookGroupRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.im.dubbo.interfaces.IPhrasebookGroupRSV" ref="phrasebookGroupRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <!--常用语短语 -->
+    <bean id="phrasebookItemRSV" class="com.zengshi.ecp.im.dubbo.impl.PhrasebookItemRSVImpl"></bean>
+    <dubbo:service interface="com.zengshi.ecp.im.dubbo.interfaces.IPhrasebookItemRSV" ref="phrasebookItemRSV" provider="${default.dubbo.provider.id}"/>
+
+</beans>

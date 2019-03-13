@@ -1,0 +1,10 @@
+<div class="dpro-dec mt20">
+    <div class="head">
+        <h3>商品描述</h3>
+    </div>
+    <div class="body">
+        <div class="bd" id="gdsDetailDesc">
+			<p class="pro-emptyTxt">「暂无描述信息」</p>
+        </div>
+    </div>
+</div>

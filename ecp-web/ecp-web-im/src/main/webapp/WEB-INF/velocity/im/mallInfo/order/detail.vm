@@ -1,0 +1,107 @@
+ <div class="ord-detail">
+        <table class="ord-tb">
+			#if($sOrderDetailsMain)
+            <thead>
+               <tr>
+                   <td colspan="2">
+                       <span class="p-code">
+						
+                                                           订单号: 
+						#if($joinModel)
+                             <a class='authLink' href="#" data-href="#siteInfo(8)/order/customer/details/" data-ord="${sOrderDetailsMain.id}"  target="_blank"><em>${sOrderDetailsMain.id}</em></a>
+						#else
+							<a href="#siteInfo(1)/ord/detail/${sOrderDetailsMain.id}" target="_blank"><em>${sOrderDetailsMain.id}</em></a>
+						#end					   
+                       </span>
+					   <span class="status">
+					 	#translate('ORD_ORDER_STATUS' $!{sOrderDetailsMain.status})
+						</span>
+						<a href="javascript:void(0);" class="ui-btn btn-send ordersend"
+							orderId=${sOrderDetailsMain.id}
+							orderPrice=#moneyDecimal($!{sOrderDetailsMain.realMoney})
+							orderTime="$!{date.format('yyyy-MM-dd HH:mm:ss',$sOrderDetailsMain.getOrderTime())}">发送</a>
+                   </td>
+               </tr>
+            </thead>
+            <tbody>
+				#foreach($sOrderDetail in $!{sOrderDetailsSubs})
+					  <tr>
+						#if($joinModel)
+			                <td >
+                             <img class="p-img" src="$!{sOrderDetail.picUrl}" alt=""/>
+                          </td>
+                          <td>
+                              <a class="p-name" href="#siteInfo(1)$!{sOrderDetail.gdsUrl}" target="_blank">$!{gdsUrl}$!{sOrderDetail.gdsName}</a>
+                          </td>
+						#else
+						 <td >
+                              <img class="p-img" src="$!{sOrderDetail.picUrl}" alt=""/>
+                          </td>
+                          <td>
+                              <a class="p-name" href="#siteInfo(1)$!{sOrderDetail.gdsUrl}" target="_blank">$!{gdsUrl}$!{sOrderDetail.gdsName}</a>
+                          </td>
+						#end	
+                        
+                  </tr>
+			    #end
+            </tbody>
+            <tfoot>
+              <tr>
+                  <td colspan="2">
+                      <span class="p-pri">
+                                 订单金额: <em>#moneyDecimal($!{sOrderDetailsMain.realMoney})</em>
+                      </span>
+                       <span class="p-time">
+						 $!date.format('yyyy-MM-dd HH:mm:ss',$sOrderDetailsMain.getOrderTime())
+                       </span>
+                  </td>
+              </tr>
+              #if($joinModel)
+              <tr>
+                  <td colspan="2" class="sellerMsgTd">
+                  		<input type="hidden" id="ordId" value="${sOrderDetailsMain.id}">
+                 	 卖家备注:
+                       <span class="p-pri msg_${sOrderDetailsMain.id}" id="sellerMsgSpan" title="${sOrderDetailsMain.sellerMsg}">
+                            #if ($sOrderDetailsMain.sellerMsg.length() <=9)  $!{sOrderDetailsMain.sellerMsg} #else $sOrderDetailsMain.sellerMsg.substring(0,9)...#end
+                       </span>
+                       <a href="javascript:void(0);" class="updateSellerMsg" style="color:blue;margin-right:6px;float:right;">
+						修改
+                       </a>
+                  </td>
+              </tr>
+              #end
+            </tfoot>
+			#else
+				<tr>
+					<td class="block-empty">$!{failMsg}</td>
+			   </tr>
+			#end
+        </table>
+    </div>
+		
+	
+	<script>
+    $(function(){
+        $('.authLink').click(function(){
+		   
+            var $this=$(this);
+            var json = "{flag:'"+$('#orderEdit').val()+"',orderId:'"+$(this).data('ord')+"',usercode:'"+$('#staffCode').val()+"',time:"+new Date().getTime()+"}";
+			$.eAjax({
+                url:GLOBAL.WEBROOT + '/mallInfo/encryptCode',
+                data: {jsonStr:json},
+                datatype: 'json',
+                async: false,
+                success: function(data) {
+				 
+				  var href=$('.authLink').data('href')+data.jsonStr;
+				  $this.attr('href',href);
+                },
+				 exception: function() {
+                    eDialog.alert("网络异常");
+                    return;
+                }
+          
+            });
+        });
+    });
+</script>

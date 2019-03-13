@@ -1,0 +1,124 @@
+#parse("/module/mod-form.vm")
+#parse("sys/sys_param.vm")
+
+<link href="$!{CSS_PATH}/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/modular/modularComponent/modularComponent-edit.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/artTemplate/template-debug.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}"></script>
+
+
+<div class="alert alert-error hide formValidateMessages" >
+	##showSpringAllError("vo")
+</div>
+
+<div class="formBox row-fluid">
+    <form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post"
+          action="$!{CONTEXT_PATH}/modularComponent/save">
+    	<div class="span8">
+			<input type="hidden" id="id" name="id" value="$!{respVO.id}"/>
+			<input type="hidden" id="modularId" name="modularId" value="$!{respVO.modularId}"/>
+			<input type="hidden" id="isRead" name="isRead" value="$!{isRead}"/>
+			<input type="hidden" id="isPubish" name="isPubish" value="$!{respVO.status}"/>
+			<div class="formSep">
+                <div class="control-group">
+                    <label class="control-label">适用页面类型：</label>
+                    <div class="controls">
+                        <select id="applyPageType" name="applyPageType" class="required">
+                			#foreach($pageType in $pageTypeList)
+								<option value="$!{pageType.id}" #if($pageType.id ==$!{respVO.applyPageType}) selected #end >$!{pageType.pageTypeName}</option>
+							#end
+                		</select>
+                    </div>
+                </div>
+    		</div>
+			<!--
+    		<div class="formSep">
+                <div class="control-group">
+                    <label class="control-label">适用页面类型：</label>
+                    <div class="controls">
+                        <input type="text" maxlength="218" id="applyPageTypeNames" name="applyPageTypeNames" value="#escapeHtml($!{applyPageTypeNames})" class="input-xlarge required" readonly="readonly"/>
+            			<input type="hidden" name="applyPageType" id="applyPageTypeIds" value="#escapeHtml($!{respVO.applyPageType})"/>
+            			#if ($!{isRead}!=1)
+						<button type="button" style="width: 78px;" class="btn" id="select_PageType"><i class="icon-magic"></i>选择</button>        
+						#end
+					</div>
+                </div>
+    		</div>
+			-->
+    		<div class="formSep">
+                <div class="control-group">
+                    <label class="control-label">适用布局项尺寸：</label>
+                    <div class="controls">
+                        <input type="text" maxlength="56" id="applyItemSize" name="applyItemSize" class="input-large required" value="#escapeHtml($!{respVO.applyItemSize})" readonly="readonly"/>
+            			#if ($!{isRead}!=1)
+						<button type="button" style="width: 78px;" class="btn" id="select_ItemSize"><i class="icon-magic"></i>选择</button>
+						#end
+					</div>
+                </div>
+            </div>
+			<div class="formSep">
+                <div class="control-group">
+                    <label class="control-label">关联组件：</label>
+                    <div class="controls">
+                        <input type="text" maxlength="56" id="componentName" name="componentName" class="input-large required" value="#escapeHtml($!{respVO.componentRespDTO.componentName})" readonly="readonly"/>
+            			<input type="hidden" name="componentId" id="componentId" value="#escapeHtml($!{respVO.componentId})"/>
+						#if ($!{isRead}!=1)
+						<button type="button" style="width: 78px;" class="btn" id="select_componentId"><i class="icon-magic"></i>选择</button>
+						#end
+					</div>
+                </div>
+            </div>
+			<!--
+        	<div class="formSep">
+        		<div class="control-group">
+        			<label class="control-label" for="name">模块缩略图：</label>
+        			<div class="controls">
+        			    <input type="text" id="showPic" name="showPic" class="input-large required" placeholder="请选择图片" value="#escapeHtml($!{respVO.showPic})" readonly="readonly">
+        				#if ($!{isRead}!=1)
+    						<a href="javascript:void(0);" class="btn file-wrap">上传图片
+            					<input type="file" id="uploadFileObj" name="uploadFileObj">
+            				</a>
+						#end
+        			</div>
+        		</div>
+        	</div>
+        	<div class="formSep" id="uploadWarn_div">
+        		<div class="control-group">
+        			<div class="controls">
+                        <span id="uploadWarn" class="help-inline" style="color:#FF0000" >温馨提醒：请上传小于100k的图片（jpg格式），规格为40*40px！</span>
+        			</div>
+        		</div>
+        	</div>
+			-->
+			<div class="formSep">
+                <div class="control-group">
+                    <label class="control-label">组件样式：</label>
+                    <div class="controls">
+                        <input type="text" class="input-large" maxlength="32" value="$!{respVO.modularClass}" id="modularClass" name="modularClass">
+                        <span class="help-inline">最大长度不能超过32个字符！</span>
+                    </div>
+                </div>
+    		</div>
+            <div class="text-center">
+               #if ($!{isRead}!=1 )
+                <span id="btnSave" class="btn btn-info"><i class="icon-ok-sign icon-white"></i>保存</span>
+               #end
+				<span id="btnReturn" class="btn"><i class="icon-reply icon-white"></i>返回</span>
+            </div>
+        </div>
+		<!--
+    	<div class="span4">
+    		<div class="panel panel-default">
+    			<div class="panel-heading">
+    				<h3 class="panel-title">图片预览</h3>
+    			</div>
+    			<div class="panel-body">
+    				<img id="imagePreview" src="#genImageUrl($!{respVO.showPic},'40x40!')" width="40" height="40" class="img-polaroid">
+    			</div>
+    		</div>
+    	</div>
+		-->
+    </form>
+</div>

@@ -1,0 +1,17 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsManage/gds-verify-record.js?version=$!{JS_VERSION}" ></script>
+<style>
+    .scroll{
+        padding: 20px;
+        overflow-y: auto;
+    }
+</style>
+<div class="row-fluid">
+	<table id="dataGridTable"></table>
+</div>
+<dir class="clear">
+</dir>
+<div class="row" style="text-align:center;margin-top:30px;">
+	<button type="button" class="btn " id="btnReturn"><i class="icon-remove-sign icon-white"></i> 关闭</button>
+</div>

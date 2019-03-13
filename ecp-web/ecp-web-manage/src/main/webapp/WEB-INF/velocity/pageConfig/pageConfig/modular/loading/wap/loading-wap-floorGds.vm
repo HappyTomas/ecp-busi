@@ -1,0 +1,125 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/hotImg/jquery.imagesloaded.min.js?v=${JS_VERSION}"></script>
+#set($title = "")##标题
+#set($titlePic = "")##标题图片
+#set($moreUrl = "")##更多链接
+#set($floorTemplateId = "")##app 楼层模板id
+#set($floorTemplatePic = "")##app 楼层模板缩略图url
+#set($goodsId = "")##图片
+#set($groupRespDTOList = '') ##属性组
+
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+#foreach($prop in $crossItemObj)
+	#if($prop.propGroupId == 0)
+		#if($!{prop.propId}=="1000")
+    		##标题
+    		#set($title = "$!{prop.propValue}")
+    	#elseif($!{prop.propId}=="1024")
+    		##更多链接地址
+    		#set($moreUrl = "$!{prop.propValue}")
+    	#elseif($!{prop.propId}=="1025")
+    		##链接地址
+    		#set($floorTemplateId = "$!{prop.propValue}")
+    	#elseif($!{prop.propId}=="1026")
+    		##链接地址
+    		#set($floorTemplatePic = "$!{prop.propValue}")
+		#elseif($!{prop.propId}=="1031")
+    		##链接地址
+    		#set($titlePic = "$!{prop.propValue}")
+    	#end
+	#end
+#end
+
+#set($cssStyle = "") ##每行多少列的样式 
+#if($!{floorTemplateId} == 20)
+	#set($cssStyle = "columns-2")
+#elseif($!{floorTemplateId}== 32)
+	#set($cssStyle = "columns-3")
+#end
+<div class="phone-modular promTpl-pList $!{cssStyle} ecp-component $!{componentMethod}" data-template-no='$floorTemplateId' data-web-root = '#translate("CMS_SITE_MAPPING","$!{pageInfo.siteId}")' data-is-pub="$!{pagePub}" data-picurl1="$!{picUrl1}" data-picurl2="$!{picUrl2}" data-picurl3="$!{picUrl3}" data-staff-id="$!{staffId}" data-component-method="$!{componentMethod}"  data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}">
+	#if(!$!{componentMethod} || '' == $!{componentMethod})
+	#parse("/pageConfig/pageConfigWap/edit/nodata/modular-nodata-wap.vm")
+	#else
+	
+		#set($hasHead=0)
+		#if("$!title" != "")
+			#set($hasHead=1)
+		#end
+		#if("$!titlePic" != "")
+			#set($hasHead=1)
+		#end
+		#if($!{hasHead} ==1)
+	    <div class="modular-head">
+			#if("$!titlePic" != "")
+				#if("$!moreUrl" != "")
+					<a href="javascript:void(0);" lazy-href="$!{moreUrl}">
+	    				<img src="#genImageUrl($!titlePic,'640x72!')" >
+	                </a>
+				#else
+					<img src="#genImageUrl($!titlePic,'640x72!')" >
+				#end
+			#else
+				<span class="tit">$!{title}</span>
+	        	#if($!{moreUrl} && $!{moreUrl} != '')
+	        		<a class="more" href="javascript:void(0);" lazy-href="$!{moreUrl}" > 更多</a>
+	        	#end
+			#end
+	    </div>
+		#end
+	    <div class="modular-body">
+			<ul class="clearfix">
+	            #foreach($prop in $crossItemObj)
+	           	    #set($groupRespDTOList = '') ##属性组
+	            	#if($!{pagePub})
+	            		#set($groupRespDTOList=$prop.itemPropGroupPubRespDTOList)
+	            	#else
+	            		#set($groupRespDTOList=$prop.itemPropGroupPreRespDTOList)
+					#end
+	            	#foreach($gropPropList in $groupRespDTOList)
+	                	#foreach($controlProp in $gropPropList)
+	            			#if($!{controlProp.propId}=="1029")
+	            				#set($goodsId ="")    ##商品id
+								#set($promId ="")     ##促销id
+								#set($goodsName ="")   ##商品名称
+								
+	            				#set($goodsId = $!{controlProp.propValue})
+	            				#set($promId = $!{controlProp.propValueId})
+	            				#set($goodsName = $!{controlProp.remark})
+	            			#end	
+						#end
+						#if($goodsId && $goodsId != '')
+						<li class="item" goodsId="$!{goodsId}" promId="$!{promId}">
+	                        <a href="#" class="link">
+	                            <div class="img-wrap">
+	                                <img src="$IMAGE_PATH/pageConfig/noPictures32.png" alt="">
+	                            </div>
+	                            <h3>$goodsName</h3>
+	                        </a>
+	                        <p class="price">
+	                            <span id="newPrice"><em class="yuan">¥</em></span>
+	                            ##<span id="oldPrice" class="prc-del"><em class="yuan">¥</em></span>
+	                        </p>
+	                        <a href="#" class="carBtn">
+								加入购物车 <span class="promTpl-more mini-more"></span>
+	                        </a>
+	                    </li>
+	                    #end
+	            	#end	
+	            #end
+	        </ul>
+	    </div> 
+	  #end
+</div> 
+	

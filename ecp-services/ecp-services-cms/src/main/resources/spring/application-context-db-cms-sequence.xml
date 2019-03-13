@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<bean id="SEQ_CMS_ADVERTISE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CMS_ADVERTISE"/>
+    </bean>
+    <bean id="SEQ_CMS_INFO" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_INFO"/>
+	</bean>
+	<bean id="SEQ_CMS_PLACE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_PLACE"/>
+	</bean>
+	<bean id="SEQ_CMS_FLOOR" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_FLOOR"/>
+	</bean>
+	<bean id="SEQ_CMS_FLOOR_ADVERTISE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_FLOOR_ADVERTISE"/>
+	</bean>
+	<bean id="SEQ_CMS_FLOOR_ATTR_COUNT" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_FLOOR_ATTR_COUNT"/>
+	</bean>
+	<bean id="SEQ_CMS_FLOOR_TAB" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_FLOOR_TAB"/>
+	</bean>
+	<bean id="SEQ_CMS_FLOOR_GDS" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_FLOOR_GDS"/>
+	</bean>
+	<bean id="SEQ_CMS_FLOOR_LABEL" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_FLOOR_LABEL"/>
+	</bean>
+	<bean id="SEQ_CMS_FLOOR_COUPON" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_FLOOR_COUPON"/>
+	</bean>
+	<bean id="SEQ_CMS_COMPONENT" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_COMPONENT"/>
+	</bean>
+	<bean id="SEQ_CMS_TEMPLATE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_TEMPLATE"/>
+	</bean>
+	<bean id="SEQ_CMS_SITE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_SITE"/>
+	</bean>
+	<bean id="SEQ_CMS_LIST" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_LIST"/>
+	</bean>
+	<bean id="SEQ_CMS_RECOMMEND" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_RECOMMEND"/>
+	</bean>
+	<bean id="SEQ_CMS_HOT_SEARCH" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_HOT_SEARCH"/>
+	</bean>
+	<bean id="SEQ_CMS_PLACE_CATEGORY" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_PLACE_CATEGORY"/>
+	</bean>
+	<bean id="SEQ_CMS_GDS_CATEGORY" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_GDS_CATEGORY"/>
+	</bean>
+	<bean id="SEQ_CMS_CHANNEL" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_CHANNEL"/>
+	</bean>
+	<bean id="SEQ_CMS_ARTICLE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CMS_ARTICLE"/>
+    </bean>
+    <bean id="SEQ_CMS_SITE_INFO" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CMS_SITE_INFO"/>
+    </bean>
+    <bean id="SEQ_CMS_PLACE_CHANNEL" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CMS_PLACE_CHANNEL"/>
+    </bean>
+    <bean id="SEQ_CMS_LINK" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CMS_LINK"/>
+    </bean>
+    <bean id="SEQ_CMS_APP_FLOOR" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CMS_APP_FLOOR"/>
+    </bean>
+    <bean id="SEQ_CMS_APP_FLOOR_DATA" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CMS_APP_FLOOR_DATA"/>
+    </bean>
+    <bean id="SEQ_CMS_FLOOR_TEMPLATE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CMS_FLOOR_TEMPLATE"/>
+    </bean>
+    <bean id="SEQ_CMS_FLOOR_PLACE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_CMS_FLOOR_PLACE"/>
+    </bean>
+	<!-- 
+	<bean id="SEQ_CMS_PLACE_ADVERTISE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_PLACE_ADVERTISE"/>
+	</bean>
+	<bean id="SEQ_CMS_PLACE_COMPONENT" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_PLACE_COMPONENT"/>
+	</bean>
+	 -->
+	<bean id="SEQ_CMS_IMAGE_SWITCHER" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_IMAGE_SWITCHER"/>
+	</bean>
+	<!-- 模板化 开始 -->
+	<bean id="SEQ_CMS_PAGE_ATTR_PRE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_PAGE_ATTR_PRE"/>
+	</bean>
+	<bean id="SEQ_CMS_PAGE_ATTR_PUB" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_PAGE_ATTR_PUB"/>
+	</bean>
+	<bean id="SEQ_CMS_ITEM_PROP_PRE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_ITEM_PROP_PRE"/>
+	</bean>
+	<bean id="SEQ_CMS_ITEM_PROP_PUB" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_ITEM_PROP_PUB"/>
+	</bean>
+	<bean id="SEQ_CMS_LAYOUT_ATTR_PRE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_LAYOUT_ATTR_PRE"/>
+	</bean>
+	<bean id="SEQ_CMS_LAYOUT_ATTR_PUB" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_LAYOUT_ATTR_PUB"/>
+	</bean>
+	<bean id="SEQ_CMS_LAYOUT_ITEM_PRE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_LAYOUT_ITEM_PRE"/>
+	</bean>
+	<bean id="SEQ_CMS_LAYOUT_ITEM_PUB" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_LAYOUT_ITEM_PUB"/>
+	</bean>
+	<bean id="SEQ_CMS_LAYOUT_PRE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_LAYOUT_PRE"/>
+	</bean>
+	<bean id="SEQ_CMS_LAYOUT_PUB" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_LAYOUT_PUB"/>
+	</bean>
+	<bean id="SEQ_CMS_MODULAR" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_MODULAR"/>
+	</bean>
+	<bean id="SEQ_CMS_MODULAR_COMPONENT" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_MODULAR_COMPONENT"/>
+	</bean>
+	<bean id="SEQ_CMS_MODULAR_PARA_PROP" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_MODULAR_PARA_PROP"/>
+	</bean>
+	<bean id="SEQ_CMS_MODULAR_PROP" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_MODULAR_PROP"/>
+	</bean>
+	<bean id="SEQ_CMS_MODULAR_PROP_VAL" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_MODULAR_PROP_VAL"/>
+	</bean>
+	<bean id="SEQ_CMS_PAGE_COLOR" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_PAGE_COLOR"/>
+	</bean>
+	<bean id="SEQ_CMS_PAGE_INFO" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_PAGE_INFO"/>
+	</bean>
+	<bean id="SEQ_CMS_LAYOUT_TYPE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_LAYOUT_TYPE"/>
+	</bean>
+	<bean id="SEQ_CMS_PAGE_TYPE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_PAGE_TYPE"/>
+	</bean>
+	<bean id="SEQ_CMS_PIC_HOT_PRE" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_PIC_HOT_PRE"/>
+	</bean>
+	<bean id="SEQ_CMS_PIC_HOT_PUB" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_PIC_HOT_PUB"/>
+	</bean>
+	<bean id="SEQ_CMS_TEMPLATE_LAYOUT" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_TEMPLATE_LAYOUT"/>
+	</bean>
+	<bean id="SEQ_CMS_TEMPLATE_LAYOUT_ITEM" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_TEMPLATE_LAYOUT_ITEM"/>
+	</bean>
+	<bean id="SEQ_CMS_TEMPLATE_LIB" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_CMS_TEMPLATE_LIB"/>
+	</bean>
+	<!-- 模板化 结束 -->
+</beans>

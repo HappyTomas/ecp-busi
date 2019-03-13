@@ -1,0 +1,150 @@
+#parse("/module/mod-page.vm")
+<div class="fd-block pmgr-imgup form-horizontal" id="gds-pictrue">
+    <div class="well-tit">
+        <span>商品图片</span>
+    </div>
+	<div class="well well-searchForm">
+        <div class="alert">
+            700*700以上图片可以在宝贝详情页主图提供图片放大功能
+        </div>
+        <div class="pmgr-imgs clearfix senior_price">
+            <!--<div class="item">
+                <div class="imgcont">
+                    <img id="image$velocityCount" src="../../images/yf-tpl.jpg"  alt=""/>
+                </div>
+                <div class="text-center">
+                    <input name="mainPicVfsId" picName="" mediaRtype="" mediaType="" id="picVfsId0" type="hidden" value="" main="0">
+                        <input class="com_input" index="0" uploadimage="upload-pictures" type="file" style="display:none;" id="detailPic0" index="0" name="detailPic0"/>
+                        <input type="button" value="上传视频" style="display:inline;"/>
+                            <div class="commodity_txt">商品视频</div>
+    			</div>
+    		</div>-->
+            #foreach($a in $upPictrueAmount)
+                <div class="item">
+                    <div class="imgcont">
+                        <img id="image$velocityCount" src="${aiTool.genImageUrl('','124x124!')}"  alt=""/>
+                    </div>
+                    <div class="text-center">
+            				<input name="mainPicVfsId" picName="" mediaRtype="" mediaId="" mediaType="" id="picVfsId$velocityCount" type="hidden" value="" main="$velocityCount">
+    						<a href="javascript:;" class="btn file-wrap">上传图片
+    							<input class="com_input" index="$velocityCount" uploadimage="upload-pictures" type="file" id="detailPic$velocityCount" name="detailPic"/>
+    						</a>
+                            ##<input type="button" value="上传图片" style="display:inline;">
+                                    <div class="commodity_txt">
+                                         #if($velocityCount==1)
+                                         	<font style="color:red">*</font>商品主图
+                                         ##elseif($$velocityCount==6) 
+            							 ##	产品版权页图片
+            							 ##elseif($$velocityCount==7) 
+            							 ##	产品包装条形码特写
+            							 #else 
+            							 	商品辅图
+            							 #end
+            							 
+            						</div>
+            					
+            		</div>
+               </div>
+			#end
+			
+                <div class="item">
+                    <div class="imgcont">
+                        <img id="image99" src="${aiTool.genImageUrl('','124x124!')}"  alt=""/>
+                    </div>
+                    <div class="text-center">
+            				<input name="mainPicVfsId" picName="" mediaRtype="" mediaId="" mediaType="" id="picVfsId99" type="hidden" value="" main="99">
+    						<a href="javascript:;" class="btn file-wrap">上传图片
+    							<input class="com_input" index="99" uploadimage="upload-pictures" type="file" id="detailPic99" name="detailPic"/>
+    						</a>
+                            ##<input type="button" value="上传图片" style="display:inline;">
+                                    <div class="commodity_txt">
+            							 	产品版权页图片
+            						</div>
+            					
+            		</div>
+               </div>
+			
+                <div class="item">
+                    <div class="imgcont">
+                        <img id="image100" src="${aiTool.genImageUrl('','124x124!')}"  alt=""/>
+                    </div>
+                    <div class="text-center">
+            				<input name="mainPicVfsId" picName="" mediaRtype="" mediaId="" mediaType="" id="picVfsId100" type="hidden" value="" main="100">
+    						<a href="javascript:;" class="btn file-wrap">上传图片
+    							<input class="com_input" index="100" uploadimage="upload-pictures" type="file" id="detailPic100" name="detailPic"/>
+    						</a>
+                            ##<input type="button" value="上传图片" style="display:inline;">
+                                    <div class="commodity_txt">
+            							 	产品包装条形码特写
+            						</div>
+            					
+            		</div>
+               </div>
+        </div>
+		
+		
+		
+        <div class="moreimg clearfix"  style="margin-top:-10px;">
+            <label id="more-pictrue">
+                <span class="mtxt pull-right">更多（从图片库选择）</span>
+                <i class="icon icon-caret-down pull-right"></i>
+            </label>
+        </div>
+        <div class="pmgr-tpltab" style="display:none;" id="picture-block">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#img-tpl" data-toggle="tab">图片空间</a>
+                </li>
+    			<div class="alert">温馨提示：点击选中商品图片的图片显示框，再双击图片空间中的图片，即可添加图片。</div>
+                <!--<li>
+                    <a href="#video-tpl" data-toggle="tab">视频中心</a>
+                </li>-->
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="img-tpl">
+                    <div class="form-inline">
+                        <label for="">
+                            分类：
+                        </label>
+                        <select name="mediaType" id="mediaType">
+    						#foreach($list in $!{mediaTypeList})
+    							<option value="$!{list.spCode}">$!{list.spValue}</option>
+    						#end
+                        </select>
+                        <label for="">
+                            名称：
+                        </label>
+                        <input type="text" value="" id="mediaName" placeholder="输入图片名称"/>
+                        <button class="btn btn-primary" onclick="searchMedia()">
+                            搜索
+                        </button>
+                    </div>
+                    <!--图片列表start-->
+                    <div id="mediaList">
+                    </div>
+                    <!--图片列表end-->
+                </div>
+                <div class="tab-pane" id="video-tpl">
+                    <div class="form-inline">
+                        <label for="">
+                            分类：
+                        </label>
+                        <select name="" id="picCatgCode">
+                            <option value="">类型1</option>
+                            <option value="">类型2</option>
+                            <option value="">类型3</option>
+                        </select>
+                        <label for="">
+                            名称：
+                        </label>
+                        <input type="text" value="" id="mediaName"/>
+                        <button class="btn btn-primary">
+                            搜索
+                        </button>
+                    </div>
+                    视频中心
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

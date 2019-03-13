@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+    
+    <!---最终一致性事务，完整的  begin 
+    <bean id="transactionManager1" class="com.distribute.tx.eventual.TransactionManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionManager"/>
+        <property name="sequence" ref="sequence"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="participant" value="sample_group"/>
+        <property name="transactionChecker" ref="transactionChecker"/>
+    </bean>
+    
+    <bean id="transactionChecker" class="com.zengshi.ecp.demo.facade.impl.assured.TransactionCheckerSample" />
+    
+    <bean id="transactionListenerManager" class="com.distribute.tx.eventual.TransactionListenerManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="listener" ref="eventualTrasctionSV"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager"/>
+        <property name="participant" value="sample_group"/>
+        <property name="transactionList">
+	        <list>
+	        	 <value>business-topic</value>
+	        </list>
+        </property>
+    </bean>
+    -->
+    <!---最终一致性事务，完整的  end -->
+
+</beans>

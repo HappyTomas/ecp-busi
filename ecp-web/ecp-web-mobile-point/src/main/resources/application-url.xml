@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+	<url>
+		<homePage>/homepage</homePage>
+		<loginPage>https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx8b358f3aead72646&amp;redirect_uri=http://ecp.izengshi.com/login&amp;response_type=code&amp;scope=snsapi_userinfo&amp;state=1&amp;connect_redirect=1#wechat_redirect</loginPage>
+		<logoutPage>/login</logoutPage>
+		<notLogin>http://132.37.5.191:14300/izengshi</notLogin>
+		<notPermit>/permission/noPermission</notPermit>
+		<sessionExpired>http://132.37.5.191:14300/izengshi</sessionExpired>
+		<contextPage>http://www.izengshi.cn/izengshi</contextPage>
+		<mallPage>http://localhost:8080/izengshi-web-mall</mallPage>
+		<managePage>http://localhost:8080/izengshi-web-manage</managePage>
+	</url>
+	<site>
+		<key>2</key>
+	</site>
+</application>

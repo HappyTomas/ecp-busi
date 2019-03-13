@@ -1,0 +1,97 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<link rel="stylesheet" href="$!{CSS_PATH}/member.css" />
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/buyer-address.js?version=$!{JS_VERSION}" ></script>
+<div id="main">
+<ul class="sptj-tit" id="myTab">
+    <li><a href="#" class="titQh">添加收货地址</a></li>
+</ul>
+<div class="sptj-box information-form clearfix">
+    <!--收货新增、编辑-->
+    <form class="form-horizontal required-validate" id="addrdetailfrom">
+        <div class="control-group">
+            <label class="control-label">所在地区：</label>
+            <div class="controls">
+                <select class="jquery-area span2 " name="province" id="p-code"  area-type="admin" area-level="province" area-children="city-code" area-defaultvalue="$!{custaddr.province}" ></select>
+                <select class="jquery-area span2 "  name="cityCode" id="city-code" area-type="admin" area-level="city" area-children="county-code" area-defaultvalue="$!{custaddr.cityCode}" ></select>
+                <select class="jquery-area span2 "  name="countyCode" id="county-code" area-type="admin" area-level="county" area-children="" area-defaultvalue="$!{custaddr.countyCode}"></select>
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                <!--<span class="c-red">*</span>-->
+                详细地址：</label>
+            <div class="controls">
+                <input type="text" placeholder="详细地址" class="required input-large maxlength:255 span6" maxlength="100" minlength="0" name="chnlAddress" value="$!{custaddr.chnlAddress}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                <!--<span class="c-red">*</span>-->
+                收货人：</label>
+            <div class="controls">
+                <input type="text" placeholder="收货人" class="required" maxlength="50" name="contactName" value="$!{custaddr.contactName}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                <!--<span class="c-red">*</span>-->
+                手机：</label>
+            <div class="controls">
+                <input type="text" placeholder="手机" class="required checkPhone" maxlength="11" minlength="11" name="contactPhone" value="$!{custaddr.contactPhone}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">
+                固定电话：
+            </label>
+            <div class="controls">
+                <input type="text" placeholder="固定电话" class="phone" name="contactNumber" value="$!{custaddr.contactNumber}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">自提人：</label>
+            <div class="controls">
+                <input type="text" placeholder="自提人"  maxlength="50" name="bringName" value="$!{custaddr.bringName}">
+            </div>
+        </div>
+        <!--
+        <div class="control-group">
+            <label class="control-label">证件类型：</label>
+            <div class="controls">
+                <select name="cardType">
+					<option value="1" #if("1"==$!{custaddr.cardType}) selected #end>身份证</option>
+                </select>
+            </div>
+        </div>
+		<div class="control-group">
+            <label class="control-label">证件号码：</label>
+            <div class="controls">
+                <input type="text" class="required txtIdCard" placeholder="证件号码" name="cardId" value="$!{custaddr.cardId}">
+            </div>
+        </div>
+        -->
+        <div class="control-group">
+            <label class="control-label">自提人手机号：</label>
+            <div class="controls">
+                <input type="text" placeholder="自提人手机号" maxlength="11" minlength="11" name="bringNumber" value="$!{custaddr.bringNumber}">
+            </div>
+        </div>
+        <div class="control-group">
+            <label class="control-label">自提人固定电话：</label>
+            <div class="controls">
+                <input type="text" placeholder="自提人固定电话" class="phone" name="bringPhone" value="$!{custaddr.bringPhone}">
+            </div>
+        </div>
+		<input type="hidden" name="id" value="$!{custaddr.id}">
+	 </form>
+        <div class="control-group">
+            <div class="controls">
+                <button  class="btn btn-danger" id="saveaddr">保存地址信息</button>
+                &nbsp;
+                <button  class="btn" id="cancle">取消</button>
+            </div>
+        </div>
+</div>
+</div>

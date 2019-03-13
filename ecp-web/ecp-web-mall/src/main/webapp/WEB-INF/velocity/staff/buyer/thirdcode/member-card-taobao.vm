@@ -1,0 +1,55 @@
+      #parse("sys/sys_param.vm")
+	  #parse("/module/mod-form.vm")
+	  <style >
+		.error{color:red}
+      </style>
+	  <script type="text/javascript" src="$!{BUSIJS_PATH}/staff/taobaocode.js?version=$!{JS_VERSION}" ></script>
+        <!--会员中心-->
+        <div id="main">
+            <ul class="sptj-tit ">
+                <li class="active"><a href="#" >绑定天猫账号</a></li>
+            </ul>
+
+         <div class="teamTabc">
+            <div class="sptj-box information-form clearfix">
+                <div class="card-m">
+                    <form id="detailInfoForm" class="form-horizontal required-validate">
+                      
+                        <div class="control-group">
+							  <label class="control-label card-label card-taobao">
+                                                                                          请输入您的淘宝会员号：
+                        </label>
+                            <div class="controls card-text">
+                                <input type="text" class="htmlcheck required"  placeholder="" id="thirdCode" name="thirdCode"/>
+                            </div>
+                        </div>
+                     
+                        <div class="control-group">
+						<label class="control-label card-label card-taobao">
+                                                                                           请输入您交易成功的淘宝订单号：
+						</label>
+                            <div class="controls card-text card-text-taobao">
+                                <input type="text" class="htmlcheck required"  placeholder="" id="orderCode" name="orderName">
+                                <span class="red">订单号需要为一天前交易成功的订单号</span>
+                            </div>
+                        </div>
+						   </form>
+                        <div class="control-group">
+                            <div class="controls card-text card-text-taobao">
+                                <button class="mbtn mbtn-orange" style="margin-top:20px;margin-left:20%" id="bind">绑定</button>
+                                <p class="red" style="margin-top:30px;">注意：交易成功的订单积分会在15天后到账，淘宝会员账号只能绑定一次</p>
+                            </div>
+                        </div>
+						#if($!{taobaocode}!='')
+                        <label  class="control-label card-label card-taobao">
+                           <span style="float:left"> 你已经绑定的淘宝会员账号：</span><span id=tcode class="tb-style">$!{taobaocode}</span>
+                        </label>
+                       #end
+                 
+
+                </div>
+            </div>
+         </div>
+        </div>
+    </div>
+</div>

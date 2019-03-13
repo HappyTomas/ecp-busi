@@ -1,0 +1,71 @@
+#parse("/module/mod-tree.vm")
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-upload.vm")
+
+<link href="$!{CSS_PATH}/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="$!{CSS_PATH}/child-reset.css" rel="stylesheet" type="text/css" media="screen"/>
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdscategory/category-main.js?version=$!{JS_VERSION}" ></script>
+
+<!-- main content -->
+##<div id="contentwrapper">
+       ## <div class="main_content" style="margin-left:0px;">
+            <div class="container-fluid">
+                <!--按钮区-->
+                <div class="heading rk-btns">
+                    <a class="btn" id="btnAddCategory"><i class=" icon-plus icon-white"></i> 新增分类</a>
+                    <a class="btn" id="btnAddSubCategory"><i class=" icon-plus icon-white"></i> 新增子分类</a>
+                    <a class="btn btn-danger" id="btnDelCategory"><i class="icon-trash icon-white"></i> 删除分类</a>
+					#if("1" == $!{reqVO.catgType})
+                    <a class="btn" id="btnConfigGroup"><i class="icon-edit icon-white"></i> 配置属性组</a>
+                    <a class="btn" id="btnConfigProp"><i class="icon-edit icon-white"></i> 配置属性</a>
+					#end
+					##<button type="button" class="btn" id="test">测试分类选择框</button>
+                </div>
+				<div class="pmr_rkc clearfix">
+					<!--左侧分类树-->
+                    <div class="rknav pull-left">
+						<!--关键字搜索框-->
+                        <div class="rk-search">
+                               <input type="text" id="keyword" placeholder="输入关键字搜索" class="input-mini" style="width:160px;margin:0 10px 0 10px"/>
+                               <i class="icon-search" id="search"></i>
+                        </div>
+						<!--树数据展示-->
+                        <div class="tree-w" style="height:350px;overflow:auto;">
+                            <ul id="categoryTree" class="ztree"></ul>
+                        </div>
+                    </div>
+
+					<!--错误信息显示-->
+                    <div class="alert alert-error hide formValidateMessages" >
+                    </div>
+					
+					
+					<!--详情显示层-->
+                    <div class="rk-editc pull-left" id='viewContent' style="display:none;">
+						#parse("/goods/gdscategory/category-view.vm")  
+                    </div>
+					
+					<!--分类添加层-->
+                    <div class="rk-editc pull-left" id='formContent' style="display:none;">
+						#parse("/goods/gdscategory/category-form.vm")  
+                    </div>
+					
+					<!--属性配置层-->
+					<div class="rk-editc pull-left" id='propConfig' style="display:none;">
+						#parse("/goods/gdscategory/config-prop.vm")  
+                    </div>
+					<!--属性组配置层-->
+					<div class="rk-editc pull-left" id='propgroupConfig' style="display:none;">
+						#parse("/goods/gdscategory/config-group.vm")  
+                    </div>
+					
+                 </div>
+              </div>
+           <!-- </div> -->
+       ## </div>
+<!-- main content -->
+<input type="hidden" id="maxLevel" value="$!{maxLevel}"/>
+<input type="hidden" id="param-catlogId" value="$!{reqVO.catlogId}"/>
+##</div>

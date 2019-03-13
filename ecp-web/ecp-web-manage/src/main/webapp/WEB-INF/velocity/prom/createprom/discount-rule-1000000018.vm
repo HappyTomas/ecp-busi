@@ -1,0 +1,27 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/discount-rule-1000000018.js?version=$!{JS_VERSION}" ></script>
+			<div class="formBox">
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					  <div class="formSep" >
+					       <div  class=" alert-info" style="margin-left:50px;">
+					                 当购买商品达到一定数量时，可免费获得X件产品。
+					     </div>
+					  </div>
+					        <div class="formSep">
+								<div class="control-group">
+									<label class="control-label" for="name">单品购买量超过：</label>
+									<div class="controls">
+										<input type="text" class="input-large required number moneyNumber" id="buyAmount" maxlength="12"  name="discountMap['buyAmount']" placeholder="请输入单品购买数量 " value="$!{promVO.discountMap.buyAmount}"   />
+									</div>
+								</div>
+					       </div>
+				  <div class="row-fluid giftClass" id="giftSelectId">
+						<div class="control-group">
+							<label class="control-label">赠品：</label>
+							<div class="controls">
+								<button type="button" class="btn" id="btnGiftSelect"  ><i class="icon-magic"></i>赠品选择</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		 <div id="giftTableId" class="giftSelectDivClass"></div>

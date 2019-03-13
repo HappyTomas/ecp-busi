@@ -1,0 +1,65 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/createprom/discount-rule-1000000002.js?version=$!{JS_VERSION}" ></script>
+			<div class="formBox">
+			
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					   <div class="row-fluid" >
+                                <div class="span8">
+                                    <div class="control-group">
+                                        	<div class="controls">
+                                                <div class="alert sel-alert" style="margin-top: 15px;margin-bottom: 0">
+                                                    <span class="arrow"></span>
+                                                	     当消费达到特定金额时，可免费获得X张优惠券。
+                                                                                                                                                               例如:当消费超过 &yen;150.00 时，可免费获得一张 &yen;5 的优惠券。
+                                                </div>
+                                           </div>
+                                       </div>
+                                    </div>
+                            	</div>
+			        <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">订单金额满：</label>
+							<div class="controls">
+								<input type="text"  class="input-large required number moneyNumber " id="orderMoney" name="discountMap['orderMoney']" placeholder="请输入阀值 " maxlength="12"  value="#moneyNum($!{promVO.discountMap.orderMoney})"  />
+								<span class="alert sel-alert">要符合此促销的条件，用户的购物车中必须具有的金额</span>
+							</div>
+						</div>
+					</div>
+					 <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">送优惠券数量：</label>
+							<div class="controls">
+								<input type="text" class="input-large required number " id="sendAmount" name="discountMap['sendAmount']" placeholder="请输入赠送数量 " maxlength="12"  value="$!{promVO.discountMap.sendAmount}" />
+								<span class="alert sel-alert">赠送优惠券数量</span>
+							</div>
+						</div>
+					</div>
+					 <div class="formSep coupIdClass">
+						<div class="control-group">
+							<label class="control-label">优惠券选择：</label>
+							<div class="controls">
+							<span class="sbtn sbtn-blue"  id="btnCoupQuery" >查询</span>
+							</div>
+						</div>
+					</div>
+						  <div class="formSep">
+							<div class="control-group">
+								<label class="control-label" for="name">优惠券名称：</label>
+								<div class="controls">
+								    <div class="hide">
+								       <input type="text"   class="input-large " id="coupId" name="discountMap['coupId']"  value="$!{promVO.discountMap.coupId}" />
+								    </div>
+									<input type="text" class="input-large" id="coupName" readOnly/>
+								</div>
+							</div>
+						</div>
+						 <div class="formSep">
+							<div class="control-group">
+								<label class="control-label" for="name">优惠券面额：</label>
+								<div class="controls">
+									<input type="text"  class="input-large " id="coupValue"  readOnly/>
+								</div>
+							</div>
+						</div>
+				</form>
+			</div>
+			   

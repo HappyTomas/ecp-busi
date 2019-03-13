@@ -1,0 +1,13 @@
+<div id="footer" class="text-center">
+	<!--
+    <div class="">
+		<a href="#">关于我们</a> 
+		<a href="#">联系我们</a> 
+		<a href="#">招贤纳士</a> 
+		<a href="#">网站声明</a>
+	</div>
+	-->
+	#siteObj()
+    <p>$!{siteObj.siteAddress}</p>
+    <p>$!{siteObj.caseNo} #if($!{siteObj.copyrightCompany} && $!{siteObj.copyrightCompany} != '')©$!{siteObj.copyrightCompany}#end</p>
+</div>

@@ -1,0 +1,64 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/rep/rep-grid.js?version=$!{JS_VERSION}" ></script>
+<div class="seller-well">
+    <form id="searchForm" action="" class="form-horizontal required-validate">
+            <div class="row-fluid">
+                <div class="span4">
+                    <div class="control-group">
+                        <label class="control-label">店铺编码：</label>
+        				<div class="controls">
+        					<select name="shopId" class="input-block-level">
+        					##shoplist($!{shopId})
+							#sellerList($!{shopId})
+        					</select>
+        				</div>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="control-group">
+                        <label class="control-label">仓库名称：</label>
+        				<div class="controls">
+        					<input type="text" name="repName" class="input-block-level" value="" placeholder="输入仓库名称">
+        				</div>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="control-group">
+                        <label class="control-label">仓库状态：</label>
+        				<div class="controls">
+        					<select class="input-block-level" name="status">
+        						<option value="1">有效</option>
+        						<option value="0">失效</option>
+        					</select>
+        				</div>
+                    </div>
+                </div>
+            </div>
+			<!--div class="btn-wrap">
+                    <span class="sbtn sbtn-blue" id="btnFormSearch">查询</span>
+					<span class="sbtn" id="btnFormReset">重置</span>
+            </div-->
+       </form>
+</div>
+
+
+<div class="sbtn-group">
+                    <!--查询，重置移动到这里，添加btn-w-right样式，重置按钮添加icon-color-->
+                    <div class="btn-wrap btn-w-right">
+						<span class="sbtn sbtn-blue" id="btnFormSearch"><i class="icon-search"></i> 查询</span>
+						<span class="sbtn" id="btnFormReset"><i class="icon-asterisk icon-color"></i> 重置</span>
+                    </div>
+                    <!--添加操作按钮-->
+                    <span class="sbtn sbtn-blue" id="btn_code_add"><i class="icon-plus"></i> 新增分仓</span>
+                    <span class="sbtn" id="btn_code_modify"><i class="sl-icon icon-opt1"></i> 修改</span>
+                    <span class="sbtn" id="btn_code_check"><i class="sl-icon icon-opt5"></i> 查看</span>
+            		<span class="sbtn" id="btn_code_del"><i class="icon-remove icon-color"></i> 失效</span>
+</div>
+
+
+
+<div class="seller-tab">
+    <div class="tab-content" id="listDiv">
+    </div>
+</div>

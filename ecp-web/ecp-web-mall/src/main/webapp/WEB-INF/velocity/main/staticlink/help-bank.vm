@@ -1,0 +1,37 @@
+    <!--文本-->
+    <div class="wrap1000">
+        <div class="h-tit">
+            银行转账
+        </div>
+        <div class="h-com">
+            <p>（*请您到银行对公业务窗口办理）</p>
+            <p>开户名：北京人卫文化传播中心</p>
+            <p>开户行：农行北京南三环支行</p>
+            <p>帐　号：11200601040012356</p>
+            <p>收款时间一般为款汇出后的3个工作日内。</p>
+            <br><br>
+            <p class="red"><b>注意事项：</b> </p>
+            <p class="red">在办理汇款时，请您在电汇单上用途栏中注明订单号（非常重要！！！），因为银行方面的原因，您留下的订单号可能无法在电汇单上显示出来，这样将造成我们无法查到订单号以致延误订单发出。建议您可以登录官网完善您的汇款信息，方便我们第一时间查询到款，帮您发货。
+            如果在您汇款一段时间后，订单仍然没有收款，请与我们在线客服联系。</p>
+            <br>
+            <!--p>联系人：范瑞一</p-->
+            <p>电　话：17310925570 ，17310865575</p>
+            <!--p>邮　箱：yougoubu@163.com</p-->
+            <p>在线客服：
+            #custInfo()
+            <a href="#" class="imUrl" target="_blank">
+									<span class="imInfo" style="display:none">
+										$!{cust.staffCode}#100#2
+									</span>
+									 <i class="micon micon-rkf"></i> <font color="#ff6a00">售前咨询</font>
+						     	</a>
+						<a href="#" class="imUrl" target="_blank">
+									<span class="imInfo" style="display:none">
+										$!{cust.staffCode}#100#1
+									</span>
+									<i class="micon micon-bkf"></i><font color="#ff6a00">售后咨询</font>
+						     	</a></p>
+        </div>
+    </div>
+
+</div>

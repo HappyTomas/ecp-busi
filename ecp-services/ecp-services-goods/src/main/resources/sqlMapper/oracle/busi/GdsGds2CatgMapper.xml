@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.busi.GdsGds2CatgMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsGds2Catg" >
+    <result column="GDS_ID" property="gdsId" jdbcType="INTEGER" />
+    <result column="GDS_NAME" property="gdsName" jdbcType="VARCHAR" />
+    <result column="CATG_CODE" property="catgCode" jdbcType="VARCHAR" />
+    <result column="CATG_TYPE" property="catgType" jdbcType="VARCHAR" />
+    <result column="GDS2CATG_TYPE" property="gds2catgType" jdbcType="VARCHAR" />
+    <result column="CATG_PATH" property="catgPath" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="ISBN" property="isbn" jdbcType="VARCHAR" />
+    <result column="GDS_STATUS" property="gdsStatus" jdbcType="VARCHAR" />
+    <result column="CATLOG_ID" property="catlogId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    GDS_ID, GDS_NAME, CATG_CODE, CATG_TYPE, GDS2CATG_TYPE, CATG_PATH, SHOP_ID, STATUS, 
+    CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, ISBN, GDS_STATUS, CATLOG_ID
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsGds2CatgCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_gds_gds2catg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsGds2CatgCriteria" >
+    delete from t_gds_gds2catg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.goods.dao.model.GdsGds2Catg" >
+    insert into t_gds_gds2catg (GDS_ID, GDS_NAME, CATG_CODE, 
+      CATG_TYPE, GDS2CATG_TYPE, CATG_PATH, 
+      SHOP_ID, STATUS, CREATE_TIME, 
+      CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, 
+      ISBN, GDS_STATUS, CATLOG_ID
+      )
+    values (#{gdsId,jdbcType=INTEGER}, #{gdsName,jdbcType=VARCHAR}, #{catgCode,jdbcType=VARCHAR}, 
+      #{catgType,jdbcType=VARCHAR}, #{gds2catgType,jdbcType=VARCHAR}, #{catgPath,jdbcType=VARCHAR}, 
+      #{shopId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, 
+      #{isbn,jdbcType=VARCHAR}, #{gdsStatus,jdbcType=VARCHAR}, #{catlogId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsGds2Catg" >
+    insert into t_gds_gds2catg
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="gdsId != null" >
+        GDS_ID,
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME,
+      </if>
+      <if test="catgCode != null" >
+        CATG_CODE,
+      </if>
+      <if test="catgType != null" >
+        CATG_TYPE,
+      </if>
+      <if test="gds2catgType != null" >
+        GDS2CATG_TYPE,
+      </if>
+      <if test="catgPath != null" >
+        CATG_PATH,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="isbn != null" >
+        ISBN,
+      </if>
+      <if test="gdsStatus != null" >
+        GDS_STATUS,
+      </if>
+      <if test="catlogId != null" >
+        CATLOG_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="gdsId != null" >
+        #{gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsName != null" >
+        #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="catgCode != null" >
+        #{catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="catgType != null" >
+        #{catgType,jdbcType=VARCHAR},
+      </if>
+      <if test="gds2catgType != null" >
+        #{gds2catgType,jdbcType=VARCHAR},
+      </if>
+      <if test="catgPath != null" >
+        #{catgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="isbn != null" >
+        #{isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsStatus != null" >
+        #{gdsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="catlogId != null" >
+        #{catlogId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsGds2CatgCriteria" resultType="java.lang.Long" >
+    select count(*) from t_gds_gds2catg
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_gds_gds2catg
+    <set >
+      <if test="record.gdsId != null" >
+        GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsName != null" >
+        GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catgCode != null" >
+        CATG_CODE = #{record.catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catgType != null" >
+        CATG_TYPE = #{record.catgType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gds2catgType != null" >
+        GDS2CATG_TYPE = #{record.gds2catgType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catgPath != null" >
+        CATG_PATH = #{record.catgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.isbn != null" >
+        ISBN = #{record.isbn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsStatus != null" >
+        GDS_STATUS = #{record.gdsStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catlogId != null" >
+        CATLOG_ID = #{record.catlogId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_gds_gds2catg
+    set GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      CATG_CODE = #{record.catgCode,jdbcType=VARCHAR},
+      CATG_TYPE = #{record.catgType,jdbcType=VARCHAR},
+      GDS2CATG_TYPE = #{record.gds2catgType,jdbcType=VARCHAR},
+      CATG_PATH = #{record.catgPath,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      ISBN = #{record.isbn,jdbcType=VARCHAR},
+      GDS_STATUS = #{record.gdsStatus,jdbcType=VARCHAR},
+      CATLOG_ID = #{record.catlogId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

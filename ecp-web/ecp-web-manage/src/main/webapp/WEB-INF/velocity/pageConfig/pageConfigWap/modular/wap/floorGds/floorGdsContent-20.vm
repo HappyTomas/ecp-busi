@@ -1,0 +1,26 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/modular/wap/modular-wap-floorGds-c.js?version=$!{JS_VERSION}" ></script>
+
+
+<div class="form-block formItem">
+    <label>楼层模板示例</label>
+    <img style="max-width:250px;max-height:200px" id="imagePreview" src="#genImageUrl($!{respVO.vfsId},'')"  class="img-polaroid">
+</div>
+#foreach($floorPlaceRespDTO in $!{floorPlaceRespDTOList})
+	#set($indexCount_1029 = '1029_1_'+$!{velocityCount})
+	<div class="form-block formItem" id="floorGdsDiv">	
+		<label>$!{attrs.get(1029).propName}</label>
+		<div class="input-append">
+				<input type="hidden" id="remark" value="$!{mapPropPre.get($indexCount_1029).remark}"/>
+				<input type="hidden" id="propValue" value="$!{mapPropPre.get($indexCount_1029).propValue}"/>
+            	<input type="hidden" id="propValueId" value="$!{mapPropPre.get($indexCount_1029).propValueId}">
+            	<input type="hidden" id="propId" value="$!{attrs.get(1029).id}">
+            	<input type="hidden" id="propItemId" value="$!{mapPropPre.get($indexCount_1029).id}"/>
+        		<input type="hidden" id="controlPropId" value="$!{velocityCount}"/>
+        		<input type="hidden" id="propGroupId" value="1"/>
+			
+				<input type="text" style="width:70%;" id="gdsName" name="gdsName" readonly placeholder="请选择楼层宝贝" value="$!{mapPropPre.get($indexCount_1029).remark}" />
+				<button type="button" class="btn select_link_gds" >选择</button>
+		</div>
+	</div>
+#end

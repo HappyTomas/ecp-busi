@@ -1,0 +1,44 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/send/coupselect/coup-select-list.js?version=$!{JS_VERSION}" ></script>
+	 						<table class="seller-table table-striped" id="coupTable">
+                               <thead>
+	                               <tr>
+	                                    <td ><input type="checkbox" name="checkbox" id="dt_row_all_check" title="全选/全取消" /></td>
+	                                    <td >站点</td>
+	                                    <td >店铺</td>
+							            <td >优惠券名称</td>
+							            <td >优惠券类型</td>
+							            <td >额度</td>
+							            <td >发行总量</td>
+							            <td >日期类型</td>
+							            <td >生效时间</td>
+							            <td >失效时间</td>
+	                                </tr>
+                               </thead>
+                              <tbody>
+					        	#if(!$coupPage.getResult() || $coupPage.pageCount <=0)
+					        		<tr><td colspan='10'>很遗憾，暂无数据。</td><tr>
+					        	#end
+					        	#foreach($attr in $coupPage.getResult())
+					        		<tr>
+					        			<td><input type="checkbox" name="checkboxcoup"  id="$!{attr.id}" value="$!{attr.id}"/></td>
+						                <td >#escapeHtml( "$!{attr.siteName}")</td>
+						                <td >#escapeHtml("$!{attr.shopName}")</td>
+						                <td  class="td-hhtxt" > <div>#escapeHtml("$!{attr.coupName}")</div></td>
+						                <td >#escapeHtml("$!{attr.coupTypeName}")</td>
+						                <td >
+						             #if($!{attr.coupValue}<=0) 抵用券 #else #set ( $value = $!{attr.coupValue} / 100 ) $value #end
+						                </td>
+						                <td >$!{attr.coupNum}</td>
+						                <td >#escapeHtml("$!{attr.effTypeName}")</td>
+						                <td >$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.activeTime})</td>
+						                <td >$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.inactiveTime})</td>
+						            </tr>
+								#end
+							</tbody>
+						</table>
+			    <div class="fav-opt clearfix" style="margin-top: 20px;">
+			        <div class="row-fluid">
+						<div id="pageControlbar" class="ecppage" data-total-page="${coupPage.pageCount}" data-total-row="${coupPage.count}" data-page-size="${coupPage.pageSize}" data-page-number="${coupPage.pageNo}" data-status="begin"></div>
+					</div>
+			    </div>

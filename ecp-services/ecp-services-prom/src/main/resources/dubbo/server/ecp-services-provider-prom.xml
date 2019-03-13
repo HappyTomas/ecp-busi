@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     ">  
+   
+ 
+    <!--对外提供的服务-->
+    <bean id="promRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromRSV" ref="promRSV" provider="${default.dubbo.provider.id}"/>
+    
+     <!--店铺授权服务-->
+    <bean id="promAuthRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromAuthRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromAuthRSV" ref="promAuthRSV" provider="${default.dubbo.provider.id}"/>
+    <!--主题促销服务-->
+    <bean id="promGroupRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromGroupRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromGroupRSV" ref="promGroupRSV" provider="${default.dubbo.provider.id}"/>
+    
+     <!--主题促销审核服务-->
+    <bean id="promGroupChkRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromGroupChkRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromGroupChkRSV" ref="promGroupChkRSV" provider="${default.dubbo.provider.id}"/>
+         
+     <!--基础服务-->
+    <bean id="promUtilRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromUtilRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromUtilRSV" ref="promUtilRSV" provider="${default.dubbo.provider.id}"/>
+       <!--促销查询服务-->
+    <bean id="promQueryRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromQueryRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromQueryRSV" ref="promQueryRSV" provider="${default.dubbo.provider.id}"/>
+    
+       <!--促销去结算验证服务-->
+    <bean id="promCartChkRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromCartChkRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.general.order.interfaces.IOrdCartsChkRSV" ref="promCartChkRSV" provider="${default.dubbo.provider.id}"/>
+    
+       <!--促销下单验证服务-->
+    <bean id="promOrdChkRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromOrdChkRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.general.order.interfaces.IOrderChkRSV" ref="promOrdChkRSV" provider="${default.dubbo.provider.id}"/>
+    
+         <!--促销免邮费功能-->
+    <bean id="promShipRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromShipRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromShipRSV" ref="promShipRSV" provider="${default.dubbo.provider.id}"/>
+        
+    <!--促销类型功能-->
+    <bean id="promTypeRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromTypeRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromTypeRSV" ref="promTypeRSV" provider="${default.dubbo.provider.id}"/>
+         <!--促销类型信息功能-->
+    <bean id="promMsgRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromMsgRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromMsgRSV" ref="promMsgRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <!--促销发送消息到solr-->
+    <bean id="promSolrRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromSolrRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromSolrRSV" ref="promSolrRSV" provider="${default.dubbo.provider.id}"/>
+   
+    <bean id="promImportRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromImportRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromImportRSV" ref="promImportRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <bean id="promSkuRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromSkuRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.prom.dubbo.interfaces.IPromSkuRSV" ref="promSkuRSV" provider="${default.dubbo.provider.id}"/>
+         
+    <bean id="promGdsDataSupportRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromGdsDataSupportRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.general.solr.interfaces.ISearchDataDupPagerSupport" ref="promGdsDataSupportRSV" provider="${default.dubbo.provider.id}" group="prom"/>
+       
+    <bean id="promMsg2SolrRSV" class="com.zengshi.ecp.prom.dubbo.impl.PromMsg2SolrRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.general.prom.interfaces.IPromMsg2SolrRSV" ref="promMsg2SolrRSV" provider="${default.dubbo.provider.id}"/>
+       
+</beans>  

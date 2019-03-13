@@ -1,0 +1,68 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/unpf/msg/msgAuth-edit-form.js?version=$!{JS_VERSION}" ></script>
+
+			<div class="formBox">
+				<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+				<input type="text" class="input-large required hide"  name="shopAuthId" id="shopAuthId" value="$!{respDTO.id}"/>
+				<input type="text" class="input-large required hide"  name="appkey" id="appkey" value="$!{respDTO.appkey}"/>
+				<input type="text" class="input-large required hide"  name="topicId" id="topicId" value="$!{topicId}"/>
+				 <div class="row-fluid formSep">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">对接平台：</label>
+							<div class="controls">
+							    <select id="platType"  class="required" name="platType" value="" disabled  >
+						    		#listParam('UNPF_PLAT_TYPE',$!{respDTO.platType})
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">店铺名称：</label>
+							<div class="controls">
+							    <select id="shopId"  class="required" name="shopId" value="" disabled>
+								   #shoplist("$!{respDTO.shopId}")
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span12">
+						<div class="control-group">
+							<label class="control-label">昵称：</label>
+							<div class="controls">
+							   <input type="text" class="input-large required span7" style="height:40px;"  name="nick" id="nick" placeholder="请输入天猫登录用户Id" value="$!{respDTO.nick}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span12">
+						<div class="control-group">
+							<label class="control-label">topic：</label>
+							<div class="controls">
+							   <input type="text" class="input-large required span7" style="height:40px;"  name="topic" id="topic" placeholder="多个topic需要逗号（英文半角）隔开" value="$!{respDTO.topic}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row-fluid">
+				</div>
+					<div class="row-fluid formSep">
+						<div class="control-group">
+							<div class="controls">
+							#if($!{doAction}=='edit')
+								<button type="button" class="btn btn-info" id="btnFormUpdate"><i class="icon-ok-sign icon-white"></i>保　存</button>
+							#elseif($!{doAction}=='create')
+								<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i> 保　存</button>
+							#end	
+								<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i> 返　回</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			 
+			</div>
+		 

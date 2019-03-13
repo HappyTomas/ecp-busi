@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- 物流信息序列 -->
+	<bean id="seq_express_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+	     <property name="sequenceName" value="SEQ_BASE_EXPRESS_ID"/>
+    </bean>
+    
+    <!-- 消息的接收消息Id -->
+    <bean id="seq_msg_info_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+         <property name="sequenceName" value="SEQ_MSG_INFO_ID"/>
+    </bean>
+    
+    <!-- 消息的发送明细ID -->
+    <bean id="seq_msg_detail_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+         <property name="sequenceName" value="SEQ_MSG_DETAIL_ID"/>
+    </bean>
+    
+        <!-- app版本ID -->
+    <bean id="seq_app_version" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+         <property name="sequenceName" value="SEQ_APP_VERSION"/>
+    </bean>
+    
+
+       <!-- 报表项ID -->
+    <bean id="seq_report_item" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+         <property name="sequenceService" ref="paasSequenceService"/>
+         <property name="sequenceName" value="SEQ_REPORT_ITEM"/>
+    </bean>
+    
+    
+</beans>

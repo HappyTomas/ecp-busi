@@ -1,0 +1,13 @@
+#parse("/sys/sys_param.vm")
+    <!--文本-->
+    <div class="wrap1000">
+        <div class="h-tit">
+            邮政挂号
+        </div>
+        <div class="h-com">
+
+            <p>收到书款后两日内发货，1~2周到货，免邮费</p>
+
+        </div>
+    </div>
+

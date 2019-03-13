@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.unpf.dao.mapper.busi.UnpfOrdSubMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.unpf.dao.model.UnpfOrdSub" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="PLAT_TYPE" property="platType" jdbcType="VARCHAR" />
+    <result column="OUTER_SUB_ID" property="outerSubId" jdbcType="VARCHAR" />
+    <result column="OUTER_ID" property="outerId" jdbcType="VARCHAR" />
+    <result column="GDS_ID" property="gdsId" jdbcType="VARCHAR" />
+    <result column="GDS_NAME" property="gdsName" jdbcType="VARCHAR" />
+    <result column="PIC_URL" property="picUrl" jdbcType="VARCHAR" />
+    <result column="SKU_ID" property="skuId" jdbcType="VARCHAR" />
+    <result column="SKU_INFO" property="skuInfo" jdbcType="VARCHAR" />
+    <result column="ORDER_AMOUNT" property="orderAmount" jdbcType="VARCHAR" />
+    <result column="ORDER_PRICE" property="orderPrice" jdbcType="INTEGER" />
+    <result column="DELIVERY_AMOUNT" property="deliveryAmount" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="DELIVERY_STATUS" property="deliveryStatus" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="SYS_FLAG" property="sysFlag" jdbcType="VARCHAR" />
+    <result column="DISCOUNT_MONEY" property="discountMoney" jdbcType="INTEGER" />
+    <result column="REAL_MONEY" property="realMoney" jdbcType="INTEGER" />
+    <result column="ORDER_MONEY" property="orderMoney" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ORDER_ID, PLAT_TYPE, OUTER_SUB_ID, OUTER_ID, GDS_ID, GDS_NAME, PIC_URL, SKU_ID, 
+    SKU_INFO, ORDER_AMOUNT, ORDER_PRICE, DELIVERY_AMOUNT, REMARK, ORDER_TIME, STATUS, 
+    SHOP_ID, STAFF_ID, DELIVERY_STATUS, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, 
+    SYS_FLAG, DISCOUNT_MONEY, REAL_MONEY, ORDER_MONEY
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdSubCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_unpf_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_unpf_ord_sub
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_unpf_ord_sub
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdSubCriteria" >
+    delete from t_unpf_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdSub" >
+    insert into t_unpf_ord_sub (ID, ORDER_ID, PLAT_TYPE, 
+      OUTER_SUB_ID, OUTER_ID, GDS_ID, 
+      GDS_NAME, PIC_URL, SKU_ID, 
+      SKU_INFO, ORDER_AMOUNT, ORDER_PRICE, 
+      DELIVERY_AMOUNT, REMARK, ORDER_TIME, 
+      STATUS, SHOP_ID, STAFF_ID, 
+      DELIVERY_STATUS, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_TIME, UPDATE_STAFF, SYS_FLAG, 
+      DISCOUNT_MONEY, REAL_MONEY, ORDER_MONEY
+      )
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{platType,jdbcType=VARCHAR}, 
+      #{outerSubId,jdbcType=VARCHAR}, #{outerId,jdbcType=VARCHAR}, #{gdsId,jdbcType=VARCHAR}, 
+      #{gdsName,jdbcType=VARCHAR}, #{picUrl,jdbcType=VARCHAR}, #{skuId,jdbcType=VARCHAR}, 
+      #{skuInfo,jdbcType=VARCHAR}, #{orderAmount,jdbcType=VARCHAR}, #{orderPrice,jdbcType=INTEGER}, 
+      #{deliveryAmount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{status,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, 
+      #{deliveryStatus,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, #{sysFlag,jdbcType=VARCHAR}, 
+      #{discountMoney,jdbcType=INTEGER}, #{realMoney,jdbcType=INTEGER}, #{orderMoney,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdSub" >
+    insert into t_unpf_ord_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="platType != null" >
+        PLAT_TYPE,
+      </if>
+      <if test="outerSubId != null" >
+        OUTER_SUB_ID,
+      </if>
+      <if test="outerId != null" >
+        OUTER_ID,
+      </if>
+      <if test="gdsId != null" >
+        GDS_ID,
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME,
+      </if>
+      <if test="picUrl != null" >
+        PIC_URL,
+      </if>
+      <if test="skuId != null" >
+        SKU_ID,
+      </if>
+      <if test="skuInfo != null" >
+        SKU_INFO,
+      </if>
+      <if test="orderAmount != null" >
+        ORDER_AMOUNT,
+      </if>
+      <if test="orderPrice != null" >
+        ORDER_PRICE,
+      </if>
+      <if test="deliveryAmount != null" >
+        DELIVERY_AMOUNT,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="deliveryStatus != null" >
+        DELIVERY_STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="sysFlag != null" >
+        SYS_FLAG,
+      </if>
+      <if test="discountMoney != null" >
+        DISCOUNT_MONEY,
+      </if>
+      <if test="realMoney != null" >
+        REAL_MONEY,
+      </if>
+      <if test="orderMoney != null" >
+        ORDER_MONEY,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="platType != null" >
+        #{platType,jdbcType=VARCHAR},
+      </if>
+      <if test="outerSubId != null" >
+        #{outerSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="outerId != null" >
+        #{outerId,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsId != null" >
+        #{gdsId,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsName != null" >
+        #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="skuInfo != null" >
+        #{skuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrice != null" >
+        #{orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryAmount != null" >
+        #{deliveryAmount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryStatus != null" >
+        #{deliveryStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="sysFlag != null" >
+        #{sysFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="discountMoney != null" >
+        #{discountMoney,jdbcType=INTEGER},
+      </if>
+      <if test="realMoney != null" >
+        #{realMoney,jdbcType=INTEGER},
+      </if>
+      <if test="orderMoney != null" >
+        #{orderMoney,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdSubCriteria" resultType="java.lang.Long" >
+    select count(*) from t_unpf_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_unpf_ord_sub
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.platType != null" >
+        PLAT_TYPE = #{record.platType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outerSubId != null" >
+        OUTER_SUB_ID = #{record.outerSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.outerId != null" >
+        OUTER_ID = #{record.outerId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsId != null" >
+        GDS_ID = #{record.gdsId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsName != null" >
+        GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.picUrl != null" >
+        PIC_URL = #{record.picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skuId != null" >
+        SKU_ID = #{record.skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skuInfo != null" >
+        SKU_INFO = #{record.skuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderAmount != null" >
+        ORDER_AMOUNT = #{record.orderAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderPrice != null" >
+        ORDER_PRICE = #{record.orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.deliveryAmount != null" >
+        DELIVERY_AMOUNT = #{record.deliveryAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderTime != null" >
+        ORDER_TIME = #{record.orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.deliveryStatus != null" >
+        DELIVERY_STATUS = #{record.deliveryStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysFlag != null" >
+        SYS_FLAG = #{record.sysFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.discountMoney != null" >
+        DISCOUNT_MONEY = #{record.discountMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.realMoney != null" >
+        REAL_MONEY = #{record.realMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderMoney != null" >
+        ORDER_MONEY = #{record.orderMoney,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_unpf_ord_sub
+    set ID = #{record.id,jdbcType=VARCHAR},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      PLAT_TYPE = #{record.platType,jdbcType=VARCHAR},
+      OUTER_SUB_ID = #{record.outerSubId,jdbcType=VARCHAR},
+      OUTER_ID = #{record.outerId,jdbcType=VARCHAR},
+      GDS_ID = #{record.gdsId,jdbcType=VARCHAR},
+      GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      PIC_URL = #{record.picUrl,jdbcType=VARCHAR},
+      SKU_ID = #{record.skuId,jdbcType=VARCHAR},
+      SKU_INFO = #{record.skuInfo,jdbcType=VARCHAR},
+      ORDER_AMOUNT = #{record.orderAmount,jdbcType=VARCHAR},
+      ORDER_PRICE = #{record.orderPrice,jdbcType=INTEGER},
+      DELIVERY_AMOUNT = #{record.deliveryAmount,jdbcType=INTEGER},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      ORDER_TIME = #{record.orderTime,jdbcType=TIMESTAMP},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      DELIVERY_STATUS = #{record.deliveryStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      SYS_FLAG = #{record.sysFlag,jdbcType=VARCHAR},
+      DISCOUNT_MONEY = #{record.discountMoney,jdbcType=INTEGER},
+      REAL_MONEY = #{record.realMoney,jdbcType=INTEGER},
+      ORDER_MONEY = #{record.orderMoney,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdSub" >
+    update t_unpf_ord_sub
+    <set >
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="platType != null" >
+        PLAT_TYPE = #{platType,jdbcType=VARCHAR},
+      </if>
+      <if test="outerSubId != null" >
+        OUTER_SUB_ID = #{outerSubId,jdbcType=VARCHAR},
+      </if>
+      <if test="outerId != null" >
+        OUTER_ID = #{outerId,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsId != null" >
+        GDS_ID = #{gdsId,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME = #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="picUrl != null" >
+        PIC_URL = #{picUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        SKU_ID = #{skuId,jdbcType=VARCHAR},
+      </if>
+      <if test="skuInfo != null" >
+        SKU_INFO = #{skuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        ORDER_AMOUNT = #{orderAmount,jdbcType=VARCHAR},
+      </if>
+      <if test="orderPrice != null" >
+        ORDER_PRICE = #{orderPrice,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryAmount != null" >
+        DELIVERY_AMOUNT = #{deliveryAmount,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryStatus != null" >
+        DELIVERY_STATUS = #{deliveryStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="sysFlag != null" >
+        SYS_FLAG = #{sysFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="discountMoney != null" >
+        DISCOUNT_MONEY = #{discountMoney,jdbcType=INTEGER},
+      </if>
+      <if test="realMoney != null" >
+        REAL_MONEY = #{realMoney,jdbcType=INTEGER},
+      </if>
+      <if test="orderMoney != null" >
+        ORDER_MONEY = #{orderMoney,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.unpf.dao.model.UnpfOrdSub" >
+    update t_unpf_ord_sub
+    set ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      PLAT_TYPE = #{platType,jdbcType=VARCHAR},
+      OUTER_SUB_ID = #{outerSubId,jdbcType=VARCHAR},
+      OUTER_ID = #{outerId,jdbcType=VARCHAR},
+      GDS_ID = #{gdsId,jdbcType=VARCHAR},
+      GDS_NAME = #{gdsName,jdbcType=VARCHAR},
+      PIC_URL = #{picUrl,jdbcType=VARCHAR},
+      SKU_ID = #{skuId,jdbcType=VARCHAR},
+      SKU_INFO = #{skuInfo,jdbcType=VARCHAR},
+      ORDER_AMOUNT = #{orderAmount,jdbcType=VARCHAR},
+      ORDER_PRICE = #{orderPrice,jdbcType=INTEGER},
+      DELIVERY_AMOUNT = #{deliveryAmount,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      STAFF_ID = #{staffId,jdbcType=INTEGER},
+      DELIVERY_STATUS = #{deliveryStatus,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      SYS_FLAG = #{sysFlag,jdbcType=VARCHAR},
+      DISCOUNT_MONEY = #{discountMoney,jdbcType=INTEGER},
+      REAL_MONEY = #{realMoney,jdbcType=INTEGER},
+      ORDER_MONEY = #{orderMoney,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

@@ -1,0 +1,128 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+#parse("/module/mod-editor.vm")
+	  <link href="$!{RESOURCE_PATH}/bootstrap/core/2.3.2/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+    <link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+    <link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+	 <script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+	 <script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gift/gift-add.js?version=$!{JS_VERSION}" ></script>
+	<style type="text/css">
+<!--
+	 .a-upload {
+    background: #fafafa none repeat scroll 0 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    color: #888;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    padding: 4px 10px;
+    position: relative;
+}
+.a-upload input {
+    cursor: pointer;
+    font-size: 100px;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.a-upload:hover {
+    background: #eee none repeat scroll 0 0;
+    border-color: #ccc;
+    color: #444;
+    text-decoration: none;
+}
+	-->
+	 	</style>
+
+	
+		
+	 <div class="sType-content">	
+		<div class="sType-body">
+		  <div class="sType-right">
+                <div class="span12">
+                    
+                        <form action="" class="form-horizontal" id="detailInfoForm">
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="control-group">
+                                        <label class="control-label">店铺名称：</label>
+                                        <div class="controls">
+                                              <select name="shopId" id="shopId">
+                                            #sellerList($!shopId)
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">关联单品：</label>
+                                        <div class="controls">
+											##<div style="display:inline">
+                                            <input placeholder="" type="text" class="required" style="width:202.55px" id="skuName" name="skuName" disabled="disabled">
+													<input id="skuId" type="hidden" name="skuId"/>
+													<input id="gdsId" type="hidden" name="gdsId"/>
+											<span class="help-inline">
+                                                <a id="selectSku" href="javascript:void(0);">请选择单品</a>
+                                             </span>	
+											## </div>
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">赠品名称：</label>
+                                        <div class="controls">
+                                           <input type="text" name="giftName" class="required" id="giftName">
+                                        </div>
+                                    </div>
+									
+									<div class="control-group">
+                                       <label for="" class="control-label">赠品类型：</label>
+                                       <div class="controls">
+										  <select class="required" id="giftType" name="giftType">
+											  #listParam("GDS_GIFT_TYPE")
+										  </select>
+                                       </div>
+                                   </div>
+									
+                                    <div class="control-group">
+                                        <label class="control-label">赠品价值：</label>
+                                        <div class="controls">
+                                            <input type="text" name="giftValue" class="required number" id="giftValue">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                         <label class="control-label">赠品总量：</label>
+                                        <div class="controls">
+                                          <input type="text" name="giftAmount" class="required digits" id="giftAmount">
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <label class="control-label">赠品描述：</label>
+                                        <div class="controls">
+										
+													<textarea class="input-block-level required" name="giftDesc" rows="4" id="giftDesc"></textarea>                                        </div>                                        
+                                              
+										</div>
+                                </div>
+                                <div class="span6 sType-upload">
+                                    <div class="img-wrap">
+                                        <img src="$IMAGE_PATH/seller-def.png" id="image" alt=""/>
+										<input type="hidden" id="giftPic" name="giftPic"/>
+										<input type="hidden" id="pictrueName" name="pictrueName"/>   
+                                    </div>
+                                    <div class="sType-info">仅支持JPG、PNG、JPEG、GIF格式，并且小于5M</div>
+									<a class="a-upload" href="javascript:;">
+                                        <input id="picture" type="file" name="picture">上传图片
+                                     </a>
+                                </div>
+                            </div>
+                            <div class="btn-wrap">
+                                <span class="sbtn sbtn-blue" id="btnFormSave">确定</span>
+                                <span class="sbtn" id="btnReturn">取消</span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+	        </div>
+		</div>

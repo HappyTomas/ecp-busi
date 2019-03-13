@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean class="com.zengshi.ecp.frame.utils.RuleMap">
+		<constructor-arg>  
+			<map>  
+				<entry key="t_coup_info" value-ref="coupInfoDistributed" />
+				<entry key="t_coup_var_limit" value-ref="coupVarLimitDistributed" />
+				<entry key="t_coup_catg_limit" value-ref="coupCatgLimitDistributed" />
+				<entry key="t_coup_use_limit" value-ref="coupUseLimitDistributed" />
+				<entry key="t_coup_get_limit" value-ref="coupGetLimitDistributed" />
+				<entry key="t_coup_shop_limit" value-ref="coupShopLimitDistributed" />
+				<entry key="t_coup_black_limit" value-ref="coupBlackLimitDistributed" />
+				<entry key="t_coup_full_limit" value-ref="coupFullLimitDistributed" />
+				<entry key="t_coup_info_log" value-ref="coupInfoLogDistributed" />
+				<entry key="t_coup_detail" value-ref="coupDetailDistributed" />
+				<entry key="t_coup_detail_log" value-ref="coupDetailLogDistributed" />
+				<entry key="t_coup_detail_idx" value-ref="coupDetailIdxDistributed" />
+				<entry key="t_coup_consume" value-ref="coupConsumeDistributed" />
+				<entry key="t_coup_consume_idx" value-ref="coupConsumeIdxDistributed" />
+				<entry key="t_coup_batch" value-ref="coupBatchDistributed" />
+				<entry key="t_coup_batch_conf" value-ref="coupBatchConfDistributed" />
+				<entry key="t_coup_present" value-ref="coupPresentDistributed" />
+				<entry key="t_coup_freeze" value-ref="coupFreezeDistributed" />
+			</map>
+		</constructor-arg>
+	</bean>
+  	 
+	<bean id="coupFreezeDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_freeze_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id',tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id',tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean> 
+	
+	<bean id="coupPresentDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_present_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id',tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id',tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="coupInfoDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_info_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="coupVarLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="coup_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_var_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean> 
+	<bean id="coupCatgLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="coup_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_catg_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="coupUseLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="coup_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_use_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="coupGetLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="coup_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_get_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="coupShopLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="coup_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_shop_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="coupBlackLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="coup_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_black_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="coupFullLimitDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="coup_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_full_limit_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	<bean id="coupInfoLogDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="coup_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_info_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'"coup_id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	
+	<bean id="coupDetailDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_detail_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="coupDetailLogDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="coup_detail_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_detail_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="coupDetailIdxDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_detail_idx_{00}" />
+		
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="coupConsumeDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_consume_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="coupConsumeIdxDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_consume_idx_{00}" />
+		
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}</value>
+		</property>
+		
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="coupBatchDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="BATCH_CONF_ID" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_detail_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'BATCH_CONF_ID',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'BATCH_CONF_ID',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	
+	<bean id="coupBatchConfDistributed" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_coup_batch_conf_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'"id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyColumn:'"id"', tranferType:'java.lang.Long', operator:'%',operatorValue:1},operator:'+', operatorValue:1} </value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="1" />
+	</bean>
+	
+</beans>

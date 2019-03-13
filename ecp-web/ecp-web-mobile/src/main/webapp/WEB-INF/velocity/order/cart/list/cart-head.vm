@@ -1,0 +1,17 @@
+##
+## 涉及变量 cartList Controller返回
+##
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        购物车
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+       <!-- <a href="javascript:void(0)" class="" onclick="history.go(-1)">
+            <i class="public-arrowleft"></i>
+	   </a>-->
+    </div>
+    <div class="am-header-right">
+        <span class="otxt" id="edit">编辑</span>
+        <span class="otxt" style="display:none" id="finish">完成</span>
+    </div>
+</header>

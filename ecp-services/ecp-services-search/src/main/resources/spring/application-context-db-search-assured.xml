@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+    <!--保障性弱事务定义 begin 
+	<bean id="sampleTransaction" class="com.distribute.tx.assured.AssuredTransactionManager" init-method="init">
+		<property name="cc" ref="cc"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/assureTransactionContainer"/>
+        <property name="sequence" ref="sequence"/>
+		<property name="publisher" ref="transactionPublisher"/>
+        <property name="participant" value="transactionCheckerGroup1"/>
+        <property name="transactionChecker" ref="transactionChecker"/>
+        <property name="mainTransaction" ref="main"/>
+        <property name="transactionName" value="assured_tx_test"/>
+		<property name="subTransactions">
+			<map>
+				<entry key="sub1" value-ref="sub1" />
+				<entry key="sub2" value-ref="sub2" />
+			</map>
+		</property>
+	</bean>
+	<bean id="sub1" class="com.zengshi.ecp.demo.facade.impl.assured.AssuredTransactionSub1"></bean>
+	<bean id="sub2" class="com.zengshi.ecp.demo.facade.impl.assured.AssuredTransactionSub2"></bean>
+	<bean id="main" class="com.zengshi.ecp.demo.facade.impl.assured.AssuredTransactionMain"></bean>
+
+	<bean id="transactionChecker" class="com.zengshi.ecp.demo.facade.impl.assured.TransactionCheckerSample" />
+	-->
+    <!--保障性弱事务定义 end -->
+
+</beans>

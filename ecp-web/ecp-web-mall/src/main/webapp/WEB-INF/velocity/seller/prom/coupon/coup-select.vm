@@ -1,0 +1,68 @@
+#parse("/sys/sys_param.vm")
+#parse("/sys/sys_open_head.vm")
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+ <script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/coupon/coup-select.js?version=$!{JS_VERSION}" ></script>
+            <div class="main">
+                <div class="seller-well">
+                <div class="hide">
+				    	<input type="text" name="status"  id="status" class="input-medium"  value="1" >
+					</div>
+                    <form action="" class="form-horizontal required-validate" id="searchForm" >
+                        <div class="row-fluid">
+	                              <div class="span6">
+	                                <div class="control-group control-nobottom">
+	                                    <label class="control-label" for="shopId">店铺：</label>
+	                                	  <div class="controls">
+												 <select id="shopId" name="shopId"  class="input-medium "  >
+												   #sellerList('')
+												 </select>
+									      </div>
+	                                </div>
+	                            </div>
+	                              <div class="span6">
+                                <div class="control-group ">
+                                    <label class="control-label" for="coupTypeId">优惠券类型：</label>
+                                	  <div class="controls ">
+										 <select id="coupTypeId" name="coupTypeId" class="input-medium"  >
+										 <option value=""> 选择</option>
+										   #couptypelist('COUP_TYPE','')
+										</select>
+								      </div>
+                                </div>
+	                         </div>
+                        </div>
+                        
+                        <div class="row-fluid">
+                             <div class="span6">
+	                                <div class="control-group  control-nobottom">
+	                                    <label class="control-label" for="coupName">优惠券名称：</label>
+	                                    <div class="controls">
+											<input type="text" name="coupName" style="height:30px;"  id="coupName"  class="input-medium"   value="" placeholder="请输入名称">
+						          		</div>
+	                                </div>
+	                            </div>
+                            
+                            <div class="span2"> </div>
+                            <div class="span4">
+                                <div class="control-group control-nobottom">
+                                    <div class=" btn-w-right">
+                                        <span class="sbtn sbtn-blue"  id="btnFormSearch"><i class="icon-search"></i> 查询</span>
+                                        <span class="sbtn" id="btnFormReset"><i class="icon-asterisk icon-color"></i> 重置</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                           </div> 
+                    </form>
+                </div>
+	                <div class="main-inner">
+	                 <div class="sbtn-group">
+		                 <!--添加图标-->
+		                 <span class="sbtn sbtn-blue" id="btn_code_add_coup"><i class="icon-plus"></i> 添加</span>
+						 <span class="sbtn sbtn-blue" id="btnReturn"><i class="icon-reply"></i> 关闭</span>
+					 </div>
+	               		 <div id='coupListDiv' style="margin-top:10px;overflow-x:auto;">
+                    	##parse("/seller/coupon/send/coupselect/coup-select-list.vm")
+                    </div>
+	           </div>
+           </div>

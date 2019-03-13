@@ -1,0 +1,66 @@
+  <h3 class="heading" style="margin-top: 0px;">
+                                分类信息
+                            </h3>
+                            <div class="row-fluid">
+                                <div class="span4 offset1">
+                                    <div class="type-t">
+                                        <span class="t">
+                                            平台分类
+                                        </span>
+                                        <span id="selptPlat" class="pull-right btn btn-mini btn-primary">
+                                            选择平台分类
+                                        </span>
+                                    </div>
+                                    <table class="table table-bordered table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>分类名称</th>
+                                            <th>分类类型</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="catagoryList">
+                                        #foreach($a in $!{gdsInfo.platformCategory})
+                                            <tr>
+                                                <td id="$!{a.catgCode}">$!{a.catgName}</td>
+												#if($!{gdsInfo.mainCategory.catgCode}==$!{a.catgCode})
+													<td id="1">主分类</td>
+													<td>-</td>
+												#else
+													<td id="2">副分类</td>
+													<td><a href="javascript:void(0)" onclick="deleteCatPlat(this)">删除</a></td>
+												#end
+                                                
+                                            </tr>
+										#end
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="span4 offset2">
+                                    <div class="type-t">
+                                        <span class="t">
+                                            店铺分类
+                                        </span>
+                                        <span id="seldpShop" class="pull-right btn btn-mini btn-primary">
+                                            选择店铺分类
+                                        </span>
+                                    </div>
+                                    <table class="table table-bordered  table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>分类名称</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody id="shopCatagoryList">
+											#foreach($a in $!{gdsInfo.shopCategory})
+                                            <tr>
+                                                <td id="$!{a.catgCode}">$!{a.catgName}</td>
+                                                <td><a href="javascript:void(0)" onclick="deleteCat(this)">删除</a></td>
+                                            </tr>
+										#end
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+						 <!--分类信息 end-->

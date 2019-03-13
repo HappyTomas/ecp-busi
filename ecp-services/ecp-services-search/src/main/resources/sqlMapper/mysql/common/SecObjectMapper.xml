@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.search.dao.mapper.common.SecObjectMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.search.dao.model.SecObject" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="OBJECT_NAMECN" property="objectNamecn" jdbcType="VARCHAR" />
+    <result column="OBJECT_NAMEEN" property="objectNameen" jdbcType="VARCHAR" />
+    <result column="OBJECT_DESC" property="objectDesc" jdbcType="VARCHAR" />
+    <result column="OBJECT_UNIQUEFIELD_NAME" property="objectUniquefieldName" jdbcType="VARCHAR" />
+    <result column="OBJECT_PROCESSOR_NAME" property="objectProcessorName" jdbcType="VARCHAR" />
+    <result column="DUBBO_SERVICENAME" property="dubboServicename" jdbcType="VARCHAR" />
+    <result column="OBJECT_PARAMS" property="objectParams" jdbcType="VARCHAR" />
+    <result column="METHOD_QUERYBYID_PARAM_TYPE" property="methodQuerybyidParamType" jdbcType="VARCHAR" />
+    <result column="OBJECT_TYPE" property="objectType" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="OBJECT_HANDLER" property="objectHandler" jdbcType="VARCHAR" />
+    <result column="OBJECT_INSPECTOR" property="objectInspector" jdbcType="VARCHAR" />
+    <result column="PAGESIZE" property="pagesize" jdbcType="VARCHAR" />
+    <result column="INSIDEPAGER" property="insidepager" jdbcType="VARCHAR" />
+    <result column="INSIDEPAGER_UNIQUEFIELD_NAME" property="insidepagerUniquefieldName" jdbcType="VARCHAR" />
+    <result column="OBJECT_IF_MULTILAN" property="objectIfMultilan" jdbcType="VARCHAR" />
+    <result column="LANS" property="lans" jdbcType="VARCHAR" />
+    <result column="LAN_FIELD" property="lanField" jdbcType="VARCHAR" />
+    <result column="MULVALFIELD_PROCESSOR_NAME" property="mulvalfieldProcessorName" jdbcType="VARCHAR" />
+    <result column="LAN_FIELD_FIELD_TYPE" property="lanFieldFieldType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, OBJECT_NAMECN, OBJECT_NAMEEN, OBJECT_DESC, OBJECT_UNIQUEFIELD_NAME, OBJECT_PROCESSOR_NAME, 
+    DUBBO_SERVICENAME, OBJECT_PARAMS, METHOD_QUERYBYID_PARAM_TYPE, OBJECT_TYPE, STATUS, 
+    CREATE_STAFF, CREATE_TIME, UPDATE_STAFF, UPDATE_TIME, OBJECT_HANDLER, OBJECT_INSPECTOR, 
+    PAGESIZE, INSIDEPAGER, INSIDEPAGER_UNIQUEFIELD_NAME, OBJECT_IF_MULTILAN, LANS, LAN_FIELD, 
+    MULVALFIELD_PROCESSOR_NAME, LAN_FIELD_FIELD_TYPE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.search.dao.model.SecObjectCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_sec_object
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sec_object
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_sec_object
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.search.dao.model.SecObjectCriteria" >
+    delete from t_sec_object
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.search.dao.model.SecObject" >
+    insert into t_sec_object (ID, OBJECT_NAMECN, OBJECT_NAMEEN, 
+      OBJECT_DESC, OBJECT_UNIQUEFIELD_NAME, OBJECT_PROCESSOR_NAME, 
+      DUBBO_SERVICENAME, OBJECT_PARAMS, METHOD_QUERYBYID_PARAM_TYPE, 
+      OBJECT_TYPE, STATUS, CREATE_STAFF, 
+      CREATE_TIME, UPDATE_STAFF, UPDATE_TIME, 
+      OBJECT_HANDLER, OBJECT_INSPECTOR, PAGESIZE, 
+      INSIDEPAGER, INSIDEPAGER_UNIQUEFIELD_NAME, 
+      OBJECT_IF_MULTILAN, LANS, LAN_FIELD, 
+      MULVALFIELD_PROCESSOR_NAME, LAN_FIELD_FIELD_TYPE
+      )
+    values (#{id,jdbcType=INTEGER}, #{objectNamecn,jdbcType=VARCHAR}, #{objectNameen,jdbcType=VARCHAR}, 
+      #{objectDesc,jdbcType=VARCHAR}, #{objectUniquefieldName,jdbcType=VARCHAR}, #{objectProcessorName,jdbcType=VARCHAR}, 
+      #{dubboServicename,jdbcType=VARCHAR}, #{objectParams,jdbcType=VARCHAR}, #{methodQuerybyidParamType,jdbcType=VARCHAR}, 
+      #{objectType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createStaff,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{objectHandler,jdbcType=VARCHAR}, #{objectInspector,jdbcType=VARCHAR}, #{pagesize,jdbcType=VARCHAR}, 
+      #{insidepager,jdbcType=VARCHAR}, #{insidepagerUniquefieldName,jdbcType=VARCHAR}, 
+      #{objectIfMultilan,jdbcType=VARCHAR}, #{lans,jdbcType=VARCHAR}, #{lanField,jdbcType=VARCHAR}, 
+      #{mulvalfieldProcessorName,jdbcType=VARCHAR}, #{lanFieldFieldType,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.search.dao.model.SecObject" >
+    insert into t_sec_object
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="objectNamecn != null" >
+        OBJECT_NAMECN,
+      </if>
+      <if test="objectNameen != null" >
+        OBJECT_NAMEEN,
+      </if>
+      <if test="objectDesc != null" >
+        OBJECT_DESC,
+      </if>
+      <if test="objectUniquefieldName != null" >
+        OBJECT_UNIQUEFIELD_NAME,
+      </if>
+      <if test="objectProcessorName != null" >
+        OBJECT_PROCESSOR_NAME,
+      </if>
+      <if test="dubboServicename != null" >
+        DUBBO_SERVICENAME,
+      </if>
+      <if test="objectParams != null" >
+        OBJECT_PARAMS,
+      </if>
+      <if test="methodQuerybyidParamType != null" >
+        METHOD_QUERYBYID_PARAM_TYPE,
+      </if>
+      <if test="objectType != null" >
+        OBJECT_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="objectHandler != null" >
+        OBJECT_HANDLER,
+      </if>
+      <if test="objectInspector != null" >
+        OBJECT_INSPECTOR,
+      </if>
+      <if test="pagesize != null" >
+        PAGESIZE,
+      </if>
+      <if test="insidepager != null" >
+        INSIDEPAGER,
+      </if>
+      <if test="insidepagerUniquefieldName != null" >
+        INSIDEPAGER_UNIQUEFIELD_NAME,
+      </if>
+      <if test="objectIfMultilan != null" >
+        OBJECT_IF_MULTILAN,
+      </if>
+      <if test="lans != null" >
+        LANS,
+      </if>
+      <if test="lanField != null" >
+        LAN_FIELD,
+      </if>
+      <if test="mulvalfieldProcessorName != null" >
+        MULVALFIELD_PROCESSOR_NAME,
+      </if>
+      <if test="lanFieldFieldType != null" >
+        LAN_FIELD_FIELD_TYPE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="objectNamecn != null" >
+        #{objectNamecn,jdbcType=VARCHAR},
+      </if>
+      <if test="objectNameen != null" >
+        #{objectNameen,jdbcType=VARCHAR},
+      </if>
+      <if test="objectDesc != null" >
+        #{objectDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="objectUniquefieldName != null" >
+        #{objectUniquefieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="objectProcessorName != null" >
+        #{objectProcessorName,jdbcType=VARCHAR},
+      </if>
+      <if test="dubboServicename != null" >
+        #{dubboServicename,jdbcType=VARCHAR},
+      </if>
+      <if test="objectParams != null" >
+        #{objectParams,jdbcType=VARCHAR},
+      </if>
+      <if test="methodQuerybyidParamType != null" >
+        #{methodQuerybyidParamType,jdbcType=VARCHAR},
+      </if>
+      <if test="objectType != null" >
+        #{objectType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="objectHandler != null" >
+        #{objectHandler,jdbcType=VARCHAR},
+      </if>
+      <if test="objectInspector != null" >
+        #{objectInspector,jdbcType=VARCHAR},
+      </if>
+      <if test="pagesize != null" >
+        #{pagesize,jdbcType=VARCHAR},
+      </if>
+      <if test="insidepager != null" >
+        #{insidepager,jdbcType=VARCHAR},
+      </if>
+      <if test="insidepagerUniquefieldName != null" >
+        #{insidepagerUniquefieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="objectIfMultilan != null" >
+        #{objectIfMultilan,jdbcType=VARCHAR},
+      </if>
+      <if test="lans != null" >
+        #{lans,jdbcType=VARCHAR},
+      </if>
+      <if test="lanField != null" >
+        #{lanField,jdbcType=VARCHAR},
+      </if>
+      <if test="mulvalfieldProcessorName != null" >
+        #{mulvalfieldProcessorName,jdbcType=VARCHAR},
+      </if>
+      <if test="lanFieldFieldType != null" >
+        #{lanFieldFieldType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.search.dao.model.SecObjectCriteria" resultType="java.lang.Long" >
+    select count(*) from t_sec_object
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_sec_object
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.objectNamecn != null" >
+        OBJECT_NAMECN = #{record.objectNamecn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objectNameen != null" >
+        OBJECT_NAMEEN = #{record.objectNameen,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objectDesc != null" >
+        OBJECT_DESC = #{record.objectDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objectUniquefieldName != null" >
+        OBJECT_UNIQUEFIELD_NAME = #{record.objectUniquefieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objectProcessorName != null" >
+        OBJECT_PROCESSOR_NAME = #{record.objectProcessorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.dubboServicename != null" >
+        DUBBO_SERVICENAME = #{record.dubboServicename,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objectParams != null" >
+        OBJECT_PARAMS = #{record.objectParams,jdbcType=VARCHAR},
+      </if>
+      <if test="record.methodQuerybyidParamType != null" >
+        METHOD_QUERYBYID_PARAM_TYPE = #{record.methodQuerybyidParamType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objectType != null" >
+        OBJECT_TYPE = #{record.objectType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.objectHandler != null" >
+        OBJECT_HANDLER = #{record.objectHandler,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objectInspector != null" >
+        OBJECT_INSPECTOR = #{record.objectInspector,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pagesize != null" >
+        PAGESIZE = #{record.pagesize,jdbcType=VARCHAR},
+      </if>
+      <if test="record.insidepager != null" >
+        INSIDEPAGER = #{record.insidepager,jdbcType=VARCHAR},
+      </if>
+      <if test="record.insidepagerUniquefieldName != null" >
+        INSIDEPAGER_UNIQUEFIELD_NAME = #{record.insidepagerUniquefieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.objectIfMultilan != null" >
+        OBJECT_IF_MULTILAN = #{record.objectIfMultilan,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lans != null" >
+        LANS = #{record.lans,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lanField != null" >
+        LAN_FIELD = #{record.lanField,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mulvalfieldProcessorName != null" >
+        MULVALFIELD_PROCESSOR_NAME = #{record.mulvalfieldProcessorName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lanFieldFieldType != null" >
+        LAN_FIELD_FIELD_TYPE = #{record.lanFieldFieldType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_sec_object
+    set ID = #{record.id,jdbcType=INTEGER},
+      OBJECT_NAMECN = #{record.objectNamecn,jdbcType=VARCHAR},
+      OBJECT_NAMEEN = #{record.objectNameen,jdbcType=VARCHAR},
+      OBJECT_DESC = #{record.objectDesc,jdbcType=VARCHAR},
+      OBJECT_UNIQUEFIELD_NAME = #{record.objectUniquefieldName,jdbcType=VARCHAR},
+      OBJECT_PROCESSOR_NAME = #{record.objectProcessorName,jdbcType=VARCHAR},
+      DUBBO_SERVICENAME = #{record.dubboServicename,jdbcType=VARCHAR},
+      OBJECT_PARAMS = #{record.objectParams,jdbcType=VARCHAR},
+      METHOD_QUERYBYID_PARAM_TYPE = #{record.methodQuerybyidParamType,jdbcType=VARCHAR},
+      OBJECT_TYPE = #{record.objectType,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      OBJECT_HANDLER = #{record.objectHandler,jdbcType=VARCHAR},
+      OBJECT_INSPECTOR = #{record.objectInspector,jdbcType=VARCHAR},
+      PAGESIZE = #{record.pagesize,jdbcType=VARCHAR},
+      INSIDEPAGER = #{record.insidepager,jdbcType=VARCHAR},
+      INSIDEPAGER_UNIQUEFIELD_NAME = #{record.insidepagerUniquefieldName,jdbcType=VARCHAR},
+      OBJECT_IF_MULTILAN = #{record.objectIfMultilan,jdbcType=VARCHAR},
+      LANS = #{record.lans,jdbcType=VARCHAR},
+      LAN_FIELD = #{record.lanField,jdbcType=VARCHAR},
+      MULVALFIELD_PROCESSOR_NAME = #{record.mulvalfieldProcessorName,jdbcType=VARCHAR},
+      LAN_FIELD_FIELD_TYPE = #{record.lanFieldFieldType,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.search.dao.model.SecObject" >
+    update t_sec_object
+    <set >
+      <if test="objectNamecn != null" >
+        OBJECT_NAMECN = #{objectNamecn,jdbcType=VARCHAR},
+      </if>
+      <if test="objectNameen != null" >
+        OBJECT_NAMEEN = #{objectNameen,jdbcType=VARCHAR},
+      </if>
+      <if test="objectDesc != null" >
+        OBJECT_DESC = #{objectDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="objectUniquefieldName != null" >
+        OBJECT_UNIQUEFIELD_NAME = #{objectUniquefieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="objectProcessorName != null" >
+        OBJECT_PROCESSOR_NAME = #{objectProcessorName,jdbcType=VARCHAR},
+      </if>
+      <if test="dubboServicename != null" >
+        DUBBO_SERVICENAME = #{dubboServicename,jdbcType=VARCHAR},
+      </if>
+      <if test="objectParams != null" >
+        OBJECT_PARAMS = #{objectParams,jdbcType=VARCHAR},
+      </if>
+      <if test="methodQuerybyidParamType != null" >
+        METHOD_QUERYBYID_PARAM_TYPE = #{methodQuerybyidParamType,jdbcType=VARCHAR},
+      </if>
+      <if test="objectType != null" >
+        OBJECT_TYPE = #{objectType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="objectHandler != null" >
+        OBJECT_HANDLER = #{objectHandler,jdbcType=VARCHAR},
+      </if>
+      <if test="objectInspector != null" >
+        OBJECT_INSPECTOR = #{objectInspector,jdbcType=VARCHAR},
+      </if>
+      <if test="pagesize != null" >
+        PAGESIZE = #{pagesize,jdbcType=VARCHAR},
+      </if>
+      <if test="insidepager != null" >
+        INSIDEPAGER = #{insidepager,jdbcType=VARCHAR},
+      </if>
+      <if test="insidepagerUniquefieldName != null" >
+        INSIDEPAGER_UNIQUEFIELD_NAME = #{insidepagerUniquefieldName,jdbcType=VARCHAR},
+      </if>
+      <if test="objectIfMultilan != null" >
+        OBJECT_IF_MULTILAN = #{objectIfMultilan,jdbcType=VARCHAR},
+      </if>
+      <if test="lans != null" >
+        LANS = #{lans,jdbcType=VARCHAR},
+      </if>
+      <if test="lanField != null" >
+        LAN_FIELD = #{lanField,jdbcType=VARCHAR},
+      </if>
+      <if test="mulvalfieldProcessorName != null" >
+        MULVALFIELD_PROCESSOR_NAME = #{mulvalfieldProcessorName,jdbcType=VARCHAR},
+      </if>
+      <if test="lanFieldFieldType != null" >
+        LAN_FIELD_FIELD_TYPE = #{lanFieldFieldType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.search.dao.model.SecObject" >
+    update t_sec_object
+    set OBJECT_NAMECN = #{objectNamecn,jdbcType=VARCHAR},
+      OBJECT_NAMEEN = #{objectNameen,jdbcType=VARCHAR},
+      OBJECT_DESC = #{objectDesc,jdbcType=VARCHAR},
+      OBJECT_UNIQUEFIELD_NAME = #{objectUniquefieldName,jdbcType=VARCHAR},
+      OBJECT_PROCESSOR_NAME = #{objectProcessorName,jdbcType=VARCHAR},
+      DUBBO_SERVICENAME = #{dubboServicename,jdbcType=VARCHAR},
+      OBJECT_PARAMS = #{objectParams,jdbcType=VARCHAR},
+      METHOD_QUERYBYID_PARAM_TYPE = #{methodQuerybyidParamType,jdbcType=VARCHAR},
+      OBJECT_TYPE = #{objectType,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      OBJECT_HANDLER = #{objectHandler,jdbcType=VARCHAR},
+      OBJECT_INSPECTOR = #{objectInspector,jdbcType=VARCHAR},
+      PAGESIZE = #{pagesize,jdbcType=VARCHAR},
+      INSIDEPAGER = #{insidepager,jdbcType=VARCHAR},
+      INSIDEPAGER_UNIQUEFIELD_NAME = #{insidepagerUniquefieldName,jdbcType=VARCHAR},
+      OBJECT_IF_MULTILAN = #{objectIfMultilan,jdbcType=VARCHAR},
+      LANS = #{lans,jdbcType=VARCHAR},
+      LAN_FIELD = #{lanField,jdbcType=VARCHAR},
+      MULVALFIELD_PROCESSOR_NAME = #{mulvalfieldProcessorName,jdbcType=VARCHAR},
+      LAN_FIELD_FIELD_TYPE = #{lanFieldFieldType,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

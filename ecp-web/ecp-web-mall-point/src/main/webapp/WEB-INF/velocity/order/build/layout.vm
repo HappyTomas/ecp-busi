@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单结算页-积分商城</title>
+	#parse("/sys/sys_param.vm")
+	#parse("/sys/sys_head.vm")
+	<link rel="stylesheet" type="text/css" href="$CSS_PATH/point.css"/>
+	<link rel="stylesheet" type="text/css" href="$CSS_PATH/order.css"/>
+</head>
+<body>
+
+<!--顶部 begin-->
+#parse("/main/main-site-nav.vm")
+<!--顶部 end-->
+
+<!--导航 begin-->
+#parse("/main/main-site-column.vm")
+<!--导航 end-->
+
+<!--内容 begin-->
+$screen_content
+<!--内容 end-->
+
+
+<!--底部 begin-->
+#parse("/main/main-bottom.vm")
+<!--底部 end-->
+
+
+</body>
+</html>

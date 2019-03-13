@@ -1,0 +1,55 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<link rel="stylesheet" href="$!{CSS_PATH}/default/staff/information/member.css" />
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/buyer-check.js?version=$!{JS_VERSION}" ></script>
+ <div id="main">
+    <div class="mbox order-list">
+        <div class="mbox-head">
+            <h3>
+                邮箱绑定
+            </h3>
+        </div>
+        <div class="mbox-body">
+            <!--流程-->
+            <div class="stepflex clearfix" id="sflex03">
+                <dl class="first done">
+                    <dt class="s-num">1</dt>
+                    <dd class="s-text">邮箱录入<s></s><b></b></dd>
+                </dl>
+                <dl class="normal done">
+                    <dt class="s-num">2</dt>
+                    <dd class="s-text">邮箱验证<s></s><b></b></dd>
+                </dl>
+                <dl class="last done">
+                    <dt class="s-num"></dt>
+                    <dd class="s-text">完成<s></s><b></b></dd>
+                </dl>
+            </div>
+            <!--邮件输入框-->
+            #if($!{result} == '0')
+            <div class="email-set-con email-bottom">
+                <s class="e-icon e-icon-wrong"></s>
+
+                <div class="fore">
+                    <p class="ftx03">抱歉，验证失败，原因可能如下：</p>
+
+                    <p>$!{resultMsg}</p>
+                    <p><a href="$!{CONTEXT_PATH}/buyer/check/mail" class="blue">重新发起绑定申请</a></p>
+                </div>
+            </div>
+            #end
+            #if($!{result} == '1')
+         		<div class="email-set-con email-bottom">
+                        <s class="e-icon"></s>
+                        <div class="fore">
+                            <p class="ftx02">恭喜您邮箱绑定成功!</p>
+
+                            
+                            <p>返回<a href="$!{CONTEXT_PATH}/buyercenter/index" class="red">个人中心</a></p>
+                        </div>
+                    </div>
+         	#end
+        </div>
+
+    </div>
+</div>

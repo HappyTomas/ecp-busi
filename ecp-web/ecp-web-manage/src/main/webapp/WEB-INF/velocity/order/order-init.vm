@@ -1,0 +1,2 @@
+##set($message="哥没进来")
+<p>${message}</p>

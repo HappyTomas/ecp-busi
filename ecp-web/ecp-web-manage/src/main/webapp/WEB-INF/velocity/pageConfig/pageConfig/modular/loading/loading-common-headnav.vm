@@ -1,0 +1,36 @@
+#set($floorNavTitle = "")
+
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+#foreach($prop in $crossItemObj)
+	#if($prop.propId == 1000)
+		#set($floorNavTitle = $prop.propValue)
+	#end
+#end
+<div class ="ecp-component $!{componentMethod}" data-status="1" data-pagePub="$!{pagePub}" data-pageEdit="$!{pageEdit}" data-component-method="$!{componentMethod}" data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}">
+	<div class="tpl-floor">
+		<div class="modular-head">$!{floorNavTitle}</div>
+		<div class="modular-body">
+			<div class="floor-list">
+	              <ul class="navigation">
+	                  
+	              </ul>
+	              <div class="toTop">
+	                  <span class="backToTop"><i class="iconfont f22"></i></span>
+	              </div>
+			</div>
+		</div>
+	</div>
+	<div class="rightNavSlide"> </div>
+</div>

@@ -1,0 +1,168 @@
+#parse("/module/mod-page.vm")
+#parse("/module/mod-form.vm")
+<style >
+	.error{
+		color : red ;
+	}
+</style> 
+<script type="text/javascript">
+	$(function() {
+		//更新搜索栏与分页条状态
+		comment.updateUneval();
+	});
+</script>
+ <script>
+                    $(function(){
+                        $('.tips-list li').click(function(e){
+                            $(this).toggleClass('select');
+                            e.preventDefault();
+                        });
+                        
+                    });
+
+                </script>
+<!--       隐藏框  用于更新搜索栏与分页条状态                     -->
+<input type="hidden" id="totalPage" value="$!{gridResult.totalPage}">
+<input type="hidden" id="totalRow" value="$!{gridResult.totalRow}">
+<input type="hidden" id="pageSize" value="$!{gridResult.pageSize}">
+<input type="hidden" id="pageNumber" value="$!{gridResult.pageNumber}">
+<!--        begin of table          -->		
+<div class="mc" >
+<div class="com-table-header">
+	<span class="item column1">商品详情</span>
+	<span class="item column4">订单编号</span>
+	<span class="item column2">购买时间</span>
+	<span class="item column3 text-right">操作</span>
+</div>
+        
+
+
+	#if(!$gridResult.list || $gridResult.list.size() == 0)
+	<div class="comments-item">
+		<table class="com-item-main">
+			<tbody>
+				<tr>
+					<td align='center'>没有数据</td>
+                </tr>
+            </tbody>
+        </table>
+	</div>
+	#end
+	#set($sortno = 1)
+	#foreach($unevals in $gridResult.list)
+		
+		<div class="comments-item">
+			<table class="com-item-main">
+				<tbody id="datalist">
+					##  获取数组下标
+					#set($index = $velocityCount - 1)
+					#if(!$!{unevals.num})  
+						#set($!{unevals.num} = 0)  
+					#end
+    				
+					<tr>
+						<td class="com-i-column column1">
+                            <a href="${CONTEXT_PATH}$!{unevals.skuUrl}">
+								<img class="" src="$!{unevals.url}" title="" width="60" height="60"/>
+								<span style="padding-left: 70px;display: block;">
+								$!{unevals.gdsName}　
+								#if($!{unevals.skuProps} && ${unevals.skuProps.length()} !=0)
+									($!{unevals.skuProps})
+								#end
+								</span>
+							</a>
+						</td>
+						<td class="com-i-column column4">
+                            <a href="${CONTEXT_PATH}/ord/detail/$!{unevals.orderId}">$!{unevals.orderId}</a>
+						</td>
+						<td class="com-i-column column2">
+    						$!date.format('yyyy-MM-dd HH:mm:ss',$!{unevals.buyTime})
+    					</td>
+    					<td class="com-i-column ">
+							<div class="m-reply">
+								<button class="btn" id="btn_reply" onclick='reply("$!{unevals.orderSubId}")'>评价</button>
+                            </div>
+    					</td>
+    				</tr>
+				</tbody>
+			</table>
+                       
+    		<div class="comment-box" id="$!{unevals.orderSubId}" style="display:none" >
+    			<div class="box-t"></div>
+    			<form class="form-horizontal" id="$!{unevals.orderSubId}Form">
+					<input type="hidden" id="orderId" name="orderId" value="$!{unevals.orderId}"/>
+					<input type="hidden" id="orderSubId" name="orderSubId" value="$!{unevals.orderSubId}"/>
+					<input type="hidden" id="gdsId" name="gdsId"value="$!{unevals.gdsId}"/>
+					<input type="hidden" id="gdsName" name="gdsName"value="$!{unevals.gdsName}"/>
+					<input type="hidden" id="skuId" name="skuId"value="$!{unevals.skuId}"/>
+					<input type="hidden" id="shopId" name="shopId"value="$!{unevals.shopId}"/>
+    				<div class="control-group">
+    					<label class="control-label">
+    					<span class="c-red">*</span>
+    					 评分： </label>
+    					<div class="controls">
+    						<span class="commstar">
+    							<a href="javascript:void(0);" class="star1" id="star1" onclick="chooseScore(this,1)"></a>
+    							<a href="javascript:void(0);" class="star2" id="star2" onclick="chooseScore(this,2)"></a>
+    							<a href="javascript:void(0);" class="star3" id="star3" onclick="chooseScore(this,3)"></a>
+    							<a href="javascript:void(0);" class="star4" id="star4" onclick="chooseScore(this,4)"></a>
+    							<a href="javascript:void(0);" class="star5" id="star5" onclick="chooseScore(this,5)"></a>
+    						</span>
+							<input class="required" type="hidden" id="score" name="score" value=""/>
+    					</div>
+    				</div>
+                    
+    	#*			<div class="control-group">
+    					<label class="control-label"><span class="c-red">*</span>标签： </label>
+    					<div class="controls">
+    						<ul class="tips-list ">
+    							<li class=""><s class="f-check"></s>快递给力</li>
+    							<li class=""><s class="f-check"></s>包装不错</li>
+    							<li class=""><s class="f-check"></s>包装不错</li>
+    							<li class=""><s class="f-check"></s>包装不错</li>
+    							<li class=""><s class="f-check"></s>快递给力</li>
+    							<li class=""><s class="f-check"></s>包装不错</li>
+    							<li class=""><s class="f-check"></s>包装不错</li>
+    							<li class=""><s class="f-check"></s>包装不错</li>
+    							<li class=""><s class="f-check"></s>快递给力</li>
+    							<li class=""><s class="f-check"></s>包装不错</li>
+    							<li class=""><s class="f-check"></s>包装不错</li>
+    							<li class=""><s class="f-check"></s>包装不错</li>
+    						</ul>
+    					</div>
+    				</div>*#
+					
+    				<div class="control-group">
+    					<label class="control-label"><span class="c-red">*</span>内容： </label>
+    					<div class="controls">
+    						<div>
+    							<textarea class="textbox required" id="detail$!{sortno}" name="detail" onkeyDown="textCounter('detail$!{sortno}',100,'remLenHead$!{sortno}')" onkeyup="textCounter('detail$!{sortno}',100,'remLenHead$!{sortno}')"></textarea>
+    						</div>
+    						<div class="inum"><b id="remLenHead$!{sortno}">0</b>/100</div>
+    					</div>
+    				</div>
+                    
+    				<div class="control-group">
+    					<div class="controls">
+    						<button class="btn" type="button"  onclick='save(this,"$!{unevals.orderSubId}")'>评价并继续</button>
+    					</div>
+    				</div>
+    			</form>
+    		</div>
+        </div>
+       #set($sortno = $sortno + 1) 
+	#end
+
+
+	<div class="fav-opt clearfix" style="margin-top: 20px;">
+		<!--        begin    of    分页                      -->
+		<div class="row-fluid">
+			<div id="pageMainBox" class="pagination text-right mpage">
+				<div id="pageControlbar" class="ecppage" data-total-page="${gridResult.totalPage}" data-total-row="${gridResult.totalRow}" data-page-size="${gridResult.pageSize}" data-page-number="${gridResult.pageNumber}" data-status="begin"></div>
+			</div>	
+			<div class="" style="margin-top: 5px;"></div>
+		</div> <!--         end    of     分页                           -->
+	</div>
+
+</div>                      
+

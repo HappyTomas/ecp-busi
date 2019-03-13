@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.busi.GdsMediaLibMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsMediaLib" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="LIB_NAME" property="libName" jdbcType="VARCHAR" />
+    <result column="LIB_DESC" property="libDesc" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="V_NOW" property="vNow" jdbcType="INTEGER" />
+    <result column="V_LIMIT" property="vLimit" jdbcType="INTEGER" />
+    <result column="A_NOW" property="aNow" jdbcType="INTEGER" />
+    <result column="A_LIMIT" property="aLimit" jdbcType="INTEGER" />
+    <result column="P_NOW" property="pNow" jdbcType="INTEGER" />
+    <result column="P_LIMIT" property="pLimit" jdbcType="INTEGER" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, LIB_NAME, LIB_DESC, SHOP_ID, V_NOW, V_LIMIT, A_NOW, A_LIMIT, P_NOW, P_LIMIT, 
+    STATUS, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsMediaLibCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_gds_media_lib
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_gds_media_lib
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_gds_media_lib
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsMediaLibCriteria" >
+    delete from t_gds_media_lib
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.goods.dao.model.GdsMediaLib" >
+    insert into t_gds_media_lib (ID, LIB_NAME, LIB_DESC, 
+      SHOP_ID, V_NOW, V_LIMIT, 
+      A_NOW, A_LIMIT, P_NOW, 
+      P_LIMIT, STATUS, CREATE_TIME, 
+      CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+      )
+    values (#{id,jdbcType=INTEGER}, #{libName,jdbcType=VARCHAR}, #{libDesc,jdbcType=VARCHAR}, 
+      #{shopId,jdbcType=INTEGER}, #{vNow,jdbcType=INTEGER}, #{vLimit,jdbcType=INTEGER}, 
+      #{aNow,jdbcType=INTEGER}, #{aLimit,jdbcType=INTEGER}, #{pNow,jdbcType=INTEGER}, 
+      #{pLimit,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsMediaLib" >
+    insert into t_gds_media_lib
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="libName != null" >
+        LIB_NAME,
+      </if>
+      <if test="libDesc != null" >
+        LIB_DESC,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="vNow != null" >
+        V_NOW,
+      </if>
+      <if test="vLimit != null" >
+        V_LIMIT,
+      </if>
+      <if test="aNow != null" >
+        A_NOW,
+      </if>
+      <if test="aLimit != null" >
+        A_LIMIT,
+      </if>
+      <if test="pNow != null" >
+        P_NOW,
+      </if>
+      <if test="pLimit != null" >
+        P_LIMIT,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="libName != null" >
+        #{libName,jdbcType=VARCHAR},
+      </if>
+      <if test="libDesc != null" >
+        #{libDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="vNow != null" >
+        #{vNow,jdbcType=INTEGER},
+      </if>
+      <if test="vLimit != null" >
+        #{vLimit,jdbcType=INTEGER},
+      </if>
+      <if test="aNow != null" >
+        #{aNow,jdbcType=INTEGER},
+      </if>
+      <if test="aLimit != null" >
+        #{aLimit,jdbcType=INTEGER},
+      </if>
+      <if test="pNow != null" >
+        #{pNow,jdbcType=INTEGER},
+      </if>
+      <if test="pLimit != null" >
+        #{pLimit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsMediaLibCriteria" resultType="java.lang.Long" >
+    select count(*) from t_gds_media_lib
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_gds_media_lib
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.libName != null" >
+        LIB_NAME = #{record.libName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.libDesc != null" >
+        LIB_DESC = #{record.libDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.vNow != null" >
+        V_NOW = #{record.vNow,jdbcType=INTEGER},
+      </if>
+      <if test="record.vLimit != null" >
+        V_LIMIT = #{record.vLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.aNow != null" >
+        A_NOW = #{record.aNow,jdbcType=INTEGER},
+      </if>
+      <if test="record.aLimit != null" >
+        A_LIMIT = #{record.aLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.pNow != null" >
+        P_NOW = #{record.pNow,jdbcType=INTEGER},
+      </if>
+      <if test="record.pLimit != null" >
+        P_LIMIT = #{record.pLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_gds_media_lib
+    set ID = #{record.id,jdbcType=INTEGER},
+      LIB_NAME = #{record.libName,jdbcType=VARCHAR},
+      LIB_DESC = #{record.libDesc,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      V_NOW = #{record.vNow,jdbcType=INTEGER},
+      V_LIMIT = #{record.vLimit,jdbcType=INTEGER},
+      A_NOW = #{record.aNow,jdbcType=INTEGER},
+      A_LIMIT = #{record.aLimit,jdbcType=INTEGER},
+      P_NOW = #{record.pNow,jdbcType=INTEGER},
+      P_LIMIT = #{record.pLimit,jdbcType=INTEGER},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsMediaLib" >
+    update t_gds_media_lib
+    <set >
+      <if test="libName != null" >
+        LIB_NAME = #{libName,jdbcType=VARCHAR},
+      </if>
+      <if test="libDesc != null" >
+        LIB_DESC = #{libDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="vNow != null" >
+        V_NOW = #{vNow,jdbcType=INTEGER},
+      </if>
+      <if test="vLimit != null" >
+        V_LIMIT = #{vLimit,jdbcType=INTEGER},
+      </if>
+      <if test="aNow != null" >
+        A_NOW = #{aNow,jdbcType=INTEGER},
+      </if>
+      <if test="aLimit != null" >
+        A_LIMIT = #{aLimit,jdbcType=INTEGER},
+      </if>
+      <if test="pNow != null" >
+        P_NOW = #{pNow,jdbcType=INTEGER},
+      </if>
+      <if test="pLimit != null" >
+        P_LIMIT = #{pLimit,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.goods.dao.model.GdsMediaLib" >
+    update t_gds_media_lib
+    set LIB_NAME = #{libName,jdbcType=VARCHAR},
+      LIB_DESC = #{libDesc,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      V_NOW = #{vNow,jdbcType=INTEGER},
+      V_LIMIT = #{vLimit,jdbcType=INTEGER},
+      A_NOW = #{aNow,jdbcType=INTEGER},
+      A_LIMIT = #{aLimit,jdbcType=INTEGER},
+      P_NOW = #{pNow,jdbcType=INTEGER},
+      P_LIMIT = #{pLimit,jdbcType=INTEGER},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/tx 
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	
+	<bean id="jdGdsSendSV"
+		class="com.zengshi.ecp.aip.third.service.busi.gds.impl.JdGdsSendSVImpl"/>
+		
+	<bean id="taobaoGdsSendSV"
+		class="com.zengshi.ecp.aip.third.service.busi.gds.impl.TaobaoGdsSendSVImpl"/>
+				
+	<bean id="youzanGdsSendSV"
+		class="com.zengshi.ecp.aip.third.service.busi.gds.impl.YouzanGdsSendSVImpl"/>
+		
+	<bean id="defaultGdsSendSV"
+		class="com.zengshi.ecp.aip.third.service.busi.gds.impl.DefaultGdsSendSVImpl">
+		  <property name="gdsSendSVMap">
+			  <map>
+                <entry key="jd">
+                      <ref bean="jdGdsSendSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoGdsSendSV"/>
+                </entry>
+                 <entry key="youzan">
+                      <ref bean="youzanGdsSendSV"/>
+                </entry>
+              </map>
+		</property> 
+	</bean>	
+	
+	
+		
+	<bean id="jdTokenSV"
+		class="com.zengshi.ecp.aip.third.service.busi.token.impl.JdTokenSVImpl"/>
+		
+	<bean id="taobaoTokenSV"
+		class="com.zengshi.ecp.aip.third.service.busi.token.impl.TaobaoTokenSVImpl"/>
+				
+	<bean id="youzanTokenSV"
+		class="com.zengshi.ecp.aip.third.service.busi.token.impl.YouzanTokenSVImpl"/>
+		
+	<bean id="defaultTokenSV"
+		class="com.zengshi.ecp.aip.third.service.busi.token.impl.DefaultTokenSVImpl">
+			 <!-- <property name="tokenSVMap" ref="mapTokenSV"> -->
+		  <property name="tokenSVMap">  
+            <map>  
+                 <entry key="jd">
+                      <ref bean="jdTokenSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoTokenSV"/>
+                </entry>
+                 <entry key="youzan">
+                      <ref bean="youzanTokenSV"/>
+                </entry>
+            </map>  
+        </property> 
+	</bean>	
+	
+	
+	<bean id="jdCatgSV"
+		class="com.zengshi.ecp.aip.third.service.busi.catg.impl.JdCatgSVImpl"/>
+		
+	<bean id="taobaoCatgSV"
+		class="com.zengshi.ecp.aip.third.service.busi.catg.impl.TaobaoCatgSVImpl">
+		  <property name="fields">
+		      <value> cid,parent_cid,name,is_parent,status,taosir_cat</value>
+		  </property>  
+		   <property name="fieldsProps">
+		      <value>cid,parent_cid,name,is_parent,status,features,taosir_cat</value>
+		  </property>   
+	</bean>	  
+	<bean id="taobaoShopCatgSV"
+		class="com.zengshi.ecp.aip.third.service.busi.catg.impl.TaobaoShopCatgSVImpl">
+		  <property name="fields">
+		     <!--  <value> cid,parent_cid,name,is_parent,status,taosir_cat</value> -->
+		     <value> brand.vid, brand.name, item_cat.cid, item_cat.name, item_cat.status,item_cat.sort_order,item_cat.parent_cid,item_cat.is_parent, xinpin_item_cat.cid, xinpin_item_cat.name, xinpin_item_cat.status, xinpin_item_cat.sort_order, xinpin_item_cat.parent_cid, xinpin_item_cat.is_parent</value>
+		  </property>  
+		   <property name="fieldsProps">
+		     <!--  <value>cid,parent_cid,name,is_parent,status,features,taosir_cat</value> -->
+		     <value> brand.vid, brand.name, item_cat.cid, item_cat.name, item_cat.status,item_cat.sort_order,item_cat.parent_cid,item_cat.is_parent,item_cat.features, xinpin_item_cat.cid, xinpin_item_cat.name, xinpin_item_cat.status, xinpin_item_cat.sort_order, xinpin_item_cat.parent_cid, xinpin_item_cat.is_parent,xinpin_item_cat.features</value>
+		  </property>   
+	</bean>	  			
+	<bean id="youzanCatgSV"
+		class="com.zengshi.ecp.aip.third.service.busi.catg.impl.YouzanCatgSVImpl"/>
+		
+	<bean id="defaultCatgSV"
+		class="com.zengshi.ecp.aip.third.service.busi.catg.impl.DefaultCatgSVImpl">
+		  <property name="catgSVMap">  
+            <map>  
+                 <entry key="jd">
+                      <ref bean="jdCatgSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoShopCatgSV"/>
+                </entry>
+                 <entry key="youzan">
+                      <ref bean="youzanCatgSV"/>
+                </entry>
+            </map>  
+        </property> 
+	</bean>
+	
+	<bean id="jdPropSV"
+		class="com.zengshi.ecp.aip.third.service.busi.prop.impl.JdPropSVImpl"/>
+		
+	<bean id="taobaoPropSV"
+		class="com.zengshi.ecp.aip.third.service.busi.prop.impl.TaobaoPropSVImpl">
+		  <property name="fields">
+		      <value>cid,pid,name,must,multi,is_key_prop,is_sale_prop,is_color_prop,is_enum_prop,is_item_prop</value>
+		  </property>  
+		   <property name="fieldsValue">
+		      <value>cid,pid,name,must,multi,is_key_prop,is_sale_prop,is_color_prop,is_enum_prop,is_item_prop,prop_values</value>
+		  </property>   
+    </bean>
+				
+	<bean id="youzanPropSV"
+		class="com.zengshi.ecp.aip.third.service.busi.prop.impl.YouzanPropSVImpl"/>
+		
+	<bean id="defaultPropSV"
+		class="com.zengshi.ecp.aip.third.service.busi.prop.impl.DefaultPropSVImpl">
+		  <property name="propSVMap">  
+            <map>  
+                 <entry key="jd">
+                      <ref bean="jdPropSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoPropSV"/>
+                </entry>
+                 <entry key="youzan">
+                      <ref bean="youzanPropSV"/>
+                </entry>
+            </map>  
+        </property> 
+	</bean>
+	
+	
+	<bean id="jdOrderDetailSV"
+		class="com.zengshi.ecp.aip.third.service.busi.order.detail.impl.JdOrderDetailSVImpl"/>
+		
+	<bean id="taobaoOrderDetailSV"
+		class="com.zengshi.ecp.aip.third.service.busi.order.detail.impl.TaobaoOrderDetailSVImpl">
+		  <property name="fields">
+		      <value>
+		      	seller_nick,pic_path,payment,seller_rate,post_fee,receiver_name,receiver_country,receiver_state,receiver_city,receiver_district,receiver_town,receiver_address,receiver_zip,receiver_mobile,receiver_phone,consign_time,received_payment,est_con_time,invoice_kind,order_tax_feel,paid_coupon_fee,shop_pick,tid,num,num_iid,status,title,type,price,discount_fee,has_post_fee,shipping_type,total_fee,created,pay_time,invoice_name,orders,buyer_memo,buyer_nick
+		      </value>
+		  </property>  
+    </bean>
+				
+	<bean id="youzanOrderDetailSV"
+		class="com.zengshi.ecp.aip.third.service.busi.order.detail.impl.YouzanOrderDetailSVImpl"/>
+		
+	<bean id="defaultOrderDetailSV"
+		class="com.zengshi.ecp.aip.third.service.busi.order.detail.impl.DefaultOrderDetailSVImpl">
+		  <property name="orderDetailSVMap">  
+            <map>  
+                 <entry key="jd">
+                      <ref bean="jdOrderDetailSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoOrderDetailSV"/>
+                </entry>
+                 <entry key="youzan">
+                      <ref bean="youzanOrderDetailSV"/>
+                </entry>
+            </map>  
+        </property> 
+	</bean>
+		
+	<bean id="taobaoUserPermitSV"
+		class="com.zengshi.ecp.aip.third.service.busi.permit.impl.TaobaoUserPermitSVImpl">
+		  <property name="fields">
+		      <value>user_nick,topics,user_id,is_valid,created,modified</value>
+		  </property>  
+		</bean>	
+				
+	<bean id="jdUserPermitSV"
+		class="com.zengshi.ecp.aip.third.service.busi.permit.impl.JdUserPermitSVImpl"/>
+		
+	<bean id="defaultUserPermitSV"
+		class="com.zengshi.ecp.aip.third.service.busi.permit.impl.DefaultUserPerimitSVImpl">
+		  <property name="userPermitSVMap">  
+            <map>  
+                 <entry key="jd">
+                      <ref bean="jdUserPermitSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoUserPermitSV"/>
+                </entry>
+            </map>  
+        </property> 
+	</bean>
+	
+	<bean id="jdOrderShipSV"
+		class="com.zengshi.ecp.aip.third.service.busi.order.ship.impl.JdOrderShipSVImpl"/>
+		
+	<bean id="taobaoOrderShipSV"
+		class="com.zengshi.ecp.aip.third.service.busi.order.ship.impl.TaobaoOrderShipSVImpl"/>
+
+	<bean id="youzanOrderShipSV"
+		class="com.zengshi.ecp.aip.third.service.busi.order.ship.impl.YouzanOrderShipSVImpl"/>
+		
+	<bean id="defaultOrderShipSV"
+		class="com.zengshi.ecp.aip.third.service.busi.order.ship.impl.DefaultOrderShipSVImpl">
+		  <property name="orderShipSVMap">  
+            <map>
+                 <entry key="jd">
+                      <ref bean="jdOrderShipSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoOrderShipSV"/>
+                </entry>
+                 <entry key="youzan">
+                      <ref bean="youzanOrderShipSV"/>
+                </entry>
+            </map>
+        </property> 
+	</bean>
+	
+	<bean id="jdOrderLogisticsSV"
+		class="com.zengshi.ecp.aip.third.service.busi.order.logistics.impl.JdOrderLogisticsSVImpl"/>
+		
+	<bean id="taobaoOrderLogisticsSV"
+		class="com.zengshi.ecp.aip.third.service.busi.order.logistics.impl.TaobaoOrderLogisticsSVImpl">
+	  <property name="fields">
+	      <value>
+	      	id,code,name,reg_mail_no
+	      </value>
+	  </property>  
+	</bean>
+
+	<bean id="youzanOrderLogisticsSV"
+		class="com.zengshi.ecp.aip.third.service.busi.order.logistics.impl.YouzanOrderLogisticsSVImpl"/>
+		
+	<bean id="defaultOrderLogisticsSV"
+		class="com.zengshi.ecp.aip.third.service.busi.order.logistics.impl.DefaultOrderLogisticsSVImpl">
+		  <property name="orderLogisticsSVMap">  
+            <map>
+                 <entry key="jd">
+                      <ref bean="jdOrderLogisticsSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoOrderLogisticsSV"/>
+                </entry>
+                 <entry key="youzan">
+                      <ref bean="youzanOrderLogisticsSV"/>
+                </entry>
+            </map>
+        </property> 
+	</bean>
+	
+	
+	<bean id="jdStockSV"
+		class="com.zengshi.ecp.aip.third.service.busi.stock.impl.JdStockSVImpl"/>
+		
+	<bean id="taobaoStockSV"
+		class="com.zengshi.ecp.aip.third.service.busi.stock.impl.TaobaoStockSVImpl"/>
+				
+	<bean id="youzanStockSV"
+		class="com.zengshi.ecp.aip.third.service.busi.stock.impl.YouzanStockSVImpl"/>
+	<bean id="youzanOrdersSV"
+		  class="com.zengshi.ecp.aip.third.service.busi.order.youzan.YouzanOrdersSVImpl"/>
+	<bean id="defaultStockSV"
+		class="com.zengshi.ecp.aip.third.service.busi.stock.impl.DefaultStockSVImpl">
+		  <property name="stockSVMap">
+			  <map>
+                <entry key="jd">
+                      <ref bean="jdStockSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoStockSV"/>
+                </entry>
+                 <entry key="youzan">
+                      <ref bean="youzanStockSV"/>
+                </entry>
+              </map>
+		</property> 
+	</bean>	
+	
+	<bean id="jdSellerSV"
+		class="com.zengshi.ecp.aip.third.service.busi.seller.impl.JdSellerSVImpl"/>
+		
+	<bean id="taobaoSellerSV"
+		class="com.zengshi.ecp.aip.third.service.busi.seller.impl.TaobaoSellerSVImpl">
+		 <property name="fields">
+	      <value>
+	      	user_id,nick,sex,status,type
+	      </value>
+	     </property>  
+	  </bean>
+				
+	<bean id="youzanSellerSV"
+		class="com.zengshi.ecp.aip.third.service.busi.seller.impl.YouzanSellerSVImpl"/>
+		
+	<bean id="defaultSellerSV"
+		class="com.zengshi.ecp.aip.third.service.busi.seller.impl.DefaultSellerSVImpl">
+		  <property name="sellerSVMap">
+			  <map>
+                <entry key="jd">
+                      <ref bean="jdSellerSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoSellerSV"/>
+                </entry>
+                 <entry key="youzan">
+                      <ref bean="youzanSellerSV"/>
+                </entry>
+              </map>
+		</property> 
+	</bean>	
+	
+	<bean id="jdProductSV"
+		class="com.zengshi.ecp.aip.third.service.busi.product.impl.JdProductSVImpl"/>
+		
+	<bean id="taobaoProductSV"
+		class="com.zengshi.ecp.aip.third.service.busi.product.impl.TaobaoProductSVImpl"/>
+				
+	<bean id="youzanProductSV"
+		class="com.zengshi.ecp.aip.third.service.busi.product.impl.YouzanProductSVImpl"/>
+		
+	<bean id="defaultProductSV"
+		class="com.zengshi.ecp.aip.third.service.busi.product.impl.DefaultProductSVImpl">
+		  <property name="productSVMap">
+			  <map>
+                <entry key="jd">
+                      <ref bean="jdProductSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoProductSV"/>
+                </entry>
+                 <entry key="youzan">
+                      <ref bean="youzanProductSV"/>
+                </entry>
+              </map>
+		</property> 
+	</bean>	
+	
+	<bean id="jdGdsSV"
+		class="com.zengshi.ecp.aip.third.service.busi.gds.impl.JdGdsSVImpl"/>
+		
+	<bean id="taobaoGdsSV"
+		class="com.zengshi.ecp.aip.third.service.busi.gds.impl.TaobaoGdsSVImpl"/>
+				
+	<bean id="youzanGdsSV"
+		class="com.zengshi.ecp.aip.third.service.busi.gds.impl.YouzanGdsSVImpl"/>
+		
+	<bean id="defaultGdsSV"
+		class="com.zengshi.ecp.aip.third.service.busi.gds.impl.DefaultGdsSVImpl">
+		  <property name="gdsSVMap">
+			  <map>
+                <entry key="jd">
+                      <ref bean="jdGdsSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoGdsSV"/>
+                </entry>
+                 <entry key="youzan">
+                      <ref bean="youzanGdsSV"/>
+                </entry>
+              </map>
+		</property> 
+	</bean>	
+	
+	
+	<bean id="jdUploadSV"
+		class="com.zengshi.ecp.aip.third.service.busi.upload.impl.JdUploadSVImpl"/>
+		
+	<bean id="taobaoUploadSV"
+		class="com.zengshi.ecp.aip.third.service.busi.upload.impl.TaobaoUploadSVImpl"/>
+				
+	<bean id="youzanUploadSV"
+		class="com.zengshi.ecp.aip.third.service.busi.upload.impl.YouzanUploadSVImpl"/>
+		
+	<bean id="defaultUploadSV"
+		class="com.zengshi.ecp.aip.third.service.busi.upload.impl.DefaultUploadSVImpl">
+		  <property name="uploadSVMap">
+			  <map>
+                <entry key="jd">
+                      <ref bean="jdUploadSV"/>
+                </entry>
+                 <entry key="taobao">
+                      <ref bean="taobaoUploadSV"/>
+                </entry>
+                 <entry key="youzan">
+                      <ref bean="youzanUploadSV"/>
+                </entry>
+              </map>
+		</property> 
+	</bean>	
+</beans>

@@ -1,0 +1,17 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/utils/linkInput/index.js?version=$!{JS_VERSION}" ></script>
+#if(${types} && ${types.size()} >= 0)
+	<ul class="nav nav-tabs" id="link-type-tabs" style="display:none;">
+	  #foreach($type in ${types})
+	  <li class="#if($velocityCount == 1)active#end " type-code ="$!{type.code}" type-name="$!{type.name}"><a  href="javascript:void(0);">$!{type.zhName}链接</a></li>
+	  #end
+	</ul>
+	 
+	<div class="tab-content">
+	  #foreach($type in ${types})
+	  <div class="tab-pane #if($velocityCount == 1)active#end" id="$!{type.name}"></div>
+	  #end
+	</div>
+#else
+未配置任何链接类型，请联系管理员。
+#end

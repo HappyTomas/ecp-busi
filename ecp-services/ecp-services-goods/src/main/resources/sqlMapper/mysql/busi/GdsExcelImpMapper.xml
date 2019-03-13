@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.busi.GdsExcelImpMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsExcelImp" >
+    <id column="IMPORT_ID" property="importId" jdbcType="INTEGER" />
+    <result column="BUSI_SRC" property="busiSrc" jdbcType="VARCHAR" />
+    <result column="GDS_ID" property="gdsId" jdbcType="INTEGER" />
+    <result column="CATG_CODE" property="catgCode" jdbcType="VARCHAR" />
+    <result column="GDS_NAME" property="gdsName" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="GDS_TYPE" property="gdsType" jdbcType="INTEGER" />
+    <result column="GDS_TITLE" property="gdsTitle" jdbcType="VARCHAR" />
+    <result column="GDS_PRICE" property="gdsPrice" jdbcType="VARCHAR" />
+    <result column="GDS_PROP_STR" property="gdsPropStr" jdbcType="VARCHAR" />
+    <result column="GDS_STOCK" property="gdsStock" jdbcType="INTEGER" />
+    <result column="FAIL_REASON" property="failReason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    IMPORT_ID, BUSI_SRC, GDS_ID, CATG_CODE, GDS_NAME, SHOP_ID, GDS_TYPE, GDS_TITLE, GDS_PRICE, 
+    GDS_PROP_STR, GDS_STOCK, FAIL_REASON
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImpCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_gds_excel_imp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_gds_excel_imp
+    where IMPORT_ID = #{importId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_gds_excel_imp
+    where IMPORT_ID = #{importId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImpCriteria" >
+    delete from t_gds_excel_imp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImp" >
+    insert into t_gds_excel_imp (IMPORT_ID, BUSI_SRC, GDS_ID, 
+      CATG_CODE, GDS_NAME, SHOP_ID, 
+      GDS_TYPE, GDS_TITLE, GDS_PRICE, 
+      GDS_PROP_STR, GDS_STOCK, FAIL_REASON
+      )
+    values (#{importId,jdbcType=INTEGER}, #{busiSrc,jdbcType=VARCHAR}, #{gdsId,jdbcType=INTEGER}, 
+      #{catgCode,jdbcType=VARCHAR}, #{gdsName,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, 
+      #{gdsType,jdbcType=INTEGER}, #{gdsTitle,jdbcType=VARCHAR}, #{gdsPrice,jdbcType=VARCHAR}, 
+      #{gdsPropStr,jdbcType=VARCHAR}, #{gdsStock,jdbcType=INTEGER}, #{failReason,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImp" >
+    insert into t_gds_excel_imp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="importId != null" >
+        IMPORT_ID,
+      </if>
+      <if test="busiSrc != null" >
+        BUSI_SRC,
+      </if>
+      <if test="gdsId != null" >
+        GDS_ID,
+      </if>
+      <if test="catgCode != null" >
+        CATG_CODE,
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="gdsType != null" >
+        GDS_TYPE,
+      </if>
+      <if test="gdsTitle != null" >
+        GDS_TITLE,
+      </if>
+      <if test="gdsPrice != null" >
+        GDS_PRICE,
+      </if>
+      <if test="gdsPropStr != null" >
+        GDS_PROP_STR,
+      </if>
+      <if test="gdsStock != null" >
+        GDS_STOCK,
+      </if>
+      <if test="failReason != null" >
+        FAIL_REASON,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="importId != null" >
+        #{importId,jdbcType=INTEGER},
+      </if>
+      <if test="busiSrc != null" >
+        #{busiSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsId != null" >
+        #{gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="catgCode != null" >
+        #{catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsName != null" >
+        #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsType != null" >
+        #{gdsType,jdbcType=INTEGER},
+      </if>
+      <if test="gdsTitle != null" >
+        #{gdsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsPrice != null" >
+        #{gdsPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsPropStr != null" >
+        #{gdsPropStr,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsStock != null" >
+        #{gdsStock,jdbcType=INTEGER},
+      </if>
+      <if test="failReason != null" >
+        #{failReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImpCriteria" resultType="java.lang.Long" >
+    select count(*) from t_gds_excel_imp
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_gds_excel_imp
+    <set >
+      <if test="record.importId != null" >
+        IMPORT_ID = #{record.importId,jdbcType=INTEGER},
+      </if>
+      <if test="record.busiSrc != null" >
+        BUSI_SRC = #{record.busiSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsId != null" >
+        GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.catgCode != null" >
+        CATG_CODE = #{record.catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsName != null" >
+        GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsType != null" >
+        GDS_TYPE = #{record.gdsType,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsTitle != null" >
+        GDS_TITLE = #{record.gdsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsPrice != null" >
+        GDS_PRICE = #{record.gdsPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsPropStr != null" >
+        GDS_PROP_STR = #{record.gdsPropStr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsStock != null" >
+        GDS_STOCK = #{record.gdsStock,jdbcType=INTEGER},
+      </if>
+      <if test="record.failReason != null" >
+        FAIL_REASON = #{record.failReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_gds_excel_imp
+    set IMPORT_ID = #{record.importId,jdbcType=INTEGER},
+      BUSI_SRC = #{record.busiSrc,jdbcType=VARCHAR},
+      GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      CATG_CODE = #{record.catgCode,jdbcType=VARCHAR},
+      GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      GDS_TYPE = #{record.gdsType,jdbcType=INTEGER},
+      GDS_TITLE = #{record.gdsTitle,jdbcType=VARCHAR},
+      GDS_PRICE = #{record.gdsPrice,jdbcType=VARCHAR},
+      GDS_PROP_STR = #{record.gdsPropStr,jdbcType=VARCHAR},
+      GDS_STOCK = #{record.gdsStock,jdbcType=INTEGER},
+      FAIL_REASON = #{record.failReason,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImp" >
+    update t_gds_excel_imp
+    <set >
+      <if test="busiSrc != null" >
+        BUSI_SRC = #{busiSrc,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsId != null" >
+        GDS_ID = #{gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="catgCode != null" >
+        CATG_CODE = #{catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME = #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsType != null" >
+        GDS_TYPE = #{gdsType,jdbcType=INTEGER},
+      </if>
+      <if test="gdsTitle != null" >
+        GDS_TITLE = #{gdsTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsPrice != null" >
+        GDS_PRICE = #{gdsPrice,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsPropStr != null" >
+        GDS_PROP_STR = #{gdsPropStr,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsStock != null" >
+        GDS_STOCK = #{gdsStock,jdbcType=INTEGER},
+      </if>
+      <if test="failReason != null" >
+        FAIL_REASON = #{failReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where IMPORT_ID = #{importId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.goods.dao.model.GdsExcelImp" >
+    update t_gds_excel_imp
+    set BUSI_SRC = #{busiSrc,jdbcType=VARCHAR},
+      GDS_ID = #{gdsId,jdbcType=INTEGER},
+      CATG_CODE = #{catgCode,jdbcType=VARCHAR},
+      GDS_NAME = #{gdsName,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      GDS_TYPE = #{gdsType,jdbcType=INTEGER},
+      GDS_TITLE = #{gdsTitle,jdbcType=VARCHAR},
+      GDS_PRICE = #{gdsPrice,jdbcType=VARCHAR},
+      GDS_PROP_STR = #{gdsPropStr,jdbcType=VARCHAR},
+      GDS_STOCK = #{gdsStock,jdbcType=INTEGER},
+      FAIL_REASON = #{failReason,jdbcType=VARCHAR}
+    where IMPORT_ID = #{importId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+   <bean id="traMgnExportUnpfOrd" class="com.distribute.tx.eventual.TransactionManager"
+		  init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionManager" />
+		<property name="sequence" ref="sequence" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="participant" value="sample_group_export" />
+	</bean>
+	
+	<bean id="unpfOrdExportOrd" class="com.distribute.tx.eventual.TransactionListenerManager" depends-on="beanDefinitionManager"
+		  init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="unpfOrdExportOrdSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="sample_group_exportOrd" />
+		<property name="transactionList">
+			<list>
+				<value>business-topic-exportUnpfOrd</value>
+			</list>
+		</property>
+	</bean>
+</beans>

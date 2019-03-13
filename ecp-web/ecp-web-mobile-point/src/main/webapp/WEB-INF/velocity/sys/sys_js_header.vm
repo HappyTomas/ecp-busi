@@ -1,0 +1,18 @@
+<script type="text/javascript">
+//javascript中使用全局URL基础路径
+//框架插件中使用，业务模块中勿用
+var $webroot = '${CONTEXT_PATH}/';
+</script>
+
+<!-- <script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script> -->
+<link rel="stylesheet" type="text/css" href="$!{RESOURCE_PATH}/ui/amazeui/css/amazeui.min.css" />
+
+#parse("/sys/sys_ui_js_header.vm") 
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery-2.2.4.min.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/ui/amazeui/amazeui.min.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/amazeui/amazeui.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.core.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.utils.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.dialog.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/bootstrap/theme/gebo_admin/js/jquery_cookie.min.js"></script>

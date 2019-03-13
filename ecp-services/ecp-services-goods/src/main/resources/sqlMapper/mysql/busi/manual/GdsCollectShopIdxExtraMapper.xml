@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.busi.manual.GdsCollectShopIdxExtraMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsCollectShopIdx" >
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="COLL_ID" property="collId" jdbcType="INTEGER" />
+    <result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+    <result column="GDS_ID" property="gdsId" jdbcType="INTEGER" />
+    <result column="GDS_NAME" property="gdsName" jdbcType="VARCHAR" />
+    <result column="GDS_PRICE" property="gdsPrice" jdbcType="INTEGER" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="STAFF_NAME" property="staffName" jdbcType="VARCHAR" />
+    <result column="COLLECTION_TIME" property="collectionTime" jdbcType="TIMESTAMP" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  
+  
+  <resultMap id="projectionMap"  type="com.zengshi.ecp.goods.dubbo.dto.GdsCollectRespDTO">
+     <result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+     <result column="GDS_ID" property="gdsId" jdbcType="INTEGER" />
+     <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+     <result  column="COLL_AMOUNT" property="collectStaffCount" jdbcType="INTEGER"/>
+  </resultMap>
+  
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SHOP_ID, COLL_ID, SKU_ID, GDS_ID, GDS_NAME, GDS_PRICE, STAFF_ID, STAFF_NAME, COLLECTION_TIME, 
+    REMARK, STATUS, CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  
+  <!--店铺维度，被收藏的单品列表获取(用于分页)-->
+  <select id="selectByExampleDistinctSkuId" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsCollectShopIdxCriteria" >
+<!--     <if test="limitClauseStart != null and limitClauseStart >= 0" > -->
+<!--        select * from (select t_1.*,rownum as row_num from ( -->
+<!--     </if> -->
+    <!--表示col1和col2...都相同的只出来一笔-->
+    select distinct SKU_ID,GDS_ID,GDS_NAME,SHOP_ID 
+    <!--<include refid="Base_Column_List" />-->
+    from t_gds_collect_shop_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <!--select distinct的排序字段必须在distinct字段列表中，毫无意义，除非按SKU_ID排序-->
+    <!--<if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>-->
+     <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+<!--     <if test="limitClauseStart != null and limitClauseStart >= 0" > -->
+<!--        <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]> -->
+<!--     </if> -->
+  </select>
+  
+  
+  <!--店铺维度根据收藏数进行降序排列.-->
+  <select id="selectByExampleOrderByCollAmount" resultMap="projectionMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsCollectShopIdxCriteria" >
+<!--     <if test="limitClauseStart != null and limitClauseStart >= 0" > -->
+<!--        select * from (select t_1.*,rownum as row_num from ( -->
+<!--     </if> -->
+    select GDS_ID,SKU_ID,SHOP_ID,COUNT(STAFF_ID) COLL_AMOUNT
+    from T_GDS_COLLECT_SHOP_IDX
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    GROUP BY GDS_ID,SKU_ID,SHOP_ID
+    <!--select distinct的排序字段必须在distinct字段列表中，毫无意义，除非按SKU_ID排序-->
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+<!--     <if test="limitClauseStart != null and limitClauseStart >= 0" > -->
+<!--        <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]> -->
+<!--     </if> -->
+  </select>
+  
+  
+  <!--店铺维度根据收藏数进行降序排列.-->
+  <!-- <select id="countByExampleOrderByCollAmount" resultType="java.lang.Long" parameterType="com.zengshi.ecp.goods.dao.model.GdsCollectShopIdxCriteria" >
+    select count(*) from 
+    (select gds_id,sku_id,count(staff_id) as COLL_AMOUNT from t_gds_collect_shop_idx
+     <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    group by  gds_id,sku_id
+    )
+  </select> -->
+  <select id="countByExampleOrderByCollAmount" resultType="java.lang.Long" parameterType="com.zengshi.ecp.goods.dao.model.GdsCollectShopIdxCriteria" >
+    select count (distinct sku_id) 
+     from t_gds_collect_shop_idx
+     <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  
+  
+  <!--店铺维度，被收藏的单品列表长度获取(用于分页)-->
+  <select id="countByExampleDistinctSkuId" parameterType="com.zengshi.ecp.goods.dao.model.GdsCollectShopIdxCriteria" resultType="java.lang.Long" >
+    select count(distinct(SKU_ID)) from t_gds_collect_shop_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+</mapper>

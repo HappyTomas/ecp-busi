@@ -1,0 +1,70 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/msg/mail-set-edit.js?version=$!{JS_VERSION}" ></script>
+
+			<div class="formBox row-fluid">
+				<form id="mailsetForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+				<div class="span6">
+				<div class="row-fluid formSep">
+					<div class="span8">
+							<label class="control-label" style="width:155px;">SMTP服务器：</label>
+							<div class="controls" style="margin-left:155px;">
+								<input type="text" class="input-block-level htmlcheck required" name="smtpServer" value="$!{emailRes.smtpServer}" placeholder="" maxlength="32"/>
+							</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span8">
+							<label class="control-label" style="width:155px;">SMTP端口：</label>
+							<div class="controls" style="margin-left:155px;">
+								<input type="text" class="input-block-level htmlcheck number required" name="smtpPort" value="$!{emailRes.smtpPort}" maxlength="8"/>
+							</div>
+					</div>
+				</div>
+				
+				<div class="row-fluid formSep">
+					<div class="span8">
+							<label class="control-label"  style="width:155px;">发件人邮件地址：</label>
+							<div class="controls" style="margin-left:155px;">
+								<input type="text" class="input-block-level htmlcheck required email" name="sendEmail" value="$!{emailRes.sendEmail}" maxlength="64"/>
+							</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span8">
+							<label class="control-label" style="width:155px;">SMTP身份验证用户名：</label>
+							<div class="controls" style="margin-left:155px;">
+								<input type="text" class="input-block-level htmlcheck required" name="smtpUser" value="$!{emailRes.smtpUser}" maxlength="32"/>
+							</div>
+					</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span8">
+							<label class="control-label" style="width:155px;">SMTP身份验证密码：</label>
+							<div class="controls" style="margin-left:155px;">
+								<input type="text" class="input-block-level htmlcheck required" name="smtpPassword" value="$!{emailRes.smtpPassword}" maxlength="32"/>
+							</div>
+					</div>
+				</div>
+				
+				
+				
+				<div class="row-fluid formSep">
+					<div class="span8">
+							<label class="control-label" style="width:155px;">测试接收的邮件地址：</label>
+							<div class="controls" style="margin-left:155px;">
+								<input type="text" class="input-block-level htmlcheck email required" name="recEmail" value="$!{emailRes.recEmail}" maxlength="64" />
+								
+							</div>
+					</div>
+					&nbsp;
+					<button type="button" class="btn " id="btnTest"><i class="icon-ok-sign icon-white"></i> 测	试</button>
+				</div>
+					
+				<div class="span8">
+    				<div class="pull-left">
+    					<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i> 保	存</button>
+    				</div>
+				</div>
+			</div>
+		</form>
+	</div>

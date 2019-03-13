@@ -1,0 +1,226 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.zengshi.ecpcore</groupId>
+        <artifactId>ecp-services-client</artifactId>
+	    <version>1.22-RELEASE</version>
+	    <relativePath>../../ecp-client/pom.xml</relativePath>
+	</parent>
+	<artifactId>ecp-services-im-client</artifactId>
+	<version>1.22-RELEASE</version>
+	<packaging>jar</packaging>
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+  
+	<dependencies>
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-sys-client</artifactId>
+			<version>1.22-RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.zengshi.ecp</groupId>
+					<artifactId>ecp-server-start-client</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-cms-client</artifactId>
+			<version>1.22-RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>com.zengshi.ecp</groupId>
+					<artifactId>ecp-server-start-client</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-services-staff-client</artifactId>
+			<version>1.22-RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>ecp-server-start-client</artifactId>
+					<groupId>com.zengshi.ecp</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.zengshi.ecpcore</groupId>
+			<artifactId>ecp-common-intefaces</artifactId>
+			<version>1.22-RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+			<version>4.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpmime</artifactId>
+			<version>4.3.1</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>de.measite.minidns</groupId>
+			<artifactId>minidns</artifactId>
+			<version>0.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jxmpp</groupId>
+			<artifactId>jxmpp-core</artifactId>
+			<version>0.4.0-alpha1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.jxmpp</groupId>
+			<artifactId>jxmpp-util-cache</artifactId>
+			<version>0.4.0-alpha1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-core</artifactId>
+			<version>4.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-bosh</artifactId>
+			<version>4.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-debug</artifactId>
+			<version>4.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-extensions</artifactId>
+			<version>4.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-tcp</artifactId>
+			<version>4.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-im</artifactId>
+			<version>4.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-java7</artifactId>
+			<version>4.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-legacy</artifactId>
+			<version>4.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-experimental</artifactId>
+			<version>4.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-resolver-javax</artifactId>
+			<version>4.1.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.igniterealtime.smack</groupId>
+			<artifactId>smack-resolver-minidns</artifactId>
+			<version>4.1.7</version>
+		</dependency>
+
+	</dependencies>
+	
+	<build>
+		<finalName>ecp-services-im-client</finalName>
+		
+		<sourceDirectory>../src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>../src/main/resources</directory>
+				<includes>
+					<include>dubbo/client/ecp-*.xml</include>
+					<include>message/**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
+
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+					<excludes>
+						<exclude>com/zengshi/ecp/*/dubbo/impl/**</exclude>
+						<exclude>com/zengshi/ecp/*/dubbo/impl/**/*.txt</exclude>
+					</excludes>
+					<includes>
+						<include>com/zengshi/ecp/*/dubbo/**</include>
+					</includes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>jar-no-fork</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			 
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<useUniqueVersions>false</useUniqueVersions>
+						</manifest>
+					</archive>
+					<excludes>
+						<exclude>com/zengshi/ecp/*/dubbo/impl/**</exclude>
+					</excludes>
+					<includes>
+						<include>com/zengshi/ecp/*/dubbo/**</include>
+						<include>dubbo/client/ecp-*.xml</include>
+					    <include>message/**/*.properties</include>
+					</includes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

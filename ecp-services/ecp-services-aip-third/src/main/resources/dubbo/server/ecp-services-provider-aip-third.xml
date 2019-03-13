@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     ">  
+   
+     <!--用于定义对外提供的服务 -->
+     
+     <bean id="tokenRSV" class="com.zengshi.ecp.aip.third.dubbo.impl.TokenRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.third.dubbo.interfaces.ITokenRSV" ref="tokenRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="gdsSendRSV" class="com.zengshi.ecp.aip.third.dubbo.impl.GdsSendRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IGdsSendRSV" ref="gdsSendRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="ordDetialRSV" class="com.zengshi.ecp.aip.third.dubbo.impl.OrdDetailRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IOrdDetialRSV" ref="ordDetialRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="userPermitRSV" class="com.zengshi.ecp.aip.third.dubbo.impl.UserPermitRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IUserPermitRSV" ref="userPermitRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="catgRSV" class="com.zengshi.ecp.aip.third.dubbo.impl.CatgRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.third.dubbo.interfaces.ICatgRSV" ref="catgRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="orderShipRSV" class="com.zengshi.ecp.aip.third.dubbo.impl.OrderShipRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IOrderShipRSV" ref="orderShipRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="orderLogisticsRSV" class="com.zengshi.ecp.aip.third.dubbo.impl.OrderLogisticsRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IOrderLogisticsRSV" ref="orderLogisticsRSV" provider="${default.dubbo.provider.id}"/>
+     
+     <bean id="stockRSV" class="com.zengshi.ecp.aip.third.dubbo.impl.StockRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IStockRSV" ref="stockRSV" provider="${default.dubbo.provider.id}"/>
+          
+     <bean id="thirdUploadRSV" class="com.zengshi.ecp.aip.third.dubbo.impl.ThirdUploadRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IThirdUploadRSV" ref="thirdUploadRSV" provider="${default.dubbo.provider.id}"/>
+
+     <bean id="youzanOrderRSV" class="com.zengshi.ecp.aip.third.dubbo.impl.YouzanOrderRSVImpl"></bean>
+     <dubbo:service interface="com.zengshi.ecp.aip.third.dubbo.interfaces.IYouzanOrderRSV" ref="youzanOrderRSV" provider="${default.dubbo.provider.id}"/>
+
+
+</beans>  

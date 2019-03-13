@@ -1,0 +1,20 @@
+
+  ##parse("/coupon/coupinfo/userule/rule-120.vm") 
+  ##parse("/coupon/coupinfo/userule/rule-170.vm") 
+  ##parse("/coupon/coupinfo/userule/rule-160.vm") 
+  ##parse("/coupon/coupinfo/userule/rule-140.vm") 
+  ##parse("/coupon/coupinfo/userule/rule-150.vm") 
+  ##parse("/coupon/coupinfo/userule/rule-110.vm") 
+  ##parse("/coupon/coupinfo/userule/rule-130.vm") 
+	<div class="alert alert-error hide formValidateMessages" style="color:red;" id="prom-info-valid" >
+				##showSpringAllError("coupVO")
+            </div>
+     <div id="use-rule-all">
+	     #foreach($param in ${couponTypeVO.useMap.keySet()})  
+	    
+	        #if ("1"==${couponTypeVO.useMap.get($param)})
+	           #parse("/coupon/coupinfo/userule/rule-${param}.vm") 
+	        #end
+	 
+	    #end 
+    </div>

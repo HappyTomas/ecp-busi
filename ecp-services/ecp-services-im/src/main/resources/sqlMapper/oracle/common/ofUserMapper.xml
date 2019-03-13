@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.im.dao.mapper.common.ofUserMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.im.dao.model.ofUser" >
+    <id column="USERNAME" property="username" jdbcType="VARCHAR" />
+    <result column="STOREDKEY" property="storedkey" jdbcType="VARCHAR" />
+    <result column="SERVERKEY" property="serverkey" jdbcType="VARCHAR" />
+    <result column="SALT" property="salt" jdbcType="VARCHAR" />
+    <result column="ITERATIONS" property="iterations" jdbcType="INTEGER" />
+    <result column="PLAINPASSWORD" property="plainpassword" jdbcType="VARCHAR" />
+    <result column="ENCRYPTEDPASSWORD" property="encryptedpassword" jdbcType="VARCHAR" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="CREATIONDATE" property="creationdate" jdbcType="CHAR" />
+    <result column="MODIFICATIONDATE" property="modificationdate" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    USERNAME, STOREDKEY, SERVERKEY, SALT, ITERATIONS, PLAINPASSWORD, ENCRYPTEDPASSWORD, 
+    NAME, EMAIL, CREATIONDATE, MODIFICATIONDATE
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.im.dao.model.ofUserCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from ofuser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from ofuser
+    where USERNAME = #{username,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from ofuser
+    where USERNAME = #{username,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.im.dao.model.ofUserCriteria" >
+    delete from ofuser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.im.dao.model.ofUser" >
+    insert into ofuser (USERNAME, STOREDKEY, SERVERKEY, 
+      SALT, ITERATIONS, PLAINPASSWORD, 
+      ENCRYPTEDPASSWORD, NAME, EMAIL, 
+      CREATIONDATE, MODIFICATIONDATE)
+    values (#{username,jdbcType=VARCHAR}, #{storedkey,jdbcType=VARCHAR}, #{serverkey,jdbcType=VARCHAR}, 
+      #{salt,jdbcType=VARCHAR}, #{iterations,jdbcType=INTEGER}, #{plainpassword,jdbcType=VARCHAR}, 
+      #{encryptedpassword,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+      #{creationdate,jdbcType=CHAR}, #{modificationdate,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.im.dao.model.ofUser" >
+    insert into ofuser
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        USERNAME,
+      </if>
+      <if test="storedkey != null" >
+        STOREDKEY,
+      </if>
+      <if test="serverkey != null" >
+        SERVERKEY,
+      </if>
+      <if test="salt != null" >
+        SALT,
+      </if>
+      <if test="iterations != null" >
+        ITERATIONS,
+      </if>
+      <if test="plainpassword != null" >
+        PLAINPASSWORD,
+      </if>
+      <if test="encryptedpassword != null" >
+        ENCRYPTEDPASSWORD,
+      </if>
+      <if test="name != null" >
+        NAME,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE,
+      </if>
+      <if test="modificationdate != null" >
+        MODIFICATIONDATE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="storedkey != null" >
+        #{storedkey,jdbcType=VARCHAR},
+      </if>
+      <if test="serverkey != null" >
+        #{serverkey,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="iterations != null" >
+        #{iterations,jdbcType=INTEGER},
+      </if>
+      <if test="plainpassword != null" >
+        #{plainpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="encryptedpassword != null" >
+        #{encryptedpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="creationdate != null" >
+        #{creationdate,jdbcType=CHAR},
+      </if>
+      <if test="modificationdate != null" >
+        #{modificationdate,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.im.dao.model.ofUserCriteria" resultType="java.lang.Long" >
+    select count(*) from ofuser
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update ofuser
+    <set >
+      <if test="record.username != null" >
+        USERNAME = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.storedkey != null" >
+        STOREDKEY = #{record.storedkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serverkey != null" >
+        SERVERKEY = #{record.serverkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.salt != null" >
+        SALT = #{record.salt,jdbcType=VARCHAR},
+      </if>
+      <if test="record.iterations != null" >
+        ITERATIONS = #{record.iterations,jdbcType=INTEGER},
+      </if>
+      <if test="record.plainpassword != null" >
+        PLAINPASSWORD = #{record.plainpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.encryptedpassword != null" >
+        ENCRYPTEDPASSWORD = #{record.encryptedpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        NAME = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.email != null" >
+        EMAIL = #{record.email,jdbcType=VARCHAR},
+      </if>
+      <if test="record.creationdate != null" >
+        CREATIONDATE = #{record.creationdate,jdbcType=CHAR},
+      </if>
+      <if test="record.modificationdate != null" >
+        MODIFICATIONDATE = #{record.modificationdate,jdbcType=CHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update ofuser
+    set USERNAME = #{record.username,jdbcType=VARCHAR},
+      STOREDKEY = #{record.storedkey,jdbcType=VARCHAR},
+      SERVERKEY = #{record.serverkey,jdbcType=VARCHAR},
+      SALT = #{record.salt,jdbcType=VARCHAR},
+      ITERATIONS = #{record.iterations,jdbcType=INTEGER},
+      PLAINPASSWORD = #{record.plainpassword,jdbcType=VARCHAR},
+      ENCRYPTEDPASSWORD = #{record.encryptedpassword,jdbcType=VARCHAR},
+      NAME = #{record.name,jdbcType=VARCHAR},
+      EMAIL = #{record.email,jdbcType=VARCHAR},
+      CREATIONDATE = #{record.creationdate,jdbcType=CHAR},
+      MODIFICATIONDATE = #{record.modificationdate,jdbcType=CHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.im.dao.model.ofUser" >
+    update ofuser
+    <set >
+      <if test="storedkey != null" >
+        STOREDKEY = #{storedkey,jdbcType=VARCHAR},
+      </if>
+      <if test="serverkey != null" >
+        SERVERKEY = #{serverkey,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="iterations != null" >
+        ITERATIONS = #{iterations,jdbcType=INTEGER},
+      </if>
+      <if test="plainpassword != null" >
+        PLAINPASSWORD = #{plainpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="encryptedpassword != null" >
+        ENCRYPTEDPASSWORD = #{encryptedpassword,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="creationdate != null" >
+        CREATIONDATE = #{creationdate,jdbcType=CHAR},
+      </if>
+      <if test="modificationdate != null" >
+        MODIFICATIONDATE = #{modificationdate,jdbcType=CHAR},
+      </if>
+    </set>
+    where USERNAME = #{username,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.im.dao.model.ofUser" >
+    update ofuser
+    set STOREDKEY = #{storedkey,jdbcType=VARCHAR},
+      SERVERKEY = #{serverkey,jdbcType=VARCHAR},
+      SALT = #{salt,jdbcType=VARCHAR},
+      ITERATIONS = #{iterations,jdbcType=INTEGER},
+      PLAINPASSWORD = #{plainpassword,jdbcType=VARCHAR},
+      ENCRYPTEDPASSWORD = #{encryptedpassword,jdbcType=VARCHAR},
+      NAME = #{name,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      CREATIONDATE = #{creationdate,jdbcType=CHAR},
+      MODIFICATIONDATE = #{modificationdate,jdbcType=CHAR}
+    where USERNAME = #{username,jdbcType=VARCHAR}
+  </update>
+</mapper>

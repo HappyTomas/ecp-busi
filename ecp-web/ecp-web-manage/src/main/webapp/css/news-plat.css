@@ -1,0 +1,124 @@
+@charset "UTF-8";
+.control-lh .controls {
+  margin-top: 8px;
+}
+.add-to {
+  float: right;
+  margin-right: 10px;
+  line-height: 40px;
+}
+.ord-col-box {
+  border: 1px solid #e8f6ff;
+  padding: 10px;
+}
+.ord-col-box .box-tip {
+  color: #fff;
+  padding: 5px 10px;
+  background-color: #65e1e0;
+}
+.control-group .icon-search {
+  margin-left: -25px;
+  cursor: pointer;
+}
+.key-date {
+  font-size: 0;
+}
+.key-date .t-data {
+  color: #fff;
+  padding: 5px 10px;
+  background-color: #65e1e0;
+  display: inline-block;
+  margin-right: 10px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.scroll-dialog {
+  overflow: auto;
+  height: 450px;
+}
+/*404页面*/
+.error-page {
+  position: relative;
+  margin: 0 auto;
+  height: 600px;
+  width: 1000px;
+}
+.error-page .error-tip {
+  position: absolute;
+  right: 40px;
+  top: 260px;
+  width: 360px;
+  font-size: 14px;
+}
+.error-page .error-tip .error-tit {
+  font-size: 16px;
+  text-indent: 0;
+}
+.error-page .error-tip p {
+  line-height: 30px;
+  height: 30px;
+  text-indent: 35px;
+  margin-bottom: 0;
+}
+.error-page .error-tip a,
+.error-page .error-tip b {
+  color: #0878cf;
+}
+.error-bg-500 {
+  background: url("../images/new-plat/500.png") no-repeat 0 50px;
+  height: 550px;
+}
+.error-bg {
+  background: url("../images/new-plat/404.png") no-repeat 0 50px;
+}
+.error-bg .error-tip {
+  top: 280px;
+}
+.pmgr-in .input-medium {
+  width: 206px;
+}
+/*=====第三方关联=====*/
+.relation-container {
+  padding: 20px 40px;
+}
+.relation-tit {
+  font-size: 14px;
+  margin: 10px 0;
+}
+.relaion-com .row-fluid {
+  position: relative;
+}
+.relaion-com .relation-box {
+  height: 150px;
+  overflow: auto;
+}
+.relaion-com .relation-height {
+  height: 300px;
+}
+.relaion-com .relation-list {
+  margin-top: 10px;
+}
+.relaion-com .relation-list li a {
+  display: block;
+  height: 30px;
+  line-height: 30px;
+}
+.relaion-com .btn {
+  position: absolute;
+  top: 50%;
+  margin-top: -16px;
+}
+.relaion-com .well-searchForm {
+  padding: 0;
+}
+.relaion-com table {
+  margin-top: -1px;
+  height: 100%;
+}
+.relaion-com table.table {
+  margin-bottom: 0 !important;
+}
+.relaion-com .handle {
+  border-left: 1px solid #ddd;
+  text-align: center;
+}

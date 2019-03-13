@@ -1,0 +1,44 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/unpf/shopcfg/shopcfg-form.js?version=$!{JS_VERSION}" ></script>
+	<body style="line-height:30px;">
+<div class="formBox row-fluid">
+	<form id="shopsubmitform" class="form-horizontal  required-validate" style="margin-bottom: 0px;">
+	 <input type="text" class="hide" name="shopAuthId" id="shopAuthId" value="$!{unpfShopAuthRespDTO.id}">
+    		<div class="row-fluid formSep">
+    			<div class="span4">
+    			<div class="control-group">
+    				<label class="control-label">平台对接：</label>
+    				<div class="controls">
+    					<select id="platType"  class="required" name="platType" value="$!{unpfShopAuthRespDTO.platType}"  disabled  >
+						    		#listParam('UNPF_PLAT_TYPE',"$!{unpfShopAuthRespDTO.platType}")
+						</select>
+    				</div>
+    			</div>
+    			</div>
+    			<div class="span4">
+    			<div class="control-group">
+    				<label class="control-label">店铺：</label>
+    				<div class="controls">
+    					<select id="shopId"  class="required" name="shopId" value="" disabled >
+								   #shoplist("$!{unpfShopAuthRespDTO.shopId}")
+						</select>
+    				</div>
+    			</div>
+            </div>
+          </div>
+    	<div id="div1">
+    		
+    	</div>
+          	
+		<div class="">
+				<div class="control-group">
+					<div class="controls" >
+						<button type="button" class="btn btn-info" id="btnSubmit"><i class="icon-ok-sign"></i> 提交</button>
+					</div>
+    			</div>
+    			
+     	 </div>
+   	</form>
+ </div>   		
+     	
+</body>

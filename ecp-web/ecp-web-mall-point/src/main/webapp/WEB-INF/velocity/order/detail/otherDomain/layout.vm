@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+    <title>订单详情-积分商城</title>
+#parse("sys/sys_head.vm")
+	<link href="$!{CSS_PATH}/reset.css" type="text/css" rel="stylesheet"/>
+	<link href="$!{CSS_PATH}/order.css" type="text/css" rel="stylesheet"/>
+	<script>
+        $(function(){
+            U.tab('#teamTab','#teamTabc');
+             /* 物流信息 */
+            $('.wl-list .more').click(function () {
+                var infos=$(this).parent().find('li');
+                var moreInfos=$(this).parent().find('.infos li:gt(4)');
+                infos.eq(4).toggleClass('last');
+                moreInfos.slideToggle();
+                var title = $('#showdetail_').html();
+                if(title=='查看全部'){
+                	$('#showdetail_').html('查看部分');
+                }else{
+                	$('#showdetail_').html('查看全部');
+                }
+            });
+        })
+    </script>
+</head>
+
+<body>
+<!--顶部 begin-->
+
+$screen_content
+</body>
+</html>

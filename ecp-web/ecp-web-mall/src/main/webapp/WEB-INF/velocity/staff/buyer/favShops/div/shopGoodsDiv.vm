@@ -1,0 +1,34 @@
+<div id="jcarouseln-1" class="slide-trigger">
+	#if($goodsPage.totalRow == 0)
+	
+	#elseif(($goodsPage.pageNumber == 1 && $goodsPage.totalRow > 4) || $goodsPage.pageNo == 1 && $goodsPage.totallyPage > 1)
+		<a href="javascript:void(0);" onClick="showRight('2',$!{shopId})" class="slide-next " data-rel="switch1"></a>
+	#elseif($goodsPage.pageNumber == 2 || $goodsPage.pageNo == 2)
+		<a href="javascript:void(0);" onClick="showLeft('1',$!{shopId})" class="slide-prev" data-rel="switch1"></a>
+	#end
+    
+</div>
+<div class="slide-box" >
+	<ul id="jcarouselc-1" class="jcarousel-container">
+		#if($goodsPage.totalRow == 0)
+			<li class="switch1 it">
+		          <font size="4px;">暂无商品</font>
+		    </li>
+		#end
+		#foreach($attr in $goodsPage.getList())
+			<a onClick="goodDetail('$!{attr.id}','$!{attr.firstSkuId}');" href="javascript:void(0);">
+			<li class="switch1 it" >
+		          <img width="130" height="130" src="$!{attr.imageUrl}" alt="Image 1">
+		          <p class="p-name" title="$!{attr.gdsName}">
+		          		#if ($!{attr.gdsName.length()} > 30)
+		          			$!{attr.gdsName.substring(0,30)}...
+		          		#else
+		          			$!{attr.gdsName}
+		          		#end
+		          </p>
+		    </li>
+		    </a>
+		#end
+	</ul>
+	
+</div>

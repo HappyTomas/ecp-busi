@@ -1,0 +1,117 @@
+<script type="text/javascript">
+
+var getOrderCart = function(){
+ 	$.eAjax({
+		url : $webroot + '/order/getcartcount',
+		async : true,
+		type : "post",
+		dataType : "json",
+		success : function(data) {
+			if (data == null) {
+				return;
+			} else {
+			$(".cartCount").html("("+data+")");
+			}
+		}
+	});
+}
+
+/*获取用户待付款订单数量*/
+var getPayOrdCnt = function() {
+	$.eAjax({
+		url : GLOBAL.WEBROOT + '/buyercenter/payordercnt',
+		dataType : "json",
+		success : function(result) {
+			$("#payOrdCnt").html('<b>(' + result.payOrdCnt + ')</b>');
+		}
+	});
+}
+
+$(function(){
+	//每次加载页面时，重新获取一次。
+	getPayOrdCnt();
+	getOrderCart();
+	
+	var page = $("#page").val();
+	if(page){
+		$(".nav-bar li a").removeClass("active");
+		$("#nav_"+page).addClass("active");
+	}else{
+		$(".nav-bar li a").removeClass("active");
+		$(".nav-bar li a").first().addClass("active");
+	}
+})
+</script>
+
+<!--header-->
+<div id="header" class="clearfix">
+    <!--top-->
+    <div class="wrap100 clearfix">
+        <!--top-->
+        <div class="wrap1200 clearfix">
+            <ul class="top">
+				#custInfo()
+				#if(${cust.staffCode})
+    				<li class="item">
+                    <a href="$!{CONTEXT_PATH}/buyercenter/index">$!{cust.staffCode}<a> <a href="$!{CONTEXT_PATH}/login/logout">退出</a>
+    				</li>
+    			#else
+    				<li class="item">
+    				<a href="$!{CONTEXT_PATH}/login/page" class="c-orange">您好，请登录</a>
+                    <a href="$!{CONTEXT_PATH}/login/register">免费注册</a>
+    				</li>
+    			#end
+                <li class="item">|</li>
+                <li class="item" id="carGus"><a href="$!{CONTEXT_PATH}/order/cart/list"><i class="shop-cart"></i>购物车<span class="red ecp-component cartCount"></span></a></li>
+                <li class="item">|</li>
+                <li class="item"><a href="$!{CONTEXT_PATH}/order/all">我的订单</a></li>
+                <li class="item">|</li>
+                <li class="item dorpdown">
+                    <a href="$!{CONTEXT_PATH}/buyercenter/index">我的人卫<i class="caret-down"></i></a>
+                    <div class="topdwon downc">
+                        <div class="spacer"></div>
+                        <div class="clearfix">
+                            <div class="pull-left font14"> 
+								 #if(${cust.staffCode})
+    								$!{cust.staffCode}
+    							#else
+    								<a href="$!{CONTEXT_PATH}/login/page">您好，请登录！</a>
+								#end
+							</div>
+							<!--
+                            <div class="pull-right">
+								<a href="#"> 优惠劵<span class="red"><b>10 </b></span></a>|<a href="#"> 消息</a>
+							</div>
+							-->
+                        </div>
+                        <ul class="largn-list mt10">
+                            <li><a href="$CONTEXT_PATH/order/pay">待付款订单<span class="red" id="payOrdCnt"><b>(0)</b></span></a></li>
+                            <li class="text-right"><a href="${CONTEXT_PATH}/favgoods" >我的收藏&nbsp;&nbsp;&nbsp;</a></li>
+                            <!--
+							<li><a href="#">退换货<span class="red"><b>1 </b> </span> </a></li>
+                            -->
+                            <li><a href="$!{CONTEXT_PATH}/information/index">我的资料 </a></li>
+							<li class="text-right"><a href="${CONTEXT_PATH}/buyerscore/index">我的积分&nbsp;&nbsp;&nbsp;</a></li>
+                            <li><a href="${CONTEXT_PATH}/buyeracct/index">我的账户</a></li>
+                          
+                            	<li class="text-right"><a href="${CONTEXT_PATH}/custcard/index">我的会员卡</a></li>
+                            
+                            
+                        </ul>
+                    </div>
+                </li>
+                <li class="item">|</li>
+                <li class="item"><a href="javascript:void(0)" class = "ecpaddfavorite">添加收藏夹</a></li>
+                <li class="item">|</li>
+                <li class="item"><a href="#siteInfo('4')">#siteName('4')</a></li>
+            </ul>
+        </div>
+		
+		<!--搜索框组件嵌入-->
+    	#parse("/shop/shopIndex/shop-search-box.vm")
+    	
+    	<!--商城栏目 -->
+    	#parse("/main/main-site-column.vm")
+        
+    </div>
+</div>

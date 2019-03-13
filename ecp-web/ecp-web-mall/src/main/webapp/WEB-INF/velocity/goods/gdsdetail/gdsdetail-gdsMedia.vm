@@ -1,0 +1,48 @@
+<div class="proSp">
+    <div class="pro">
+        <img src="${CONTEXT_PATH}/images/goods/proZs.jpg" ></div>
+        <div class="minlist">
+            <div class="min-jt-left"></div>
+            <div class="min-list-pro">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <img src="${CONTEXT_PATH}/images/goods/proZs_m.jpg"></a>
+</li>
+<li>
+    <a href="#">
+        <img src="${CONTEXT_PATH}/images/goods/proZs_m.jpg"></a>
+</li>
+<li>
+    <a href="#">
+        <img src="${CONTEXT_PATH}/images/goods/proZs_m.jpg"></a>
+</li>
+<li>
+    <a href="#">
+        <img src="${CONTEXT_PATH}/images/goods/proZs_m.jpg"></a>
+</li>
+<li>
+    <a href="#">
+        <img src="${CONTEXT_PATH}/images/goods/proZs_m.jpg"></a>
+</li>
+</ul>
+</div>
+<div class="min-jt-right"></div>
+<div class="clearfix"></div>
+</div>
+<div class="pro-bmfx">
+    <div class="pull-left">商品编码：123456789</div>
+    <ul class="pro-fengxiang">
+        <li>
+            <a href="#" class="ach">
+                <i class="icon-gz"></i>
+                关注</a>
+        </li>
+        <li>
+            <a href="#" class="ach">
+                <i class="icon-fx"></i>
+                分享</a>
+        </li>
+    </ul>
+</div>
+</div>

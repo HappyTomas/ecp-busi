@@ -1,0 +1,78 @@
+
+
+#parse("order/cart/list/cart-head.vm")
+
+#parse("order/cart/empty/cart-empty.vm")
+
+#if($!cartList.ordCartList.size())
+<form action="$!{CONTEXT_PATH}/order/build/checkcar" id="cartForm" method="post">
+    <input type="text" id="disableEnter" style="display:none"></input>
+    <!--购物列表 star-->
+
+    <div class="ui-content-fixBottom car-list" id="cartList">
+
+        #foreach($!cart in $!cartList.ordCartList)
+            #set($cartIndex = $velocityCount - 1)
+
+            #set($shopProm = "")
+            #set($shopProm = $!cartList.cartPromRespDTO.cartPromDTOMap.get(${cart.id}))
+        ##设置赠品信息
+            #set($shopGiftContent = "")
+            #set($shopSplitStr = "")
+            #if($shopProm.promGiftDTOList && $shopProm.promGiftDTOList.size()>0)
+                #foreach($giftInfo in $shopProm.promGiftDTOList)
+                    #if($velocityCount > 1)
+                        #set($shopSplitStr = "、")
+                    #end
+                    #set($shopGiftContent = $shopGiftContent + $shopSplitStr + $!giftInfo.giftName + " X " + $!giftInfo.everyTimeCnt)
+                #end
+            #end
+
+        ##处理优惠ID，若为空则设置为-1
+            #set($shopPromId = "")
+            #if($shopProm && $shopProm.promInfoDTO)
+                #set($shopPromId = $shopProm.promInfoDTO.id)
+            #else
+                #set($shopPromId = $cart.promId)
+            #end
+            #if(!$shopPromId || $shopPromId=="")
+                #set($shopPromId = "-1")
+            #end
+
+        ##设置商品明细下标
+        ##
+        ##
+        ## 1、在组合商品的 order/cart/shop/group/pro.vm 里 groupList 的 group里面的每个商品累加个数
+        ## 2、在普通商品的 order/cart/shop/item/pro.vm 里 orderCartList的 item里面每个商品累加
+        ##
+        ##
+        ##设置商品明细小标
+            #set($itemIndex = 0)
+            <div class="cd-shop shopList car-item">
+                #parse("order/cart/shop/cart-item-head.vm")
+
+                <div class="cd-box" id="select_good_$!{cart.shopId}_$velocityCount">
+                    <ul class="cd-list item-list">
+                        #parse("order/cart/shop/item/cart-item-body.vm")
+                    </ul>
+
+                    #parse("order/cart/shop/cart-item-total.vm")
+                </div>
+            </div>
+        #end
+    </div>
+    #parse("order/cart/list/cart-total.vm")
+</form>
+#end
+
+<!-- Navbar -->
+</body>
+
+
+<script src="$RESOURCE_PATH/framework/manage/extend/ebc.form.js"></script>
+<script type="text/javascript" src="$!BUSIJS_PATH/order/cart/cart-list.js?version=$!{JS_VERSION}"></script>
+<script>##用于底部栏目切换
+$(function(){
+    $.cookie('SUPPORT-WEB-COOKIE-MOUDEL', "cart", {path : '/'});
+});
+</script>

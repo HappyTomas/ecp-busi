@@ -1,0 +1,43 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/seller/order/payoffline-uncheck-list.js?version=$!{JS_VERSION}" ></script>
+
+<div >
+
+                <table class="seller-table">
+                    <thead>
+                    <tr>
+                        <td style="width: 170px">买家账号</td>
+                        <td style="width: 150px">订单编号</td>
+                        <td style="width: 150px">下单时间</td>
+                        <td>金额</td>
+                        <td>支付方式</td>
+                        <td>操作</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+					#if(!$unchecklistPage.list || $unchecklistPage.list.size() == 0)
+            	       <tr class="fav-opt">
+            			<td colspan="7">
+            			        #if(!$msg)很遗憾，暂无数据#else $!msg #end
+            			</td>
+            		</tr>
+            	    #end
+            		#foreach ($record in $unchecklistPage.list)
+                    <tr>
+                        <td>$!{record.staffName}</td>
+						<td><a href="javascript:void(0);" class="orderId">$!{record.orderId}</a></td>
+                        <td>$date.format('yyyy-MM-dd HH:mm:ss',$!{record.orderTime})</td>
+                        <td>#moneyNum($!{record.realMoney})</td>
+                        <td>#translate('ORD_PAY_TYPE',$!{record.applyType})</td>
+                        <td><a href="javascript:void(0);" onclick="delivery_list.publish('$!{record.orderId}')">审核</a></td>
+                    </tr>
+					#end
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="row-fluid">
+                    <div id="pageControlbar" class="ecppage" data-total-page="$!{unchecklistPage.totalPage}" data-total-row="$!{unchecklistPage.totalRow}" data-page-size="$!{unchecklistPage.pageSize}" data-page-number="$!{unchecklistPage.pageNumber}" data-status="begin"></div>
+                </div>
+</div>

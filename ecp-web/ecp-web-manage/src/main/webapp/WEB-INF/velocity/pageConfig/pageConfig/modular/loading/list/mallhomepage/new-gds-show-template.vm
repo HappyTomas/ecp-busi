@@ -1,0 +1,30 @@
+#if($floorRespDto && ${floorRespDto.id} && ${floorRespDto.id} != '')
+	 #if($!{floorTabList.size()} > 0)
+	 <div class="tab-nav">
+	     <ul>
+	        #foreach($floorTab in $!{floorTabList})
+   				<li  #if($velocityCount==1) class="active" #end><a  href="
+   				#if($!{floorTab.linkUrl} && $!{floorTab.linkUrl}!= '')
+   					$!{floorTab.linkUrl}" target='_blank'
+   				#else 
+   					javascript:void(0);"
+   				#end tab-id="$!{floorTab.id}" is-load="no" floor-id="$!{floorRespDTO.id}">$!{floorTab.tabName}</a></li>
+			#end
+	     </ul>
+	 </div>
+	 #end
+	 <div class="tab-content"  floor-id = "$!{floorRespDto.id}" style="min-height:270px;">
+	     	#if($!{floorTabList.size()} > 0)
+        		#foreach($floorTab in $!{floorTabList})##有页签
+        		<div class="nItem #if($velocityCount > 1) hide #end" id="floor_gds_$!{floorTab.id}">
+        		</div>
+        		#end
+        	#end
+	</div>
+#else
+<div class="nodata">
+	<span>
+	#if($errMsg && $errMsg != '')$!errMsg #else 未配置楼层！#end
+    </span>
+</div>
+#end

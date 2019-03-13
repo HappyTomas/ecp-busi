@@ -1,0 +1,59 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/createprom/discount-rule-1000000009.js?version=$!{JS_VERSION}" ></script>
+			<div class="formBox">
+			        <div class="hide" >
+				       <input type="text" id="sendType" value="$!{promVO.discountMap.sendType}"  >
+                    </div>
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+                                 <div class="row-fluid">
+                                    <div class="span8">
+                                        <div class="control-group">
+                                            <div class="controls">
+                                                <div class="alert sel-alert" >
+                                                    <span class="arrow"></span>
+                                                     当消费达到特定金额时，可免费获得积分。 例如:当消费超过 &yen;150.00 时，可获得10个积分。当订单小计达到阈值数值时，可获得一定量积分值。
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+		    
+				    <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">订单金额超过：</label>
+							<div class="controls">
+								<input type="text" class="input-large required number moneyNumber " id="orderMoney" maxlength="12"  name="discountMap['orderMoney']" placeholder="请输入订单金额阀值 " value="#moneyNum($!{promVO.discountMap.orderMoney})"   />
+							</div>
+						</div>
+					</div>
+			          <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">赠送积分类型：</label>
+							<div class="controls">
+								 #foreach( $info in $sendTypeList) 
+							       <label class="control-label"><input type="radio" class="sendType" name='discountMap["sendType"]' value="$!{info.spCode}" #if (${aiTool.containStr("$!{info.spCode}","$!{promVO.discountMap.sendType}")}) checked #end>$!{info.spValue}</label>
+								 #end
+							</div>
+						</div>
+					</div>
+				    <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name"></label>
+							<div class="controls">
+							 <span class="help-inline  alert ">按固定值赠送：当赠送积分设置为100时，那么下单时满足订单金额 可额外赠送100积分。</br>按指定倍数赠送：当赠送积分设置为3倍时，下单之后，支付送积分加上额外赠送的积分，总共为3倍。</span>
+							</div>
+							
+						</div>
+					</div>
+			       <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">赠送积分：</label>
+							<div class="controls">
+								<input type="text" class="input-large required number " id="sendAmount" name="discountMap['sendAmount']" placeholder="请输入积分值或倍数 " maxlength="12"  value="$!{promVO.discountMap.sendAmount}"   />
+								<span class="help-inline hide" id="help-inline0  alert alert-info">当赠送积分设置为100时，那么下单时满足订单金额 可赠送100积分。</span>
+								<span class="help-inline " id="help-inline1  alert alert-info" >当赠送积分设置为3倍时，下单之后，支付送积分加上额外赠送的积分，总共为3倍。</span>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			   

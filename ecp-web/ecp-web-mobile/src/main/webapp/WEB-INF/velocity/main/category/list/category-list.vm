@@ -1,0 +1,38 @@
+	#parse("sys/sys_param.vm")
+    #set($childCatgs = '')
+    #set($childCatgs = ${catgParent.cmsChildCatg})
+    #if($!{childCatgs} && $!{childCatgs.size()} > 0)
+    <ul class="ui-list fl-list ">
+			#foreach(${catgTwo} in $!{childCatgs}) 
+				<li>
+                    <a href="
+                    	#if(${catgTwo.catgCode} && $!{catgTwo.catgCode}!='')
+                       		$!CONTEXT_PATH/search?category=$!{catgTwo.catgCode} 
+                       	#else
+                       		$!CONTEXT_PATH/search?keyword=$!{catgTwo.catgName}
+    					#end
+						">
+                        <div class="img-wrap">
+                            <img src="${aiTool.genImageUrl($!{catgTwo.mediaUuid},'')}" alt=""/>
+                        </div>
+                        <div class="cont">
+                            <p class="tit">$!{catgTwo.catgName}</p>
+                            <div class="con">
+								#foreach(${catgThree} in ${catgTwo.cmsChildCatg}) 
+									#if($velocityCount == ${catgTwo.cmsChildCatg.size()})
+										$!{catgThree.catgName}
+									#else
+										$!{catgThree.catgName}/ 
+									#end
+								#end
+                            </div>
+                        </div>
+                    </a>
+                </li>
+			#end
+    </ul>
+    #else
+    <div class="pro-empty">
+       	  #if($errMsg && $errMsg != '')$!errMsg #else 暂无分类  #end
+     </div>
+    #end

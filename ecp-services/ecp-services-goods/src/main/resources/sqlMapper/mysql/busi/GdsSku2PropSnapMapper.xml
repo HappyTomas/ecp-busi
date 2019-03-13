@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.busi.GdsSku2PropSnapMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.GdsSku2PropSnap" >
+    <result column="SNAP_ID" property="snapId" jdbcType="INTEGER" />
+    <result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+    <result column="PROP_ID" property="propId" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="PROP_NAME" property="propName" jdbcType="VARCHAR" />
+    <result column="PROP_VALUE_ID" property="propValueId" jdbcType="INTEGER" />
+    <result column="PROP_VALUE" property="propValue" jdbcType="VARCHAR" />
+    <result column="PROP_TYPE" property="propType" jdbcType="VARCHAR" />
+    <result column="PROP_VALUE_TYPE" property="propValueType" jdbcType="VARCHAR" />
+    <result column="IF_HAVETO" property="ifHaveto" jdbcType="VARCHAR" />
+    <result column="IF_CHECK" property="ifCheck" jdbcType="VARCHAR" />
+    <result column="IF_BASIC" property="ifBasic" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SNAP_ID, SKU_ID, PROP_ID, SHOP_ID, PROP_NAME, PROP_VALUE_ID, PROP_VALUE, PROP_TYPE, 
+    PROP_VALUE_TYPE, IF_HAVETO, IF_CHECK, IF_BASIC, STATUS, CREATE_TIME, CREATE_STAFF, 
+    UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.GdsSku2PropSnapCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_gds_sku2prop_snap
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsSku2PropSnapCriteria" >
+    delete from t_gds_sku2prop_snap
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.goods.dao.model.GdsSku2PropSnap" >
+    insert into t_gds_sku2prop_snap (SNAP_ID, SKU_ID, PROP_ID, 
+      SHOP_ID, PROP_NAME, PROP_VALUE_ID, 
+      PROP_VALUE, PROP_TYPE, PROP_VALUE_TYPE, 
+      IF_HAVETO, IF_CHECK, IF_BASIC, 
+      STATUS, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_TIME, UPDATE_STAFF)
+    values (#{snapId,jdbcType=INTEGER}, #{skuId,jdbcType=INTEGER}, #{propId,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=INTEGER}, #{propName,jdbcType=VARCHAR}, #{propValueId,jdbcType=INTEGER}, 
+      #{propValue,jdbcType=VARCHAR}, #{propType,jdbcType=VARCHAR}, #{propValueType,jdbcType=VARCHAR}, 
+      #{ifHaveto,jdbcType=VARCHAR}, #{ifCheck,jdbcType=VARCHAR}, #{ifBasic,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.goods.dao.model.GdsSku2PropSnap" >
+    insert into t_gds_sku2prop_snap
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="snapId != null" >
+        SNAP_ID,
+      </if>
+      <if test="skuId != null" >
+        SKU_ID,
+      </if>
+      <if test="propId != null" >
+        PROP_ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="propName != null" >
+        PROP_NAME,
+      </if>
+      <if test="propValueId != null" >
+        PROP_VALUE_ID,
+      </if>
+      <if test="propValue != null" >
+        PROP_VALUE,
+      </if>
+      <if test="propType != null" >
+        PROP_TYPE,
+      </if>
+      <if test="propValueType != null" >
+        PROP_VALUE_TYPE,
+      </if>
+      <if test="ifHaveto != null" >
+        IF_HAVETO,
+      </if>
+      <if test="ifCheck != null" >
+        IF_CHECK,
+      </if>
+      <if test="ifBasic != null" >
+        IF_BASIC,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="snapId != null" >
+        #{snapId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="propId != null" >
+        #{propId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="propName != null" >
+        #{propName,jdbcType=VARCHAR},
+      </if>
+      <if test="propValueId != null" >
+        #{propValueId,jdbcType=INTEGER},
+      </if>
+      <if test="propValue != null" >
+        #{propValue,jdbcType=VARCHAR},
+      </if>
+      <if test="propType != null" >
+        #{propType,jdbcType=VARCHAR},
+      </if>
+      <if test="propValueType != null" >
+        #{propValueType,jdbcType=VARCHAR},
+      </if>
+      <if test="ifHaveto != null" >
+        #{ifHaveto,jdbcType=VARCHAR},
+      </if>
+      <if test="ifCheck != null" >
+        #{ifCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="ifBasic != null" >
+        #{ifBasic,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.goods.dao.model.GdsSku2PropSnapCriteria" resultType="java.lang.Long" >
+    select count(*) from t_gds_sku2prop_snap
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_gds_sku2prop_snap
+    <set >
+      <if test="record.snapId != null" >
+        SNAP_ID = #{record.snapId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuId != null" >
+        SKU_ID = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.propId != null" >
+        PROP_ID = #{record.propId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.propName != null" >
+        PROP_NAME = #{record.propName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propValueId != null" >
+        PROP_VALUE_ID = #{record.propValueId,jdbcType=INTEGER},
+      </if>
+      <if test="record.propValue != null" >
+        PROP_VALUE = #{record.propValue,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propType != null" >
+        PROP_TYPE = #{record.propType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propValueType != null" >
+        PROP_VALUE_TYPE = #{record.propValueType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifHaveto != null" >
+        IF_HAVETO = #{record.ifHaveto,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifCheck != null" >
+        IF_CHECK = #{record.ifCheck,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ifBasic != null" >
+        IF_BASIC = #{record.ifBasic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_gds_sku2prop_snap
+    set SNAP_ID = #{record.snapId,jdbcType=INTEGER},
+      SKU_ID = #{record.skuId,jdbcType=INTEGER},
+      PROP_ID = #{record.propId,jdbcType=INTEGER},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      PROP_NAME = #{record.propName,jdbcType=VARCHAR},
+      PROP_VALUE_ID = #{record.propValueId,jdbcType=INTEGER},
+      PROP_VALUE = #{record.propValue,jdbcType=VARCHAR},
+      PROP_TYPE = #{record.propType,jdbcType=VARCHAR},
+      PROP_VALUE_TYPE = #{record.propValueType,jdbcType=VARCHAR},
+      IF_HAVETO = #{record.ifHaveto,jdbcType=VARCHAR},
+      IF_CHECK = #{record.ifCheck,jdbcType=VARCHAR},
+      IF_BASIC = #{record.ifBasic,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

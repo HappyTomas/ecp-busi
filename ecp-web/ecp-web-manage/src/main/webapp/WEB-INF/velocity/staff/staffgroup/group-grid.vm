@@ -1,0 +1,67 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/staffgroup/group-grid.js?version=$!{JS_VERSION}" ></script>
+
+<div class="well well-searchForm">
+    <form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+        <div class="row-fluid">
+            <div class="span4">
+                <div class="control-group">
+                    <label class="control-label">用户组名称：</label>
+                    <div class="controls">
+                        <input type="text" name="groupName" class="input-medium" value="" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <label class="control-label">所属角色：</label>
+                    <div class="controls">
+                        <select name="roleId" enabled style="width:164px;">
+                            <option value="">
+                                --请选择--
+                            </option>
+                            #foreach($attr in $rolelist)
+                            <option value="$!{attr.id}">
+                                $!{attr.roleName}
+                            </option>
+                            #end
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <label class="control-label">状态：</label>
+                    <div class="controls">
+                        <select name="status" style="width:164px;">
+                            <option value="">
+                                --请选择--
+                            </option>
+                            #listParam('PUBLIC_PARAM_STATUS')
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </form>
+</div>
+<div class="row-fluid" style="margin-bottom: 10px;">
+    <div class="span6">
+        <a class="btn" id="btn_add" href="javascript:void(0);"><i class="icon-plus icon-white"></i>新增</a>
+        <a class="btn" id="btn_edit" href="javascript:void(0);"><i class="icon-edit icon-white"></i>编辑</a>
+        <a class="btn" id="btn_active" href="javascript:void(0);"><i class="icon-ok-circle"></i> 生效</a>
+        <a class="btn btn-danger" id="btn_valid" href="javascript:void(0);"><i class="icon-remove-sign"></i> 失效</a>
+    </div>
+    <div class="pull-right">
+        <a class="btn btn-info" id="btnFormSearch" href="javascript:void(0);"><i class="icon-search icon-white"></i> 查询</a>
+        <a class="btn" id="btnFormReset" href="javascript:void(0);"><i class="icon-refresh"></i> 重置</a>
+    </div>
+</div>
+<div class="row-fluid">
+    <table id="dataGridTable"></table>
+</div>
+<form id="editForm" name="editForm" method="POST" action="$CONTEXT_PATH/staffgroup/edit">
+    <input id="groupId" name="groupId" type="hidden" value="" />
+</form>		

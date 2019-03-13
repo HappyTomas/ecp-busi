@@ -1,0 +1,120 @@
+<div class="seller-box" id="gds-priceSetting" style="display:#if($!{multi-switch}=='1' && $!{ladder-switch}=='0')none#else block#end">
+    <div class="head">
+        <h3>价格设置</h3>
+        <div class="pull-right mr10 switch-button" id="price-senior-button" style="display:#if($!{multi-switch}=='1') none; #else block; #end;">
+            <div class="pull-right mr10" #if($!{copyFlag}!=1 || ($!{copyFlag}==1 && $!{rspDto.specs.size()} <=0))style="display:none"#end>
+                        <label class="disl c-label">多规格：</label>
+                        <div data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+                            <button class="btn #if($!{multi-switch}=='1')active#end" type="button" value="multi-open">开</button>
+                            <button class="btn #if($!{multi-switch}=='0')active#end" type="button" value="multi-close">关</button>
+                        </div>
+            </div>
+            <div class="pull-right mr10" #if($!{price-switch}=='0')style="display:none;"#end>
+                    <label class="disl c-label">高级价格：</label>
+                    <div data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+                        <button class="btn #if($!{price-switch}=='1')active#end" type="button" value="price-open">开</button>
+                        <button class="btn #if($!{price-switch}=='0')active#end" type="button" value="price-close">关</button>
+                    </div>
+            </div>
+            <div class="pull-right mr10" #if($!{copyFlag}!=1 || $!{stock-switch}=='0')style="display:none"#end>
+                    <label class="disl c-label">高级库存：</label>
+                    <div data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+                        <button class="btn #if($!{stock-switch}=='1')active#end" type="button" value="stock-open">开</button>
+                        <button class="btn #if($!{stock-switch}=='0')active#end" type="button" value="stock-close">关</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="body">
+        <div class="row-fluid" id="price-senior-button">
+            <div class="span12" id="setting-price-label" style="display:#if($!{multi-switch}=='1')none#else block#end;">
+                <div class="control-group" id="setting-price-input">
+                    <label class="control-label">产品价格：</label>
+                    <div class="controls" id="open-ladder-price">
+                        #if($!{price-switch}=='1')
+                           ## <a class="required priceNumber priceLength gjkc" href="javascript:void(0)" id="productPrice" value="[]" onclick="openPriceWin(this)">
+                              ##  高级价格
+                           ## </a>
+						   <span class="sbtn sbtn-bluw required priceLength priceNumber gjpri" value="[]" id="productPrice" onclick="openPriceWin(this)">高级价格</span>
+                            #else
+                                <input type="text" class="input-large priceNumber required priceLength"  name="productPrice" id="productPrice"/>
+                        #end
+                    </div>
+                </div>
+                <div class="control-group" id="setting-stock-input">
+                    <label class="control-label">产品库存：</label>
+                    <div class="controls" id="open-ladder-stock">
+                        #if($!{stock-switch}=='1')
+                          ##  <a class="required digits gjkc" href="javascript:void(0)" value="[]" id="productStock" onclick="openStockWin(this)">
+                              ##  高级库存
+                          ##  </a>
+						      <span class="sbtn sbtn-bluw required digits gjkc" value="[]" id="productStock" onclick="openStockWin(this)">高级库存</span>
+                            #else
+                               <input type="text" class="input-large required digits" name="productStock" id="productStock" #if($!{copyFlag}!=1)disabled#end  maxlength="9"/>
+                        #end
+                    </div>
+                </div>
+				<div class="control-group" id="setting-appprice-input">
+                    <label class="control-label">手机专享价：</label>
+                    <div class="controls">
+                            <input type="text" class="input-large priceNumber priceLength"  name="appSpecPrice" id="appSpecPrice"/>
+                    </div>
+                </div>
+            </div>
+            <div class="control-group" #if($!{ladder-switch}=='0')style="display:none;"#end>
+                    <label class="control-label">阶梯价：</label>
+                    <div class="controls">
+                        <label class="checkbox inline c-label">
+                            <input type="checkbox" id="gds-lader-price-open" #if($!{gdsInfo.ifLadderPrice}=="1")checked#end/>
+                            开启阶梯价
+                        </label>
+                    </div>
+            </div>
+			
+			<input type="hidden" id="singleSkuId" value=""/>
+            <div class="span10" id="lader-price-block" #if($!{gdsInfo.ifLadderPrice}=="1") #else style="display:none;"#end>
+                <div class="control-group">
+                    <label class="control-label">价格：</label>
+                    <div class="controls">
+                        <span style="color:red;" id="laderPrice-error"></span>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <table class="seller-table">
+                        <thead>
+                            <tr>
+                                <th>起订量<span class="text-tip">(个/件)</span>
+                                </th>
+                                <th>销售价格<span class="text-tip">(人民币)</span>
+                                </th>
+                                <th class="lh">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lader-price-table">
+							#foreach($price in $!{gdsInfo.prices})
+								<tr>
+                                    <td>≥<input type='text' class='input-mini required' id='order-amount' name='order-amount' value='$!{price.startAmount}' onblur='validateLaderAmount(this)'/></td>
+                                    <td><input type='text' class='input-mini' name='lader-price' value='#moneyNum($!{price.price})' onblur='validateLaderPrice(this)'/></td>
+                                    <td><a href='javascript:void(0);' onclick='delteLaderPrice(this)'>删除</a></td>
+								</tr>
+							#end
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3">
+									<label for="" class="add-lader-price" #if($!{gdsInfo.prices.size()}=="4")style="color:#999"#end>
+                                        <i class="icon-plus-sign" ></i>
+                                        新增价格区间
+                                        <span class="text-tip">
+                                            (可设置不超过4个价格区间)
+                                        </span>
+                                    </label>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

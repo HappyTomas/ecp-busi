@@ -1,0 +1,59 @@
+#parse("/sys/sys_param.vm")
+<input type="hidden" value="$!{isCollect}" id="isCollect"/>
+<p class="shop-top"><a href="$!{MALL_SITE_URL}/shopIndex/$!{shopInfoResp.id}">$!{shopInfoResp.shopName}</a></p>
+    <p class="shop-logo">##text-center store_logo
+        <a href="$!{MALL_SITE_URL}/shopIndex/$!{shopInfoResp.id}"> 
+        <img src="$!{shopInfoResp.logoPathURL}">
+        </a>
+    </p>
+	<div class="shop-grade ">
+		 #if($!{showParam.ifShopFullName}=="true")
+		 <p class="shop-explain">
+			  <a href="$!{MALL_SITE_URL}/shopIndex/$!{shopInfoResp.id}"> $!{shopInfoResp.shopFullName}</a>
+         </p>
+		 #end
+         <dl class="shop-info">
+			#if($!{showParam.ifLinkPerson}=="true")
+                <dd>
+                    <label>联系人：</label>
+    				<span> $!{shopInfoResp.linkPerson} </span>
+                </dd>
+			#end
+			#if($!{showParam.ifLinkPhone}=="true")
+                <dd>
+                    <label>联系方式：</label>
+                    <span> $!{shopInfoResp.linkMobilephone}</span>
+                </dd>
+			#end
+			#if($!{showParam.ifSales}=="true")
+                <dd>
+                    <label>销量：</span>
+                    <span> $!{shopInfoResp.saleNum} </label>
+                </dd>
+			#end
+			#if($!{showParam.ifGoodsBaby}=="true")
+                <dd>
+                    <label>宝贝：</label>
+                    <span>$!{shopInfoResp.favNum}
+                    </span>
+                </dd>
+			#end
+			#if($!{showParam.ifRate}=="true")
+                <dd>
+                    <label>好评率：</label>
+                    <span>$!{shopInfoResp.evalRate}%
+                    </span>
+                </dd>
+			#end
+         </dl>
+		 
+		 #if($!{showParam.ifCollectShop}=="true")
+             <div class="text-center">
+				#if($isCollect)
+					<span class="col-btn" id="colShop">取消店铺收藏</span>
+                #else
+					<span class="col-btn" id="colShop">收藏店铺</span>
+                #end
+             </div>
+		 #end
+     </div>

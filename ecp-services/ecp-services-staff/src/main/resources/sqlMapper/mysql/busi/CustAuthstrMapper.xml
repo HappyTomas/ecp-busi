@@ -1,0 +1,636 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.busi.CustAuthstrMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.CustAuthstr" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="STAFF_CODE" property="staffCode" jdbcType="VARCHAR" />
+    <result column="SERIAL_NUMBER" property="serialNumber" jdbcType="VARCHAR" />
+    <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+    <result column="COMPANY_ADRESS" property="companyAdress" jdbcType="VARCHAR" />
+    <result column="TRADE" property="trade" jdbcType="VARCHAR" />
+    <result column="COMPANY_TYPE" property="companyType" jdbcType="VARCHAR" />
+    <result column="EMPLOYEE_NUM" property="employeeNum" jdbcType="VARCHAR" />
+    <result column="COUNTRY_CODE" property="countryCode" jdbcType="VARCHAR" />
+    <result column="PROVINCE_CODE" property="provinceCode" jdbcType="VARCHAR" />
+    <result column="CITY_CODE" property="cityCode" jdbcType="VARCHAR" />
+    <result column="COUNTY_CODE" property="countyCode" jdbcType="VARCHAR" />
+    <result column="COMPANY_EMAIL" property="companyEmail" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="LINK_PERSON_MSG" property="linkPersonMsg" jdbcType="VARCHAR" />
+    <result column="LINK_PHONE_MSG" property="linkPhoneMsg" jdbcType="VARCHAR" />
+    <result column="LINK_PSN_CARD" property="linkPsnCard" jdbcType="VARCHAR" />
+    <result column="LINK_TELEPHONE" property="linkTelephone" jdbcType="VARCHAR" />
+    <result column="COMPANY_WEIXIN" property="companyWeixin" jdbcType="VARCHAR" />
+    <result column="COMPANY_QQ" property="companyQq" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="INTEGER" />
+    <result column="CHECK_STATUS" property="checkStatus" jdbcType="VARCHAR" />
+    <result column="CHECK_REMARK" property="checkRemark" jdbcType="VARCHAR" />
+    <result column="CHECK_STAFF" property="checkStaff" jdbcType="INTEGER" />
+    <result column="CHECK_DATE" property="checkDate" jdbcType="TIMESTAMP" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, STAFF_ID, STAFF_CODE, SERIAL_NUMBER, COMPANY_NAME, COMPANY_ADRESS, TRADE, COMPANY_TYPE, 
+    EMPLOYEE_NUM, COUNTRY_CODE, PROVINCE_CODE, CITY_CODE, COUNTY_CODE, COMPANY_EMAIL, 
+    STATUS, LINK_PERSON_MSG, LINK_PHONE_MSG, LINK_PSN_CARD, LINK_TELEPHONE, COMPANY_WEIXIN, 
+    COMPANY_QQ, PARENT_ID, CHECK_STATUS, CHECK_REMARK, CHECK_STAFF, CHECK_DATE, CREATE_TIME, 
+    CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.CustAuthstrCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_cust_authstr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_cust_authstr
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_cust_authstr
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.CustAuthstrCriteria" >
+    delete from t_cust_authstr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.CustAuthstr" >
+    insert into t_cust_authstr (ID, STAFF_ID, STAFF_CODE, 
+      SERIAL_NUMBER, COMPANY_NAME, COMPANY_ADRESS, 
+      TRADE, COMPANY_TYPE, EMPLOYEE_NUM, 
+      COUNTRY_CODE, PROVINCE_CODE, CITY_CODE, 
+      COUNTY_CODE, COMPANY_EMAIL, STATUS, 
+      LINK_PERSON_MSG, LINK_PHONE_MSG, LINK_PSN_CARD, 
+      LINK_TELEPHONE, COMPANY_WEIXIN, COMPANY_QQ, 
+      PARENT_ID, CHECK_STATUS, CHECK_REMARK, 
+      CHECK_STAFF, CHECK_DATE, CREATE_TIME, 
+      CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+      )
+    values (#{id,jdbcType=INTEGER}, #{staffId,jdbcType=INTEGER}, #{staffCode,jdbcType=VARCHAR}, 
+      #{serialNumber,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{companyAdress,jdbcType=VARCHAR}, 
+      #{trade,jdbcType=VARCHAR}, #{companyType,jdbcType=VARCHAR}, #{employeeNum,jdbcType=VARCHAR}, 
+      #{countryCode,jdbcType=VARCHAR}, #{provinceCode,jdbcType=VARCHAR}, #{cityCode,jdbcType=VARCHAR}, 
+      #{countyCode,jdbcType=VARCHAR}, #{companyEmail,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{linkPersonMsg,jdbcType=VARCHAR}, #{linkPhoneMsg,jdbcType=VARCHAR}, #{linkPsnCard,jdbcType=VARCHAR}, 
+      #{linkTelephone,jdbcType=VARCHAR}, #{companyWeixin,jdbcType=VARCHAR}, #{companyQq,jdbcType=VARCHAR}, 
+      #{parentId,jdbcType=INTEGER}, #{checkStatus,jdbcType=VARCHAR}, #{checkRemark,jdbcType=VARCHAR}, 
+      #{checkStaff,jdbcType=INTEGER}, #{checkDate,jdbcType=TIMESTAMP}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.CustAuthstr" >
+    insert into t_cust_authstr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE,
+      </if>
+      <if test="serialNumber != null" >
+        SERIAL_NUMBER,
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME,
+      </if>
+      <if test="companyAdress != null" >
+        COMPANY_ADRESS,
+      </if>
+      <if test="trade != null" >
+        TRADE,
+      </if>
+      <if test="companyType != null" >
+        COMPANY_TYPE,
+      </if>
+      <if test="employeeNum != null" >
+        EMPLOYEE_NUM,
+      </if>
+      <if test="countryCode != null" >
+        COUNTRY_CODE,
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE,
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE,
+      </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE,
+      </if>
+      <if test="companyEmail != null" >
+        COMPANY_EMAIL,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="linkPersonMsg != null" >
+        LINK_PERSON_MSG,
+      </if>
+      <if test="linkPhoneMsg != null" >
+        LINK_PHONE_MSG,
+      </if>
+      <if test="linkPsnCard != null" >
+        LINK_PSN_CARD,
+      </if>
+      <if test="linkTelephone != null" >
+        LINK_TELEPHONE,
+      </if>
+      <if test="companyWeixin != null" >
+        COMPANY_WEIXIN,
+      </if>
+      <if test="companyQq != null" >
+        COMPANY_QQ,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="checkStatus != null" >
+        CHECK_STATUS,
+      </if>
+      <if test="checkRemark != null" >
+        CHECK_REMARK,
+      </if>
+      <if test="checkStaff != null" >
+        CHECK_STAFF,
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffCode != null" >
+        #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNumber != null" >
+        #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAdress != null" >
+        #{companyAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="trade != null" >
+        #{trade,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeNum != null" >
+        #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null" >
+        #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyEmail != null" >
+        #{companyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPersonMsg != null" >
+        #{linkPersonMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhoneMsg != null" >
+        #{linkPhoneMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPsnCard != null" >
+        #{linkPsnCard,jdbcType=VARCHAR},
+      </if>
+      <if test="linkTelephone != null" >
+        #{linkTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWeixin != null" >
+        #{companyWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="companyQq != null" >
+        #{companyQq,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="checkStatus != null" >
+        #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="checkRemark != null" >
+        #{checkRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStaff != null" >
+        #{checkStaff,jdbcType=INTEGER},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.CustAuthstrCriteria" resultType="java.lang.Long" >
+    select count(*) from t_cust_authstr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_cust_authstr
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.staffCode != null" >
+        STAFF_CODE = #{record.staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.serialNumber != null" >
+        SERIAL_NUMBER = #{record.serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyName != null" >
+        COMPANY_NAME = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyAdress != null" >
+        COMPANY_ADRESS = #{record.companyAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.trade != null" >
+        TRADE = #{record.trade,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyType != null" >
+        COMPANY_TYPE = #{record.companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.employeeNum != null" >
+        EMPLOYEE_NUM = #{record.employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countryCode != null" >
+        COUNTRY_CODE = #{record.countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.provinceCode != null" >
+        PROVINCE_CODE = #{record.provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityCode != null" >
+        CITY_CODE = #{record.cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.countyCode != null" >
+        COUNTY_CODE = #{record.countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyEmail != null" >
+        COMPANY_EMAIL = #{record.companyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkPersonMsg != null" >
+        LINK_PERSON_MSG = #{record.linkPersonMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkPhoneMsg != null" >
+        LINK_PHONE_MSG = #{record.linkPhoneMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkPsnCard != null" >
+        LINK_PSN_CARD = #{record.linkPsnCard,jdbcType=VARCHAR},
+      </if>
+      <if test="record.linkTelephone != null" >
+        LINK_TELEPHONE = #{record.linkTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyWeixin != null" >
+        COMPANY_WEIXIN = #{record.companyWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyQq != null" >
+        COMPANY_QQ = #{record.companyQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.parentId != null" >
+        PARENT_ID = #{record.parentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkStatus != null" >
+        CHECK_STATUS = #{record.checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkRemark != null" >
+        CHECK_REMARK = #{record.checkRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkStaff != null" >
+        CHECK_STAFF = #{record.checkStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.checkDate != null" >
+        CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_cust_authstr
+    set ID = #{record.id,jdbcType=INTEGER},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      STAFF_CODE = #{record.staffCode,jdbcType=VARCHAR},
+      SERIAL_NUMBER = #{record.serialNumber,jdbcType=VARCHAR},
+      COMPANY_NAME = #{record.companyName,jdbcType=VARCHAR},
+      COMPANY_ADRESS = #{record.companyAdress,jdbcType=VARCHAR},
+      TRADE = #{record.trade,jdbcType=VARCHAR},
+      COMPANY_TYPE = #{record.companyType,jdbcType=VARCHAR},
+      EMPLOYEE_NUM = #{record.employeeNum,jdbcType=VARCHAR},
+      COUNTRY_CODE = #{record.countryCode,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{record.provinceCode,jdbcType=VARCHAR},
+      CITY_CODE = #{record.cityCode,jdbcType=VARCHAR},
+      COUNTY_CODE = #{record.countyCode,jdbcType=VARCHAR},
+      COMPANY_EMAIL = #{record.companyEmail,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      LINK_PERSON_MSG = #{record.linkPersonMsg,jdbcType=VARCHAR},
+      LINK_PHONE_MSG = #{record.linkPhoneMsg,jdbcType=VARCHAR},
+      LINK_PSN_CARD = #{record.linkPsnCard,jdbcType=VARCHAR},
+      LINK_TELEPHONE = #{record.linkTelephone,jdbcType=VARCHAR},
+      COMPANY_WEIXIN = #{record.companyWeixin,jdbcType=VARCHAR},
+      COMPANY_QQ = #{record.companyQq,jdbcType=VARCHAR},
+      PARENT_ID = #{record.parentId,jdbcType=INTEGER},
+      CHECK_STATUS = #{record.checkStatus,jdbcType=VARCHAR},
+      CHECK_REMARK = #{record.checkRemark,jdbcType=VARCHAR},
+      CHECK_STAFF = #{record.checkStaff,jdbcType=INTEGER},
+      CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.CustAuthstr" >
+    update t_cust_authstr
+    <set >
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="serialNumber != null" >
+        SERIAL_NUMBER = #{serialNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAdress != null" >
+        COMPANY_ADRESS = #{companyAdress,jdbcType=VARCHAR},
+      </if>
+      <if test="trade != null" >
+        TRADE = #{trade,jdbcType=VARCHAR},
+      </if>
+      <if test="companyType != null" >
+        COMPANY_TYPE = #{companyType,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeNum != null" >
+        EMPLOYEE_NUM = #{employeeNum,jdbcType=VARCHAR},
+      </if>
+      <if test="countryCode != null" >
+        COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceCode != null" >
+        PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="cityCode != null" >
+        CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      </if>
+      <if test="countyCode != null" >
+        COUNTY_CODE = #{countyCode,jdbcType=VARCHAR},
+      </if>
+      <if test="companyEmail != null" >
+        COMPANY_EMAIL = #{companyEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPersonMsg != null" >
+        LINK_PERSON_MSG = #{linkPersonMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPhoneMsg != null" >
+        LINK_PHONE_MSG = #{linkPhoneMsg,jdbcType=VARCHAR},
+      </if>
+      <if test="linkPsnCard != null" >
+        LINK_PSN_CARD = #{linkPsnCard,jdbcType=VARCHAR},
+      </if>
+      <if test="linkTelephone != null" >
+        LINK_TELEPHONE = #{linkTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyWeixin != null" >
+        COMPANY_WEIXIN = #{companyWeixin,jdbcType=VARCHAR},
+      </if>
+      <if test="companyQq != null" >
+        COMPANY_QQ = #{companyQq,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="checkStatus != null" >
+        CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="checkRemark != null" >
+        CHECK_REMARK = #{checkRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="checkStaff != null" >
+        CHECK_STAFF = #{checkStaff,jdbcType=INTEGER},
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.CustAuthstr" >
+    update t_cust_authstr
+    set STAFF_ID = #{staffId,jdbcType=INTEGER},
+      STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      SERIAL_NUMBER = #{serialNumber,jdbcType=VARCHAR},
+      COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      COMPANY_ADRESS = #{companyAdress,jdbcType=VARCHAR},
+      TRADE = #{trade,jdbcType=VARCHAR},
+      COMPANY_TYPE = #{companyType,jdbcType=VARCHAR},
+      EMPLOYEE_NUM = #{employeeNum,jdbcType=VARCHAR},
+      COUNTRY_CODE = #{countryCode,jdbcType=VARCHAR},
+      PROVINCE_CODE = #{provinceCode,jdbcType=VARCHAR},
+      CITY_CODE = #{cityCode,jdbcType=VARCHAR},
+      COUNTY_CODE = #{countyCode,jdbcType=VARCHAR},
+      COMPANY_EMAIL = #{companyEmail,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      LINK_PERSON_MSG = #{linkPersonMsg,jdbcType=VARCHAR},
+      LINK_PHONE_MSG = #{linkPhoneMsg,jdbcType=VARCHAR},
+      LINK_PSN_CARD = #{linkPsnCard,jdbcType=VARCHAR},
+      LINK_TELEPHONE = #{linkTelephone,jdbcType=VARCHAR},
+      COMPANY_WEIXIN = #{companyWeixin,jdbcType=VARCHAR},
+      COMPANY_QQ = #{companyQq,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=INTEGER},
+      CHECK_STATUS = #{checkStatus,jdbcType=VARCHAR},
+      CHECK_REMARK = #{checkRemark,jdbcType=VARCHAR},
+      CHECK_STAFF = #{checkStaff,jdbcType=INTEGER},
+      CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <insert id="insertBatch" parameterType="com.zengshi.ecp.staff.dao.model.CustAuthstr" >
+    insert into t_cust_authstr (ID, 
+      STAFF_ID, STAFF_CODE, SERIAL_NUMBER, 
+      COMPANY_NAME, COMPANY_ADRESS, TRADE, 
+      COMPANY_TYPE, EMPLOYEE_NUM, COUNTRY_CODE, 
+      PROVINCE_CODE, CITY_CODE, COUNTY_CODE, 
+      COMPANY_EMAIL, STATUS, LINK_PERSON_MSG, 
+      LINK_PHONE_MSG, LINK_PSN_CARD, LINK_TELEPHONE, 
+      COMPANY_WEIXIN, COMPANY_QQ, PARENT_ID, 
+      CHECK_STATUS, CHECK_REMARK, CHECK_STAFF, 
+      CHECK_DATE, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_TIME, UPDATE_STAFF)
+    values <foreach collection="list" item="item" index="index" separator="," > (#{item.id,jdbcType=INTEGER}, 
+      #{item.staffId,jdbcType=INTEGER}, #{item.staffCode,jdbcType=VARCHAR}, #{item.serialNumber,jdbcType=VARCHAR}, 
+      #{item.companyName,jdbcType=VARCHAR}, #{item.companyAdress,jdbcType=VARCHAR}, #{item.trade,jdbcType=VARCHAR}, 
+      #{item.companyType,jdbcType=VARCHAR}, #{item.employeeNum,jdbcType=VARCHAR}, #{item.countryCode,jdbcType=VARCHAR}, 
+      #{item.provinceCode,jdbcType=VARCHAR}, #{item.cityCode,jdbcType=VARCHAR}, #{item.countyCode,jdbcType=VARCHAR}, 
+      #{item.companyEmail,jdbcType=VARCHAR}, #{item.status,jdbcType=VARCHAR}, #{item.linkPersonMsg,jdbcType=VARCHAR}, 
+      #{item.linkPhoneMsg,jdbcType=VARCHAR}, #{item.linkPsnCard,jdbcType=VARCHAR}, #{item.linkTelephone,jdbcType=VARCHAR}, 
+      #{item.companyWeixin,jdbcType=VARCHAR}, #{item.companyQq,jdbcType=VARCHAR}, #{item.parentId,jdbcType=INTEGER}, 
+      #{item.checkStatus,jdbcType=VARCHAR}, #{item.checkRemark,jdbcType=VARCHAR}, #{item.checkStaff,jdbcType=INTEGER}, 
+      #{item.checkDate,jdbcType=TIMESTAMP}, #{item.createTime,jdbcType=TIMESTAMP}, #{item.createStaff,jdbcType=INTEGER}, 
+      #{item.updateTime,jdbcType=TIMESTAMP}, #{item.updateStaff,jdbcType=INTEGER})</foreach>
+  </insert>
+</mapper>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.sys.dao.mapper.busi.MsgInsiteMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.sys.dao.model.MsgInsite" >
+    <id column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <id column="MSG_INFO_ID" property="msgInfoId" jdbcType="INTEGER" />
+    <result column="MSG_CODE" property="msgCode" jdbcType="VARCHAR" />
+    <result column="MSG_CONTEXT" property="msgContext" jdbcType="VARCHAR" />
+    <result column="READ_FLAG" property="readFlag" jdbcType="VARCHAR" />
+    <result column="REC_TIME" property="recTime" jdbcType="TIMESTAMP" />
+    <result column="FROM_STAFF_ID" property="fromStaffId" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    STAFF_ID, MSG_INFO_ID, MSG_CODE, MSG_CONTEXT, READ_FLAG, REC_TIME, FROM_STAFF_ID, 
+    CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.sys.dao.model.MsgInsiteCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_msg_insite
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.sys.dao.model.MsgInsiteKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_msg_insite
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and MSG_INFO_ID = #{msgInfoId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.zengshi.ecp.sys.dao.model.MsgInsiteKey" >
+    delete from t_msg_insite
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and MSG_INFO_ID = #{msgInfoId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.sys.dao.model.MsgInsiteCriteria" >
+    delete from t_msg_insite
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.sys.dao.model.MsgInsite" >
+    insert into t_msg_insite (STAFF_ID, MSG_INFO_ID, MSG_CODE, 
+      MSG_CONTEXT, READ_FLAG, REC_TIME, 
+      FROM_STAFF_ID, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_TIME, UPDATE_STAFF)
+    values (#{staffId,jdbcType=INTEGER}, #{msgInfoId,jdbcType=INTEGER}, #{msgCode,jdbcType=VARCHAR}, 
+      #{msgContext,jdbcType=VARCHAR}, #{readFlag,jdbcType=VARCHAR}, #{recTime,jdbcType=TIMESTAMP}, 
+      #{fromStaffId,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.sys.dao.model.MsgInsite" >
+    insert into t_msg_insite
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="msgInfoId != null" >
+        MSG_INFO_ID,
+      </if>
+      <if test="msgCode != null" >
+        MSG_CODE,
+      </if>
+      <if test="msgContext != null" >
+        MSG_CONTEXT,
+      </if>
+      <if test="readFlag != null" >
+        READ_FLAG,
+      </if>
+      <if test="recTime != null" >
+        REC_TIME,
+      </if>
+      <if test="fromStaffId != null" >
+        FROM_STAFF_ID,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="msgInfoId != null" >
+        #{msgInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="msgCode != null" >
+        #{msgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgContext != null" >
+        #{msgContext,jdbcType=VARCHAR},
+      </if>
+      <if test="readFlag != null" >
+        #{readFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="recTime != null" >
+        #{recTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromStaffId != null" >
+        #{fromStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.sys.dao.model.MsgInsiteCriteria" resultType="java.lang.Long" >
+    select count(*) from t_msg_insite
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_msg_insite
+    <set >
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.msgInfoId != null" >
+        MSG_INFO_ID = #{record.msgInfoId,jdbcType=INTEGER},
+      </if>
+      <if test="record.msgCode != null" >
+        MSG_CODE = #{record.msgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.msgContext != null" >
+        MSG_CONTEXT = #{record.msgContext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.readFlag != null" >
+        READ_FLAG = #{record.readFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.recTime != null" >
+        REC_TIME = #{record.recTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.fromStaffId != null" >
+        FROM_STAFF_ID = #{record.fromStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_msg_insite
+    set STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      MSG_INFO_ID = #{record.msgInfoId,jdbcType=INTEGER},
+      MSG_CODE = #{record.msgCode,jdbcType=VARCHAR},
+      MSG_CONTEXT = #{record.msgContext,jdbcType=VARCHAR},
+      READ_FLAG = #{record.readFlag,jdbcType=VARCHAR},
+      REC_TIME = #{record.recTime,jdbcType=TIMESTAMP},
+      FROM_STAFF_ID = #{record.fromStaffId,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.sys.dao.model.MsgInsite" >
+    update t_msg_insite
+    <set >
+      <if test="msgCode != null" >
+        MSG_CODE = #{msgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="msgContext != null" >
+        MSG_CONTEXT = #{msgContext,jdbcType=VARCHAR},
+      </if>
+      <if test="readFlag != null" >
+        READ_FLAG = #{readFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="recTime != null" >
+        REC_TIME = #{recTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fromStaffId != null" >
+        FROM_STAFF_ID = #{fromStaffId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+    </set>
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and MSG_INFO_ID = #{msgInfoId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.sys.dao.model.MsgInsite" >
+    update t_msg_insite
+    set MSG_CODE = #{msgCode,jdbcType=VARCHAR},
+      MSG_CONTEXT = #{msgContext,jdbcType=VARCHAR},
+      READ_FLAG = #{readFlag,jdbcType=VARCHAR},
+      REC_TIME = #{recTime,jdbcType=TIMESTAMP},
+      FROM_STAFF_ID = #{fromStaffId,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER}
+    where STAFF_ID = #{staffId,jdbcType=INTEGER}
+      and MSG_INFO_ID = #{msgInfoId,jdbcType=INTEGER}
+  </update>
+</mapper>

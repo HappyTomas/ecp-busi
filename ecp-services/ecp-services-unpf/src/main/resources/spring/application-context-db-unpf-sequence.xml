@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+ 	 <bean id="seq_unpf_ord_main" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_ORD_MAIN"/>
+	</bean>
+	 	<bean id="seq_unpf_ord_sub" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_ORD_SUB"/>
+	</bean>
+	 	<bean id="seq_unpf_ord_log" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_ORD_LOG"/>
+	</bean>
+	 	<bean id="seq_unpf_ord_delivery_batch" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_ORD_DELIVERY_BATCH"/>
+	</bean>
+		 	<bean id="seq_unpf_ord_delivery_details" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_ORD_DELIVERY_DETAILS"/>
+	</bean>
+	<bean id="seq_unpf_shop_auth_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_SHOP_AUTH_ID"/>
+	</bean>	
+	<bean id="seq_unpf_msg_syc_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_MSG_SYC_ID"/>
+	</bean>	
+	<bean id="seq_unpf_msg_syc_his_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_MSG_SYC_HIS_ID"/>
+	</bean>	
+	<bean id="seq_unpf_sku_send_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_SKU_SEND_ID"/>
+	</bean>
+	<bean id="seq_unpf_gds_send_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_GDS_SEND_ID"/>
+	</bean>
+		<bean id="seq_unpf_catg_rela_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_CATG_RELA_ID"/>
+	</bean>	
+    <bean id="seq_unpf_prop_rela_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_PROP_RELA_ID"/>
+	</bean>	
+	 <bean id="seq_unpf_prop_value_rela_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_PROP_VALUE_RELA_ID"/>
+	</bean>	
+	 <bean id="seq_unpf_send_log_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_SEND_LOG_ID"/>
+	</bean>
+	 <bean id="seq_unpf_shop_auth_topic_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_SHOP_AUTH_TOPIC_ID"/>
+	</bean>
+		 <bean id="seq_unpf_gds_catg_limit_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_GDS_CATG_LIMIT_ID"/>
+	</bean>
+		 <bean id="seq_unpf_gds_limit_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_GDS_LIMIT_ID"/>
+	</bean>
+	<bean id="seq_unpf_gds_unsend_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_GDS_UNSEND_ID"/>
+	</bean>
+	<bean id="seq_unpf_gds_unsend_his_id" class="com.zengshi.ecp.frame.sequence.PaasSequence" init-method="init">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_GDS_UNSEND_HIS_ID"/>
+	</bean>
+	<bean id="seq_unpf_shop_express" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_SHOP_EXPRESS"/>
+	</bean>
+	<bean id="seq_unpf_prop_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_PROP_ID"/>
+	</bean>
+	<bean id="seq_unpf_prop_value_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_PROP_VALUE_ID"/>
+	</bean>
+	<bean id="seq_unpf_shop_cfg_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_SHOP_CFG_ID"/>
+	</bean>
+	<bean id="seq_unpf_ord_log_id" class="com.zengshi.ecp.frame.sequence.PaasSequence">
+		<property name="sequenceService" ref="paasSequenceService"/>
+	    <property name="sequenceName" value="SEQ_UNPF_ORD_LOG_ID"/>
+	</bean>
+</beans>

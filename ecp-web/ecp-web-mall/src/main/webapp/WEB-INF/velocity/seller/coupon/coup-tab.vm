@@ -1,0 +1,41 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/ebc.check.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/coup-tab.js?version=$!{JS_VERSION}" ></script>
+			<div class="main main-rela">
+                <div class="seller-tab">
+                    <ul class="tab-nav" id="myTab"> 
+      						<li class="active"><a href="#coup-info" class="item">基础配置</a></li> 
+      						<li><a href="#use-rule" class="item">使用规则配置</a></li>
+      						 #if ("1"==${couponTypeVO.useMap.get("190")})
+      
+							      #if($!{coup_code}=="true")
+							      	
+								  #else
+							      	<li><a href="#receive-rule">领取规则配置</a></li> 
+							      #end
+						      #else
+						      	<li><a href="#receive-rule">领取规则配置</a></li> 
+						      #end 
+					        <div class="pull-right " style="margin-top:0px;">
+			       	            #if($!{doAction}=='view')
+			       	                <span   class="sbtn" id="btnReturnTab" shopId="$!{shopId}">返　回</span>
+			       	            #else
+									<button type="button"  class="sbtn sbtn-blue" id="btnFormSave"  > 保存草稿</button>
+									<button type="button"  class="sbtn sbtn-blue" id="btnFormSubmit">提    交</button>
+									<span   class="sbtn " id="btnReturnTab" shopId="$!{shopId}">返　回</span>
+								#end
+		                    </div>	
+   				   	</ul> 
+                   <div class="tab-content" style="width:100%;"> 
+    				   <div class="tab-pane active" id="coup-info">
+       				  		  #parse("/seller/coupon/coup-info.vm") 
+     				    </div> 
+	    				<div class="tab-pane" id="use-rule">
+	    					#parse("/seller/coupon/use-rule-default.vm") 
+	    				</div> 
+	      				<div class="tab-pane" id="receive-rule">
+	       			        #parse("/seller/coupon/receive-rule.vm") 
+	      			    </div> 
+                  </div> 
+			</div>
+		</div>

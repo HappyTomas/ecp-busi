@@ -1,0 +1,25 @@
+#parse("/sys/sys_param.vm")
+#if($channelList && 0 < ${channelList.size()})
+<ul>
+	#foreach($channel in $channelList)
+	#if($channel.id && '' != ${channel.id})
+	#set($childChanList = "")
+	#set($childChanList = ${channel.childList})
+    <li class="item open" data-id = "$!{channel.id}" data-name="$!{channel.channelName}">
+        <a href="javascript:void(0);" class="item-tit">$!{channel.channelName}<i class="more"></i></a>
+        <ul class="item-com">
+        	#foreach($childChannel in $childChanList)
+        	#if($childChannel.id && '' != ${childChannel.id})
+            <li data-id = "$!{childChannel.id}" data-name="$!{childChannel.channelName}">
+            	<a href="javascript:void(0);">$!{childChannel.channelName}</a>
+            </li>
+            #end
+        	#end
+        </ul>
+    </li>
+    #end
+    #end
+</ul>
+#else
+<div class="pro-empty">#if($errMsg && '' != $!{errMsg})$!{errMsg}#else 暂无信息#end</div>
+#end

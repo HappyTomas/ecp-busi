@@ -1,0 +1,47 @@
+ 	#parse("/sys/sys_param.vm")
+ <link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+ <script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gift/gift-list.js?version=$!{JS_VERSION}" ></script>
+ <table class="seller-table" style="margin-top: 15px">
+                       
+                        <thead>
+                        <tr>
+                            <td>赠品编码</td>
+                            <td style="width: 200px">赠品名称</td>
+                            <td>关联单品编码</td>
+                            <td>关联单品名称</td>
+                            <td>赠品价值</td>
+                            <td>赠品总量</td>
+							<td>已赠量</td>
+							<td>可赠量</td>
+							<td>操作</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+            				#if($!{giftPage.getResult().size()} <= 0)
+                    		<tr><td colspan='12'>没有符合条件的记录。</td></tr>
+							#end
+							 	#foreach($giftInfo in $giftPage.getResult())
+							
+                        <tr>
+                            <td>$giftInfo.id</td>
+                            <td>
+                             $giftInfo.giftName
+                            </td>
+                            <td> $!giftInfo.skuId</td>
+                            <td class="td-hhtxt" style="width:200px"> $!giftInfo.gdsName</td>
+							<td>#moneyNum( $!giftInfo.giftValue)</td>
+							<td> $!giftInfo.giftAmount</td>
+							<td> $!giftInfo.giftSend</td>
+							<td> $!giftInfo.giftValid</td>
+                            <td>    <a href="#" name="del" giftId="$!giftInfo.id">删除</a>|<a href="#" name="edit" giftId="$!giftInfo.id">编辑</a></td>
+                      
+                        </tr>
+                        #end
+                        </tbody>
+                    </table>
+			
+	<div class="fav-opt clearfix" >
+                        <div class="row-fluid">
+                			<div id="pageControlbar" class="ecppage" data-total-page="${giftPage.pageCount}" data-total-row="${giftPage.count}" data-page-size="${giftPage.pageSize}" data-page-number="${giftPage.pageNo}" data-status="begin"></div>
+                		</div>
+                    </div>

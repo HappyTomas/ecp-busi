@@ -1,0 +1,25 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.core.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/autocomplete/autocomplete.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/search/util.js"></script>
+<input type="hidden" value="$!{searchType}" id="searchType"/>
+<input type="hidden" id="SHOP_SHOW_LOCK" value="${paramTools.getSysConfigCode('SHOP_SHOW_LOCK')}"/>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        <div class="search-wrap">
+            <span class="am-icon-search"></span>
+            <input id="needSearch" value="$!{keyword}" placeholder="#if($!{searchType}=='2')搜索店铺#else搜索商品#end" class="ui-input" type="text"/>
+        </div>
+    </div>
+    <div class="am-header-left am-header-nav">
+        <a href="javascript:" onclick="history.go(-1); ">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+    <div class="am-header-right">
+        <div id="searchBtn" class="autocomplete-button" style="height: 32px; line-height: 30px;">搜索</div>
+        ##<span class="otxt">搜索</span>
+    </div>
+	
+</header>

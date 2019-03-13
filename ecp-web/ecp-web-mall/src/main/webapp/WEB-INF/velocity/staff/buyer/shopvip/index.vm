@@ -1,0 +1,29 @@
+#parse("sys/sys_param.vm")
+
+<!--会员中心  我的店铺会员-->
+<div id="main">
+    <ul class="sptj-tit" id="myTab">
+        <li><a href="#" class="titQh">我的店铺会员</a></li>
+    </ul>
+    <div class="sptj-box addr-form clearfix">
+        <form class="form-inline">
+            <div style="margin-bottom: 20px"><label>店铺名称：</label>
+                <input type="text" id="shopName" name="shopName" class="" placeholder="店铺名称">
+                &nbsp;&nbsp;
+                <button type="button" id="queryCommitBtn" class="mbtn mbtn-orange">查询</button>
+            </div>
+        </form>
+        <div class="alert mt20">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            您只要成功购买过卖家的宝贝，就有可能成为该卖家的会员，会员可以打折的哦！
+            卖家可以通过设定会员标准将您设定为高级会员，VIP会员或者至尊VIP会员。
+        </div>
+
+		<div class="row-fluid">
+		    <div id="pageMainBox">
+		    	#parse("/staff/buyer/shopvip/page/list.vm")
+		    </div>
+		</div>
+        
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="cd-xj">
+    <div class="cx-cont">
+        <div class="cx-box cx-box-flex">
+            <span class="discount c-orange mr20 ft26">
+                小计：<span id="shopScore">0</span> 积分<em>+</em>
+                &yen; <span id="shopCount">0.00</span>
+            </span>
+##            <span class="c-red">立减：<span class="shopDiscount">0.00</span>
+        </div>
+##        <span class="cx-yh up-prom" style="display:none" data-am-offcanvas="{target: '#slideButtom_item_$!{cart.id}_$velocityCount'}">修改优惠</span>
+    </div>
+</div>
+

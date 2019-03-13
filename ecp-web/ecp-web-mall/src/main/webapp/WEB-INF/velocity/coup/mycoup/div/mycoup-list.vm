@@ -1,0 +1,62 @@
+      #parse("sys/sys_param.vm")
+  <script type="text/javascript" src="$BUSIJS_PATH/coup/mycoup/div/mycoup-list.js"></script>
+ <div class="mbox mt20 fav-tb" >
+                <div class="coupon-box">
+                    <ul class="clearfix">
+                    	#if(!$mycoupPage.getResult())
+        		                                              没有符合条件的记录。
+        	           #end
+        	            	#foreach($mycoup in $mycoupPage.getResult())
+        	             <li>
+                            <div class="coupon #if ($!{mycoup.coupValue}<=2000) cp-bg-color-1 #elseif($!{mycoup.coupValue}<=5000) cp-bg-color-2 #elseif($!{mycoup.coupValue}<=9900) cp-bg-color-3 #else cp-bg-color-3 #end">
+                                <div class="coupon-upper">
+                                    <div class="coupon-price">
+                                        #if(${mycoup.coupValue}<=0)
+                                         <span class="scope">抵用券</span>
+                                        #else
+                                        <span class="c-price">&yen;</span>
+                                        <span class="amount">$!{mycoup.coupValueShow}</span>
+	                                        #if($!{mycoup.useRuleCode} && $!{mycoup.useRuleCode.contains("240")})
+                                        	<span class="scope">折券</span>
+	                                        #else
+                                        	<span class="scope">元券</span>
+	                                        #end
+                                        #end
+                                    </div>
+                                    <p>#if ($!{mycoup.shopName}!="")店铺：$!{mycoup.shopName}#end</p>
+                                    <p>使用条件：$!{mycoup.conditions}</p>
+                                    <p>#if ($!{mycoup.coupSource}=="20")来源：系统发放#end #if ($!{mycoup.coupSource}=="10")来源：用户领取#end</p>
+                                    <p>使用时间：$!date.format('yyyy-MM-dd',$!{mycoup.activeTime})至$!date.format('yyyy-MM-dd',$!{mycoup.inactiveTime})</p>
+                                </div>
+                                <div class="coupon-button">
+                                    <span><a target='_blank' href="#siteInfo('1')/shopIndex/$!{mycoup.shopId}" alt="$!{mycoup.shopName}" class="cp-color-01 shop-class"> <i class="cp-icon"></i>进入店铺</a></span><span class="pull-right"></span></div>
+                            </div>
+                        </li>
+        	            	#end
+                    </ul>
+                </div>
+            </div>
+             <div class="fav-opt clearfix" style="margin-top: 20px;">
+		        <div class="row-fluid">
+					<div id="pageControlbar" class="ecppage" data-total-page="${mycoupPage.pageCount}" data-total-row="${mycoupPage.count}" data-page-size="${mycoupPage.pageSize}" data-page-number="${mycoupPage.pageNo}" data-status="begin"></div>
+				</div>
+           </div>
+           <!--
+            <div class="pagination text-right mpage">
+                <ul class="clearfix">
+                    <li class="disabled"><a href="#">&lt;上一页</a></li>
+                    <li class="active"><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">5</a></li>
+                    <li><a href="#">下一页&gt;</a></li>
+                    <li class="gopage">
+                        共 <b>100</b>页
+                        到第 <input type="text" value="2"> 页
+                        <input class="gobtn" type="button" value="确定">
+                    </li>
+
+                </ul>
+            </div>
+            -->

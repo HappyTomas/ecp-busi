@@ -1,0 +1,120 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/coupinfo/coupinfo-grid.js?version=$!{JS_VERSION}" ></script>
+
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+			<div class="span4">
+					<div class="control-group">
+						<label class="control-label">站点：</label>
+						<div class="controls">
+						 		<select id="siteId" name="siteId" class="input-medium" >
+						 		 <option value="">--请选择--</option>
+                                      #siteList("")
+								 </select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">店铺：</label>
+						<div class="controls">
+							<select name="shopId" id="shopId" class="input-medium" >
+							     <option value="">--请选择--</option>
+									#shoplist()
+								</select>
+							
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">优惠券类型：</label>
+						<div class="controls">
+						 		<select id="coupTypeId" name="coupTypeId" class="input-medium">
+						 		  <option value="">--请选择--</option>
+								     #couptypelist('COUP_TYPE','')
+								</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row-fluid">
+		     <div class="span4">
+					<div class="control-group">
+						<label class="control-label">优惠券名称：</label>
+						<div class="controls">
+								<input type="text" class="input-medium"   id="coupName" name="coupName" />
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">状态：</label>
+						<div class="controls">
+						 		<select id="status" name="status" class="input-medium">
+						 		  <option value="">--请选择--</option>
+								        #listParam('COUP_INFO_STATUS','1')
+								</select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">日期类型：</label>
+						<div class="controls">
+						 		<select id="effType" name="effType" class="input-medium">
+						 		  <option value="">--请选择--</option>
+								        #listParam('COUP_EFF_TYPE','')
+								</select>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row-fluid">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label"></label>
+						<div class="controls">
+						    <label class="control-label" style="text-align: left;"><input type="checkbox" id="ifCode"  name="ifCode"  value="1"  ><span>&nbsp;是否优惠码</span></label>
+						</div>
+					</div>
+				</div>
+			<div class="span4 queryDateCls hide">
+					<div class="control-group">
+						<label class="control-label">有效期开始：</label>
+						<div class="controls">
+						  <input type="text" class="input-large Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="activeTime" id="activeTime"/>
+						</div>
+					</div>
+				</div>
+				<div class="span4  queryDateCls hide">
+					<div class="control-group">
+						<label class="control-label">有效期截止：</label>
+						<div class="controls">
+							  <input type="text" class="input-large Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" name="inactiveTime" id="inactiveTime"/>
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+		
+		
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="span6">
+				<a class="btn" id="btn_code_add" href="#"><i class="icon-plus icon-white"></i> 创建优惠券</a>
+				<a class="btn btn-danger" id="btn_code_batch_invalid" href="#"><i class="icon-remove icon-white"></i>批量失效</a>
+			</div>
+			<div class="pull-right">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>

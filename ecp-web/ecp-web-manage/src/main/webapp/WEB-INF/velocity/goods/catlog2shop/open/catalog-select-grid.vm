@@ -1,0 +1,55 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/catlog2shop/open/catalog-select-grid.js?version=$!{JS_VERSION}" ></script>
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+				<div class="row-fluid">
+    				<div class="span4">
+    					<div class="control-group">
+    						<label class="control-label">目录编码：</label>
+    						<div class="controls">
+    							<input type="text" style="width:150px" class="input-medium" name="catlogCode" placeholder="输入目录编码"/>
+    						</div>
+    					</div>
+    				</div>
+    				<div class="span4">
+    					<div class="control-group">
+    						<label class="control-label">目录名称：</label>
+    						<div class="controls">
+    							<input type="text" style="width:150px" class="input-medium" name="catlogName"  placeholder="输入目录名称" />					
+    						</div>
+    					</div>
+    				</div>
+					<div class="span4">
+    					<div class="control-group">
+    						<label class="control-label">状态：</label>
+    						<div class="controls">
+    							<select style="width:150px" name="status" id="status">
+    								<option value="">全部</option>
+    								<option value="1">有效</option>
+    								<option value="0">无效</option>
+    							</select>					
+    						</div>
+    					</div>
+    				</div>
+    				<div class="clear"></div>
+    			</div>
+				##用于保存已经关联目录ID字符串
+				<input type="hidden" id="relations" name="relations" value="$!{relations}"/>
+			</form>
+		</div>
+    		
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="span6 fbtn">
+				<a class="btn btn-info" id="btn_add_catlog" href="#"><i class=" icon-ok-sign icon-white"></i> 保存</a>
+				<button type="button" class="btn" id="btn_close"><i class="icon-remove-sign icon-white"></i>关    闭</button>
+			</div>
+			<div class="pull-right fbtn">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn " id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+			
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>

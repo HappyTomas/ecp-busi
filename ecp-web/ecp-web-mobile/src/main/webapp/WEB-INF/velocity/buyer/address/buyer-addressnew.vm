@@ -1,0 +1,74 @@
+#parse("/sys/sys_param.vm")
+<head>
+    <meta charset="UTF-8">
+    <title>收货地址</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+	<style >
+		.error {color:red}
+    </style>
+</head>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        添加收货地址
+    </div>
+    <div class="am-header-left am-header-nav">
+         <a href="javascript:" onclick="history.back(); ">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content">
+    <div class="odr-box wpay-list">
+        <form class="am-form am-form-horizontal addr-form form-horizontal" id="addrdetailfrom">
+            <div class="am-form-group">
+                <label for="" class="am-u-sm-2 am-form-label"><font style="color:red">*</font>收&nbsp;&nbsp;货&nbsp;&nbsp;人</label>
+                <div class="am-u-sm-10">
+                    <input type="text" class="defineRequired" maxlength="16" requiredInfo="请您填写收货人姓名" maxlength="50" id="contactName" name="contactName" placeholder="收货人">
+                </div>
+            </div>
+
+            <div class="am-form-group">
+                <label for="" class="am-u-sm-2 am-form-label"><font style="color:red">*</font>手机号码</label>
+                <div class="am-u-sm-10">
+                    <input type="text" class="defineRequired mobilePhone" requiredInfo="请您填写收货人手机号码" maxlength="11" minlength="11" id="contactPhone" name="contactPhone" placeholder="手机号码">
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label for="" class="am-u-sm-2 am-form-label"><font style="color:red">*</font>所在地区</label>
+                <div class="am-u-sm-10">
+					<select class="jquery-area" data-am-selected="{maxHeight: 200}" name="province" id="p-code"  area-type="admin" area-level="province" area-children="city-code" area-defaultvalue="$!{custaddr.province}" ></select>
+                    <select class="jquery-area" data-am-selected="{maxHeight: 200}"  name="cityCode" id="city-code" area-type="admin" area-level="city" area-children="county-code" area-defaultvalue="$!{custaddr.cityCode}" ></select>
+                    <select class="jquery-area" data-am-selected="{maxHeight: 200}"  name="countyCode" id="county-code" area-type="admin" area-level="county" area-children="" area-defaultvalue="$!{custaddr.countyCode}"></select>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label for="" class="am-u-sm-2 am-form-label"><font style="color:red">*</font>详细地址</label>
+                <div class="am-u-sm-10">
+                    <textarea type="text" style="" placeholder="详细地址" maxlength="100" class="defineRequired" requiredInfo="请您填写收货人详细地址" maxlength="100" minlength="0" name="chnlAddress" value="$!{custaddr.chnlAddress}"></textarea>
+                </div>
+            </div>
+            <div class="am-form-group">
+                <label for="" class="am-u-sm-2 am-form-label">邮政编码</label>
+                <div class="am-u-sm-10">
+                    <input type="text" id="postCode" name="postCode" class="postCode" maxlength="6" placeholder="邮政编码">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="reg-b">
+        <button class="wbtn" id="saveaddr">保存地址信息</button>
+    </div>
+</div>
+<!-- 表单需要引用的脚本、样式库 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/jquery.validate.js"></script>
+<!-- 表单工具集合 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.form.js"></script>
+<!-- 表单验证定义及国际化 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.validate.method.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.regional.zh.js"></script>
+<!-- 选择器统一入口 -->
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.selector.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/jquery.area.js?version=$!{JS_VERSION}" ></script>
+<script src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js"></script>
+<script src="$!{RESOURCE_PATH}/util.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/buyer/address/buyer-addressnew.js?version=$!{JS_VERSION}" ></script>

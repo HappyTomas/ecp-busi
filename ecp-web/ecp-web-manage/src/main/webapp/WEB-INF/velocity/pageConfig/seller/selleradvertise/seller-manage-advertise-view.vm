@@ -1,0 +1,153 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/seller/selleradvertise/seller-manage-advertise-view.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<style>
+    .form-horizontal .control-label {
+        width: 140px;/* 默认为100px */
+    }
+</style>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<div class="formBox row-fluid">
+	<form class="form-horizontal">
+		<div class="span8">
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label span4" for="name">广告语：</label>
+    				<label class="controls text_line" >#if(${respVO.advertiseTitle})#escapeHtml(${respVO.advertiseTitle}) #else 无 #end</label>
+    			</div>
+    		</div>
+			
+			<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属站点：</label>
+    				<label class="controls text_line" >#if(${respVO.siteName})#escapeHtml(${respVO.siteName}) #else 无 #end</label>
+    			</div>
+    		</div>
+    		
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属模板：</label>
+    				<label class="controls text_line" >#if(${respVO.templateName})#escapeHtml(${respVO.templateName}) #else 无 #end</label>
+    			</div>
+    		</div>
+			
+			<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">内容位置：</label>
+    				<label class="controls text_line" >#if(${respVO.placeName})#escapeHtml(${respVO.placeName}) #else 无#end</label>
+    			</div>
+    		</div>
+    		
+			<!--
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">广告图片名称：</label>
+    				<label class="controls text_line" >#if(${respVO.vfsName})#escapeHtml(${respVO.vfsName}) #else 无 #end</label>
+    			</div>
+    		</div>
+    		-->
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">广告图片：</label>
+    				<label class="controls text_line" ><img id="imagePreview" src="#genImageUrl($!{respVO.vfsId},'290x220!')" width="150" height="150" class="img-polaroid"></label>
+    			</div>
+    		</div>
+			
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">状态：</label>
+    				<label class="controls text_line" >#if(${respVO.statusZH})${respVO.statusZH} #else 无 #end</label>
+    			</div>
+    		</div>
+			
+			<!--
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">所属系统：</label>
+    				<label class="controls text_line" >#if(${respVO.subSystemZH})#escapeHtml(${respVO.subSystemZH}) #else 无 #end</label>
+    			</div>
+    		</div>
+			-->
+			
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">店铺： </label>
+    				<label class="controls text_line" >#if(${respVO.shopName})#escapeHtml(${respVO.shopName}) #else 无#end</label>
+    			</div>
+    		</div>
+    		
+			
+			<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">链接类型： </label>
+    				<label class="controls text_line" >#if(${respVO.linkTypeZH})#escapeHtml(${respVO.linkTypeZH}) #else 无 #end</label>
+    			</div>
+    		</div>
+			<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">链接内容：</label>
+    				<label class="controls text_line" >#if(${respVO.linkName})#escapeHtml(${respVO.linkName}) #else 无 #end</label>
+    			</div>
+    		</div>
+    		<!--
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">链接内容：</label>
+    				<label class="controls text_line" >#if(${respVO.linkUrl})#escapeHtml(${respVO.linkUrl}) #else 无 #end</label>
+    			</div>
+    		</div>
+			-->
+			<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">发布时间：</label>
+    				<label class="controls text_line" >#if(${respVO.pubTime})$!date.format('yyyy-MM-dd',${respVO.pubTime}) #else 无 #end</label>
+    			</div>
+    		</div>
+    		
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">失效时间：</label>
+    				<label class="controls text_line" >#if(${respVO.lostTime})$!date.format('yyyy-MM-dd',${respVO.lostTime}) #else 无 #end</label>
+    			</div>
+    		</div>
+    		
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">备注：</label>
+    				<label class="controls text_line" >#if(${respVO.remark})#escapeHtml(${respVO.remark}) #else 无 #end</label>
+    			</div>
+    		</div>
+			
+			<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">排序：</label>
+    				<label class="controls text_line" >#if(${respVO.sortNo})${respVO.sortNo} #else 无 #end</label>
+    			</div>
+    		</div>
+    		
+			<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">创建时间：</label>
+    				<label class="controls text_line" >#if(${respVO.createTime})$!date.format('yyyy-MM-dd',${respVO.createTime}) #else 无 #end</label>
+    			</div>
+    		</div>
+    		
+    		<div class=" formSep">
+    			<div class="control-group">
+    				<label class="control-label">更新时间：</label>
+    				<label class="controls text_line">#if(${respVO.updateTime})$!date.format('yyyy-MM-dd',${respVO.updateTime}) #else 无 #end</label>
+    			</div>
+    		</div>
+			<div class="text-center">
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+			</div>
+        </div>
+		
+		<div class="clear"></div>
+	</form>
+</div>
+	

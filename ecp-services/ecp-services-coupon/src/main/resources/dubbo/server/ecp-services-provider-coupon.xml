@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+    xsi:schemaLocation="http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://code.alibabatech.com/schema/dubbo  
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+     ">  
+     
+    <!--对外提供的服务-->
+    <bean id="coupTypeRSV" class="com.zengshi.ecp.coupon.dubbo.impl.CoupTypeRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.coupon.dubbo.interfaces.ICoupTypeRSV" ref="coupTypeRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <bean id="coupParamRSV" class="com.zengshi.ecp.coupon.dubbo.impl.CoupParamRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.coupon.dubbo.interfaces.ICoupParamRSV" ref="coupParamRSV" provider="${default.dubbo.provider.id}"/>
+    
+     <bean id="coupRSV" class="com.zengshi.ecp.coupon.dubbo.impl.CoupRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.coupon.dubbo.interfaces.ICoupRSV" ref="coupRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <bean id="coupLimitRSV" class="com.zengshi.ecp.coupon.dubbo.impl.CoupLimitRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.coupon.dubbo.interfaces.ICoupLimitRSV" ref="coupLimitRSV" provider="${default.dubbo.provider.id}"/>
+    
+    <bean id="coupDetailRSV" class="com.zengshi.ecp.coupon.dubbo.impl.CoupDetailRSVImpl" />
+    <dubbo:service interface="com.zengshi.ecp.coupon.dubbo.interfaces.ICoupDetailRSV" ref="coupDetailRSV" provider="${default.dubbo.provider.id}"/>
+    
+</beans>  

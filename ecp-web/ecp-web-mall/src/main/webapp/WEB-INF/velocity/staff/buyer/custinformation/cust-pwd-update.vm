@@ -1,0 +1,47 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<link rel="stylesheet" href="$!{CSS_PATH}/default/staff/information/member.css" />
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/cust-pwd-update.js?version=$!{JS_VERSION}" ></script>
+
+ <div id="main">
+    <div class="mbox order-list">
+        <div class="mbox-head">
+            <h3>
+                	修改密码
+            </h3>
+        </div>
+        <div class="mbox-body">
+            <div class="email-set-con email-bottom">
+                <form class="form-horizontal required-validate" id="detailInfoForm" >
+                    <div class="control-group" style="margin-top:20px">
+                        <label class="control-label">旧密码：</label>
+
+                        <div class="controls">
+                            <input type="password" class=" required htmlcheck checkPassword" name="staffPasswdOld" id="staffPasswdOld" placeholder="旧密码">
+                        	<input type="hidden" class=" htmlcheck checkPassword" name="staffId" placeholder="" id="staffId" value="$!{staffId}" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">新密码：</label>
+
+                        <div class="controls">
+                            <input type="password" class=" required htmlcheck checkPassword" name="staffPasswd" id="staffPasswd" maxlength="16" placeholder="新密码">
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label">确认新密码：</label>
+
+                        <div class="controls">
+                            <input type="password" class=" required htmlcheck" equalTo="#staffPasswd" name="staffPasswd2" id="staffPasswd2" maxlength="16" placeholder="确认新密码">
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+            <div  align="center">
+		        <button type="button" class="btn btn-danger"  id="btnFormSave"> 提	交</button>
+		    </div>
+        </div>
+
+    </div>
+</div>

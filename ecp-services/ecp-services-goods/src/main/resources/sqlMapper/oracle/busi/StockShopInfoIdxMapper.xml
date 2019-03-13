@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.goods.dao.mapper.busi.StockShopInfoIdxMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.goods.dao.model.StockShopInfoIdx" >
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="CATG_CODE" property="catgCode" jdbcType="VARCHAR" />
+    <result column="TYPE_ID" property="typeId" jdbcType="INTEGER" />
+    <result column="GDS_ID" property="gdsId" jdbcType="INTEGER" />
+    <result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+    <result column="REP_TYPE" property="repType" jdbcType="VARCHAR" />
+    <result column="STOCK_TYPE" property="stockType" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="STOCK_ID" property="stockId" jdbcType="INTEGER" />
+    <result column="AVAIL_COUNT" property="availCount" jdbcType="INTEGER" />
+    <result column="GDS_NAME" property="gdsName" jdbcType="VARCHAR" />
+    <result column="PRODUCT_NO" property="productNo" jdbcType="VARCHAR" />
+    <result column="CATG_PATH" property="catgPath" jdbcType="VARCHAR" />
+    <result column="FAC_STOCK" property="facStock" jdbcType="INTEGER" />
+    <result column="ZERO_STOCK_STARTTIME" property="zeroStockStarttime" jdbcType="TIMESTAMP" />
+    <result column="ZERO_STOCK_FLAG" property="zeroStockFlag" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    SHOP_ID, CATG_CODE, TYPE_ID, GDS_ID, SKU_ID, REP_TYPE, STOCK_TYPE, STATUS, STOCK_ID, 
+    AVAIL_COUNT, GDS_NAME, PRODUCT_NO, CATG_PATH, FAC_STOCK, ZERO_STOCK_STARTTIME, ZERO_STOCK_FLAG
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.goods.dao.model.StockShopInfoIdxCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_stock_shop_info_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <insert id="insert" parameterType="com.zengshi.ecp.goods.dao.model.StockShopInfoIdx" >
+    insert into t_stock_shop_info_idx (SHOP_ID, CATG_CODE, TYPE_ID, 
+      GDS_ID, SKU_ID, REP_TYPE, 
+      STOCK_TYPE, STATUS, STOCK_ID, 
+      AVAIL_COUNT, GDS_NAME, PRODUCT_NO, 
+      CATG_PATH, FAC_STOCK, ZERO_STOCK_STARTTIME, 
+      ZERO_STOCK_FLAG)
+    values (#{shopId,jdbcType=INTEGER}, #{catgCode,jdbcType=VARCHAR}, #{typeId,jdbcType=INTEGER}, 
+      #{gdsId,jdbcType=INTEGER}, #{skuId,jdbcType=INTEGER}, #{repType,jdbcType=VARCHAR}, 
+      #{stockType,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{stockId,jdbcType=INTEGER}, 
+      #{availCount,jdbcType=INTEGER}, #{gdsName,jdbcType=VARCHAR}, #{productNo,jdbcType=VARCHAR}, 
+      #{catgPath,jdbcType=VARCHAR}, #{facStock,jdbcType=INTEGER}, #{zeroStockStarttime,jdbcType=TIMESTAMP}, 
+      #{zeroStockFlag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.goods.dao.model.StockShopInfoIdx" >
+    insert into t_stock_shop_info_idx
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="catgCode != null" >
+        CATG_CODE,
+      </if>
+      <if test="typeId != null" >
+        TYPE_ID,
+      </if>
+      <if test="gdsId != null" >
+        GDS_ID,
+      </if>
+      <if test="skuId != null" >
+        SKU_ID,
+      </if>
+      <if test="repType != null" >
+        REP_TYPE,
+      </if>
+      <if test="stockType != null" >
+        STOCK_TYPE,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="stockId != null" >
+        STOCK_ID,
+      </if>
+      <if test="availCount != null" >
+        AVAIL_COUNT,
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME,
+      </if>
+      <if test="productNo != null" >
+        PRODUCT_NO,
+      </if>
+      <if test="catgPath != null" >
+        CATG_PATH,
+      </if>
+      <if test="facStock != null" >
+        FAC_STOCK,
+      </if>
+      <if test="zeroStockStarttime != null" >
+        ZERO_STOCK_STARTTIME,
+      </if>
+      <if test="zeroStockFlag != null" >
+        ZERO_STOCK_FLAG,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="catgCode != null" >
+        #{catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsId != null" >
+        #{gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="repType != null" >
+        #{repType,jdbcType=VARCHAR},
+      </if>
+      <if test="stockType != null" >
+        #{stockType,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="stockId != null" >
+        #{stockId,jdbcType=INTEGER},
+      </if>
+      <if test="availCount != null" >
+        #{availCount,jdbcType=INTEGER},
+      </if>
+      <if test="gdsName != null" >
+        #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="productNo != null" >
+        #{productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="catgPath != null" >
+        #{catgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="facStock != null" >
+        #{facStock,jdbcType=INTEGER},
+      </if>
+      <if test="zeroStockStarttime != null" >
+        #{zeroStockStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="zeroStockFlag != null" >
+        #{zeroStockFlag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.goods.dao.model.StockShopInfoIdxCriteria" resultType="java.lang.Long" >
+    select count(*) from t_stock_shop_info_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_stock_shop_info_idx
+    <set >
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.catgCode != null" >
+        CATG_CODE = #{record.catgCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.typeId != null" >
+        TYPE_ID = #{record.typeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsId != null" >
+        GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuId != null" >
+        SKU_ID = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.repType != null" >
+        REP_TYPE = #{record.repType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockType != null" >
+        STOCK_TYPE = #{record.stockType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stockId != null" >
+        STOCK_ID = #{record.stockId,jdbcType=INTEGER},
+      </if>
+      <if test="record.availCount != null" >
+        AVAIL_COUNT = #{record.availCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsName != null" >
+        GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.productNo != null" >
+        PRODUCT_NO = #{record.productNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.catgPath != null" >
+        CATG_PATH = #{record.catgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.facStock != null" >
+        FAC_STOCK = #{record.facStock,jdbcType=INTEGER},
+      </if>
+      <if test="record.zeroStockStarttime != null" >
+        ZERO_STOCK_STARTTIME = #{record.zeroStockStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.zeroStockFlag != null" >
+        ZERO_STOCK_FLAG = #{record.zeroStockFlag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_stock_shop_info_idx
+    set SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      CATG_CODE = #{record.catgCode,jdbcType=VARCHAR},
+      TYPE_ID = #{record.typeId,jdbcType=INTEGER},
+      GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      SKU_ID = #{record.skuId,jdbcType=INTEGER},
+      REP_TYPE = #{record.repType,jdbcType=VARCHAR},
+      STOCK_TYPE = #{record.stockType,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      STOCK_ID = #{record.stockId,jdbcType=INTEGER},
+      AVAIL_COUNT = #{record.availCount,jdbcType=INTEGER},
+      GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      PRODUCT_NO = #{record.productNo,jdbcType=VARCHAR},
+      CATG_PATH = #{record.catgPath,jdbcType=VARCHAR},
+      FAC_STOCK = #{record.facStock,jdbcType=INTEGER},
+      ZERO_STOCK_STARTTIME = #{record.zeroStockStarttime,jdbcType=TIMESTAMP},
+      ZERO_STOCK_FLAG = #{record.zeroStockFlag,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

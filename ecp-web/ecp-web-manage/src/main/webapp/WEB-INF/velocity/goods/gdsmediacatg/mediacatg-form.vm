@@ -1,0 +1,64 @@
+                <form class="form-horizontal required-validate" id="actionForm" style="margin-top:20px;">
+					<!--main content-->
+					<div class="row-fluid">
+                        <div class="span8">
+							<div class="control-group" id="catgCode" style="display:none;">
+                                <label for="" class="control-label">分类编码:</label>
+                                <div class="controls">
+                                    <input type="text" readonly="readonly" name="catgCode" value="" readonly />
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="" class="control-label">名称:</label>
+                                <div class="controls">
+                                    <input  type="text" name="catgName" id="catg-name" class="required htmlcheck" value="" validate="{rangelength:[1,32]}"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="" class="control-label">上级分类：</label>
+                                <div class="controls">
+                                    <input type="text" type="text" disabled="disabled" id="parent-name"/>
+									<input type="hidden" name="catgParent" id="catg-parent" value=""/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="" class="control-label">排序：</label>
+                                <div class="controls">
+                                    <input type="text" name="sortNo" id="sort-no" class='digits' min="1" max="99999" value=""/>
+                                </div>
+                            </div>
+							<div class="control-group">
+                                <label for="" class="control-label">店铺：</label>
+                                <div class="controls">
+									<select name="shopId" id="shop-id" class="required">
+										<option value="">--请选择--</option>
+										#shopStatuslist($!{reqVO.shopId},'1')
+                                    </select>
+									
+                                </div>
+                            </div>
+							
+							
+                        </div>
+						
+                        <div class="span4">
+                            <div class="imgup-show">
+							     <img src="$!{IMAGE_PATH}/goods/image_preview.png" alt="" id="form-imgPreviewHold"/>
+							     <img src="$!{IMAGE_PATH}/goods/image_preview.png" alt="" id="form-imgPreview" style="display:none;"/>
+                            </div>
+                            <div class="alert rk-alert">
+                                图片格式必须是：png,jpg,jpeg,gif并且小于100k
+                            </div>
+							<div class="img-input">
+								        <a id="imgUpload" href="javascript:void(0);" class="btn"><i class="  icon-white"></i> 图片上传</a>
+                						<input type="hidden" id="mediaId" name="mediaId" value=""/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btn-wrap fbtn" style="top:100px;">
+						<a class="btn btn-info" id="btnUpdate" style="display:none;"><i class="icon-edit icon-white"></i> 保  存</a>
+						<a class="btn btn-info" id="btnSave" style="display:none;"><i class=" icon-ok-sign icon-white"></i> 保  存</a>
+                        <a class="btn" style="margin-left: 10px" id="btnCancel"><i class=" icon-remove-sign icon-white"></i> 取  消</a>
+                    </div>
+                </form>
+                <!-- main content -->

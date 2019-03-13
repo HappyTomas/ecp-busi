@@ -1,0 +1,63 @@
+#parse("sys/sys_param.vm")
+<script type="text/html" id="wrapper2-tpl">
+    {{each values.datas as shop i}}
+    <div class="odr-box odr-boxA shopItem">
+	    <input type="hidden" name="orderId" value="{{shop.ordMain.orderId}}"/>
+        <div class="odr-tit odr-pad">
+			<span>  
+			    #if($!switchPayMerge == '1')
+    			#set($val = ${paramTools.getSysConfigCode("SWITCH_PAY_MERGE")})
+            	#if($val=="1")
+				    {{if shop.ordMain.status=='01'}}
+						<input type="checkbox" class="ui-checkbox addCheck" id="checkbox{{i}}" >
+                        <label for="checkbox{{i}}"></label>
+					{{/if}}  
+            	#end
+    		 #end
+				<i class="icon icon-ord-shop"></i>{{shop.ordMain.shopName}}
+			</span>
+            <span class="pull-right wait-hover #if($!status=="00") ordlink#end">
+            
+                 <a href="javascript:void(0)" class="status_{{shop.ordMain.status}}" target="_self"> {{shop.ordMain.statusName}}</a>
+            </span>
+        </div>
+		
+		
+
+		 
+
+        <div class="odr-con ordclick">
+            <ul class="ui-list">
+                {{each shop.ordSubs as ordsub j}}
+                <li>
+                    <!--<a href="$!{CONTEXT_PATH}{{ordsub.gdsUrl}}">-->
+                        <div class="img-wrap">
+                            <div class="img-border">
+                                <img src="{{ordsub.picUrl}}" alt="$!{CONTEXT_PATH}{{ordsub.gdsUrl}}">
+                            </div>
+                        </div>
+                        <div class="cont">
+                            <p class="tit">{{ordsub.gdsName}}</p>
+                        </div>
+                    <!--</a>-->
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+
+        <div class="odr-footer opera">
+            <div class="pay">实付款: <span><em>¥ </em><i>{{shop.ordMain.showMoney}}</i></span></div>
+            <input type="hidden" id="shop_order_status" value="{{shop.ordMain.status}}"></input>
+            <input type="hidden" id="shop_order_dispatchType" value="{{shop.ordMain.dispatchType}}"></input>
+        </div>
+
+        <form method="POST" action="$CONTEXT_PATH/pay/queryWay" id="{{shop.ordMain.orderId}}">
+            <input name="orderIds" value="{{shop.ordMain.orderId}}" type="hidden">
+            <input name="shopId" value="{{shop.ordMain.shopId}}" type="hidden">
+            <input name="oper" value="01" type="hidden">
+            <input name="orderMoney" value="{{shop.ordMain.realMoney}}" type="hidden">
+        </form>
+    </div>
+    {{/each}}
+
+</script>

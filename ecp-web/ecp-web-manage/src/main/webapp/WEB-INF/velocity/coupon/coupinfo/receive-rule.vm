@@ -1,0 +1,33 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/coupinfo/receive-rule.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/../js/framework/manage/extend/ebc.check.js?version=$!{JS_VERSION}" ></script>
+	<div class="alert alert-error hide formValidateMessages" style="color:red;" id="prom-info-valid" >
+				##showSpringAllError("coupVO")
+            </div>
+<form id="receiveRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action=""  >
+					<div class="row-fluid">
+			             <table class="table table-bordered pmgr-pritb" style="width:90%;margin-left: 50px;">
+                            <thead>
+                            <tr>
+                                <th><span style="color:red">*</span>会员等级</th>
+                                <th><span style="color:red">*</span>领取数量</th>
+                                <th><span style="color:red">*</span>领取限制时间(开始时间至截止时间)</th>
+								<th class="lh">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody id="receive-rule-table">
+                                #set($custLevelList = ${paramTools.getParamDTOList("STAFF_CUST_LEVEL")})
+                            	#foreach( $info in $custLevelList) 
+		                              <tr>
+		                                   <td style="text-align:right">$!info.spValue</td>
+		                                   <td><input type='text' class='input-medium   $!info.spCode' id="num-$!info.spCode" name="receiveMap[num-$!info.spCode]"  placeholder="请输入正整数" maxlength="12" value="$!{coupVO.receiveMap.get("num-$!info.spCode")}" onblur="receiveInfo.valid(this)" /><div class="hide" id="num-error-$!info.spCode" style="color:red">请输入有效的数字</div></td>
+		                                   <td><input type="text" class="input-medium  Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" id="start-$!info.spCode" name="receiveMap[start-$!info.spCode]"  value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{coupVO.receiveMap.get("start-$!info.spCode")})" /><span>&nbsp;至&nbsp;</span><input type="text" class="input-medium  Wdate" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})"    id="end-$!info.spCode"  name="receiveMap[end-$!info.spCode]"  value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{coupVO.receiveMap.get("end-$!info.spCode")})"  /></td>
+		                                   <td><a href='javascript:void(0);'  class="clearTr" onclick='receiveInfo.clearTr("$!info.spCode")'>清空</a></td>
+		                              </tr>
+                               #end
+                            </tbody>
+                        </table>
+				   </div>
+				</form>
+			 
+			   
+		    

@@ -1,0 +1,67 @@
+	#parse("/sys/sys_param.vm")
+	#parse("/module/mod-form.vm")
+<link href="$!{RESOURCE_PATH}/bootstrap/extend/css/bootstrap_page.css" rel="stylesheet" type="text/css" media="screen"/>
+ <script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsMedia/media-grid.js?version=$!{JS_VERSION}" ></script>
+
+
+                <div class="seller-well">
+                    <form action="" class="form-horizontal required-validate" id="mediaForm">
+                            <div class="row-fluid">
+                                <div class="span4">
+                                    <div class="control-group">
+                                        <label class="control-label">店铺名称：</label>
+                                        <div class="controls">
+													
+                                         <select name="shopId" id="shopId"  class="input-block-level">
+                                           #sellerList($!shopId)
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <div class="control-group">
+                                        <label class="control-label">图片编码：</label>
+                                        <div class="controls">
+                                            <input placeholder="输入图片编码" type="text" class="input-block-level" name="id" id="id"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span4">
+                                    <div class="control-group">
+                                        <label class="control-label">图片名称：</label>
+                                        <div class="controls">
+                                            <input placeholder="输入图片名称" type="text" class="input-block-level" name="mediaName" id ="mediaName"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                            
+							
+				
+                        </form>
+                </div>
+				
+			
+                    </div>	
+					
+					   <div class="sbtn-group">
+                    <!--查询，重置移动到这里，添加btn-w-right样式，重置按钮添加icon-color-->
+                    <div class="btn-wrap btn-w-right">
+                        <span class="sbtn sbtn-blue" id="mediaSearchBtn"><i class="icon-search"></i> 查询</span>
+                        <span class="sbtn" id="mediaResetBtn"><i class="icon-asterisk icon-color"></i> 重置</span>
+                    </div>
+					 <span class="sbtn sbtn-blue" id="mediaAddBtn"><i class="icon-plus"></i> 新增图片</span>
+					  </div>
+					
+					
+                <div class="main-inner">
+                
+				<div id='mediaListDiv'>
+                  #parse("/seller/goods/gdsMedia/list/list.vm")
+                	
+				</div>
+                  
+
+                </div>
+
+       

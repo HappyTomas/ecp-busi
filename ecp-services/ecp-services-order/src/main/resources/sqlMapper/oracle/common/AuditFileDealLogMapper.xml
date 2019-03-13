@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.common.AuditFileDealLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.AuditFileDealLog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="FILE_NAME" property="fileName" jdbcType="VARCHAR" />
+    <result column="FILE_HEAD" property="fileHead" jdbcType="VARCHAR" />
+    <result column="PAY_WAY" property="payWay" jdbcType="VARCHAR" />
+    <result column="CHECK_DATE" property="checkDate" jdbcType="TIMESTAMP" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="TOTAL_NUM" property="totalNum" jdbcType="INTEGER" />
+    <result column="TOTAL_TRANS_AMOUNT" property="totalTransAmount" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="EXECUTE_METHODS" property="executeMethods" jdbcType="VARCHAR" />
+    <result column="REFUND_TOTAL_NUM" property="refundTotalNum" jdbcType="INTEGER" />
+    <result column="REFUND_TOTAL_TRANS_AMOUNT" property="refundTotalTransAmount" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.zengshi.ecp.order.dao.model.AuditFileDealLog" extends="BaseResultMap" >
+    <result column="FILE_CONTENT" property="fileContent" jdbcType="CLOB" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, FILE_NAME, FILE_HEAD, PAY_WAY, CHECK_DATE, SHOP_ID, TOTAL_NUM, TOTAL_TRANS_AMOUNT, 
+    CREATE_TIME, EXECUTE_METHODS, REFUND_TOTAL_NUM, REFUND_TOTAL_TRANS_AMOUNT
+  </sql>
+  <sql id="Blob_Column_List" >
+    FILE_CONTENT
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.zengshi.ecp.order.dao.model.AuditFileDealLogCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+      select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_audit_file_deal_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.AuditFileDealLogCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_audit_file_deal_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from t_audit_file_deal_log
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_audit_file_deal_log
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.AuditFileDealLogCriteria" >
+    delete from t_audit_file_deal_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.AuditFileDealLog" >
+    insert into t_audit_file_deal_log (ID, FILE_NAME, FILE_HEAD, 
+      PAY_WAY, CHECK_DATE, SHOP_ID, 
+      TOTAL_NUM, TOTAL_TRANS_AMOUNT, CREATE_TIME, 
+      EXECUTE_METHODS, REFUND_TOTAL_NUM, REFUND_TOTAL_TRANS_AMOUNT, 
+      FILE_CONTENT)
+    values (#{id,jdbcType=INTEGER}, #{fileName,jdbcType=VARCHAR}, #{fileHead,jdbcType=VARCHAR}, 
+      #{payWay,jdbcType=VARCHAR}, #{checkDate,jdbcType=TIMESTAMP}, #{shopId,jdbcType=INTEGER}, 
+      #{totalNum,jdbcType=INTEGER}, #{totalTransAmount,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{executeMethods,jdbcType=VARCHAR}, #{refundTotalNum,jdbcType=INTEGER}, #{refundTotalTransAmount,jdbcType=INTEGER}, 
+      #{fileContent,jdbcType=CLOB})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.AuditFileDealLog" >
+    insert into t_audit_file_deal_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="fileName != null" >
+        FILE_NAME,
+      </if>
+      <if test="fileHead != null" >
+        FILE_HEAD,
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY,
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="totalNum != null" >
+        TOTAL_NUM,
+      </if>
+      <if test="totalTransAmount != null" >
+        TOTAL_TRANS_AMOUNT,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="executeMethods != null" >
+        EXECUTE_METHODS,
+      </if>
+      <if test="refundTotalNum != null" >
+        REFUND_TOTAL_NUM,
+      </if>
+      <if test="refundTotalTransAmount != null" >
+        REFUND_TOTAL_TRANS_AMOUNT,
+      </if>
+      <if test="fileContent != null" >
+        FILE_CONTENT,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fileName != null" >
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileHead != null" >
+        #{fileHead,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null" >
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="totalNum != null" >
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalTransAmount != null" >
+        #{totalTransAmount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executeMethods != null" >
+        #{executeMethods,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTotalNum != null" >
+        #{refundTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="refundTotalTransAmount != null" >
+        #{refundTotalTransAmount,jdbcType=INTEGER},
+      </if>
+      <if test="fileContent != null" >
+        #{fileContent,jdbcType=CLOB},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.AuditFileDealLogCriteria" resultType="java.lang.Long" >
+    select count(*) from t_audit_file_deal_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_audit_file_deal_log
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.fileName != null" >
+        FILE_NAME = #{record.fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.fileHead != null" >
+        FILE_HEAD = #{record.fileHead,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payWay != null" >
+        PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.checkDate != null" >
+        CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalNum != null" >
+        TOTAL_NUM = #{record.totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.totalTransAmount != null" >
+        TOTAL_TRANS_AMOUNT = #{record.totalTransAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.executeMethods != null" >
+        EXECUTE_METHODS = #{record.executeMethods,jdbcType=VARCHAR},
+      </if>
+      <if test="record.refundTotalNum != null" >
+        REFUND_TOTAL_NUM = #{record.refundTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.refundTotalTransAmount != null" >
+        REFUND_TOTAL_TRANS_AMOUNT = #{record.refundTotalTransAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.fileContent != null" >
+        FILE_CONTENT = #{record.fileContent,jdbcType=CLOB},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update t_audit_file_deal_log
+    set ID = #{record.id,jdbcType=INTEGER},
+      FILE_NAME = #{record.fileName,jdbcType=VARCHAR},
+      FILE_HEAD = #{record.fileHead,jdbcType=VARCHAR},
+      PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      TOTAL_NUM = #{record.totalNum,jdbcType=INTEGER},
+      TOTAL_TRANS_AMOUNT = #{record.totalTransAmount,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      EXECUTE_METHODS = #{record.executeMethods,jdbcType=VARCHAR},
+      REFUND_TOTAL_NUM = #{record.refundTotalNum,jdbcType=INTEGER},
+      REFUND_TOTAL_TRANS_AMOUNT = #{record.refundTotalTransAmount,jdbcType=INTEGER},
+      FILE_CONTENT = #{record.fileContent,jdbcType=CLOB}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_audit_file_deal_log
+    set ID = #{record.id,jdbcType=INTEGER},
+      FILE_NAME = #{record.fileName,jdbcType=VARCHAR},
+      FILE_HEAD = #{record.fileHead,jdbcType=VARCHAR},
+      PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      CHECK_DATE = #{record.checkDate,jdbcType=TIMESTAMP},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      TOTAL_NUM = #{record.totalNum,jdbcType=INTEGER},
+      TOTAL_TRANS_AMOUNT = #{record.totalTransAmount,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      EXECUTE_METHODS = #{record.executeMethods,jdbcType=VARCHAR},
+      REFUND_TOTAL_NUM = #{record.refundTotalNum,jdbcType=INTEGER},
+      REFUND_TOTAL_TRANS_AMOUNT = #{record.refundTotalTransAmount,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.AuditFileDealLog" >
+    update t_audit_file_deal_log
+    <set >
+      <if test="fileName != null" >
+        FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileHead != null" >
+        FILE_HEAD = #{fileHead,jdbcType=VARCHAR},
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="checkDate != null" >
+        CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="totalNum != null" >
+        TOTAL_NUM = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="totalTransAmount != null" >
+        TOTAL_TRANS_AMOUNT = #{totalTransAmount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="executeMethods != null" >
+        EXECUTE_METHODS = #{executeMethods,jdbcType=VARCHAR},
+      </if>
+      <if test="refundTotalNum != null" >
+        REFUND_TOTAL_NUM = #{refundTotalNum,jdbcType=INTEGER},
+      </if>
+      <if test="refundTotalTransAmount != null" >
+        REFUND_TOTAL_TRANS_AMOUNT = #{refundTotalTransAmount,jdbcType=INTEGER},
+      </if>
+      <if test="fileContent != null" >
+        FILE_CONTENT = #{fileContent,jdbcType=CLOB},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zengshi.ecp.order.dao.model.AuditFileDealLog" >
+    update t_audit_file_deal_log
+    set FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      FILE_HEAD = #{fileHead,jdbcType=VARCHAR},
+      PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      TOTAL_NUM = #{totalNum,jdbcType=INTEGER},
+      TOTAL_TRANS_AMOUNT = #{totalTransAmount,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      EXECUTE_METHODS = #{executeMethods,jdbcType=VARCHAR},
+      REFUND_TOTAL_NUM = #{refundTotalNum,jdbcType=INTEGER},
+      REFUND_TOTAL_TRANS_AMOUNT = #{refundTotalTransAmount,jdbcType=INTEGER},
+      FILE_CONTENT = #{fileContent,jdbcType=CLOB}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.AuditFileDealLog" >
+    update t_audit_file_deal_log
+    set FILE_NAME = #{fileName,jdbcType=VARCHAR},
+      FILE_HEAD = #{fileHead,jdbcType=VARCHAR},
+      PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      CHECK_DATE = #{checkDate,jdbcType=TIMESTAMP},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      TOTAL_NUM = #{totalNum,jdbcType=INTEGER},
+      TOTAL_TRANS_AMOUNT = #{totalTransAmount,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      EXECUTE_METHODS = #{executeMethods,jdbcType=VARCHAR},
+      REFUND_TOTAL_NUM = #{refundTotalNum,jdbcType=INTEGER},
+      REFUND_TOTAL_TRANS_AMOUNT = #{refundTotalTransAmount,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

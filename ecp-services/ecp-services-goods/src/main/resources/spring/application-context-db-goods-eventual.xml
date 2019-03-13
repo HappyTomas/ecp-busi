@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+    
+    <!---最终一致性事务，完整的  begin -->
+    <bean id="transactionManagerEval" class="com.distribute.tx.eventual.TransactionManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionManager"/>
+        <property name="sequence" ref="sequence"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="participant" value="gdseval_group_main"/>
+       <!--  <property name="transactionChecker" ref="transactionChecker"/> -->
+    </bean>
+    
+    <!-- <bean id="transactionChecker" class="com.zengshi.ecp.demo.facade.impl.assured.TransactionCheckerSample" /> -->
+    
+    
+    <bean id="transactionListenerManagerEval" class="com.distribute.tx.eventual.TransactionListenerManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="listener" ref="gdsEvalSubTransaction"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager"/>
+        <property name="participant" value="gdseval_group_sub"/>
+        <property name="transactionList">
+	        <list>
+	        	 <value>business-topic-goods-eval</value>
+	        </list>
+        </property>
+    </bean>
+    <!---最终一致性事务，完整的  end -->
+    
+    
+      <bean id="transactionManagerSnap" class="com.distribute.tx.eventual.TransactionManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionManager"/>
+        <property name="sequence" ref="sequence"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="participant" value="gdssnap_group_main"/>
+       <!--  <property name="transactionChecker" ref="transactionChecker"/> -->
+    </bean>
+    
+    
+    
+    <bean id="transactionListenerManagerSnap" class="com.distribute.tx.eventual.TransactionListenerManager" init-method="init">
+        <property name="cc" ref="cc"/>
+        <property name="listener" ref="gdsSnapSubTransaction"/>
+        <property name="publisher" ref="transactionPublisher"/>
+        <property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager"/>
+        <property name="participant" value="gdssnap_group_sub"/>
+        <property name="transactionList">
+	        <list>
+	        	 <value>business-topic-goods-snap</value>
+	        </list>
+        </property>
+    </bean>
+
+</beans>

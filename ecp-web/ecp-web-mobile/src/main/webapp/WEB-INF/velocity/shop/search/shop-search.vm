@@ -1,0 +1,77 @@
+#parse("/sys/sys_param.vm")
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="$!{CSS_PATH}/shop.css">
+</head>
+#parse("/search/search-box.vm")
+
+<div class="ui-content">
+	<div class="filter-content">
+        <div id="wrapper1" data-am-widget="list_news" class="am-list-news scroll-wrap">
+            <div class="am-list-news-bd scroll">
+                <div class="pull-action loading pull-down">
+                    <span class="pull-label"> 下拉刷新</span>
+                    <span class="am-icon-spinner am-icon-spin"></span>
+                </div>
+                <ul class="pro-list clearfix scrollCont pro-list-grid">
+                    <div class="loading-lo"></div>
+                </ul>
+        		<div class="pull-action pull-up" style="bottom: 0">
+                    <span class=" pull-label"> 上拉加载更多</span>
+                    <span class="am-icon-supinner am-icon-spin"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/x-handlebars-template" id="wrapper1-tpl">
+	{{if values.datas ==null || values.datas.length == 0}}
+		<div data-tab-panel-0 class="am-tab-panel am-active">
+            <div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$IMAGE_PATH/shop-nodata.png" alt="">
+                </div>
+                <div class="tip-bold">
+						很遗憾
+                </div>
+                <div class="tip-txt">
+						没有查到任何数据
+                </div>
+            </div>
+        </div>
+	{{/if}}
+    {{each values.datas as obj i}}
+       <article class="search-shop">
+        <header class="search-shop-header">
+            <div class="header-shop">
+                <figure>
+                    <img src="{{obj.logoUrl}}" alt="{{obj.shopName}}"/>
+                </figure>
+                <h3>{{#obj.shopName}}</h3>
+        
+                <p>销量：{{obj.saleCount}}</p>
+        
+                <p>共{{if obj.gdsCount == null}}0{{else}}{{obj.gdsCount}}{{/if}}件商品</p>
+            </div>
+            <span class="btn btn-bred" onclick="gotoshoppage({{obj.id}})">进入店铺</span>
+        </header>
+        <aside class="search-shop-body" id="bodylist">
+			{{if obj.gdsList == null || obj.gdsList.length==0}}
+				<div class="body-none">没有找到店铺商品</div>
+			{{else}}
+				<ul class="body-w clearfix">
+    			{{each obj.gdsList as gds j}}
+    				<li><a href="$!{CONTEXT_PATH}/gdsdetail/{{gds.id}}-{{gds.firstSkuId}}"><img src="{{gds.imageUrl}}" alt="{{gds.gdsName}}"/></a></li>
+    			{{/each}}
+				</ul>
+			{{/if}}
+        </aside>
+    </article>
+    {{/each}}
+</script>
+<script src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js"></script>
+<script src="$!{RESOURCE_PATH}/jquery/artTemplate/template-debug.js"></script>
+<script src="$!{BUSIJS_PATH}/shop/search/shop-search.js"></script>

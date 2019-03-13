@@ -1,0 +1,48 @@
+<link rel="Stylesheet" type="text/css" href="$CSS_PATH/search-shop.css">
+<div class="sl-rtype">
+    <p class="shop_top"><a href="$!{CONTEXT_PATH}/shopIndex/$!{shopId}"> $!{shopName}</a></p>
+    
+    <p class="text-center store_logo">
+		<a href="$!{CONTEXT_PATH}/shopIndex/$!{shopId}"> 
+        <img src="$!{shopImageUrl}">
+		</a>
+    </p>
+    
+    <div class="shop-grade mbom10 ">
+        <p class="shop-explain">
+           <a href="$!{CONTEXT_PATH}/shopIndex/$!{shopId}">$!{shopFullName}</a>
+        </p>
+        <dl class="mLeft10">
+			<dd>
+                <span class="w60">联系人：</span>
+              <span class="green"> $!{linkPerson} </span>
+            </dd>
+             <dd>
+                <span class="w60">联系方式：</span>
+                <span class="green"> $!{linkMobilephone}</span>
+            </dd>
+			<dd>
+                <span class="w60">销量：</span>
+				<span class="green">$!{sales}</span>
+            </dd>
+            <dd>
+                <span class="w60">宝贝：</span>
+				<span class="green">$!{gdsNum}</span>
+            </dd>
+            <dd>
+                <span class="w60">好评率：</span>
+				<span class="green">$!{goodEvalRate}%</span>
+            </dd>
+        </dl>
+		<div class="text-center">
+		<input id="isLogin" name="isLogin" value="$!{isLogin}" type="hidden"/>
+        <input id="isCollect" name="isCollect" value="$!{isCollect}" type="hidden"/>
+                   
+       #if($isCollect)
+          <span class="col-btn" id="colShop">取消店铺收藏</span>
+       #else
+          <span class="col-btn" id="colShop">收藏店铺</span>
+       #end
+       </div>
+    </div>
+</div>

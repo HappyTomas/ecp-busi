@@ -1,0 +1,210 @@
+@charset "UTF-8";
+/*分类管理*/
+.container-fluid {
+  padding-right: 0px;
+  padding-left: 0px;
+}
+.breadcrumb {
+  margin-bottom: 0;
+  margin-right: 0;
+}
+.pmr_rkc {
+  padding-left: 215px;
+}
+.rk-btns {
+  padding: 0;
+  padding-bottom: 10px;
+}
+.rknav {
+  width: 210px;
+  margin-left: -215px;
+}
+.rknav .rk-search {
+  background-color: #fff;
+  border-bottom: 1px solid #e3e3e3;
+}
+.rknav .icon-search {
+  right: 8px;
+}
+.ctra a {
+  font-size: 12px;
+}
+.imgup-show {
+  width: 240px;
+  height: 240px;
+  background-color: #f5f5f5;
+}
+.imgup-show img {
+  width: 100%;
+}
+.rk-alert {
+  font-size: 12px;
+  width: 230px;
+}
+.alert {
+  padding: 5px 0px 5px 10px;
+  border-radius: 0;
+  border: 0;
+  background-color: #e8f6ff;
+  color: #333333;
+}
+.img-input {
+  width: 240px;
+  text-align: center;
+}
+/*录入*/
+.pmgr-lay .type-list:first-child {
+  margin-left: 0;
+}
+.pmgr-lay .more {
+  font-size: 12px;
+  right: 0;
+  top: 9px;
+}
+.pmgr-lay .lay-wrap {
+  height: 350px;
+}
+.pmgr-lay .sel-tip {
+  width: auto;
+  margin: 0;
+  margin-top: 20px;
+}
+.sto-tit {
+  background-color: #e8f6ff;
+  border: 1px solid #e3e3e3;
+  border-bottom: 0;
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+}
+.localspan {
+  margin-top: 10px;
+  margin-left: 0px;
+  margin-right: 5%;
+  width: 28%;
+  height: 30px;
+}
+.selCityArea {
+  display: inline;
+  float: right;
+  text-decoration: none;
+  margin-right: 10px;
+}
+input[type="radio"],
+input[type="checkbox"] {
+  float: left;
+  margin-top: 2px;
+  margin-right: 2px;
+}
+.input-block-level {
+  min-height: 35px;
+  width: 100%!important;
+}
+.well-lab .controls {
+  margin-left: 130px!important;
+}
+.well-lab .control-label {
+  width: 120px!important;
+}
+.panel-default > .panel-heading {
+  background-color: #e8f6ff;
+}
+.panel-title {
+  font-size: 12px;
+}
+.thumbnail {
+  border: 0;
+}
+select.input-medium {
+  width: 196px;
+}
+.form-mbtn .control-group {
+  margin-bottom: 0px;
+}
+.quick-menu li {
+  background-color: #fff;
+  border: 1px solid #12a0ec;
+  color: #333;
+}
+.quick-menu a {
+  color: #333;
+}
+.quick-menu li:hover,
+.quick-menu .active,
+.quick-menu li > a:hover,
+.quick-menu li > a:focus {
+  background-color: #12a0ec;
+  color: #fff;
+}
+.quick-menu .active a {
+  color: #fff;
+}
+.pmgr-in .type-t .t {
+  font-size: 14px;
+  font-weight: normal;
+}
+.pmgr-in .type-t .btn {
+  margin-top: 0;
+}
+.btn-group > .btn {
+  font-size: 12px;
+  padding: 3px 12px;
+}
+.switch-tt .active {
+  background-color: #12a0ec;
+}
+.form-horizontal .gg-sel .controls {
+  line-height: 32px;
+}
+.pmgr-imgup .alert {
+  background-color: #fcf8e3;
+}
+.pmgr-imgs .imgcont {
+  width: 160px;
+  height: 160px;
+}
+.pmgr-imgs .imgcont img {
+  width: 158px;
+  height: 158px;
+}
+.pmgr-imgs .imgcont.active,
+.pmgr-imgs .imgcont:active,
+.pmgr-imgs .imgcont:hover {
+  width: 158px;
+  height: 158px;
+}
+.pmgr-imgs .item {
+  position: relative;
+  margin-left: 10px;
+}
+.pmgr-imgs .item i {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  color: #fc8080;
+  font-size: 18px;
+  background-color: #fff;
+}
+.pmgr-tpltab .alert {
+  margin-bottom: 0;
+  height: 26px;
+  line-height: 26px;
+}
+.pmgr-imgup .moreimg {
+  float: right;
+  margin-top: 5px;
+}
+.pmgr-imgup .icon {
+  font-size: 16px;
+  margin-top: 4px;
+}
+.groups .control-group .controls {
+  margin-left: 115px!important;
+}
+.groups .control-group .control-label {
+  width: 115px!important;
+}
+.mutiselect {
+  width: 180px;
+  height: 24px;
+}

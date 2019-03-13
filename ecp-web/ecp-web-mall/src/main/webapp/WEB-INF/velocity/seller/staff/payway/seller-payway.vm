@@ -1,0 +1,58 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+     <script type="text/javascript" src="$!{BUSIJS_PATH}/seller/staff/payway/payway.js?version=$!{JS_VERSION}" ></script>
+				
+				<div class="seller-well">
+           <form action="" class="form-horizontal required-validate" id="searchForm">
+                        <div class="row-fluid">
+							
+							  <div class="span4">
+                                <div class="control-group">
+                                    <label class="control-label">店铺：</label>
+                                    <div class="controls">
+                                        <select name="shopId" id="shopId" class="input-block-level">
+											#sellerList()
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+							
+                            <div class="span4">
+                                <div class="control-group">
+                                    <label class="control-label">支付通道：</label>
+                                    <div class="controls">
+                                        <select name="payWay" id="payWay" class="input-block-level">
+											<option value="">-选择-</option>
+											#foreach($attr in $paywaylist)
+											<option value="$!{attr.id}">$!{attr.payWayName}</option>	
+												#end
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                          <div class="sbtn-group" >
+    <!--查询，重置移动到这里，添加btn-w-right样式，重置按钮添加icon-color-->
+    <div class="btn-wrap btn-w-right">
+        <span class="sbtn sbtn-blue">查询</span>
+	    <input type="reset" class="sbtn" name="reset" id="reset" value="重置" />
+    </div>
+  
+</div>
+                           <!-- <div class="span4">
+                                <div class="control-group">
+                                    <label class="control-label">商品名称：</label>
+                                    <div class="controls">
+                                        <input placeholder="输入商品名称" type="text" class="input-block-level">
+                                    </div>
+                                </div>
+								</div>-->
+                        </div>
+                     
+                    </form>
+</div>
+				
+                <div class="main-inner" style="overflow-x: auto;" id="dataList">
+                      
+                        </div>
+     
+    

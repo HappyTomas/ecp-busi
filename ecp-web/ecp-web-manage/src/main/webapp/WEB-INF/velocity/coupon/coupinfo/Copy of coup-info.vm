@@ -1,0 +1,71 @@
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/prom-info.js?version=$!{JS_VERSION}" ></script>
+<link href="${CONTEXT_PATH}/css/prom/createprom/prom-info.css" rel="stylesheet" type="text/css" media="screen"/>
+			<div class="alert alert-error hide formValidateMessages" id="prom-info-valid" >
+				##showSpringAllError("promVO")
+            </div>
+				<div class="formBox">
+				<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/demo/saveform">
+				    <div class="hide" >
+				       <input type="text" name="coupInfoVO.coupTypeId" id="coupTypeId" value="$!{coupType.id}" >
+				       <input type="text" name="coupInfoVO.shopId" id="shopId" value="$!{shopId}" >
+				       <input type="text" name="coupInfoVO.id" id="id" value="$!{coupInfoVO.id}" >
+				       <input type="text" name="doAction" id="doAction" value="$!{doAction}" >
+                    </div>
+		 <div class="row-fluid">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">站点：</label>
+							<div class="controls">
+								<select id="siteId" name="coupInfoVO.siteId" class="required" value="$!{coupVO.coupInfoVO.shopId}">
+									    #siteList("$!{coupVO.coupInfoVO.siteId}")
+								 </select>
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+						<label class="control-label">店铺：</label>
+							<div class="controls">
+								<select name="coupInfoVO.shopId" id="shopId" class="required" >
+									<option value="">-请选择-</option>
+									#shoplist("$!{coupVO.coupInfoVO.shopId}")
+								</select>
+							</div>
+				       </div>
+				       </div>
+				</div>
+				 <div class="row-fluid">
+					<div class="span8">
+						<div class="control-group">
+							<label class="control-label">优惠券名称：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level required htmlcheck" name="coupInfoVO.coupName" id="coupName" maxlength="80"  placeholder="优惠券名称" value="$!{coupVO.coupInfoVO.coupName}" />
+								<span class="help-inline">限制80个汉字以内</span>
+							</div>
+					</div>
+				</div>
+				</div>
+				 <div class="row-fluid">
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">优惠券面额：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level required number" maxlength="10"  name="coupInfoVO.coupAmount" id="coupAmount"  placeholder="优惠券面额" value="$!{coupVO.coupInfoVO.coupAmount}" />
+							</div>
+						</div>
+					</div>
+					<div class="span4">
+						<div class="control-group">
+							<label class="control-label">发行数量：</label>
+							<div class="controls">
+								<input type="text" class="input-block-level required number" maxlength="10" name="coupInfoVO.coupNum" id="coupNum"  placeholder="优惠券发行数量" value="$!{coupVO.coupInfoVO.coupNum}" />
+							    <span class="help-inline"><span style="color:red">无发行量限制</span></span>
+							</div>
+					</div>
+				</div>
+				</div>
+				</div>
+				<div class="clear"></div>
+				</form>
+			    

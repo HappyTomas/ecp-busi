@@ -1,0 +1,40 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/message/message-readed.js?version=$!{JS_VERSION}"></script>
+<div class="item-c">
+	#if(!$readPage.getResult())
+		<tr><td class="kong" colspan='8'>很遗憾，暂无数据</td></tr>
+	#end
+	
+    <ul class="itemlist">
+		#foreach( $lst in $readPage.getResult())
+       	#if($!{lst.readFlag} == "10")
+        <li class="clearfix">
+            <div>
+                <label><input type="checkbox" name="sub" value="$!{lst.msgInfoId}"/>
+                    <span class="newsbox">$!{lst.msgContext}</span>
+                </label>
+                <span class="pull-right"><i class="shop-cart newsdel" onclick="delmsg($!{lst.msgInfoId})"></i></span>
+                <span class="pull-right timeline">$!date.format('HH:mm:ss',$!{lst.recTime})</span>
+                <span class="pull-right timeline"><i class="shop-cart news"></i></span>
+
+            </div>
+
+            <div class="rlimg"><p class="rq-t">$!date.format('yyyy-MM',$!{lst.recTime})</p>
+
+                <p class="rq-c">$!date.format('dd',$!{lst.recTime})</p></div>
+        </li>
+    	
+        #end
+        #end
+    </ul>
+    
+</div>
+<div class="fav-opt clearfix" style="margin-top: 20px;margin-bottom:20px;">
+    <div class="row-fluid">
+		<div id="pageControlbar" class="ecppage" data-total-page="${readPage.pageCount}" data-total-row="${readPage.count}" data-page-size="${readPage.pageSize}" data-page-number="${readPage.pageNo}" data-status="begin"></div>
+	</div>
+</div>
+
+   
+

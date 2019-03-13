@@ -1,0 +1,58 @@
+#parse("/sys/sys_param.vm")
+<link rel="stylesheet" type="text/css" href="$CSS_PATH/default.css"/>
+<link rel="stylesheet" type="text/css" href="$CSS_PATH/text.css"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/main/info/info-detail.js"></script>
+<!--content-->
+<div id="content" class="clearfix">
+    <div class="wrap1200">
+        ##  01 促销类型   全屏显示 
+        <div class="#if($!{respVO.infoType} != '01') box-first clearfix #end " >
+            <!--左侧栏-->
+            #if($!{respVO.infoType} != '01')
+			<div class="ecp-component sidebar-catg-shader" data-place-id="13" data-menu-type="0" 
+        		 data-module="ecp-component/sidebar-catg-shader">
+  	 	    </div>
+  	 	    #end
+            <!--文本-->
+            <input type="hidden" id="staticId" name="staticId" value="$!{respVO.staticId}" />
+			<input type="hidden" id="staticUrl" name="staticUrl" value="$!{respVO.staticUrl}" />
+            
+            <div class="focus-box">
+                <!--内容-->
+                <div class="#if($!{respVO.infoType} != '01') t-box t-dbox #end ">
+                    <h2 class="t-tit">$!{respVO.infoTitle}</h2>
+                    <!--时间-->
+                    <div class="t-data">时间：$!date.format('yyyy-MM-dd',$!{respVO.pubTime})
+           		  	    <!-- <span class="pull-right">
+           		  		   <i class="pl-icon"></i><span class="red"><b>1044</b> </span>人跟帖
+         			    </span> -->
+                    </div>
+                    <!-- <div class="t-banner">
+                        <div class="t-img">
+
+                            <div class="t-db">
+                                <div class="t-p20">
+                                    <div class="pull-left"> <span class="d-icon">导语</span></div>
+                                    <p class="p-left">南海诸岛自中国领土下的。南海诸岛自古以来就是中国领土，这是老祖宗留下的。南海诸岛自古以来就是中国领土，这是老祖宗留下的。南海诸岛自古以来就是中国领土，这是老祖宗留下的。南海诸岛自古以来就是中国领土，这是老祖宗留下的。南海诸岛自古以来就是中国领土，这是老祖宗留下的。</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> -->
+                    <!--文章内容-->
+           		    <div class="#if($!{respVO.infoType} != '01') t-content #end " style="padding-bottom:15px;" id="editorText" name="editorText">
+                    </div>
+                    <!--附件-->
+					#if($!{respVO.vfsUrl})
+    				<div class="word-b" title="$!{respVO.vfsName}">
+						<span class="type">[附件]</span>
+						<a href="$!{respVO.vfsUrl}" alt="">$!{respVO.vfsName}(点击下载)</a>
+              	    </div>
+					#end
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>   
+  

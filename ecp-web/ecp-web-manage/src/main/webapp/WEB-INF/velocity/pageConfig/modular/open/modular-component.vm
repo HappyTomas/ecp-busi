@@ -1,0 +1,44 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/modular/open/modular-component.js?version=$!{JS_VERSION}" ></script>
+
+<!--搜索区域-->
+<div class="well well-searchForm">
+	<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+        	<div class="row-fluid">
+        		<div class="span4">
+    			<div class="control-group">
+    				<label class="control-label">组件分类：</label>
+    				<div class="controls">
+    					<select id="componentClass" name="componentClass" style="width:160px" >
+    						<option value="" >--请选择--</option>
+    						#listParam('CMS_COMPONENT_CLASS',"")
+    					</select>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="span4">
+    			<div class="control-group">
+    				<label class="control-label">组件名称：</label>
+    				<div class="controls">
+    					<input type="text" name="componentName" id="componentName" class="input-medium" value="" placeholder="请输入组件名称">
+    				</div>
+    			</div>
+    		</div>
+    		<div class="clear"></div>
+    	</div>
+	</form>
+</div>
+
+<!--操作按钮区域-->
+<div class="row-fluid" style="margin-bottom: 10px;">
+	<div class="pull-right">
+		<a class="btn btn-info" id="btnFormSearch" href="javascript:void(0)"><i class="icon-search icon-white"></i>查询</a>
+		<a class="btn" id="btnFormReset" href="javascript:void(0)"><i class="icon-refresh"></i>重置</a>
+	</div>
+</div>
+
+<!--列表区域-->
+<div class="row-fluid">
+	<table id="dataGridTable"></table>
+</div>

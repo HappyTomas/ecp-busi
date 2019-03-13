@@ -1,0 +1,575 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/cart/cart-list.js?version=$!{JS_VERSION}"></script>
+
+<style>
+body{word-break: break-all;}
+.nullList{
+	background-color: #F0F0F0;
+	text-align: center;
+	padding: 10px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+}
+body{word-break: break-all;}
+.prom-info-show{
+	font-size: 12px;
+	color: #999;
+	padding-left: 143px;
+}
+.shop-info-show{
+	font-size: 12px;
+	background-color: #F0F0F0;
+	padding: 5px 15px;
+	color: #999;
+}
+.shopBottomBorder{
+	border-bottom: 1px solid #AAAAAA;
+}
+.darkText {
+	color: #999;
+}
+.prom-notice {
+    font-size: 12px;
+    color: #ff4f4a;
+}
+.car .p-name {
+    width: 200px;
+}
+.count-head .p-goods {
+    text-indent: 100px;
+}
+.car-item .item-group{
+	background-color: #FFFFE1;
+}
+.car-item .item-list-lose {
+	background-color: #f0f0f0;
+}
+.count-input .btn {
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid #BCBCBC;
+}
+.count-input .itxt {
+    height: 24px;
+    line-height: 24px;
+    border-bottom: 1px solid #BCBCBC;
+    border-top: 1px solid #BCBCBC;
+    border-left: 0px;
+    border-right: 0px;
+}
+.item-list-lose .deleteCurrentItem,
+.item-list-lose .deleteGroup
+{
+	color: red !important;
+}
+.unitBasePrice {
+	text-decoration: line-through;
+	color: #999;
+}
+.promSelect {
+	margin-top: -3px !important;
+}
+</style>
+
+<div id="content">
+    <div class="wrap1200 car">
+    <form action="$!{CONTEXT_PATH}/order/build/create" id="cartForm" method="post">
+        <input type="text" id="disableEnter" style="display:none"></input>
+        <!--购物列表 star-->
+        <div class="car-count count-head">
+            <div class="cell p-checkbox">
+                <label>
+                    <input class="" type="checkbox" id="selectAllItem">
+                    <!-- 数据来源字段，1:WEB端,2:手机端,3:微信端-->
+                    <input type="hidden" name="source" id="websiteSource" value="1">
+                    <input type="hidden" name="staffId" id="staffId" value="$!{cartList.staffId}">
+                    <span>全选</span>
+                </label>
+            </div>
+            <div class="cell p-goods">商品</div>
+            <div class="cell p-type">商品分类</div>
+            <div class="cell p-price">单价(元)</div>
+            <div class="cell p-num">数量</div>
+            <div class="cell p-sum">小计</div>
+            <div class="cell p-act">操作</div>
+        </div>
+        <div class="car-list" id="cartList">
+        	<div class="nullList" id="nullList" style="display: none;">
+        	购物车中无商品
+        	</div>
+
+
+
+        	
+        	##店铺
+        	#foreach($!cart in $!cartList.ordCartList)
+        		#set($cartIndex = $velocityCount - 1)
+
+				#set($shopProm = "")
+        		#set($shopProm = $!cartList.cartPromRespDTO.cartPromDTOMap.get(${cart.id}))
+				##设置赠品信息
+               	#set($shopGiftContent = "")
+               	#set($shopSplitStr = "")
+               	#if($shopProm.promGiftDTOList && $shopProm.promGiftDTOList.size()>0)
+               		#foreach($giftInfo in $shopProm.promGiftDTOList)
+               			#if($velocityCount > 1)
+               				#set($shopSplitStr = "、")
+               			#end
+               			#set($shopGiftContent = $shopGiftContent + $shopSplitStr + $!giftInfo.giftName + " X " + $!giftInfo.everyTimeCnt)
+               		#end
+               	#end
+        		
+        		##处理优惠ID，若为空则设置为-1
+        		#set($shopPromId = "")
+               	#if($shopProm && $shopProm.promInfoDTO)
+               		#set($shopPromId = $shopProm.promInfoDTO.id)
+               	#else
+               		#set($shopPromId = $cart.promId)
+               	#end
+               	#if(!$shopPromId || $shopPromId=="")
+               		#set($shopPromId = "-1")
+               	#end
+               	
+               	##设置商品明细下标
+               	#set($itemIndex = 0)
+            <div class="car-item">
+                <div class="shop" style="">
+                    <span class="name"><class="shopName">$!{cart.shopName}</span>
+                    <input type="hidden" class="shopId"  value="$!{cart.shopId}">
+                    <!-- 有优惠时才显示店铺优惠信息、店铺小计及减免金额 -->
+                    <span class="shopPromInfoBox">
+                    	#if($shopProm)
+	                    <span class="notice">
+							#set($shopPromTypeStyle="")
+	                    	#set($shopPromTypeStyle="display:none;")
+	                    	#if($shopProm.promInfoDTO && $shopProm.promInfoDTO.nameShort)
+	                    		#set($shopPromTypeStyle="")
+	                    	#end
+	                        <!-- 优惠主题 -->
+	                        <span class="mz shopPromTheme" style="$!{shopPromTypeStyle}">$!{shopProm.promInfoDTO.nameShort}</span>
+	                        
+	                    	<!-- 优惠满足/不满足提示文本 -->
+	                    	<span class="shopPromMessage">
+                        	#if($shopProm.ifFulfillProm && $shopProm.ifFulfillProm == true)
+                        		$!{shopProm.promTypeMsgResponseDTO.fulfilMsg}
+                        	#else
+                        		$!{shopProm.promTypeMsgResponseDTO.noFulfilMsg}
+                        	#end
+	                    	</span>
+	                    	<!-- 优惠项目列表 -->
+	                    	#set($shopPromListStyle="display:none;")
+                            #if($shopProm.promInfoDTOList && $shopProm.promInfoDTOList.size() > 0)
+                            	#set($shopPromListStyle="")
+                            #end
+                            <div class="shop-reduce" style="cursor: pointer;$!{shopPromListStyle}">
+								<span>促销优惠</span>
+                                <span class="spit"></span>
+                                <i class="ci-right"><s>◇</s></i>
+                                <!-- 促销项目列表 -->
+                                <div class="body">
+                                	#foreach($promInfo in $shopProm.promInfoDTOList)
+                                		#if($shopProm.promInfoDTO.id == $promInfo.id)
+                                			#set($checked = "checked='checked'")
+                                		#else
+                                			#set($checked = "")
+                                		#end
+                                    <p class="shopPromOption">
+                                        <label>
+                                            <input name="shopProm_$!{cart.id}" type="radio" $!{checked} value="$!{promInfo.id}" class="shopPromSelect"/>
+                                            $!{promInfo.promTheme}
+                                        </label>
+                                    </p>
+                                    #end
+                                    #if($shopProm.promInfoDTO.id == -1)
+                                    	#set($nochecked = "checked='checked'")
+                                    #else
+                                    	#set($nochecked = "")
+                                    #end
+                                    <p class="noShopPromOption">
+                                        <label>
+                                            <input name="shopProm_$!{cart.id}" type="radio" $!{nochecked} value="-1" class="shopPromSelect"/>不使用活动优惠
+                                        </label>
+                                    </p>
+                                    <p class="text-center">
+	                                    <span class="mbtn mbtn-sure modifyShopProm" >确定</span>
+	                                    <span class="mbtn cancelShopProm">取消</span>
+                                    </p>
+                                </div>
+                            </div>
+						</span>
+						#end
+						<span class="discount" style="float: right;">
+							<i id="shopCount">0.00</i>
+							<em class="c-red">减：<span class="shopDiscount"></span></em>
+	                    </span>
+                    </span>
+                    <input type="hidden" name="carList[$!{cartIndex}].staffId" id="shopStaffId" value="$!{cart.staffId}">
+                    <input type="hidden" name="carList[$!{cartIndex}].cartId" id="shopCartId" value="$!{cart.id}">
+                    <input type="hidden" name="carList[$!{cartIndex}].promId" id="shopPromId" value="$!{shopPromId}">
+                    <input type="hidden" id="shopTempPromId" value="$!{shopPromId}">
+               	    <!-- 店铺优惠相关字段 -->
+                    <input type="hidden" class="shopPromDiscountPrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!shopProm.discountPrice")}">
+                    <input type="hidden" class="shopPromDiscountAmount" value="$!{aiNumber.showMoneyByTwoDecimal("$!shopProm.discountAmount")}">
+                    <input type="hidden" class="shopPromDiscountMoney" value="$!{aiNumber.showMoneyByTwoDecimal("$!shopProm.discountMoney")}">
+                    <input type="hidden" class="shopPromDiscountPriceMoney" value="$!{aiNumber.showMoneyByTwoDecimal("$!shopProm.discountMoney")}">
+                </div>
+                
+	        	##组合套餐
+	        	#foreach($!group in $!cart.groupLists)
+	        	#set($groupIndex = $velocityCount - 1)
+	        	
+	        	##默认读取商品列表中的第一个商品来获取数量
+	        	#set($groupAmount = 0)
+	        	#if($group && $group.size() > 0)
+	        		#set($groupAmount = $group.get(0).getOrderAmount())
+	        	#end
+	        	
+	        	##查询组合商品中是否有失效商品
+	        	#set($invalidGroupAmount = 0)	        	
+	        	#foreach($!tmpGroupItem in $!group)
+	        		#if($tmpGroupItem && !$tmpGroupItem.gdsStatus)
+	        			#set($invalidGroupAmount = $invalidGroupAmount + 1)
+	        		#end
+	        	#end
+                <div class="item-list item-group #if($invalidGroupAmount > 0) item-list-lose #end">
+                    <div>
+                        <div class="item-body item-body-tit item-body-border">
+                            <div class="cell p-checkbox">
+                            	#if($invalidGroupAmount == 0)
+                                <input class="groupCheck itemCheck" type="checkbox"/>
+                                #else
+                                失效
+                                #end
+                                &nbsp;
+                            </div>
+                            <div class="cell p-goods"><b>【组合套装】</b></div>
+                            <div class="cell p-type">&nbsp;</div>
+                            <div class="cell p-price p-p-none"><b><span class="itemPriceCount">0.00</span></b></div>
+                            <div class="cell p-num">
+                                <div class="count-input">
+                                	#if($invalidGroupAmount == 0)
+                                    <a href="javascript:void(0);" class="btn minus groupAmountMinus">-</a>
+                                    <input name="" maxlength="9" class="itxt groupAmounts itemNumber" type="text" value="$!{groupAmount}">
+                                    <a href="javascript:void(0);" class="btn add groupAmountAdd">+</a>
+                                    #end
+                                </div>&nbsp;
+                                <span class="spacer"></span>
+                            </div>
+                            <div class="cell p-sum"><span style="display: none;">0.00</span>&nbsp;</div>
+                            <div class="cell">
+                                <p><a href="javascript:void(0)" class="deleteGroup" title="删除组合商品">删除</a></p>
+                            </div>
+                        </div>
+		        		#foreach($!groupItem in $!group)
+		        			#set($groupItemProm = $!cartList.cartPromRespDTO.cartPromItemDTOMap.get(${groupItem.id}))
+		                	##商品明细优惠ID，若为空则设置为-1
+		                	#set($groupItemPromId = "")
+		                	#if(!$groupItem.promId || $groupItem.promId=="")
+		                		#set($groupItemPromId = "-1")
+		                	#else
+		                		#set($groupItemPromId = $groupItem.promId)
+		                	#end
+			               	
+		        			##设置最后一条记录不增加底部虚线的样式
+		        			#set($borderClass = "item-body-border")
+		        			#if($group.size() == $velocityCount)
+		        				#set($borderClass = "")
+		        			#end
+		        			
+			               	##显示的单价金额
+			               	##set($showUnitPrice = 0.00)
+			               	##if($groupItemProm.discountPrice)
+			               		##set($showUnitPrice = $groupItem.buyPrice - $groupItemProm.discountPrice)
+			               	##else
+			               		##set($showUnitPrice = $groupItem.buyPrice)
+			               	##end
+
+						<div class="item-body group-body $!{borderClass}">
+							<div class="cell p-checkbox">&nbsp;
+	                            <!-- 商品基本信息 -->
+	                            <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].itemCheck" id="itemCheck" class="groupCheckHidden" value="#if($invalidGroupAmount == 0)checked#end">
+						        <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].cartId" id="itemCartId" value="$!{groupItem.cartId}">
+		                        <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].promId" id="promId" value="$!{groupItemPromId}">
+		                        <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].cartItemId" id="itemId" value="$!{groupItem.id}">
+		                        <input type="hidden" id="itemSkuId" value="$!{groupItem.skuId}">
+							</div>
+                            <div class="cell p-goods">
+                                <div class="p-img">
+	                                <a href="$!{CONTEXT_PATH}$!{groupItem.gdsUrl}" target="_blank">
+	                                    <img width="120" height="110" src="#genImageUrl($!groupItem.getPicId(),'200x200!')" alt=""/>
+	                                </a>
+                                </div>
+                                <div class="p-name" style="margin-left: 10px;">
+			                        <a href="$!{CONTEXT_PATH}$!{groupItem.gdsUrl}" target="_blank">$!{groupItem.gdsName}&nbsp;</a>
+                                </div>
+                            </div>
+                            <div class="cell p-type">$!{groupItem.gdsCateName}&nbsp;</div>
+                            <div class="cell p-price p-p-none">
+
+                                ##if($!{groupItemProm.discountCaclPrice} != $!{groupItemProm.discountFinalPrice})
+                                    ##<span class="unitBasePrice">$!{aiNumber.showMoneyByTwoDecimal("$!{groupItem.basePrice}")}</span>&nbsp;<br/>
+                                <span class="unitBasePrice">$!{aiNumber.showMoneyByTwoDecimal("$!{groupItemProm.discountCaclPrice}")}</span>&nbsp;<br/>
+								##end
+								<span class="groupItemPrice">$!{aiNumber.showMoneyByTwoDecimal("$!{groupItemProm.discountFinalPrice}")}</span>&nbsp;
+							</div>
+                            <div class="cell p-num darkText">
+                                1本 X <span class="groupItemAmount">$!{groupItem.orderAmount}</span><br>
+                                <span style="display: none;">有货</span>
+                            </div>
+                            <div class="cell p-sum" style="font-weight: normal;"><span class="groupItemPriceCount">0.00</span></div>
+                            <div class="cell p-act">
+                                <p style="display: none;"><a href="javascript:void(0)" class="deleteGroupItem">删除</a></p>
+                                <p style="display: none;"><a href="javascript:void(0)" class="addGroupItemToFollow">移动到我收藏</a></p>
+                            </div>
+                        </div>
+                        	#set($itemIndex = $itemIndex + 1)
+						#end
+                    </div>
+
+                </div>
+                #end
+
+                
+                
+                
+                
+                
+                #foreach($!item in $!cart.ordCartItemList)
+                	##set($itemIndex = $velocityCount - 1)
+					#set($itemProm = "")
+                	#set($itemProm = $!cartList.cartPromRespDTO.cartPromItemDTOMap.get(${item.id}))
+
+                	##设置赠品信息
+                	#set($itemGiftContent = "")
+                	#set($itemSplitStr = "")
+                	#if($itemProm.promGiftDTOList && $itemProm.promGiftDTOList.size()>0)
+                		#foreach($giftInfo in $itemProm.promGiftDTOList)
+	               			#if($velocityCount > 1)
+	               				#set($itemSplitStr = "、")
+	               			#end
+                			#set($itemGiftContent = $itemGiftContent + $itemSplitStr + $giftInfo.giftName + " X " + $giftInfo.everyTimeCnt)
+                		#end
+                	#end
+                	
+                	##商品明细优惠ID，若为空则设置为-1
+                	#set($itemPromId = "")
+                	#if($itemProm && $itemProm.promInfoDTO)
+                		#set($itemPromId = $itemProm.promInfoDTO.id)
+                	#else
+                		#set($itemPromId = $item.promId)
+                	#end
+					#if(!$itemPromId || $itemPromId=="")
+	               		#set($itemPromId = "-1")
+	               	#end
+
+					##显示的单价金额
+					#set($showUnitPrice = 0.00)
+					#set($showUnitBasePrice = 0.00)
+					#set($itemBuyPrice = 0.00)
+					#set($itemBasePrice = 0.00)
+					#if($itemProm)
+						#if($itemProm.ifFulfillProm)
+							#set($showUnitPrice = $itemProm.discountFinalPrice)
+							#set($itemBuyPrice = $itemProm.discountFinalPrice)
+							#set($showUnitBasePrice = $itemProm.discountCaclPrice)
+							#set($itemBasePrice = $itemProm.discountCaclPrice)
+						#else
+							#set($showUnitPrice = $item.buyPrice)
+							#set($itemBuyPrice = $item.buyPrice)
+							#set($showUnitBasePrice = $item.basePrice)
+							#set($itemBasePrice = $item.basePrice)
+						#end
+					#end
+
+					#if($showUnitBasePrice == $showUnitPrice)
+						#set($showUnitBasePrice = -1)
+					#end
+	               	##显示的单价金额
+					##set($showUnitPrice = 0.00)
+	               	##if($itemProm.discountPrice)
+	               		##set($showUnitPrice = $itemProm.buyPrice - $itemProm.discountPrice)
+	               	##else
+	               		##set($showUnitPrice = $itemProm.buyPrice)
+	               	##end
+
+	               	##显示的商品原价
+	               	#*#set($showUnitBasePrice = 0.00)
+	               	#if($item.basePrice == $showUnitPrice)
+	               		#set($showUnitBasePrice = -1)
+	               	#else
+	               		#set($showUnitBasePrice = $item.basePrice)
+	               	#end
+					#set($showUnitBasePrice = 0.00)
+					#if($itemProm.discountCaclPrice == $showUnitPrice)
+						#set($showUnitBasePrice = -1)
+					#else
+						#set($showUnitBasePrice = $itemProm.discountCaclPrice)
+					#end*#
+
+                <div class="item-list #if($item && !$item.gdsStatus) item-list-lose #end">
+                    <div class="item-body">
+
+                        <div class="cell p-checkbox">
+                        	#if($item && $item.gdsStatus)
+                            <input class="itemCheck" type="checkbox" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].itemCheck" value="checked"/>
+                            #end
+                            #if($item && !$item.gdsStatus)
+								#set($showUnitBasePrice = 0.00)
+								#set($showUnitPrice = 0.00)
+                            失效
+                            #end
+                            <!-- 商品基本信息 -->
+                            <input type="hidden" id="itemSkuId" value="$!{item.skuId}">
+					        <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].promId" id="itemPromId" value="$!{itemPromId}">
+					        <input type="hidden" id="itemTempPromId" value="$!{itemPromId}">
+					        <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].cartId" id="itemCartId" value="$!{item.cartId}">
+	                        <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].cartItemId" id="itemId" value="$!{item.id}">
+                            <input type="hidden" id="itemFreBuyPrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!{item.buyPrice}")}">
+                            <input type="hidden" id="itemFreBasePrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!{item.basePrice}")}">
+                            <input type="hidden" id="itemBuyPrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!{itemBuyPrice}")}">
+                            <input type="hidden" id="itemBasePrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!{itemBasePrice}")}">
+	                        <!-- 商品优惠相关字段 -->
+	                        <input type="hidden" class="ifFulfillProm" value="$!{itemProm.ifFulfillProm}">
+	                        <input type="hidden" class="itemPromDiscountPrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!itemProm.discountPrice")}">
+	                        <input type="hidden" class="itemPromDiscountFinalPrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!itemProm.discountFinalPrice")}">
+	                        <input type="hidden" class="itemPromDiscountCaclPrice" value="$!{aiNumber.showMoneyByTwoDecimal("$!itemProm.discountCaclPrice")}">
+	                        <input type="hidden" class="itemPromDiscountAmount" value="$!{aiNumber.showMoneyByTwoDecimal("$!itemProm.discountAmount")}">
+	                        <input type="hidden" class="itemPromDiscountMoney" value="$!{aiNumber.showMoneyByTwoDecimal("$!itemProm.discountMoney")}">
+	                        <input type="hidden" class="itemPromDiscountPriceMoney" value="$!{aiNumber.showMoneyByTwoDecimal("$!itemProm.discountMoney")}">
+	                        &nbsp;
+                        </div>
+                        <div class="cell p-goods">
+                            <div class="p-img">
+                                <a href="$!{CONTEXT_PATH}$!{item.gdsUrl}" target="_blank">
+                                    <img width="120" height="110" src="#genImageUrl($!item.getPicId(),'200x200!')" alt="商品图片"/>
+                                </a>
+                            </div>
+                            <div class="p-name" style="margin-left: 10px;">
+		                        <a href="$!{CONTEXT_PATH}$!{item.gdsUrl}" target="_blank">$!{item.gdsName}</a>
+		                        <br>
+		                        <!-- 商品满足/不满足优惠活动的提示文本 -->
+		                        <label class="prom-notice" id="prom-notice" >
+		                        #if($itemProm)
+		                        	#if($itemProm.ifFulfillProm && $itemProm.ifFulfillProm==true)
+		                        		$!{itemProm.promTypeMsgResponseDTO.fulfilMsg}
+
+		                        	#else
+		                        		$!{itemProm.promTypeMsgResponseDTO.noFulfilMsg}
+
+		                        	#end
+		                        #end
+		                        &nbsp;
+		                        </label>
+                            </div>
+                        </div>
+                        <div class="cell p-type">$!{item.gdsCateName}&nbsp;</div>                      
+                        <div class="cell p-price #if($itemProm && $itemProm.promInfoDTOList.size() > 0) p-cx#end">
+                        	<div style="#if($showUnitBasePrice==-1)display:none;#end" id="unitBasePriceBox">
+                        		##<span class="unitBasePrice" title="商品原价">$!{aiNumber.showMoneyByTwoDecimal("$item.basePrice")}</span>
+                        		<span class="unitBasePrice" title="商品原价">$!{aiNumber.showMoneyByTwoDecimal("$!showUnitBasePrice")}</span>
+                        	</div>
+                        	<div>
+                            	<span class="unitPrice">$!{aiNumber.showMoneyByTwoDecimal("$!showUnitPrice")}</span>
+                            </div>
+							#set($itemPromListStyle="display:none;")
+                            #if($itemProm.promInfoDTOList && $itemProm.promInfoDTOList.size() > 0)
+                            	#set($itemPromListStyle="")
+							#end
+							
+                            #if($item && $item.gdsStatus)
+                            <div class="p-reduce" style="cursor: pointer;$!{itemPromListStyle}">
+								<span>促销优惠</span>
+                                <span class="spit"></span>
+                                <i class="ci-right"><s>◇</s></i>
+                                <!-- 促销项目列表 -->
+                                <div class="body">
+                                	#foreach($promInfo in $itemProm.promInfoDTOList)
+                                		#if($itemProm.promInfoDTO.id == $promInfo.id)
+                                			#set($checked = "checked='checked'")
+                                		#else
+                                			#set($checked = "")
+                                		#end
+                                    <p class="itemPromOption">
+                                        <label>
+                                            <input name="prom_$!{item.id}" type="radio" $!{checked} value="$!{promInfo.id}" class="promSelect"/>
+                                            $!{promInfo.promTheme}
+                                        </label>
+                                    </p>
+                                    #end
+                                    #if($itemProm.promInfoDTO.id == -1)
+                                    	#set($nochecked = "checked='checked'")
+                                    #else
+                                    	#set($nochecked = "")
+                                    #end
+                                    <p class="noItemPromOption">
+                                        <label>
+                                            <input name="prom_$!{item.id}" type="radio" $!{nochecked} value="-1" class="promSelect"/>不使用活动优惠
+                                        </label>
+                                    </p>
+                                    <p class="text-center">
+	                                    <span class="mbtn mbtn-sure modifyShopItemProm" >确定</span>
+	                                    <span class="mbtn cancelShopItemProm">取消</span>
+                                    </p>
+                                </div>
+                            </div>
+                            #end
+                        </div>
+                        <div class="cell p-num">
+							#if($item && $item.gdsStatus)
+                                #cartCount($item.gdsType $item.orderAmount)
+							#end
+                            <span class="spacer"></span>&nbsp;
+                        </div>
+                        <div class="cell p-sum">
+                            <span class="itemPriceCount"></span>&nbsp;
+                        </div>
+                        <div class="cell p-act">
+                            <p><a href="javascript:void(0);" class="deleteCurrentItem" title="删除该商品">删除</a></p>
+                            #if($item && $item.gdsStatus)
+                            <p><a href="javascript:void(0);" class="addToFollow" title="从购物车从移除该商品并移动到我的收藏">移动到我的收藏</a></p>
+                            #end
+                        </div>
+                    </div>
+                    <!-- 商品的赠品信息展示 -->
+                    <div class="prom-info-show" style="#if($null.isNull(itemGiftContent) || "$!itemGiftContent"=="")display:none;#end">【赠品】<span>$!{itemGiftContent}</span></div>
+                    #set($itemIndex = $itemIndex + 1)
+                </div>
+                #end
+                <!-- 店铺的赠品信息展示 -->
+				<div class="shop-info-show" style="#if($null.isNull(shopGiftContent) || "$!shopGiftContent"=="")display:none;#end">【店铺赠品】<span>$!{shopGiftContent}</span></div>
+				<div class="shopBottomBorder"></div>
+            </div>
+            #end
+        </div>
+		<div class="car-count pro-total">
+			<div class="cell p-checkbox">
+				<label><input class="" type="checkbox" id="selectAllItem2"> <span>全选</span></label>
+			</div>
+			<div class="cell">
+				<a href="javascript:void(0);" id="delCheckedItem" class="del"> 删除选中商品</a>
+				<span class="myfav">
+					<a href="javascript:void(0);" id="addToFollows" style="display: none;">移动到我的收藏</a>
+				</span>
+			</div>
+
+			<div class="pull-right total-box">
+				<div class="pull-left">
+					<div>
+						<span class="tsl">
+						已选择 <b class="c-red" id="selectItemCount">0</b>件商品</span>
+
+						<span class="tl">总价(不含运费)：<span class="c-red">&yen;</span></span> <span class="tv c-red" id="cartAmountConut">0.00</span>
+                        </br>
+                        <span class="tl" style="margin-left: 200px">已节省： &yen;</span><span id="discountTotal" class="tv">0.00</span>
+					</div>
+				</div>
+				<div class="pull-right">
+					<a class="gobtn" href="javascript:void(0);" id="goCheck">去结算</a>
+				</div>
+			</div>
+		</div>
+	</form>
+	<!--购物列表 end-->
+    </div>
+</div>

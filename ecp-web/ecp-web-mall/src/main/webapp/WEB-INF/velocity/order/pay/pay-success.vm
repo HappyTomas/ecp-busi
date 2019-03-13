@@ -1,0 +1,63 @@
+#parse("/module/mod-form.vm")
+#parse("sys/sys_param.vm")
+<link href="$!{CSS_PATH}/order.css" type="text/css" rel="stylesheet"/>
+<link href="$!{CSS_PATH}/reset.css" type="text/css" rel="stylesheet"/>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/pay-success.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+
+<!--主要内容 begin--> 
+<div id="content">
+    <div class="wrap1200">
+        <div class="order-sb-state">
+            <div class="sus-tip">
+                <table width="100%" border="0">
+					<input type="hidden" id="shopId" value="100" />
+                    <tbody><tr>
+                        <td class="mstate-icc">
+                           <i class="mstate"></i>
+                        </td>
+                        <td>
+                            <p class="txt">$!realMoney
+                                <strong style="font-size: 20px;">您成功付款！</strong>
+                            </p>
+                            <ul class="odetail">
+                                <li>
+                                    <label>订单编号：</label>
+                                    <span class="c-orange">$!{showOrderIds}</span>
+                                </li> 
+                                <li>
+                                    <label>付款时间：</label>
+                                    <span class="c-gray">$!date.format('yyyy-MM-dd HH:mm:ss ',$!{payTime})</span>
+                                </li>  
+                                <li>
+                                    <span class="c-gray">
+                                                                                         您可能需要：
+                                    </span>
+									#if($!{siteId} == "1")
+										#if($orderIdList && $!{orderIdList.size()} == 1)
+										<a class="c-red" href="$!{CONTEXT_PATH}/ord/detail/$!{orderId}">查看该订单</a>
+                                        <span class="c-gray" style="margin: 0 5px">|</span>
+										#end
+                                        <a href="$!{CONTEXT_PATH}/order/pay" class="c-red">我的订单</a>
+								    #else
+										#if($orderIdList && $!{orderIdList.size()} == 1)
+										<a class="c-red" href="$!{CONTEXT_PATH}/ord/point/detail/$!{orderId}">查看该订单</a>
+                                        <span class="c-gray" style="margin: 0 5px">|</span>
+                                        #end
+										<a href="$!{CONTEXT_PATH}/order/point/pay" class="c-red">我的订单</a>
+									#end
+                                    
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> 
+
+<!--主要内容 end-->
+

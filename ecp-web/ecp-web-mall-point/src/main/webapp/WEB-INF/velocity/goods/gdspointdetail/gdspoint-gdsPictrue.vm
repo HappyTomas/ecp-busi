@@ -1,0 +1,7 @@
+<div class="preview">
+    <!--引用图片滑动组件begin-->
+    <div class="ecp-component gdsPictrueSlide" data-pictrue-num="3" data-gds-id="$!{gdsDetailInfo.id}" data-sku-id="$!{gdsDetailInfo.skuInfo.id}" data-pictrue-height="60" data-pictrue-width="60" data-pictrue-more-height="500" data-pictrue-more-width="500"  data-module="ecp-component/gds-pictrue-slider">
+        <div id="gdsPictrueSlide"></div>
+    </div>
+    <!--引用图片滑动组件end-->
+</div>

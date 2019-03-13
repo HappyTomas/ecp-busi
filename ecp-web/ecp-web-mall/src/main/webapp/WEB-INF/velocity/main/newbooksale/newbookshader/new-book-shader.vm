@@ -1,0 +1,67 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$RESOURCE_PATH/jquery/powerSwitch/jquery-powerSwitch.js"></script>
+
+#if($newBookList)
+#if($menuType == 0)
+<div class="box-tit">
+	<span class="box-tit-font">#parse("/main/newbooksale/newbookshader/info-title.vm")</span>
+	#if($newBookList.size() > 0)
+		<a target='_blank' href = "${CONTEXT_PATH}/newbook/newbookpageinit?placeWidth=200&placeHeight=200&pageSize=20"><span class="box-tit-more pull-right">更多>></span></a>
+	#end
+</div>
+<div class="box-con slide" style="height: 161px">
+#else
+	<div class="box-tit b-top">
+		<span class="font-tit">#parse("/main/newbooksale/newbookshader/info-title.vm")</span>
+	#if($newBookList.size() > 0)
+		<a target='_blank' href="${CONTEXT_PATH}/newbook/newbookpageinit?pageSize=20#if($versionType && $versionType != '')&versionType=$!{versionType}#end"><span class="pull-right"> 更多>></span></a>
+	#end
+	</div>
+
+	<div class="box-con  box-pro border-box slide" style="height: 280px">
+#end
+
+		<div class="switchbtn"></div>
+		<ol class="dian-box">
+			#foreach(${newBook} in ${newBookList}) 
+				#if($velocityCount == 1)
+				<li><a target='_blank' class="current" href="javascript:"
+					data-rel="prob$!{velocityCount}">●</a></li> 
+				#else
+				<li><a target='_blank' href="javascript:" data-rel="prob$!{velocityCount}">●</a></li>
+				#end
+		    #end
+		</ol>
+		<ul class=" slide-box new-book">
+			#foreach($!{newBooks} in $!{newBookList})
+			<li id="prob$!{velocityCount}" class="newBookSaleLi" #if($!{velocityCount} == 1)style="display: block" #end>
+				#foreach($!{newBook} in $!{newBooks})
+				<div class="clearfix">
+					<p class="img-w">
+						<a target='_blank' href="#if($!{newBook.url})${CONTEXT_PATH}$!{newBook.url}#else javascript:void(0)#end"><img src="$!{newBook.mainPic.uRL}"></a>
+					</p>
+					<h2 #if($!{newBook.gdsName} != '') title ="$!{newBook.gdsName}" #end>
+						<a target='_blank' class="clamp" href="#if($!{newBook.url})${CONTEXT_PATH}$!{newBook.url}#else javascript:void(0)#end">$!{newBook.gdsName}</a>
+					    ##<i class="vl"></i>
+					</h2>
+					<p class="red">#siteName('')预售</p>
+					<p class="price-j">#money($!{newBook.discountPrice})</p>
+					<p class="price_r">#money($!{newBook.guidePrice})</p>
+				</div> 
+				#end
+			</li> 
+			#end 
+			#if($newBookList.size() == 0)
+			<div class='pro-empty'>暂无数据，敬请期待！</div>
+			#end
+		</ul>
+	</div>
+	#else
+<div class="box-tit">
+    <span class="box-tit-font">#parse("/main/newbooksale/newbookshader/info-title.vm")</span>
+</div>
+<div class="box-con slide" style="height: 161px">
+	<div class="switchbtn"></div>
+	<div class ='pro-empty'>亲，暂无数据！</div>
+</div>
+#end

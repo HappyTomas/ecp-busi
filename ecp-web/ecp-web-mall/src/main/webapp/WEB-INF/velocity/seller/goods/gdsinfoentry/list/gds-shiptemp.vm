@@ -1,0 +1,42 @@
+#parse("/sys/sys_head.vm")
+#parse("/module/mod-form.vm")
+<link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+<link href="$!{CSS_PATH}/seller.css" type="text/css" rel="stylesheet">
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsinfoentry/gds-shiptemp.js?version=$!{JS_VERSION}" ></script>
+<div class="seller-well">
+    <form id="searchForm" action="" class="form-horizontal required-validate">
+		<input type="hidden" value="" id="shopId" name="shopId"/>
+		<input type="hidden" value="" id="gdsId" name="gdsId"/>
+		<input type="hidden" value="" id="catgCode" name="catgCode"/>
+        <div class="row-fluid">
+                <div class="span6">
+                    <div class="control-group">
+						<label class="control-label">模板编码：</label>
+						<div class="controls">
+							<input type="text" name="shipTemplateId" class="input-block-level digits" value="" placeholder="输入模板编码">
+						</div>
+                    </div>
+                </div>
+                <div class="span6">
+                    <div class="control-group">
+						<label class="control-label">模板名称：</label>
+						<div class="controls">
+							<input type="text" name="shipTemplateName" class="input-block-level" value="" placeholder="输入模板名称">
+						</div>
+					</div>
+                </div>
+        </div>
+        <div class="sbtn-group">
+			 <div class="btn-wrap btn-w-right">
+                 <span class="sbtn sbtn-blue" id="btnFormSearch">查询</span>
+                 <span class="sbtn" id="btnFormReset">重置</span>
+             </div>
+		</div>
+    </form>
+</div>
+                
+<div class="seller-tab">
+    <div class="tab-content" id="listDiv">
+		#parse("/seller/goods/gdsinfoentry/list/gds-shiptemp-list.vm")
+    </div>
+</div>

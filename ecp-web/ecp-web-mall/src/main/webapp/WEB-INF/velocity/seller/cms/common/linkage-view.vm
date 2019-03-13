@@ -1,0 +1,46 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/cms/common/linkage-edit.js?version=$!{JS_VERSION}" ></script>
+
+<input type="hidden" id="linkage_siteId" value="$!{respVO.siteId}" />
+<input type="hidden" id="linkage_templateId" value="$!{respVO.templateId}" />
+<input type="hidden" id="linkage_placeId" value="$!{respVO.placeId}" />
+
+<div class="row-fluid">
+    <div class="span12">
+		<div class="control-group">
+			<label class="control-label">所属站点： </label>
+			<div class="controls">
+				<select id="siteId" name="siteId" class="required" disabled="disabled">
+				</select>
+				<span class="help-inline">请选择所属站点</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+		<div class="control-group">
+			<label class="control-label">所属模板：</label>
+			<div class="controls">
+				<select id="templateId" name="templateId" class="required" disabled="disabled">
+					<option value="" selected >-请选择-</option>
+				</select>  
+				<span class="help-inline">请选择所属模板</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid">
+    <div class="span12">
+		<div class="control-group">
+			<label class="control-label">内容位置：</label>
+			<div class="controls">
+				<select id="placeId" name="placeId" class="required" disabled="disabled">
+					<option value="" selected >-请选择-</option>
+				</select>
+				<span class="help-inline">请选择内容位置</span>
+			</div>
+		</div>
+	</div>
+</div>

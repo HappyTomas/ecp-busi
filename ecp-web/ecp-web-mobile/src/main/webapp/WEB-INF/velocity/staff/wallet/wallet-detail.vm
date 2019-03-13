@@ -1,0 +1,29 @@
+<!-- 侧边栏内容 -->
+<div  class="am-offcanvas slidePage slidePageContanier">
+    <div class="am-offcanvas-bar am-offcanvas-bar-flip">
+        <div class="am-offcanvas-content">
+            <header class="am-header am-header-fixed">
+                <div class="am-header-title">
+                    钱包明细
+                </div>
+                <div class="am-header-left am-header-nav">
+                    <a href="" class="" id="pageReturn">
+                        <i class="public-arrowleft"></i>
+                    </a>
+                </div>
+            </header>
+
+            <div class="ui-content">
+                <div class="wallet-detail">
+                    <div class="cont">
+                       <p class="type" id="hiddenAcctTypeName">
+                       </p>
+                        <p class="time" id="hiddenCreateTime"></p>
+                    </div>
+                    <span class="yan" style="width:100px">+<em>¥</em><font id="hiddenBalance"></font>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

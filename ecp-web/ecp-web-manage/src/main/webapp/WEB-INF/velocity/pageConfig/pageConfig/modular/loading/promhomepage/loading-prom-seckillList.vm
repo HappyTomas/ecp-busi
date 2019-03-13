@@ -1,0 +1,75 @@
+#set($showWay = "")##展示方式.默认给他展示四个
+
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+#foreach($prop in $crossItemObj)
+	#if($!{prop.propId}=="1010")
+		##展示方式
+		#set($showWay = $!{prop.propValue})
+	#end
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+##1501
+#set($reqAttr = "data-status='1' data-coup-size='12' data-now-date='$date' data-show-way='$!showWay' data-gds-size='$!showAmount' data-tab-size='$!tabSize' data-place-id='$placeId' data-place-width='150' data-place-height='150' data-return-url='/promhomepage/prom-gdspictrues-template'")
+<div class="promTpl-seckill ecp-component $!{componentMethod}" $reqAttr data-is-pub="$!{pagePub}" data-component-method="$!{componentMethod}" data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}">
+	 #if(!$!{componentMethod} || '' == $!{componentMethod})
+		##判断是否已经配置了模板相应的属性
+	   	#parse("/pageConfig/pageConfig/edit/nodata/modular-nodata.vm")
+	#else
+		 <div class="modular-body">
+	         <div id="caroTriggerOut" class="caro_trigger">
+	             <a href="javascript:" class="caro_prev" data-rel="item">&laquo;</a>
+	             <a href="javascript:" class="caro_next" data-rel="item">&raquo;</a>
+	         </div>
+	         <div id="caroBox" class="seckill-tab">
+	             <ul class="clearfix">
+	             </ul>
+	         </div>
+	         <div class="tab-content">
+	             <div class="nItem">
+	                 <div class="seckill-product">
+	                     <div class="seckill-product-header clearfix">
+	                         <div class="seckill-name">
+	                         </div>
+	                         <div class="seckill-time">
+	                         </div>
+	                     </div>
+	                     <div class="template template-$showWay promTpl-seckillList">
+	                         <div class="tUl-wrap">
+	                             <ul class="tUl goodsPicsRow clearfix">
+	                             </ul>
+	                         </div>
+	                     </div>
+	                 </div>
+	             </div>
+	         </div>
+	
+	     </div>
+		 <div class="pagination bPage pagination-right">
+			<ul id="secKill_ul">
+				<li id="bPageList" class="disabled bPageList"><a>每页<span id="secKill_pageSize">16</span>条</a></li>
+				<li id="bPageInfo" class="disabled bPageInfo">
+					<a>当前显示第<span id="secKill_pageNo">1</span>/<span id="secKill_pageCount">0</span>页</a>
+				</li>
+				<li id="bPageFirstPage" class="disabled"><a href="javascript:void(0);">首页</a></li>
+				<li id="bPagePreviousPage" class="disabled"><a href="javascript:void(0);">«</a></li>
+				
+				<li id="bPageNextPage" class="disabled"><a href="javascript:void(0);">»</a></li>
+				<li id="bPageLastPage" class="disabled"><a href="javascript:void(0);">尾页</a></li>
+			</ul>
+		 </div>
+		 <div class="nodata secKillNodataDiv hide">
+			<span style="color:red;">暂无数据！</span>
+	     </div>
+	#end	     
+</div>

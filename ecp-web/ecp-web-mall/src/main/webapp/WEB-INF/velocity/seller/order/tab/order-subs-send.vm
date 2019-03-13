@@ -1,0 +1,48 @@
+	#parse("sys/sys_param.vm")
+	<script type="text/javascript" src="$BUSIJS_PATH/seller/order/order-subs-send.js?version=$!{JS_VERSION}"></script>
+				
+                   <table class="seller-table sendGood-tb">
+                       <thead>
+                       <tr>
+                           <td style="width:50px"><input type="checkbox" id="allCheckBoxBtn" onclick="checkbox_fun.selectAll()" ></td>
+                           <td style="width:350px">订单详情</td>
+                           <td>商品信息</td>
+                           <td style="width: 200px">发货信息</td>
+                       </tr></thead>
+                       <tbody id="tableBody">
+    					#if(!$subordersdetail.list || $subordersdetail.list.size() == 0)
+                	       <tr class="fav-opt">
+                			<td colspan="4">
+                			        #if(!$msg)没有数据#else $!msg #end
+                			</td>
+                		</tr>
+						#end
+						#foreach ($record in $subordersdetail.list)
+                         <tr>
+                           <td><input type="checkbox" id="${record.orderSubId}+checkbox" value="${record.orderSubId}"></td>
+                           <td class="ltd td-hhtxt">
+                               <p>订单编号：$!{orderId}</p>
+                               <p>子订单号：${record.orderSubId}</p>
+                               <p>商品名称：${record.gdsName}</p>
+                           </td>
+                           <td class="ltd" >
+                               <p>#if($!{record.skuInfo}!="")商品属性：$!{record.skuInfo}#end 价格：#set($orderMoney = $!{record.orderMoney}/100.00)$orderMoney </p>
+                               <p>订购量：<span style="color:red">#set($count = $!{record.remainAmount}+$!{record.deliverAmount})$count</span> </p>
+                               <p>已发货：<span style="color:red">$!{record.deliverAmount}</span>  未发货：<span style="color:red">$!{record.remainAmount}</span></p>
+                           </td>
+                           <td>
+                               发货数量：
+    						<div class="count-input" style="float:right">
+                                <a class="minus" href="javascript:void(0)" onclick="ordersub_grid.minus('${record.orderSubId}',$!{record.remainAmount})">-</a>
+                                <input type="text" value="$!{record.remainAmount}" name="${record.orderSubId}num" onblur="ordersub_grid.addAndMinus('${record.orderSubId}',1,$!{record.remainAmount})" onkeypress="javascript:return ebcUtils.checkNum(event,this)"></input>
+                                <a class="add" href="javascript:void(0)" onclick="ordersub_grid.add('${record.orderSubId}',$!{record.remainAmount})">+</a>
+                            </div>
+                           </td>
+                       </tr>
+					   #end
+                       </tbody>
+                   </table>
+                    <div class="row-fluid">
+						<input type="hidden" id="AllRecordNum" value="$!{subordersdetail.totalRow}"/>
+						<div id="pageControlbar" class="ecppage" data-total-page="$!{subordersdetail.totalPage}" data-total-row="$!{subordersdetail.totalRow}" data-page-size="$!{subordersdetail.pageSize}" data-page-number="$!{subordersdetail.pageNumber}" data-status="begin"></div>
+                    </div>

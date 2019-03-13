@@ -1,0 +1,15 @@
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/coupinfo/userule/rule-120.js?version=$!{JS_VERSION}" ></script>
+				<form id="useForm120" rule-data="120" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+			        <div class="row-fluid">
+						<div class="control-group">
+							<label class="control-label" for="name">店铺限制：</label>
+							<div class="controls">
+							    <button type="button" class="btn delRowTd" id="btnShopQuery" data-toggle="modal" data-target="#myModal" ><i class="icon-search icon-white"></i> 店铺查询</button>
+							    <div id="shop-table-id-120" class="row-fluid" style="margin-top: 10px;"></div>
+							</div>
+						</div>
+					</div>
+				</form>
+			   

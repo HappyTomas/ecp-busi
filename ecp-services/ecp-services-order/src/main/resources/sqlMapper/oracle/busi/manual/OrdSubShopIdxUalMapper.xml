@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.manual.OrdSubShopIdxUalMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdSubShopIdx" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="ORDER_SUB_ID" property="orderSubId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="ORDER_AMOUNT" property="orderAmount" jdbcType="INTEGER" />
+    <result column="ORDER_MONEY" property="orderMoney" jdbcType="INTEGER" />
+    <result column="GDS_ID" property="gdsId" jdbcType="INTEGER" />
+    <result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="SYS_TYPE" property="sysType" jdbcType="VARCHAR" />
+  </resultMap>
+   <resultMap id="BaseResultMap_Ex" type="com.zengshi.ecp.order.dao.model.OrdSubShopIdx" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="ORDER_SUB_ID" property="orderSubId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="ORDER_AMOUNT" property="orderAmount" jdbcType="INTEGER" />
+    <result column="ORDER_MONEY" property="orderMoney" jdbcType="INTEGER" />
+    <result column="GDS_ID" property="gdsId" jdbcType="INTEGER" />
+    <result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="SYS_TYPE" property="sysType" jdbcType="VARCHAR" />
+    <result column="ORDER_CODE" property="orderCode" jdbcType="VARCHAR" />
+    <result column="CATEGORY_CODE" property="categoryCode" jdbcType="VARCHAR" />
+    <result column="GDS_NAME" property="gdsName" jdbcType="VARCHAR" />
+    <result column="SKU_HIS_ID" property="skuHisId" jdbcType="INTEGER" />
+    <result column="SKU_INFO" property="skuInfo" jdbcType="VARCHAR" />
+    <result column="GROUP_TYPE" property="groupType" jdbcType="VARCHAR" />
+    <result column="GROUP_DETAIL" property="groupDetail" jdbcType="VARCHAR" />
+    <result column="PRICE_TYPE" property="priceType" jdbcType="VARCHAR" />
+    <result column="BASE_PRICE" property="basePrice" jdbcType="INTEGER" />
+    <result column="BUY_PRICE" property="buyPrice" jdbcType="INTEGER" />
+    <result column="STANDARD_PRICE" property="standardPrice" jdbcType="INTEGER" />
+    <result column="DISCOUNT_PRICE" property="discountPrice" jdbcType="INTEGER" />
+    <result column="DISCOUNT_MONEY" property="discountMoney" jdbcType="INTEGER" />
+    <result column="REDUCE_MONEY" property="reduceMoney" jdbcType="INTEGER" />
+    <result column="REAL_MONEY" property="realMoney" jdbcType="INTEGER" />
+    <result column="PROXY_SHOP_ID" property="proxyShopId" jdbcType="INTEGER" />
+    <result column="DELIVER_STATUS" property="deliverStatus" jdbcType="VARCHAR" />
+    <result column="REMAIN_AMOUNT" property="remainAmount" jdbcType="INTEGER" />
+    <result column="DELIVER_AMOUNT" property="deliverAmount" jdbcType="INTEGER" />
+    <result column="SCORE" property="score" jdbcType="INTEGER" />
+    <result column="ORDER_SUB_SCORE" property="orderSubScore" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="REP_CODE" property="repCode" jdbcType="INTEGER" />
+    <result column="STOCK_ID" property="stockId" jdbcType="INTEGER" />
+    <result column="GDS_TYPE" property="gdsType" jdbcType="INTEGER" />
+    <result column="EVAL_FLAG" property="evalFlag" jdbcType="VARCHAR" />
+    <result column="SCORE_TYPE_ID" property="scoreTypeId" jdbcType="INTEGER" />
+    <result column="PRN_FLAG" property="prnFlag" jdbcType="VARCHAR" />
+    <result column="HAS_BACK_NUM" property="hasBackNum" jdbcType="INTEGER" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="STAFF_CODE" property="staffCode" jdbcType="VARCHAR" />
+    <result column="STAFF_NAME" property="staffName" jdbcType="VARCHAR" />
+    <result column="COMPANY_ID" property="companyId" jdbcType="INTEGER" />
+    <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="PAY_TYPE" property="payType" jdbcType="VARCHAR" />
+    <result column="BACK_MONEY" property="backMoney" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  
+  <sql id="Example_Where_Clause_Ex" >
+    <where>
+            NVL(ORDER_AMOUNT,0)>NVL(HAS_BACK_NUM,0) 
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim>
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+ 
+  <select id="sumOrderAmountForShopByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubCriteria" resultType="java.lang.Long" >
+    select sum(order_amount) from t_ord_sub_shop_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  
+  <sql id="Base_Column_List_Ex" >
+    ID, SHOP_ID, STAFF_ID, ORDER_TIME, ORDER_SUB_ID, STATUS, ORDER_ID, ORDER_AMOUNT, 
+    ORDER_MONEY, GDS_ID, SKU_ID, SITE_ID, SYS_TYPE, ORDER_CODE, CATEGORY_CODE, GDS_NAME, 
+    SKU_HIS_ID, SKU_INFO, GROUP_TYPE, GROUP_DETAIL, PRICE_TYPE, BASE_PRICE, BUY_PRICE, 
+    STANDARD_PRICE, DISCOUNT_PRICE, DISCOUNT_MONEY, REDUCE_MONEY, REAL_MONEY, PROXY_SHOP_ID, 
+    DELIVER_STATUS, REMAIN_AMOUNT, DELIVER_AMOUNT, SCORE, ORDER_SUB_SCORE, REMARK, CREATE_TIME, 
+    CREATE_STAFF, UPDATE_STAFF, UPDATE_TIME, REP_CODE, STOCK_ID, GDS_TYPE, EVAL_FLAG, 
+    SCORE_TYPE_ID, PRN_FLAG, HAS_BACK_NUM, ORDER_TYPE, SHOP_NAME, SOURCE, STAFF_CODE, 
+    STAFF_NAME, COMPANY_ID, COMPANY_NAME, START_TIME, END_TIME, PAY_TYPE,BACK_MONEY 
+  </sql>
+  
+  <select id="selectBySellGdsExample" resultMap="BaseResultMap_Ex" parameterType="com.zengshi.ecp.order.dao.model.OrdSubShopIdxCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List_Ex" />
+    from t_ord_sub_shop_idx  
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Ex" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+
+   <select id="countBySellGdsExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubShopIdxCriteria" resultType="java.lang.Long" >
+    select count(*) from t_ord_sub_shop_idx 
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Ex" />
+    </if>
+  </select>
+  
+  <select id="countOrderIdByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubShopIdxCriteria" resultType="java.lang.Long" >
+    select count(distinct order_id) from t_ord_sub_shop_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Ex" />
+    </if>
+  </select>
+  
+  <select id="sumDiscountMoneyByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubShopIdxCriteria" resultType="java.lang.Long" >
+    select sum(NVL(real_money,0)-NVL(back_money,0)) from t_ord_sub_shop_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Ex" />
+    </if>
+  </select>
+  
+  <select id="sumOrderAmountByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubShopIdxCriteria" resultType="java.lang.Long" >
+    select sum(NVL(order_amount,0)-NVL(has_back_num,0)) from t_ord_sub_shop_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Ex" />
+    </if>
+  </select>
+  
+  <select id="sumBasicMoneyByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubShopIdxCriteria" resultType="java.lang.Long" >
+    select sum(NVL(base_price,0) * (NVL(order_amount,0)-NVL(has_back_num,0))) from t_ord_sub_shop_idx
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause_Ex" />
+    </if>
+  </select>
+</mapper>

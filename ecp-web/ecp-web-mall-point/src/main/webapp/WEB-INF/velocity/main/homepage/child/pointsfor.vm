@@ -1,0 +1,16 @@
+#parse("sys/sys_param.vm")
+
+<!--积分兑换-->
+<div class="npro-type">
+    <div class="head">
+        <i class="picon gift"></i>
+		积分兑换
+    </div>
+	
+    <dl class="itemDl clearfix ecp-component sidebar-catg-shader" data-place-id="703" data-menu-type="0" data-place-height ="990"
+     data-module="ecp-component/sidebar-catg-shader">
+    </dl>
+	
+	<!--积分兑换-->
+	#parse("main/homepage/child/pointsdesc.vm")
+</div>

@@ -1,0 +1,72 @@
+#parse("/sys/sys_param.vm")
+<div class="filter-content">
+
+    <div id="wrapper2" data-am-widget="list_news" class="am-list-news scroll-wrap">
+        <div class="am-list-news-bd scroll">
+            <div class="pull-action loading pull-down">
+                <span class="pull-label"> 下拉刷新</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+            <ul class="pro-list clearfix scrollCont pro-list-grid">
+                <div class="loading-lo"></div>
+            </ul>
+
+            <div class="pull-action pull-up" style="bottom: 0">
+                <span class=" pull-label"> 上拉加载更多</span>
+                <span class="am-icon-spinner am-icon-spin"></span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/x-handlebars-template" id="wrapper2-tpl">
+	{{if values.datas ==null || values.datas.length == 0}}
+		<div data-tab-panel-0 class="am-tab-panel am-active">
+            <div class="ui-empty">
+                <div class="empty-img">
+                    <img src="$IMAGE_PATH/shop-nodata.png" alt="">
+                </div>
+                <div class="tip-bold">
+						很遗憾
+                </div>
+                <div class="tip-txt">
+						没有查到任何数据
+                </div>
+            </div>
+        </div>
+	{{/if}}
+    {{each values.datas as obj i}}
+    <div class="item resultList">
+		<input name="pGdsId" value="{{obj.id}}" type="hidden"/>
+        <input name="pSkuId" value="{{obj.firstSkuId}}" type="hidden"/>
+        <input name="pShopId" value="{{obj.shopId}}" type="hidden"/>
+		<input name="pDiscountPrice" value="{{obj.discountPrice}}" type="hidden"/>
+        <input name="pIfFree" value="{{obj.ifFree}}" type="hidden"/>
+		<input name="pRealPrice" value="{{obj.defaultPrice}}" type="hidden"/>
+		<input name="pMainCatgs" value="{{obj.mainCategoryCode}}" type="hidden"/>
+        <div class="img-wrap">
+            <a href="$!{CONTEXT_PATH}/gdsdetail/{{obj.id}}-{{obj.firstSkuId}}" title="{{obj.gdsNameSrc}}">
+                <img src="{{obj.imageUrl}}" alt="">
+            </a>
+        </div>
+        <div class="item-cont">
+            <p class="p-tit">
+
+                ##{{if obj.promotionType}}
+                <span class="saleInfo"></span>
+				##{{each obj.promotionType as objs j}} {{objs[j]}}{{/each}}
+                ##{{/if}}
+                <a href="$!{CONTEXT_PATH}/gdsdetail/{{obj.id}}-{{obj.firstSkuId}}" title="{{obj.gdsNameSrc}}">{{#obj.gdsName}}</a>
+            </p>
+
+            ##<p class="p-tip">包邮</p>
+
+            ##<p class="p-ll clearfix"><span class="p-color">浏览过的书</span></p>
+
+         <p class="p-line"><span class="c-orange">&yen;<b name="discountPrice">{{obj.discountPriceOfYun}}</b></span><span class="pull-right p-font">{{obj.sales}}人付款</span>
+         </p>
+        </div>
+    </div>
+    {{/each}}
+</script>

@@ -1,0 +1,133 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<link href="${CONTEXT_PATH}/css/goods/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="$!{CSS_PATH}/child-reset.css" rel="stylesheet" type="text/css" media="screen"/>
+<style>
+    .scroll{
+        height: 450px;
+        padding: 20px;
+        overflow-y: auto;
+    }
+</style>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsinfoentry/gds-skuPictrues.js?version=$!{JS_VERSION}" ></script>
+  <div id="contentwrapper">
+	<input type="hidden" value="" id="shopId"/>
+        <div class="">
+            <div class="fd-block pmgr-imgup">
+                <h3 class="heading">
+                    <span>单品图片</span>
+                </h3>
+                <div class="alert">
+                    700*700以上图片可以在宝贝详情页主图提供图片放大功能
+                </div>
+                <div class="pmgr-imgs clearfix" >
+					<!--<div class="item">
+                        <div class="imgcont">
+                            <img id="image0" src="../../images/yf-tpl.jpg"  alt=""/>
+                        </div>
+                        <div class="text-center">
+								<input name="mainPicVfsId" picName="" mediaRtype="" mediaType="" id="picVfsId0" type="hidden" value="">
+                                <input class="com_input" index="0" uploadimage="upload-pictures" type="file" style="display:none;" id="detailPic0" index="0" name="detailPic0"/>
+                                <input type="button" name="buttonFileUp" value="上传视频" style="display:inline;"/>
+                                    <div class="commodity_txt">单品视频</div>
+            			</div>
+            		</div>-->
+                    #foreach($a in $upPictrueAmount)
+                        <div class="item">
+                            <div class="imgcont">
+                                <img id="image$velocityCount" src="${aiTool.genImageUrl('','124x124!')}"  alt=""/>
+                            </div>
+                            <div class="text-center">
+                                <input name="mainPicVfsId" picName="" mediaId="" mediaRtype="" mediaType="" id="picVfsId$velocityCount" type="hidden" value="">
+								<a href="javascript:;" class="btn file-wrap">上传图片
+									<input class="com_input" index="$velocityCount" uploadimage="upload-pictures" type="file" id="detailPic$velocityCount" index="$velocityCount" name="detailPic"/>
+                                </a>
+                                <div class="commodity_txt">
+                                     #if($velocityCount==1)单品主图
+									 #else
+										单品辅图
+									 #end
+        						</div>
+                    		</div>
+                       </div>
+					#end
+                </div>
+               <div class="moreimg clearfix">
+									<label id="more-pictrue">
+                                        <span class="mtxt pull-right">
+    										更多（从图片库选择）
+                                        </span>
+                                            <i class="icon icon-caret-down pull-right"></i>
+                                    </label>
+                                </div>
+
+                                <div class="pmgr-tpltab" style="display:none;" id="picture-block">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active"><a href="#img-tpl" data-toggle="tab">图片空间</a></li>
+										<div class="alert">温馨提示：点击选中商品图片的图片显示框，再双击图片空间中的图片，即可添加图片。</div>
+                                        <!--<li><a href="#video-tpl" data-toggle="tab">视频中心</a></li>-->
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="img-tpl">
+                                            <div class="form-inline">
+                                                <label for="">
+                                                    分类：
+                                                </label>
+                                                <select name="" id="picCatgCode">
+                                                    #foreach($list in $!{mediaTypeList})
+                        								<option value="$!{list.spCode}">$!{list.spValue}</option>
+                        							#end
+                                                </select>
+                                                <label for="">
+                                                    名称：
+                                                </label>
+                                                <input type="text" value="" id="mediaName" placeholder="输入图片名称"/>
+                                                <button class="btn btn-primary" onclick="searchMedia()">
+                                                    搜索
+                                                </button>
+                                            </div>
+											<!--图片列表start-->
+    											<div id="mediaList">
+    											</div>
+											<!--图片列表end-->
+                                        </div>
+                                        <div class="tab-pane" id="video-tpl">
+                                            <div class="form-inline">
+                                                <label for="">
+                                                    分类：
+                                                </label>
+                                                <select name="" id="picCatgCode">
+                                                    #foreach($list in $!{mediaTypeList})
+                        								<option value="$!{list.spCode}">$!{list.spValue}</option>
+                        							#end
+                                                </select>
+                                                <label for="">
+                                                    名称：
+                                                </label>
+                                                <input type="text" value="" id="mediaName"/>
+                                                <button class="btn btn-primary" onclick="searchMedia()">
+                                                    搜索
+                                                </button>
+                                            </div>
+                                          视频中心
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+            </div>
+
+            <div class="btn-wrap btn-wrap-save">
+				
+				  <a class="btn btn-info" style="margin-right:10px;" id="btnFormSave" href="#"><i class=" icon-ok-sign icon-white"></i> 确认</a>		
+                      
+                  <a class="btn" id="btnFormCancle" href="javascript:void(0);"> <i class=" icon-remove-sign icon-white"></i> 关闭</a>
+				          
+            </div>
+        </div>
+
+    </div>

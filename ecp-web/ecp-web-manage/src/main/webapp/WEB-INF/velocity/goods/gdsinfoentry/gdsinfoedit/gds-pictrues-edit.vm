@@ -1,0 +1,191 @@
+<div id="gds-pictrue" class="fd-block pmgr-imgup form-horizontal">
+    <div class="well-tit">
+        <span>商品图片</span>
+    </div>
+	<div class="well well-searchForm">
+        <div class="alert">
+            700*700以上图片可以在宝贝详情页主图提供图片放大功能
+        </div>
+        <div class="pmgr-imgs clearfix senior_price">
+			##属性4000值
+			#set($prop_4000 = '')
+			##属性4001值
+			#set($prop_4001 = '')
+			
+			#set($allPropMaps = $!{gdsInfo.allPropMaps})
+			
+			
+			#if($allPropMaps)
+				#if($allPropMaps.get('4000'))
+					#set($prop_4000 = $allPropMaps.get('4000').values[0].propValue)
+				#end
+				#if($allPropMaps.get('4001'))
+					#set($prop_4001 = $allPropMaps.get('4001').values[0].propValue)
+				#end
+			#end
+			
+    		#set($hasMain = '0')
+            #foreach($media in $!{gdsInfo.medias})
+                #if($!{media.mediaType}!="1")
+                    #else
+    					#set($hasMain = '1')
+                        <div class="item">
+                            <div class="imgcont">
+                                <img id="image$velocityCount" src="$!{media.URL}"  alt="" onerror=""/>
+                            </div>
+                            <div class="text-center">
+                                <input name="mainPicVfsId" picName="" mediaRtype="$!{media.mediaRtype}" mediaId="$!{media.mediaId}" mediaType="$!{media.mediaType}" id="picVfsId$velocityCount" type="hidden" value="$!{media.mediaUuid}" main="$velocityCount"/>
+    							<a href="javascript:;" class="btn file-wrap">上传图片
+    								<input class="com_input" index="$velocityCount" uploadimage="upload-pictures" type="file" id="detailPic$velocityCount" name="detailPic"/>
+                                </a>
+                                <div class="commodity_txt">
+                                    #if($velocityCount==1)<font style="color:red">*</font>
+    									商品主图
+                                    #else 
+    									商品辅图
+                                    #end
+                                </div>
+                            </div>
+    					</div>
+                #end
+    		#end
+    		#if($hasMain =='0')
+    			<div class="item">
+                    <div class="imgcont">
+                        <img id="image1" src="${aiTool.genImageUrl('','124x124!')}"  alt="" onerror=""/>
+                    </div>
+                    <div class="text-center">
+                        <input name="mainPicVfsId" picName="" mediaRtype="$!{media.mediaRtype}" mediaType="$!{media.mediaType}" id="picVfsId1" type="hidden" value="$!{media.mediaUuid}" main="1"/>
+    					<a href="javascript:;" class="btn file-wrap">上传图片
+    						<input class="com_input" index="1" uploadimage="upload-pictures" type="file" id="detailPic1" name="detailPic"/>
+                        </a>
+                        <div class="commodity_txt">
+                            <font style="color:red">*</font>
+    						商品主图
+                        </div>
+                    </div>
+    			</div>
+    		#end
+            #foreach($m in $!{upPictrueAmount})
+    			#if($hasMain=='0')
+    				#set($count = $velocityCount + 1)
+    			#else
+    				#set($count = $velocityCount + $!{gdsInfo.medias.size()})
+    			#end
+                <div class="item">
+                    <div class="imgcont">
+                        <img id="image$count" src="${aiTool.genImageUrl('','124x124!')}"  alt="" onerror=""/>
+                    </div>
+                    <div class="text-center">
+                        <input name="mainPicVfsId" picName="" mediaRtype="" mediaType="" id="picVfsId$count" type="hidden" value="" main="$count">
+    					<a href="javascript:;" class="btn file-wrap">上传图片
+    						<input class="com_input" index="$count" uploadimage="upload-pictures" type="file" id="detailPic$count"  name="detailPic"/>
+    					</a>
+                        <div class="commodity_txt">商品辅图</div>
+    				</div>
+                </div>
+            #end
+			
+                <div class="item">
+                    <div class="imgcont">
+                        <img id="image99" src="${aiTool.genImageUrl($prop_4000,'124x124!')}"  alt="" onerror=""/>
+                    </div>
+                    <div class="text-center">
+                        <input name="mainPicVfsId" picName="" mediaRtype="" mediaId="" mediaType="" id="picVfsId99" type="hidden" value="$prop_4000" main="99"/>
+						<a href="javascript:;" class="btn file-wrap">上传图片
+							<input class="com_input" index="99"  uploadimage="upload-pictures" type="file" id="detailPic99" name="detailPic"/>
+                        </a>
+                        <div class="commodity_txt">
+							产品版权页图片
+                        </div>
+                    </div>
+				</div>
+				
+				 <div class="item">
+                    <div class="imgcont">
+                        <img id="image100" src="${aiTool.genImageUrl($prop_4001,'124x124!')}"  alt="" onerror=""/>
+                    </div>
+                    <div class="text-center">
+                        <input name="mainPicVfsId" picName="" mediaRtype="" mediaId="" mediaType="" id="picVfsId100" type="hidden" value="$!prop_4001" main="100"/>
+						<a href="javascript:;" class="btn file-wrap">上传图片
+							<input class="com_input" index="100"  uploadimage="upload-pictures" type="file" id="detailPic100" name="detailPic"/>
+                        </a>
+                        <div class="commodity_txt">
+							产品包装条形码特写
+                        </div>
+                    </div>
+				</div>
+			
+			
+			
+			
+        </div>
+    	<div class="moreimg clearfix"  style="margin-top:-10px;">
+                <label id="more-pictrue">
+                    <span class="mtxt pull-right">
+                        更多（从图片库选择）
+                    </span>
+                    <i class="icon icon-caret-down pull-right"></i>
+                </label>
+        </div>
+        <div class="pmgr-tpltab" style="display:none;" id="picture-block">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#img-tpl" data-toggle="tab">图片空间</a>
+                </li>
+    			<div class="alert">温馨提示：点击选中商品图片的图片显示框，再双击图片空间中的图片，即可添加图片。</div>
+            </ul>
+            <div class="tab-content">
+    			##。
+                <div class="tab-pane active" id="img-tpl">
+    				##0
+                    <div class="form-inline">
+                        <label for="">
+    							分类：
+                        </label>
+                        <select name="" id="picCatgCode">
+                            #foreach($list in $!{mediaTypeList})
+                                <option value="$!{list.spCode}">$!{list.spValue}</option>
+                            #end
+                        </select>
+                        <label for="">
+    							名称：
+                        </label>
+                        <input type="text" value="" id="mediaName" placeholder="输入图片名称"/>
+                        <button class="btn btn-primary" onclick="searchMedia()">
+    							搜索
+                        </button>
+                    </div>
+                    <!--图片列表start-->
+                    <div id="mediaList">
+                    </div>
+                    <!--图片列表end-->
+                </div>
+    			##0
+    			##1
+                <div class="tab-pane" id="video-tpl">
+                    <div class="form-inline">
+                        <label for="">
+    							分类：
+                        </label>
+                        <select name="" id="picCatgCode">
+                            <option value="">类型1</option>
+                            <option value="">类型2</option>
+                            <option value="">类型3</option>
+                        </select>
+                        <label for="">
+    							名称：
+                        </label>
+                        <input type="text" value="" id="mediaName"/>
+                        <button class="btn btn-primary">
+    							搜索
+                        </button>
+                    </div>
+    					视频中心
+                </div>
+    			##1
+            </div>
+    		##。
+        </div>
+        </div>
+    </div>

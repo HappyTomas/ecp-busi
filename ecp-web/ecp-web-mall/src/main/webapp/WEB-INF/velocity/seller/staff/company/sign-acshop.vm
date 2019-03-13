@@ -1,0 +1,177 @@
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/holder/holder.js" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/staff/company-sign.js?version=$!{JS_VERSION}" ></script>
+<style>
+	.controls li{list-style-type:none;}
+</style>
+<div class="seller-well" style="margin-top:5px">
+
+    <div class="stepflex clearfix">
+        <dl class="done">
+            <dt class="s-num">1</dt>
+            <dd class="s-text">入驻须知</dd>
+        </dl>
+        <dl class="done">
+            <dt class="s-num">2</dt>
+            <dd class="s-text">公司信息认证</dd>
+        </dl>
+        <dl class="doing">
+            <dt class="s-num">3</dt>
+            <dd class="s-text">店铺信息认证</dd>
+        </dl>
+        <dl>
+            <dt class="s-num">4</dt>
+            <dd class="s-text">等待审核</dd>
+        </dl>
+    </div>
+</div>
+                <div class="seller-box">
+                    <div class="body body-center">
+                        <form class="form-horizontal required-validate" id="shopdetailfrom">
+                            <div class="row-fluid">
+                                <div class="span6">
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">店铺全称：</label>
+                                                <div class="controls">
+                                                   <input type="text" class="required" maxlength="64" name="shopFullName" value="$!{companySignInfo.shopFullName}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">店铺简称：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="required" maxlength="64" name="shopName" value="$!{companySignInfo.shopName}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">店铺微信推广号：</label>
+                                                <div class="controls">
+                                                    <input type="text" >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    -->
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">店铺联系人：</label>
+                                                <div class="controls">
+                                                    <input type="text" maxlength="10" class="required" name="linkPerson" value="$!{companySignInfo.linkPerson}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">联系人手机：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="mobilePhone required" maxlength="11" name="linkMobilephone" value="$!{companySignInfo.linkMobilephone}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">联系人邮件：</label>
+                                                <div class="controls">
+                                                    <input type="text" maxlength="32" class="email" name="linkEmail" value="$!{companySignInfo.linkEmail}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">是否支持店铺VIP：</label>
+                                                <div class="controls">
+                                                    #select('SHOP_USE_VIP','isUseVip',true, $!{companySignInfo.isUseVip})
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">是否支持线下支付：</label>
+                                                <div class="controls">
+                                                    #select('SHOP_OFFLINE_SUPPORTED','offlineSupported',true, $!{companySignInfo.offlineSupported})
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    -->
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">入店保障金（元）：</label>
+                                                <div class="controls">
+                                                    <input type="text" class="digits" maxlength="10" name="cautionMoney" value="$!{companySignInfo.cautionMoney}">
+                                                	<input type="hidden" name="offlineSupported" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+									   <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label"><span style="color:red;">* </span>配送方式：</label>
+                                                <div class="controls">
+                                                   	#foreach($param in $shopDistributeList)
+                			                     <li style="float:left;margin-left:15px;"><input type="checkbox" value="$!{param.spCode}" checked="checked" name="distribution" />$!{param.spValue}</li> 
+						                             #end
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row-fluid">
+                                        <div class="span12">
+                                            <div class="control-group">
+                                                <label class="control-label">店铺简介：</label>
+                                                <div class="controls">
+                                                    <textarea rows="4" style="width:350px;" name="shopDesc" maxlength="512" value="$!{companySignInfo.shopDesc}"></textarea>
+                                                </div>
+                                                <input type="hidden"  name="logoPath" id="imgShopLogoPathKey" value="$!{companySignInfo.logoPath}"/>
+												<input type="hidden"  name="id" id="id" value="$!{companySignInfo.id}"/>
+												<input type="hidden"  name="companyId" id="id" value="$!{companySignInfo.companyId}"/>
+												<input type="hidden"  name="companyName" id="companyName" value="$!{companySignInfo.companyName}"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="span6">
+                                    <div class="rz3-img">
+                                        <ul class="accessory clearfix">
+				                            <li>
+				                                <div class="imgbox">
+													<img data-src="holder.js/300x200?text=图片预览区" src="$!{companySignInfo.logoPathURL}" id="imgShopLogo" alt=""  style="width:150px;height:150px;">
+												</div>
+				                                <p><span class="c-red">*</span>上传店铺LOGO</p>
+				                                <p><span class="sbtn" id="imageShopLogoUpload">上传图片</span></p>
+				                            </li>
+				                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+                        <div class="btn-wrap">
+                            <span class="sbtn sbtn-blue" id="btnsignShop">确认无误，提交申请</span>
+                        </div>
+                    </div>
+                </div>

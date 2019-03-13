@@ -1,0 +1,25 @@
+<div data-am-widget="slider" class="am-slider am-slider-a1 am-slider-pictrues" data-am-slider='{"directionNav":false}'>
+	<input type="hidden" value="$!{respList.size()}" id="advertiseSize"> 
+    <ul class="am-slides">
+		#foreach($list in $!{respList})
+    		<li>
+    			<a target='_blank' href="$!{list.linkUrl}">
+    		    <img src="$!{list.vfsUrl}" alt="$!{list.advertiseTitle}"/>
+    		    </a>
+    	    </li>
+		#end
+	</ul>
+</div>
+<script >
+$(function(){
+	if($("#pictruesSize").val()=='1'){
+		$('.am-slider-pictrues').flexslider({
+			touch: false
+		});
+	}else{
+		$('.am-slider-pictrues').flexslider();
+	}
+
+	
+})
+</script>

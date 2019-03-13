@@ -1,0 +1,11 @@
+				<script type="text/javascript" src="$!{BUSIJS_PATH}/coupon/coupinfo/userule/rule-180.js?version=$!{JS_VERSION}" ></script>
+				<form id="useForm180" rule-data="180" class="form-horizontal hide" style="margin-bottom: 0px;" method="post" action=""  >
+						 <input type="text" name="useMap['180-1']"  value="1" > 
+				</form>
+			 
+			   
+		    
+			 
+				
+				
+				

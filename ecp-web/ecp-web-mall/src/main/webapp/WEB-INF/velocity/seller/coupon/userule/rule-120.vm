@@ -1,0 +1,16 @@
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/coupon/userule/rule-120.js?version=$!{JS_VERSION}" ></script>
+				<form id="useForm120" rule-data="120" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					<div class="row-fluid">
+                        <div class="span12">
+                            <div class="control-group">
+                                <label class="control-label">店铺限制：</label>
+                                <div class="controls">
+                                    <span class="sbtn sbtn-blue" id="btnShopQuery" data-toggle="modal" data-target="#myModal">店铺查询</span>
+                                    <div id="shop-table-id-120"  style="margin-top: 10px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</form>
+			   

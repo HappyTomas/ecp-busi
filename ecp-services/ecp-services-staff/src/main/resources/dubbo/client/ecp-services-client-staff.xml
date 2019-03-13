@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"  
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"  
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+	http://www.springframework.org/schema/beans/spring-beans.xsd  
+	http://code.alibabatech.com/schema/dubbo  
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd  
+	">  
+	
+	<!-- 用户登陆信息与权限-->
+	<dubbo:reference id="authStaffRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IAuthStaffRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>  
+     
+     <!-- 收货地址服务 -->
+    <dubbo:reference id="custAddrRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustAddrRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+    <!-- 审核企业会员 -->
+    <dubbo:reference id="custCheckRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustCheckRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+      
+    <!-- 管理人员登录RSV -->
+    <dubbo:reference id="managerLoginRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IManagerLoginRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    <dubbo:reference id="AuthLoginRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IAuthLoginRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+      
+     <!-- 会员管理RSV -->
+    <dubbo:reference id="custManageRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustManageRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+    <!-- 会员信息RSV -->
+    <dubbo:reference id="custInfoRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustInfoRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+     <!-- 店铺会员等级 、客服管理RSV -->
+    <dubbo:reference id="shopManageRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopManageRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+        
+    <!-- 店铺信息管理 -->
+    <dubbo:reference id="shopInfoRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopInfoRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    <!-- 店铺关注 -->
+    <dubbo:reference id="shopCollectRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopCollectRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+   	<!-- 店铺发货地址管理 -->
+    <dubbo:reference id="shopShipperAddrRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopShipperAddrRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+              
+    <!-- 资金账户管理服务 -->
+    <dubbo:reference id="acctManageRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IAcctManageRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+      <!-- 入驻企业审核RSV -->
+    <dubbo:reference id="companyCheckRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.ICompanyCheckRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    <dubbo:reference id="companySignRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.ICompanySignRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+        
+     <!-- 企业管理RSV -->
+    <dubbo:reference id="companyManageRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.ICompanyManageRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	
+	<!-- 积分信息RSV -->
+    <dubbo:reference id="scoreInfoRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IScoreInfoRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+    <!-- 菜单管理RSV -->
+    <dubbo:reference id="authMenuRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IMenuManageRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+     <!-- 企业缓存RSV -->
+    <dubbo:reference id="companyCacheRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.ICompanyCacheRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+      <!-- 店铺缓存RSV -->
+    <dubbo:reference id="shopCacheRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopCacheRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+      <!-- 用户等级RSV -->
+    <dubbo:reference id="custLevelInfo" interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustLevelInfoRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	
+	<!-- 角色管理RSV -->
+    <dubbo:reference id="authRoleRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IRoleManageRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+    <!-- 用户组管理RSV -->
+    <dubbo:reference id="staffGroupRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IStaffGroupManageRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	
+	<!-- 管理员管理RSV -->
+    <dubbo:reference id="authAdminRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IAuthAdminRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+    <!-- 用户权限关系RSV -->
+    <dubbo:reference id="authRelManageRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IAuthRelManageRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+    <!-- 积分购物车RSV -->
+    <dubbo:reference id="scoreOrdCartsChkRSV" interface="com.zengshi.ecp.general.order.interfaces.IOrdCartsChkRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+    <!-- 数据权限RSV -->
+    <dubbo:reference id="dataAuthManageRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IDataAuthManageRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+    <!-- 数据权限规则 -->
+    <dubbo:reference id="ruleOfDataAuth" interface="com.zengshi.ecp.server.auth.IRuleOfDataAuth" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+
+    <!-- 数据过滤规则 -->
+    <dubbo:reference id="ruleOfDataFilter" interface="com.zengshi.ecp.server.auth.attribute.IRuleOfDataFilter" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+    <!-- 订单提交校验RSV -->
+    <dubbo:reference id="staffOrdSubChkRSV" interface="com.zengshi.ecp.general.order.interfaces.IOrderChkRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	
+	<!-- 用户域   订单服务统一 RSV -->
+    <dubbo:reference id="staffUnionRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IStaffUnionRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	
+    <!-- sso登录数据同步RSV-->
+    <dubbo:reference id="ssoUserImportRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.ISsoUserImportRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+     
+     <!-- sso服务RSV -->
+    <dubbo:reference id="ssoUserForStaffRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.ISsoUserForStaffRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    
+    <!-- 会员绑定第三方服务RSV --> 
+    <dubbo:reference id="custThirdCodeRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustThirdCodeRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	
+	<!-- 积分规则缓存RSV -->
+    <dubbo:reference id="scoreCacheRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IScoreCacheRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	
+	<!-- 积分计算RSV -->
+    <dubbo:reference id="scoreCaclRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IScoreCaclRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	
+	
+	
+	<!-- 店铺子帐号RSV -->
+    <dubbo:reference id="shopSubAuthStaffRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopSubAuthStaffRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	
+	<!-- 配合框架权限改造 -->
+    <dubbo:reference id="menuRSV" interface="com.zengshi.ecp.server.front.security.IMenuRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    <dubbo:reference id="managerRSV" interface="com.zengshi.ecp.server.front.security.IManagerRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    <dubbo:reference id="loginRSV" interface="com.zengshi.ecp.server.front.security.ILoginRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+    <dubbo:reference id="authRSV" interface="com.zengshi.ecp.server.front.security.IAuthRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	<!-- 店铺支付通道 -->
+	<dubbo:reference id="shopPayWayRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IShopPayWayRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	<!-- 店铺搜索 -->
+	<dubbo:reference id="shopSearchDataListSupportRSV" interface="com.zengshi.ecp.general.solr.interfaces.ISearchDataSupport" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="shop"/>
+	
+	<!-- 商城用户与微信用户关系RSV -->
+    <dubbo:reference id="custWechatRelRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.ICustWechatRelRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	
+	<!-- 商城用户与微信用户关系RSV -->
+    <dubbo:reference id="staffUnionCoreRWRSV" interface="com.zengshi.ecp.staff.dubbo.interfaces.IStaffUnionRWRSV" registry="${default.dubbo.registry.id}" version="${default.dubbo.version}" group="${staff.dubbo.group}"/>
+	
+</beans>  

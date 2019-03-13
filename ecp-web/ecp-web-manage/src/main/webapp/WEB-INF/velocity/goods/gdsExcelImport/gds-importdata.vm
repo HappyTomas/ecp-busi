@@ -1,0 +1,32 @@
+#parse("/module/mod-upload.vm")
+#parse("/module/mod-grid.vm")
+
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/jquery/highlight/styles/sunburst.css" type="text/css">
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/highlight/highlight.pack.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsExcelImport/gds-importdata.js?version=$!{JS_VERSION}" ></script>
+<div class="row-fluid" id="importdata_id">
+	#set($sessionId = $session.getId())
+	<div class="uploadifyMainBox" style="margin-top: 5px;">
+		<input type="hidden" id="pageSessionId" value="$!{sessionId}" >
+		<div class="hide">
+			<input id="importId" type="hidden"  name="importId" />
+		</div>
+		##<div id="attachmentFileQueue" class="alert alert-info" style="margin-left:110px;height:55px"></div>
+		<div id="uploadFileButtton" class="btn btn-primary" style="margin-bottom:10px"><i class="icon-upload-alt">上传</i>
+		</div>
+		##<a class="btn btn-success" data-loading-text="处理中..." id="fileUploaderUpload" style="margin-top:-95px"><i class="icon-upload-alt"></i> 上传</a>
+	</div>
+		<span style="color:red">温馨提示：一次性上传商品数量建议不要超过100个以上，否则速度偏慢！
+	</span>
+	<div class="row-fluid">
+		<div class="pull-left" style="padding-bottom: 10px;">
+				<a class="btn btn-link" id="btnDownload" href="$!{BUSIJS_PATH}/goods/gdsExcelImport/download/gdsExcelImport.xlsx"><i class="icon-download-alt"></i>商品导入excel模板下载</a>
+			</div>
+		</div>	
+
+	<div id="divDataGridTableTemp" style="margin-bottom: 0;height:100%">
+		<div class="row-fluid">
+			<table id="dataGridTableTemp"></table>
+		</div>
+	</div>
+</div>

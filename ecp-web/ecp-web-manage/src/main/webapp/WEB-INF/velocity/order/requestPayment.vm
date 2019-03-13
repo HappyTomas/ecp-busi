@@ -1,0 +1,2 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/requestPayment.js?version=$!{JS_VERSION}" ></script>
+<form action="" accept-charset="" id="netPayForm" method="" onsubmit=""> </form>

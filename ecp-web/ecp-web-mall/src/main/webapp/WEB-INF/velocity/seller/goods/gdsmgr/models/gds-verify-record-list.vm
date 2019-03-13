@@ -1,0 +1,89 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsmgr/gds-verify-record-list.js?version=$!{JS_VERSION}"></script>
+<div class="nItem">
+   <div>
+       <table class="seller-table">
+         <thead>
+           <tr>
+               <td>商品编码</td>
+               <td>商品名称 </td>
+               <td>主分类名称</td>
+			   <td>商品编号</td>
+			   <td>商品指导价</td>
+               <td>操作人</td>
+			   <td>操作时间</td>
+			   <td>操作类型</td>
+			   <td>审核人</td>
+			   <td>审核时间</td>
+               <td>审核状态</td>
+			   <td>审核意见</td>
+           </tr>
+         </thead>
+        <tbody>
+               #if(!$gridResult || !${gridResult.getList()} || $!{gridResult.getList().size()}<=0)
+        		<tr>
+    				<td colspan='12'>
+    					没有审核记录。
+    				</td>
+    		    </tr>
+        	   #else
+            	 #foreach($verify in $gridResult.getList())
+					<tr>
+                		<td>$!{verify.gdsId}</td>
+                        <td>
+                            <div class="td-hhtxt">
+                                  $!{verify.gdsName}
+                            </div>
+                        </td>
+    					<td>$!{verify.catgName}</td>
+    					<td>$!{verify.isbn}</td>
+    					
+    						<td>
+    						#if($verify.guidePrice)
+    							#moneyNum($verify.guidePrice)
+    						#end
+    						</td>
+    					
+    					<td>$!{verify.operateStaffCode}</td>
+    					<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{verify.operateTime})</td>
+    					
+    						<td>
+    						#if("11" == $verify.operateType)
+    							上架提交
+    						#elseif("99" == $verify.operateType)
+    						            删除提交
+    						#end
+    						</td>
+    					
+    					<td>$!{verify.verifyStaffCode}</td>
+    					<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{verify.verifyTime})</td>
+                        
+						<td>
+    						#if("00" == $verify.verifyStatus)
+    							提交待审核
+    						#elseif("01" == $verify.verifyStatus)
+    							审核通过
+    						#elseif("02" == $verify.verifyStatus)
+    							审核拒绝
+    						#end
+						</td>
+    					<td>
+    					    <div  class="td-hhtxt">
+    					      $!{verify.verifyOption}
+    					    </div>
+    					</td>
+					</tr>
+				 #end
+    		   #end
+         </tbody>
+       </table>
+   </div>
+   <div id="pageControlbar" 
+		class="ecppage" 
+		data-total-page="$!{gridResult.totalPage}" 
+		data-total-row="$!{gridResult.totalRow}" 
+		data-page-size="$!{gridResult.pageSize}" 
+		data-page-number="$!{gridResult.pageNumber}" 
+		data-status="begin">
+	</div>
+</div>

@@ -1,0 +1,99 @@
+#parse("/sys/sys_param.vm")
+<script >
+	$(function(){
+		var promTplCoupon=$('.promTpl-coupon');
+         promTplCoupon.each(function(){
+             var coupons=$('.couponList li',$(this)).size();
+             var couponMore=$('.more',$(this));
+             var promTap=$(this).parents('.promTpl-tab');
+             if(coupons>1){
+                 promTap.css('padding-top',150);
+             }
+             if(coupons>4){
+                 couponMore.show();
+                 promTap.css('padding-top',165);
+             }
+         });
+	})
+</script>
+#if(${floorRespDto.id} && ${floorRespDto.id}!='')
+<div class="promTpl-coupon">
+	#if(${coupList.size()} > 0 )
+		<ul class="couponList">
+       	#foreach($coup in $coupList)
+       		#if($!{coup.coupValue})
+            <li>
+                <div class="price-box clearfix">
+                	#if(0 <= $!{coup.coupValue}) ## 优惠券
+	                	#set($coupValue = 0)
+			       		#set($index240 = -1)
+			       		#set($coupValue=$!{coup.coupValue} / 100)
+			       		#set($index240 = $!{coup.useRuleCode.indexOf("240")}) ## 判断是否是折扣价
+	                    <div class="price">
+	                    	#if(0 > $!{index240}) ## 普通优惠券
+	                        <span class="price-sign">&yen;</span>
+	                        <span class="price-m">$!{coupValue}</span>
+	                        #else ## 折扣券
+	                        #set($coupValue=$!{coupValue} / 10.0)
+	                        <span class="price-m">$!{coupValue}</span>
+	                        <span class="price-sign">折</span>
+	                        #end
+	                    </div>
+	                    <div class="while">
+	                    	#if(0 > $!{index240})
+	                        <p class="while-q">优惠券</p>
+	                        #else
+	                        <p class="while-q">折扣券</p>
+	                        #end
+	                        <p>无领取限制</p>
+	                    </div>
+	            	#else
+	            		<div class="price">
+	                        <span class="price-m">抵用券</span>
+	                    </div>
+	            	#end
+                </div>
+                <div class="receive"><a href="javascrip:void(0);" class="gainCoup" coupId = "$!{coup.id}">立即领取</a></div>
+                <p>$!{coup.conditionsShow}</p>
+            </li>
+            #end
+   		#end
+		</ul>
+		<div class="more showMoreCoup"></div>
+	#end
+ </div>
+ <div class="tab-nav">
+		#if(${floorTabList.size()} > 0)  
+		<ul id="promUl">
+			#foreach($floorTab in $floorTabList)
+				<li  class="floor-tab" floorId="$!{floorRespDto.id}" returnUrl="/modular/loading/list/promhomepage/prom-gdpictrues-tabgds-template" tabId="$!{floorTab.id}" isLoad="no">
+					<a href = "#if($!{floorTab.linkUrl} && $!{floorTab.linkUrl} != '')$!{floorTab.linkUrl}#else javascript:void(0);#end" target = "_blank">$!{floorTab.tabName}</a>
+				</li>
+			#end
+		</ul>
+		#else
+		<ul id="promUl" style="display:none;">
+			<li  class="floor-tab hide" floorId="$!{floorRespDto.id}" returnUrl="/modular/loading/list/promhomepage/prom-gdpictrues-tabgds-template" isLoad="no">
+			</li>
+		</ul>
+		#end
+ </div>
+ <div class="tab-content">
+	#if(${floorTabList.size()} > 0)
+		#foreach($floorTab in $floorTabList)
+         <div class="nItem" id="floorGdsDIV_$!{floorTab.id}" style="display: none;">
+             
+         </div>
+		#end
+	#else
+		<div class="nItem" id="floorGdsDIV_$!{floorRespDto.id}_noTab">
+        </div>
+	#end
+ </div>
+ #else
+ <div class="nodata">
+	<span>
+	#if($errMsg && $errMsg != '')$!errMsg #else 未配置楼层！#end
+    </span>
+</div>
+#end

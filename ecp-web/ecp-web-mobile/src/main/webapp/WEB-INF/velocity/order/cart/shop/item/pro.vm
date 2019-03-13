@@ -1,0 +1,63 @@
+<div class="cd-pro">
+    <div class="img-wrap">
+        <a href="$!{CONTEXT_PATH}$!{item.gdsUrl}" target="_blank">
+            <img src="#genImageUrl($!item.getPicId(),'200x200!')" alt="商品图片"/>
+        </a>
+    </div>
+    <div class="cont">
+        <a href="$!{CONTEXT_PATH}$!{item.gdsUrl}" target="_blank">
+            <p class="tof tit">$!{item.gdsName}</p>
+        </a>
+        #set($nbsp="")
+        #set($nbsp="&nbsp;")
+        #if($itemProm)
+            <p class="tof c-orange prom-notice" id="prom-notice">
+                #if($itemProm.ifFulfillProm && $itemProm.ifFulfillProm==true)
+                #set($nbsp="")
+                    $!{itemProm.promTypeMsgResponseDTO.fulfilMsg}
+                #else
+                    $!{itemProm.promTypeMsgResponseDTO.noFulfilMsg}
+                #end
+                $nbsp
+            </p>
+        #end
+
+        <div>
+            <span class="pro-pri">$!{item.gdsCateName}&nbsp;</span>
+            #if($itemGiftContent!=""&&!$itemGiftContent)
+                ##<span class="pro-dis">赠品：$itemGiftContent</span>
+            #end
+
+            #set($itemPromListStyle="")
+            #if($itemProm.promInfoDTOList && $itemProm.promInfoDTOList.size() > 0)
+                #set($itemPromListStyle="create")
+            #end
+
+            <span class="cb-btn cb-btn-del good-del deleteCurrentItem" title="删除该商品" style="display:none">删除</span>
+            #if($itemPromListStyle=="create")
+                <span class="cx-yh up-prom item-prom-select" style="display:none"
+                      id="prom-select-$!{item.id}_$velocityCount"
+                      data-am-offcanvas="{target: '#slideButtom_prom_select_$!{item.id}_$velocityCount'}">
+                修改优惠
+            </span>
+            #end
+        </div>
+        <div class="cd-jj">
+
+            #if($item && $item.gdsStatus)
+                #cartCount($item.gdsType $item.orderAmount)
+            #else
+				<input type="hidden" style="" value="0" class="itxt itemNumber">
+			#end
+
+            <span style="#if($showUnitBasePrice!=-1)display:none;#end" class="c-orange ft26" title="商品原价">&yen;：<span id="unitBasePriceBox" class="unitBasePrice">$!{aiNumber.showMoneyByTwoDecimal("$!showUnitPrice")}</span></span>
+            <span style="#if($showUnitBasePrice==-1)display:none;#end" class="c-orange ft26" title="商品现价">&yen;：<span id="unitPrice" class="unitPrice">$!{aiNumber.showMoneyByTwoDecimal("$!showUnitPrice")}</span></span>
+
+            #parse("order/cart/prom/item-prom-slide.vm")
+
+            <span class="itemPriceCount" style="display:none">0.00</span>
+        </div>
+    </div>
+</div>
+
+#set($itemIndex = $itemIndex + 1)

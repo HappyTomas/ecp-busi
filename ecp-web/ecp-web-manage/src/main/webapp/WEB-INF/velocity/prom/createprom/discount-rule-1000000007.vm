@@ -1,0 +1,30 @@
+		<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/discount-rule-1000000007.js?version=$!{JS_VERSION}" ></script>
+			<div class="formBox">
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					  <div class="formSep" >
+					       <div  class=" alert-info" style="margin-left:50px;">
+					                 消费达到特定值，可享受折扣。
+                                                                      例如: 当消费超过 &yen;150.00 时，即可享受 &yen;5.00 的折扣。
+                                                                      当订单小计达到阈值时，可享受折扣。
+					     </div>
+					  </div>
+				 <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">订单金额超过：</label>
+							<div class="controls">
+								<input type="text" class="input-large required number moneyNumber" id="orderMoney" maxlength="12"  name="discountMap['orderMoney']" placeholder="请输入订单金额阀值 " value="#moneyNum($!{promVO.discountMap.orderMoney})"   />
+							</div>
+						</div>
+					</div>
+			  <div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">优惠金额：</label>
+							<div class="controls">
+								<input type="text" class="input-large required number moneyNumber" id="fixedMoney" name="discountMap['fixedMoney']" maxlength="12"  placeholder="请输入固定优惠金额 " value="#moneyNum($!{promVO.discountMap.fixedMoney})"   />
+								<span class="help-inline   alert-info">订单的固定优惠金额（例如订单满150元 可优惠10元）。</span>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			   

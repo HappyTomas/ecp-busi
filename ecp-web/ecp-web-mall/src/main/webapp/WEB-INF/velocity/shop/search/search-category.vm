@@ -1,0 +1,94 @@
+<div class="sl-rtype">
+    <h3 class="head" code="$extra.parentCateCode"><a href="$!{CONTEXT_PATH}/shop/search?category=$!{extra.parentCateCode}">$!{extra.parentCateName}</a></h3>
+    <input type="hidden" id="searchCategory" value="$!{extra.searchCategory}"/>
+	<ul class="list cateList">
+		
+		#if($extra.topCateNameList)
+				
+			#set($index=1)
+			#foreach($topCate in $extra.topCateNameList)
+				
+				#if($index==1)
+					<li class="item drawdown">
+				#else
+					<li class="item">
+				#end
+				
+				        <div class="it">
+							
+							##分类搜索
+							#if($extra.searchType=="2")
+								#if($extra.topCateInfoMap.get($topCate).containsKey("count"))
+    							<i class="micon"></i>
+    							#else
+    							##空格填充
+    							&nbsp;&nbsp;&nbsp;&nbsp;
+    							#end
+							#else
+								<i class="micon"></i>
+							#end
+                            <span class="tit" title="${topCate}">
+								
+								##分类搜索顶级分类才包含count
+								#if($extra.topCateInfoMap.get($topCate).containsKey("count"))
+									${topCate}
+									<i class="num">(<span>$extra.topCateInfoMap.get($topCate).get("count")</span>)</i>
+								#else
+									
+									##分类搜索
+									#if($extra.searchType=="2")
+									<a href="$!{CONTEXT_PATH}/shop/search?category=$extra.topCateInfoMap.get($topCate).get("code")">${topCate}</a>
+									#else
+									${topCate}
+									#end
+								#end
+                            </span>
+                        </div>
+						
+						#if($extra.cateInfoMap.containsKey($topCate))
+							
+							<ul class="child leafCate">
+							
+    						   #set($j=1)
+    						   #foreach($mainCate in $extra.cateInfoMap.get($topCate))  
+    							
+    							   ##设置默认选中第一个分类class，用于后期查询过滤处理
+        						   #if($index==1&&$j==1)
+        							<li class="c-tit" title="${mainCate.value}" code="${mainCate.code}" _value="${mainCate.value}" class="fackCateSelected cateSelected">
+        						   #else
+                					<li class="c-tit" title="${mainCate.value}" code="${mainCate.code}" _value="${mainCate.value}">
+    							   #end
+    							   
+								       ##分类搜索
+									   #if($extra.searchType=="2")
+										<a href="$!{CONTEXT_PATH}/shop/search?category=${mainCate.code}">
+									   #else
+										<a href="#">
+									   #end
+									          ${mainCate.value}
+    									
+    									#if(${mainCate.count})
+    									<i class="num">（<span>${mainCate.count}</span>）</i>
+    									#end
+    								   
+    								   </a>
+                                   </li>
+    							   
+    							   #set($j=$j+1)
+    
+    						   #end  
+    						   
+                            </ul>
+							
+						#end
+						
+                    </li>
+        
+    			#set($index=$index+1)
+			
+			#end
+			
+		#end
+        
+    </ul>
+</div>

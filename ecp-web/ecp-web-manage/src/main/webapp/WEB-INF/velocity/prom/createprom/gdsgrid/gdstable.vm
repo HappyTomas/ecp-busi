@@ -1,0 +1,48 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/gdstable/gdstable.js?version=$!{JS_VERSION}" ></script>
+<div class="row-fluid">
+		<div class="hide">
+			<input id="promId"  name="promId" value="${promId}" />
+			<input id="doAction"  name="doAction" value="${doAction}" />
+			<input id="promTypeCode"  name="promTypeCode" value="${promTypeCode}" />
+		</div>
+		
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal required-validate" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="control-group">
+						<label class="control-label">商品编码：</label>
+						<div class="controls">
+							<input type="text" name="gdsId" class="input-medium number" value="" placeholder="">
+						</div>
+					</div>
+				</div>
+				<div class="span6">
+				 	<div class="control-group">
+						<label class="control-label">单品编码：</label>
+						<div class="controls">
+							<input type="text" name="skuId" class="input-medium number" value="" placeholder="">
+						</div>
+					</div>
+				</div>
+			</div>
+			</form>
+		</div>
+		
+		
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="pull-right">
+				<a class="btn btn-info" id="btnFormSearch" href="#"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn" id="btnFormReset" href="#"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+	
+	<div style="margin-bottom: 0;height:100%">
+		<div class="row-fluid">
+			<table id="dataGridTableTemp"></table>
+		</div>
+		<span style="color:red">*温馨提示：当秒杀价格类型为折扣率时，秒杀价为配置最大值不能超过100;对应商品的秒杀价计算方法如:90/100*商品总价。</span>
+	</div>
+</div>

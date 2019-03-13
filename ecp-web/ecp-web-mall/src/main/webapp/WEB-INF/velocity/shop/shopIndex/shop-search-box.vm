@@ -1,0 +1,26 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$RESOURCE_PATH/jquery/autocomplete/autocomplete.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$BUSIJS_PATH/search/search-box.js?version=$!{JS_VERSION}"></script>
+<!--logo-->
+<div class="wrap1200 logoBg clearfix">
+    ##更改logo图片取站点    2016.6.21 zhanbh
+	#parse("/main/main-site-logo.vm")
+    #*<div class="shop-logo">
+      <a href="$!{CONTEXT_PATH}/shopIndex/$!{shopInfoResp.id}"> <img src="$!{shopInfoResp.smallLogoPathURL}" alt=""></a>
+    </div>*#
+	<div class="search search-input">
+		<input type="hidden" id="searchBoxType" value="2"/>##1、全网搜索框 2、店铺搜索框
+		<input type="hidden" id="ifShopSearch" value="${paramTools.getSysConfigCode("SHOP_SHOW_LOCK")}"/>
+        <input type="hidden" id="searchingTxt" value="$!{extra.keyword}"/>
+		<input id="shopId" name="shopId" value="$!{shopId}" type="hidden"/>
+        <div class="search-sel search-hover" id="curSearchGdsType" _val="1"><div id="curSearchGdsTypeText">本店</div>
+            <div class="spax"></div>
+            <ul class="search-item">
+                <li id="listSearchGdsType">全网</li>
+            </ul>
+        </div>
+        <div id="site-search" class="site-input"></div>
+        <ul class="searchConten" id="searchConten">
+        </ul>
+    </div>
+</div>

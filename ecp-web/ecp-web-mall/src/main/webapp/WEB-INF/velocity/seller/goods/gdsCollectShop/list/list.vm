@@ -1,0 +1,38 @@
+ 	#parse("/sys/sys_param.vm")
+ <link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+ <script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsCollectShop/list/gds-collect-list.js?version=$!{JS_VERSION}" ></script>
+ <table class="seller-table" style="margin-top: 15px">
+                       
+                        <thead>
+                        <tr>
+                            <td>商品编码</td>
+                            <td>单品编码</td>
+                            <td style="width: 200px;text-align:center" class="td-hhtxt">商品名称</td>
+                            <td>现价</td>
+                            <td>收藏用户数</td>
+                         
+                        </tr>
+                        </thead>
+                        <tbody>
+            				#if($!{pageCollectRespDto.getResult().size()} <= 0)
+                    		<tr><td colspan='12'>没有符合条件的记录。</td></tr>
+							#end
+							 	#foreach($collectInfo in $pageCollectRespDto.getResult())
+							
+                        <tr>
+                            <td style="display:none">$collectInfo.id</td>
+                            <td> $!collectInfo.gdsId</td>
+                            <td> $!collectInfo.skuId</td>
+                            <td class="td-hhtxt" style="width:200px;text-align:center"> <a  target="_blank" href="$!collectInfo.gdsUrl">$!collectInfo.gdsName</a></td>
+							<td>#if( $!collectInfo.nowPrice) #moneyNum($!collectInfo.nowPrice) #else &yen;0 #end</td>
+                            <td><a href='#' onclick='showCollStaff($!collectInfo.GdsId,$!collectInfo.skuId)'>$!{collectInfo.collectStaffCount}(点开查看用户)</a></td>
+                        </tr>
+                        #end
+                        </tbody>
+                    </table>
+			
+	<div class="fav-opt clearfix" >
+                        <div class="row-fluid">
+                			<div id="pageControlbar" class="ecppage" data-total-page="${pageCollectRespDto.pageCount}" data-total-row="${pageCollectRespDto.count}" data-page-size="${pageCollectRespDto.pageSize}" data-page-number="${pageCollectRespDto.pageNo}" data-status="begin"></div>
+                		</div>
+                    </div>

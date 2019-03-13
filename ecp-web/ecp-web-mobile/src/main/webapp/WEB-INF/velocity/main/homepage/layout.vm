@@ -1,0 +1,25 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    ##parse("/pageConfig/pageConfigWap/sys/sys_head.vm")
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <link href="$!{CSS_PATH}/pageConfig/phone/amazeui/amazeui.css" rel="stylesheet" type="text/css" media="screen"/>
+    #parse("/sys/sys_head.vm")
+	<link href="$!{CSS_PATH}/pageConfig/phone/template-public-phone.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="$!{CSS_PATH}/pageConfig/phone/template-mall-phone.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="$!{CSS_PATH}/pageConfig/phone/template-prom-phone.css" rel="stylesheet" type="text/css" media="screen"/>
+    <script src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/amazeui/amazeui.js?version=$!{JS_VERSION}" ></script>
+    <script src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js?version=$!{JS_VERSION}"></script><!-- 微信端弹窗 -->
+    <script src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/util.js?version=$!{JS_VERSION}" ></script>
+    <script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/requirejs/require.js?v=${JS_VERSION}"></script>
+    <script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/requirejs.common.js?v=${JS_VERSION}"></script>
+    <script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/edit/page-common-edit-wap.js?v=${JS_VERSION}"></script>
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/flexible/flexible.js?v=${JS_VERSION}"></script>
+</head>
+
+<body>
+$screen_content
+</body>
+</html>

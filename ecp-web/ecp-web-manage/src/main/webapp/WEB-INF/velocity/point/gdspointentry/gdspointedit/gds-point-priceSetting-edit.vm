@@ -1,0 +1,75 @@
+
+<div class="fd-block form-horizontal" id="gds-priceSetting">
+    <div class="well-tit mt10">
+        <span >价格设置</span>
+		 <div class="switch-tt pull-right form-inline clearfix switch-button" id="price-senior-button" style="display:#if($!{multi-switch}=='1')none#else block#end;">
+            <div class="pull-right" #if($!{copyFlag}!=1 || ($!{copyFlag}==1 && $!{rspDto.specs.size()} <=0))style="display:none"#end>
+                <label for="">多功能:</label>
+                <span data-toggle="buttons-radio" class="btn-group clearfix sepH_a">
+                    <button class="btn #if($!{multi-switch}=='1')active#end" value="multi-open">开</button>
+                    <button class="btn #if($!{multi-switch}=='0')active#end" value="multi-close">关</button>
+                </span>
+            </div>
+        </div>
+    </div>
+	<div class="well well-searchForm">
+    	<div class="gg-sel control-group" id="price-senior-button">
+            <div class="form-inline">
+				<div class="row-fluid">
+        			<div class="control-group" id="pointNeed" >
+                        <label class="control-label">库存：</label>
+                        <div class="controls" id="open-ladder-stock">
+    						<input type="text" class="required digits" value="" name="productStock" id="productStock" maxlength="9" #if($!{copyFlag}!='1')disabled#end/>
+                        </div>
+        			</div>
+    			</div>
+				<div class="row-fluid">
+        			<div class="control-group">
+                        <div class="controls">
+                            <table class="table table-bordered pmgr-pritb" >
+                                <thead>
+                                <tr>
+        							<th>价格方式</th>
+                                    <th>商品积分</th>
+                                    <th>商品价格</th>
+        							<th>是否默认</th>
+        							<th class="lh">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="lader-price-table">
+        							#foreach($list in $!{gdsInfo.scores})
+        							<tr><input type="hidden" value="$!{list.id}" name="scoreId"/>
+        								<td><select style='width:120px;' id='pointPricingModel' onchange='changePoint(this)' name='pointPricingModel$velocityCount'>
+                                		<option value='1' #if($!{list.scoreType}=='1')selected#end>纯积分</option>
+                                		<option value='3' #if($!{list.scoreType}=='3')selected#end>纯价格</option>
+                                		<option value='2' #if($!{list.scoreType}=='2')selected#end>积分和价格</option>
+                                		</select></td>
+                                        <td><input type='text' class='input-mini required digits' id='score' name='score$velocityCount' value='$!{list.score}' onblur='validateLaderAmount(this)' maxlength='9' #if($!{list.scoreType}=='3')disabled#end /></td>
+                                        <td><input type='text' class='input-mini priceNumber' id='scorePrice' name='score-price$velocityCount' value='#moneyNum($!{list.price})' onblur='validateLaderPrice(this)' #if($!{list.scoreType}=='1')disabled#end/></td>
+        								<td><input type='radio' name='ifDefault' #if($!{list.ifDefault}=="1")checked#end/></td>
+                                        <td><a href='javascript:void(0);' onclick='delteLaderPrice(this)'>删除</a></td>
+        							</tr>
+        							#end
+                                </tbody>
+                                <tfoot>
+        							<tr>
+                                        <td colspan="5">
+                                            <label for="" class="add-lader-price">
+                                                <i class="icon-plus-sign" ></i>新增兑换方式
+                                       ## <span class="text-tip">
+                                        ##(可设置不超过3个兑换方式)
+                                       ##</span>
+                                            </label>
+                                        </td>
+        							</tr>
+                                </tfoot>
+                            </table>
+                        </div>
+        			</div>
+    			</div>
+            </div>
+		</div>
+	</div>
+	<input type="hidden" id="singleSkuId" value=""/>
+</div>
+<!--价格设置 end-->

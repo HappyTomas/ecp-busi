@@ -1,0 +1,36 @@
+ #parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/group/query/group-list.js?version=$!{JS_VERSION}" ></script>
+	 <table class="seller-table mt15 table-striped">
+                               <thead>
+                               <tr>
+                                    <td style="width:50px"></td>
+                                    <td style="width:60px">站点</td>
+                                    <td style="width:60px">促销编码</td>
+						            <td style="width:120px">主题名称</td>
+						            <td style="width:120px">开始展示时间</td>
+						            <td style="width:120px">截止展示时间</td>
+						            <td style="width:240px">参与店铺数量</td>
+                                </tr>
+                               </thead>
+                               <tbody>
+        	#if(!$groupPage.getResult()||$groupPage.count==0)
+        		<tr><td colspan='7'>很遗憾，暂无数据。</td><tr>
+        	#end
+        	#foreach($attr in $groupPage.getResult())
+        		<tr>
+        			<td><input type="radio" name="1" value="#escapeHtml( "$!{attr.promTheme}")" id="$!{attr.id}"/></td>
+	                <td style="width:120px;">#escapeHtml( " $!{attr.siteName}")</td>
+	                <td style="width:80px;">$!{attr.id}</td>
+	                <td style="width:120px">#escapeHtml( "$!{attr.promTheme}") </td>
+	                <td style="width:120px">$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.showStartTime})</td>
+	                <td style="width:120px">$!date.format('yyyy-MM-dd HH:mm:ss',$!{attr.showEndTime})</td>
+	                <td style="width:240px">$!{attr.shopCnt}</td>
+	            </tr>
+			#end
+		</tbody>
+	</table>
+    <div class="fav-opt clearfix" style="margin-top: 20px;">
+        <div class="row-fluid">
+		<div id="pageControlbar" class="ecppage" data-total-page="${groupPage.pageCount}" data-total-row="${groupPage.count}" data-page-size="${groupPage.pageSize}" data-page-number="${groupPage.pageNo}" data-status="begin"></div>
+		</div>
+    </div>

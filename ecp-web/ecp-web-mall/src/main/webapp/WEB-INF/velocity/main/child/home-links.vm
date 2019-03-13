@@ -1,0 +1,20 @@
+#parse("sys/sys_param.vm")
+<!--快速导航-->
+<!-- 错误信息：$!{errMsg} -->
+#if($!{linkList} && 0 < ${linkList.size()})
+	#foreach($link in $!{linkList})
+		#if($link.id && '' != $!{link.id})
+		<dl>
+		    <dt>
+		        <span class="shop-guide"><img src="#genImageUrl($!{link.mediaUuid} , '')" /></span>
+		      $!{link.linkName}
+		    </dt>
+		    #foreach($childLink in $!{link.childList})
+		    	#if($childLink.id && '' != $!{childLink.id})
+		    	<dd><a href="javascript:void(0);" data-lazy-href="$!{childLink.linkUrl}" target="_blank">$!{childLink.linkName}</a></dd>
+				#end
+			#end
+		</dl>
+		#end
+	#end
+#end

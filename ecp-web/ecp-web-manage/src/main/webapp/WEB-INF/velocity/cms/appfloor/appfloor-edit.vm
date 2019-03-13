@@ -1,0 +1,108 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-upload.vm")
+#parse("sys/sys_param.vm")
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/appfloor/appfloor-edit.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<script type="text/javascript">
+ function replaceSpace(obj){
+ 	obj.value = obj.value.replace(/s/gi,'')
+ }
+</script>
+
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+<input type="hidden" id="empty-img" value="#genImageUrl('','130x130!')" />
+
+<div class="alert alert-error hide formValidateMessages" >
+	##showSpringAllError("respVO")
+</div>
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post">
+		<input type="hidden" id="id" name="id" value="$!{respVO.id}" />
+		<div class="span8">
+		
+			<div class="row-fluid formSep" >
+    			<div class="control-group">
+    				<label class="control-label" for="floorName">楼层名称：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large required htmlcheck" id="floorName" maxlength="60" name="floorName" placeholder="请输入楼层名称" value="#escapeHtml($!{respVO.floorName})"  />
+    					<span class="help-inline">最大长度不能超过60个字符！</span>
+    				</div>
+    			</div>
+    		</div>
+		
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">所属站点： </label>
+					<div class="controls">
+						<select id="siteId" name="siteId" class="required" value="$!{respVO.siteId}" selected>
+							#foreach($site in $siteList)
+								<option value="$!{site.id}" #if($!{respVO.siteId} == $!{site.id}) selected  #end >#escapeHtml($!{site.siteName})</option>
+    						#end
+						</select>
+						<span class="help-inline">请选择所属站点！</span>
+					</div>
+				</div>
+			</div>
+		
+			<div class="formSep">  
+				<div class="control-group">
+    				<label class="control-label" for="name">楼层链接：</label>
+    				<div class="controls"><!-- fullTypeUrl -->
+    					<input type="text" class="input-large  htmlcheck" id="linkUrl" name="linkUrl" maxlength="100" value="#escapeHtml($!{respVO.linkUrl})" />
+						<span class="help-inline">例如：http://www.163.com，不能超过100个字符！</span>
+					</div>
+    			</div>
+    		</div>
+		
+			<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">APP楼层模板：</label>
+					<div class="controls">
+						<select id="floorTemplateId" name="floorTemplateId" class="required" value="$!{respVO.floorTemplateId}">
+							#foreach($floorTemplate in $floorTemplateList)
+    							<option value="$!{floorTemplate.id}" #if($!{floorTemplate.id} == $!{respVO.floorTemplateId}) selected  #end>#escapeHtml($!{floorTemplate.templateName})</option>
+        					#end
+						</select>  
+						<span class="help-inline">请选择APP楼层模板！</span>
+					</div>
+				</div>
+			</div>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">排序：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large  checkInteger" id="sortNo" name="sortNo" min="1" max="100" placeholder="如果不填，则默认为1。" onBlur="replaceSpace(this)" value="$!{respVO.sortNo}" />
+    					<span class="help-inline">请填写1-100的整数，值越小，排序越靠前！</span>
+    				</div>
+    			</div>
+    		</div>
+    		
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label" for="name">备注：</label>
+    				<div class="controls cms-count">
+    					<textarea rows="4" cols="100" onpropertychange="checkLen(this,'count','250')" oninput="checkLen(this,'count','250')" class="input-block-level cms-text" id="remark" name="remark"  placeholder="请填写备注">#escapeHtml($!{respVO.remark})</textarea>
+    					<span class="help-inline">您还可以输入<span style="color:red" class="cms-totalNum" id="count">250</span>字！</span>
+    				</div>
+    			</div>
+    		</div>
+		
+    		<div class="">
+    			<div class="control-group">
+    				<div class="controls">
+						<button type="button" class="btn btn-info" id="btnFormPubSave"><i class="icon-ok-sign icon-white"></i>发布</button>
+    					<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i>保存</button>
+    					<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+    				</div>
+    			</div>
+    		</div>
+        </div>
+		<div class="clear"></div>
+	</form>
+</div>

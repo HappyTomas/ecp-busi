@@ -1,0 +1,257 @@
+@charset "UTF-8";
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+pre,
+form,
+fieldset,
+legend,
+button,
+input,
+textarea,
+th,
+td {
+  margin: 0;
+  padding: 0;
+}
+body {
+  color: #333333;
+}
+body,
+button,
+input,
+select,
+textarea {
+  font: 12px/1.5 "Microsoft Yahei", tahoma, arial, '\5b8b\4f53', sans-serif;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+code,
+kbd,
+pre,
+samp {
+  font-family: courier new, courier, monospace;
+}
+ul,
+ol {
+  list-style: none;
+}
+a {
+  color: #333333;
+  text-decoration: none;
+}
+a:hover {
+  color: #009ae0;
+  text-decoration: none;
+}
+img {
+  border: 0;
+}
+/*重设ie滚动条*/
+@-ms-viewport {
+  width: auto;
+}
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+.clearfix:after {
+  clear: both;
+}
+/*单行文字溢出时出现省略号，需设定宽度*/
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
+/*公共框架*/
+.wrap100 {
+  width: 100%;
+  margin: 0 auto;
+}
+.w {
+  width: 1200px;
+  min-width: 1200px;
+  margin: 0 auto;
+}
+.main {
+  padding: 20px;
+}
+/* 按钮定义begin */
+.sbtn {
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  height: 28px;
+  line-height: 28px;
+  border: 1px solid #d5d9e3;
+  background-color: #fff;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  padding: 0 20px;
+  min-width: 60px;
+  color: #666;
+  margin: 0 5px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.sbtn:hover {
+  border-color: #4c6ad4;
+}
+.sbtn-blue {
+  color: #fff;
+  background-color: #4c6ad4;
+  border-color: #4c6ad4;
+}
+/* 按钮定义end */
+/* tab定义 begin */
+.tpl-tab {
+  background-color: #fff;
+  border: 1px solid #d5d9e3;
+  margin-top: 15px;
+}
+.tpl-tab .tab-nav {
+  height: 35px;
+  line-height: 35px;
+  border-bottom: 1px solid #d5d9e3;
+}
+.tpl-tab .tab-nav li {
+  float: left;
+  padding: 0 30px;
+  height: 34px;
+  line-height: 34px;
+  cursor: pointer;
+  border-top: 2px solid transparent;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+}
+.tpl-tab .tab-nav .active {
+  border-right-color: #d5d9e3;
+  border-left-color: #d5d9e3;
+  border-top-color: #4c6ad4;
+  background-color: #fff;
+  height: 35px;
+}
+.tpl-tab .tab-nav .first {
+  border-left: 1px solid transparent;
+}
+.tpl-tab .tab-content {
+  margin-top: 1px;
+}
+.tpl-tab .tab-content .nItem {
+  padding: 15px;
+}
+/* tab定义 end */
+/* table begin */
+.tpl-table {
+  width: 100%;
+  word-break: break-all;
+  word-wrap: break-word;
+}
+.tpl-table caption {
+  background-color: #f1f8ff;
+  text-align: left;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 30px;
+  border: 1px solid #d5d9e3;
+  border-bottom: 0;
+  font-weight: bold;
+}
+.tpl-table [class*=" icon-opt"] {
+  margin: 2px;
+  cursor: pointer;
+}
+.tpl-table td,
+.tpl-table th {
+  padding: 10px;
+  border: 1px solid #d5d9e3;
+  text-align: center;
+  white-space: nowrap;
+}
+.tpl-table a {
+  color: #4c6ad4;
+}
+.tpl-table thead {
+  background-color: #ebf2f6;
+}
+.tpl-table .img-wrap {
+  width: 60px;
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+}
+.tpl-table .td-hhtxt {
+  text-align: left;
+  white-space: normal;
+}
+/* table end */
+/*字体图标链接 - by tangyk 20160105 add*/
+@font-face {
+  font-family: "iconfont";
+  src: url('iconfont.eot');
+  src: url('iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('iconfont.woff') format('woff'), /* chrome、firefox */ url('iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/ url('iconfont.svg#iconfont') format('svg');
+  
+  /* IE9*/
+  /* iOS 4.1- */
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.modal-body {
+  overflow: inherit;
+}
+.modal-header {
+  background: #4C6AD4;
+  color: #fff;
+  font-size: 18px;
+}
+.modal-header .close {
+  margin-top: 2px;
+  font-size: 28px;
+  opacity: 1;
+  filter: alpha(opacity=100);
+  text-shadow: none;
+  color: #fff;
+}
+.modal-backdrop,
+.modal-backdrop.fade.in {
+  opacity: .4;
+  filter: alpha(opacity=40);
+}

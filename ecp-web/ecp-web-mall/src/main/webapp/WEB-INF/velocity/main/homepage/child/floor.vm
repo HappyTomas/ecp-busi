@@ -1,0 +1,49 @@
+#parse("sys/sys_param.vm")
+#if(${floorRespDTO.id})
+<div class="new-tit floor-modular" data-floor = "${floorRespDTO.id}"><i class="dicon dicon-tit4"></i><span>$!{floorRespDTO.floorName}</span>
+    <ul id="digitn" class="new-tit-list">
+		#foreach($floorTab in $!{floorTabList})
+			<li><a  href="
+						#if($!{floorTab.linkUrl} && $!{floorTab.linkUrl}!= '')
+							$!{floorTab.linkUrl}" target='_blank'
+						#else 
+							javascript:void(0);"
+						#end id="$!{floorTab.id}" isLoad="no" floorId="$!{floorRespDTO.id}"  #if($velocityCount==1) class="active" #end>$!{floorTab.tabName}</a></li>
+		#end
+    </ul>
+</div>
+<div class="new-con clearfix new-con-bor" style="height: 545px; ">
+	<div class="new-con-left">
+        <a target='_blank' href="#if($!{floorAdvertise.linkUrl} && $!{floorAdvertise.linkUrl} !='')$!{floorAdvertise.linkUrl}#else javascript:void(0);#end"><img style = "height:370px"src="$!{floorAdvertise.vfsUrl}"></a>
+        <ul class="new-list">
+    		#foreach($floorLabel in $!{floorLabelList})
+    			#if( $velocityCount < 9 )
+    				<li><a  href="
+    							#if($!{floorLabel.linkUrl} && $!{floorLabel.linkUrl}!= '')
+    								$!{floorLabel.linkUrl}" target='_blank'
+    							#else 
+    								javascript:void(0);"
+    							#end title ="$!{floorLabel.labelName}"> · $!{floorLabel.labelName}</a></li>
+    			#end
+    		#end
+        </ul>
+    </div>
+	<div id="digitc" >
+	#if($!{floorTabList.size()} > 0)
+		#foreach($floorTab in $!{floorTabList})##有页签
+		<div class="floor-div-gds #if($velocityCount > 1) hide #end" id="floorGdsDIV_$!{floorTab.id}">
+			<div class='loading-small'></div>
+		</div>
+		#end
+	#else ##无页签
+		<div class='loading-small'></div>
+	#end
+	</div>
+</div>
+#else 
+<div class="new-tit">
+</div>
+<div class="new-con clearfix new-con-bor" style="height: 545px;">
+	<div class='pro-empty'>亲，这家伙太懒，暂未配置数据！</div>
+</div>
+#end

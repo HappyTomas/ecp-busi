@@ -1,0 +1,296 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<link href="${CONTEXT_PATH}/css/solr/solr.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/solr/solr-dataobj-save.js?version=$!{JS_VERSION}"></script>
+<div class="formBox row-fluid">
+    <form id="promInfoForm" class="form-horizontal required-validate " style="margin-bottom: 0px;">
+        <div class="row-fluid">
+            <div class="span4">
+	            <div class="control-group">
+	                <label class="control-label">英文名:</label>
+	                <div class="controls">
+	                    <input type="text" class="input-block-level required" value="#escapeHtml($!solrObject.objectNameen)" name="objectNameen"
+	                           maxlength="64"/>
+	                </div>
+	            </div>
+            </div>
+            <div class="span4">
+                <div class="control-group">
+                    <label class="control-label">中文名：</label>
+                    <div class="controls">
+                        <input type="hidden" id="isRead" name="isRead" value="$!{isRead}"/>
+                        <input type="hidden" id="formId" name="id" value="$!{solrObject.id}"/>
+                        <input type="hidden" id="configId" name="configId" value="$!{configId}"/>
+                        <input type="hidden" name="objectType" value="$!{solrObject.objectType}"/>
+                        <input type="text" value="#escapeHtml($!solrObject.objectNamecn)" class="input-block-level required" name="objectNamecn"
+                               maxlength="128"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+         <div class="row-fluid">
+            <div class="span8">
+                <div class="control-group">
+                    <label class="control-label">描述：</label>
+
+                    <div class="controls">
+                        <input type="text" value="#escapeHtml($!solrObject.objectDesc)" class="input-block-level" maxlength="256" name="objectDesc"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+            <div class="row-fluid">
+            <div class="span8">
+                <div class="control-group">
+                    <label class="control-label">唯一索引字段：</label>
+
+                    <div class="controls">
+                        <input type="text" value="#escapeHtml($!solrObject.objectUniquefieldName)" class="input-block-level required" maxlength="32"
+                               name="objectUniquefieldName" value=""/>
+                       <span>
+                           
+                       </span>
+                    </div>
+                </div>
+            </div>
+            <div class="span4" style="margin:5px">联合主键（多个字段）使用英文逗号隔开</div>
+        </div>
+         <div class="row-fluid">
+            <div class="span8">
+                <div class="control-group">
+                    <label class="control-label"><span style="color:red;">* </span>数据对象处理器：</label>
+
+                    <div class="controls">
+                       <div class="edit-sel  edit-sel-block ">      
+							    <select>
+							       #foreach ($ele in $objectProcessorResp)
+                                        <option value='$ele'>$ele</option>
+									#end
+                                </select>
+							   <input type="text" value="#escapeHtml($!solrObject.objectProcessorName)" class="edit-input required" maxlength="64" name="objectProcessorName"/>
+						</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        <div class="row-fluid">
+            <div class="span8">
+                <div class="control-group">
+                    <label class="control-label">扩展参数信息：</label>
+
+                    <div class="controls">
+                        <input type="text" value="#escapeHtml($!solrObject.objectParams)" class="input-block-level" maxlength="256" name="objectParams"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span8">
+                <div class="control-group">
+                    <label class="control-label">增量检查器：</label>
+
+                    <div class="controls">
+                        <input type="text" value="#escapeHtml($!solrObject.objectInspector)" class="input-block-level" maxlength="178" name="objectInspector"/>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="row-fluid">
+            <div class="span8">
+                <div class="control-group">
+                    <label class="control-label">增量处理器：</label>
+
+                    <div class="controls">
+                        <input type="text" value="#escapeHtml($!solrObject.objectHandler)" class="input-block-level" maxlength="178" name="objectHandler"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span4">
+                <div class="control-group">
+                    <label style="margin-left: 115px;">
+                        <input id="insidepager" type="checkbox" #if($!{solrObject.insidepager} == 1) checked #end name="insidepager"/>
+                        是否使用内部分页(二级分页)
+                    </label>
+                </div>
+            </div>
+            <div class="insidepagerBlock">
+             <span class="span4" style="display:none"></span>
+              <div class="span4">
+	                <div class="control-group">
+	                    <label class="control-label">内部分页主键：</label>
+	
+	                    <div class="controls">
+	                        <input type="text" class="input-block-level" value="#escapeHtml($!solrObject.insidepagerUniquefieldName)"  maxlength="64" name="insidepagerUniquefieldName"/>
+	                    </div>
+	                </div>
+	            </div>
+	                 <div class="span4" style="margin:5px">联合主键（多个字段）使用英文逗号隔开</div>
+            </div>
+        </div>
+
+    </form>
+    <div style="margin-top: 15px;">
+        <script>
+            $(function () {
+                $('#dataAdd').click(function () {
+                   var item=0;
+                   if($('.solr-table tbody tr').size()>0){
+                     item = parseInt($('.solr-table tbody tr').last().attr('row').split('_')[1]) + 1;
+                   }
+                    
+                    var trStr = ' <tr row="row_' + item + '"><td> <input class="sel-row" type="checkbox"/> </td>' +
+                            '       <td><div> <input  name="id" type="hidden"/>  <input class="iput required" name="fieldBeanFieldName_' + item + '"  maxlength="32" type="text"/></div></td>' +
+                            '      <td>' +
+                            '       <select name="fieldTypeName" >' +
+                                    #foreach ($ele in $fieldTypeResp)
+							'		 <option value="$ele">$ele</option>' +
+									#end
+                            '         </select>' +
+                            '        </td>' +
+                            '       <td><input class="iput" name="fieldNamecn"  maxlength="64" type="text"/></td>' +
+                            '       <td><input class="tbcheck" type="checkbox" name="fieldIfFacet"/></td>' +
+                            '       <td> <input class="tbcheck" type="checkbox" name="fieldIfMutlivalue"/></td>' +
+                            '       <td><input class="tbcheck" type="checkbox" name="fieldIfSpellcheck"/> </td>' +
+                            '       <td> <input class="tbcheck"  type="checkbox" name="fieldIfBelongtoDf"/></td>' +
+                            '       <td><input class="tbcheck"  type="checkbox" name="fieldIfHlfield"/></td>' +
+                            '       <td><input class="tbcheck"  type="checkbox" name="fieldIfMultilan"/></td>' +
+                            '       <td>' +
+                            '       <select name="fieldSort">' +
+                            '       <option value="0">降序</option>' +
+                            '       <option value="1">升序</option>' +
+                            '       </select>' +
+                            '       </td>' +
+                            '       <td><div><input class="iput digits" name="fieldSortNum_' + item + '"  maxlength="3" type="text"/> </div> </td>' +
+                            '       <td>  <div> <input class="iput number" name="fieldBoost_' + item + '"  maxlength="3" type="text"/></div> </td>' +
+                            '       <td><input class="iput" name="fieldParams" type="text" maxlength="32"/> </td>' +
+                            '       <td><input class="iput" name="fieldComment"  maxlength="128" type="text"/></td>' +
+                            '        </tr>';
+                    $('.solr-table tbody').append(trStr);
+                })
+               
+            })
+        </script>
+        <div class="fbtn">索引字段:
+            <a class="btn" style="margin:0 5px" id="dataAdd" href="javascript:void(0)">
+                <i class="icon-plus icon-white"></i> 添加
+            </a>
+            <a class="btn btn-danger" id="dataDel" href="javascript:void(0)">
+                <i class="icon-trash icon-white"></i> 删除
+            </a>
+
+        </div>
+        <div id="gridLoading" style="margin:15px 0">
+            <form id="dataTbFom" class="form-horizontal required-validate ">
+                <div class="row-fluid">
+                     <div class="table-wrap">
+                       <table class="table-striped solr-table">
+                        <thead>
+                        <tr>
+                            <td style="width:20px;"></td>
+                            <td style="width:100px;"><span class="red">*</span>属性名</td>
+                            <td style="width:100px;"><span class="red">*</span>字段类型</td>
+                            <td style="width:90px;">中文名</td>
+                            <td style="width: 90px">分组显示(Facet)</td>
+                            <td style="width: 30px;">多值</td>
+                            <td style="width: 50px">拼写检查</td>
+                            <td style="width: 90px">默认搜索字段</td>
+                            <td style="width: 30px">高亮</td>
+                             <td style="width: 40px">多语言（字段级）</td>
+                            <td style="width:90px;">搜索字段排序</td>
+                            <td style="width:90px;">搜索字段排序</td>
+                            <td style="width:90px;">索引字段权重</td>
+                            <td style="width:120px;">扩展参数</td>
+                            <td style="width: 200px;">注释</td>
+                        </tr>
+                        </thead>
+                        <tbody>
+                           #foreach ($item in $solrObject.secFieldRespDTOList)
+                             <tr row="row_$velocityCount">
+                            <td>
+                                <input class="sel-row" type="checkbox"/>
+                            </td>
+                            <td>
+                                <div>
+                                    <input name="id" type="hidden" value="$!{item.id}"/>
+                                    <input name="objectId" type="hidden" value="$!{item.objectId}"/>
+                                    <input value="#escapeHtml($!item.fieldBeanFieldName)" class="iput required" name="fieldBeanFieldName_$velocityCount"  maxlength="32" type="text"/>
+                                </div>
+
+                            </td>
+                            <td>
+                                <select name="fieldTypeName">
+                                    #foreach ($ele in $fieldTypeResp)
+                                       #if ($!{item.fieldTypeName}==$ele)
+										  <option value='$ele' selected>$ele</option>
+										#else
+										  <option value='$ele'>$ele</option>
+										#end
+									#end
+                                </select>
+                            </td>
+                            <td>
+                                <input class="iput" value="#escapeHtml($!item.fieldNamecn)" name="fieldNamecn"  maxlength="64" type="text"/>
+                            </td>
+                            <td>
+                                <input class="tbcheck" #if($!{item.fieldIfFacet} == 1) checked #end type="checkbox" name="fieldIfFacet"/>
+                            </td>
+                            <td>
+                                <input class="tbcheck" #if($!{item.fieldIfMutlivalue} == 1) checked #end type="checkbox" name="fieldIfMutlivalue"/>
+                            </td>
+                            <td> 
+                                <input class="tbcheck" #if($!{item.fieldIfSpellcheck} == 1) checked #end type="checkbox" name="fieldIfSpellcheck"/>
+                            </td>
+                            <td>
+                                <input class="tbcheck" #if($!{item.fieldIfBelongtoDf} == 1) checked #end type="checkbox" name="fieldIfBelongtoDf"/>
+                            </td>
+                            <td>
+                                <input class="tbcheck" #if($!{item.fieldIfHlfield} == 1) checked #end type="checkbox" name="fieldIfHlfield"/>
+                            </td>
+                             <td>
+                                <input class="tbcheck" #if($!{item.fieldIfMultilan} == 1) checked #end type="checkbox" name="fieldIfMultilan"/>
+                            </td>
+                            <td>
+                                <select name="fieldSort">
+								    <option #if($!{item.fieldSort} == 0) selected #end value='0'>降序</option>
+								    <option #if($!{item.fieldSort} == 1) selected #end value='1'>升序</option> 
+                                </select>
+                            </td>
+                            <td>
+                                <div>
+                                    <input class="iput digits" value="$!{item.fieldSortNum}" name="fieldSortNum_$velocityCount"  maxlength="3" type="text"/>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <input class="iput number" value="$!{item.fieldBoost}" name="fieldBoost_$velocityCount"  maxlength="3" type="text"/>
+                                </div>
+
+                            </td>
+                              <td>
+                                <input class="iput" value="#escapeHtml($!item.fieldParams)" name="fieldParams" type="text" maxlength="32"/>
+                            </td>
+                           <td>
+                                <input class="iput" value="#escapeHtml($!item.fieldComment)" name="fieldComment" type="text" maxlength="128"/>
+                            </td>
+                        </tr>
+					#end
+                      
+                        </tbody>
+                    </table>
+                     </div>
+                  
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="btn-wrap btn-wrap-save" style="text-align:center">
+      #if ($!{isRead}!=1)
+         <button type="button" class="btn btn-info" data-loading-text="保存中..." id="btnAddSave"><i class=" icon-ok-sign icon-white"></i>保存</button>
+      	#end
+        <button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+    </div>
+</div>

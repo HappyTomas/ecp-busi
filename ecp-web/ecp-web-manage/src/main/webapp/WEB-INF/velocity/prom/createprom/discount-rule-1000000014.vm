@@ -1,0 +1,20 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/createprom/discount-rule-1000000014.js?version=$!{JS_VERSION}" ></script>
+			<div class="formBox">
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					  <div class="formSep" >
+					    <div  class=" alert-info" style="margin-left:50px;">
+					                同时购买 A 中的一件产品以及 B 中的一件产品，即可享受搭配价格。
+                                                                     例如:同时购买一台游戏主机和一款特选游戏，即游戏主机价格为&yen;100，游戏价格为&yen;50.		
+					     </div>
+					  </div>
+				  <div class="row-fluid matchDivClass">
+						<div class="control-group">
+							<label class="control-label">固定搭配商品：</label>
+							<div class="controls">
+								<button type="button" class="btn" id="btnMatchGdsSelect"  ><i class="icon-magic"></i>搭配商品选择</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		 <div id="matchGdsTableId" class="matchGdsSelectDivClass"></div>

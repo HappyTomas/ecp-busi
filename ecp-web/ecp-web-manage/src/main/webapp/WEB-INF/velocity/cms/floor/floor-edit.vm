@@ -1,0 +1,105 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+#parse("sys/sys_param.vm")
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/floor/floor-edit.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<script type="text/javascript">
+ function replaceSpace(obj){
+ obj.value = obj.value.replace(/s/gi,'')
+}
+</script>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<form id="floor_detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/cmsfloor/save">
+    <input type="hidden" id="floor_floorId" name="id" value="$!{respVO.id}" />
+	
+	<div class="span8">
+    	<div class="row-fluid formSep">
+    		<div class="control-group">
+    			<label class="control-label" for="name">楼层名称：</label>
+    			<div class="controls">
+    				<input type="text" class="input-large required htmlcheck" maxlength="20" id="floor_floorName" name="floorName" placeholder="请填写楼层名称" value="#escapeHtml($!{respVO.floorName})" />
+    				<span class="help-inline">楼层名称最大长度不能超过20个字符！</span>
+    			</div>
+    		</div>
+    	</div>
+		
+		#parse("/cms/common/linkage-edit.vm")
+		
+		<div class="formSep">
+			<div class="control-group">
+				<label class="control-label">数据来源：</label>
+				<div class="controls">
+					<select id="dataSource" name="dataSource" attrValue="$!{respVO.dataSource}" class="input-large required">
+						#listParam('CMS_DATA_SOURCE',"$!{respVO.dataSource}")
+					</select>
+					<span class="help-inline">请选择数据来源！</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="formSep" id="countType_div">
+			<div class="control-group">
+				<label class="control-label">统计类型：</label>
+				<div class="controls">
+					<select id="countType" name="countType" attrValue="$!{respVO.countType}" class="input-large required">
+						#listParam('CMS_COUNT_TYPE',"$!{respVO.countType}")
+					</select>
+					<span class="help-inline">请选择统计类型！</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="formSep" id="catgCode_div">
+            <label for="" class="control-label">关联商品分类：</label>
+            <div class="controls">
+				<input type="hidden" calss="input-large" name="catgCode" id="catg-code" attrValue="$!{respVO.catgCode}" readonly value="$!{respVO.catgCode}" />
+				<input type="text" class="input-large" name="catgCodeZH" id="catg-code-name" attrValue="$!{respVO.catgCodeZH}" readonly value="$!{respVO.catgCodeZH}" />
+				##<button type="button" class="btn" id="select_people_health"><i class="icon-magic"></i>#siteName('1')</button>
+				##<button type="button" class="btn" id="select_Integral_mall"><i class="icon-magic"></i>#siteName('2')</button>
+				<button type="button" class="btn" id="select_catg"><i class="icon-magic"></i> 选择</button>
+				<button type="button" class="btn" id="clean_catgCode"><i class="icon-remove-sign icon-white"></i> 清空</button>
+			</div>
+        </div>
+		
+		<div class="formSep">
+			<div class="control-group">
+				<label class="control-label" for="name">链接地址：</label>
+				<div class="controls">
+					<input type="text" class="input-large url htmlcheck" maxlength="256" id="linkUrl"  name="linkUrl" placeholder="请选择链接地址" value="#escapeHtml($!{respVO.linkUrl})" />
+					<span class="help-inline">链接地址最大长度不能超过256个字符！</span>
+				</div>
+			</div>
+		</div>
+		
+    	<div class="formSep">
+    		<div class="control-group">
+    			<label class="control-label">排序：</label>
+    			<div class="controls">
+    				<input type="text" id="floor_sortNo" name="sortNo" class="input-large checkInteger" min="1" max="100" placeholder="如果不填，则默认为1。" onBlur="replaceSpace(this)" value="$!{respVO.sortNo}" />
+    				<span class="help-inline">请填写1-100的整数，值越小，排序越靠前！</span>
+    			</div>
+    		</div>
+    	</div>
+    	<div class="formSep">
+    		<div class="control-group">
+    			<label class="control-label" for="name">备注：</label>
+    			<div class="controls">
+    				<textarea rows="4" cols="100" onpropertychange="checkLen(this,'count','250')" oninput="checkLen(this,'count','250')"  class="input-block-level htmlcheck" id="floor_remark" name="remark"  placeholder="请填写备注">#escapeHtml($!{respVO.remark})</textarea>
+    				<span class="help-inline">您还可以输入<span id="count">250</span>字！</span>
+    			</div>
+    		</div>
+    	</div>
+    	<div class="text-center">
+			<button type="button" class="btn btn-info" id="btnFormPubSave"><i class="icon-ok-sign icon-white"></i>发布</button>
+    		<button type="button" class="btn btn-info" id="floor_btnFormSave"><i class="icon-ok-sign icon-white"></i>保存</button>
+    		<button type="button" class="btn" id="floor_btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+    	</div>
+    </div>
+    <div class="clear"></div>
+</form>
+

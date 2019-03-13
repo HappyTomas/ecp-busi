@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.staff.dao.mapper.common.CustLevelInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.staff.dao.model.CustLevelInfo" >
+    <id column="CUST_LEVEL_CODE" property="custLevelCode" jdbcType="VARCHAR" />
+    <result column="CUST_LEVEL_NAME" property="custLevelName" jdbcType="VARCHAR" />
+    <result column="CUST_LEVEL_SN" property="custLevelSn" jdbcType="INTEGER" />
+    <result column="GROUP_ID" property="groupId" jdbcType="INTEGER" />
+    <result column="CUST_LEVEL_PIC" property="custLevelPic" jdbcType="VARCHAR" />
+    <result column="CUST_LEVEL_REMARK" property="custLevelRemark" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="CUST_CARD_NUM" property="custCardNum" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    CUST_LEVEL_CODE, CUST_LEVEL_NAME, CUST_LEVEL_SN, GROUP_ID, CUST_LEVEL_PIC, CUST_LEVEL_REMARK, 
+    CREATE_TIME, CREATE_STAFF, UPDATE_TIME, UPDATE_STAFF, CUST_CARD_NUM
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.staff.dao.model.CustLevelInfoCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_cust_level_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_cust_level_info
+    where CUST_LEVEL_CODE = #{custLevelCode,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_cust_level_info
+    where CUST_LEVEL_CODE = #{custLevelCode,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.staff.dao.model.CustLevelInfoCriteria" >
+    delete from t_cust_level_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.staff.dao.model.CustLevelInfo" >
+    insert into t_cust_level_info (CUST_LEVEL_CODE, CUST_LEVEL_NAME, CUST_LEVEL_SN, 
+      GROUP_ID, CUST_LEVEL_PIC, CUST_LEVEL_REMARK, 
+      CREATE_TIME, CREATE_STAFF, UPDATE_TIME, 
+      UPDATE_STAFF, CUST_CARD_NUM)
+    values (#{custLevelCode,jdbcType=VARCHAR}, #{custLevelName,jdbcType=VARCHAR}, #{custLevelSn,jdbcType=INTEGER}, 
+      #{groupId,jdbcType=INTEGER}, #{custLevelPic,jdbcType=VARCHAR}, #{custLevelRemark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{updateStaff,jdbcType=INTEGER}, #{custCardNum,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.staff.dao.model.CustLevelInfo" >
+    insert into t_cust_level_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="custLevelCode != null" >
+        CUST_LEVEL_CODE,
+      </if>
+      <if test="custLevelName != null" >
+        CUST_LEVEL_NAME,
+      </if>
+      <if test="custLevelSn != null" >
+        CUST_LEVEL_SN,
+      </if>
+      <if test="groupId != null" >
+        GROUP_ID,
+      </if>
+      <if test="custLevelPic != null" >
+        CUST_LEVEL_PIC,
+      </if>
+      <if test="custLevelRemark != null" >
+        CUST_LEVEL_REMARK,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="custCardNum != null" >
+        CUST_CARD_NUM,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="custLevelCode != null" >
+        #{custLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="custLevelName != null" >
+        #{custLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="custLevelSn != null" >
+        #{custLevelSn,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null" >
+        #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="custLevelPic != null" >
+        #{custLevelPic,jdbcType=VARCHAR},
+      </if>
+      <if test="custLevelRemark != null" >
+        #{custLevelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="custCardNum != null" >
+        #{custCardNum,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.staff.dao.model.CustLevelInfoCriteria" resultType="java.lang.Long" >
+    select count(*) from t_cust_level_info
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_cust_level_info
+    <set >
+      <if test="record.custLevelCode != null" >
+        CUST_LEVEL_CODE = #{record.custLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custLevelName != null" >
+        CUST_LEVEL_NAME = #{record.custLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custLevelSn != null" >
+        CUST_LEVEL_SN = #{record.custLevelSn,jdbcType=INTEGER},
+      </if>
+      <if test="record.groupId != null" >
+        GROUP_ID = #{record.groupId,jdbcType=INTEGER},
+      </if>
+      <if test="record.custLevelPic != null" >
+        CUST_LEVEL_PIC = #{record.custLevelPic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.custLevelRemark != null" >
+        CUST_LEVEL_REMARK = #{record.custLevelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.custCardNum != null" >
+        CUST_CARD_NUM = #{record.custCardNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_cust_level_info
+    set CUST_LEVEL_CODE = #{record.custLevelCode,jdbcType=VARCHAR},
+      CUST_LEVEL_NAME = #{record.custLevelName,jdbcType=VARCHAR},
+      CUST_LEVEL_SN = #{record.custLevelSn,jdbcType=INTEGER},
+      GROUP_ID = #{record.groupId,jdbcType=INTEGER},
+      CUST_LEVEL_PIC = #{record.custLevelPic,jdbcType=VARCHAR},
+      CUST_LEVEL_REMARK = #{record.custLevelRemark,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      CUST_CARD_NUM = #{record.custCardNum,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.staff.dao.model.CustLevelInfo" >
+    update t_cust_level_info
+    <set >
+      <if test="custLevelName != null" >
+        CUST_LEVEL_NAME = #{custLevelName,jdbcType=VARCHAR},
+      </if>
+      <if test="custLevelSn != null" >
+        CUST_LEVEL_SN = #{custLevelSn,jdbcType=INTEGER},
+      </if>
+      <if test="groupId != null" >
+        GROUP_ID = #{groupId,jdbcType=INTEGER},
+      </if>
+      <if test="custLevelPic != null" >
+        CUST_LEVEL_PIC = #{custLevelPic,jdbcType=VARCHAR},
+      </if>
+      <if test="custLevelRemark != null" >
+        CUST_LEVEL_REMARK = #{custLevelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="custCardNum != null" >
+        CUST_CARD_NUM = #{custCardNum,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where CUST_LEVEL_CODE = #{custLevelCode,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.staff.dao.model.CustLevelInfo" >
+    update t_cust_level_info
+    set CUST_LEVEL_NAME = #{custLevelName,jdbcType=VARCHAR},
+      CUST_LEVEL_SN = #{custLevelSn,jdbcType=INTEGER},
+      GROUP_ID = #{groupId,jdbcType=INTEGER},
+      CUST_LEVEL_PIC = #{custLevelPic,jdbcType=VARCHAR},
+      CUST_LEVEL_REMARK = #{custLevelRemark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      CUST_CARD_NUM = #{custCardNum,jdbcType=VARCHAR}
+    where CUST_LEVEL_CODE = #{custLevelCode,jdbcType=VARCHAR}
+  </update>
+</mapper>

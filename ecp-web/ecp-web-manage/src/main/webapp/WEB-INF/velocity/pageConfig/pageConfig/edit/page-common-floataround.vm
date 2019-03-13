@@ -1,0 +1,67 @@
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($layOutItemObj = $!layout.layoutItemPubRespDTOMap.entrySet())
+#else
+	#set($layOutItemObj = $!layout.layoutItemPreRespDTOMap.entrySet())
+#end
+#set($floorNavTitle = "")
+#foreach($columnItem in $!layOutItemObj)
+	#foreach($crossItem in $!{columnItem.value})
+		#set($item = $crossItem)
+		##取导航标题   start
+		#if($!{pagePub})
+        	 #foreach($prop in $crossItem.itemPropPubRespDTOList)
+				#if($prop.propId == 1000)
+					#set($floorNavTitle = $prop.propValue)
+				#end
+			#end
+        #else
+        	#foreach($prop in $crossItem.itemPropPreRespDTOList)
+				#if($prop.propId == 1000)
+					#set($floorNavTitle = $prop.propValue)
+				#end
+			#end
+        #end
+		##取导航标题    end
+	#end
+#end
+#if($!{item.modularId}) 
+	## 判断是否有拖入导航模块
+    <div  class="skipfloor ecp-component $!{item.modularRespDTO.componentRespDTO.componentMethod}" data-status="1" data-pagePub="$!{pagePub}" data-pageEdit="$!{pageEdit}" data-showAmount="$showAmount" data-module="$!{item.modularRespDTO.componentRespDTO.componentUrl}">
+    	<div class="modular tpl-floor">
+        	<!--以下隐藏域用于点击编辑的时候，请求后场获取对应模块的属性的入参  start-->
+        	<input type="hidden" id="itemId" value="$!{item.id}">
+        	<input type="hidden" id="pageId" value="$!{item.pageId}">
+        	<input type="hidden" id="modularId" value="$!{item.modularId}">
+        	<input type="hidden" id="modularType" value="$!{item.modularRespDTO.modularType}" >
+        	<input type="hidden" id="componentEditUrl" value="$!{item.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentEditUrl}" >
+            <input type="hidden" id="componentVmUrl" value="$!{item.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentVmUrl}" >
+        	<!--以下隐藏域用于点击编辑的时候，请求后场获取对应模块的属性的入参  end-->
+            <div class="modular-head">$!{floorNavTitle}</div>
+    		<div class="modular-body">
+                <div class="floor-list">
+                    <ul class="navigation">
+                        
+                    </ul>
+                    <div class="toTop">
+                        <span class="backToTop"><i class="iconfont f22"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    	#if($!{pageEdit})
+        <div class="modular-mask">
+            <div class="modular-mask-bg" style="height: 100%;"></div>
+            <div class="modular-mask-icon">
+                <a id="floorEdit" href="javascript:void(0);" class="ds-bar-edit lnkModuleEdit"><span>编辑</span></a>
+                <a href="javascript:void(0)" class="ds-bar-del lnkModuleDel"><span>删除</span></a>
+            </div>
+        </div>
+    	#end
+    </div>
+    #if($!{pageEdit})
+        #if($layout.cmsLayoutTypeRespDTO.layoutShowType == "04")
+    		<div class="rightNavSlide"> </div>
+        #end
+    #end
+#end

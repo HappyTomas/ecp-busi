@@ -1,0 +1,108 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-editor.vm")
+#parse("/module/mod-upload.vm")
+
+<script type="text/javascript" src="$!{RESOURCE_PATH}/js-old/frameajax/ajaxfileupload.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/info/info-edit.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/info/info-plugin.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/highlight/highlight.pack.js" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<link rel="stylesheet" href="$!{RESOURCE_PATH}/jquery/highlight/styles/sunburst.css" type="text/css">
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<div class="alert alert-error hide formValidateMessages" >
+	#showSpringAllError("respVO")
+</div>
+
+<div class="formBox row-fluid">
+	<form id="detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post">
+		<input type="hidden" id="id" name="id" value="$!{respVO.id}" />
+		
+		<div class="span8">
+    		<div class="formSep" >
+    			<div class="control-group">
+    				<label class="control-label" for="infoTitle">主题：</label>
+    				<div class="controls">
+    					<input type="text" class="input-large required htmlcheck" id="infoTitle" maxlength="60" name="infoTitle" placeholder="请输入页面信息主题" value="#escapeHtml($!{respVO.infoTitle})"  />
+    					<span class="help-inline">主题最大长度不能超过60个字符！</span>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">信息类型：</label>
+    				<div class="controls">
+						<select id="infoType" name="infoType" class="required">
+    						#listParam('CMS_INFO_TYPE',$!{respVO.infoType})
+    					</select>
+    					<span class="help-inline">请选择信息类型</span>
+    				</div>
+    			</div>
+    		</div>
+			
+			#parse("/cms/common/linkage-edit.vm")
+			
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">发布时间：</label>
+    				<div class="controls">
+    					<input type="text" id="pubTime" name="pubTime"  class="input-large Wdate required" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',maxDate:'#F{$dp.$D(\'lostTime\')}'})" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{respVO.pubTime})"/>
+    					<span class="help-inline">格式：yyyy-MM-dd HH:mm:ss</span>
+    				</div>
+    			</div>
+    		</div>
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">失效时间：</label>
+    				<div class="controls">
+    					<input type="text" id="lostTime" name="lostTime" class="input-large Wdate required" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',minDate:'#F{$dp.$D(\'pubTime\')}'})" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{respVO.lostTime})"/>
+    					<span class="help-inline">格式：yyyy-MM-dd HH:mm:ss</span>
+    				</div>
+    			</div>
+    		</div>
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">信息内容：</label>
+    				<div class="controls">
+						<input type="hidden" id="staticId" name="staticId" value="$!{respVO.staticId}" />
+						<input type="hidden" id="staticUrl" name="staticUrl" value="$!{respVO.staticUrl}" />
+    					<textarea id="editorText" name="editorText" class="bEditor required" style="width:100%;height:200px;visibility:hidden;">#escapeHtml($!{respVO.editorText})</textarea>
+    				</div>
+    			</div>
+            </div>
+    		<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label">摘要：</label>
+    				<div class="controls">
+						##input-block-level
+    					<textarea rows="4" cols="100" onpropertychange="checkLen(this,'count','250')" oninput="checkLen(this,'count','250')" class="input-block-level htmlcheck" id="remark" name="remark"  placeholder="请填写摘要">#escapeHtml($!{respVO.remark})</textarea>
+						<span class="help-inline">您还可以输入<span id="count">250</span>字！</span>
+    				</div>
+    			</div>
+    		</div>
+        	<div class="formSep"> 
+        	 <div class="control-group">
+        		<label class="control-label">上传附件：</label>
+        		<div class="controls">
+        				<input type="text" id="vfsName" name="vfsName" class="input-large"  value="$!{respVO.vfsName}" readonly="readonly">
+        				<input type="hidden" id="vfsId" name="vfsId" value="$!{respVO.vfsId}"/>
+        				<!--<input id="attachmentFileInput" type="file" name="dataReportFile" class="pull-left" style="float: left;" />-->
+                        <div id="attachmentFileInput" class="btn btn-small"><i class="icon-upload-alt"></i>文件上传</div>
+        				<button type="button" class="btn" id="clean"><i class="icon-remove-sign icon-white"></i>清空</button>
+						<span class="help-inline">请选择附件格式为(.doc,.docx,.pdf,.zip,.rar)</span>
+				</div>
+             </div>
+            </div>
+		
+			<div class="text-center">
+				<button type="button" class="btn btn-info" id="btnFormPubSave"><i class="icon-ok-sign icon-white"></i>发布</button>
+				<button type="button" class="btn btn-info" id="btnFormSave"><i class="icon-ok-sign icon-white"></i>保存</button>
+				<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+			</div>
+        </div>
+		<div class="clear"></div>
+	</form>
+</div>

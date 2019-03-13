@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+
+	<!-- 最终一致性事务，完整的 begin -->
+
+	<bean id="transactionManager1" class="com.distribute.tx.eventual.TransactionManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionManager" />
+		<property name="sequence" ref="sequence" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="participant" value="sample_group_dely" />
+		<!-- <property name="transactionChecker" ref="transactionChecker" /> -->
+	</bean>
+	
+
+	<!-- <bean id="transactionChecker"
+		class="com.zengshi.ecp.order.facade.impl.assured.TransactionCheckerSample" /> -->
+
+	<!-- <bean id="transactionListenerManager" class="com.distribute.tx.eventual.TransactionListenerManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="ordEntitySubSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="sample_group_ent" />
+		<property name="transactionList">
+			<list>
+				<value>business-topic-ent</value>
+			</list>
+		</property>
+	</bean> -->
+
+	<!-- 最终一致性事务，完整的 end -->
+
+	<!-- 发货物流订阅子事务-->
+	<bean id="ordDeliverExpress" class="com.distribute.tx.eventual.TransactionListenerManager" depends-on="beanDefinitionManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="ordDeliverExpressSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="sample_group_delivery_express" />
+		<property name="transactionList">
+			<list>
+				<value>business-topic-dely</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="orderDely" class="com.distribute.tx.eventual.TransactionListenerManager"  depends-on="beanDefinitionManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="ordDeliverySubGdsSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="sample_group_delivery" />
+		<property name="transactionList">
+			<list>
+				<value>business-topic-dely</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	<bean id="orderRec" class="com.distribute.tx.eventual.TransactionListenerManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="ordReceiptSubGdsSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="sample_group_rec" />
+		<property name="transactionList">
+			<list>
+				<value>business-topic-rec</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="payScore" class="com.distribute.tx.eventual.TransactionListenerManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="payScoreSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="sample_group_pay_payScore" />
+		<property name="transactionList">
+			<list>
+				<value>business-topic-pay</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="payCoup" class="com.distribute.tx.eventual.TransactionListenerManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="payCoupSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="sample_group_pay_payCoup" />
+		<property name="transactionList">
+			<list>
+				<value>business-topic-pay</value>
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- 退货退款主事物+主事物检验+3个子事物 start-->
+	<!-- <bean id="backPayManager" class="com.distribute.tx.eventual.TransactionManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionManager" />
+		<property name="sequence" ref="sequence" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="participant" value="group_back_pay" />
+		<property name="transactionChecker" ref="backPayChecker" />
+		<property name="transactionList">
+			<list>
+				<value>topic-back-pay</value>
+			</list>
+		</property>
+	</bean> -->
+	<!-- 主事物检验 -->
+	<!-- <bean id="backPayChecker" class="com.zengshi.ecp.order.facade.impl.eventual.BackPayOrderCheckSVImpl" /> -->
+	
+	<!-- 退货退款子事物1-->
+	<bean id="backPayStaff" class="com.distribute.tx.eventual.TransactionListenerManager" depends-on="beanDefinitionManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="backPayStaffSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="group_back_pay_staff" />
+		<property name="transactionList">
+			<list>
+				<value>topic-back-pay</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 退货退款子事物2-->
+	<bean id="backPayGoods" class="com.distribute.tx.eventual.TransactionListenerManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="backPayGoodsSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="group_back_pay_goods" />
+		<property name="transactionList">
+			<list>
+				<value>topic-back-pay</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 退货退款子事物3-->
+	<bean id="backPayCoupon" class="com.distribute.tx.eventual.TransactionListenerManager" depends-on="beanDefinitionManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="backPayCouponSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="group_back_pay_coupon" />
+		<property name="transactionList">
+			<list>
+				<value>topic-back-pay</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 退货退款子事物4-->
+	<bean id="backPayProm" class="com.distribute.tx.eventual.TransactionListenerManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="backPayPromSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="group_back_pay_prom" />
+		<property name="transactionList">
+			<list>
+				<value>topic-back-pay</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 退货退款主事物 end-->
+	
+	
+	<!-- 取消订单事物 四个子事物 start-->
+	<!-- 取消订单子事物1-优惠券域 -->
+	<bean id="ordRemoveCoupon" class="com.distribute.tx.eventual.TransactionListenerManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="ordRemoveCouponSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="group_order_remove_coupon" />
+		<property name="transactionList">
+			<list>
+				<value>topic-order-remove</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 取消订单子事物2-商品域 -->
+	<bean id="ordRemoveGoods" class="com.distribute.tx.eventual.TransactionListenerManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="ordRemoveGoodsSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="group_order_remove_goods" />
+		<property name="transactionList">
+			<list>
+				<value>topic-order-remove</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 取消订单子事物3-促销域 -->
+	<bean id="ordRemoveProm" class="com.distribute.tx.eventual.TransactionListenerManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="ordRemovePromSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="group_order_remove_prom" />
+		<property name="transactionList">
+			<list>
+				<value>topic-order-remove</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 取消订单子事物4-客户域 -->
+	<bean id="ordRemoveStaff" class="com.distribute.tx.eventual.TransactionListenerManager"
+		init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="ordRemoveStaffSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="group_order_remove_staff" />
+		<property name="transactionList">
+			<list>
+				<value>topic-order-remove</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 取消订单事物 四个子事物 end-->
+	
+	
+
+	<bean id="traMgnExport" class="com.distribute.tx.eventual.TransactionManager"
+		  init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionManager" />
+		<property name="sequence" ref="sequence" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="participant" value="sample_group_export" />
+		<!-- <property name="transactionChecker" ref="transactionChecker" /> -->
+	</bean>
+
+	<bean id="ordExportSaleDetail" class="com.distribute.tx.eventual.TransactionListenerManager" depends-on="beanDefinitionManager"
+		  init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="ordExportSaleDetailSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="sample_group_saleDetail" />
+		<property name="transactionList">
+			<list>
+				<value>business-topic-export</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="traMgnExportOrd" class="com.distribute.tx.eventual.TransactionManager"
+		  init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionManager" />
+		<property name="sequence" ref="sequence" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="participant" value="sample_group_export" />
+		<!-- <property name="transactionChecker" ref="transactionChecker" /> -->
+	</bean>
+
+	<bean id="ordExportOrd" class="com.distribute.tx.eventual.TransactionListenerManager" depends-on="beanDefinitionManager"
+		  init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="ordExportOrdSV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="sample_group_exportOrd" />
+		<property name="transactionList">
+			<list>
+				<value>business-topic-exportOrd</value>
+			</list>
+		</property>
+	</bean>
+</beans>

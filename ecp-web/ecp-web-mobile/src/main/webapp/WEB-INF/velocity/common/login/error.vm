@@ -1,0 +1,39 @@
+#parse("/sys/sys_param.vm")
+<head>
+    <meta charset="UTF-8">
+    <title>错误页面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="$CSS_PATH/public.css">
+    <link rel="stylesheet" href="$CSS_PATH/mall.css">
+    <script src="$RESOURCE_PATH/jquery/flexible/flexible.js"></script>
+    <style>
+        html, body{
+            background-color: #fff;
+        }
+    </style>
+
+</head>
+
+<script>
+function reLogin(){
+	window.location.href = GLOBAL.WEBROOT + "/login";
+}
+</script>
+
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        错误页面
+    </div>
+    <div class="am-header-left am-header-nav">
+        <a href="" class="">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content">
+    <div class="bd-error">
+        <p class="bd-cont">该微信已绑定了其他账号</p>
+        <span class="bd-btn" id="re-login" onClick="reLogin();">返回登录</span>
+    </div>
+</div>
+

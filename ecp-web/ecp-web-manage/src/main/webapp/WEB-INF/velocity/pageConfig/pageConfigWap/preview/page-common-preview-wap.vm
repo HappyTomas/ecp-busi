@@ -1,0 +1,75 @@
+#set($shopId = $!{pageInfo.shopId})
+<input type="hidden" value="$!{pageInfo.shopId}" id="hiddenShopId"/>
+
+##用于处理页面背景 
+#parse("pageConfig/pageConfigWap/page-background.vm")
+
+<style> ##下拉加载样式
+	.scroll-wrap {
+	  overflow: hidden;
+	  margin: 0;
+	  width: 100%;
+	}
+	.scroll {
+	  padding-bottom: 30px;
+	}
+	.pull-action {
+	  text-align: center;
+	  color: #999;
+	}
+	.pull-up {
+	  position: absolute;
+	  display:none;
+	  bottom: 0;
+	  width: 100%;
+	}
+	.pull-down {
+	  display:none;
+	}
+</style>
+
+<input type="hidden" id="pre-itemIds" value="$!{itemIds}"/>
+<input type="hidden" id="pageTypeId" value="$!{pageTypeId}"/>
+<input type="hidden" id="siteId" value="$!{pageInfo.siteId}" />
+
+
+<div id="page-content" class="phone-show scroll-wrap" >## page-content scroll-wrap 用于下拉加载
+	<div class="scroll">
+	    <div class="phone-content scrollCont">## scrollCont 用于下拉加载
+			#foreach($!layout in $!pageConfig)
+				<input type="hidden" name="layoutId" value="$!{layout.id}">
+				#foreach($columnItem in $!layout.layoutItemPreRespDTOMap.entrySet())
+					#foreach($crossItem in $!{columnItem.value})
+						#if($crossItem && $crossItem.modularId && $crossItem.modularId!="" && $crossItem.id && $crossItem.id!="")
+							##判断是否已经给模块配置了属性
+							#if($!{crossItem.itemPropPreRespDTOList} && $!{crossItem.itemPropPreRespDTOList.size()}>0)
+								#if($!{pc})
+								<style>
+	                                html {
+	                                    font-size: 50px;
+	                                }
+									.phone-show{
+									  width:500px;
+									  margin:0 auto;
+									}
+	                            </style>
+								#end
+	                            <div class="phone-layout">
+	    							##这里抽出来成公共的模块，给编辑预览 发布公共调用。以后所有要添加的模块都要到这个vm里面进行逻辑处理
+	    							##parse("/pageConfig/pageConfig/modular/common/modular-common-loading.vm")
+	                            	#parse($!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentVmUrl})
+	                            </div>
+							#end##判断是否已经给模块配置了属性end
+						#end
+					#end
+				#end
+			#end
+	    </div>
+	    ##用于上拉加载
+	    <div class="pull-action pull-up" style="bottom: 0">
+            <span class=" pull-label"> 上拉加载更多</span>
+             <span class="am-icon-spinner am-icon-spin"></span>
+        </div>
+	</div>
+</div>
+

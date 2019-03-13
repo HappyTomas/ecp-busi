@@ -1,0 +1,43 @@
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/order/pay/pay-orderList.js?version=$!{JS_VERSION}" ></script>
+<header class="am-header am-header-fixed">
+    <div class="am-header-title">
+        确认交易
+    </div>
+    <div class="am-header-left am-header-nav top-left">
+        <a href="javascript:history.go(-1)" class="">
+            <i class="public-arrowleft"></i>
+        </a>
+    </div>
+</header>
+<div class="ui-content-fixBottom odr-content">
+    <div class="odr-box">
+        <ul class="o-pay-box">
+			#if($orderList && $orderList.size() > 0)
+			<li>
+                <div class="odp-radio">
+					<input type="checkbox" class="ui-checkbox" id="allChecked">
+                    <label for="allChecked">全选</label>
+                </div>
+            </li>
+			#end
+			#foreach($item in $!{orderList})
+			<li>
+                <div class="odp-radio">
+					<input type="checkbox" class="ui-checkbox addCheck" radioName="strRadio" value="$!{item.id}" id="checkbox$velocityCount" />
+				    <label for="checkbox$velocityCount"></label>		
+                </div>
+                <div class="odp-flex clearfix">
+                    <p class="p-txt">订单编号：$!{item.id}</p>
+                    <p class="p-txt-c c-orange">$!{item.shopName}</p>
+                </div>
+                <span class="odp-radio">#money($!{item.realMoney})</span>
+            </li>	
+			#end	
+        </ul>
+    </div>
+    <input type="hidden" id="onlineKey" name="onlineKey" value="$!{onlineKey}">
+</div>
+<div class="am-navbar am-cf am-navbar-mall o-pay-bar">
+    <div id="btn_pay" class="o-pad-box">确认支付</div>
+</div>

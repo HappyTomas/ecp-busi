@@ -1,0 +1,59 @@
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/menu/menu-add.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/javascript/holder/holder.js" ></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/extend/bus.selector.js" ></script>	
+
+<div class="rk-editc pull-left">
+    <form id="menuadddetail" action="" class="form-horizontal">
+        <div class="row-fluid">
+            <div class="span6">
+                <div class="control-group">
+                    <label for="" class="control-label">菜单名称：</label>
+                    <div class="controls">
+                        <input class="input-block-level superLable required" type="text" id="menuTitle" name="menuTitle" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="" class="control-label">
+                        <span class="red">*</span> 归属目录：
+                    </label>
+                    <div class="controls">
+                        <label class="wenzi-label" id="parentMenuName"></label>
+                        <input type="hidden" name="parentMenuId" id="parentMenuId" value="$!{parentMenuId}" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="" class="control-label">URL：</label>
+                    <div class="controls">
+                        <input type="text" class="input-block-level superLable required " id="menuUrl" name="menuUrl" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="" class="control-label">归属系统：</label>
+                    <div class="controls">
+                        #select('SYS_SUB_SYSTEM','sysCode',true)
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="" class="control-label">Logo样式：</label>
+                    <div class="controls">
+                        <input type="text" class="required " style="margin-bottom:5px;" id="menuPic" name="menuPic" />
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label for="" class="control-label">菜单描述：</label>
+                    <div class="controls">
+                        <textarea rows="3" id="menuDesc" maxlength="256" name="menuDesc"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+            <input type="hidden" name="menuPic" id="menuPic" />
+        </div>
+    </form>
+    <div class="btn-wrap btn-wrap-save text-center">
+        <input value="保存" id="btn_menu_add_save" type="button" class="btn btn-info" />
+        <input value="取消" id="btn_menu_add_cancle" type="button" class="btn" />
+    </div>
+</div>
+					

@@ -1,0 +1,144 @@
+#parse("/module/mod-grid.vm")
+#parse("/module/mod-form.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/floor/floor-view.js?version=$!{JS_VERSION}" ></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}" ></script>
+
+<h3 class="heading">楼层查看</h3>
+
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+
+<div class="alert alert-error hide formValidateMessages" >
+	##showSpringAllError("vo")
+</div>
+
+<div class="formBox row-fluid">
+<form id="floor_detailInfoForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/cmsfloor/save">
+	<input type="hidden" id="floor_floorId" name="id" value="$!{respVO.id}" />
+	<div class="span8">
+    	<div class="row-fluid formSep">
+    		<div class="control-group">
+    			<label class="control-label" for="name">楼层名称：</label>
+    			<label class="controls  text_line">
+    				 #escapeHtml($!{respVO.floorName})	
+    			</label>
+    		</div>
+    	</div>
+		<div class="formSep">
+			<div class="control-group">
+				<label class="control-label">所属站点：</label>
+				<label class="controls  text_line">
+					 #escapeHtml($!{respVO.siteName}) 	
+				</label>
+			</div>
+		</div>
+		
+		<div class="formSep">
+			<div class="control-group">
+				<label class="control-label">所属模板：</label>
+				<label class="controls  text_line">
+					 #escapeHtml($!{respVO.templateName}) 	
+				</label>
+			</div>
+        </div>
+    	<div class="formSep">
+    		<div class="control-group">
+    			<label class="control-label">内容位置：</label>
+    			<label class="controls  text_line">
+    			 #escapeHtml($!{respVO.placeName})		
+				</label>
+    		</div>
+    	</div>
+		
+		<div class="formSep">
+			<div class="control-group">
+				<label class="control-label">数据来源：</label>
+				<label class="controls  text_line">
+    			 #escapeHtml($!{respVO.dataSourceZH})		
+				</label>
+			</div>
+		</div>
+		
+		<div class="formSep" id="countType_div">
+			<div class="control-group">
+				<label class="control-label">统计类型：</label>
+				<label class="controls  text_line">
+    			 #escapeHtml($!{respVO.countTypeZH})		
+				</label>
+			</div>
+		</div>
+		
+		<div class="formSep" id="catgCode_div">
+            <label for="" class="control-label">关联商品分类：</label>
+			<label class="controls  text_line">
+			 #if($!{respVO.catgCodeZH})
+			 #escapeHtml($!{respVO.catgCodeZH})	
+			 #else &nbsp;
+			 #end	
+			</label>
+        </div>
+		
+		<div class="formSep">
+			<div class="control-group">
+				<label class="control-label" for="name">链接地址：</label>
+				<label class="controls  text_line">
+				 #escapeHtml($!{respVO.linkUrl})	
+				</label>
+			</div>
+		</div>
+    	<div class="formSep">
+    		<div class="control-group">
+    			<label class="control-label">排序：</label>
+    			<label class="controls  text_line">
+    			 #escapeHtml($!{respVO.sortNo}) 		
+				</label>
+    		</div>
+    	</div>
+    	<div class="formSep">
+    		<div class="control-group">
+    			<label class="control-label" for="name">备注：</label>
+    			<label class="controls  text_line">
+    			 #escapeHtml($!{respVO.remark}) 		
+				</label>
+    		</div>
+    	</div>
+		
+		<div class="formSep">
+				<div class="control-group">
+					<label class="control-label">状态：</label>
+					<label class="controls  text_line">
+						$!{respVO.statusZH}
+					</label>
+				</div>
+		</div>
+			
+    	<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label required">创建时间：</label>
+    				<label class="controls  text_line">
+						$!date.format('yyyy-MM-dd',$!{respVO.createTime})
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="formSep">
+    			<div class="control-group">
+    				<label class="control-label required">修改时间：</label>
+    				<label class="controls  text_line">
+						$!date.format('yyyy-MM-dd',$!{respVO.updateTime})
+					</label>
+    			</div>
+    		</div>
+			
+			<div class="">
+				<div class="control-group">
+					<div class="controls  text_line">
+						<button type="button" class="btn" id="btnReturn"><i class="icon-reply icon-white"></i>返回</button>
+					</div>
+				</div>
+			</div>
+			
+    </div>
+    <div class="clear"></div>
+</form>
+</div>

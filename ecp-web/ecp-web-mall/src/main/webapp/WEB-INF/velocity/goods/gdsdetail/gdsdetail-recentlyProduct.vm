@@ -1,0 +1,11 @@
+<div class="ecp-component gdsdetailRecentlyProduct" id="ct-nav" data-gds-id="$!{gdsDetailInfo.id}" data-gds-size="8" data-module="ecp-component/gdsdetail-recentlyProduct" style="margin-left:0">
+	<div class="history-nav">
+		<div class="nav-inner">
+			<h3>
+				您最近浏览过的产品
+			</h3>
+			<ul class="pro-list gdsdetail-recentlyProduct">
+			</ul>
+		</div>
+	</div>
+</div>

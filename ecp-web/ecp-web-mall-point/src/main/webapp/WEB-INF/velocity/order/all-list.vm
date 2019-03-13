@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的订单</title>
+	#parse("/sys/sys_head.vm")
+    <script type="text/javascript" src="$!{BUSIJS_PATH}/public/util.js" ></script>
+	<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/autocomplete/autocomplete.js"></script>
+	<link href="$!{CSS_PATH}/public.css" type="text/css" rel="stylesheet"/>
+	<link href="$!{CSS_PATH}/order/carlist.css" type="text/css" rel="stylesheet"/>
+	<link href="$!{CSS_PATH}/order/member.css" type="text/css" rel="stylesheet"/>
+    <script type="text/javascript" src="$!{BUSIJS_PATH}/order/myorder-list.js?version=$!{JS_VERSION}" ></script>
+
+    <script>
+        $(function () {
+
+            //U.tab('#teamTab', '#teamTabc');
+        });
+
+    </script>
+
+</head>
+<body>
+<!--顶部 begin-->
+<div id="site-nav">
+    <div class="wrap990 nav-contanier">
+        <div class="back-home">
+            <i class="micon micon-home">
+            </i>
+               <span class="c-666">
+                   欢迎来到E商城
+               </span>
+        </div>
+        <ul class="qmenu clearfix">
+            <li class="item">
+                <a href="javascript:void(0)">请登录</a>
+            </li>
+            <li class="item">
+                <a href="javascript:void(0)" class="c-red">免费注册</a>
+            </li>
+            <li class="item spit"></li>
+            <li class="item dorpdown">
+                <a class="olist-t" href="javascript:void(0)">我的订单</a>
+                <i class="ci-right"><s>◇</s></i>
+                <ul class="downc olist">
+                    <li>
+                        <a href="javascript:void(0)">待支付</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">待收货</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">待评价</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="item spit"></li>
+            <li class="item dorpdown">
+                <a href="javascript:void(0)" class="olist-t">
+                    我的易购
+                    <i class="ci-right"><s>◇</s></i>
+                </a>
+                <ul class="downc olist">
+                    <li>
+                        <a href="javascript:void(0)">待支付</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">待收货</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">待评价</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="item spit"></li>
+            <li class="item">
+                <a href="javascript:void(0)" class="olist-t">
+                    我的收藏
+                </a>
+            </li>
+            <li class="item spit"></li>
+            <li class="item dorpdown">
+                <a href="javascript:void(0)" class="olist-t">
+                    手机E商城
+                    <i class="ci-right"><s>◇</s></i>
+                </a>
+                <ul class="downc olist">
+                    <li>
+                        <a href="javascript:void(0)">待支付</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">待收货</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">待评价</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="item spit"></li>
+            <li class="item dorpdown">
+                <a href="javascript:void(0)" class="olist-t">
+                    客户服务
+                    <i class="ci-right"><s>◇</s></i>
+                </a>
+                <ul class="downc olist">
+                    <li>
+                        <a href="javascript:void(0)">待支付</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">待收货</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">待评价</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="item spit"></li>
+            <li class="item dorpdown">
+                <a href="javascript:void(0)" class="olist-t">
+                    网站导航
+                    <i class="ci-right"><s>◇</s></i>
+                </a>
+                <ul class="downc olist">
+                    <li>
+                        <a href="javascript:void(0)">待支付</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">待收货</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">待评价</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--顶部 end-->
+
+	<input type="hidden" id="totalPage" value="$!{waitPayResp.PageCount}"/>
+    <input type="hidden" id="totalRow" value="$!{waitPayResp.count}"/>
+    <input type="hidden" id="pageSize" value="$!{waitPayResp.pageSize}"/>
+	<input type="hidden" id="pageNumber" value="$!{waitPayResp.pageNo}"/>
+	<input type="hidden" id="status" value="$!{status}">
+	
+	
+<!--头部搜索 begin-->
+<div id="site-header" class="wrap1200 clearfix">
+    <div class="malllogo">
+        ECP商城演示
+    </div>
+    <div class="car-link">
+        <i class="navicon gocar"></i>
+         <span>
+             我的购物车
+         </span>
+        <i class="ci-right">
+            <s>◇</s>
+        </i>
+         <span class="navicon carnum">
+               14
+         </span>
+
+        <div class="carlist">
+            <div class="spacer"></div>
+            <ul>
+                <li>
+                    <a href="javascript:void(0)">
+                        去购物车
+                    </a>
+                </li>
+            </ul>
+            购物车还没有商品赶紧购物吧
+        </div>
+    </div>
+    <div class="search-wrap">
+        <div id="site-search">
+        </div>
+        <ul class="hotsr clearfix">
+            <li class="hot-t">
+                TCL促销活动
+            </li>
+            <li>
+                TCL
+            </li>
+            <li>
+                iPhone
+            </li>
+            <li>
+                mate
+            </li>
+            <li>
+                三星
+            </li>
+        </ul>
+
+    </div>
+
+</div>
+<!--头部搜索 end-->
+
+<!--导航 begin-->
+<div class="mnav-wrap">
+    <ul class="mnav clearfix wrap1200">
+        <li class="fa fl"><a href="javascript:void(0)">首页</a></li>
+        <li><a href="javascript:void(0)">热门店铺</a></li>
+        <li><a href="javascript:void(0)">预约受理</a></li>
+        <li><a href="javascript:void(0)">会员中心</a></li>
+        <li class="la"><a href="javascript:void(0)">客服服务</a></li>
+    </ul>
+</div>
+<!--导航 end-->
+
+<!--左侧导航begin-->
+<!--左侧导航 end-->
+
+<!--主要内容 begin-->
+<div id="container">
+    <div class="w">
+        <div id="content" class="clearfix">
+            <div id="nav">
+                <div class="nav-wrap">
+                    <div class="navlist">
+                        <div class="nav-hd">
+                            <h3>
+                                我的账户
+                            </h3>
+                            <i class="mbicon icon-dropup">
+                            </i>
+                        </div>
+                        <ul class="nav-bd">
+                            <li>
+                                <a href="javascript:void(0)">个人资料</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">我的积分</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">我的优惠</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">我的钱包</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">虚拟币</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    店铺会员
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">我的收藏</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="main">
+                <!--查询订单-->
+
+                <!-- 我的订单 begin -->
+                <div class="mbox order-list">
+                    <div class="mbox-head">
+                        <h3>
+                            我的订单
+                        </h3>
+                        <a class="hright" href="javascript:void(0)">
+                            查看全部订单
+                        </a>
+                    </div>
+                    <div class="mbox-body">
+                        <div class="mt clearfix">
+                            <div class="row-fluid clearfix date-box">
+                                <form class="form-horizontal">
+                                    <div class="span5">
+                                        <div class="control-group">
+                                            <label class="control-label">开始日期：</label>
+
+                                            <div class="controls">
+                                                <input type="text" class="input-small Wdate" placeholder="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="begDate" value="$!date.format('yyyy-MM-dd',$!{begDate})">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="span5">
+                                        <div class="control-group">
+                                            <label class="control-label">结束日期：</label>
+
+                                            <div class="controls">
+                                                <input type="text" class="input-small Wdate" placeholder="" onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="begDate" value="$!date.format('yyyy-MM-dd',$!{begDate})">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="span2">
+                                        <div class="control-group">
+
+                                            <div class="controls">
+                                                <button class="btn">查询</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+
+
+                            <ul class="mt-l" id="teamTab" id="orderList">
+                                <li class="active" id="01">
+                                    <a href="javascript:void(0)">待支付</a>
+                                </li>
+                                <li id="02">
+                                    <a href="javascript:void(0)">待发货</a>
+                                </li>
+                                <li id="03">
+                                    <a href="javascript:void(0)">
+                                        已发货
+                                    </a>
+                                </li>
+                                <li id="04"> 
+                                    <a href="javascript:void(0)">
+                                        已收货
+                                    </a>
+                                </li>
+                                <li id="05">
+                                    <a href="javascript:void(0)">
+                                        已取消
+                                    </a>
+                                </li>
+                            </ul>
+                            <!--  <div class="mt-r">
+                                  <div class="search">
+                                      <input type="text" class="itxt" placeholder="商品名称/商品编号/订单号">
+                                      <a href="javascript:;" class="def-btn search-btn">搜索<b></b></a>
+                                      <a href="javascript:void(0)" class="def-btn high-search">高级<i class="ci-right"><s>◇</s></i></a>
+                                  </div>
+                              </div>-->
+                        </div>
+                        <div id="teamTabc">
+                            <div class="mc">
+								#set($tableClass="order-tb")
+								#foreach($!ordItem in $!waitPayResp.getResult())
+									#set($ordMain = $!ordItem.getsCustomerOrdMain())
+									#if($!velocityCount==1)
+									#else
+										#set($tableClass = "order-tb mt20")
+									#end
+                                <table class="$tableClass">
+                                    <tbody>
+									
+                                    <tr class="tr-th">
+                                        <td colspan="3">
+                                            <span class="dealtime">$ordMain.getPayTime()</span>
+                                            <span class="number">订单号：
+                                            <a href="javascript:void(0)" target="_blank">$ordMain.getOrderId()</a>
+                                            </span>
+                                            <span class="dealtime">订单类型：
+                                            <a href="javascript:void(0)" target="_blank">普通订单</a>
+                                            </span>
+
+                                            <div class="tr-operate">
+                                            <span class="order-shop">
+                                              <span class="shop-txt">通讯</span>
+                                              <a href="javascript:void(0)" title="联系客服">联系客服</a>
+                                            </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+									#foreach($!ordSub in $!ordItem.getsOrderDetailsSubs())
+										#set($amount = $amount + $!ordSub.getDiscountPrice())
+										#set($size = $!ordItem.getsOrderDetailsSubs().size())
+                                    <tr class="tr-bd">
+                                        <td>
+                                            <div class="goods-item" id="$!ordSub.getSkuId()">
+                                                <div class="p-img">
+                                                    <a href="$!ordSub.getGdsUrl()" target="_blank">
+                                                        <img class="" src="$!ordSub.getPicUrl()" title="" width="60"
+                                                             height="60">
+                                                    </a>
+                                                </div>
+                                                <div class="p-msg">
+                                                    <div class="p-name">
+                                                        <a href="$!ordSub.getGdsUrl()" class="a-link" target="_blank" title="">$!ordSub.getGdsName()----
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="goods-number">
+                                                x$!ordSub.getOrderAmount()
+                                            </div>
+                                            <div class="goods-repair">
+                                                <a href="javascript:void(0)">
+                                                    #money($!ordSub.getDiscountPrice())----
+                                                </a>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </td>
+										#if($!velocityCount==1)
+											
+                                        <td rowspan="$size">
+                                            <div class="amount">
+                                                <strong>#money($!amount)</strong> <br>
+                                                <span class="t-gray">（含快递0元）</span><br>
+                                            </div>
+                                        </td>
+                                        <td rowspan="$size">
+                                            <div class="operate">
+
+                                                <a href="javascript:void(0)">订单详情</a><br/>
+                                                <a href="javascript:void(0)">
+                                                    取消订单
+                                                </a><br/>
+                                                <div class="btn-red"><a href="javascript:void(0)" target="_blank">付款</a></div>
+                                                <br/>
+                                                <a href="javascript:void(0)">
+                                                    修改收货地址
+                                                </a>
+                                            </div>
+                                        </td>
+										#end
+                                    </tr>
+									#end
+                                    </tbody>
+                                </table>
+								#end
+                  
+                            </div>
+                            <div class="mc">
+                                <table class="order-tb">
+                                    <tbody>
+                                    <tr class="tr-th">
+                                        <td colspan="3">
+                                            <span class="dealtime">2015-09-07 09:56:21</span>
+                                        <span class="number">订单号：
+                                            <a href="javascript:void(0)" target="_blank">10034140034</a>
+                                            </span>
+
+                                            <div class="tr-operate">
+                                            <span class="order-shop">
+                                              <span class="shop-txt">通讯</span>
+                                              <a href="javascript:void(0)" title="联系客服">联系客服</a>
+                                            </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-bd">
+                                        <td>
+                                            <div class="goods-item">
+                                                <div class="p-img">
+                                                    <a href="javascript:void(0)" target="_blank">
+                                                        <img class="" src="../images/yf-tp.png" title="" width="60"
+                                                             height="60">
+                                                    </a>
+                                                </div>
+                                                <div class="p-msg">
+                                                    <div class="p-name">
+                                                        <a href="javascript:void(0)" class="a-link" target="_blank" title="">飞科(FLYCO)FS7805鼻毛修剪器
+                                                            电动鼻毛器 修鼻毛机
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="goods-number">
+                                                x1
+                                            </div>
+                                            <div class="goods-repair">
+                                                <a href="javascript:void(0)">
+                                                    1666
+                                                </a>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </td>
+                                        <td rowspan="3">
+                                            <div class="amount">
+                                                <strong>&yen;4966.00</strong> <br>
+                                                <span class="t-gray">（含快递0元）</span><br>
+                                            </div>
+                                        </td>
+                                        <td rowspan="3">
+                                            <div class="operate">
+                                                <a href="javascript:void(0)">订单详情</a><br/>
+                                                <a href="javascript:void(0)">修改收货地址</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-bd">
+                                        <td>
+                                            <div class="goods-item">
+                                                <div class="p-img">
+                                                    <a href="javascript:void(0)" target="_blank">
+                                                        <img class="" src="../images/yf-tp.png" title="" width="60"
+                                                             height="60">
+                                                    </a>
+                                                </div>
+                                                <div class="p-msg">
+                                                    <div class="p-name">
+                                                        <a href="javascript:void(0)" class="a-link" target="_blank" title="">飞科(FLYCO)FS7805鼻毛修剪器
+                                                            电动鼻毛器 修鼻毛机
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="goods-number">
+                                                x1
+                                            </div>
+                                            <div class="goods-repair">
+                                                <a href="javascript:void(0)">
+                                                    1666
+                                                </a>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-bd">
+                                        <td>
+                                            <div class="goods-item">
+                                                <div class="p-img">
+                                                    <a href="javascript:void(0)" target="_blank">
+                                                        <img class="" src="../images/yf-tp.png" title="" width="60"
+                                                             height="60">
+                                                    </a>
+                                                </div>
+                                                <div class="p-msg">
+                                                    <div class="p-name">
+                                                        <a href="javascript:void(0)" class="a-link" target="_blank" title="">飞科(FLYCO)FS7805鼻毛修剪器
+                                                            电动鼻毛器 修鼻毛机
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="goods-number">
+                                                x1
+                                            </div>
+                                            <div class="goods-repair">
+                                                <a href="javascript:void(0)">
+                                                    1666
+                                                </a>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                                <table class="order-tb mt20">
+                                    <tbody>
+                                    <tr class="tr-th">
+                                        <td colspan="3">
+                                            <span class="dealtime">2015-09-07 09:56:21</span>
+                                        <span class="number">订单号：
+                                            <a href="javascript:void(0)" target="_blank">10034140034</a>
+                                            </span>
+
+                                            <div class="tr-operate">
+                                            <span class="order-shop">
+                                              <span class="shop-txt">通讯</span>
+                                              <a href="javascript:void(0)" title="联系客服">联系客服</a>
+                                            </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-bd">
+                                        <td>
+                                            <div class="goods-item">
+                                                <div class="p-img">
+                                                    <a href="javascript:void(0)" target="_blank">
+                                                        <img class="" src="../images/yf-tp.png" title="" width="60"
+                                                             height="60">
+                                                    </a>
+                                                </div>
+                                                <div class="p-msg">
+                                                    <div class="p-name">
+                                                        <a href="javascript:void(0)" class="a-link" target="_blank" title="">飞科(FLYCO)FS7805鼻毛修剪器
+                                                            电动鼻毛器 修鼻毛机
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="goods-number">
+                                                x1
+                                            </div>
+                                            <div class="goods-repair">
+                                                <a href="javascript:void(0)">
+                                                    1666
+                                                </a>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </td>
+                                        <td rowspan="3">
+                                            <div class="amount">
+                                                <strong>&yen;4966.00</strong> <br>
+                                                <span class="t-gray">（含快递0元）</span><br>
+                                            </div>
+                                        </td>
+                                        <td rowspan="3">
+                                            <div class="operate">
+                                                <a href="javascript:void(0)">订单详情</a><br/>
+                                                <a href="javascript:void(0)">修改收货地址</a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-bd">
+                                        <td>
+                                            <div class="goods-item">
+                                                <div class="p-img">
+                                                    <a href="javascript:void(0)" target="_blank">
+                                                        <img class="" src="../images/yf-tp.png" title="" width="60"
+                                                             height="60">
+                                                    </a>
+                                                </div>
+                                                <div class="p-msg">
+                                                    <div class="p-name">
+                                                        <a href="javascript:void(0)" class="a-link" target="_blank" title="">飞科(FLYCO)FS7805鼻毛修剪器
+                                                            电动鼻毛器 修鼻毛机
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="goods-number">
+                                                x1
+                                            </div>
+                                            <div class="goods-repair">
+                                                <a href="javascript:void(0)">
+                                                    1666
+                                                </a>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-bd">
+                                        <td>
+                                            <div class="goods-item">
+                                                <div class="p-img">
+                                                    <a href="javascript:void(0)" target="_blank">
+                                                        <img class="" src="../images/yf-tp.png" title="" width="60"
+                                                             height="60">
+                                                    </a>
+                                                </div>
+                                                <div class="p-msg">
+                                                    <div class="p-name">
+                                                        <a href="javascript:void(0)" class="a-link" target="_blank" title="">飞科(FLYCO)FS7805鼻毛修剪器
+                                                            电动鼻毛器 修鼻毛机
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="goods-number">
+                                                x1
+                                            </div>
+                                            <div class="goods-repair">
+                                                <a href="javascript:void(0)">
+                                                    1666
+                                                </a>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mc">
+                                <table class="order-tb">
+                                    <tbody>
+                                    <tr class="tr-th">
+                                        <td colspan="3">
+                                            <span class="dealtime">2015-09-07 09:56:21</span>
+                                        <span class="number">订单号：
+                                            <a href="javascript:void(0)" target="_blank">10034140034</a>
+                                            </span>
+
+                                            <div class="tr-operate">
+                                            <span class="order-shop">
+                                              <span class="shop-txt">通讯</span>
+                                              <a href="javascript:void(0)" title="联系客服">联系客服</a>
+                                            </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-bd">
+                                        <td>
+                                            <div class="goods-item">
+                                                <div class="p-img">
+                                                    <a href="javascript:void(0)" target="_blank">
+                                                        <img class="" src="../images/yf-tp.png" title="" width="60"
+                                                             height="60">
+                                                    </a>
+                                                </div>
+                                                <div class="p-msg">
+                                                    <div class="p-name">
+                                                        <a href="javascript:void(0)" class="a-link" target="_blank" title="">飞科(FLYCO)FS7805鼻毛修剪器
+                                                            电动鼻毛器 修鼻毛机
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="goods-number">
+                                                x1
+                                            </div>
+                                            <div class="goods-repair">
+                                                <a href="javascript:void(0)">
+                                                    1666
+                                                </a>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </td>
+                                        <td rowspan="3">
+                                            <div class="amount">
+                                                <strong>&yen;4966.00</strong> <br>
+                                                <span class="t-gray">（含快递0元）</span><br>
+                                            </div>
+                                        </td>
+                                        <td rowspan="3">
+                                            <div class="operate">
+                                                <a href="javascript:void(0)">订单详情</a><br/>
+                                                <div class="btn-red"> <a href="javascript:void(0)" target="_blank">确认收货</a></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-bd">
+                                        <td>
+                                            <div class="goods-item">
+                                                <div class="p-img">
+                                                    <a href="javascript:void(0)" target="_blank">
+                                                        <img class="" src="../images/yf-tp.png" title="" width="60"
+                                                             height="60">
+                                                    </a>
+                                                </div>
+                                                <div class="p-msg">
+                                                    <div class="p-name">
+                                                        <a href="javascript:void(0)" class="a-link" target="_blank" title="">飞科(FLYCO)FS7805鼻毛修剪器
+                                                            电动鼻毛器 修鼻毛机
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="goods-number">
+                                                x1
+                                            </div>
+                                            <div class="goods-repair">
+                                                <a href="javascript:void(0)">
+                                                    1666
+                                                </a>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-bd">
+                                        <td>
+                                            <div class="goods-item">
+                                                <div class="p-img">
+                                                    <a href="javascript:void(0)" target="_blank">
+                                                        <img class="" src="../images/yf-tp.png" title="" width="60"
+                                                             height="60">
+                                                    </a>
+                                                </div>
+                                                <div class="p-msg">
+                                                    <div class="p-name">
+                                                        <a href="javascript:void(0)" class="a-link" target="_blank" title="">飞科(FLYCO)FS7805鼻毛修剪器
+                                                            电动鼻毛器 修鼻毛机
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="goods-number">
+                                                x1
+                                            </div>
+                                            <div class="goods-repair">
+                                                <a href="javascript:void(0)">
+                                                    1666
+                                                </a>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mc">
+                                <table class="order-tb">
+									<tbody>
+                                        <tr class="tr-th">
+                                            <td colspan="3">
+                                                <span class="dealtime">2015-09-07 09:56:21</span>
+                                                <span class="number">订单号：
+                                                    <a href="javascript:void(0)" target="_blank">10034140034</a>
+                                                    </span>
+        
+                                                <div class="tr-operate">
+                                                    <span class="order-shop">
+                                                      <span class="shop-txt">通讯</span>
+                                                      <a href="javascript:void(0)" title="联系客服">联系客服</a>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr class="tr-bd">
+                                            <td>
+                                                <div class="goods-item">
+                                                    <div class="p-img">
+                                                        <a href="javascript:void(0)" target="_blank">
+                                                            <img class="" src="../images/yf-tp.png" title="" width="60"
+                                                                 height="60">
+                                                        </a>
+                                                    </div>
+                                                    <div class="p-msg">
+                                                        <div class="p-name">
+                                                            <a href="javascript:void(0)" class="a-link" target="_blank" title="">飞科(FLYCO)FS7805鼻毛修剪器
+                                                                电动鼻毛器 修鼻毛机
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="goods-number">
+                                                    x1
+                                                </div>
+                                                <div class="goods-repair">
+                                                    <a href="javascript:void(0)">
+                                                        1666
+                                                    </a>
+                                                </div>
+                                                <div class="clr"></div>
+                                            </td>
+                                            <td>
+                                                <div class="amount">
+                                                    <strong>&yen;4966.00</strong> <br>
+                                                    <span class="t-gray">（含快递0元）</span><br>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="operate">
+                                                    <a href="javascript:void(0)">订单详情</a><br/>
+                                                    <div class="btn-red"><a href="javascript:void(0)" target="_blank">待评价</a></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                	</tbody>
+                            	</table>
+
+                                <table class="order-tb mt20">
+                                    <tbody>
+                                    <tr class="tr-th">
+                                        <td colspan="3">
+                                            <span class="dealtime">2015-09-07 09:56:21</span>
+                                        <span class="number">订单号：
+                                            <a href="javascript:void(0)" target="_blank">10034140034</a>
+                                            </span>
+
+                                            <div class="tr-operate">
+                                            <span class="order-shop">
+                                              <span class="shop-txt">通讯</span>
+                                              <a href="javascript:void(0)" title="联系客服">联系客服</a>
+                                            </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-bd">
+                                        <td>
+                                            <div class="goods-item">
+                                                <div class="p-img">
+                                                    <a href="javascript:void(0)" target="_blank">
+                                                        <img class="" src="../images/yf-tp.png" title="" width="60"
+                                                             height="60">
+                                                    </a>
+                                                </div>
+                                                <div class="p-msg">
+                                                    <div class="p-name">
+                                                        <a href="javascript:void(0)" class="a-link" target="_blank" title="">飞科(FLYCO)FS7805鼻毛修剪器
+                                                            电动鼻毛器 修鼻毛机
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="goods-number">
+                                                x1
+                                            </div>
+                                            <div class="goods-repair">
+                                                <a href="javascript:void(0)">
+                                                    1666
+                                                </a>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </td>
+                                        <td>
+                                            <div class="amount">
+                                                <strong>&yen;4966.00</strong> <br>
+                                                <span class="t-gray">（含快递0元）</span><br>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="operate">
+                                                <a href="javascript:void(0)">订单详情</a><br/>
+                                                <div class="btn-grad"><a href="javascript:void(0)"  target="_blank">已评价</a></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mc">
+                                <table class="order-tb ">
+                                    <tbody>
+                                    <tr class="tr-th">
+                                        <td colspan="3">
+                                            <span class="dealtime">2015-09-07 09:56:21</span>
+                                        <span class="number">订单号：
+                                            <a href="javascript:void(0)" target="_blank">10034140034</a>
+                                            </span>
+
+                                            <div class="tr-operate">
+                                            <span class="order-shop">
+                                              <span class="shop-txt">通讯</span>
+                                              <a href="javascript:void(0)" title="联系客服">联系客服</a>
+                                            </span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="tr-bd">
+                                        <td>
+                                            <div class="goods-item">
+                                                <div class="p-img">
+                                                    <a href="javascript:void(0)" target="_blank">
+                                                        <img class="" src="../images/yf-tp.png" title="" width="60"
+                                                             height="60">
+                                                    </a>
+                                                </div>
+                                                <div class="p-msg">
+                                                    <div class="p-name">
+                                                        <a href="javascript:void(0)" class="a-link" target="_blank" title="">飞科(FLYCO)FS7805鼻毛修剪器
+                                                            电动鼻毛器 修鼻毛机
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="goods-number">
+                                                x1
+                                            </div>
+                                            <div class="goods-repair">
+                                                <a href="javascript:void(0)">
+                                                    1666
+                                                </a>
+                                            </div>
+                                            <div class="clr"></div>
+                                        </td>
+                                        <td>
+                                            <div class="amount">
+                                                <strong>&yen;4966.00</strong> <br>
+                                                <span class="t-gray">（含快递0元）</span><br>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="operate">
+                                                <a href="javascript:void(0)">订单详情</a><br/>
+                                                <div class="btn-grad"><a href="javascript:void(0)"  target="_blank">已取消</a></div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+						<div id="pageControlbar"></div>
+						<div class="" style="margin-top: 5px;"></div>
+					</div>
+                </div>
+                <!-- 我的订单 end -->
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!--主要内容 end-->
+
+<!--购物指南 star-->
+<div class="wrap1200">
+    <div class="wrap1200 pull-left mt10">
+        <div class="gwznBox">
+            <dl>
+                <dt>购物指南</dt>
+                <dd>购物流程</dd>
+                <dd> 会员介绍</dd>
+                <dd>生活旅行/团购</dd>
+                <dd>常见问题</dd>
+                <dd>大家电</dd>
+                <dd>联系客服</dd>
+            </dl>
+            <dl>
+                <dt>配送方式</dt>
+                <dd>上门自提</dd>
+                <dd>211限时达</dd>
+                <dd>配送服务查询</dd>
+                <dd>配送费收取标准</dd>
+                <dd> 海外配送</dd>
+            </dl>
+            <dl>
+                <dt>支付方式</dt>
+                <dd>货到付款</dd>
+                <dd>在线支付</dd>
+                <dd>分期付款</dd>
+                <dd>邮局汇款</dd>
+                <dd> 公司转账</dd>
+            </dl>
+            <dl>
+                <dt>售后服务</dt>
+                <dd>售后政策</dd>
+                <dd>价格保护</dd>
+                <dd>退款说明</dd>
+                <dd>返修/退换货</dd>
+                <dd>取消订单</dd>
+            </dl>
+            <dl>
+                <dt>特色服务</dt>
+                <dd> 夺宝岛</dd>
+                <dd> DIY装机</dd>
+                <dd> 延保服务</dd>
+                <dd> 易购E卡</dd>
+                <dd> 易购通信</dd>
+            </dl>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+<!--购物指南 end-->
+<!--footer start-->
+<div class="wrap1200">
+    <div class="wrap1200 fl text-center footer mt20">
+        <ul class="fu-nav">
+            <li><a href="javascript:void(0)">关于我们</a></li>
+            <li>|</li>
+            <li><a href="javascript:void(0)">联系我们</a></li>
+            <li>|</li>
+            <li><a href="javascript:void(0)">关于我们</a></li>
+            <li>|</li>
+            <li><a href="javascript:void(0)">联系我们</a></li>
+            <li>|</li>
+            <li><a href="javascript:void(0)">关于我们</a></li>
+            <li>|</li>
+            <li><a href="javascript:void(0)">联系我们</a></li>
+            <li>|</li>
+            <li><a href="javascript:void(0)">关于我们</a></li>
+            <li>|</li>
+            <li><a href="javascript:void(0)">联系我们</a></li>
+        </ul>
+        <div class="text-center mt15">Copyright © 2004-2015</div>
+    </div>
+</div>
+<!--footer end-->
+
+</body>
+</html>

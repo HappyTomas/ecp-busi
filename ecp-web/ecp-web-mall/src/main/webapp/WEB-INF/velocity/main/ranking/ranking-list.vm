@@ -1,0 +1,61 @@
+#parse("/sys/sys_param.vm")
+<link rel="stylesheet" type="text/css" href="$CSS_PATH/rank.css">
+<script type="text/javascript" src="$!{BUSIJS_PATH}/main/ranking/ranking-list.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/main/main-content.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/main/main-cart-coll.js"></script>
+<div class="wrap1200">
+    <div id="content-c" class="search mt10">
+        <!--浏览记录 begin-->
+        <div id="ct-nav">
+
+            <div class="history-nav">
+                <div class="nav-inner ecp-component ranking-gds-hot" data-status="1" data-gds-size="5" data-tab-size="" data-place-id="6" data-place-width="100" data-place-height="100"  data-module="ecp-component/ranking/ranking-gds-hot">
+                    <h3 class="floor-name">
+                    </h3>
+                    <ul class = "floor-gds-data">
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!--浏览记录 end-->
+        
+        <div id="main" >
+            <div id="root-nav">
+                <ul class="breadcrumb sl-bread">
+                    <li class="fir"><a href="javascript:void(0)">全部商品</a> <span class="divider">&gt;</span></li>
+                    <li>
+                        <a  href="javascript:void(0)">
+                              $!{floorInfo.floorName}
+                        </a>
+                        #if($!{floorTab.tabName})<span class="divider">&gt;</span>#end
+                    </li>
+                   #if($!{floorTab.tabName})
+                    <li>
+                        <a href="javascript:void(0)">
+                              $!{floorTab.tabName}
+                        </a>
+					</li>
+                   #end
+                </ul>
+
+                <div class="sl-result">
+         		   <span class="snum">
+						共 <b>$!{gridResult.totalRow}</b>件商品
+          		   </span>
+                </div>
+            </div>
+            
+            
+            <!--    排行榜商品     分页数据     start      -->
+            <div class="sl-main" id= "ranking-pagebar">
+               #parse("/main/ranking/child/child-list.vm")
+            </div>
+            <!--    排行榜商品     分页数据     end      -->
+            
+            <!--     隐藏框             -->
+            <input type="hidden" id="placeId" name="placeId" value="$!{reqVO.placeId}" />
+            <input type="hidden" id="tabId" name="tabId" value="$!{reqVO.tabId}" />
+        </div>
+    </div>
+</div>

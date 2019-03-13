@@ -1,0 +1,295 @@
+#parse("sys/sys_param.vm")
+#parse("module/mod-upload.vm")
+#parse("module/mod-form.vm")
+<style type="text/css">
+.page-header {
+    margin: 0px;
+    margin-bottom: 10px;
+}
+.btn-wrap {
+	text-align: right;padding-bottom: 0px;padding-top: 10px;
+}
+div.page-header h3 {
+	font-size: 18px;font-weight: normal;
+}
+.closeRow{
+	cursor: pointer;
+}
+.formExtendArea{display: ;}
+</style>
+#parse("pageConfig/pageConfig/modular/common/common-head.vm")
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+<input type="hidden" id="propPreStr" value="$!{propPreStr}"/>
+
+<div class="well-searchForm">
+	##错误提示信息start.需要
+	<div class="hide alert error-msg" id="error-msg">
+	</div>
+	##错误提示信息end.需要
+	<div class="dialog-body">
+        <div class="dialog-content">
+            <form id="paramsSetForm" class="required-validate form-horizontal templateItemForms" data-url="$!{CONTEXT_PATH}/modular-dynamic/commonModularFormSave">
+    			<div class="dynamicFormMainBox">
+    				<input type="hidden" id="modularPageId" value="$!{pageId}"/>
+                	<input type="hidden" id="modularModularId" value="$!{modularId}"/>
+                	<input type="hidden" id="modularItemId" value="$!{itemId}"/>
+    				##标题======start
+    			    <div class="row-fluid">
+                        <div class="span7 formItem" >
+                            <div class="control-group">
+                                <label class="control-label">$!{attrs.get(1000).propName}：</label>
+                                <div class="controls">
+    								<input type="hidden" id="propValue" value="$!{propPre.get(1000).propValue}">
+    								<input type="hidden" id="propValueId" value="$!{propPre.get(1000).propValueId}">
+    								<input type="hidden" id="propId" value="$!{attrs.get(1000).id}">
+    								<input type="hidden" id="propItemId" value="$!{propPre.get(1000).id}"/>
+                                    <input type="text" maxlength="32" placeholder="8个字符以内展示效果最佳" class=" #if($!{attrs.get(1000).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);"   onkeyup="CommonModular.inputAssignMent(this);"/>
+                                </div>
+                            </div>
+                        </div>
+    			  	</div>
+    				##标题 ======end
+    				##楼层名称 ======start
+    				<div id="floor_nav_list">
+    					#foreach($prop in $props)
+    						#if($prop.propId == 1019)
+    							#foreach($propItemOne in $prop.itemPropValuePreRespDTOList)
+    								<div class="row-fluid floor_nav">
+                                        <div class="span7 formItem" >
+                                            <div class="control-group">
+                                                <label class="control-label">$!{attrs.get(1019).propName}：</label>
+                                                <div class="controls buildItem">
+                    								<input type="hidden" id="propValue" value="$!{propItemOne.propValue}">
+                    								<input type="hidden" id="propValueId" value="$!{propItemOne.propValueId}">
+                    								<input type="hidden" id="propId" value="$!{attrs.get(1019).id}">
+                    								<input type="hidden" id="propItemId" value="$!{propItemOne.id}"/>
+                    								<input type="hidden" id="sortNo" value="$!{propItemOne.sortNo}"/>
+                									<input type="hidden" id="remark" value="$!{propItemOne.remark}"/>
+                                                    <input type="text" maxlength="16" placeholder="5个字符以内展示效果最佳" value="$!{propItemOne.propValue}" class=" #if($!{attrs.get(1019).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);"   onkeyup="CommonModular.inputAssignMent(this);"/>
+                                                    <span class="help-inline"><a href="javascript:void(0);" class="releatLayer">关联楼层</a></span>
+                        							<i class="iconfont gray closeRow" title="移除导航"></i>
+                    							</div>
+                                            </div>
+                                        </div>
+                    			  	</div>
+    							#end	
+    						#end
+    					#end
+                    </div>
+    				
+    				<!-- 添加楼层按钮 -->
+            		<div class="row-fluid addFloorRow">
+            		    <div class="control-group">
+            		        <div class="controls">
+            		            <span class="btn" id="btnAddFloor" style="width: 70px;"><i class="icon-plus icon-white"></i>添加楼层</span>
+            		        </div>
+            		    </div>
+            		</div>
+    				##楼层名称 ======end
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="text-center">
+        <span id="btnSave" class="btn btn-info"><i class="icon-ok-sign icon-white"></i>确定</span>
+        <span id="btnCancel" class="btn"><i class="icon-reply icon-white"></i>取消</span>
+    </div>
+	
+	
+	<!-- 表单扩展操作区域，将需要放到手动生成位置的内容放在此处统一处理 -->	    
+	<div class="formExtendArea">
+		<div class="buildItems">
+			<!-- 动态楼层名称区 -->
+			<div class="controls buildItem">
+			    <input placeholder="请输入8字以内的字符" type="text" class="dynamicFormItem floorName input-medium required" name="">
+			    <span class="help-inline"><a href="javascript:void(0);" class="releatLayer">关联楼层</a></span>
+			    <i class="iconfont gray closeRow" title="移除导航"></i>
+			</div>		
+		</div>
+
+		<!-- 添加楼层按钮 -->
+		<div class="row-fluid addFloorRow">
+		    <div class="control-group">
+		        <div class="controls">
+		            <span class="btn" id="btnAddFloor" style="width: 70px;"><i class="icon-plus icon-white"></i>添加楼层</span>
+		        </div>
+		    </div>
+		</div>
+	</div>
+	<div id="floor_nav_add" style="display:none;">
+		<div class="row-fluid floor_nav">
+            <div class="span7 formItem" >
+                <div class="control-group">
+                    <label class="control-label">$!{attrs.get(1019).propName}：</label>
+                    <div class="controls buildItem">
+						<input type="hidden" id="id" value="">
+						<input type="hidden" id="propValue" value="">
+						<input type="hidden" id="propValueId" value="$!{propPre.get(1019).propValueId}">
+						<input type="hidden" id="propId" value="$!{attrs.get(1019).id}">
+						<input type="hidden" id="propItemId" value=""/>
+						<input type="hidden" id="sortNo" value=""/>
+						<input type="hidden" id="remark" value=""/>
+                        <input type="text" maxlength="16" placeholder="5个字符以内展示效果最佳" class=" #if($!{attrs.get(1019).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);"   onkeyup="CommonModular.inputAssignMent(this);"/>
+                        <span class="help-inline"><a href="javascript:void(0);" class="releatLayer">关联楼层</a></span>
+						<i class="iconfont gray closeRow" title="移除导航"></i>
+					</div>
+                </div>
+            </div>
+	  	</div>
+    </div>
+	<!-- 关联楼层的弹出层 -->
+	
+	<style>
+	.layout-type .item {  
+      height: 35px;
+      line-height: 35px;
+    }
+    .layout-type .item:before {
+       height: 35px;
+       line-height: 35px;
+    }
+    .layout-type input{
+       margin-top:10px;
+       margin-left: 5px;
+    }
+	</style>
+	<div class="floor-config-box" style="position: fixed;width:250px;">
+		
+	#foreach($layoutTypes in ${pageConfig})
+	<tr>
+		<td>
+			#foreach($layoutType in ${layoutTypes})
+			<div class="layout-type" data-layout-type-id ="$!{layoutType.id}" data-layout-item-size="$!{layoutType.layoutItemSize}" data-layout-show-type = "$!{layoutType.layoutShowType}"><!-- selected -->
+				#foreach($item in ${layoutType.layoutItemList})
+				<span class="item #if($velocityCount == ${layoutType.layoutItemList.size()}) last#end"><i>$item</i></span> 
+				#end
+			</div>
+			#end
+		</td>
+	</tr>
+	#end	
+		
+	#foreach($layout in $pageConfig)
+	  <!-- 布局 -->
+	  <div class="layoutAdmin-wrap">
+		 <div class="layoutAdmin hide" data-id ="$!{layout.id}" data-layout-type-id="$!{layout.layoutTypeId}" data-show-order="$!{layout.showOrder}">
+
+			<div class="admin-template">
+				<ul>
+					#foreach($itemRowNo in ${layout.layoutItemPreRespDTOMap.keySet()})
+					
+					<li class="fl item-list">
+						#set($itemList = $layout.layoutItemPreRespDTOMap.get($itemRowNo))
+						#foreach($item in $itemList)
+						#set($itemCount = $velocityCount)
+						<div class="emptyp blankp #if(${pageTypeId} != 2 && ${item.modularRespDTO.id} && ${item.modularRespDTO.id} != '') target #end" data-layout-id="$!{item.layoutId}" data-item-size="$!{item.itemSize}" data-item-no="$!{item.itemNo}">##如果布局项是空的  则上下两个布局项种子不具备模块拖入能力
+                               <i></i>
+                        </div>
+						<div class="item-admin #if(${item.modularRespDTO.id} && ${item.modularRespDTO.id} != '')tb-module #else emptyp #end target" data-id="$!{item.id}" data-layout-id="$!{item.layoutId}" data-modular-id = "$!{item.modularRespDTO.id}" data-item-size="$!{item.itemSize}" data-item-no="$!{item.itemNo}" data-row-no="$!{item.rowNo}" title="$!{item.itemSize}px">
+							#if(${item.modularRespDTO.modularName})
+								<span class="txt">$!{item.modularRespDTO.modularName}</span> 
+								<span class="close"></span> 
+							#else
+								<span>请拖入模块 </span>
+							#end
+						</div>
+						#if($!{itemCount} == $!{itemList.size()})##最后一个布局项尾部加布局项种子
+						<div class="emptyp blankp  #if(${pageTypeId} != 2 && ${item.modularRespDTO.id} && ${item.modularRespDTO.id} != '') target #end" data-layout-id="$!{item.layoutId}" data-item-size="$!{item.itemSize}" data-item-no="$!{item.itemNo}">
+                              <i></i>
+                        </div>
+						#end
+						#end
+					</li>
+					#end
+				</ul>
+			</div>
+		</div>
+	  </div>
+	  #end	
+		
+		
+	#foreach($!layout in $!pageConfig)
+		##悬浮层（楼层导航）的布局不加载
+		#if($layout.cmsLayoutTypeRespDTO.layoutShowType && 
+        	$layout.cmsLayoutTypeRespDTO.layoutShowType != "03" && 
+        	$layout.cmsLayoutTypeRespDTO.layoutShowType != "04")
+        	
+        	#set($widthStr="[")
+        	#set($prefix="")
+        	#foreach($!item in $!layout.layoutItemPreRespDTOList)
+        		#set($itemIndex = $velocityCount - 1)
+        		#if($itemIndex > 0)
+        			#set($prefix = ",")
+        		#end
+        		#set($widthStr = $widthStr + $prefix + $!item.itemSize)
+        	#end
+        	#set($widthStr = $widthStr + "]")
+	    <div class="layout-type" data-widths="$!{widthStr}">
+			#set($colIndex=${layout.layoutItemPreRespDTOMap.keySet().size()}) ## 最大列数
+			#set($rowIndex=1)												  ## 最大行数
+				## 根据列数要定义选项宽度   start
+				#set($itemWidth="width: 170px")
+				#if($colIndex==1)
+					#set($itemWidth="width: 170px")
+				#elseif($colIndex==2)
+					#set($itemWidth="width: 82.5px")
+				#elseif($colIndex==3)
+					#set($itemWidth="width: 53px")
+				#end
+				## 根据列数要定义选项宽度   end
+				#foreach($itemRowNo in ${layout.layoutItemPreRespDTOMap.keySet()})
+					#set($itemList = $layout.layoutItemPreRespDTOMap.get($itemRowNo))
+					#set($lsitSize=$itemList.size())
+					#foreach($item in $itemList)
+						#set($itemCount = $velocityCount)
+						#if($itemCount <2)  
+							##只输出第一行
+							#if($!{item.modularId})
+								<span class="item " style="$!{itemWidth};"><i><input type="radio" name="floorConfigSelect" value="$!{item.id}"/>$!{item.itemSize}</i></span>
+							#else
+								<span class="item " style="$!{itemWidth};"><i>&nbsp;</i></span>
+							#end
+						#end
+						#if($itemCount > $rowIndex)
+							#set($rowIndex=$itemCount)  ##重新定义最大行数
+						#end
+					#end
+				#end
+			#if($rowIndex >1)
+				#foreach($aa in [2 .. $rowIndex]) ## 从第二行开始循环
+		 </div>
+		 <div class="layout-type" data-widths="$!{widthStr}">
+					#foreach($itemRowNo in ${layout.layoutItemPreRespDTOMap.keySet()})
+    					#set($itemList = $layout.layoutItemPreRespDTOMap.get($itemRowNo))
+						#if($itemList.size()>= $aa )  ## 如果 该list 的个数 大于行号，显示该选项，否则补空白项
+        					#foreach($item in $itemList)
+        						#set($itemCount = $velocityCount)
+        						#if($itemCount == $aa )
+									#if($!{item.modularId})
+										<span class="item " style="$!{itemWidth};"><i><input type="radio" name="floorConfigSelect" value="$!{item.id}"/>$!{item.itemSize}</i></span>
+									#else
+										<span class="item " style="$!{itemWidth};"><i>&nbsp;</i></span>
+									#end
+        						#end
+        						#if($itemCount > $rowIndex)
+        							#set($rowIndex=$itemCount)
+        						#end
+							#end
+						#else
+							<span class="item " style="$!{itemWidth};"><i>&nbsp;</i></span>
+						#end
+    				#end
+				#end
+			#end
+	    </div>
+	    #end
+	#end
+	    <div class="text-center">
+			</br>
+	        <span class="btn btn-info" id="btnFloorConfigOk"><i class="icon-ok-sign icon-white"></i>确定</span>
+	        <span class="btn" id="btnFloorConfigCancel"><i class="icon-remove-sign icon-white"></i>取消</span>
+	    </div>
+	</div>
+</div>

@@ -1,0 +1,228 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/public/IMReady.js"></script>
+<script type="text/javascript">
+
+var getOrderCart = function(){
+ 	$.eAjax({
+		url : $webroot + '/order/getcartcount',
+		async : true,
+		type : "post",
+		dataType : "json",
+		success : function(data) {
+			if (data == null) {
+				return;
+			} else {
+			$(".cartCount").html("("+data+")");
+			}
+		}
+	});
+}
+
+/*获取用户待付款订单数量*/
+var getPayOrdCnt = function() {
+	$.eAjax({
+		url : GLOBAL.WEBROOT + '/buyercenter/payordercnt',
+		dataType : "json",
+		success : function(result) {
+			$("#payOrdCnt").html('<b>(' + result.payOrdCnt + ')</b>');
+		}
+	});
+}
+
+/*获取用户未读站内消息数量*/
+var getBuyMsgInsite = function(){
+	$.eAjax({
+		url : GLOBAL.WEBROOT + '/msginsite/msginsitecnt',
+		dataType : "json",
+		success : function(result) {
+			$("#msgInsite").html('(' + result.msgCnt + ')');
+			if(result.msgcustflag == "1"){
+				$("#selmsgInsite").html('(' + result.msgCnt1 + ')');
+			}
+		}
+	});
+}
+
+//鼠标移动事件：刷新消息数量
+function mOver()
+{
+	
+	getBuyMsgInsite();
+}
+
+$(function(){
+	//每次加载页面时，重新获取一次。
+	getPayOrdCnt();
+	getOrderCart();
+	getBuyMsgInsite();
+	
+	
+	var page = $("#page").val();
+	if(page){
+		$(".nav-bar li a").removeClass("active");
+		$("#nav_"+page).addClass("active");
+	}else{
+		$(".nav-bar li a").removeClass("active");
+		$(".nav-bar li a").first().addClass("active");
+	}
+})
+
+//登录拼上当前链接
+function pls_login(){
+	var currUrl = window.location.pathname;
+	tempUrl = currUrl.replace("/ecp-web-mall-point","").replace("/ecp-web-mall","").replace("/ecp-web-point","");
+	currUrl = tempUrl + window.location.search;
+	var url = GLOBAL.WEBROOT + '/login/page' + '?Referer=' + currUrl;
+	window.location.href = encodeURI(encodeURI(url));
+}
+</script>
+
+<!--header-->
+<div id="header" class="clearfix">
+    <!--top-->
+    <div class="wrap100 clearfix">
+        <!--top-->
+        <div class="wrap1200 clearfix">
+            <ul class="top">
+				#custInfo()
+				#if(${cust.staffCode})
+    				<li class="item">
+                    <a href="$!{CONTEXT_PATH}/buyercenter/index">$!{cust.staffCode}<a> <a href="$!{CONTEXT_PATH}/login/logout">退出</a>
+    				</li>
+    			#else
+    				<li class="item">
+    				<a href="javascript:void(0);" onClick="pls_login();" class="c-orange">您好，请登录</a>
+                    <a href="$!{CONTEXT_PATH}/login/register">免费注册</a>
+    				</li>
+    			#end
+                <li class="item">|</li>
+                <li class="item" id="carGus"><a href="$!{CONTEXT_PATH}/order/cart/list"><i class="shop-cart"></i>购物车<span class="red ecp-component cartCount"></span></a></li>
+                <li class="item">|</li>
+                #if($!{cust.custShopFlag}=='1')
+                <li class="item dorpdown">
+                    <div>
+                        <a href="#" onmouseover="mOver()"><i class="shop-cart shop-infon"></i>
+                            	我的消息 <i class="caret-down"></i></a>
+                        <div class="spacer"></div>
+                    </div>
+
+                    <div class="topdwon downc topdown-width" >
+                        <ul>
+                            <li><a href="$!{CONTEXT_PATH}/msginsite/msgindex">买家消息 <span class="red" id="msgInsite">(0)</span></a></li>
+                            <li><a href="$!{CONTEXT_PATH}/seller/msginsite/msgindex">卖家消息 <span class="red" id="selmsgInsite">(0)</span></a></li>
+                        </ul>
+
+                    </div>
+
+                </li>
+                #else
+                  <li class="item dorpdown">
+                    <div>
+                        <a href="$!{CONTEXT_PATH}/msginsite/msgindex" onmouseover="mOver()"><i class="shop-cart shop-infon"></i>
+                            	我的消息 <span class="red" id="msgInsite">(0)</span></a>
+                    </div>
+                </li>
+                #end
+              
+                <li class="item">|</li>
+                <li class="item"><a href="$!{CONTEXT_PATH}/order/all">我的订单</a></li>
+                <li class="item">|</li>
+                <li class="item dorpdown">
+                    <a href="$!{CONTEXT_PATH}/buyercenter/index">个人中心<i class="caret-down"></i></a>
+                    <div class="spacer"></div>
+                    <div class="topdwon downc">
+                        <div class="clearfix">
+                            <div class="pull-left font14"> 
+								 #if(${cust.staffCode})
+    								$!{cust.staffCode}
+    							#else
+    								<a href="javascript:void(0);" onClick="pls_login();">您好，请登录！</a>
+								#end
+							</div>
+							<!--
+                            <div class="pull-right">
+								<a href="#"> 优惠劵<span class="red"><b>10 </b></span></a>|<a href="#"> 消息</a>
+							</div>
+							-->
+                        </div>
+                        <ul class="largn-list mt10">
+                            <li><a href="$CONTEXT_PATH/order/pay">待付款订单<span class="red" id="payOrdCnt"><b>(0)</b></span></a></li>
+                            <li class="text-right"><a href="${CONTEXT_PATH}/favgoods" >我的收藏&nbsp;&nbsp;&nbsp;</a></li>
+                            <!--
+							<li><a href="#">退换货<span class="red"><b>1 </b> </span> </a></li>
+                            -->
+                            <li><a href="$!{CONTEXT_PATH}/information/index">我的资料 </a></li>
+							<li class="text-right"><a href="${CONTEXT_PATH}/buyerscore/index">我的积分&nbsp;&nbsp;&nbsp;</a></li>
+                            <li><a href="${CONTEXT_PATH}/buyeracct/index">我的账户</a></li>
+                            
+                        </ul>
+                    </div>
+                </li>
+                <li class="item">|</li>
+				#set($ifShopShow=${paramTools.getSysConfigCode("SHOP_SHOW_LOCK")})
+				#if($ifShopShow==1)
+				  #if(${cust.custShopFlag}=='1')
+				    <li class="item"><a href="$!{CONTEXT_PATH}/seller/shopdashboard/index">卖家中心</a></li>
+					<li class="item">|</li>
+					#else
+					<li class="item"><a href="$!{CONTEXT_PATH}/sign/companysign/remind">申请入驻</a></li>
+					<li class="item">|</li>
+					#end
+				#end
+			
+				<li class="item dorpdown">
+					客户服务<i class="caret-down"></i>
+					<div class="spacer"></div>
+					<div class="topdwon downc">
+                        <ul class="largn-list mt10">
+                            <li>
+								<a href="javascript:void(0);" class="imUrl" target="_blank">
+									<span class="imInfo" style="display:none">
+										${cust.staffCode}#0#0
+									</span>
+									在线客服
+						     	</a>
+							</li>
+                        </ul>
+                    </div>
+				</li>
+				
+                <li class="item">|</li>
+			
+                <li class="item dorpdown">
+                    <a href="#">手机商城<i class="caret-down"></i></a>
+                    <div class="spacer"></div>
+                    <div class="topdwon downc pcpo" >
+                        <div class="pchat-w">
+                            <img src="$IMAGE_PATH/pchat.png" alt="商城客户端二维码"/>
+                            <p>商城客户端</p>
+                            <div class="pwicon">
+                                <span><i class="pchat-i"></i>iphone</span>
+                                <span><i class="pchat-i pchat-i01"></i>Android</span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="item">|</li>
+                <li class="item"><a href="javascript:void(0)" class = "ecpaddfavorite">添加收藏夹</a></li>
+                <li class="item">|</li>
+                <li class="item"><a href="#siteInfo('4')">#siteName('4')</a></li>
+            </ul>
+        </div>
+		
+		<!--搜索框组件嵌入-->
+		#set($ifShopShow=${paramTools.getSysConfigCode("SHOP_SHOW_LOCK")})
+		#if($ifShopShow==1)
+			#if($!{shopId})
+				#parse("/shop/shopIndex/shop-search-box.vm")
+			#else
+				#parse("/search/search-box.vm")
+			#end
+		#else
+			#parse("/search/search-box-sshop.vm")
+		#end
+    	
+    	<!--商城栏目 -->
+    	#parse("/main/main-site-column.vm")
+        
+    </div>
+</div>

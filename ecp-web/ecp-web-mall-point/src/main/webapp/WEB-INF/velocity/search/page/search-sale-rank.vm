@@ -1,0 +1,49 @@
+#parse("/sys/sys_param.vm")
+<div class="head">
+    兑换排行榜
+</div>
+<div class="list">
+	#if(!$rankGdsList || $!{rankGdsList.size()}==0)
+		<div class="pro-empty">
+                           「暂无兑换商品」
+		</div>
+	#else
+	#set($i = 1)
+        #foreach($gdsItem in $rankGdsList)
+        	
+            <div class="item">
+                <i class="st st-two">$i</i>
+                <div class="pimg">
+                    <a href="$!{CONTEXT_PATH}/gdspointdetail/${gdsItem.id}-${gdsItem.skuInfo.id}" target="_blank">
+                        <img width="150" height="150" src="$!{gdsItem.mainPic.uRL}" alt=""/>
+                    </a>
+                </div>
+                <div class="pinfo">
+                    <p class="pname">
+                        <a href="$!{CONTEXT_PATH}/gdspointdetail/${gdsItem.id}-${gdsItem.skuInfo.id}" target="_blank">$gdsItem.gdsName</a>
+                    </p>
+                    <p class="pjf">
+                        <label>所需积分：</label>
+                        #if($gdsItem.scores)
+                            #foreach($list in $!{gdsItem.scores})
+                                #if($!{list.ifDefault}=='1')
+                                    #if($!{list.score} && $!{list.price})
+                                        <span>$!{list.score}积分+#money($!{list.price})</span>
+                                    #elseif($!{list.score})
+                                        <span>$!{list.score}积分</span>
+                                    #elseif($!{list.price})
+                                        <span>#money($!{list.price})</span>
+                                    #end
+                                #end
+                            #end
+    					#else
+                            <span>0积分</span>
+                        #end
+                    </p>
+                </div>
+            </div>
+            #set($i = $i + 1)
+    	#end
+	#end
+</div>
+

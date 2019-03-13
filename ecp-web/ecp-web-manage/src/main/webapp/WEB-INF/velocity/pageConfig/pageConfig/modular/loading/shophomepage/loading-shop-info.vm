@@ -1,0 +1,57 @@
+#set($ifShopFullName = "")##店铺全称
+#set($ifLinkPerson = "")##联系人
+#set($ifLinkPhone = "")##联系方式
+#set($ifGoodsBaby = "")##宝贝
+#set($ifRate = "")##好评率
+#set($ifSales = "")##销量
+#set($ifCollectShop = "")##收藏店铺
+#set($componentMethod = "")##组件标识符  只有其有值才会执行组件
+#set($crossItemObj = "")
+##判断是否是发布页面
+#if($!{pagePub})
+	#set($crossItemObj = $!{crossItem.itemPropPubRespDTOList})
+#else
+	#set($crossItemObj = $!{crossItem.itemPropPreRespDTOList})
+#end
+##判断是否为编辑页且是否配置属性   如果为编辑页且没有配置属性  则将类名设为空  使其无法激活组件方法  但依然会引入组件  使局部刷新可实现
+#if(true != $!{pageEdit} || ($!{crossItemObj} && $!{crossItemObj.size()}>0))
+	#set($componentMethod = $!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentMethod})
+#end
+
+#foreach($prop in $crossItemObj)
+	#if($!{prop.propId}=="1011")##店铺信息展示
+    	##判断是否是发布页面
+    	#if($!{pagePub})
+    		#set($propObj = $!{prop.itemPropValuePubRespDTOList})
+    	#else
+    		#set($propObj = $!{prop.itemPropValuePreRespDTOList})
+    	#end
+    	#foreach($!{propMulti} in$propObj)
+    		##  true  表示显示
+    		#if($!{propMulti.propValueId}=="1" && $!{propMulti.propValue}=="1")
+    			#set($ifShopFullName = "true")
+    		#elseif($!{propMulti.propValueId}=="2"  && $!{propMulti.propValue}=="1")
+    			#set($ifLinkPerson = "true")
+    		#elseif($!{propMulti.propValueId}=="3"  && $!{propMulti.propValue}=="1")
+    			#set($ifLinkPhone = "true")
+    		#elseif($!{propMulti.propValueId}=="4"  && $!{propMulti.propValue}=="1")
+    			#set($ifGoodsBaby = "true")
+    		#elseif($!{propMulti.propValueId}=="5"  && $!{propMulti.propValue}=="1")
+    			#set($ifRate = "true")
+    		#elseif($!{propMulti.propValueId}=="6"  && $!{propMulti.propValue}=="1")
+    			#set($ifSales = "true")
+    		#elseif($!{propMulti.propValueId}=="7"  && $!{propMulti.propValue}=="1")
+    			#set($ifCollectShop = "true")
+    		#end
+    	#end
+	#end
+#end
+#set($reqAttr = " data-shop-id='$!{pageInfo.shopId}' data-ifShopFullName='$!{ifShopFullName}' data-ifLinkPerson='$ifLinkPerson' data-ifLinkPhone='$ifLinkPhone' data-ifGoodsBaby='$ifGoodsBaby' data-ifRate='$ifRate' data-ifSales='$ifSales' data-ifCollectShop='$ifCollectShop'")
+<div class="shopTpl-lNav shopTpl-info ecp-component $!{componentMethod}" $reqAttr data-component-method="$!{componentMethod}" data-module="$!{crossItem.modularRespDTO.modularComponentRespDTO.componentRespDTO.componentUrl}">
+	<div class="modular-body">
+	    #if(!$!{componentMethod} || '' == $!{componentMethod})
+			##判断是否已经配置了模板相应的属性
+		   	#parse("/pageConfig/pageConfig/edit/nodata/modular-nodata.vm")
+		#end
+	</div>
+</div>

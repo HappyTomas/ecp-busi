@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+        ">
+
+	<!-- 最终一致性事务：事务管理器 -->
+	<bean id="transactionManagerDeltaIndex" class="com.distribute.tx.eventual.TransactionManager"
+		  init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionManager" />
+		<property name="sequence" ref="sequence" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="participant" value="deltaIndex_group_main" />
+		<!-- <property name="transactionChecker" ref="transactionChecker" /> -->
+	</bean>
+
+	<!-- 最终一致性事务：子事务监听 -->
+	<bean id="transactionListenerManagerSub1" class="com.distribute.tx.eventual.TransactionListenerManager"
+		  init-method="init">
+		<property name="cc" ref="cc" />
+		<property name="listener" ref="deltaTransactionMessageSub1SV" />
+		<property name="publisher" ref="transactionPublisher" />
+		<property name="confPath" value="/com/zengshi/paas/tx/transactionListenerManager" />
+		<property name="participant" value="deltaIndex_group_sub1" />
+		<property name="transactionList">
+			<list>
+				<value>topic-search-deltaIndex</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

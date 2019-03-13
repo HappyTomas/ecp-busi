@@ -1,0 +1,692 @@
+<!--发送的普通消息-->
+<script type="text/html" id="selfRecord">
+    <li class="chat-item chat-right">
+		<p class="info">
+            <span class="time">{{time}}</span>
+            <span class="name">{{uName}}</span>
+        </p>
+        <div class="msg-wrap">
+            <div class="msg">
+                <div class="">{{#msg}}</div>
+            </div>
+        </div>
+    </li>
+</script>
+<!--接收的普通消息-->
+<script type="text/html" id="record">
+    <li class="chat-item">
+		<p class="info">
+            <span class="time">{{time}}</span>
+            <span class="name">{{uName}}</span>
+        </p>
+        <div class="msg-wrap">
+            <div class="msg">
+                <div class="">{{#msg}}</div>
+            </div>
+        </div>
+    </li>
+</script>
+
+<!--接收的商品消息-->
+<script type="text/html" id="recordGds">
+    <li class="chat-item {{chatSide}}">
+		<p class="info">
+            <span class="time">{{time}}</span>
+            <span class="name">{{uName}}</span>
+        </p>
+        <div class="msg-wrap">
+            <div class="msg msg-pro">
+                <a class="clearfix" href="{{url}}" target="_blank">
+                    <span class="p-img">
+                        <img src="{{gdsImage}}" height="60" width="60">
+                    </span>
+                    <p class="p-txt">
+                        <span class="p-name">商品名称：{{gdsName}}</span>
+                        <span>商品价格：{{gdsPrice}}</span>
+                    </p>
+                </a>
+            </div>
+        </div>
+    </li>
+</script>
+
+
+<!--接收的订单消息1-->
+<script type="text/html" id="recordOrder1">
+    <li class="chat-item {{chatSide}}">
+		<p class="info">
+            <span class="time">{{time}}</span>
+            <span class="name">{{uName}}</span>
+        </p>
+        <div class="msg-wrap">
+            <div class="msg msg-pro">
+                <a class="clearfix jsOrderOpen" paraval={{ordId}} href="javascript:void(0);">
+                    <span class="p-img">
+                        <img src="{{ordImage}}" height="60" width="60">
+                    </span>
+                    <p class="p-txt">
+                        <span>订单编号：{{ordId}}</span>
+                        <span>订单金额：{{price}}</span>
+                        <span>下单时间：{{createTime}}</span>
+                    </p>
+                </a>
+            </div>
+        </div>
+    </li>
+</script>
+
+<!--接收的订单消息-->
+<script type="text/html" id="recordOrder">
+    <li class="chat-item {{chatSide}}">
+		<p class="info">
+            <span class="time">{{time}}</span>
+            <span class="name">{{uName}}</span>
+        </p>
+        <div class="msg-wrap">
+            <div class="msg msg-pro">
+                <a class="clearfix" href="{{url}}" target="_blank">
+                    <span class="p-img">
+                        <img src="{{ordImage}}" height="60" width="60">
+                    </span>
+                    <p class="p-txt">
+                        <span>订单编号：{{ordId}}</span>
+                        <span>订单金额：{{price}}</span>
+                        <span>下单时间：{{createTime}}</span>
+                    </p>
+                </a>
+            </div>
+        </div>
+    </li>
+</script>
+
+<!-- 商品面板 beign-->
+<script type="text/html" id="proDetailTpl">
+    <div class="pro-detail">
+        <div class="pic">
+            <img src="../images/pro/pro01.jpg" alt=""/>
+        </div>
+        <div class="item">
+            <a class="name" href="#">
+                {{proName}}
+            </a>
+        </div>
+        <div class="item">
+            <label>价&nbsp;&nbsp;格：</label>
+
+            <div class="item-con">
+                  <span class="price">
+                      <i class="yen">¥</i>
+                      <em class="netPrice">1699.00</em>
+                  </span>
+            </div>
+        </div>
+        <div class="item">
+            <label>送&nbsp;&nbsp;至：</label>
+
+            <div class="item-con">
+                送 至：福建福州市鼓楼区
+            </div>
+        </div>
+        <div class="item">
+            <label>库&nbsp;&nbsp;存：</label>
+
+            <div class="item-con">
+                暂无货 点到货通知，到货第一时间通知您!
+            </div>
+        </div>
+        <div class="item">
+            <label><label>运&nbsp;&nbsp;费：</label></label>
+
+            <div class="item-con">
+                免运费
+            </div>
+        </div>
+        <div class="item btn-wrap">
+            <span class="ui-btn">加入购物车</span>
+        </div>
+    </div>
+</script>
+<!-- 商品面板 end-->
+
+
+<!--聊天记录面板 beign-->
+<script type="text/html" id="chatPanelTpl">
+    <div class="chat-header">
+        <div class="head-inner">
+		{{if custPic!=''}}
+            <img src="{{custPic}}" class="chatImg" alt=""/>
+        {{/if}}
+            <span class="name">{{uName}}<span style="font-size:16px"  id="hotlineSerName"> {{serName}}
+            </span></span>
+             <div class="sens" style="display:none">
+                <span class="sens-tip"></span>
+				<div class="sens-btn btn-signed">
+                    <span>敏感</span>
+                    <div class="sens-dtip">
+                        <p class="tit">敏感内容</p>
+                        <div class="cont">取消订单数量超过10个，系统自动标记为敏感客户！</div>
+                    </div>
+                </div>
+                <div class="sens-btn btn-unsined">
+                    <span class="sensBtn">标记为敏感客户</span>
+                </div>
+            </div>
+            <p class="in-state"></p>
+		{{if transfer==1}}
+			<div class="trans">
+                 <p class="">转出</p>
+            </div>
+            <ul class="trans-list">
+            </ul>
+		{{/if}}
+        </div>
+
+    </div>
+    <div class="chat-history">
+        <span class="micon scTop"></span>
+        <span class="micon scBottom"></span>
+
+        <div class="notice" style="display:none;">
+            <p>
+              
+            </p>
+			 <i id="noticeClose" class="micon"></i>
+        </div>
+        <div class="chat-record">
+            <ul class="list">
+                <li class="ser-more" style="display:none;">
+                    查看更多信息
+                </li>
+                <li class="hst-tip" style="display:none;">
+                    <div class="text"> 以上是历史消息</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</script>
+<!--聊天记录面板 end-->
+
+<!--聊天记录面板 beign-->
+<script type="text/html" id="hisMgsTpl">
+    <div class="msg-head">消息记录</div>
+    <ul class="nav nav-tabs" id="msgTab">
+		{{if isWho == 'serv'}}
+        <li class="active"><a href="#msgPanel{{chatId}}2">聊天记录共享</a></li>
+		{{else}}
+		<li class="active"><a href="#msgPanel{{chatId}}" >全部</a></li>
+		{{/if}}
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="msgPanel{{chatId}}">
+            <div class="msgPanelCont">
+                 
+              <!--   <div class="time">
+                    <div class="txt">2016-07-19</div>
+                </div>
+                <ul class="msg-list">
+                    <li>　 　　
+                        <p>
+                            <span class="uName">用户名称</span>
+                            <span class="cTime">10:10:57</span>
+                        </p>
+
+                        <div class="cont">用户发送了一条消息，用户发送了一条消息。</div>
+                    </li>
+                </ul>-->
+            </div>
+            <div class="msg-search">
+                <label>查询：</label>
+                <input class="input-mini" id="message" type="text" style="margin-left: -20px;"/>
+                <span class="sbtn">确定</span>
+				<div class="msg-page">
+                    <button class="page-first" title="第一页"></button>
+                    <button class="page-prev" title="上一页"></button>
+                    <button class="page-next" title="下一页"></button>
+                    <button class="page-last" title="最后一页"></button>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="msgPanel{{chatId}}2">
+		 <div class="msgPanelCont">
+           <!-- <div class="time">
+                    <div class="txt">2016-07-19</div>
+                </div>
+                <ul class="msg-list">
+                    <li>　 　　
+                        <p>
+                            <span class="uName">用户名称</span>
+                            <span class="cTime">10:10:57</span>
+                        </p>
+
+                        <div class="cont">用户发送了一条消息，用户发送了一条消息。</div>
+                    </li>
+                </ul>-->
+			</div>
+			  <div class="msg-search">
+                <label>查询：</label>
+                <input class="input-mini" id="gx" type="text" style="margin-left: -20px;"/>
+                <span class="sbtn">确定</span>
+				 <div class="msg-page">
+                    <button class="page-first" title="第一页"></button>
+                    <button class="page-prev" title="上一页"></button>
+                    <button class="page-next" title="下一页"></button>
+                    <button class="page-last" title="最后一页"></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+<!--聊天记录面板 end-->
+
+<script type="text/html" id="winItemTpl">
+     <!--聊天记录 -->
+    <div class="chat-hisMgs"></div>
+    <!--右边信息 -->
+    <div class="chat-side comLan-tab">
+	<div class="nav-scroll">
+        <span class="comLan-prev disabled">上一页</span>
+        <span class="comLan-next disabled">下一页</span>
+        <div class="nav-wrap">
+            <ul class="nav nav-tabs" id="sideTab{{chatId}}">
+              
+    			 {{if place=='00'}}
+    			    <li class="active"><a href="#proPanel{{chatId}}">
+    				   历史订单
+    				   </a>
+    				</li>
+    			 {{else if place=='02'}}
+    			    <li class="active"><a href="#proPanel{{chatId}}">
+    				     商品信息
+    					   </a>
+    				</li>
+    				{{if model!='cust'}}
+    					<li ><a href="#allordPanel{{chatId}}">
+    					   	历史订单
+    					   </a>
+    					</li>
+    				{{/if}} 
+    				
+    			 {{else if place=='01'}}
+    			    <li class="active"><a href="#proPanel{{chatId}}">
+    				  订单信息
+    				   </a>
+    				</li>
+    				{{if model!='cust'}}
+    					<li ><a href="#allordPanel{{chatId}}">
+    					   历史订单
+    					   </a>
+    					</li>
+    				{{/if}} 
+    			{{/if}}
+    			
+                <li><a href="#quePanel{{chatId}}">常见问题</a></li>
+    			{{if model=='serv'}}
+    				<li><a href="#phrasebookPanel{{chatId}}">常用语</a></li>
+    			{{/if}} 
+            </ul>
+		</div>
+    </div>
+	
+        <div class="tab-content">
+		 {{if place=='00' || place=='01' || place=='02'}}
+          <div class="tab-pane pro-panel active" id="proPanel{{chatId}}"> </div>
+          {{if model!='cust'}}
+          	<div class="tab-pane allord-panel" id="allordPanel{{chatId}}"> </div>
+          {{/if}} 
+		  <div class="tab-pane que-panel" id="quePanel{{chatId}}"> </div>
+		{{else}}
+            <div class="tab-pane que-panel active"  id="quePanel{{chatId}}">
+            </div>
+		{{/if}}
+			{{if model=='serv'}}
+				<div class="tab-pane comLan-tab" id="phrasebookPanel{{chatId}}"></div>
+			{{/if}}
+        </div>
+    </div>
+
+    <!--聊天主面板 -->
+    <div class="chat-main">
+        <div class="main-inner">
+            <div id="chatMain{{chatId}}"></div>
+            <!--输入框-->
+            <div class="chat-in">
+				{{if 'cust'!=model }}
+					<span class="clkReply"><i class="micon"></i>快捷回复</span>
+				{{/if}} 
+                <span class="clkRecord"><i class="micon"></i>聊天记录</span>
+				{{if model=='cust'}}
+					<span class="clkEval" style="left:57px"><i class="micon"></i></span>
+				{{/if}} 
+                <div class="input-wrap">
+                    <div id="editor{{chatId}}" style="width: 100%"></div>
+                </div>
+                <div class="input-bottom">
+				    <a href="#" class="parse-help"><i class="micon micon-help"></i><span class="im-txt">怎么发截图？</span></a>
+                    <div class="btn-group">
+                      <!--  <span class="ui-btn bGray">关闭</span>-->
+                        <div class="btn-keysel">
+                            <button class="ui-btn" id="sendMsg" >确认</button>
+                            <span class="arrow">| <i></i></span>
+                            <ul class="sel-list">
+							  <li class="checked"><i>√</i>按Ctrl+Enter发送</li>
+                              <li><i>√</i>按Enter发送</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="evalTpl">
+	<input type="hidden" id="satisfyType" />
+    <input type="hidden" id="notSatisfyType" />
+	<div class="eval-box">
+        <p class="title">
+            <span class="text">请对此次服务进行评价</span>
+        </p>
+        <div class="eval-score star3" data-score="star3">
+            <span class="child0" title="0"></span>
+            <span class="child1" title="25"></span>
+            <span class="child2" title="50"></span>
+            <span class="child3" title="75"></span>
+			<span class="child4" title="100"></span>
+        </div>
+        <div class="eval-result" style="display:none;">
+            <p class="tit">
+    			不满意类型
+            </p>
+            <div class="eval-in">
+                <ul class="reason">
+                    <li notSatisfyType="1">业务流程不满意</li>
+                    <li notSatisfyType="2">服务不满意</li>
+                </ul>
+                <div class="user-say">
+                    <textarea id="notSatisfyReason" maxlength="128" placeholder="业务流程不满意原因"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="eval-submit">
+            <span class="starResult">满意</span>
+            <a id="btnEvaluate" class="ui-btn" href="javascript:;">提交</a>
+        </div>
+    </div>
+</script>
+
+<!-- 会话列表item -->
+<script type="text/html" id="chatItemTpl">
+
+	<li class="item" id="chatItem{{chatId}}" sessionId="{{sessionId}}">
+        <img class="head" src="{{custPic}}" alt=""/>
+
+        <p class="name">{{uName}}</p>
+
+        <p class="tip"></p>
+      
+		<span class="mNum" style="display:none;"></span>
+		 <i class="close"></i>
+    </li>
+	 
+</script>
+<!-- 常见问题  -->
+<script type="text/html" id="proQueTpl">
+
+  <div class="pro-que">
+	   <ul class="qlist">
+	   #foreach($vo in $faqList)
+	   		<li>
+			   <a href="$!{vo.artUrl}" target="_blank">$!{vo.artName}</a>
+			</li>
+	   #end
+	   </ul>
+	   <input type="hidden" id="imProjectUrl" value="#translate('IM_PROJECT_URL','IM_PROJECT_URL')" />
+</div>
+</script>
+
+<!-- 用户信息 -->
+<script type="text/html" id="staffInfoTpl">
+	<table class="usr-tb">
+	<tr>
+        <th>用户名：</th>
+        <td>{{staffCode}}</td>
+    </tr>
+	<tr>
+        <th>等级：</th>
+        <td>{{custLevelName}}</td>
+    </tr>
+	<tr>
+        <th>固定电话：</th>
+        <td>{{telephone}}</td>
+    </tr>
+    <tr>
+        <th>昵称：</th>
+        <td>{{nickname}}</td>
+    </tr>
+    <tr>
+        <th>性别：</th>
+        <td>
+		{{if gender=='F'}}
+		 女
+		{{else if gender=='M'}}
+		  男
+		{{else}}
+		秘密
+	 {{/if}}
+		
+		</td>
+    </tr>
+    <tr>
+        <th>邮箱：</th>
+      <td>{{email}}</td>
+    </tr>
+ </table>
+</script>
+
+<!-- 常用语 弹框内容 begin -->
+<script type="text/html" id="addLanTpl">
+    <div class="lan-in" id="lanEditor{{chatId}}">
+        <p class="lan-tit">快捷短语提示</p>
+    </div>
+    <div class="lan-dfoot">
+        <div class="finner">
+            <div class="lan-select-wrap">
+                <span class="lb">选择分组</span>
+                <div class="lan-select">
+                    <div class="selected" value={{selectedId}}>{{selectedName}}</div>
+                    <span class="micon-arrow"></span>
+                    <div class="select-body">
+                        <div class="inner">
+                            <ul class="selects">
+                                {{each phraseGroup as group i}}
+                                	<li value={{group.id}} {{if i==1}}class="current"{{/if}}>{{group.groupName}}</li>
+								{{/each}}
+                            </ul>
+                            <div class="new-gp new-gp-clk">
+                                <i class="micon-new2"></i>新增分组
+                            </div>
+                            <div class="new-gp new-gp-txt">
+                                <input type="text" class="in" maxlength="50">
+                                <span class="ui-btn group-save">添加</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="btns">
+				<span class="ui-btn group-item-save">保存</span>
+                <span class="ui-btn group-item-cancel">取消</span>
+            </div>
+        </div>
+    </div>
+</script>
+<!-- 常用语 弹框内容 end -->
+
+<!-- 卖家备注 begin -->
+<script type="text/html" id="sellerMsgTpl">
+  <div class="dlg-bg">
+    <div class="form-horizontal">
+      <div class="control-group">
+      	  <input type="hidden" id="ordId" name="ordId" value="{{ordId}}" />
+          <div class="">
+              <textarea maxlength="128" id="sellerMsg" name="sellerMsg"  style="padding:5px 10px;width:485px"  cols="60" rows="4"  class="input-large sellerMsg" placeholder="暂无内容">{{sellerMsg}}</textarea>
+          </div>
+          <span style="color:#ccc;font-size: 14px;">不能超过128字</span>
+      </div>
+  </div>
+  <div class="lan-dfoot">
+      <div class="finner">
+          <div class="btns">
+              <span class="ui-btn saveSellerMsg">保存</span>
+              <span class="ui-btn btn-canter">取消</span>
+          </div>
+      </div>
+  </div>
+  </div>
+   
+</script>
+<!-- 卖家备注 end -->
+
+<script type="text/html" id="lanListTpl">
+<div class="pro-lan">
+    <ul class="nav nav-tabs">
+        <li class="active"><a href="#comLan01{{chatId}}">个人常用语</a></li>
+        <li><a href="#comLan02{{chatId}}">公用常用语</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane active" id="comLan01{{chatId}}">
+            <div class="chat-lan-group-wrap">
+                <div class="chat-lan-group">
+				{{each phrasebookGroup as group i}}
+                    <div class="item" groupId={{group.id}}>
+                        <div class="hd hd01 groupA title-overflow" data-hd="1">
+							<p>{{group.groupName}}</p>
+                            <i class="micon-down"></i>
+                        </div>
+                        <div class="bd">
+                            <ul class="chat-lans">
+							{{each group.items as item i}}
+                                <li class="lan lanItemA">
+                                    <div class="txt title-overflow">
+                                        <a href="javascript:void(0);" itemId="{{item.id}}">{{#item.itemText}}</a>
+                                    </div>
+                                    <i class="micon-more"></i>
+                                </li>
+							{{/each}}
+                            </ul>
+                        </div>
+                    </div>
+				{{/each}}
+                </div>
+                <a href="javascript:void(0);" class="lan-new"><i class="micon-new"></i>新建</a>
+            </div>
+        </div>
+        <div class="tab-pane" id="comLan02{{chatId}}">
+			<div class="chat-lan-group-wrap">
+                <div class="chat-lan-group">
+				{{each phrasebookGroupPub as group i}}
+                    <div class="item" groupId={{group.id}}>
+                        <div class="hd hd01 title-overflow" data-hd="1">
+							<p>{{group.groupName}}</p>
+                            <i class="micon-down"></i>
+                        </div>
+                        <div class="bd">
+                            <ul class="chat-lans">
+							{{each group.items as item i}}
+                                <li class="lan lanItemGroup">
+                                    <div class="txt title-overflow">
+                                        <a href="javascript:void(0);" itemId="{{item.id}}">{{#item.itemText}}</a>
+                                    </div>
+                                    <i class="micon-more"></i>
+                                </li>
+							{{/each}}
+                            </ul>
+                        </div>
+                    </div>
+				{{/each}}	
+				</div>
+       		</div>
+        </div>
+    </div>
+</div>
+</script>
+
+<!-- 常用语分组 -->
+<script type="text/html" id="lanGroupTpl">
+    <div class="item" groupId={{id}}>
+        <div class="hd hd01 groupA title-overflow" data-hd="1">
+			<p>{{groupName}}</p>
+            <i class="micon-down"></i>
+        </div>
+        <div class="bd">
+            <ul class="chat-lans">
+    		</ul>
+        </div>
+    </div>
+</script>
+<!-- 常用语 -->
+<script type="text/html" id="lanItemTpl">
+	<li class="lan lanItemA">
+        <div class="txt title-overflow">
+            <a href="javascript:void(0);" itemId="{{id}}">{{#itemText}}</a>
+        </div>
+        <i class="micon-more"></i>
+    </li>
+</script>
+<!-- 受理转入 -->
+<script type="text/html" id="transTpl1">
+    <span class="trans-tit"></span>
+    <div class="info">客服【{{srcCsaName}}】希望将用户【{{userName}}】转给您受理，是否接受？</div>
+    <div class="lan-dfoot">
+        <div class="finner">
+            <div class="btns">
+                <span class="ui-btn trans-item-save in" sessionId={{sessionId}} userCode={{userCode}}>接受</span>
+                <span class="ui-btn btn-canter trans-item-cancel in">拒绝</span>
+            </div>
+        </div>
+    </div>
+</script>
+<!-- 客服转出 -->
+<script type="text/html" id="transTpl2">
+    <span class="trans-tit tit-out"></span>
+    <div class="info">您确定要将用户【{{userName}}】的咨询转给客服【{{csaName}}】处理吗？</div>
+    <div class="lan-dfoot">
+        <div class="finner">
+            <div class="btns">
+                <span class="ui-btn trans-item-save out">转出</span>
+                <span class="ui-btn btn-canter trans-item-cancel out">取消</span>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="sensitiveSetTpl">
+  <div class="dlg-bg">
+    <div class="form-horizontal">
+      <div class="control-group">
+          <label class="control-label" ><span style="color:red">*</span>敏感类型：</label>
+          <div class="controls">
+             <select  name="sensitiveType" class="input-large sensitiveType">
+                    #listParam('CUST_SENSITIVE_TYPE')
+                </select>
+          </div>
+      </div>
+      <div class="control-group">
+          <label class="control-label" ><span style="color:red">*</span>填写备注：</label>
+          <div class="controls">
+              <textarea maxlength="128" name="sensitiveDesc"  style="padding:5px 10px;width:224px"  cols="30" rows="3"  class="input-large sensitiveDesc"></textarea>
+          </div>
+      </div>
+  </div>
+  <div class="lan-dfoot">
+      <div class="finner">
+          <div class="btns">
+              <span class="ui-btn saveSens">保存</span>
+              <span class="ui-btn btn-canter">取消</span>
+          </div>
+      </div>
+  </div>
+  </div>
+   
+</script>

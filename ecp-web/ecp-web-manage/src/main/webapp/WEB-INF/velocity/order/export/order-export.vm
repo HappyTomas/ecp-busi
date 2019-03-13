@@ -1,0 +1,25 @@
+
+<script type="text/javascript">
+
+    $(function(){
+        var exportInfo = '${exportInfo}';
+        var exportType = '${exportType}';
+        var p = JSON.parse(exportInfo);
+        $.gridLoading({"message": "正在生成...."});//遮罩
+        $.eAjax({
+            url: GLOBAL.WEBROOT + '/order/'+ exportType,
+            data: p,
+            success: function (result) {
+                $.gridUnLoading();
+                if (result && result.resultFlag == 'ok') {
+                    window.location.href = GLOBAL.WEBROOT + '/order/export/'+result.fileId;
+                } else {
+                    eDialog.alert(result.resultMsg);
+                }
+            },
+            failure: function () {
+                $.gridUnLoading();
+            }
+        });
+    });
+</script>

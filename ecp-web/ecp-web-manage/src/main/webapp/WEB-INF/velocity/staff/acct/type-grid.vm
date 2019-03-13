@@ -1,0 +1,71 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/acct/type-grid.js?version=$!{JS_VERSION}" ></script>
+
+	    <form id="updateForm" action="${CONTEXT_PATH}/acct/type/updatepage" method="POST">
+		    <input type="hidden"  name="acctType" id="acctType"/> 
+			<input type="hidden"  name="adaptType" id="adaptType"/>
+			<input type="hidden"  name="shopId" id="shopId"/>
+        </form>
+
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">资金适用店铺：</label>
+						<div class="controls">
+							<select name="shopId" enabled>
+								<option value="">--请选择--</option>
+								#shoplist($!{dto.shopId})
+                            </select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">资金类型：</label>
+						<div class="controls">
+							<select name="acctType" enabled>
+								<option value="">--请选择--</option>
+								#listParam('STAFF_ACCT_TYPE')
+                            </select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">资金适用类型：</label>
+						<div class="controls">
+							<select name="adaptType" enabled>
+								<option value="">--请选择--</option>
+								#listParam('STAFF_ADAPT_TYPE')
+                            </select>
+						</div>
+					</div>
+				</div>
+				
+				<div class="clear"></div>
+			</div>
+	
+			</form>
+		</div>
+		
+		
+		<div class="row-fluid" style="margin-bottom: 10px;">
+				<a class="btn" id="btnFormAdd" href="javascript:void();"><i class="icon-plus"></i> 新增</a>
+				<a class="btn" id="btnFormUpdate" href="javascript:void();"><i class="icon-edit"></i> 修改</a>
+				<a class="btn btn-danger" id="btnFormDeleteSubmit" href="javascript:void();"><i class="icon-trash"></i> 删除</a>
+			
+			<div class="pull-right">
+				<a class="btn btn-info" id="btnFormSearch" href="javascript:void();"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn" id="btnFormReset" href="javascript:void();"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+	
+	
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>
+			
+		

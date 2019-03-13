@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.PayShopCfgLogMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.PayShopCfgLog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="PAY_WAY" property="payWay" jdbcType="VARCHAR" />
+    <result column="PAY_WAY_NAME" property="payWayName" jdbcType="VARCHAR" />
+    <result column="MERC_CODE" property="mercCode" jdbcType="VARCHAR" />
+    <result column="BRANCH_ID" property="branchId" jdbcType="VARCHAR" />
+    <result column="CIS_NO" property="cisNo" jdbcType="VARCHAR" />
+    <result column="SHOP_ACCOUNT" property="shopAccount" jdbcType="VARCHAR" />
+    <result column="PAYEE_ACCOUNT" property="payeeAccount" jdbcType="VARCHAR" />
+    <result column="PAYEE_NAME" property="payeeName" jdbcType="VARCHAR" />
+    <result column="POS_ID" property="posId" jdbcType="VARCHAR" />
+    <result column="CER_NAME" property="cerName" jdbcType="VARCHAR" />
+    <result column="KEY_NAME" property="keyName" jdbcType="VARCHAR" />
+    <result column="CER_PASSWORD" property="cerPassword" jdbcType="VARCHAR" />
+    <result column="USE_FLAG" property="useFlag" jdbcType="VARCHAR" />
+    <result column="SHOW_ORDER" property="showOrder" jdbcType="INTEGER" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="LOG_TIME" property="logTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, SHOP_ID, PAY_WAY, PAY_WAY_NAME, MERC_CODE, BRANCH_ID, CIS_NO, SHOP_ACCOUNT, PAYEE_ACCOUNT, 
+    PAYEE_NAME, POS_ID, CER_NAME, KEY_NAME, CER_PASSWORD, USE_FLAG, SHOW_ORDER, CREATE_STAFF, 
+    CREATE_TIME, UPDATE_STAFF, UPDATE_TIME, LOG_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.PayShopCfgLogCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_pay_shop_cfg_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       limit #{limitClauseStart,jdbcType=INTEGER}, #{limitClauseCount,jdbcType=INTEGER}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_pay_shop_cfg_log
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_pay_shop_cfg_log
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.PayShopCfgLogCriteria" >
+    delete from t_pay_shop_cfg_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.PayShopCfgLog" >
+    insert into t_pay_shop_cfg_log (ID, SHOP_ID, PAY_WAY, 
+      PAY_WAY_NAME, MERC_CODE, BRANCH_ID, 
+      CIS_NO, SHOP_ACCOUNT, PAYEE_ACCOUNT, 
+      PAYEE_NAME, POS_ID, CER_NAME, 
+      KEY_NAME, CER_PASSWORD, USE_FLAG, 
+      SHOW_ORDER, CREATE_STAFF, CREATE_TIME, 
+      UPDATE_STAFF, UPDATE_TIME, LOG_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{payWay,jdbcType=VARCHAR}, 
+      #{payWayName,jdbcType=VARCHAR}, #{mercCode,jdbcType=VARCHAR}, #{branchId,jdbcType=VARCHAR}, 
+      #{cisNo,jdbcType=VARCHAR}, #{shopAccount,jdbcType=VARCHAR}, #{payeeAccount,jdbcType=VARCHAR}, 
+      #{payeeName,jdbcType=VARCHAR}, #{posId,jdbcType=VARCHAR}, #{cerName,jdbcType=VARCHAR}, 
+      #{keyName,jdbcType=VARCHAR}, #{cerPassword,jdbcType=VARCHAR}, #{useFlag,jdbcType=VARCHAR}, 
+      #{showOrder,jdbcType=INTEGER}, #{createStaff,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{logTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.PayShopCfgLog" >
+    insert into t_pay_shop_cfg_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY,
+      </if>
+      <if test="payWayName != null" >
+        PAY_WAY_NAME,
+      </if>
+      <if test="mercCode != null" >
+        MERC_CODE,
+      </if>
+      <if test="branchId != null" >
+        BRANCH_ID,
+      </if>
+      <if test="cisNo != null" >
+        CIS_NO,
+      </if>
+      <if test="shopAccount != null" >
+        SHOP_ACCOUNT,
+      </if>
+      <if test="payeeAccount != null" >
+        PAYEE_ACCOUNT,
+      </if>
+      <if test="payeeName != null" >
+        PAYEE_NAME,
+      </if>
+      <if test="posId != null" >
+        POS_ID,
+      </if>
+      <if test="cerName != null" >
+        CER_NAME,
+      </if>
+      <if test="keyName != null" >
+        KEY_NAME,
+      </if>
+      <if test="cerPassword != null" >
+        CER_PASSWORD,
+      </if>
+      <if test="useFlag != null" >
+        USE_FLAG,
+      </if>
+      <if test="showOrder != null" >
+        SHOW_ORDER,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="logTime != null" >
+        LOG_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="payWay != null" >
+        #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="payWayName != null" >
+        #{payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="mercCode != null" >
+        #{mercCode,jdbcType=VARCHAR},
+      </if>
+      <if test="branchId != null" >
+        #{branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="cisNo != null" >
+        #{cisNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAccount != null" >
+        #{shopAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeAccount != null" >
+        #{payeeAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeName != null" >
+        #{payeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="posId != null" >
+        #{posId,jdbcType=VARCHAR},
+      </if>
+      <if test="cerName != null" >
+        #{cerName,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName != null" >
+        #{keyName,jdbcType=VARCHAR},
+      </if>
+      <if test="cerPassword != null" >
+        #{cerPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="useFlag != null" >
+        #{useFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="showOrder != null" >
+        #{showOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logTime != null" >
+        #{logTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.PayShopCfgLogCriteria" resultType="java.lang.Long" >
+    select count(*) from t_pay_shop_cfg_log
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_pay_shop_cfg_log
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.payWay != null" >
+        PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payWayName != null" >
+        PAY_WAY_NAME = #{record.payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.mercCode != null" >
+        MERC_CODE = #{record.mercCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.branchId != null" >
+        BRANCH_ID = #{record.branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cisNo != null" >
+        CIS_NO = #{record.cisNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopAccount != null" >
+        SHOP_ACCOUNT = #{record.shopAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payeeAccount != null" >
+        PAYEE_ACCOUNT = #{record.payeeAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="record.payeeName != null" >
+        PAYEE_NAME = #{record.payeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.posId != null" >
+        POS_ID = #{record.posId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cerName != null" >
+        CER_NAME = #{record.cerName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.keyName != null" >
+        KEY_NAME = #{record.keyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cerPassword != null" >
+        CER_PASSWORD = #{record.cerPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.useFlag != null" >
+        USE_FLAG = #{record.useFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.showOrder != null" >
+        SHOW_ORDER = #{record.showOrder,jdbcType=INTEGER},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.logTime != null" >
+        LOG_TIME = #{record.logTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_pay_shop_cfg_log
+    set ID = #{record.id,jdbcType=INTEGER},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      PAY_WAY = #{record.payWay,jdbcType=VARCHAR},
+      PAY_WAY_NAME = #{record.payWayName,jdbcType=VARCHAR},
+      MERC_CODE = #{record.mercCode,jdbcType=VARCHAR},
+      BRANCH_ID = #{record.branchId,jdbcType=VARCHAR},
+      CIS_NO = #{record.cisNo,jdbcType=VARCHAR},
+      SHOP_ACCOUNT = #{record.shopAccount,jdbcType=VARCHAR},
+      PAYEE_ACCOUNT = #{record.payeeAccount,jdbcType=VARCHAR},
+      PAYEE_NAME = #{record.payeeName,jdbcType=VARCHAR},
+      POS_ID = #{record.posId,jdbcType=VARCHAR},
+      CER_NAME = #{record.cerName,jdbcType=VARCHAR},
+      KEY_NAME = #{record.keyName,jdbcType=VARCHAR},
+      CER_PASSWORD = #{record.cerPassword,jdbcType=VARCHAR},
+      USE_FLAG = #{record.useFlag,jdbcType=VARCHAR},
+      SHOW_ORDER = #{record.showOrder,jdbcType=INTEGER},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      LOG_TIME = #{record.logTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.PayShopCfgLog" >
+    update t_pay_shop_cfg_log
+    <set >
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="payWay != null" >
+        PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      </if>
+      <if test="payWayName != null" >
+        PAY_WAY_NAME = #{payWayName,jdbcType=VARCHAR},
+      </if>
+      <if test="mercCode != null" >
+        MERC_CODE = #{mercCode,jdbcType=VARCHAR},
+      </if>
+      <if test="branchId != null" >
+        BRANCH_ID = #{branchId,jdbcType=VARCHAR},
+      </if>
+      <if test="cisNo != null" >
+        CIS_NO = #{cisNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopAccount != null" >
+        SHOP_ACCOUNT = #{shopAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeAccount != null" >
+        PAYEE_ACCOUNT = #{payeeAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="payeeName != null" >
+        PAYEE_NAME = #{payeeName,jdbcType=VARCHAR},
+      </if>
+      <if test="posId != null" >
+        POS_ID = #{posId,jdbcType=VARCHAR},
+      </if>
+      <if test="cerName != null" >
+        CER_NAME = #{cerName,jdbcType=VARCHAR},
+      </if>
+      <if test="keyName != null" >
+        KEY_NAME = #{keyName,jdbcType=VARCHAR},
+      </if>
+      <if test="cerPassword != null" >
+        CER_PASSWORD = #{cerPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="useFlag != null" >
+        USE_FLAG = #{useFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="showOrder != null" >
+        SHOW_ORDER = #{showOrder,jdbcType=INTEGER},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="logTime != null" >
+        LOG_TIME = #{logTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.PayShopCfgLog" >
+    update t_pay_shop_cfg_log
+    set SHOP_ID = #{shopId,jdbcType=INTEGER},
+      PAY_WAY = #{payWay,jdbcType=VARCHAR},
+      PAY_WAY_NAME = #{payWayName,jdbcType=VARCHAR},
+      MERC_CODE = #{mercCode,jdbcType=VARCHAR},
+      BRANCH_ID = #{branchId,jdbcType=VARCHAR},
+      CIS_NO = #{cisNo,jdbcType=VARCHAR},
+      SHOP_ACCOUNT = #{shopAccount,jdbcType=VARCHAR},
+      PAYEE_ACCOUNT = #{payeeAccount,jdbcType=VARCHAR},
+      PAYEE_NAME = #{payeeName,jdbcType=VARCHAR},
+      POS_ID = #{posId,jdbcType=VARCHAR},
+      CER_NAME = #{cerName,jdbcType=VARCHAR},
+      KEY_NAME = #{keyName,jdbcType=VARCHAR},
+      CER_PASSWORD = #{cerPassword,jdbcType=VARCHAR},
+      USE_FLAG = #{useFlag,jdbcType=VARCHAR},
+      SHOW_ORDER = #{showOrder,jdbcType=INTEGER},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      LOG_TIME = #{logTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

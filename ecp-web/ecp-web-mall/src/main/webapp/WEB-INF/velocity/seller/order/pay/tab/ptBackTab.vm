@@ -1,0 +1,58 @@
+
+#parse("sys/sys_param.vm")
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/manage/extend/ebc.date.js" ></script>
+<script type="text/javascript" src="$BUSIJS_PATH/seller/order/pay/ptBackTab.js?version=$!{JS_VERSION}" ></script>
+
+<div >
+
+                <table class="seller-table">
+                    <thead>
+                    <tr>
+                        <td style="width: 150px">订单编号</td>
+                        <td style="width: 150px">退款编号</td>
+                        <td>退款金额</td>
+                        <td>退款时间</td>
+                        <td>退款数量</td>
+                        <td>退款类型名称</td>
+						<td>是否整个主订单退货</td>
+						<td>商城</td>
+						<td>退货原因</td>
+						<td>退货原因备注</td>
+						<td>供货商处理意见描述</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+					#if(!$bankPayListPage.list || $bankPayListPage.list.size() == 0)
+            	       <tr class="fav-opt">
+            			<td colspan="12">
+            			        #if(!$msg)很遗憾，暂无数据#else $!msg #end
+            			</td>
+            		</tr>
+            	    #end
+            		#foreach ($record in $bankPayListPage.list)
+                    <tr>
+                        <td>$!{record.orderId}</td>
+						<td>$!{record.backId}</td>
+						<td>#moneyNum($!{record.backMoney})</td>
+						<td>$!date.format('yyyy-MM-dd HH:mm:ss',$!{record.applyTime})</td>
+						<td>$!{record.num}</td>
+                        <td>#translate('ORD_BACK_MONEY_TYPE',$!{record.backTypeName})</td>
+						#if($!{record.isEntire} == '0')
+							<td>是</td>
+						#else
+							<td>否</td>
+						#end
+						<td>#siteInfoURL($!{record.siteId})</td>
+						<td>#translate('ORD_BACK_GDS_TYPE', $!{record.status})</td>
+						<td>$!{record.backDesc}</td>
+						<td>$!{record.checkDesc}</td>
+                    </tr>
+					#end
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div class="row-fluid">
+                    <div id="pageControlbar" class="ecppage" data-total-page="$!{bankPayListPage.totalPage}" data-total-row="$!{bankPayListPage.totalRow}" data-page-size="$!{bankPayListPage.pageSize}" data-page-number="$!{bankPayListPage.pageNumber}" data-status="begin"></div>
+                </div>
+</div>

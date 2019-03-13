@@ -1,0 +1,35 @@
+ 	#parse("/sys/sys_param.vm")
+ <link href="$!{CSS_PATH}/seller-reset.css" type="text/css" rel="stylesheet">
+ <script type="text/javascript" src="$!{BUSIJS_PATH}/seller/goods/gdsCollectShop/list/collect-list.js?version=$!{JS_VERSION}" ></script>
+ <table class="seller-table" style="margin-top: 15px">
+        <input type="hidden" id="gdsId" value="$!{gdsId}"/>            
+		 <input type="hidden" id="skuId" value="$!{skuId}"/>      
+                        <thead style="font-size:12px">
+                        <tr >
+                            <td>收藏人</td>
+                   
+                            <td>收藏时间</td>
+                    
+                         
+                        </tr>
+                        </thead>
+                        <tbody style="font-size:12px">
+            				#if($!{gdsCollectList.getResult().size()} <= 0)
+                    		<tr><td colspan='12'>没有符合条件的记录。</td></tr>
+							#end
+							 	#foreach($gdsCollect in $gdsCollectList.getResult())
+							
+                        <tr>
+                            <td> $!gdsCollect.staffName</td>
+                            <td>$!date.format('yyyy-MM-dd HH:mm:ss',$!gdsCollect.collectionTime) </td>
+							
+                        </tr>
+                        #end
+                        </tbody>
+                    </table>
+			
+	<div class="fav-opt clearfix" >
+                        <div class="row-fluid">
+                			<div id="pageControlbar" class="ecppage" data-total-page="${gdsCollectList.pageCount}" data-total-row="${gdsCollectList.count}" data-page-size="${gdsCollectList.pageSize}" data-page-number="${gdsCollectList.pageNo}" data-status="begin"></div>
+                		</div>
+                    </div>

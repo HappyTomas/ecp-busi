@@ -1,0 +1,539 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.OrdInvoiceTaxMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdInvoiceTax" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="INVOICE_TITLE" property="invoiceTitle" jdbcType="VARCHAR" />
+    <result column="TAXPAYER_NO" property="taxpayerNo" jdbcType="VARCHAR" />
+    <result column="CONTACT_INFO" property="contactInfo" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="BANK_NAME" property="bankName" jdbcType="VARCHAR" />
+    <result column="ACCT_INFO" property="acctInfo" jdbcType="VARCHAR" />
+    <result column="TAKER_PHONE" property="takerPhone" jdbcType="VARCHAR" />
+    <result column="TAKER_EMAIL" property="takerEmail" jdbcType="VARCHAR" />
+    <result column="TAKER_PROVINCE" property="takerProvince" jdbcType="VARCHAR" />
+    <result column="TAKER_CITY" property="takerCity" jdbcType="VARCHAR" />
+    <result column="TAKER_COUNTY" property="takerCounty" jdbcType="VARCHAR" />
+    <result column="TAKER_ADDRESS" property="takerAddress" jdbcType="VARCHAR" />
+    <result column="VFS_ID1" property="vfsId1" jdbcType="VARCHAR" />
+    <result column="VFS_ID2" property="vfsId2" jdbcType="VARCHAR" />
+    <result column="VFS_ID3" property="vfsId3" jdbcType="VARCHAR" />
+    <result column="VFS_ID4" property="vfsId4" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ORDER_ID, SHOP_ID, INVOICE_TITLE, TAXPAYER_NO, CONTACT_INFO, PHONE, BANK_NAME, 
+    ACCT_INFO, TAKER_PHONE, TAKER_EMAIL, TAKER_PROVINCE, TAKER_CITY, TAKER_COUNTY, TAKER_ADDRESS, 
+    VFS_ID1, VFS_ID2, VFS_ID3, VFS_ID4, STATUS, CREATE_STAFF, CREATE_TIME, UPDATE_STAFF, 
+    UPDATE_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.OrdInvoiceTaxCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_ord_invoice_tax
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ord_invoice_tax
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from t_ord_invoice_tax
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdInvoiceTaxCriteria" >
+    delete from t_ord_invoice_tax
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.OrdInvoiceTax" >
+    insert into t_ord_invoice_tax (ID, ORDER_ID, SHOP_ID, 
+      INVOICE_TITLE, TAXPAYER_NO, CONTACT_INFO, 
+      PHONE, BANK_NAME, ACCT_INFO, 
+      TAKER_PHONE, TAKER_EMAIL, TAKER_PROVINCE, 
+      TAKER_CITY, TAKER_COUNTY, TAKER_ADDRESS, 
+      VFS_ID1, VFS_ID2, VFS_ID3, 
+      VFS_ID4, STATUS, CREATE_STAFF, 
+      CREATE_TIME, UPDATE_STAFF, UPDATE_TIME
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, 
+      #{invoiceTitle,jdbcType=VARCHAR}, #{taxpayerNo,jdbcType=VARCHAR}, #{contactInfo,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{bankName,jdbcType=VARCHAR}, #{acctInfo,jdbcType=VARCHAR}, 
+      #{takerPhone,jdbcType=VARCHAR}, #{takerEmail,jdbcType=VARCHAR}, #{takerProvince,jdbcType=VARCHAR}, 
+      #{takerCity,jdbcType=VARCHAR}, #{takerCounty,jdbcType=VARCHAR}, #{takerAddress,jdbcType=VARCHAR}, 
+      #{vfsId1,jdbcType=VARCHAR}, #{vfsId2,jdbcType=VARCHAR}, #{vfsId3,jdbcType=VARCHAR}, 
+      #{vfsId4,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{createStaff,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.OrdInvoiceTax" >
+    insert into t_ord_invoice_tax
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="invoiceTitle != null" >
+        INVOICE_TITLE,
+      </if>
+      <if test="taxpayerNo != null" >
+        TAXPAYER_NO,
+      </if>
+      <if test="contactInfo != null" >
+        CONTACT_INFO,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME,
+      </if>
+      <if test="acctInfo != null" >
+        ACCT_INFO,
+      </if>
+      <if test="takerPhone != null" >
+        TAKER_PHONE,
+      </if>
+      <if test="takerEmail != null" >
+        TAKER_EMAIL,
+      </if>
+      <if test="takerProvince != null" >
+        TAKER_PROVINCE,
+      </if>
+      <if test="takerCity != null" >
+        TAKER_CITY,
+      </if>
+      <if test="takerCounty != null" >
+        TAKER_COUNTY,
+      </if>
+      <if test="takerAddress != null" >
+        TAKER_ADDRESS,
+      </if>
+      <if test="vfsId1 != null" >
+        VFS_ID1,
+      </if>
+      <if test="vfsId2 != null" >
+        VFS_ID2,
+      </if>
+      <if test="vfsId3 != null" >
+        VFS_ID3,
+      </if>
+      <if test="vfsId4 != null" >
+        VFS_ID4,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceTitle != null" >
+        #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="taxpayerNo != null" >
+        #{taxpayerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactInfo != null" >
+        #{contactInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="acctInfo != null" >
+        #{acctInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="takerPhone != null" >
+        #{takerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="takerEmail != null" >
+        #{takerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="takerProvince != null" >
+        #{takerProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="takerCity != null" >
+        #{takerCity,jdbcType=VARCHAR},
+      </if>
+      <if test="takerCounty != null" >
+        #{takerCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="takerAddress != null" >
+        #{takerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="vfsId1 != null" >
+        #{vfsId1,jdbcType=VARCHAR},
+      </if>
+      <if test="vfsId2 != null" >
+        #{vfsId2,jdbcType=VARCHAR},
+      </if>
+      <if test="vfsId3 != null" >
+        #{vfsId3,jdbcType=VARCHAR},
+      </if>
+      <if test="vfsId4 != null" >
+        #{vfsId4,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdInvoiceTaxCriteria" resultType="java.lang.Long" >
+    select count(*) from t_ord_invoice_tax
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_ord_invoice_tax
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.invoiceTitle != null" >
+        INVOICE_TITLE = #{record.invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taxpayerNo != null" >
+        TAXPAYER_NO = #{record.taxpayerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactInfo != null" >
+        CONTACT_INFO = #{record.contactInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.phone != null" >
+        PHONE = #{record.phone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.bankName != null" >
+        BANK_NAME = #{record.bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acctInfo != null" >
+        ACCT_INFO = #{record.acctInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takerPhone != null" >
+        TAKER_PHONE = #{record.takerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takerEmail != null" >
+        TAKER_EMAIL = #{record.takerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takerProvince != null" >
+        TAKER_PROVINCE = #{record.takerProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takerCity != null" >
+        TAKER_CITY = #{record.takerCity,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takerCounty != null" >
+        TAKER_COUNTY = #{record.takerCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.takerAddress != null" >
+        TAKER_ADDRESS = #{record.takerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vfsId1 != null" >
+        VFS_ID1 = #{record.vfsId1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vfsId2 != null" >
+        VFS_ID2 = #{record.vfsId2,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vfsId3 != null" >
+        VFS_ID3 = #{record.vfsId3,jdbcType=VARCHAR},
+      </if>
+      <if test="record.vfsId4 != null" >
+        VFS_ID4 = #{record.vfsId4,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_ord_invoice_tax
+    set ID = #{record.id,jdbcType=INTEGER},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      INVOICE_TITLE = #{record.invoiceTitle,jdbcType=VARCHAR},
+      TAXPAYER_NO = #{record.taxpayerNo,jdbcType=VARCHAR},
+      CONTACT_INFO = #{record.contactInfo,jdbcType=VARCHAR},
+      PHONE = #{record.phone,jdbcType=VARCHAR},
+      BANK_NAME = #{record.bankName,jdbcType=VARCHAR},
+      ACCT_INFO = #{record.acctInfo,jdbcType=VARCHAR},
+      TAKER_PHONE = #{record.takerPhone,jdbcType=VARCHAR},
+      TAKER_EMAIL = #{record.takerEmail,jdbcType=VARCHAR},
+      TAKER_PROVINCE = #{record.takerProvince,jdbcType=VARCHAR},
+      TAKER_CITY = #{record.takerCity,jdbcType=VARCHAR},
+      TAKER_COUNTY = #{record.takerCounty,jdbcType=VARCHAR},
+      TAKER_ADDRESS = #{record.takerAddress,jdbcType=VARCHAR},
+      VFS_ID1 = #{record.vfsId1,jdbcType=VARCHAR},
+      VFS_ID2 = #{record.vfsId2,jdbcType=VARCHAR},
+      VFS_ID3 = #{record.vfsId3,jdbcType=VARCHAR},
+      VFS_ID4 = #{record.vfsId4,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.OrdInvoiceTax" >
+    update t_ord_invoice_tax
+    <set >
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceTitle != null" >
+        INVOICE_TITLE = #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="taxpayerNo != null" >
+        TAXPAYER_NO = #{taxpayerNo,jdbcType=VARCHAR},
+      </if>
+      <if test="contactInfo != null" >
+        CONTACT_INFO = #{contactInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="bankName != null" >
+        BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      </if>
+      <if test="acctInfo != null" >
+        ACCT_INFO = #{acctInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="takerPhone != null" >
+        TAKER_PHONE = #{takerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="takerEmail != null" >
+        TAKER_EMAIL = #{takerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="takerProvince != null" >
+        TAKER_PROVINCE = #{takerProvince,jdbcType=VARCHAR},
+      </if>
+      <if test="takerCity != null" >
+        TAKER_CITY = #{takerCity,jdbcType=VARCHAR},
+      </if>
+      <if test="takerCounty != null" >
+        TAKER_COUNTY = #{takerCounty,jdbcType=VARCHAR},
+      </if>
+      <if test="takerAddress != null" >
+        TAKER_ADDRESS = #{takerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="vfsId1 != null" >
+        VFS_ID1 = #{vfsId1,jdbcType=VARCHAR},
+      </if>
+      <if test="vfsId2 != null" >
+        VFS_ID2 = #{vfsId2,jdbcType=VARCHAR},
+      </if>
+      <if test="vfsId3 != null" >
+        VFS_ID3 = #{vfsId3,jdbcType=VARCHAR},
+      </if>
+      <if test="vfsId4 != null" >
+        VFS_ID4 = #{vfsId4,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.OrdInvoiceTax" >
+    update t_ord_invoice_tax
+    set ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      INVOICE_TITLE = #{invoiceTitle,jdbcType=VARCHAR},
+      TAXPAYER_NO = #{taxpayerNo,jdbcType=VARCHAR},
+      CONTACT_INFO = #{contactInfo,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      BANK_NAME = #{bankName,jdbcType=VARCHAR},
+      ACCT_INFO = #{acctInfo,jdbcType=VARCHAR},
+      TAKER_PHONE = #{takerPhone,jdbcType=VARCHAR},
+      TAKER_EMAIL = #{takerEmail,jdbcType=VARCHAR},
+      TAKER_PROVINCE = #{takerProvince,jdbcType=VARCHAR},
+      TAKER_CITY = #{takerCity,jdbcType=VARCHAR},
+      TAKER_COUNTY = #{takerCounty,jdbcType=VARCHAR},
+      TAKER_ADDRESS = #{takerAddress,jdbcType=VARCHAR},
+      VFS_ID1 = #{vfsId1,jdbcType=VARCHAR},
+      VFS_ID2 = #{vfsId2,jdbcType=VARCHAR},
+      VFS_ID3 = #{vfsId3,jdbcType=VARCHAR},
+      VFS_ID4 = #{vfsId4,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <insert id="insertBatch" parameterType="com.zengshi.ecp.order.dao.model.OrdInvoiceTax" >
+    insert into t_ord_invoice_tax (ID, 
+      ORDER_ID, SHOP_ID, INVOICE_TITLE, 
+      TAXPAYER_NO, CONTACT_INFO, PHONE, 
+      BANK_NAME, ACCT_INFO, TAKER_PHONE, 
+      TAKER_EMAIL, TAKER_PROVINCE, TAKER_CITY, 
+      TAKER_COUNTY, TAKER_ADDRESS, VFS_ID1, 
+      VFS_ID2, VFS_ID3, VFS_ID4, 
+      STATUS, CREATE_STAFF, CREATE_TIME, 
+      UPDATE_STAFF, UPDATE_TIME)
+    values <foreach collection="list" item="item" index="index" separator="," > (#{item.id,jdbcType=INTEGER}, 
+      #{item.orderId,jdbcType=VARCHAR}, #{item.shopId,jdbcType=INTEGER}, #{item.invoiceTitle,jdbcType=VARCHAR}, 
+      #{item.taxpayerNo,jdbcType=VARCHAR}, #{item.contactInfo,jdbcType=VARCHAR}, #{item.phone,jdbcType=VARCHAR}, 
+      #{item.bankName,jdbcType=VARCHAR}, #{item.acctInfo,jdbcType=VARCHAR}, #{item.takerPhone,jdbcType=VARCHAR}, 
+      #{item.takerEmail,jdbcType=VARCHAR}, #{item.takerProvince,jdbcType=VARCHAR}, #{item.takerCity,jdbcType=VARCHAR}, 
+      #{item.takerCounty,jdbcType=VARCHAR}, #{item.takerAddress,jdbcType=VARCHAR}, #{item.vfsId1,jdbcType=VARCHAR}, 
+      #{item.vfsId2,jdbcType=VARCHAR}, #{item.vfsId3,jdbcType=VARCHAR}, #{item.vfsId4,jdbcType=VARCHAR}, 
+      #{item.status,jdbcType=VARCHAR}, #{item.createStaff,jdbcType=INTEGER}, #{item.createTime,jdbcType=TIMESTAMP}, 
+      #{item.updateStaff,jdbcType=INTEGER}, #{item.updateTime,jdbcType=TIMESTAMP})</foreach>
+  </insert>
+</mapper>

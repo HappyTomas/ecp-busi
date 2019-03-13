@@ -1,0 +1,993 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zengshi.ecp.order.dao.mapper.busi.OrdSubMapper" >
+  <resultMap id="BaseResultMap" type="com.zengshi.ecp.order.dao.model.OrdSub" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="ORDER_CODE" property="orderCode" jdbcType="VARCHAR" />
+    <result column="CATEGORY_CODE" property="categoryCode" jdbcType="VARCHAR" />
+    <result column="GDS_ID" property="gdsId" jdbcType="INTEGER" />
+    <result column="GDS_NAME" property="gdsName" jdbcType="VARCHAR" />
+    <result column="SKU_ID" property="skuId" jdbcType="INTEGER" />
+    <result column="SKU_HIS_ID" property="skuHisId" jdbcType="INTEGER" />
+    <result column="SKU_INFO" property="skuInfo" jdbcType="VARCHAR" />
+    <result column="GROUP_TYPE" property="groupType" jdbcType="VARCHAR" />
+    <result column="GROUP_DETAIL" property="groupDetail" jdbcType="VARCHAR" />
+    <result column="ORDER_AMOUNT" property="orderAmount" jdbcType="INTEGER" />
+    <result column="PRICE_TYPE" property="priceType" jdbcType="VARCHAR" />
+    <result column="BASE_PRICE" property="basePrice" jdbcType="INTEGER" />
+    <result column="BUY_PRICE" property="buyPrice" jdbcType="INTEGER" />
+    <result column="ORDER_MONEY" property="orderMoney" jdbcType="INTEGER" />
+    <result column="REAL_MONEY" property="realMoney" jdbcType="INTEGER" />
+    <result column="ORDER_TIME" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="STAFF_ID" property="staffId" jdbcType="INTEGER" />
+    <result column="SHOP_ID" property="shopId" jdbcType="INTEGER" />
+    <result column="PROXY_SHOP_ID" property="proxyShopId" jdbcType="INTEGER" />
+    <result column="DELIVER_STATUS" property="deliverStatus" jdbcType="VARCHAR" />
+    <result column="REMAIN_AMOUNT" property="remainAmount" jdbcType="INTEGER" />
+    <result column="DELIVER_AMOUNT" property="deliverAmount" jdbcType="INTEGER" />
+    <result column="DISCOUNT_PRICE" property="discountPrice" jdbcType="INTEGER" />
+    <result column="DISCOUNT_MONEY" property="discountMoney" jdbcType="INTEGER" />
+    <result column="REDUCE_MONEY" property="reduceMoney" jdbcType="INTEGER" />
+    <result column="SCORE" property="score" jdbcType="INTEGER" />
+    <result column="ORDER_SUB_SCORE" property="orderSubScore" jdbcType="INTEGER" />
+    <result column="REMARK" property="remark" jdbcType="VARCHAR" />
+    <result column="CREATE_TIME" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="CREATE_STAFF" property="createStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_STAFF" property="updateStaff" jdbcType="INTEGER" />
+    <result column="UPDATE_TIME" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="REP_CODE" property="repCode" jdbcType="INTEGER" />
+    <result column="STOCK_ID" property="stockId" jdbcType="INTEGER" />
+    <result column="SITE_ID" property="siteId" jdbcType="INTEGER" />
+    <result column="SYS_TYPE" property="sysType" jdbcType="VARCHAR" />
+    <result column="GDS_TYPE" property="gdsType" jdbcType="INTEGER" />
+    <result column="EVAL_FLAG" property="evalFlag" jdbcType="VARCHAR" />
+    <result column="SCORE_TYPE_ID" property="scoreTypeId" jdbcType="INTEGER" />
+    <result column="PRN_FLAG" property="prnFlag" jdbcType="VARCHAR" />
+    <result column="STANDARD_PRICE" property="standardPrice" jdbcType="INTEGER" />
+    <result column="HAS_BACK_NUM" property="hasBackNum" jdbcType="INTEGER" />
+    <result column="ORDER_TYPE" property="orderType" jdbcType="VARCHAR" />
+    <result column="SHOP_NAME" property="shopName" jdbcType="VARCHAR" />
+    <result column="SOURCE" property="source" jdbcType="VARCHAR" />
+    <result column="STAFF_CODE" property="staffCode" jdbcType="VARCHAR" />
+    <result column="STAFF_NAME" property="staffName" jdbcType="VARCHAR" />
+    <result column="COMPANY_ID" property="companyId" jdbcType="INTEGER" />
+    <result column="COMPANY_NAME" property="companyName" jdbcType="VARCHAR" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    ID, ORDER_ID, STATUS, ORDER_CODE, CATEGORY_CODE, GDS_ID, GDS_NAME, SKU_ID, SKU_HIS_ID, 
+    SKU_INFO, GROUP_TYPE, GROUP_DETAIL, ORDER_AMOUNT, PRICE_TYPE, BASE_PRICE, BUY_PRICE, 
+    ORDER_MONEY, REAL_MONEY, ORDER_TIME, STAFF_ID, SHOP_ID, PROXY_SHOP_ID, DELIVER_STATUS, 
+    REMAIN_AMOUNT, DELIVER_AMOUNT, DISCOUNT_PRICE, DISCOUNT_MONEY, REDUCE_MONEY, SCORE, 
+    ORDER_SUB_SCORE, REMARK, CREATE_TIME, CREATE_STAFF, UPDATE_STAFF, UPDATE_TIME, REP_CODE, 
+    STOCK_ID, SITE_ID, SYS_TYPE, GDS_TYPE, EVAL_FLAG, SCORE_TYPE_ID, PRN_FLAG, STANDARD_PRICE, 
+    HAS_BACK_NUM, ORDER_TYPE, SHOP_NAME, SOURCE, STAFF_CODE, STAFF_NAME, COMPANY_ID, 
+    COMPANY_NAME, START_TIME, END_TIME
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.zengshi.ecp.order.dao.model.OrdSubCriteria" >
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       select * from (select t_1.*,rownum as row_num from (
+    </if>
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitClauseStart != null and limitClauseStart >= 0" >
+       <![CDATA[ ) t_1 where rownum<=#{limitClauseCount,jdbcType=INTEGER} + #{limitClauseStart,jdbcType=INTEGER}) t_2 where t_2.row_num>#{limitClauseStart,jdbcType=INTEGER}]]>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ord_sub
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_ord_sub
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubCriteria" >
+    delete from t_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.zengshi.ecp.order.dao.model.OrdSub" >
+    insert into t_ord_sub (ID, ORDER_ID, STATUS, 
+      ORDER_CODE, CATEGORY_CODE, GDS_ID, 
+      GDS_NAME, SKU_ID, SKU_HIS_ID, 
+      SKU_INFO, GROUP_TYPE, GROUP_DETAIL, 
+      ORDER_AMOUNT, PRICE_TYPE, BASE_PRICE, 
+      BUY_PRICE, ORDER_MONEY, REAL_MONEY, 
+      ORDER_TIME, STAFF_ID, SHOP_ID, 
+      PROXY_SHOP_ID, DELIVER_STATUS, REMAIN_AMOUNT, 
+      DELIVER_AMOUNT, DISCOUNT_PRICE, DISCOUNT_MONEY, 
+      REDUCE_MONEY, SCORE, ORDER_SUB_SCORE, 
+      REMARK, CREATE_TIME, CREATE_STAFF, 
+      UPDATE_STAFF, UPDATE_TIME, REP_CODE, 
+      STOCK_ID, SITE_ID, SYS_TYPE, 
+      GDS_TYPE, EVAL_FLAG, SCORE_TYPE_ID, 
+      PRN_FLAG, STANDARD_PRICE, HAS_BACK_NUM, 
+      ORDER_TYPE, SHOP_NAME, SOURCE, 
+      STAFF_CODE, STAFF_NAME, COMPANY_ID, 
+      COMPANY_NAME, START_TIME, END_TIME
+      )
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, 
+      #{orderCode,jdbcType=VARCHAR}, #{categoryCode,jdbcType=VARCHAR}, #{gdsId,jdbcType=INTEGER}, 
+      #{gdsName,jdbcType=VARCHAR}, #{skuId,jdbcType=INTEGER}, #{skuHisId,jdbcType=INTEGER}, 
+      #{skuInfo,jdbcType=VARCHAR}, #{groupType,jdbcType=VARCHAR}, #{groupDetail,jdbcType=VARCHAR}, 
+      #{orderAmount,jdbcType=INTEGER}, #{priceType,jdbcType=VARCHAR}, #{basePrice,jdbcType=INTEGER}, 
+      #{buyPrice,jdbcType=INTEGER}, #{orderMoney,jdbcType=INTEGER}, #{realMoney,jdbcType=INTEGER}, 
+      #{orderTime,jdbcType=TIMESTAMP}, #{staffId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{proxyShopId,jdbcType=INTEGER}, #{deliverStatus,jdbcType=VARCHAR}, #{remainAmount,jdbcType=INTEGER}, 
+      #{deliverAmount,jdbcType=INTEGER}, #{discountPrice,jdbcType=INTEGER}, #{discountMoney,jdbcType=INTEGER}, 
+      #{reduceMoney,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{orderSubScore,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{createStaff,jdbcType=INTEGER}, 
+      #{updateStaff,jdbcType=INTEGER}, #{updateTime,jdbcType=TIMESTAMP}, #{repCode,jdbcType=INTEGER}, 
+      #{stockId,jdbcType=INTEGER}, #{siteId,jdbcType=INTEGER}, #{sysType,jdbcType=VARCHAR}, 
+      #{gdsType,jdbcType=INTEGER}, #{evalFlag,jdbcType=VARCHAR}, #{scoreTypeId,jdbcType=INTEGER}, 
+      #{prnFlag,jdbcType=VARCHAR}, #{standardPrice,jdbcType=INTEGER}, #{hasBackNum,jdbcType=INTEGER}, 
+      #{orderType,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, #{source,jdbcType=VARCHAR}, 
+      #{staffCode,jdbcType=VARCHAR}, #{staffName,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, 
+      #{companyName,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zengshi.ecp.order.dao.model.OrdSub" >
+    insert into t_ord_sub
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="status != null" >
+        STATUS,
+      </if>
+      <if test="orderCode != null" >
+        ORDER_CODE,
+      </if>
+      <if test="categoryCode != null" >
+        CATEGORY_CODE,
+      </if>
+      <if test="gdsId != null" >
+        GDS_ID,
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME,
+      </if>
+      <if test="skuId != null" >
+        SKU_ID,
+      </if>
+      <if test="skuHisId != null" >
+        SKU_HIS_ID,
+      </if>
+      <if test="skuInfo != null" >
+        SKU_INFO,
+      </if>
+      <if test="groupType != null" >
+        GROUP_TYPE,
+      </if>
+      <if test="groupDetail != null" >
+        GROUP_DETAIL,
+      </if>
+      <if test="orderAmount != null" >
+        ORDER_AMOUNT,
+      </if>
+      <if test="priceType != null" >
+        PRICE_TYPE,
+      </if>
+      <if test="basePrice != null" >
+        BASE_PRICE,
+      </if>
+      <if test="buyPrice != null" >
+        BUY_PRICE,
+      </if>
+      <if test="orderMoney != null" >
+        ORDER_MONEY,
+      </if>
+      <if test="realMoney != null" >
+        REAL_MONEY,
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME,
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID,
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID,
+      </if>
+      <if test="proxyShopId != null" >
+        PROXY_SHOP_ID,
+      </if>
+      <if test="deliverStatus != null" >
+        DELIVER_STATUS,
+      </if>
+      <if test="remainAmount != null" >
+        REMAIN_AMOUNT,
+      </if>
+      <if test="deliverAmount != null" >
+        DELIVER_AMOUNT,
+      </if>
+      <if test="discountPrice != null" >
+        DISCOUNT_PRICE,
+      </if>
+      <if test="discountMoney != null" >
+        DISCOUNT_MONEY,
+      </if>
+      <if test="reduceMoney != null" >
+        REDUCE_MONEY,
+      </if>
+      <if test="score != null" >
+        SCORE,
+      </if>
+      <if test="orderSubScore != null" >
+        ORDER_SUB_SCORE,
+      </if>
+      <if test="remark != null" >
+        REMARK,
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME,
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF,
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF,
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME,
+      </if>
+      <if test="repCode != null" >
+        REP_CODE,
+      </if>
+      <if test="stockId != null" >
+        STOCK_ID,
+      </if>
+      <if test="siteId != null" >
+        SITE_ID,
+      </if>
+      <if test="sysType != null" >
+        SYS_TYPE,
+      </if>
+      <if test="gdsType != null" >
+        GDS_TYPE,
+      </if>
+      <if test="evalFlag != null" >
+        EVAL_FLAG,
+      </if>
+      <if test="scoreTypeId != null" >
+        SCORE_TYPE_ID,
+      </if>
+      <if test="prnFlag != null" >
+        PRN_FLAG,
+      </if>
+      <if test="standardPrice != null" >
+        STANDARD_PRICE,
+      </if>
+      <if test="hasBackNum != null" >
+        HAS_BACK_NUM,
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE,
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME,
+      </if>
+      <if test="source != null" >
+        SOURCE,
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE,
+      </if>
+      <if test="staffName != null" >
+        STAFF_NAME,
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID,
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME,
+      </if>
+      <if test="startTime != null" >
+        START_TIME,
+      </if>
+      <if test="endTime != null" >
+        END_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCode != null" >
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCode != null" >
+        #{categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsId != null" >
+        #{gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsName != null" >
+        #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="skuHisId != null" >
+        #{skuHisId,jdbcType=INTEGER},
+      </if>
+      <if test="skuInfo != null" >
+        #{skuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null" >
+        #{groupType,jdbcType=VARCHAR},
+      </if>
+      <if test="groupDetail != null" >
+        #{groupDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="priceType != null" >
+        #{priceType,jdbcType=VARCHAR},
+      </if>
+      <if test="basePrice != null" >
+        #{basePrice,jdbcType=INTEGER},
+      </if>
+      <if test="buyPrice != null" >
+        #{buyPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderMoney != null" >
+        #{orderMoney,jdbcType=INTEGER},
+      </if>
+      <if test="realMoney != null" >
+        #{realMoney,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="staffId != null" >
+        #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="proxyShopId != null" >
+        #{proxyShopId,jdbcType=INTEGER},
+      </if>
+      <if test="deliverStatus != null" >
+        #{deliverStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remainAmount != null" >
+        #{remainAmount,jdbcType=INTEGER},
+      </if>
+      <if test="deliverAmount != null" >
+        #{deliverAmount,jdbcType=INTEGER},
+      </if>
+      <if test="discountPrice != null" >
+        #{discountPrice,jdbcType=INTEGER},
+      </if>
+      <if test="discountMoney != null" >
+        #{discountMoney,jdbcType=INTEGER},
+      </if>
+      <if test="reduceMoney != null" >
+        #{reduceMoney,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="orderSubScore != null" >
+        #{orderSubScore,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateStaff != null" >
+        #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repCode != null" >
+        #{repCode,jdbcType=INTEGER},
+      </if>
+      <if test="stockId != null" >
+        #{stockId,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="sysType != null" >
+        #{sysType,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsType != null" >
+        #{gdsType,jdbcType=INTEGER},
+      </if>
+      <if test="evalFlag != null" >
+        #{evalFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreTypeId != null" >
+        #{scoreTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="prnFlag != null" >
+        #{prnFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="standardPrice != null" >
+        #{standardPrice,jdbcType=INTEGER},
+      </if>
+      <if test="hasBackNum != null" >
+        #{hasBackNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCode != null" >
+        #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffName != null" >
+        #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.zengshi.ecp.order.dao.model.OrdSubCriteria" resultType="java.lang.Long" >
+    select count(*) from t_ord_sub
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update t_ord_sub
+    <set >
+      <if test="record.id != null" >
+        ID = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderId != null" >
+        ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        STATUS = #{record.status,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderCode != null" >
+        ORDER_CODE = #{record.orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.categoryCode != null" >
+        CATEGORY_CODE = #{record.categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsId != null" >
+        GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.gdsName != null" >
+        GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.skuId != null" >
+        SKU_ID = #{record.skuId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuHisId != null" >
+        SKU_HIS_ID = #{record.skuHisId,jdbcType=INTEGER},
+      </if>
+      <if test="record.skuInfo != null" >
+        SKU_INFO = #{record.skuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupType != null" >
+        GROUP_TYPE = #{record.groupType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.groupDetail != null" >
+        GROUP_DETAIL = #{record.groupDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.orderAmount != null" >
+        ORDER_AMOUNT = #{record.orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.priceType != null" >
+        PRICE_TYPE = #{record.priceType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.basePrice != null" >
+        BASE_PRICE = #{record.basePrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyPrice != null" >
+        BUY_PRICE = #{record.buyPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderMoney != null" >
+        ORDER_MONEY = #{record.orderMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.realMoney != null" >
+        REAL_MONEY = #{record.realMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderTime != null" >
+        ORDER_TIME = #{record.orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.staffId != null" >
+        STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      </if>
+      <if test="record.shopId != null" >
+        SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.proxyShopId != null" >
+        PROXY_SHOP_ID = #{record.proxyShopId,jdbcType=INTEGER},
+      </if>
+      <if test="record.deliverStatus != null" >
+        DELIVER_STATUS = #{record.deliverStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remainAmount != null" >
+        REMAIN_AMOUNT = #{record.remainAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.deliverAmount != null" >
+        DELIVER_AMOUNT = #{record.deliverAmount,jdbcType=INTEGER},
+      </if>
+      <if test="record.discountPrice != null" >
+        DISCOUNT_PRICE = #{record.discountPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.discountMoney != null" >
+        DISCOUNT_MONEY = #{record.discountMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.reduceMoney != null" >
+        REDUCE_MONEY = #{record.reduceMoney,jdbcType=INTEGER},
+      </if>
+      <if test="record.score != null" >
+        SCORE = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderSubScore != null" >
+        ORDER_SUB_SCORE = #{record.orderSubScore,jdbcType=INTEGER},
+      </if>
+      <if test="record.remark != null" >
+        REMARK = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createStaff != null" >
+        CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateStaff != null" >
+        UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="record.updateTime != null" >
+        UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.repCode != null" >
+        REP_CODE = #{record.repCode,jdbcType=INTEGER},
+      </if>
+      <if test="record.stockId != null" >
+        STOCK_ID = #{record.stockId,jdbcType=INTEGER},
+      </if>
+      <if test="record.siteId != null" >
+        SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      </if>
+      <if test="record.sysType != null" >
+        SYS_TYPE = #{record.sysType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gdsType != null" >
+        GDS_TYPE = #{record.gdsType,jdbcType=INTEGER},
+      </if>
+      <if test="record.evalFlag != null" >
+        EVAL_FLAG = #{record.evalFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.scoreTypeId != null" >
+        SCORE_TYPE_ID = #{record.scoreTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.prnFlag != null" >
+        PRN_FLAG = #{record.prnFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.standardPrice != null" >
+        STANDARD_PRICE = #{record.standardPrice,jdbcType=INTEGER},
+      </if>
+      <if test="record.hasBackNum != null" >
+        HAS_BACK_NUM = #{record.hasBackNum,jdbcType=INTEGER},
+      </if>
+      <if test="record.orderType != null" >
+        ORDER_TYPE = #{record.orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="record.shopName != null" >
+        SHOP_NAME = #{record.shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.source != null" >
+        SOURCE = #{record.source,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffCode != null" >
+        STAFF_CODE = #{record.staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.staffName != null" >
+        STAFF_NAME = #{record.staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.companyId != null" >
+        COMPANY_ID = #{record.companyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.companyName != null" >
+        COMPANY_NAME = #{record.companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startTime != null" >
+        START_TIME = #{record.startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.endTime != null" >
+        END_TIME = #{record.endTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update t_ord_sub
+    set ID = #{record.id,jdbcType=VARCHAR},
+      ORDER_ID = #{record.orderId,jdbcType=VARCHAR},
+      STATUS = #{record.status,jdbcType=VARCHAR},
+      ORDER_CODE = #{record.orderCode,jdbcType=VARCHAR},
+      CATEGORY_CODE = #{record.categoryCode,jdbcType=VARCHAR},
+      GDS_ID = #{record.gdsId,jdbcType=INTEGER},
+      GDS_NAME = #{record.gdsName,jdbcType=VARCHAR},
+      SKU_ID = #{record.skuId,jdbcType=INTEGER},
+      SKU_HIS_ID = #{record.skuHisId,jdbcType=INTEGER},
+      SKU_INFO = #{record.skuInfo,jdbcType=VARCHAR},
+      GROUP_TYPE = #{record.groupType,jdbcType=VARCHAR},
+      GROUP_DETAIL = #{record.groupDetail,jdbcType=VARCHAR},
+      ORDER_AMOUNT = #{record.orderAmount,jdbcType=INTEGER},
+      PRICE_TYPE = #{record.priceType,jdbcType=VARCHAR},
+      BASE_PRICE = #{record.basePrice,jdbcType=INTEGER},
+      BUY_PRICE = #{record.buyPrice,jdbcType=INTEGER},
+      ORDER_MONEY = #{record.orderMoney,jdbcType=INTEGER},
+      REAL_MONEY = #{record.realMoney,jdbcType=INTEGER},
+      ORDER_TIME = #{record.orderTime,jdbcType=TIMESTAMP},
+      STAFF_ID = #{record.staffId,jdbcType=INTEGER},
+      SHOP_ID = #{record.shopId,jdbcType=INTEGER},
+      PROXY_SHOP_ID = #{record.proxyShopId,jdbcType=INTEGER},
+      DELIVER_STATUS = #{record.deliverStatus,jdbcType=VARCHAR},
+      REMAIN_AMOUNT = #{record.remainAmount,jdbcType=INTEGER},
+      DELIVER_AMOUNT = #{record.deliverAmount,jdbcType=INTEGER},
+      DISCOUNT_PRICE = #{record.discountPrice,jdbcType=INTEGER},
+      DISCOUNT_MONEY = #{record.discountMoney,jdbcType=INTEGER},
+      REDUCE_MONEY = #{record.reduceMoney,jdbcType=INTEGER},
+      SCORE = #{record.score,jdbcType=INTEGER},
+      ORDER_SUB_SCORE = #{record.orderSubScore,jdbcType=INTEGER},
+      REMARK = #{record.remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{record.createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{record.createStaff,jdbcType=INTEGER},
+      UPDATE_STAFF = #{record.updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{record.updateTime,jdbcType=TIMESTAMP},
+      REP_CODE = #{record.repCode,jdbcType=INTEGER},
+      STOCK_ID = #{record.stockId,jdbcType=INTEGER},
+      SITE_ID = #{record.siteId,jdbcType=INTEGER},
+      SYS_TYPE = #{record.sysType,jdbcType=VARCHAR},
+      GDS_TYPE = #{record.gdsType,jdbcType=INTEGER},
+      EVAL_FLAG = #{record.evalFlag,jdbcType=VARCHAR},
+      SCORE_TYPE_ID = #{record.scoreTypeId,jdbcType=INTEGER},
+      PRN_FLAG = #{record.prnFlag,jdbcType=VARCHAR},
+      STANDARD_PRICE = #{record.standardPrice,jdbcType=INTEGER},
+      HAS_BACK_NUM = #{record.hasBackNum,jdbcType=INTEGER},
+      ORDER_TYPE = #{record.orderType,jdbcType=VARCHAR},
+      SHOP_NAME = #{record.shopName,jdbcType=VARCHAR},
+      SOURCE = #{record.source,jdbcType=VARCHAR},
+      STAFF_CODE = #{record.staffCode,jdbcType=VARCHAR},
+      STAFF_NAME = #{record.staffName,jdbcType=VARCHAR},
+      COMPANY_ID = #{record.companyId,jdbcType=INTEGER},
+      COMPANY_NAME = #{record.companyName,jdbcType=VARCHAR},
+      START_TIME = #{record.startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{record.endTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zengshi.ecp.order.dao.model.OrdSub" >
+    update t_ord_sub
+    <set >
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCode != null" >
+        ORDER_CODE = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryCode != null" >
+        CATEGORY_CODE = #{categoryCode,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsId != null" >
+        GDS_ID = #{gdsId,jdbcType=INTEGER},
+      </if>
+      <if test="gdsName != null" >
+        GDS_NAME = #{gdsName,jdbcType=VARCHAR},
+      </if>
+      <if test="skuId != null" >
+        SKU_ID = #{skuId,jdbcType=INTEGER},
+      </if>
+      <if test="skuHisId != null" >
+        SKU_HIS_ID = #{skuHisId,jdbcType=INTEGER},
+      </if>
+      <if test="skuInfo != null" >
+        SKU_INFO = #{skuInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="groupType != null" >
+        GROUP_TYPE = #{groupType,jdbcType=VARCHAR},
+      </if>
+      <if test="groupDetail != null" >
+        GROUP_DETAIL = #{groupDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="orderAmount != null" >
+        ORDER_AMOUNT = #{orderAmount,jdbcType=INTEGER},
+      </if>
+      <if test="priceType != null" >
+        PRICE_TYPE = #{priceType,jdbcType=VARCHAR},
+      </if>
+      <if test="basePrice != null" >
+        BASE_PRICE = #{basePrice,jdbcType=INTEGER},
+      </if>
+      <if test="buyPrice != null" >
+        BUY_PRICE = #{buyPrice,jdbcType=INTEGER},
+      </if>
+      <if test="orderMoney != null" >
+        ORDER_MONEY = #{orderMoney,jdbcType=INTEGER},
+      </if>
+      <if test="realMoney != null" >
+        REAL_MONEY = #{realMoney,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null" >
+        ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="staffId != null" >
+        STAFF_ID = #{staffId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        SHOP_ID = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="proxyShopId != null" >
+        PROXY_SHOP_ID = #{proxyShopId,jdbcType=INTEGER},
+      </if>
+      <if test="deliverStatus != null" >
+        DELIVER_STATUS = #{deliverStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="remainAmount != null" >
+        REMAIN_AMOUNT = #{remainAmount,jdbcType=INTEGER},
+      </if>
+      <if test="deliverAmount != null" >
+        DELIVER_AMOUNT = #{deliverAmount,jdbcType=INTEGER},
+      </if>
+      <if test="discountPrice != null" >
+        DISCOUNT_PRICE = #{discountPrice,jdbcType=INTEGER},
+      </if>
+      <if test="discountMoney != null" >
+        DISCOUNT_MONEY = #{discountMoney,jdbcType=INTEGER},
+      </if>
+      <if test="reduceMoney != null" >
+        REDUCE_MONEY = #{reduceMoney,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        SCORE = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="orderSubScore != null" >
+        ORDER_SUB_SCORE = #{orderSubScore,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        REMARK = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createStaff != null" >
+        CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateStaff != null" >
+        UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null" >
+        UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repCode != null" >
+        REP_CODE = #{repCode,jdbcType=INTEGER},
+      </if>
+      <if test="stockId != null" >
+        STOCK_ID = #{stockId,jdbcType=INTEGER},
+      </if>
+      <if test="siteId != null" >
+        SITE_ID = #{siteId,jdbcType=INTEGER},
+      </if>
+      <if test="sysType != null" >
+        SYS_TYPE = #{sysType,jdbcType=VARCHAR},
+      </if>
+      <if test="gdsType != null" >
+        GDS_TYPE = #{gdsType,jdbcType=INTEGER},
+      </if>
+      <if test="evalFlag != null" >
+        EVAL_FLAG = #{evalFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="scoreTypeId != null" >
+        SCORE_TYPE_ID = #{scoreTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="prnFlag != null" >
+        PRN_FLAG = #{prnFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="standardPrice != null" >
+        STANDARD_PRICE = #{standardPrice,jdbcType=INTEGER},
+      </if>
+      <if test="hasBackNum != null" >
+        HAS_BACK_NUM = #{hasBackNum,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        ORDER_TYPE = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="source != null" >
+        SOURCE = #{source,jdbcType=VARCHAR},
+      </if>
+      <if test="staffCode != null" >
+        STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      </if>
+      <if test="staffName != null" >
+        STAFF_NAME = #{staffName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zengshi.ecp.order.dao.model.OrdSub" >
+    update t_ord_sub
+    set ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      STATUS = #{status,jdbcType=VARCHAR},
+      ORDER_CODE = #{orderCode,jdbcType=VARCHAR},
+      CATEGORY_CODE = #{categoryCode,jdbcType=VARCHAR},
+      GDS_ID = #{gdsId,jdbcType=INTEGER},
+      GDS_NAME = #{gdsName,jdbcType=VARCHAR},
+      SKU_ID = #{skuId,jdbcType=INTEGER},
+      SKU_HIS_ID = #{skuHisId,jdbcType=INTEGER},
+      SKU_INFO = #{skuInfo,jdbcType=VARCHAR},
+      GROUP_TYPE = #{groupType,jdbcType=VARCHAR},
+      GROUP_DETAIL = #{groupDetail,jdbcType=VARCHAR},
+      ORDER_AMOUNT = #{orderAmount,jdbcType=INTEGER},
+      PRICE_TYPE = #{priceType,jdbcType=VARCHAR},
+      BASE_PRICE = #{basePrice,jdbcType=INTEGER},
+      BUY_PRICE = #{buyPrice,jdbcType=INTEGER},
+      ORDER_MONEY = #{orderMoney,jdbcType=INTEGER},
+      REAL_MONEY = #{realMoney,jdbcType=INTEGER},
+      ORDER_TIME = #{orderTime,jdbcType=TIMESTAMP},
+      STAFF_ID = #{staffId,jdbcType=INTEGER},
+      SHOP_ID = #{shopId,jdbcType=INTEGER},
+      PROXY_SHOP_ID = #{proxyShopId,jdbcType=INTEGER},
+      DELIVER_STATUS = #{deliverStatus,jdbcType=VARCHAR},
+      REMAIN_AMOUNT = #{remainAmount,jdbcType=INTEGER},
+      DELIVER_AMOUNT = #{deliverAmount,jdbcType=INTEGER},
+      DISCOUNT_PRICE = #{discountPrice,jdbcType=INTEGER},
+      DISCOUNT_MONEY = #{discountMoney,jdbcType=INTEGER},
+      REDUCE_MONEY = #{reduceMoney,jdbcType=INTEGER},
+      SCORE = #{score,jdbcType=INTEGER},
+      ORDER_SUB_SCORE = #{orderSubScore,jdbcType=INTEGER},
+      REMARK = #{remark,jdbcType=VARCHAR},
+      CREATE_TIME = #{createTime,jdbcType=TIMESTAMP},
+      CREATE_STAFF = #{createStaff,jdbcType=INTEGER},
+      UPDATE_STAFF = #{updateStaff,jdbcType=INTEGER},
+      UPDATE_TIME = #{updateTime,jdbcType=TIMESTAMP},
+      REP_CODE = #{repCode,jdbcType=INTEGER},
+      STOCK_ID = #{stockId,jdbcType=INTEGER},
+      SITE_ID = #{siteId,jdbcType=INTEGER},
+      SYS_TYPE = #{sysType,jdbcType=VARCHAR},
+      GDS_TYPE = #{gdsType,jdbcType=INTEGER},
+      EVAL_FLAG = #{evalFlag,jdbcType=VARCHAR},
+      SCORE_TYPE_ID = #{scoreTypeId,jdbcType=INTEGER},
+      PRN_FLAG = #{prnFlag,jdbcType=VARCHAR},
+      STANDARD_PRICE = #{standardPrice,jdbcType=INTEGER},
+      HAS_BACK_NUM = #{hasBackNum,jdbcType=INTEGER},
+      ORDER_TYPE = #{orderType,jdbcType=VARCHAR},
+      SHOP_NAME = #{shopName,jdbcType=VARCHAR},
+      SOURCE = #{source,jdbcType=VARCHAR},
+      STAFF_CODE = #{staffCode,jdbcType=VARCHAR},
+      STAFF_NAME = #{staffName,jdbcType=VARCHAR},
+      COMPANY_ID = #{companyId,jdbcType=INTEGER},
+      COMPANY_NAME = #{companyName,jdbcType=VARCHAR},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

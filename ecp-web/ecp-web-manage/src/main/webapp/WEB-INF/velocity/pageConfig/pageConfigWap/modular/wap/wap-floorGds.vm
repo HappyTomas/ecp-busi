@@ -1,0 +1,80 @@
+#parse("sys/sys_param.vm")
+##<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfigWap/modular/wap/modular-wap-floor.js?version=$!{JS_VERSION}" ></script>
+
+
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+<input type="hidden" id="propPreStr" value="$!{propPreStr}"/>
+<script>
+</script>
+		
+<form id="paramsSetForm" class="required-validate form-horizontal templateItemForms" data-url="$!{CONTEXT_PATH}/modular-dynamic/commonModularFormSave">
+    <div class="dynamicFormMainBox">
+        	<input type="hidden" id="modularPageId" value="$!{pageId}"/>
+        	<input type="hidden" id="modularModularId" value="$!{modularId}"/>
+        	<input type="hidden" id="modularItemId" value="$!{itemId}"/>	
+        <h3 class="tit" style="color:red">楼层宝贝模块</h3>
+        
+        <div class="edit-tip">
+            <i class="close wap_close_i" id="close_i"></i>
+        
+            <p class="title">模块使用小贴士</p>
+        
+            <div class="content">
+				该模块用于楼层图片展示，用户手动选择商品!
+            </div>
+        </div>
+        <div class="form-block formItem">
+            <label>$!{attrs.get(1000).propName}</label>
+			<input type="hidden" id="propValue" value="$!{propPre.get('1000_0_0').propValue}">
+        	<input type="hidden" id="propValueId" value="$!{propPre.get('1000_0_0').propValueId}">
+        	<input type="hidden" id="propId" value="$!{attrs.get(1000).id}">
+        	<input type="hidden" id="propItemId" value="$!{propPre.get('1000_0_0').id}"/>
+			<input type="hidden" id="controlPropId" value="0"/>
+        	<input type="hidden" id="propGroupId" value="0"/>
+            <input type="text" class="input-block-level cms-input-w-limit #if($!{attrs.get(1000).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);"   onkeyup="CommonModular.inputAssignMent(this);" oninput="CommonModular.inputAssignMent(this);" onpropertychange="CommonModular.inputAssignMent(this);" max-length="10">
+        </div>
+		<div class="form-block formItem">
+            <label>$!{attrs.get(1031).propName}</label>
+        	<input type="hidden" id="propValue" value="$!{propPre.get('1031_0_0').propValue}">
+        	<input type="hidden" id="propValueId" value="$!{propPre.get('1031_0_0').propValueId}">
+        	<input type="hidden" id="propId" value="$!{attrs.get(1031).id}">
+        	<input type="hidden" id="propItemId" value="$!{propPre.get('1031_0_0').id}"/>
+        	<input type="hidden" id="controlPropId" value="0"/>
+        	<input type="hidden" id="propGroupId" value="0"/>
+            <div class="wap_img_upload" file-id="$!{propPre.get('1031_0_0').propValue}" file-url="#genImageUrl($!{propPre.get('1031_0_0').propValue},'')" image-max-width="640" image-max-height="72">
+            </div>
+        </div>
+		<div class="form-block formItem">
+            <label>$!{attrs.get(1024).propName}</label>
+            <div class="input-append">
+            	<input type="hidden" id="propValue" value="$!{propPre.get('1024_0_0').propValue}">
+            	<input type="hidden" id="propValueId" value="$!{propPre.get('1024_0_0').propValueId}">
+            	<input type="hidden" id="propId" value="$!{attrs.get(1024).id}">
+            	<input type="hidden" id="propItemId" value="$!{propPre.get('1024_0_0').id}"/>
+				<input type="hidden" id="controlPropId" value="0"/>
+				<input type="hidden" id="propGroupId" value="0"/>
+                <input type="text" class="input-block-level link-input-tool #if($!{attrs.get(1024).ifHaveto}=='1')required#end" onKeyDown="CommonModular.inputAssignMent(this);"   onkeyup="CommonModular.inputAssignMent(this);" oninput="CommonModular.inputAssignMent(this);" onpropertychange="CommonModular.inputAssignMent(this);" >
+            </div>
+        </div>
+		<div class="form-block formItem">
+            <label>$!{attrs.get(1025).propName}</label>
+            <div class="input-append">
+            	<input type="hidden" id="propValue" value="$!{propPre.get('1025_0_0').propValue}">
+            	<input type="hidden" id="propValueId" value="$!{propPre.get('1025_0_0').propValueId}">
+            	<input type="hidden" id="propId" value="$!{attrs.get(1025).id}">
+            	<input type="hidden" id="propItemId" value="$!{propPre.get('1025_0_0').id}"/>
+				<input type="hidden" id="controlPropId" value="0"/>
+				<input type="hidden" id="propGroupId" value="0"/>
+				<select class="input-block-level app_template_floor #if($!{attrs.get(1025).ifHaveto}=='1')required#end" onchange="CommonModular.selectAssignMent(this)">
+
+                </select>
+            </div>
+        </div>
+		<div id="app_template_floor_content">
+			
+        </div>
+    </div>
+</form>
+

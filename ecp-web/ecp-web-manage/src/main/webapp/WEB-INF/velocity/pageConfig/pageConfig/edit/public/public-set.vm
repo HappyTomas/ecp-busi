@@ -1,0 +1,39 @@
+#parse("sys/sys_param.vm")
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/public/public-js.js?v=${JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/pageConfig/edit/public/public-set.js?v=${JS_VERSION}"></script>	
+<style type="text/css">
+.page-header {
+    margin: 0px;
+    margin-bottom: 10px;
+}
+.btn-wrap {
+	text-align: right;padding-bottom: 0px;padding-top: 10px;
+}
+div.page-header h3 {
+	font-size: 18px;font-weight: normal;
+}
+</style>
+<input type="hidden" id="publicModularId" value="$!{modularId}"/>
+<input type="hidden" id="publicPageId" value="$!{pageId}"/>
+<input type="hidden" id="publicItemId" value="$!{itemId}"/>
+<input type="hidden" id="modularType" value="$!{modularType}"/>
+
+
+<div class="">
+	<div class="page-header">
+		<h3>参数设置</h3>
+	</div>
+	<!-- form必须要设置templateItemForms样式 -->
+	<!-- data-url设置表单Ajax提交数据的URL -->
+	<form id="paramsSetForm" class="required-validate form-horizontal templateItemForms" data-url="$!{CONTEXT_PATH}/modular-dynamic/publicFormSave"></form>
+	#if($modularType =='01') ##专题页头
+		<span style="color:red">
+		温馨提示：为获得更好的热点体验效果，上传图片宽度最好在1024以上，高度在600以上。
+        </span>
+	#end
+	<div class="text-center">
+		<span class="btn btn-info" id="btnSave"><i class="icon-ok-sign icon-white"></i>确定</span>
+		<span class="btn" id="btnCancel"><i class="icon-reply icon-white"></i>取消</span>
+	</div>
+</div>

@@ -1,0 +1,54 @@
+<style type="text/css">
+<!--
+   .custom-textarea{
+      width:85%;
+	  height:250px;
+	  visibility:hidden;
+   }
+-->
+</style>
+#if(!$rspDto.editoParam ||  $rspDto.editoParam.size() == 0 )
+<div class="seller-box">
+    <div class="head">
+        <h3>产品详情</h3>
+    </div>
+    <div class="body">
+        <textarea id="gdsDesc"
+			      name="productDetails" 
+				  class="bEditor custom-textarea">
+		</textarea>
+    </div>
+</div>
+<div class="seller-box" id="decription">
+    <div class="head">
+        <h3>包装清单</h3>
+    </div>
+    <div class="body">
+        <textarea id="gdsPartlist" 
+			      name="packageList" 
+				  class="bEditor custom-textarea">
+		</textarea>
+    </div>
+</div>
+#end
+
+#foreach($params in $!{rspDto.editoParam})
+   <div class="seller-box" id="decription">
+        <div class="head">
+            <h3>$!{params.propName}</h3>
+        </div>
+        <div class="body">
+            <textarea ifHavaeto="$!{params.ifHaveto}" 
+				      ifBasic="$!{params.ifBasic}" 
+					  ifmulti="input" 
+					  valueId="" 
+					  propType="$!{params.propType}" 
+					  propId="$!{params.id}" 
+					  propName="$!{params.propName}" 
+					  nameValue="editor" 
+					  name="editor$velocityCount" 
+					  class="bEditor #if($!{params.ifHaveto} =='1')required #end  custom-textarea">
+			</textarea>
+        </div>
+</div> 
+#end

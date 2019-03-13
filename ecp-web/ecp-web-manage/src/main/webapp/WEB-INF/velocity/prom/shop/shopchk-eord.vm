@@ -1,0 +1,152 @@
+#parse("module/mod-form.vm")
+<script >
+   var type = "${type}";
+</script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/prom/shop/shopchk-eord.js?version=$!{JS_VERSION}" ></script>
+
+<form id="shopchkSave" class="form-horizontal required-validate" style="margin-bottom: 0px;" method="post" action="$!{CONTEXT_PATH}/shopchk/verify">
+	<input type="hidden" name="promId" id="promId" value="$!{promInfo.id}"/>
+	<input type="hidden" name="groupId" id="groupId" value="$!{promInfo.groupId}"/>
+<div class="accordion" id="accordion2">
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseOne">
+        店铺参加促销信息
+      </a>
+    </div>
+    <div id="collapseOne" class="accordion-body collapse in">
+      <div class="accordion-inner">
+			<div class="formBox row-fluid">
+				<div class="row-fluid formSep">
+					<div class="span6">
+        				<div class="control-group">
+        						<label class="control-label">店铺名称：</label>
+        						<div class="controls">
+        							<input type="text" name="shopName" class="span10" value="$!{shopName}" disabled>
+        						</div>
+        					</div>
+        				</div>
+    				<div class="span6">
+    					<div class="control-group">
+    						<label class="control-label">店铺编码：</label>
+    						<div class="controls">
+    							<input type="text" name="shopId" class="span10" value="$!{promInfo.shopId}" disabled>
+    						</div>
+    					</div>
+    				</div>
+				</div>
+				<div class="row-fluid formSep">
+					<div class="span6">
+    					<div class="control-group">
+    						<label class="control-label">促销名称：</label>
+    						<div class="controls">
+    							<input type="text"  class="span10" value="${promInfo.promTheme}" disabled>
+    						</div>
+    					</div>
+    				</div>
+    				<div class="span6">
+    					<div class="control-group">
+    						<label class="control-label">促销类型：</label>
+    						<div class="controls">
+    							<input type="text"  class="span10" value="${promInfo.promTypeName}" disabled>
+    						</div>
+    					</div>
+    				</div>
+				</div>
+    			<div class="row-fluid formSep">
+    
+    				<div class="span6">
+    					<div class="control-group">
+    						<label class="control-label">生效开始：</label>
+    						<div class="controls">
+    							<input type="text" class="input-large Wdate span10" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{promInfo.startTime})" disabled/>
+    						</div>
+    					</div>
+    				</div>
+    				<div class="span6">
+    					<div class="control-group">
+    						<label class="control-label">生效截止：</label>
+    						<div class="controls">
+    							<input type="text" class="input-large Wdate span10" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{promInfo.endTime})" disabled/>
+    						</div>
+    					</div>
+    				</div>
+                </div>
+				<div class="row-fluid formSep">
+    				<div class="span6">
+    					<div class="control-group">
+    						<label class="control-label">开始展示：</label>
+    						<div class="controls">
+    							<input type="text" class="input-large Wdate span10" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{promInfo.showStartTime})" disabled/>
+    						</div>
+    					</div>
+    				</div>
+    				<div class="span6">
+    					<div class="control-group">
+    						<label class="control-label">截止展示：</label>
+    						<div class="controls">
+    							<input type="text" class="input-large Wdate span10" onClick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" value="$!date.format('yyyy-MM-dd HH:mm:ss',$!{promInfo.showEndTime})" disabled/>
+    						</div>
+    					</div>
+    				</div>
+    				
+    			</div>
+                <div class="row-fluid formSep">
+					<div class="control-group">
+    						<div class="controls">
+    						<button type="button" class="btn" id="queryDetail"><i class="icon-magic"></i>更多详情，点我吧</button>
+    						</div>
+    					</div>
+				</div>
+			</div>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-group">
+    <div class="accordion-heading">
+      <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">
+		请填写审核信息
+      </a>
+    </div>
+    <div id="collapseTwo" class="accordion-body collapse in">
+      <div class="accordion-inner">
+        <div class="row-fluid formSep">
+			<div class="row-fluid">
+			<label class="control-label" for="inputWarning"><span style="color:red;">* </span>审核结果：</label>
+				<div class="span3">
+    				<label class="radio inline">
+    					<input type="radio" name="status" id="logistics" value="1" #if($!{promChkVO.status}=='1')checked #end>
+    						通过
+    				</label>
+    				<label class="radio inline">
+    					<input type="radio" name="status" id="byown" value="0" #if($!{promChkVO.status}=='0')checked #end>
+    						拒绝
+    				</label>
+				</div>
+				<div class="clear"></div>
+			</div>
+			 <div class="control-group">
+						<label class="control-label">审核内容：</label>
+						<div class="controls">
+							<textarea rows="4" class="input-block-level  htmlcheck" name="chkDesc" id="chkDesc" maxlength="200" >$!{promChkVO.chkDesc}</textarea>
+							<span class="help-inline">最多输入<span style="color:red">200</span>个字符</span>
+						</div>
+			  </div>
+			 
+			 <div class="control-group">
+						<label class="control-label"></label>
+						<div class="controls">
+								 <div class="pull-left">
+										<button type="button" class="btn btn-info" id="btnFormSave"><i class=" icon-ok-sign"></i> 保存</button>
+										<button type="button" class="btn" id="btnReturn"><i class="icon-reply"></i> 返回</button>
+			                   	</div>
+						</div>
+			  </div> 
+			</div>
+			
+      </div>
+	  
+    </div>
+  </div>
+</div>
+</form>

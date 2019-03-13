@@ -1,0 +1,1739 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean class="com.zengshi.ecp.frame.utils.RuleMap">
+		<constructor-arg>
+			<map>
+				<entry key="t_stock_rep" value-ref="stockRep" />
+				<entry key="t_stock_rep_his" value-ref="stockRepHis" />
+				<entry key="t_stock_rep_adapt" value-ref="stockRepAdapt" />
+				<entry key="t_stock_rep_adapt_his" value-ref="stockRepAdaptHis" />
+				<entry key="t_stock_rep_info_idx" value-ref="stockRepInfoIdx" />
+				<entry key="t_stock_shop_rep_idx" value-ref="stockShopRepIdx" />
+				<entry key="t_stock_company_rep_idx" value-ref="stockCompanyRepIdx" />
+				<entry key="t_stock_info" value-ref="stockInfo" />
+				<entry key="t_stock_info_his" value-ref="stockInfoHis" />
+				<entry key="t_stock_info_adapt" value-ref="stockInfoAdapt" />
+				<entry key="t_stock_opt_record" value-ref="stockOptRecord" />
+				<entry key="t_stock_shop_info_idx" value-ref="stockShopInfoIdx" />
+				<entry key="t_stock_company_info_idx" value-ref="stockCompanyInfoIdx" />
+				<entry key="t_stock_pre_occupy" value-ref="stockPreOccupy" />
+				<entry key="t_stock_sku_entity" value-ref="stockSkuEntity" />
+				<entry key="t_stock_sku_entity_his" value-ref="stockSkuEntityHis" />
+				<entry key="t_stock_out_detail" value-ref="stockOutDetail" />
+				<entry key="t_stock_in_detail" value-ref="stockInDetail" />
+				<entry key="t_gds_info_snap" value-ref="gdsInfoSnap" />
+				<entry key="t_gds_addon_snap" value-ref="gdsAddonSnap" />
+				<entry key="t_gds_addon" value-ref="gdsAddon" />
+				<entry key="t_gds_info" value-ref="gdsInfo" />
+				<entry key="t_gds_price_snap" value-ref="gdsPriceSnap" />
+				<entry key="t_gds_price" value-ref="gdsPrice" />
+				<entry key="t_gds_gds2catg_snap" value-ref="gdsGds2CatgSnap" />
+				<entry key="t_gds_gds2catg" value-ref="gdsGds2Catg" />
+				<entry key="t_gds_arrmsg" value-ref="gdsArrmsg" />
+				<entry key="t_gds_gds2media_snap" value-ref="gdsGds2MediaSnap" />
+				<entry key="t_gds_gds2media" value-ref="gdsGds2Media" />
+				<entry key="t_gds_gds2prop_snap" value-ref="gdsGds2PropSnap" />
+				<entry key="t_gds_gds2prop" value-ref="gdsGds2Prop" />
+				<entry key="t_gds_collect" value-ref="gdsCollect" />
+				<entry key="t_gds_adapt" value-ref="gdsAdapt" />
+				<entry key="t_gds_price_ladder" value-ref="gdsPriceLadder" />
+				<entry key="t_gds_cus_price" value-ref="gdsCusPrice" />
+				<entry key="t_gds_area_price_ladder" value-ref="gdsAreaPrice" />
+				<entry key="t_gds_presale" value-ref="gdsPresale" />
+				<entry key="t_gds_media_lib" value-ref="gdsMediaLib" />
+				<entry key="t_gds_media" value-ref="gdsMedia" />
+				<entry key="t_gds_main_sku_comb" value-ref="gdsMainSkuComb" />
+				<entry key="t_gds_eval_reply" value-ref="gdsEvalReply" />
+				<entry key="t_gds_eval" value-ref="gdsEval" />
+				<entry key="t_gds_gift" value-ref="gdsGift" />
+				<entry key="t_gds_shiptemp" value-ref="gdsShiptemp" />
+				<entry key="t_gds_shiptemp_price" value-ref="gdsShiptempPrice" />
+				<entry key="t_gds_sku_info_gds_idx" value-ref="gdsSkuInfoGdsIdx" />
+				<entry key="t_gds_sku_info_shop_idx" value-ref="gdsSkuInfoShopIdx" />
+				<entry key="t_gds_info_shop_idx" value-ref="gdsInfoShopIdx" />
+				<entry key="t_gds_gds2catg_catg_idx" value-ref="gdsGds2CatgCatgIdx" />
+				<entry key="t_gds_arrmsg_shop_idx" value-ref="gdsArrmsgShopIdx" />
+				<entry key="t_gds_arrmsg_staff_idx" value-ref="gdsArrmsgStaffIdx" />
+				<entry key="t_gds_collect_gds_idx" value-ref="gdsCollectGdsIdx" />
+				<entry key="t_gds_collect_shop_idx" value-ref="gdsCollectShopIdx" />
+				<entry key="t_gds_collectcnt" value-ref="gdsCollectCnt" />
+				<entry key="t_gds_collect_staff_idx" value-ref="gdsCollectStaffIdx" />
+				<entry key="t_gds_media_shop_idx" value-ref="gdsMediaShopIdx" />
+				<entry key="t_gds_eval_gds_idx" value-ref="gdsEvalGdsIdx" />
+				<entry key="t_gds_eval_shop_idx" value-ref="gdsEvalShopIdx" />
+				<entry key="t_gds_eval_ord_idx" value-ref="gdsEvalOrdIdx" />
+				<entry key="t_gds_eval_staff_idx" value-ref="gdsEvalStaffIdx" />
+				<entry key="t_gds_gift_shop_idx" value-ref="gdsGiftShopIdx" />
+				<entry key="t_gds_shiptemp_shop_idx" value-ref="gdsShiptempShopIdx" />
+				<entry key="t_gds_shop2catgrate" value-ref="gdsShop2Catgrate" />
+				<entry key="t_gds_shop2shiptemp" value-ref="gdsShop2Shiptemp" />
+				<entry key="t_gds_sku_info_snap" value-ref="gdsSkuInfoSnap" />
+				<entry key="t_gds_sku_addon_snap" value-ref="gdsSkuAddonSnap" />
+				<entry key="t_gds_sku_addon" value-ref="gdsSkuAddon" />
+				<entry key="t_gds_sku_info" value-ref="gdsSkuInfo" />
+				<entry key="t_gds_sku2price_snap" value-ref="gdsSku2PriceSnap" />
+				<entry key="t_gds_sku2price" value-ref="gdsSku2Price" />
+				<entry key="t_gds_sku2media_snap" value-ref="gdsSku2MediaSnap" />
+				<entry key="t_gds_sku2media" value-ref="gdsSku2Media" />
+				<entry key="t_gds_sku2prop_snap" value-ref="gdsSku2PropSnap" />
+				<entry key="t_gds_sku2prop" value-ref="gdsSku2Prop" />
+				<entry key="t_gds_gds2prop_prop_idx" value-ref="gdsGds2PropPropIdx" />
+				<entry key="t_gds_sku2prop_prop_idx" value-ref="gdsSku2PropPropIdx" />
+				<entry key="t_gds_group2ptype" value-ref="gdsGroup2PType" />
+				<entry key="t_gds_catgcust_blacklist" value-ref="gdsCatgcustBlacklist" />
+				<entry key="t_gds_catgcust_disc" value-ref="gdsCatgCustDisc" />
+				<entry key="t_gds_score_ext" value-ref="gdsScoreExt" />
+				<entry key="t_gds_browse_his" value-ref="gdsBrowseHis" />
+				<entry key="t_gds_interface_gdsr" value-ref="gdsInterfaceGdsR" />
+				<entry key="t_gds_interface_gdsr_gidx" value-ref="gdsInterfaceGdsRGidx" />
+				<entry key="t_gds_verify_shop_idx" value-ref="gdsVerifyShopIdx" />
+				<entry key="t_gds_sku_snap"  value-ref="gdsSkuSnap" />
+				<entry key="t_gds_excel_imp"  value-ref="gdsExcelImp" />
+				<entry key="t_gds_excel_imp_log"  value-ref="gdsExcelImpLog" />
+				<entry key="t_gds_log"  value-ref="gdsLog" />
+			</map>
+		</constructor-arg>
+	</bean>
+
+
+
+	<bean id="stockRep" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_rep_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="stockRepHis" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="rep_code" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_rep_his_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'rep_code', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'rep_code',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="stockRepAdapt" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_rep_adapt_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="stockRepAdaptHis" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_rep_adapt_his_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+
+	<bean id="stockShopRepIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_shop_rep_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="stockCompanyRepIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="company_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_company_rep_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'company_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'company_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="stockInfo" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_info_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+
+	<bean id="stockInfoHis" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="stock_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_info_his_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'stock_id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'stock_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="stockInfoAdapt" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_info_adapt_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="stockOptRecord" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="stock_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_opt_record_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'stock_id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'stock_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+
+
+
+	<bean id="stockShopInfoIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_shop_info_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="stockCompanyInfoIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="company_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_company_info_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'company_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'company_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="stockRepInfoIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="rep_code" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_rep_info_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'rep_code', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'rep_code',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="stockPreOccupy" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="stock_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_pre_occupy_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'stock_id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'stock_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="stockSkuEntity" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="stock_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_sku_entity_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'stock_id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'stock_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="stockSkuEntityHis" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="stock_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_sku_entity_his_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'stock_id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'stock_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+
+	<bean id="stockOutDetail" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="stock_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_out_detail_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'stock_id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'stock_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+
+	<bean id="stockInDetail" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="stock_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_stock_in_detail_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'stock_id', tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4}, operator:'+',operatorValue:1} </value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'stock_id',
+				tranferType:'java.lang.Long',
+				operator:'%',operatorValue:4},operator:'/',
+				operatorValue:2},operator:'+', operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+
+
+
+	<bean id="gdsInfoSnap" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="snap_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_info_snap_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'snap_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'snap_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsAddonSnap" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="snap_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_addon_snap_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'snap_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'snap_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsAddon" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_addon_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsInfo" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_info_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsPriceSnap" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="snap_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_price_snap_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'snap_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'snap_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsPrice" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_price_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsGds2CatgSnap" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="snap_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_gds2catg_snap_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'snap_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'snap_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsGds2Catg" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="gds_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_gds2catg_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'gds_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'gds_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsArrmsg" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_arrmsg_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsGds2MediaSnap" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="snap_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_gds2media_snap_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'snap_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'snap_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsGds2Media" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="gds_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_gds2media_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'gds_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'gds_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsGds2PropSnap" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="snap_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_gds2prop_snap_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'snap_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'snap_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsGds2Prop" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="gds_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_gds2prop_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'gds_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'gds_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsCollect" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_collect_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsAdapt" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_adapt_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsPriceLadder" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_price_ladder_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+
+	<bean id="gdsCusPrice" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_cus_price_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="gdsAreaPrice" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_area_price_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+
+	<bean id="gdsPresale" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_presale_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsMediaLib" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_media_lib_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsMedia" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_media_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsMainSkuComb" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_main_sku_comb_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsEvalReply" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="eval_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_eval_reply_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'eval_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'eval_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsEval" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_eval_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsGift" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_gift_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsShiptemp" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_shiptemp_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsShiptempPrice" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="ship_template_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_shiptemp_price_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'ship_template_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'ship_template_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsSkuInfoGdsIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="gds_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku_info_gds_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'gds_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'gds_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsSkuInfoShopIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku_info_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsInfoShopIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_info_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsGds2CatgCatgIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="catg_code" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_gds2catg_catg_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'catg_code',
+				tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'catg_code',tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsArrmsgShopIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_arrmsg_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsArrmsgStaffIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_arrmsg_staff_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsCollectGdsIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="gds_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_collect_gds_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'gds_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'gds_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsCollectShopIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_collect_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsCollectCnt" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_collectcnt_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsCollectStaffIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_collect_staff_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsMediaShopIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_media_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsEvalGdsIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="gds_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_eval_gds_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'gds_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'gds_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsEvalShopIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_eval_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsEvalOrdIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="order_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_eval_ord_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'order_id',
+				tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'order_id',tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsEvalStaffIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_eval_staff_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsGiftShopIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_gift_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsShiptempShopIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_shiptemp_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsShop2Catgrate" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_shop2catgrate_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsShop2Shiptemp" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_shop2shiptemp_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'"shop_id"',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'"shop_id"',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsSkuInfoSnap" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku_info_snap_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsSkuAddonSnap" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="snap_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku_addon_snap_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'snap_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'snap_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsSkuAddon" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku_addon_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsSkuInfo" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku_info_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsSku2PriceSnap" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="snap_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku2price_snap_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'snap_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'snap_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsSku2Price" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="gds_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku2price_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'gds_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'gds_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsSku2MediaSnap" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="snap_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku2media_snap_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'snap_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'snap_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsSku2Media" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="sku_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku2media_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'sku_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'sku_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsSku2PropSnap" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="snap_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku2prop_snap_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'snap_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'snap_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsSku2Prop" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="gds_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku2prop_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'sku_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'gds_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="gdsSku2PropPropIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="prop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku2prop_prop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'prop_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'prop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+
+	<bean id="gdsGds2PropPropIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="prop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_gds2prop_prop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'prop_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'prop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsGroup2PType" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_group2ptype_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsCatgcustBlacklist" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_catgcust_blacklist_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'"shop_id"',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'"shop_id"',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsCatgCustDisc" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_catgcust_disc_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'"shop_id"',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'"shop_id"',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	<bean id="gdsScoreExt" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="gds_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_score_ext_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'gds_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'gds_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	 
+	<bean id="gdsBrowseHis" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="staff_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_browse_his_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'staff_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'staff_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+
+	<bean id="gdsInterfaceGdsR" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="origin_gds_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_interface_gdsr_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'origin_gds_id',
+				tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'origin_gds_id',tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="gdsInterfaceGdsRGidx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="gds_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_interface_gdsr_gidx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'gds_id',
+				tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'gds_id',tranferType:'com.db.util.StringHash',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="gdsVerifyShopIdx" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="shop_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_verify_shop_idx_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'shop_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'shop_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	
+	<bean id="gdsSkuSnap" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="sku_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_sku_snap_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'sku_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'sku_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	
+	<bean id="gdsExcelImp" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="import_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_excel_imp_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'import_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'import_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	
+	<bean id="gdsExcelImpLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="import_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_excel_imp_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'import_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'import_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	<bean id="gdsLog" class="com.db.distribute.DistributedTableRule">
+		<property name="distributeKey" value="log_id" />
+		<property name="logicDBPattern" value="logic_transaction_db_{00}" />
+		<property name="tableNamePattern" value="t_gds_log_{00}" />
+		<property name="tableNameRule">
+			<value>{keyValue:{keyColumn:'log_id',
+				tranferType:'java.lang.Long',operator:'%',operatorValue:4},
+				operator:'+',operatorValue:1}
+			</value>
+		</property>
+		<property name="logicDBRule">
+			<value>{keyValue:{keyValue:{keyColumn:'log_id',tranferType:'java.lang.Long',operator:'%',operatorValue:4},operator:'/',operatorValue:2},operator:'+',
+				operatorValue:1}
+			</value>
+		</property>
+		<property name="allowFullTableScan" value="true" />
+		<property name="subTableCount" value="4" />
+	</bean>
+	
+	
+</beans>

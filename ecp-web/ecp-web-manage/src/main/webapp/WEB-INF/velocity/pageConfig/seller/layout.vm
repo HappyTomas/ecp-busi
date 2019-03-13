@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>模板配置</title>
+    #parse("/sys/sys_head.vm")
+    <link href="$!{CSS_PATH}/pageConfig/template-public.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="$!{CSS_PATH}/pageConfig/template-prom.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="$!{CSS_PATH}/pageConfig/template-config.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="$!{CSS_PATH}/pageConfig/template-shop.css" rel="stylesheet" type="text/css" media="screen"/>
+
+    <!-- 全局插件   -->
+    <!-- js模板插件   -->
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/artTemplate/template-debug.js?version=$!{JS_VERSION}" ></script>
+	<!-- js拖拽插件   -->
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/jsmartdrag/jquery.jsmartdrag.js?version=$!{JS_VERSION}" ></script>
+	<!-- js取色版插件   -->
+	<link href="$!{BUSIJS_PATH}/pageConfig/public/jpicker-1.1.6/css/jPicker-1.1.6.min.css" rel="stylesheet" type="text/css" media="screen"/>
+	<link href="$!{BUSIJS_PATH}/pageConfig/public/jpicker-1.1.6/jPicker.css" rel="stylesheet" type="text/css" media="screen"/>
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/jpicker-1.1.6/jpicker-1.1.6.min.js?version=$!{JS_VERSION}" ></script>
+	<style>
+		.jPicker td[class="Text"] input {
+		    height: 20px;
+		}
+		.jPicker tr.Hex td.Text input.Hex {
+		    width: 60px;
+		}
+	</style>
+	<!-- js拖拽排序插件 -->
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/public/dragSort/jquery.dragsort-0.5.2.min.js?version=$!{JS_VERSION}" ></script>
+	<script type="text/javascript" src="$!{BUSIJS_PATH}/pageConfig/seller/sellerlayout.js?version=$!{JS_VERSION}" ></script>
+</head>
+
+<body>
+<input type="hidden" value="$!{mallskintomanage}" id="mallskintomanage">
+<div id="page">
+    <!--topbar-->
+    <div class="tpl-navbar clearfix">
+        <div class="tpl-brand">
+            ##<a href="#siteInfo('1')" target="_blank">
+                <img src="#webManageLogo()" style="height: 40px">
+            ##</a>
+            <span>店铺装饰配置</span>
+        </div>
+
+        <!--<div class="tpl-account">
+            <span class="tpl-account-info"> <a href="" target="_blank">返回首页</a> <b class="tpl-dropdown-icon">&nbsp;</b> </span>
+        </div>-->
+
+    </div>
+    <!--topbar end-->
+    #set($pageSelected = "disabled")
+	 #set($advertiseSelected = "disabled")
+	#if($!{pageName}=="page")
+		#set($pageSelected = "selected")
+	#elseif($!{pageName}=="advertise")
+		#set($advertiseSelected = "selected")
+	#end
+    <div class="main-wrapper main-wrapper-design-mode wpst-toolbar-show">
+        <!--left-->
+        <div class="tpl-sidebar">
+            <ul class="tab-bar" id="sellerManage">
+                <!-- 选择模块 -->
+                <li class="modules $pageSelected" name="page">
+                    <div class="wrap">
+                        <div class="left-line"></div>
+                        <b class="iconfont">&#xe66f;</b>
+
+                        <div>页面配置</div>
+                        <b class="arrow"></b>
+                    </div>
+                </li>
+                <li class="page $advertiseSelected" name="advertise">
+                    <div class="wrap ">
+                        <div class="left-line"></div>
+                        <b class="iconfont">&#xe66b;</b>
+
+                        <div>广告管理</div>
+                        <b class="arrow"></b>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--left end-->
+
+        <!--right-->
+        <div class="tpl-main" style="padding: 0">
+            <div class="ui-content">
+				<div class="ui-content-inner">
+					$screen_content
+                </div>
+            </div>
+        </div>
+        <!--right end-->
+    </div>
+
+</div>
+
+</body>
+</html>
+

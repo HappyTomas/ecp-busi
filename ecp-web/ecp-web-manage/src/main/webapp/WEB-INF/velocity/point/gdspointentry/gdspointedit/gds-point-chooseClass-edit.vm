@@ -1,0 +1,123 @@
+
+#parse("sys/sys_param.vm")
+#parse("/module/mod-form.vm")
+
+<link href="${CONTEXT_PATH}/css/product-mgr.css" rel="stylesheet" type="text/css" media="screen"/>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/goods/gdsinfoentry/gds-chooseClass.js?version=$!{JS_VERSION}" ></script>
+
+
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a href="#seltype" data-toggle="tab">分类选择</a>
+    </li>
+    <li>
+        <a href="#commontype" data-toggle="tab">常用分类</a>
+    </li>
+</ul>
+<div class="tab-content pmgr-lay">
+    <div class="tab-pane active" id="seltype">
+        <div class="type-list-wrap" style="">
+            <div class="type-sel clearfix"  id="me">
+                <div class="type-list">
+                    <div class="search">
+                        <div class="input-wrap">
+                            <i class="icon-search"></i><input type="text" placeholder="输入关键字查找"/>
+                        </div>
+                    </div>
+                    <div class="lay-wrap">
+                        <ul class="lay">
+							#foreach($list in $!{classList})
+                            <li class="listNode" id="$!{list.catgCode}" catgName="$!{list.catgName}">
+                                <div class="d-text">
+									$!{list.catgName}
+                                </div>
+                            </li>
+							#end
+							
+                        </ul>
+                    </div>
+                </div>
+				
+            </div>
+        </div>
+    </div>
+	<div class="tab-pane" id="commontype">
+        <div class="clearfix">
+            <div class="type-list" style="width: 95%">
+                <div class="lay-wrap">
+                    <ul class="lay">
+                        <li>
+                            <div class="d-text">
+                                分类1
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-text">
+                                分类2
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-text">
+                                分类3
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-text">
+                                分类3
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-text">
+                                分类3
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-text">
+                                分类3
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-text">
+                                分类3
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-text">
+                                分类3
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-text">
+                                分类3
+                            </div>
+                        </li>
+                        <li>
+                            <div class="d-text">
+                                分类3
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="d-text">
+                                分类3
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+	<form method="post" id="catgClassForm" action="gdsinfoentry/entrybaseinfo">
+		<input type="hidden" name="catgCode" id="catgCode" value=""/>
+		<input type="hidden" name="catgName" id="catgName" value=""/>
+	    <div class="alert sel-tip">
+				你选择的分类为：<span class="sel-cont" id="selecEnd" value="" catgName=""></span>
+        </div>
+    </form>
+        <div class="btn-wrap btn-wrap-save">
+            <input type="button" value="下一步" id="btn_next" class="btn"/>
+        </div>
+    </div>
+</div>
+

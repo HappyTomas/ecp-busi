@@ -1,0 +1,64 @@
+#parse("/module/mod-form.vm")
+#parse("/module/mod-grid.vm")
+<script type="text/javascript" src="$!{BUSIJS_PATH}/staff/acct/acct-grid.js?version=$!{JS_VERSION}" ></script>
+
+		<div class="well well-searchForm">
+			<form id="searchForm" class="form-horizontal" style="margin-bottom: 0px;">
+			<div class="row-fluid">
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">适用店铺：</label>
+						<div class="controls">
+							<select name="shopId" enabled>
+								<option value="">--请选择--</option>
+								#shoplist($!{dto.shopId})
+                            </select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">资金类型：</label>
+						<div class="controls">
+							<select name="acctType" enabled>
+								<option value="">--请选择--</option>
+								#listParam('STAFF_ACCT_TYPE')
+                            </select>
+						</div>
+					</div>
+				</div>
+				<div class="span4">
+					<div class="control-group">
+						<label class="control-label">资金所属用户：</label>
+						<div class="controls">
+							<input type="text" name="staffName" class="input-medium" value="" placeholder="登录工号">
+						</div>
+					</div>
+				</div>
+				<div class="clear"></div>
+			</div>
+	
+			</form>
+		</div>
+		
+		
+		<div class="row-fluid" style="margin-bottom: 10px;">
+			<div class="pull-left">
+				<a class="btn" id="importAcctExcel" href="javascript:void();"><i class="icon-tasks"></i> 导入资金账户</a>
+				<a class="btn" id="btnDownload" href="../js-busi/staff/download/accttemplate.xls"><i class="icon-download-alt"></i> 模板下载</a>
+			</div>
+			
+			<div class="pull-right">
+				<a class="btn btn-info" id="btnFormSearch" href="javascript:void();"><i class="icon-search icon-white"></i> 查询</a>
+				<a class="btn" id="btnFormReset" href="javascript:void();"><i class="icon-refresh"></i> 重置</a>
+			</div>
+		</div>
+	
+	
+		<div class="row-fluid">
+			<table id="dataGridTable"></table>
+		</div>
+			
+		<form id="updateForm" action="${CONTEXT_PATH}/acct/update" method="POST">
+			<input type="hidden"  name="staffId" id="staffId"/>
+        </form>

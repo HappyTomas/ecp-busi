@@ -1,0 +1,29 @@
+#parse("sys/sys_param.vm")
+
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<link rel="stylesheet" href="$!{CSS_PATH}/amazeui.css">
+<link rel="stylesheet" href="$!{CSS_PATH}/public.css">
+<link rel="stylesheet" href="$!{CSS_PATH}/mall.css">
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/flexible/flexible.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/amazeui/jquery.min.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/amazeui/amazeui.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/framework/website/core/e.dialog.js"></script>
+<script type="text/javascript" src="$!{RESOURCE_PATH}/jquery/artTemplate/template-debug.js"></script>
+
+<script src="$!{RESOURCE_PATH}/jquery/amazeLoad/amazeLoad.js"></script>
+
+#parse("/search/search-box.vm")
+
+<script type="text/javascript" src="$!{BUSIJS_PATH}/search/search-result.js"></script>
+<input type="hidden" value="$!{vo.shopId}" id="shopId"/>
+<input type="hidden" value="$!{vo.searchShopInner}" id="searchShopInner"/>
+<input type="hidden" value="$!{vo.category}" id="category">
+<input type="hidden" value="$!{catgName}" id="catgName">
+<input type="hidden" value="$!{vo.authorName}" id="authorName">
+<input type="hidden" value="$!{vo.adid}" id="adid">
+<div class="ui-content">
+    #parse("/search/search-title.vm")
+    #parse("/search/page/search-resultlist.vm")
+</div>
+<!-- 侧边栏内容 -->
+#parse("/search/search-prop.vm")

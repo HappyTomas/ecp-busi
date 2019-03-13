@@ -1,0 +1,9 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/common/prom-check.js?version=$!{JS_VERSION}" ></script>
+	<div class="alert alert-error hide formValidateMessages" id="prom-info-valid" >
+				##showSpringAllError("promVO")
+            </div>
+            <div style="margin-top: 20px">
+            #if($!{promType.promTypeCode})
+                #parse("/seller/prom/createprom/discount-rule-$!{promType.promTypeCode}.vm") 
+            #end
+			   </div>

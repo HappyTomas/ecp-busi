@@ -1,0 +1,82 @@
+#parse("sys/sys_param.vm")
+<div class="nCont" >
+   <div class="navBoxs">
+	#if($catgChild && $catgChild.size() >0 )##有数据
+		#foreach(${catgTwo} in $catgChild) 
+			 #set($r = $velocityCount % 2)  ##判断基数   采用不同的样式  背景色黑白相间效果
+           <div class="navBox navBox-hover #if($r == 0)gray-bg#end">
+               <dl>
+                   <dt>
+						<!-- 二级节点名称 -->
+						<a target='_blank' href="
+                        #if(${catgTwo.catgCode} && $!{catgTwo.catgCode}!='')
+                       		$!{MALL_SITE_URL}/search?category=$!{catgTwo.catgCode} 
+                       	#elseif(${catgTwo.catgUrl} && $!{catgTwo.catgUrl}!='')
+                       		$!{MALL_SITE_URL}/$!{catgTwo.catgUrl} 
+                       	#else
+                       		$!{MALL_SITE_URL}/search?keyword=#stringEncode($!{catgTwo.catgName})
+    					#end
+    					">
+    					<span class="exam-icon">$!{catgTwo.catgName}</span>
+						</a>
+                        #if(${catgTwo.cmsShowChildCatg} && $catgTwo.cmsShowChildCatg.size() > 0)
+							<i class="angle-right"></i>
+						#end
+                   </dt>
+               </dl>
+           </div>
+		#end
+	#else
+	<div class="nodata">
+	 	<span style="color:red;">
+			#if($errMsg && $errMsg != '')$!errMsg #else 暂无数据！#end
+	    </span>
+	 </div>
+	#end
+   </div>
+   #if(${showCatg} && ${showCatg.size()} > 0 )
+   <div class="navList">
+	#foreach($showCatgTwo in ${showCatg})
+       <div class="navChild">
+			#foreach($showCatgThree in ${showCatgTwo})
+               <div class="lItem">
+					<div class="tit">
+    					<a href="
+            				#if(${showCatgThree.catgCode} && $!{showCatgThree.catgCode}!='')
+                           		$!{MALL_SITE_URL}/search?category=$!{showCatgThree.catgCode} 
+                          	#elseif(${showCatgThree.catgUrl} && $!{showCatgThree.catgUrl}!='')
+                           		$!{MALL_SITE_URL}/$!{showCatgThree.catgUrl} 
+                          	#else
+                          		$!{MALL_SITE_URL}/search?keyword=#stringEncode($!{showCatgThree.catgName})
+            				#end
+            			">$!{showCatgThree.catgName}</a>
+                   </div>
+                   <div class="con">
+                       <ul>
+    					#foreach($showCatgFour in ${showCatgThree.cmsChildCatg})
+							#if($velocityCount != 1)
+                            <li>|</li>
+    						#end
+                        	<li>
+    							<a target='_blank' href="
+                                	#if(${showCatgFour.catgCode} && $!{showCatgFour.catgCode}!='')
+                                		$!{MALL_SITE_URL}/search?category=$!{showCatgFour.catgCode} 
+                                	#elseif(${showCatgFour.catgUrl} && $!{showCatgFour.catgUrl}!='')
+                                		$!{MALL_SITE_URL}/$!{showCatgFour.catgUrl} 
+                                	#else
+                                		$!{MALL_SITE_URL}/search?keyword=#stringEncode($!{showCatgFour.catgName})
+    								#end
+    								">
+    								$!{showCatgFour.catgName}
+    							</a>
+    						</li>
+                        #end
+                       </ul>
+                   </div>
+               </div>
+			#end
+       </div>
+	   #end
+   </div>
+   #end
+ </div>

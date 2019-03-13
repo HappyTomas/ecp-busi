@@ -1,0 +1,35 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/cms/common/linkage-grid.js?version=$!{JS_VERSION}" ></script>
+
+<div class="row-fluid">
+	<div class="span4">
+		<div class="control-group">
+			<label class="control-label">所属站点：</label>
+			<div class="controls">
+				<select id="siteId" name="siteId" attrId="" class="input-block-level">
+					<option value="" selected>-请选择-</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="control-group">
+			<label class="control-label">所属模板：</label>
+			<div class="controls">
+				<select id="templateId" name="templateId" attrId="" class="input-block-level">
+					<option value="" selected>-请选择-</option>
+				</select>   				
+			</div>
+		</div>
+	</div>
+	<div class="span4">
+		<div class="control-group">
+			<label class="control-label">内容位置：</label>
+			<div class="controls">
+				<select id="placeId" name="placeId" attrId="" class="input-block-level">
+					<option value="" selected>-请选择-</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>

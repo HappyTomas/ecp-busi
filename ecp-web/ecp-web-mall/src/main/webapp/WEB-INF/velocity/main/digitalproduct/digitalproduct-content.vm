@@ -1,0 +1,192 @@
+#parse("/sys/sys_param.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/main/main-content.js"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/main/main-cart-coll.js"></script>
+<div class="wrap1200 clearfix">
+        <!--左侧栏-->
+        
+        <div class="sidebar-left">
+	       <!--数字产品二级页面导航-->
+	        <div class="sidebar-nav2 ecp-component sidebar-catg-shader" data-place-id="610" 
+	             data-module="ecp-component/sidebar-catg-shader">
+	        </div>
+            <div class="bar-ad mt10">
+                <div class="ecp-component homepage-ad-vertical" data-status="1" data-place-size="4" data-place-id="602" data-place-width="190" data-place-height="70" data-border-box="0" data-frist-mt="0" data-module="ecp-component/leaflet/leaflet-vertical">
+                </div>
+            </div>
+
+        </div>
+
+
+        <!--右推荐-->
+        <div class="hot-recommend clearfix mt10">
+            <!--banner-热推-->
+            <div class="banner-hot">
+                <div class="recommend-left ">
+                    <div class="bannerimg slide" id="bannerimg">
+                     <!--广告轮番  begin-->
+                     <div class="bannerimg slider ecp-component homepage-ad" data-status="1" data-place-size="8" data-place-id="601" data-place-width="752" data-place-height="315" data-module="ecp-component/leaflet/leaflet-slider">
+                       <div class="slide-pagination">
+                       		<ul class="homepage-ad-num">
+                       		</ul>
+                       </div>
+                       <ul class="slide-box homepage-ad-img" style="display:block;">
+                       </ul>
+                    </div>
+                    <!--广告轮番  end-->
+                    </div>
+                </div>
+                <div class="recommend-right">
+                   <!-- begin of 行业资讯  div -->
+	                <div class="box ecp-component homepage-info" data-status="1" data-place-size="5" data-place-id="611" data-module="ecp-component/info/homepage-info">
+	                    <div class="box-tit">
+	                        <span class="font-tit">
+								#parse("/main/child/info-title.vm")
+							</span>
+	                        <span class="pull-right">
+	                        <a class = "hide info-more " href="${CONTEXT_PATH}/info/infolist?placeId=611"> 更多</a>
+	                        </span>
+	                    </div>
+	                    <div class="box-con border-box box-pro01 " style ="height:132px;">
+	                    	<ul class="homepage-info-slides">
+                                   
+                            </ul>
+	                    </div>
+	                </div>
+                    <!-- end of 行业资讯  div -->
+					
+					<!-- end of 客户端  div -->
+					<div class="recom-ad ecp-component homepage-ad-vertical" data-status="1" 
+						data-place-size="2" data-place-id="612" data-place-width="238" data-place-height="139" data-border-box="0" data-frist-mt="0" data-module="ecp-component/leaflet/leaflet-vertical">
+                    </div>
+                    <div class="box">
+                        <div class="box-tit">
+                            <span class="font-tit">移动学习客户端</span>
+                        </div>
+						<div class="onlineks-box ecp-component homepage-ad-vertical" data-status="1" 
+							data-place-size="1" data-place-id="613" data-place-width="236" data-place-height="148" data-border-box="0" data-frist-mt="0" data-module="ecp-component/leaflet/leaflet-vertical">
+						</div>
+                    </div>
+					<!-- end of 客户端  div -->
+                </div>
+            </div>
+
+            <div class="banner-hot clearfix">
+                <div class="recommend-left" >
+                    <!--商品推荐 begin-->
+                      <div class="box new-box recommend-tab ecp-component homepage-jcarousel" data-status="1" data-gds-size="8" data-tab-size="3" data-place-id="603" data-place-width="150" data-place-height="150" data-module="ecp-component/floor/homepage-jcarousel">
+                        <div class="box-tit homepage-jc-tt ">
+                            <span class="font-tit floor-name hide"><i class="shopr-icon"></i></span>
+                        </div>
+                        <div class="box-con box-two homepage-jc-body" style="height: 255px;"></div>
+                    </div>
+                    <!--商品推荐 end-->
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+    <div class="wrap1200">
+        <div class="recommend-digital">
+            <div class="digital-box clearfix">
+                <div class="recommend-left">
+                    <!--数字教材 begin-->
+                     <style>
+                      .dig-protj .price_r{display:none}
+                     </style>
+                    <div class="box  ecp-component homepage-gds-tj" data-status="1" data-gds-size="4" data-tab-size="" data-place-id="604" data-place-width="150" data-place-height="150" data-menu-type='1'  data-module="ecp-component/floor/homepage-gds-tj">
+                        <div class="box-tit homepage-gds-tjtt">
+                            <span class="font-tit hide"><i class="shopr-icon"></i></span>
+                        </div>
+                        <div class="box-con ele-border clearfix homepage-gds-tjcc" style="height:391px;">
+                            <ul class="ele-protj dig-protj">
+                               
+                            </ul>
+                        </div>
+                    </div>
+                    <!--数字教材 end -->
+                </div>
+                <!--数字教材销售榜 begin-->
+                <div class="recommend-right">
+                 <div class="box box-order ecp-component sidebar-gds-ranking" 
+		                data-status="1" data-gds-size="6"  data-tab-size="0" data-place-id="607" data-place-width="80" data-place-height="80"
+		                data-module="ecp-component/ranking/sidebar-gds-ranking">
+		                <div class="box-tit">
+                           <span class="font-tit floor-name">数字教材销售榜</span>
+                          </div>
+		                <div class="box-con">
+		                    <div class="box-content border-box clearfix gds-info" style="height:381px;">
+		                    </div>
+		                </div>
+                    </div>
+                </div>
+                <!--数字教材销售榜 end-->
+            </div>
+            <div class="digital-box clearfix">
+                <div class="recommend-left">
+                    <!--电子书 begin-->
+                    <div class="box scrollLoading ecp-component homepage-floor"  data-status="1" data-gds-size="4" data-tab-size="2" data-place-id="605" data-place-width="150" data-place-height="150"  data-module="ecp-component/floor/homepage-floor">	
+	                    <div class="box-tit  homepage-floor-tab">
+	                   		 <span class="font-tit hide floor-name"><i class="rebook-icon"></i></span>
+	                    </div>
+	                    <div class="box-con box-two homepage-floor-gds" style="height: 270px;">
+	                    </div>
+                     </div>
+                    <!--电子书 end -->
+                </div>
+                <!--电子书销售榜 begin-->
+                <div class="recommend-right">
+                    <div class="box box-order ecp-component sidebar-gds-ranking" 
+		                data-status="1" data-gds-size="4"  data-tab-size="0" data-place-id="608" data-place-width="80" data-place-height="80"
+		                data-module="ecp-component/ranking/sidebar-gds-ranking">
+		                <div class="box-tit">
+                           <span class="font-tit floor-name">电子书销售榜</span>
+                          </div>
+		                <div class="box-con">
+		                    <div class="box-content border-box clearfix gds-info" style="height:276px;">
+		                        
+		                    </div>
+		                </div>
+                    </div>
+                </div>
+                <!--电子书销售榜 end-->
+            </div>
+
+            <div class="digital-box clearfix">
+                <!--在线辅导班 begin-->
+                <div class="recommend-left">
+                    <div class="box ecp-component homepage-floor"  data-status="1" data-gds-size="4" data-tab-size="2" data-place-id="606" data-place-width="150" data-place-height="150"  data-module="ecp-component/floor/homepage-floor">	
+	                    <div class="box-tit  homepage-floor-tab">
+	                   		 <span class="font-tit hide floor-name"><i class="zyys-icon"></i></span>
+	                    </div>
+	                    <div class="box-con box-two homepage-floor-gds" style="height: 270px;">
+	                    </div>
+                     </div>
+                </div>
+                <!--在线辅导班 end-->
+
+                <!--辅导班排行榜 begin-->
+                <div class="recommend-right">
+	                  <div class="box box-order ecp-component sidebar-gds-ranking" 
+			                data-status="1" data-gds-size="4"  data-tab-size="0" data-place-id="609" data-place-width="80" data-place-height="80"
+			                data-module="ecp-component/ranking/sidebar-gds-ranking">
+			                  <div class="box-tit">
+	                            <span class="font-tit floor-name">辅导班排行榜</span>
+	                          </div>
+			                  <div class="box-con">
+			                    <div class="box-content border-box clearfix gds-info" style="height:276px;">  
+			                    </div>
+			                  </div>
+	                    </div>
+                </div>
+                <!--辅导班排行榜 end-->
+            </div>
+        </div>
+    </div>
+    
+    <!--楼层导航 s
+	<div class="quick-menu ecp-component homepage-elevator" data-status="1" data-place-Type="04" data-template-id="7" data-module="ecp-component/homepage-elevator">
+	</div>
+	-->
+	<!--楼层导航 e-->

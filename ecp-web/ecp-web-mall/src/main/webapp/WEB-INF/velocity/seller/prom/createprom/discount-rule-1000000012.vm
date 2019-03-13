@@ -1,0 +1,37 @@
+<script type="text/javascript" src="$!{BUSIJS_PATH}/seller/prom/createprom/discount-rule-1000000012.js?version=$!{JS_VERSION}" ></script>
+			<div class="formBox">
+				<form id="discountRuleForm" class="form-horizontal  required-validate" style="margin-bottom: 0px;" method="post" action="">
+					     <div class="row-fluid" >
+                                <div class="span8">
+                                    <div class="control-group">
+                                        	<div class="controls">
+                                                <div class="alert sel-alert" style="margin-top: 15px;margin-bottom: 0">
+                                                    <span class="arrow"></span>
+                         					             购买任一指定商品即可享受固定价格。
+												     例如: 同时购买产品 A、B 和 C 只需 &yen;35.00或购买任意特定产品组合享受固定价格。
+												      购物车中必须包含符合条件产品的每款产品，才可享受此优惠。		
+                                                </div>
+                                           </div>
+                                       </div>
+                                    </div>
+                            	</div>
+					<div class="formSep">
+						<div class="control-group">
+							<label class="control-label" for="name">捆绑价：</label>
+							<div class="controls">
+								<input type="text" class="input-large required number priceNumber" id="bindPrice" maxlength="12"  name="discountMap['bindPrice']" placeholder="请输入捆绑价 " value="#moneyNum($!{promVO.discountMap.bindPrice})"   />
+							    <span class="help-inline alert ">符合条件商品和捆绑商品的套餐价格。</span>
+							</div>
+						</div>
+					</div>
+				  <div class="row-fluid bindClass">
+						<div class="control-group">
+							<label class="control-label">捆绑商品：</label>
+							<div class="controls">
+								<span class="sbtn sbtn-blue" id="btnMatchGdsSelect">捆绑商品选择</span>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		 <div id="matchGdsTableId" class="matchGdsSelectDivClass"></div>

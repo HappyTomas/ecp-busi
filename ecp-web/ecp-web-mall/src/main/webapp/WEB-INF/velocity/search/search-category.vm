@@ -1,0 +1,140 @@
+#if($!{senior})
+<div class="sl-rtype" style="display:none;" id="sl-rtype">
+#else
+<div class="sl-rtype" style="display:block;" id="sl-rtype">
+#end
+ <!--    <h3 class="head" code="$extra.parentCateCode"><a href="$!{CONTEXT_PATH}/search?category=$!{extra.parentCateCode}&shopId=$!{shopId}">$!{extra.parentCateName}</a></h3> -->
+    <h3 class="head" code="$extra.parentCateCode">$!{extra.parentCateName}</h3>
+    <input type="hidden" id="searchCategory" value="$!{extra.searchCategory}"/>
+	#if($extra.searchType=="1")
+	 <ul class="list cateList">
+		#set($firAndSecCategorylist=$extra.firAndSecCategorylist)
+		#foreach($firAndSecCategory in $firAndSecCategorylist)
+			#foreach($firstLevel in $firAndSecCategory.entrySet())
+			#set($first=$firstLevel.key)
+			#set($firstArry=$first.split("_"))
+				##<a>$firstArry[0]---$firstLevel.value</a>
+				<li class="item">
+					<div class="it">
+						<i class="micon"></i>
+						<span class="tit" code="$firstArry[2]" title="$firstArry[0]">
+							<!-- <a href="$!{CONTEXT_PATH}/search?category=$firstArry[2]&shopId=$!{shopId}">$firstArry[0]</a> -->
+							$firstArry[0]
+						</span>
+						<i class="num">（<span>$firstArry[1]</span>）</i>
+	        		</div>
+	        		#set($second=$firstLevel.value)
+					<ul class="child leafCate" code="">
+	        		#foreach($secondLevel in $second)
+	        		#set($secondArry=$secondLevel.split("_"))
+						<li class="c-tit" title="$secondArry[0]" code="$secondArry[2]" _value="$secondArry[0]">
+			        		<a href="#">
+			    				$secondArry[0]
+			    				<i class="num">（<span>$secondArry[1]</span>）</i>
+			    			</a>
+	          			</li>
+	    			#end
+	    			</ul>
+				</li>
+			#end
+		#end
+	</ul> 
+	#else
+		
+		<ul class="list cateList">
+		#if($extra.topCateNameList)
+				
+			#set($index=1)
+			#foreach($topCate in $extra.topCateNameList)
+			#if($extra.topCateInfoMap.get($topCate).get("count")!="0")	
+				#if($index==1)
+					<li class="item drawdown">
+				#else
+					<li class="item">
+				#end
+				
+				        <div class="it">
+							#*
+							##分类搜索
+							#if($extra.searchType=="2")
+								#if($extra.topCateInfoMap.get($topCate).containsKey("count"))
+    							<i class="micon"></i>
+    							#else
+    							##空格填充
+    							&nbsp;&nbsp;&nbsp;&nbsp;
+    							#end
+							#else
+								<i class="micon"></i>
+							#end
+							*#
+							<i class="micon"></i>
+                            <span class="tit" title="${topCate}" code="$extra.topCateInfoMap.get($topCate).get("code")">
+								
+								##分类搜索顶级分类才包含count
+								#if($extra.topCateInfoMap.get($topCate).containsKey("count"))
+									${topCate}
+									<i class="num">(<span>$extra.topCateInfoMap.get($topCate).get("count")</span>)</i>
+								#else
+									
+									##分类搜索
+									#if($extra.searchType=="2")
+									##<a href="$!{CONTEXT_PATH}/search?category=$extra.topCateInfoMap.get($topCate).get("code")&shopId=$!{shopId}">${topCate}</a>
+									${topCate}
+									#else
+									${topCate}
+									##<a href="#">
+									#end
+								#end
+                            </span>
+                        </div>
+						
+						#if($extra.cateInfoMap.containsKey($topCate))
+							
+							<ul class="child leafCate">
+							
+    						   #set($j=1)
+    						   #foreach($mainCate in $extra.cateInfoMap.get($topCate))  
+    							#if($mainCate.get("secondNum")!="0")
+    							   ##设置默认选中第一个分类class，用于后期查询过滤处理
+        						   #if($index==1&&$j==1)
+        							<li class="c-tit" title="${mainCate.value}" code="${mainCate.code}" _value="${mainCate.value}" class="fackCateSelected cateSelected">
+        						   #else
+                					<li class="c-tit" title="${mainCate.value}" code="${mainCate.code}" _value="${mainCate.value}">
+    							   #end
+    							   
+								       ##分类搜索
+									   #if($extra.searchType=="2")
+										##<a href="$!{CONTEXT_PATH}/search?category=${mainCate.code}&shopId=$!{shopId}">
+										<a href="#">
+									   #else
+										<a href="#">
+									   #end
+									          ${mainCate.value}
+    									
+    									#if(${mainCate.count})
+    									##<i class="num">（<span>${mainCate.count}</span>）</i>
+    									#end
+    								    <i class="num">（<span>$mainCate.get("secondNum")</span>）</i>
+    								   </a>
+                                   </li>
+    							   
+    							   #set($j=$j+1)
+    							  #end
+    
+    						   #end  
+    						   
+                            </ul>
+							
+						#end
+						
+                    </li>
+        
+    			#set($index=$index+1)
+			#end
+			#end
+			
+		#end
+        
+    </ul>
+    #end
+</div>

@@ -1,0 +1,30 @@
+<!-- gds-gds-type-3   商品主图为正方形样式 第二版促销页楼层    图片规格为176x176 -->
+#parse("/sys/sys_param.vm")
+#if($!{gdsList.size()} > 0 )
+<ul class="clearfix">
+	#foreach(${gds} in ${gdsList})
+    <li>
+        <div class="pro-bg">
+        	<a  href='#if($!{gds.url} && $!{gds.url} !='')${CONTEXT_PATH}$!{gds.url}' target='_blank' #else javascript:void(0);'#end>
+        		<img src="$!{gds.mainPic.URL}">
+        	</a>
+        </div>
+        <p class="pro-tit">
+        	<a  href='#if($!{gds.url} && $!{gds.url} !='')${CONTEXT_PATH}$!{gds.url}' target='_blank' #else javascript:void(0);'#end>
+        		$!{gds.gdsName}
+        	</a>
+        </p>
+        <div class="pro-pri">
+            <div class="pro-pri-d">
+                <p><del>参考价:&yen;#moneyNum($!{gds.guidePrice})</del></p>
+                <p class="pro-act">活动价:&yen;#moneyNum($!{gds.skuInfo.discountPrice})</p>
+            </div>
+            <a href="#if($!{gds.url} && $!{gds.url} !='')${CONTEXT_PATH}$!{gds.url}" target='_blank' #else javascript:void(0);"#end class="pro-btn">立即购买</a>
+        </div>
+    </li>
+    #end         
+</ul>
+#else
+<div class="zw">#if(${errorMsg})$!{errorMsg}#else 亲，暂未配置促销商品！#end</div>
+#end
+

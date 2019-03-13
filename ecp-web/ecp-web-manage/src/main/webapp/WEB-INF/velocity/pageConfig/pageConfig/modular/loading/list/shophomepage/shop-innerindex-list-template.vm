@@ -1,0 +1,42 @@
+#parse("/sys/sys_param.vm")
+#parse("/module/mod-page.vm")
+<script type="text/javascript" src="$BUSIJS_PATH/pageConfig/pageConfig/modular/loading/shop-innerindex-grid.js?version=$!{JS_VERSION}"></script>
+<input  type="hidden" value="$!{category}" id="changeOnceCategory"/>
+#if(!($!{showParam.ifShowSale}=="" && $!{showParam.ifShowPrice}=="" && $!{showParam.ifShowTime}==""))
+<div class="sr-head">
+     <!--包含默认排序规则设置-->
+	<ul class="sr-order" id="sr-order">
+		#set($c = 0)
+		#if($!{showParam.ifShowSale}=="true")
+            <li id="sales" class="first selected">
+				销量
+                <i class="ticon ticon-down"></i>
+            </li>
+			#set($c = $c + 1)
+		#end
+		#if($c == 0)
+			#set($sele = "class='first selected'")
+		#end
+		#if($!{showParam.ifShowPrice}=="true")
+            <li id="discountPrice" $sele>
+				价格
+                <i class="ticon ticon-down"></i>
+			</li>
+			#set($c = $c + 1)
+		#end
+		#if($c == 0)
+			#set($sele = "class='first selected'")
+		#end
+		#if($!{showParam.ifShowTime}=="true")
+            <li id="newProductTime" $sele>
+				时间
+                <i class="ticon ticon-down"></i>
+            </li>
+			#set($c = $c + 1)
+		#end
+     </ul>
+ </div>
+ #end
+ <div class="template template-$!{showParam.showWay}" id="pageMainBox">##showWay  为展示方式。一行展示多少个商品的意思
+	#parse("pageConfig/pageConfig/modular/loading/list/shophomepage/shop-innerindex-gds-grid.vm")
+ </div>

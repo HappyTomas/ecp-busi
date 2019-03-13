@@ -1,0 +1,21 @@
+<ul class="am-slides">
+	<input type="hidden" value="$!{result.size()}" id="pictruesSize"> 
+	#foreach($list in $!{result})
+        <li>
+            <img src="$!{list.url}" alt=""/>
+        </li>
+	#end
+</ul>
+<script >
+$(function(){
+	if($("#pictruesSize").val()=='1'){
+		$('.am-slider-pictrues').flexslider({
+			touch: false
+		});
+	}else{
+		$('.am-slider-pictrues').flexslider();
+	}
+
+	
+})
+</script>

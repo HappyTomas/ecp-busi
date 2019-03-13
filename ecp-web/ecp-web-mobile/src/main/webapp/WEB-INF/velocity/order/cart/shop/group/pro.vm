@@ -1,0 +1,50 @@
+
+<div class="cd-pro mt20 item-body group-body">
+
+    <!-- 商品基本信息 -->
+    <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].itemCheck" id="itemCheck" class="groupCheckHidden" value="#if($invalidGroupAmount == 0)on#end">
+    <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].cartId" id="itemCartId" value="$!{groupItem.cartId}">
+    <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].promId" id="promId" value="$!{groupItemPromId}">
+    <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].cartItemId" id="itemId" value="$!{groupItem.id}">
+    <input type="hidden" name="carList[$!{cartIndex}].cartItemIdList[$!{itemIndex}].gdsStatus" value="$!{groupItem.gdsStatus}">
+    <input type="hidden" id="itemSkuId" value="$!{groupItem.skuId}">
+
+
+    <div class="img-wrap">
+        <a href="$!{CONTEXT_PATH}$!{groupItem.gdsUrl}" target="_blank">
+            <img src="#genImageUrl($!groupItem.getPicId(),'200x200!')" alt="商品图片"/>
+        </a>
+    </div>
+    <div class="cont">
+        <a href="$!{CONTEXT_PATH}$!{groupItem.gdsUrl}" target="_blank">
+            <p class="tof tit">$!{groupItem.gdsName}</p>
+        </a>
+        #if($groupProm)
+            <p class="tof c-orange prom-notice" id="prom-notice">
+                #if($groupProm.ifFulfillProm && $groupProm.ifFulfillProm==true)
+                    $!{groupProm.promTypeMsgResponseDTO.fulfilMsg}
+                #else
+                    $!{groupProm.promTypeMsgResponseDTO.noFulfilMsg}
+                #end
+                &nbsp;
+            </p>
+        #end
+        <div>
+            <span class="pro-pri">$!{groupItem.gdsCateName}&nbsp;</span>
+        </div>
+        <div class="cd-jj">
+            <span><span class="groupItemAmount">$!{groupItem.orderAmount}</span>件</span>
+            <input type="hidden" style="" value="$groupAmount" class="itxt itemNumber" maxlength="9" name="">
+            <span style="#if($groupUnitBasePrice==-1)display:none;#end" id="unitBasePriceBox" class="c-orange ft26" title="商品原价">&yen;：$!{aiNumber.showMoneyByTwoDecimal("$!groupUnitPrice")}</span>
+            <span style="#if($groupUnitBasePrice!=-1)display:none;#end" id="unitPrice" class="c-orange ft26" title="商品现价">&yen;：$!{aiNumber.showMoneyByTwoDecimal("$!groupUnitPrice")}</span>
+
+            ##万一如果groupItemProm.discountCaclPrice这个值没有怎么办，要不要获取buyPrice
+            <span style="display:none;" class="unitBasePrice">$!{aiNumber.showMoneyByTwoDecimal("$!{groupItemProm.discountCaclPrice}")}</span>&nbsp;<br/>
+
+            <span style="display:none;" class="groupItemPrice">$!{aiNumber.showMoneyByTwoDecimal("$!groupUnitPrice")}</span>
+            <span class="groupItemPriceCount" style="display:none">0.00</span>
+        </div>
+    </div>
+</div>
+
+#set($itemIndex = $itemIndex + 1)

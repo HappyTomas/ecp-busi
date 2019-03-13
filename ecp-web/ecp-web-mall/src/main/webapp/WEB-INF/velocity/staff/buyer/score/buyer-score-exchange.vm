@@ -1,0 +1,39 @@
+#parse("sys/sys_param.vm")
+<link rel="stylesheet" type="text/css" media="screen" href="$CSS_PATH/reset.css"/>
+<link rel="stylesheet" type="text/css" media="screen" href="$CSS_PATH/member.css"/>
+
+<div class="clearfix">
+                        <form class="form-horizontal mt20" >
+                        <div class="span3">
+                        <div class="control-group">
+                            <label class="control-label">开始日期：</label>
+                            <div class="controls">
+                               <input type="text" class="input-small Wdate" placeholder="" style="width:130px;cursor: pointer;"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="beginDate" value="$!date.format('yyyy-MM-dd',$!{beginDate})">
+                            </div>
+                        </div>
+                        </div>
+                        <div class="span3">
+                            <div class="control-group">
+                                <label class="control-label">结束日期：</label>
+                                <div class="controls">
+                                     <input type="text" class="input-small Wdate" placeholder="" style="width:130px;cursor: pointer;"  onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" name="endDate" value="$!date.format('yyyy-MM-dd',$!{endDate})">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    	<div class="span3" style="text-align:right">
+                            <div class="control-group">
+                                <div class="controls">
+                                    <button class="btn" id="exchangeQueryBtn"><i class="icon-search"></i> 查询</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="point-tit"><span id="selDateExchange">查询日期：$!{beginDate} 至 $!{endDate}</span>
+                        <span class="pull-right">积分合计：<span class="c-red" id="scoreExchangeSum">$!{scoreSourceSum}</span></span>
+                    </div>
+				<div class="point-con">
+                    <div id='exchangeListDiv'>
+                    	#parse("/staff/buyer/score/exchange-list.vm")
+                    </div>
+                </div>

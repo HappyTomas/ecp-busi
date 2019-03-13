@@ -1,0 +1,211 @@
+#parse("/module/mod-form.vm")
+#parse("sys/sys_param.vm")
+
+<script type="text/javascript"
+        src="$!{BUSIJS_PATH}/pageConfig/prop/prop-edit.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript"
+        src="$!{BUSIJS_PATH}/pageConfig/public/artTemplate/template-debug.js?version=$!{JS_VERSION}"></script>
+<script type="text/javascript" src="$!{BUSIJS_PATH}/cms/common/cms-util.js?version=$!{JS_VERSION}"></script>
+<style>
+    .table td {
+        border: 1px solid #ddd !important;
+        text-align: center;
+    }
+
+    .table thead {
+        background-color: #ebf2f6;
+    }
+</style>
+<!--  隐藏域  保存查询条件-->
+<input type="hidden" id="searchParams" value="$!{searchParams}" />
+<input type="hidden" id="searchModularParams" value="$!{searchModularParams}" />
+
+<form id="detailInfoForm" class="form-horizontal required-validate" style="width:90%;margin:40px auto 10px"
+      method="post"
+      action="$!{CONTEXT_PATH}/place/save">
+    <div class="row-fluid">
+        <div class="span5">
+            <div class="control-group">
+                <label class="control-label">属性名称：</label>
+                <div class="controls">
+                    <input type="hidden" value="#escapeHtml($isValid)" name="isValid" id="isValid">
+                    <input type="hidden" value="#escapeHtml($isRead)" name="isRead" id="isRead">
+                    <input type="hidden" value="#escapeHtml($promVO.id)" name="id">
+                    <input type="hidden" value="#escapeHtml($promVO.modularId)" id="modularId" name="modularId">
+                    <input type="hidden" id="isPubish" name="isPubish" value="$!{respVO.status}"/>
+                    <input type="text" class="input-block-level required" maxlength="16"
+                           value="#escapeHtml($promVO.propName)" name="propName">
+                </div>
+            </div>
+        </div>
+        <div class="span5">
+            <div class="control-group">
+                <label class="control-label">属性值类型：</label>
+                <div class="controls">
+                    <select maxlength="2" id="propValueType"  name="propValueType" class="input-block-level required">
+		    			#listParam('CMS_PROP_VALUE_TYPE',$!{promVO.propValueType})
+		    		</select>
+                </div>
+            </div>
+        </div>
+    </div>
+	<!--
+    <div class="row-fluid">
+        <div class="span5">
+            <div class="control-group">
+                <label class="control-label">是否必填：</label>
+                <div class="controls">
+                    <select name="ifHaveto" class="input-block-level required">
+                     	#listParam('PUBLIC_PARAM_ISNOT',$!{promVO.ifHaveto})
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="span5">
+            <div class="control-group">
+                <label class="control-label">受控属性：</label>
+                <div class="controls">
+                    <select name="controlPropId" class="input-block-level">
+                        <option value=''>--请选择--</option>
+                        #foreach ($item in $controlProps)
+                        <option value="$!{item.id}" #if($!{item.id}== $!{promVO.controlPropId}) selected #end>
+                            $!{item.propName}
+                        </option>
+                        #end
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+	-->
+    <div class="row-fluid">
+		<!--
+		<div class="span5">
+            <div class="control-group">
+                <label class="control-label">是否自动生成：</label>
+                <div class="controls">
+                    <select name="isAutobuild" class="input-block-level required">
+                     	#listParam('PUBLIC_PARAM_ISNOT',$!{promVO.isAutobuild})
+                    </select>
+                </div>
+            </div>
+        </div>
+		-->
+        <div class="span5">
+            <div class="control-group">
+                <label class="control-label">排序：</label>
+                <div class="controls">
+                    <input maxlength="3" value="#escapeHtml($promVO.sortNo)" class="input-block-level digits required" name="sortNo" type="text"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row-fluid">
+        <div class="span10">
+            <div class="control-group">
+                <label class="control-label">属性描述：</label>
+
+                <div class="controls">
+                    <textarea onkeyup="checkLen(this,'count-75','50')"  name="propDesc" maxlength="50" class="input-block-level" cols="30"
+                              rows="3">#escapeHtml($promVO.propDesc)</textarea>
+                  <!-- <span class="help-inline">最多输入50个字，您还可以输入<span style="color:red" class="cms-totalNum" id="count-74">50</span>个字</span>--> 
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<form id="propValForm" class="form-horizontal required-validate" style="width:90%;margin:40px auto 10px">
+    <div class="row-fluid">
+        <div class="span10">
+            <div class="control-group">
+                <div class="controls">
+                    <div class="propVal-tb-wrap hide">
+                        <table class="table" id="propVal-tb">
+                            <thead>
+                            <tr>
+                                <td style="width:150px">属性值</td>
+                                <td style="width:150px">排序</td>
+                                <td>描述</td>
+                                <td style="width:50px">操作</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+	                         #foreach ($item in $promVO.modularPropValRespDTOList)
+	                           <tr row="row_$velocityCount">
+	                                <td>
+	                                    <input name="id" type="hidden"  value="#escapeHtml($item.id)"/>
+	                                    <input name="status" type="hidden" value="#escapeHtml($item.status)"/>
+	                                    <input name="propId" type="hidden"  value="#escapeHtml($item.propId)"/>
+	                                    <div>  
+	                                       <input name="propValue_$velocityCount" value="#escapeHtml($item.propValue)"  maxlength="64" type="text" class="input-block-level required"/>
+	                                    </div>
+	                                </td>
+	                                <td>
+	                                  <div>
+	                                       <input name="sortNo_$velocityCount"  value="#escapeHtml($item.sortNo)" maxlength="3" type="text" class="input-block-level digits"/>
+	                                  </div>
+	                                </td>
+	                                <td>
+	                                  <div>
+	                                    <input name="valueDesc_$velocityCount"  value="#escapeHtml($item.valueDesc)" maxlength="64" type="text" class="input-block-level"/>
+	                                 </div>
+	                                </td>
+	                                <td>
+	                                  #if($!{isRead}!=1 && $!{respVO.status}!=1 && $!{isPubish}!=1 )
+	                                    <a href="#" class="delRow">删除</a>
+	                                   #end
+	                                </td>
+	                            </tr>
+	                           #end
+                            </tbody>
+                        </table>
+                        <script id="propVal-tpl" type="text/html">
+                            <tr row="row_{{item}}">
+                                <td>
+                                    <input name="id" type="hidden"/>
+                                    <input name="propId" type="hidden" value="#escapeHtml($promVO.id)"/>
+                                    <input name="status" type="hidden" value="1"/>
+                                    <div>  
+                                       <input name="propValue_{{item}}" maxlength="64" type="text" class="input-block-level required"/>
+                                    </div>
+                                </td>
+                                <td>
+                                  <div>
+                                       <input name="sortNo_{{item}}" maxlength="3" type="text" class="input-block-level digits"/>
+                                  </div>
+                                </td>
+                                <td>
+                                  <div>
+                                    <input name="valueDesc_{{item}}" maxlength="64" type="text" class="input-block-level"/>
+                                 </div>
+                                </td>
+                                <td>
+                                    <a href="#" class="delRow">删除</a>
+                                </td>
+                            </tr>
+                        </script>
+                        <div>
+                            <input id="addProp" type="button" class="btn" value="新增属性值"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="row-fluid">
+    <div class="span10">
+        <div class="control-group">
+            <div class="controls">
+                <div class="text-center">
+                 #if ($!{isRead}!=1)
+                    <span id="btnPublish" class="btn btn-info"><i class="icon-ok-sign icon-white"></i>发布</span>
+					<span id="btnSave" class="btn btn-info"><i class="icon-ok-sign icon-white"></i>保存</span>
+                 #end
+					<span id="btnReturn" class="btn"><i class="icon-reply icon-white"></i>返回</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

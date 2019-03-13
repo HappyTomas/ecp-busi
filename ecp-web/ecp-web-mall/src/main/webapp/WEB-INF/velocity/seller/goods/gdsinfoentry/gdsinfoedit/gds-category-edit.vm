@@ -1,0 +1,89 @@
+<div class="seller-box" id="gds-category">
+        <div class="head">
+            <h3>分类信息</h3>
+        </div>
+        <div class="body">
+            <div class="row-fluid">
+                <div class="span4 offset1">
+                    <div class="type-t">
+                        <span class="t">
+                            平台分类
+                        </span>
+						#if($!{gdsDetailFlag} == '0')
+                        <a href="#" class="pull-right" id="selptPlat">
+                            <i class="sl-icon icon-add"></i>
+                             添加平台分类
+                        </a>
+						#end
+                    </div>
+                    <table class="table table-bordered type-tb">
+                        <thead>
+                        <tr>
+                            <th>分类名称</th>
+                            <th>分类类型</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="catagoryList">
+							#foreach($a in $!{gdsInfo.platformCategory})
+                                <tr>
+                                    <td id="$!{a.catgCode}">$!{a.catgName}</td>
+									#if($!{gdsInfo.mainCategory.catgCode}==$!{a.catgCode})
+										<td id="1">主分类</td>
+										<td>-</td>
+									#else
+										<td id="2">副分类</td>
+										<td>
+											#if($!{gdsDetailFlag} == '0')
+											  <a href="javascript:void(0)" onclick="deleteCatPlat(this)">删除</a>
+											#else
+												-
+											#end
+										</td>
+									#end
+                                    
+                                </tr>
+							#end
+                        </tbody>
+                    </table>
+                </div>
+				#if($!{GDS_SHOP_CATEGORY}=='1')
+                <div class="span4 offset2">
+                    <div class="type-t">
+                        <span class="t">
+                            店铺分类
+                        </span>
+						#if($!{gdsDetailFlag} == '0')
+                        <a id="seldpShop" href="#" class="pull-right">
+                            <i class="sl-icon icon-add"></i>
+                            添加店铺分类
+                        </a>
+                        #end
+                    </div>
+                    <table class="table table-bordered type-tb">
+                        <thead>
+                        <tr>
+                            <th>分类名称</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody id="shopCatagoryList">
+	                        #foreach($a in $!{gdsInfo.shopCategory})
+	                            <tr>
+	                                <td id="$!{a.catgCode}">$!{a.catgName}</td>
+	                                <td>
+										#if($!{gdsDetailFlag} == '0')
+										<a href="javascript:void(0)" onclick="deleteCatPlat(this)">删除</a>
+										#else
+											-
+										#end
+									</td>
+	                            </tr>
+							#end
+						</tbody>
+                    </table>
+                </div>
+				#end
+            </div>
+        </div>
+</div>

@@ -1,0 +1,11 @@
+ <div class="sType-item">
+     <div class="cont">
+         <ul class="cont-list">
+             #foreach($list in $!{classList})
+				<li class="listNode firstNode" id="$!{list.catgCode}" catgName="$!{list.catgName}">
+					$!{list.catgName}<span class="opt-left"></span>
+				</li>
+			 #end
+         </ul>
+     </div>
+ </div>
